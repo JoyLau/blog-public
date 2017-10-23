@@ -3016,6 +3016,14 @@ redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速�
 <ul>
 <li>然后在文章头部的：Front-matter 位置加上一个：top: 1000 的内容。数值越大，越靠前</li>
 </ul>
+<h3 id="文章推送"><a href="#文章推送" class="headerlink" title="文章推送"></a>文章推送</h3><ul>
+<li>安装git插件 ： npm install hexo-deployer-git –save</li>
+<li>配置文件</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repository: https://github.com/JoyLau/blog-public.git</div><div class="line">  brance: master</div></pre></td></tr></table></figure>
+<ul>
+<li>使用方式： hexo g -d ,会自动推送到上面配置的github地址,分支名为 gh-page</li>
+</ul>
 <h2 id="博客建设"><a href="#博客建设" class="headerlink" title="博客建设"></a>博客建设</h2><h3 id="博客用途"><a href="#博客用途" class="headerlink" title="博客用途"></a>博客用途</h3><ul>
 <li>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，与大家分享交流，同时能够对这些技术进行备忘，以便日后查询</li>
 </ul>
