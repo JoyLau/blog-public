@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="keywords" content="JoyLau,joylau,JoyLau  blog,刘法,刘法的博客,刘法的技术与思考,Java,JavaWeb,Web程序员,Web开发,JavaWeb开发,个人博客">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="JoyLau">
+
+
+
+<meta name="keywords" content="SpringBoot,Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重剑无锋,大巧不工 SpringBoot --- 环境集成">
+<meta property="og:url" content="http://blog.joylau.cn/2017/03/14/SpringBoot-Integrate/index.html">
+<meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://image.joylau.cn/blog/SpringBoot-build-better-enterprise.png">
+<meta property="og:updated_time" content="2017-09-19T10:06:11.083Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重剑无锋,大巧不工 SpringBoot --- 环境集成">
+<meta name="twitter:image" content="http://image.joylau.cn/blog/SpringBoot-build-better-enterprise.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="//image.joylau.cn/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>重剑无锋,大巧不工 SpringBoot --- 环境集成 | JoyLau&#39;s Blog | JoyLau</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">JoyLau</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">刘法的技术学习与思考</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">留言板</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:2587038142@qq.com" title="Email"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/" title="知乎"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/JoyLau" title="GitHub"></a>
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
+                            
+                                <a class="fa 网易云音乐" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/">CMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka/">Eureka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPG/">GPG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GZIP/">GZIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntelliJ-IDEA/">IntelliJ IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/">JSON</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript篇/">JavaScript篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MATE-Desktop/">MATE Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacBookPro/">MacBookPro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugins/">Plugins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/">RabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSL/">SSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBatch/">SpringBatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger2/">Swagger2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroC-Ice/">ZeroC Ice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/emoji/">emoji</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/license/">license</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技能/">技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘挂载/">磁盘挂载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.joylau.cn/">JoyLau</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://life.joylau.cn/">JoyLau’life</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://media.joylau.cn/">JoyMedia</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blog.wfyvv.com/">wfyvv</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://chaxiaoniu.oschina.io/">CherryChang</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，与大家分享交流，同时能够对这些技术进行备忘，以便日后查询</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">JoyLau</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">JoyLau</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">刘法的技术学习与思考</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">留言板</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:2587038142@qq.com" title="Email"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/" title="知乎"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/JoyLau" title="GitHub"></a>
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于">
+</nav>
+      <div class="body-wrap"><article id="post-SpringBoot-Integrate" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/14/SpringBoot-Integrate/" class="article-date">
+      <time datetime="2017-03-14T05:49:11.000Z" itemprop="datePublished">2017-03-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+           <div id="jl_custom">
+                
+
+                
+            </div>
+        <h1 class="article-title" itemprop="name">
+      重剑无锋,大巧不工 SpringBoot --- 环境集成
+    </h1>
+      </header>
+      
+      <div class="article-info article-info-post">
+        <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/SpringBoot篇/">SpringBoot篇</a>
+    </div>
+        <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+    </div>
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+<p><img src="//image.joylau.cn/blog/SpringBoot-build-better-enterprise.png" alt="build-better-enterprise"></p>
+<h2 id="SpringBoot文章推荐"><a href="#SpringBoot文章推荐" class="headerlink" title="SpringBoot文章推荐"></a>SpringBoot文章推荐</h2><ul>
+<li><a href="/2017/03/13/SpringBoot-Basic/">重剑无锋,大巧不工 SpringBoot — 基础篇</a></li>
+<li><a href="/2017/03/14/SpringBoot-Research/">重剑无锋,大巧不工 SpringBoot — 探索篇</a></li>
+<li><a href="/2017/03/14/SpringBoot-Integrate/">重剑无锋,大巧不工 SpringBoot — 环境集成</a></li>
+<li><a href="/2017/03/21/SpringBoot-SpringBatch/">重剑无锋,大巧不工 SpringBoot — 批处理SpringBatch</a></li>
+<li><a href="/2017/06/12/SpringBoot-RequestBody/">重剑无锋,大巧不工 SpringBoot — @RequestBody JSON参数处理</a></li>
+<li><a href="/2017/06/12/SpringBoot-Question-Tips/">重剑无锋,大巧不工 SpringBoot — 项目问题汇总及解决</a></li>
+<li><a href="/2017/06/13/SpringBoot-ConfigurationProperties/">重剑无锋,大巧不工 SpringBoot — 属性注入</a></li>
+<li><a href="/2017/06/16/SpringBoot-RabbitMQ/">重剑无锋,大巧不工 SpringBoot — 整合RabbitMQ</a></li>
+<li><a href="/2017/06/18/SpringBoot-RESTfulAPI/">重剑无锋,大巧不工 SpringBoot — RESTful API</a></li>
+<li><a href="/2017/07/18/SpringBoot-MongoDB/">重剑无锋,大巧不工 SpringBoot — 整合使用MongoDB</a></li>
+<li><a href="/2017/09/19/SpringBoot-CaffeineCache/">重剑无锋,大巧不工 SpringBoot — 推荐使用CaffeineCache</a></li>
+</ul>
+<h2 id="SpringBoot项目实战"><a href="#SpringBoot项目实战" class="headerlink" title="SpringBoot项目实战"></a>SpringBoot项目实战</h2><ul>
+<li><a href="/2017/07/24/SpringBoot-JoyMedia/">重剑无锋,大巧不工 SpringBoot — 实战项目 JoyMedia （ 分析篇 ）</a></li>
+<li><a href="/2017/07/29/SpringBoot-JoyMedia-Node/">重剑无锋,大巧不工 SpringBoot — 实战项目 JoyMedia （ Node篇 ）</a></li>
+<li><a href="/2017/08/06/SpringBoot-JoyMedia-Search/">重剑无锋,大巧不工 SpringBoot — 实战项目 JoyMedia （ 搜索篇 ）</a></li>
+<li><a href="/2017/08/20/SpringBoot-JoyMedia-MV/">重剑无锋,大巧不工 SpringBoot — 实战项目 JoyMedia （ MV 篇 ）</a></li>
+<li><a href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/">重剑无锋,大巧不工 SpringBoot — 实战项目 JoyMedia （ NoReferer篇 ）</a></li>
+</ul>
+<blockquote>
+<p>不啰嗦，直接上代码</p>
+</blockquote>
+<h2 id="集成Druid"><a href="#集成Druid" class="headerlink" title="集成Druid"></a>集成Druid</h2><h3 id="DruidConfig"><a href="#DruidConfig" class="headerlink" title="DruidConfig:"></a>DruidConfig:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by LiuFa on 2016/9/14.</div><div class="line"> * cn.lfdevelopment.www.sys.druid</div><div class="line"> * DevelopmentApp</div><div class="line"> */</div><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DruidConfig</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(getClass());</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span>(initMethod = <span class="string">"init"</span>, destroyMethod = <span class="string">"close"</span>)</div><div class="line">    <span class="meta">@ConfigurationProperties</span>(prefix=<span class="string">"spring.datasource"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> DataSource <span class="title">druidDataSource</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DruidDataSource() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    username = ConfigTools.decrypt(username);</div><div class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">super</span>.setUsername(username);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUrl</span><span class="params">(String jdbcUrl)</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    jdbcUrl = ConfigTools.decrypt(jdbcUrl);</div><div class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">super</span>.setUrl(jdbcUrl);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="DruidStatViewConfig"><a href="#DruidStatViewConfig" class="headerlink" title="DruidStatViewConfig:"></a>DruidStatViewConfig:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by LiuFa on 2016/8/8.</div><div class="line"> * cn.lfdevelopment.www.sys.druid</div><div class="line"> * DevelopmentApp</div><div class="line"> * 这样的方式不需要添加注解：<span class="doctag">@ServletComponentScan</span></div><div class="line"> */</div><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DruidStatViewConfig</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;spring.druid.loginUsername&#125;"</span>)</div><div class="line">    <span class="keyword">private</span> String loginUsername;</div><div class="line"></div><div class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;spring.druid.loginPassword&#125;"</span>)</div><div class="line">    <span class="keyword">private</span> String loginPassword;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 注册一个StatViewServlet</div><div class="line">     * 使用Druid的内置监控页面</div><div class="line">     */</div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> ServletRegistrationBean <span class="title">DruidStatViewServlet</span><span class="params">()</span> </span>&#123;</div><div class="line">        ServletRegistrationBean servletRegistrationBean = <span class="keyword">new</span> ServletRegistrationBean(<span class="keyword">new</span> StatViewServlet(),</div><div class="line">                <span class="string">"/druid/*"</span>);</div><div class="line">        <span class="comment">//添加初始化参数：initParams</span></div><div class="line">        <span class="comment">//白名单</span></div><div class="line">        <span class="comment">//ip配置规则</span></div><div class="line">        <span class="comment">//配置的格式</span></div><div class="line">        <span class="comment">//&lt;IP&gt; 或者 &lt;IP&gt;/&lt;SUB_NET_MASK_size&gt; 多个ip地址用逗号隔开</span></div><div class="line">        <span class="comment">//其中</span></div><div class="line">        <span class="comment">//128.242.127.1/24</span></div><div class="line">        <span class="comment">//24表示，前面24位是子网掩码，比对的时候，前面24位相同就匹配。</span></div><div class="line">        <span class="comment">//由于匹配规则不支持IPV6，配置了allow或者deny之后，会导致IPV6无法访问。</span></div><div class="line">        servletRegistrationBean.addInitParameter(<span class="string">"allow"</span>, <span class="string">""</span>);</div><div class="line"></div><div class="line">        <span class="comment">//deny优先于allow，如果在deny列表中，就算在allow列表中，也会被拒绝。</span></div><div class="line">        <span class="comment">//如果allow没有配置或者为空，则允许所有访问</span></div><div class="line">        <span class="comment">//IP黑名单 (存在共同时，deny优先于allow) : 如果满足deny的话提示:Sorry, you are not permitted to view this page.</span></div><div class="line">        servletRegistrationBean.addInitParameter(<span class="string">"deny"</span>, <span class="string">""</span>);</div><div class="line"></div><div class="line">        <span class="comment">//登录查看信息的账号密码.</span></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            servletRegistrationBean.addInitParameter(<span class="string">"loginUsername"</span>, ConfigTools.decrypt(loginUsername));</div><div class="line">            servletRegistrationBean.addInitParameter(<span class="string">"loginPassword"</span>, ConfigTools.decrypt(loginPassword));</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//是否能够重置数据.</span></div><div class="line">        servletRegistrationBean.addInitParameter(<span class="string">"resetEnable"</span>, <span class="string">"true"</span>);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> servletRegistrationBean;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 注册一个：filterRegistrationBean</div><div class="line">     * 内置监控中的Web关联监控的配置</div><div class="line">     */</div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> FilterRegistrationBean <span class="title">druidStatFilter</span><span class="params">()</span> </span>&#123;</div><div class="line">        FilterRegistrationBean filterRegistrationBean = <span class="keyword">new</span> FilterRegistrationBean(<span class="keyword">new</span> WebStatFilter());</div><div class="line"></div><div class="line">        <span class="comment">//添加过滤规则.</span></div><div class="line">        filterRegistrationBean.addUrlPatterns(<span class="string">"/*"</span>);</div><div class="line"></div><div class="line">        <span class="comment">//排除一些不必要的url</span></div><div class="line">        filterRegistrationBean.addInitParameter(<span class="string">"exclusions"</span>, <span class="string">"*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"</span>);</div><div class="line">        <span class="comment">//缺省sessionStatMaxCount是1000个,这里设置了3000个</span></div><div class="line">        filterRegistrationBean.addInitParameter(<span class="string">"sessionStatMaxCount"</span>, <span class="string">"3000"</span>);</div><div class="line">        <span class="comment">//可以配置principalCookieName，使得druid知道指定的sessionName是谁</span></div><div class="line"><span class="comment">//        filterRegistrationBean.addInitParameter("principalSessionName", "sessionId");</span></div><div class="line">        <span class="comment">//druid 0.2.7版本开始支持profile，配置profileEnable能够监控单个url调用的sql列表。</span></div><div class="line">        filterRegistrationBean.addInitParameter(<span class="string">"profileEnable"</span>, <span class="string">"true"</span>);</div><div class="line">        <span class="keyword">return</span> filterRegistrationBean;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 注册一个:druidStatInterceptor</div><div class="line">     */</div><div class="line">    <span class="comment">/*@Bean</span></div><div class="line">    public DruidStatInterceptor druidStatInterceptor()&#123;</div><div class="line">        return new DruidStatInterceptor();</div><div class="line">    &#125;*/</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 注册一个：beanNameAutoProxyCreator</div><div class="line">     * 内置监控中的spring关联监控的配置</div><div class="line">     * 该方法使用的是按照BeanId来拦截配置，还有2种方法，分别是</div><div class="line">     * 按类型拦截配置</div><div class="line">     * 方法名正则匹配拦截配置</div><div class="line">     */</div><div class="line">    <span class="comment">/*@Bean</span></div><div class="line">    public BeanNameAutoProxyCreator beanNameAutoProxyCreator()&#123;</div><div class="line">        BeanNameAutoProxyCreator beanNameAutoProxyCreator = new BeanNameAutoProxyCreator();</div><div class="line">        beanNameAutoProxyCreator.setProxyTargetClass(true);</div><div class="line">        beanNameAutoProxyCreator.setBeanNames("*Controller");</div><div class="line">        beanNameAutoProxyCreator.setInterceptorNames("druidStatInterceptor");</div><div class="line">        return beanNameAutoProxyCreator;</div><div class="line">    &#125;*/</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="application-dev"><a href="#application-dev" class="headerlink" title="application-dev:"></a>application-dev:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">#druid配置</div><div class="line">spring.datasource.type=com.alibaba.druid.pool.DruidDataSource</div><div class="line">spring.datasource.driver-class-name=com.mysql.jdbc.Driver</div><div class="line">spring.datasource.url=G11Jor+OrLz9MFztdkOfqRnrJKVrFCDdBbYJFmB0qGjUARxPr2tiyRzUn4xbnk/XqPgM8PMjdIJ/pO8UF4aeVg==</div><div class="line">spring.datasource.username=bNVOqb7WKLX5Bjnw+LMv92taj25KOxDimXxILPQjw42wgv+1lHzOH8kr97xDwWdhpY67QuYCS7sWN4W46YbkFA==</div><div class="line">spring.datasource.password=l65GeQaXVXxx2ogcQeZLAFM7VcPwgzc9202vxql4hjCbjM8dVm/sD4osdvaBdVkC+BiYdnYL2EzpaCysXAZ5Gw==</div><div class="line"></div><div class="line"></div><div class="line"># 下面为连接池的补充设置，应用到上面所有数据源中</div><div class="line"># 初始化大小，最小，最大</div><div class="line">spring.datasource.initialSize=10</div><div class="line">spring.datasource.minIdle=25</div><div class="line">spring.datasource.maxActive=250</div><div class="line"></div><div class="line"># 配置获取连接等待超时的时间</div><div class="line">spring.datasource.maxWait=60000</div><div class="line"></div><div class="line"># 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒</div><div class="line">spring.datasource.timeBetweenEvictionRunsMillis=1200000</div><div class="line"></div><div class="line"># 配置一个连接在池中最小生存的时间，单位是毫秒</div><div class="line">spring.datasource.minEvictableIdleTimeMillis=1800000</div><div class="line"></div><div class="line">spring.datasource.validationQuery=SELECT &apos;x&apos;</div><div class="line"></div><div class="line">#建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。</div><div class="line">spring.datasource.testWhileIdle=true</div><div class="line"></div><div class="line">#申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。</div><div class="line">spring.datasource.testOnBorrow=false</div><div class="line"></div><div class="line">#归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能</div><div class="line">spring.datasource.testOnReturn=false</div><div class="line"></div><div class="line"># 打开PSCache，并且指定每个连接上PSCache的大小  如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。分库分表较多的数据库，建议配置为false 在mysql5.5以下的版本中没有PSCache功能，建议关闭掉。5.5及以上版本有PSCache，建议开启。</div><div class="line">spring.datasource.poolPreparedStatements=true</div><div class="line"></div><div class="line"># 配置监控统计拦截的filters，去掉后监控界面sql无法统计，&apos;wall&apos;用于防火墙,&apos;stat&apos;用于监控，‘log4j’用于日志,&apos;config&apos;是指ConfigFilter</div><div class="line">spring.datasource.filters=wall,stat,config</div><div class="line"></div><div class="line"># 通过connectProperties属性来打开mergeSql功能；慢SQL记录,超过3秒就是慢sql</div><div class="line">spring.datasource.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000;config.decrypt=true</div><div class="line"></div><div class="line"># 合并多个DruidDataSource的监控数据,缺省多个DruidDataSource的监控数据是各自独立的，在Druid-0.2.17版本之后，支持配置公用监控数据</div><div class="line">spring.datasource.useGlobalDataSourceStat=true</div><div class="line"></div><div class="line">#druid登陆用户名</div><div class="line">spring.druid.loginUsername=lCzd9geWAuAuJtLhpaG/J+d28H8KiMFAWopxXkYpMNdUai6Xe/LsPqMQeg5MIrmvtMa+hzycdRhWs29ZUPU1IQ==</div><div class="line"></div><div class="line">#druid登录密码</div><div class="line">spring.druid.loginPassword=hf96/2MU+Q12fdb9oZN9ghub1OHmUBa8YuW7NJf8Pll/sawcaRVscHTpr4t5SB39+KbJn31Lqy76uEDvj+sgMw==</div></pre></td></tr></table></figure>
+<h2 id="集成Mybatis"><a href="#集成Mybatis" class="headerlink" title="集成Mybatis"></a>集成Mybatis</h2><h3 id="MyBatisConfig"><a href="#MyBatisConfig" class="headerlink" title="MyBatisConfig"></a>MyBatisConfig</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by LiuFa on 2016/8/8.</div><div class="line"> * cn.lfdevelopment.www.sys.mybatis</div><div class="line"> * DevelopmentApp</div><div class="line"> * DataSource 交由Druid自动根据配置创建</div><div class="line"> */</div><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="meta">@EnableTransactionManagement</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBatisConfig</span> <span class="keyword">implements</span> <span class="title">TransactionManagementConfigurer</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> DataSource dataSource;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> SqlSessionFactory <span class="title">sqlSessionFactory</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        SqlSessionFactoryBean bean = <span class="keyword">new</span> SqlSessionFactoryBean();</div><div class="line">        bean.setDataSource(dataSource);</div><div class="line">        bean.setTypeAliasesPackage(<span class="string">"cn.lfdevelopment.www.app.**.pojo"</span>);</div><div class="line">        <span class="comment">//支持属性使用驼峰的命名,mapper配置不需要写字段与属性的配置，会自动映射。</span></div><div class="line">        org.apache.ibatis.session.Configuration configuration = <span class="keyword">new</span> org.apache.ibatis.session.Configuration();</div><div class="line">        configuration.setMapUnderscoreToCamelCase(<span class="keyword">true</span>);</div><div class="line">        bean.setConfiguration(configuration);</div><div class="line"></div><div class="line">        <span class="comment">//分页插件</span></div><div class="line">        PageHelper pageHelper = <span class="keyword">new</span> PageHelper();</div><div class="line">        Properties properties = <span class="keyword">new</span> Properties();</div><div class="line">        <span class="comment">/* 3.3.0版本可用 - 分页参数合理化，默认false禁用</span></div><div class="line">         启用合理化时，如果pageNum&lt;1会查询第一页，如果pageNum&gt;pages会查询最后一页</div><div class="line">         禁用合理化时，如果pageNum&lt;1或pageNum&gt;pages会返回空数据</div><div class="line">         在EXTjs里面配置与否无所谓，因为在前台传过来的分页数据已经进行合理化了 */</div><div class="line">        properties.setProperty(<span class="string">"reasonable"</span>, <span class="string">"true"</span>);</div><div class="line">        properties.setProperty(<span class="string">"supportMethodsArguments"</span>, <span class="string">"true"</span>);</div><div class="line">        properties.setProperty(<span class="string">"returnPageInfo"</span>, <span class="string">"check"</span>);</div><div class="line">       <span class="comment">/* 3.5.0版本可用 - 为了支持startPage(Object params)方法</span></div><div class="line">         增加了一个`params`参数来配置参数映射，用于从Map或ServletRequest中取值</div><div class="line">         可以配置pageNum,pageSize,count,pageSizeZero,reasonable,orderBy,不配置映射的用默认值</div><div class="line">         不理解该含义的前提下，不要随便复制该配置 --&gt;*/</div><div class="line"></div><div class="line"><span class="comment">//        properties.setProperty("params", "count=countSql");</span></div><div class="line">        pageHelper.setProperties(properties);</div><div class="line"></div><div class="line">        <span class="comment">//添加插件</span></div><div class="line">        bean.setPlugins(<span class="keyword">new</span> Interceptor[]&#123;pageHelper&#125;);</div><div class="line"></div><div class="line">        <span class="comment">//添加XML目录</span></div><div class="line">        ResourcePatternResolver resolver = <span class="keyword">new</span> PathMatchingResourcePatternResolver();</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            bean.setMapperLocations(resolver.getResources(<span class="string">"classpath*:mapperxml/**/*Mapper.xml"</span>));</div><div class="line">            <span class="keyword">return</span> bean.getObject();</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> SqlSessionTemplate <span class="title">sqlSessionTemplate</span><span class="params">(SqlSessionFactory sqlSessionFactory)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SqlSessionTemplate(sqlSessionFactory);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> PlatformTransactionManager <span class="title">annotationDrivenTransactionManager</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> DataSourceTransactionManager(dataSource);</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="MyBatisMapperScannerConfig"><a href="#MyBatisMapperScannerConfig" class="headerlink" title="MyBatisMapperScannerConfig"></a>MyBatisMapperScannerConfig</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * MyBatis扫描接口，使用的tk.mybatis.spring.mapper.MapperScannerConfigurer，如果你不使用通用Mapper，可以改为org.xxx...</div><div class="line"> */</div><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="comment">//由于MapperScannerConfigurer执行的比较早</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBatisMapperScannerConfig</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MapperScannerConfigurer <span class="title">mapperScannerConfigurer</span><span class="params">()</span> </span>&#123;</div><div class="line">        MapperScannerConfigurer mapperScannerConfigurer = <span class="keyword">new</span> MapperScannerConfigurer();</div><div class="line">        mapperScannerConfigurer.setSqlSessionFactoryBeanName(<span class="string">"sqlSessionFactory"</span>);</div><div class="line">        mapperScannerConfigurer.setBasePackage(<span class="string">"cn.lfdevelopment.www.app.**.mapper"</span>);</div><div class="line">        Properties properties = <span class="keyword">new</span> Properties();</div><div class="line">        properties.setProperty(<span class="string">"mappers"</span>, <span class="string">"cn.lfdevelopment.www.sys.base.BaseMapper"</span>);</div><div class="line">        properties.setProperty(<span class="string">"notEmpty"</span>, <span class="string">"false"</span>);</div><div class="line">        properties.setProperty(<span class="string">"IDENTITY"</span>, <span class="string">"MYSQL"</span>);</div><div class="line">        mapperScannerConfigurer.setProperties(properties);</div><div class="line">        <span class="keyword">return</span> mapperScannerConfigurer;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="集成Redis"><a href="#集成Redis" class="headerlink" title="集成Redis"></a>集成Redis</h2><h3 id="RedisConfig"><a href="#RedisConfig" class="headerlink" title="RedisConfig"></a>RedisConfig</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">    </div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by LiuFa on 2016/9/5.</div><div class="line"> * cn.lfdevelopment.www.sys.redis</div><div class="line"> * DevelopmentApp</div><div class="line"> */</div><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="meta">@EnableCaching</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisConfig</span> <span class="keyword">extends</span> <span class="title">CachingConfigurerSupport</span> </span>&#123;</div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> KeyGenerator <span class="title">keyGenerator</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (target, method, params) -&gt; &#123;</div><div class="line">            StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">            sb.append(target.getClass().getName());</div><div class="line">            sb.append(method.getName());</div><div class="line">            <span class="keyword">for</span> (Object obj : params) &#123;</div><div class="line">                sb.append(obj.toString());</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> sb.toString();</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> CacheManager <span class="title">cacheManager</span><span class="params">(RedisTemplate redisTemplate)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RedisCacheManager(redisTemplate);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * StringRedisTemplate</div><div class="line">     * <span class="doctag">@param</span> factory</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> RedisTemplate&lt;String, String&gt; <span class="title">redisTemplate</span><span class="params">(RedisConnectionFactory factory)</span> </span>&#123;</div><div class="line">        StringRedisTemplate template = <span class="keyword">new</span> StringRedisTemplate(factory);</div><div class="line">        Jackson2JsonRedisSerializer&lt;Object&gt; jackson2JsonRedisSerializer = <span class="keyword">new</span> Jackson2JsonRedisSerializer&lt;&gt;(Object.class);</div><div class="line">        ObjectMapper om = <span class="keyword">new</span> ObjectMapper();</div><div class="line">        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);</div><div class="line">        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);</div><div class="line">        jackson2JsonRedisSerializer.setObjectMapper(om);</div><div class="line">        template.setValueSerializer(jackson2JsonRedisSerializer);</div><div class="line">        template.afterPropertiesSet();</div><div class="line">        <span class="keyword">return</span> template;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * redisTemplateForShiro</div><div class="line">     * <span class="doctag">@param</span> factory</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="keyword">public</span> RedisTemplate&lt;<span class="keyword">byte</span>[], Object&gt; redisTemplateForShiro(RedisConnectionFactory factory) &#123;</div><div class="line">        RedisTemplate&lt;<span class="keyword">byte</span>[], Object&gt; redisTemplateForShiro = <span class="keyword">new</span> RedisTemplate&lt;&gt;();</div><div class="line">        redisTemplateForShiro.setConnectionFactory(factory);</div><div class="line">        <span class="keyword">return</span> redisTemplateForShiro;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="集成Shiro"><a href="#集成Shiro" class="headerlink" title="集成Shiro"></a>集成Shiro</h2><h3 id="ShiroConfiguration"><a href="#ShiroConfiguration" class="headerlink" title="ShiroConfiguration"></a>ShiroConfiguration</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by LiuFa on 2016/9/13.</div><div class="line"> * cn.lfdevelopment.www.sys.shiro</div><div class="line"> * DevelopmentApp</div><div class="line"> */</div><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShiroConfiguration</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * FilterRegistrationBean</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> RedisTemplate redisTemplate;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> FilterRegistrationBean <span class="title">filterRegistrationBean</span><span class="params">()</span> </span>&#123;</div><div class="line">        FilterRegistrationBean filterRegistration = <span class="keyword">new</span> FilterRegistrationBean();</div><div class="line">        filterRegistration.setFilter(<span class="keyword">new</span> DelegatingFilterProxy(<span class="string">"shiroFilter"</span>));</div><div class="line">        filterRegistration.addInitParameter(<span class="string">"targetFilterLifecycle"</span>,<span class="string">"true"</span>);</div><div class="line">        filterRegistration.addUrlPatterns(<span class="string">"/*"</span>);</div><div class="line">        filterRegistration.addInitParameter(<span class="string">"exclusions"</span>, <span class="string">"*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"</span>);</div><div class="line"><span class="comment">//        filterRegistration.setAsyncSupported(true);</span></div><div class="line">        filterRegistration.setDispatcherTypes(DispatcherType.REQUEST);</div><div class="line">        <span class="keyword">return</span> filterRegistration;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@see</span> org.apache.shiro.spring.web.ShiroFilterFactoryBean</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="meta">@Bean</span>(name = <span class="string">"shiroFilter"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> ShiroFilterFactoryBean <span class="title">shiroFilter</span><span class="params">()</span></span>&#123;</div><div class="line">        ShiroFilterFactoryBean bean = <span class="keyword">new</span> ShiroFilterFactoryBean();</div><div class="line">        bean.setSecurityManager(securityManager());</div><div class="line">        bean.setLoginUrl(<span class="string">"/login"</span>);</div><div class="line">        bean.setSuccessUrl(<span class="string">"/main"</span>);</div><div class="line">        <span class="comment">//验证不具备权限后的转向页面</span></div><div class="line">        bean.setUnauthorizedUrl(<span class="string">"/main"</span>);</div><div class="line"></div><div class="line">        Map&lt;String, Filter&gt; filters = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</div><div class="line">        filters.put(<span class="string">"authc"</span>,shiroFormAuthenticationFilter());</div><div class="line">        filters.put(<span class="string">"session"</span>,sessionFilter());</div><div class="line">        filters.put(<span class="string">"rolesOr"</span>,rolesAuthorizationFilter());</div><div class="line">        bean.setFilters(filters);</div><div class="line"></div><div class="line">        Map&lt;String, String&gt; chains = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</div><div class="line">        chains.put(<span class="string">"/favicon.ico"</span>,<span class="string">"anon"</span>);</div><div class="line">        chains.put(<span class="string">"/"</span>,<span class="string">"anon"</span>);</div><div class="line">        chains.put(<span class="string">"/index"</span>,<span class="string">"anon"</span>);</div><div class="line">        chains.put(<span class="string">"/blog"</span>,<span class="string">"anon"</span>);</div><div class="line">        chains.put(<span class="string">"/blog/**"</span>,<span class="string">"anon"</span>);</div><div class="line">        chains.put(<span class="string">"/weixin"</span>,<span class="string">"anon"</span>);</div><div class="line">        chains.put(<span class="string">"/weixin/**"</span>,<span class="string">"anon"</span>);</div><div class="line">        chains.put(<span class="string">"/static/**"</span>, <span class="string">"anon"</span>);</div><div class="line">        chains.put(<span class="string">"/getGifCode"</span>,<span class="string">"anon"</span>);</div><div class="line">        chains.put(<span class="string">"/404"</span>, <span class="string">"anon"</span>);</div><div class="line">        chains.put(<span class="string">"/druid/**"</span>,<span class="string">"anon"</span>);</div><div class="line">        chains.put(<span class="string">"/logout"</span>, <span class="string">"logout"</span>);</div><div class="line"></div><div class="line">        chains.put(<span class="string">"/login"</span>, <span class="string">"authc"</span>);</div><div class="line">        chains.put(<span class="string">"/main"</span>,<span class="string">"authc"</span>);</div><div class="line">        chains.put(<span class="string">"/**"</span>, <span class="string">"session,user"</span>);</div><div class="line">        bean.setFilterChainDefinitionMap(chains);</div><div class="line">        <span class="keyword">return</span> bean;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@see</span> org.apache.shiro.mgt.SecurityManager</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="meta">@Bean</span>(name=<span class="string">"securityManager"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> DefaultWebSecurityManager <span class="title">securityManager</span><span class="params">()</span> </span>&#123;</div><div class="line">        DefaultWebSecurityManager manager = <span class="keyword">new</span> DefaultWebSecurityManager();</div><div class="line">        manager.setRealm(userRealm());</div><div class="line">        manager.setCacheManager(redisCacheManager());</div><div class="line">        manager.setSessionManager(defaultWebSessionManager());</div><div class="line">        <span class="keyword">return</span> manager;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@see</span> DefaultWebSessionManager</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="meta">@Bean</span>(name=<span class="string">"sessionManager"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> DefaultWebSessionManager <span class="title">defaultWebSessionManager</span><span class="params">()</span> </span>&#123;</div><div class="line">        DefaultWebSessionManager sessionManager = <span class="keyword">new</span> DefaultWebSessionManager();</div><div class="line">        sessionManager.setCacheManager(redisCacheManager());</div><div class="line">        sessionManager.setGlobalSessionTimeout(<span class="number">1800000</span>);</div><div class="line">        sessionManager.setDeleteInvalidSessions(<span class="keyword">true</span>);</div><div class="line">        sessionManager.setSessionValidationSchedulerEnabled(<span class="keyword">true</span>);</div><div class="line">        sessionManager.setSessionValidationInterval(<span class="number">600000</span>);</div><div class="line">        sessionManager.setSessionIdUrlRewritingEnabled(<span class="keyword">false</span>);</div><div class="line">        <span class="keyword">return</span> sessionManager;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="meta">@DependsOn</span>(value=&#123;<span class="string">"lifecycleBeanPostProcessor"</span>, <span class="string">"shrioRedisCacheManager"</span>&#125;)</div><div class="line">    <span class="function"><span class="keyword">public</span> AuthorizingRealm <span class="title">userRealm</span><span class="params">()</span> </span>&#123;</div><div class="line">        AuthorizingRealm userRealm = <span class="keyword">new</span> AuthorizingRealm();</div><div class="line">        userRealm.setCacheManager(redisCacheManager());</div><div class="line">        userRealm.setCachingEnabled(<span class="keyword">true</span>);</div><div class="line">        userRealm.setAuthenticationCachingEnabled(<span class="keyword">true</span>);</div><div class="line">        userRealm.setAuthorizationCachingEnabled(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">return</span> userRealm;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Bean</span>(name=<span class="string">"shrioRedisCacheManager"</span>)</div><div class="line">    <span class="meta">@DependsOn</span>(value=<span class="string">"redisTemplate"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> ShrioRedisCacheManager <span class="title">redisCacheManager</span><span class="params">()</span> </span>&#123;</div><div class="line">        ShrioRedisCacheManager cacheManager = <span class="keyword">new</span> ShrioRedisCacheManager(redisTemplate);</div><div class="line">        <span class="keyword">return</span> cacheManager;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> LifecycleBeanPostProcessor <span class="title">lifecycleBeanPostProcessor</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> LifecycleBeanPostProcessor();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span>(name = <span class="string">"authcFilter"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> FormAuthenticationFilter <span class="title">shiroFormAuthenticationFilter</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> AuthcFilter();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> SessionFilter <span class="title">sessionFilter</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SessionFilter();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Bean</span>(name = <span class="string">"rolesOrFilter"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> RolesAuthorizationFilter <span class="title">rolesAuthorizationFilter</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RolesAuthorizationFilter() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isAccessAllowed</span><span class="params">(ServletRequest request,</span></span></div><div class="line">                                           ServletResponse response, Object mappedValue) <span class="keyword">throws</span> IOException &#123;</div><div class="line">                Subject subject = getSubject(request, response);</div><div class="line">                String[] rolesArray = (String[]) mappedValue;</div><div class="line"></div><div class="line">                <span class="keyword">if</span> ((rolesArray == <span class="keyword">null</span>) || (rolesArray.length == <span class="number">0</span>)) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">for</span> (String aRolesArray : rolesArray) &#123;</div><div class="line">                    <span class="keyword">if</span> (subject.hasRole(aRolesArray)) &#123;</div><div class="line">                        <span class="comment">//用户只要拥有任何一个角色则验证通过</span></div><div class="line">                        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="ShiroRedisCache"><a href="#ShiroRedisCache" class="headerlink" title="ShiroRedisCache"></a>ShiroRedisCache</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by LiuFa on 2016/9/13.</div><div class="line"> * cn.lfdevelopment.www.sys.shiro</div><div class="line"> * DevelopmentApp</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShrioRedisCache</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Cache</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">private</span> org.slf4j.Logger log = LoggerFactory.getLogger(getClass());</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> RedisTemplate&lt;<span class="keyword">byte</span>[], V&gt; redisTemplate;</div><div class="line">    <span class="keyword">private</span> String prefix = <span class="string">"shiro_redis:"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ShrioRedisCache</span><span class="params">(RedisTemplate&lt;<span class="keyword">byte</span>[], V&gt; redisTemplate)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.redisTemplate = redisTemplate;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ShrioRedisCache</span><span class="params">(RedisTemplate&lt;<span class="keyword">byte</span>[], V&gt; redisTemplate, String prefix)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(redisTemplate);</div><div class="line">        <span class="keyword">this</span>.prefix = prefix;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(K key)</span> <span class="keyword">throws</span> CacheException </span>&#123;</div><div class="line">        <span class="keyword">if</span>(log.isDebugEnabled()) &#123;</div><div class="line">            log.debug(<span class="string">"Key: &#123;&#125;"</span>, key);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(key == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">byte</span>[] bkey = getByteKey(key);</div><div class="line">        <span class="keyword">return</span> redisTemplate.opsForValue().get(bkey);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> <span class="keyword">throws</span> CacheException </span>&#123;</div><div class="line">        <span class="keyword">if</span>(log.isDebugEnabled()) &#123;</div><div class="line">            log.debug(<span class="string">"Key: &#123;&#125;, value: &#123;&#125;"</span>, key, value);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(key == <span class="keyword">null</span> || value == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">byte</span>[] bkey = getByteKey(key);</div><div class="line">        redisTemplate.opsForValue().set(bkey, value);</div><div class="line">        <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> V <span class="title">remove</span><span class="params">(K key)</span> <span class="keyword">throws</span> CacheException </span>&#123;</div><div class="line">        <span class="keyword">if</span>(log.isDebugEnabled()) &#123;</div><div class="line">            log.debug(<span class="string">"Key: &#123;&#125;"</span>, key);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(key == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">byte</span>[] bkey = getByteKey(key);</div><div class="line">        ValueOperations&lt;<span class="keyword">byte</span>[], V&gt; vo = redisTemplate.opsForValue();</div><div class="line">        V value = vo.get(bkey);</div><div class="line">        redisTemplate.delete(bkey);</div><div class="line">        <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> <span class="keyword">throws</span> CacheException </span>&#123;</div><div class="line">        redisTemplate.getConnectionFactory().getConnection().flushDb();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</div><div class="line">        Long len = redisTemplate.getConnectionFactory().getConnection().dbSize();</div><div class="line">        <span class="keyword">return</span> len.intValue();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Set&lt;K&gt; <span class="title">keys</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">byte</span>[] bkey = (prefix+<span class="string">"*"</span>).getBytes();</div><div class="line">        Set&lt;<span class="keyword">byte</span>[]&gt; set = redisTemplate.keys(bkey);</div><div class="line">        Set&lt;K&gt; result = <span class="keyword">new</span> HashSet&lt;&gt;();</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(CollectionUtils.isEmpty(set)) &#123;</div><div class="line">            <span class="keyword">return</span> Collections.emptySet();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">byte</span>[] key: set) &#123;</div><div class="line">            result.add((K)key);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Collection&lt;V&gt; <span class="title">values</span><span class="params">()</span> </span>&#123;</div><div class="line">        Set&lt;K&gt; keys = keys();</div><div class="line">        List&lt;V&gt; values = <span class="keyword">new</span> ArrayList&lt;&gt;(keys.size());</div><div class="line">        <span class="keyword">for</span>(K k: keys) &#123;</div><div class="line">            <span class="keyword">byte</span>[] bkey = getByteKey(k);</div><div class="line">            values.add(redisTemplate.opsForValue().get(bkey));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> values;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">byte</span>[] getByteKey(K key)&#123;</div><div class="line">        <span class="keyword">if</span>(key <span class="keyword">instanceof</span> String)&#123;</div><div class="line">            String preKey = <span class="keyword">this</span>.prefix + key;</div><div class="line">            <span class="keyword">return</span> preKey.getBytes();</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">return</span> SerializeUtils.serialize(key);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPrefix</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> prefix;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPrefix</span><span class="params">(String prefix)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.prefix = prefix;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
+<li>本文暂未完结，后续将持续集成更多第三方框架，或接着更新，或另起新篇</li>
+<li>详细代码内容可在GitHub上follow</li>
+</ul>
+      
+    </div>
+    
+  </div>
+  
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/03/14/SpringBoot-Integrate/">重剑无锋,大巧不工 SpringBoot --- 环境集成</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
+        <p><span>发布时间:</span>2017-03-14, 13:49:11</p>
+        <p><span>最后更新:</span>2017-09-19, 18:06:11</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/14/SpringBoot-Integrate/" title="重剑无锋,大巧不工 SpringBoot --- 环境集成">http://blog.joylau.cn/2017/03/14/SpringBoot-Integrate/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2017/03/14/SpringBoot-Integrate/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"CC BY-NC-SA 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/">
+                    JS数组去重最简单方法
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/03/14/SpringBoot-Research/">
+                    重剑无锋,大巧不工 SpringBoot --- 探索篇
+                </a>
+            </div>
+        
+    </nav>
+  
+</article>
+<div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot文章推荐"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot文章推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot项目实战"><span class="toc-number">2.</span> <span class="toc-text">SpringBoot项目实战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集成Druid"><span class="toc-number">3.</span> <span class="toc-text">集成Druid</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DruidConfig"><span class="toc-number">3.1.</span> <span class="toc-text">DruidConfig:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DruidStatViewConfig"><span class="toc-number">3.2.</span> <span class="toc-text">DruidStatViewConfig:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#application-dev"><span class="toc-number">3.3.</span> <span class="toc-text">application-dev:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集成Mybatis"><span class="toc-number">4.</span> <span class="toc-text">集成Mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MyBatisConfig"><span class="toc-number">4.1.</span> <span class="toc-text">MyBatisConfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MyBatisMapperScannerConfig"><span class="toc-number">4.2.</span> <span class="toc-text">MyBatisMapperScannerConfig</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集成Redis"><span class="toc-number">5.</span> <span class="toc-text">集成Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RedisConfig"><span class="toc-number">5.1.</span> <span class="toc-text">RedisConfig</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集成Shiro"><span class="toc-number">6.</span> <span class="toc-text">集成Shiro</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ShiroConfiguration"><span class="toc-number">6.1.</span> <span class="toc-text">ShiroConfiguration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ShiroRedisCache"><span class="toc-number">6.2.</span> <span class="toc-text">ShiroRedisCache</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">7.</span> <span class="toc-text">最后</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏", "显示", !!"false"];
+    </script>
+
+
+    <div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"重剑无锋,大巧不工 SpringBoot --- 环境集成　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+    
+        <section id="comments">
+    <script type="text/javascript">
+        var loadComment = function(){
+            var appid = 'cysUJIsDc';
+            var conf = 'prod_f3b45651c40acb065b603bb0c1ae489b';
+            var width = window.innerWidth || document.documentElement.clientWidth;
+            if (width < 960) {
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+            } else {
+                var loadJs = function (d, a) {
+                    var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                    var b = document.createElement("script");
+                    b.setAttribute("type", "text/javascript");
+                    b.setAttribute("async","true");
+                    b.setAttribute("charset", "UTF-8");
+                    b.setAttribute("src", d);
+                    if (typeof a === "function") {
+                        if (window.attachEvent) {
+                            b.onreadystatechange = function () {
+                                var e = b.readyState;
+                                if (e === "loaded" || e === "complete") {
+                                    b.onreadystatechange = null;
+                                    a()
+                                }
+                            }
+                        } else {
+                            b.onload = a
+                        }
+                    }
+                    c.appendChild(b)
+                };
+                loadJs("//changyan.sohu.com/upload/changyan.js", function () {
+                    window.changyan.api.config({appid: appid, conf: conf})
+                });
+            }
+        };
+        
+            loadComment();
+        
+    </script>
+    <script>
+        var load$hide = function(){
+            loadComment();
+        }
+    </script>
+
+
+    <!--打赏-->
+    <div id="cyReward" sourceid="2017/03/14/SpringBoot-Integrate/" role="cylabs" data-use="reward" style="text-align: center"></div>
+    <!--评论表情-->
+    <div id="cyEmoji" sourceid="2017/03/14/SpringBoot-Integrate/" role="cylabs" data-use="emoji"></div>
+    <!--评论框-->
+    <div id="SOHUCS" style="width: 95%" sid="2017/03/14/SpringBoot-Integrate/"></div>
+    <script>
+        
+        window.document.write('<script charset="utf-8" type="text/javascript" src="//changyan.itc.cn/js/lib/jquery.js"><\/script>');
+        window.document.write('<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cysUJIsDc"><\/script>');
+        
+    </script>
+</section>
+    
+
+
+<div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/" title="上一篇: JS数组去重最简单方法">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/03/14/SpringBoot-Research/" title="下一篇: 重剑无锋,大巧不工 SpringBoot --- 探索篇">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/Open-Source-License/">开源许可证</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/16/Maven-ResourceCompressor/">Maven --- 一款打包压缩 js css html 的Maven插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/13/CSS3-Image-Scale/">当鼠标移入图片上慢慢放大的效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/26/Java-Scala/">Java 代码中使用 Scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/SpringBoot-CaffeineCache/">重剑无锋,大巧不工 SpringBoot --- 推荐使用CaffeineCache</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/11/JoyGame/">JoyGame --- 一个情怀游戏平台</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/An-Interesting-Code/">人生从未写过如此有趣的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/Maven-MakeWinServiceForJar/">Maven --- 将 SpringBoot 项目做成Windows服务(Windows Service)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/20/SpringBoot-JoyMedia-MV/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/SpringBoot-JoyMedia-Search/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/SpringBoot-JoyMedia-Node/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/SpringBoot-JoyMedia/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 分析篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/18/SpringBoot-MongoDB/">重剑无锋,大巧不工 SpringBoot --- 整合使用MongoDB</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/ZeroC-Ice/">ZeroC Ice --- 高性能RPC技术王者</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/03/Git-Multi-Repo-Push/">记录一次Git多仓库提交</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/MacOS-Dev-App/">MacOS常用开发使用APP</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/24/MacBookPro-Unboxing/">MacBook Pro 2017 --- 不行！我要开箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/SpringBoot-RESTfulAPI/">重剑无锋,大巧不工 SpringBoot --- RESTful API</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/SpringBoot-RabbitMQ/">重剑无锋,大巧不工 SpringBoot --- 整合RabbitMQ</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/Console-Better/">让你的Windows控制台窗口更优美</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/13/SpringBoot-ConfigurationProperties/">重剑无锋,大巧不工 SpringBoot --- 属性注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-Question-Tips/">重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-RequestBody/">重剑无锋,大巧不工 SpringBoot --- @RequestBody JSON参数处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/09/College-Entrance-Examination-of-2017-for-Progarmmer/">2017年程序员高考试卷</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/05/Skill-Tree-Of-Java/">收集整理一些JAVA学习的技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/02/SolveBrainAndPuzzles/">解决一道智力题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/28/IntelliJIDEA-Plugins/">IntelliJ IDEA 插件开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/27/Redis-Master-Slave/">Redis主从复制 --- 实现读写分离</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/24/SpringCloud-Building/">SpringCloud --- 构建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/06/MyBatis-Joylau-MyBatis/">JoyLau-MyBatis 使用说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/01/Redis-Benchmark/">Redis有多快??? --- 基准性能测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/22/Docker-Command/">Docker菜鸟到熟悉 --- 常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/SpringBoot-SpringBatch/">重剑无锋,大巧不工 SpringBoot --- 批处理SpringBatch</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/MySQL-Emoji/">为网站添加emoji表情支持</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/17/Maven-Release-Component/">Maven --- 发布自己的构件到中央仓库</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/Programmer-Boast/">程序员，那些年吹过的牛逼，最后都自己加班了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/">JS数组去重最简单方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Integrate/">重剑无锋,大巧不工 SpringBoot --- 环境集成</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Research/">重剑无锋,大巧不工 SpringBoot --- 探索篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/SpringBoot-Basic/">重剑无锋,大巧不工 SpringBoot --- 基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/01/SpringBoot-Actuator/">重剑无锋,大巧不工 SpringBoot --- 添加监控端点Actuator</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-GUI/">Linux菜鸟到熟悉 --- 视图界面</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-Command/">Linux菜鸟到熟悉 --- 常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-BuildingEnvironment/">Linux菜鸟到熟悉 --- 生产环境的搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-MountDisk/">Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/Thymeleaf/">重新拾起我曾抛弃的Thymeleaf</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/SSL/">SSL证书部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/TomcatMulti-Root/">Tomcat服务器添加多个Root项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/HelloWorld/">Hello World</a></li></ul>
+
+
+    <script>
+        
+    </script></div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2017 JoyLau All Rights Reserved.
+            </div>
+            <div class="footer-right">
+                <i class="fa fa-heart animated infinite pulse"></i>Hexo Theme by MOxFIVE<i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+<!--百度自动推送-->
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    </div>
+    <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+<script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 10;
+                var backgroundimg = "url(//image.joylau.cn/blog/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+             title: "a.article-title, .article-more-link a", 
+             post: ".article-entry a[href], .copyright a[href]", 
+             tags: ".article-tag a", 
+             categories: ".article-category a, a.tag-list-link", 
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </div>
+</body>

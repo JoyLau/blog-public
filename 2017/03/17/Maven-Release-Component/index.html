@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="keywords" content="JoyLau,joylau,JoyLau  blog,刘法,刘法的博客,刘法的技术与思考,Java,JavaWeb,Web程序员,Web开发,JavaWeb开发,个人博客">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="JoyLau">
+
+
+
+<meta name="description" content="Sonatype真可谓是个强大的公司，如此多的构件包竟能管理的有条不紊，最近自己写了个ECharts的类库，想传到Maven中央仓库，下面开始动手吧.....">
+<meta name="keywords" content="Maven,GPG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven --- 发布自己的构件到中央仓库">
+<meta property="og:url" content="http://blog.joylau.cn/2017/03/17/Maven-Release-Component/index.html">
+<meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
+<meta property="og:description" content="Sonatype真可谓是个强大的公司，如此多的构件包竟能管理的有条不紊，最近自己写了个ECharts的类库，想传到Maven中央仓库，下面开始动手吧.....">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://image.joylau.cn/blog/sonatype.png">
+<meta property="og:image" content="http://image.joylau.cn/blog/sonatype-register.png">
+<meta property="og:image" content="http://image.joylau.cn/blog/sonatype_issue.PNG">
+<meta property="og:image" content="http:////image.joylau.cn/aodamiao/18.gif">
+<meta property="og:image" content="http://image.joylau.cn/blog/issue-activity.png">
+<meta property="og:image" content="http://image.joylau.cn/blog/gpg-version.png">
+<meta property="og:image" content="http://image.joylau.cn/blog/gpg-2.png">
+<meta property="og:image" content="http://image.joylau.cn/blog/gpg-2.png">
+<meta property="og:image" content="http://static.dexcoder.com/images/201501/VvtDdbqdERgRv1qn.png">
+<meta property="og:image" content="http://static.dexcoder.com/images/201501/2gPUnClPeYP1Vjbb.png">
+<meta property="og:updated_time" content="2017-10-19T02:06:46.370Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Maven --- 发布自己的构件到中央仓库">
+<meta name="twitter:description" content="Sonatype真可谓是个强大的公司，如此多的构件包竟能管理的有条不紊，最近自己写了个ECharts的类库，想传到Maven中央仓库，下面开始动手吧.....">
+<meta name="twitter:image" content="http://image.joylau.cn/blog/sonatype.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="//image.joylau.cn/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Maven --- 发布自己的构件到中央仓库 | JoyLau&#39;s Blog | JoyLau</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">JoyLau</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">刘法的技术学习与思考</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">留言板</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:2587038142@qq.com" title="Email"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/" title="知乎"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/JoyLau" title="GitHub"></a>
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
+                            
+                                <a class="fa 网易云音乐" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/">CMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka/">Eureka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPG/">GPG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GZIP/">GZIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntelliJ-IDEA/">IntelliJ IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/">JSON</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript篇/">JavaScript篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MATE-Desktop/">MATE Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacBookPro/">MacBookPro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugins/">Plugins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/">RabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSL/">SSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBatch/">SpringBatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger2/">Swagger2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroC-Ice/">ZeroC Ice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/emoji/">emoji</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/license/">license</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技能/">技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘挂载/">磁盘挂载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.joylau.cn/">JoyLau</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://life.joylau.cn/">JoyLau’life</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://media.joylau.cn/">JoyMedia</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blog.wfyvv.com/">wfyvv</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://chaxiaoniu.oschina.io/">CherryChang</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，与大家分享交流，同时能够对这些技术进行备忘，以便日后查询</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">JoyLau</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">JoyLau</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">刘法的技术学习与思考</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">留言板</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:2587038142@qq.com" title="Email"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/" title="知乎"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/JoyLau" title="GitHub"></a>
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于">
+</nav>
+      <div class="body-wrap"><article id="post-Maven-Release-Component" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/17/Maven-Release-Component/" class="article-date">
+      <time datetime="2017-03-17T03:43:01.000Z" itemprop="datePublished">2017-03-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+           <div id="jl_custom">
+                
+
+                
+            </div>
+        <h1 class="article-title" itemprop="name">
+      Maven --- 发布自己的构件到中央仓库
+    </h1>
+      </header>
+      
+      <div class="article-info article-info-post">
+        <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Maven篇/">Maven篇</a>
+    </div>
+        <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GPG/">GPG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Maven/">Maven</a></li></ul>
+    </div>
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+<p><img src="//image.joylau.cn/blog/sonatype.png" alt="Sonatype"></p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>个人感觉第一次发布的步骤非常复杂，我在第一次操作的时候来来回回发布了7,8个版本，最后都是校验失败，导致构件不能关闭（因为我遇到了个大坑）</li>
+<li>第一次发布成功之后后面的更新和添加新的构件都相对来说要容易一些（groupid不变的情况下）</li>
+</ul>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="账户注册"><a href="#账户注册" class="headerlink" title="账户注册"></a>账户注册</h3><ul>
+<li>注册地址 ： <a href="https://issues.sonatype.org/secure/Signup!default.jspa" target="_blank" rel="external">https://issues.sonatype.org/secure/Signup!default.jspa</a>  ,这一步需要注意的是记住用户名和密码，后面配置文件会用到<br><img src="//image.joylau.cn/blog/sonatype-register.png" alt="注册"></li>
+</ul>
+<h3 id="创建并提交工单"><a href="#创建并提交工单" class="headerlink" title="创建并提交工单"></a>创建并提交工单</h3><p><img src="//image.joylau.cn/blog/sonatype_issue.PNG" alt="创建工单"></p>
+<ul>
+<li>Project和issue Type的填写如上图所示，不能填写错了</li>
+<li>创建完成之后就等待网站工作人员的审核就可以了，不知道为什么，我等待的时间非常短，2分钟都不到，工作人员就回复我了，可能是我的运气比较好吧，但是上个星期买房摇号我却没摇到<img src="////image.joylau.cn/aodamiao/18.gif" alt="伤心欲绝"></li>
+<li>当issue 的 state 变为 <code>RESOLVED</code>时就可继续操作了，同时下面的活动区会给你发消息<br><img src="//image.joylau.cn/blog/issue-activity.png" alt="Comment"></li>
+</ul>
+<h3 id="gpg生成密钥对"><a href="#gpg生成密钥对" class="headerlink" title="gpg生成密钥对"></a>gpg生成密钥对</h3><ul>
+<li>下载安装：<a href="https://www.gpg4win.org/download.html" target="_blank" rel="external">https://www.gpg4win.org/download.html</a><br><strong><em>安装时注意的是，只安装主体组件和加密解密窗口的组件就可以了，其他的不需要~~~~</em></strong></li>
+<li>查看是否安装成功:<code>gpg --version</code><br><img src="//image.joylau.cn/blog/gpg-version.png" alt="version"></li>
+<li>生成密钥对:<code>gpg --gen-key</code><br><img src="//image.joylau.cn/blog/gpg-2.png" alt="gpg --gen-key"><br><img src="//image.joylau.cn/blog/gpg-2.png" alt="gpg --gen-key"></li>
+<li>之后往下，会让你输入用户名和邮箱，还有一个Passphase，相当于密钥库密码，不要忘记。</li>
+<li>查看公钥:<code>gpg --list-keys</code></li>
+<li>将公钥发布到 PGP 密钥服务器<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">gpg --keyserver hkp://pool.sks-keyservers.net --send-keys C990D076</div><div class="line">//可能由于网络问题，有点慢，多重试几次</div><div class="line"></div><div class="line">//查看发布是否成功</div><div class="line">gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys C990D076</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="配置setting-xml文件和pom-xml文件"><a href="#配置setting-xml文件和pom-xml文件" class="headerlink" title="配置setting.xml文件和pom.xml文件"></a>配置setting.xml文件和pom.xml文件</h3><ul>
+<li>setting.xml文件  <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">servers</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">server</span>&gt;</span></div><div class="line">      //记住id，需要和pom文件里的id一致</div><div class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>oss<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">username</span>&gt;</span>username<span class="tag">&lt;/<span class="name">username</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">password</span>&gt;</span>password<span class="tag">&lt;/<span class="name">password</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">server</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">servers</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>pom.xml文件  <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--</span></div><div class="line">  ~ The MIT License (MIT)</div><div class="line">  ~</div><div class="line">  ~ Copyright (c) 2017 2587038142@qq.com</div><div class="line">  ~</div><div class="line">  ~ Permission is hereby granted, free of charge, to any person obtaining a copy</div><div class="line">  ~ of this software and associated documentation files (the "Software"), to deal</div><div class="line">  ~ in the Software without restriction, including without limitation the rights</div><div class="line">  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</div><div class="line">  ~ copies of the Software, and to permit persons to whom the Software is</div><div class="line">  ~ furnished to do so, subject to the following conditions:</div><div class="line">  ~</div><div class="line">  ~ The above copyright notice and this permission notice shall be included in</div><div class="line">  ~ all copies or substantial portions of the Software.</div><div class="line">  ~</div><div class="line">  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</div><div class="line">  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</div><div class="line">  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</div><div class="line">  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</div><div class="line">  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</div><div class="line">  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN</div><div class="line">  ~ THE SOFTWARE.</div><div class="line">  --&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.joylau.code<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>joylau-echarts<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>joylau-echarts<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>Configure the most attribute for ECharts3.0+ by Gson<span class="tag">&lt;/<span class="name">description</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://code.joylau.cn<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.sonatype.oss<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>oss-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">licenses</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">license</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>The Apache Software License, Version 2.0<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://www.apache.org/licenses/LICENSE-2.0.txt<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">license</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">licenses</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">developers</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">developer</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>JoyLau<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">email</span>&gt;</span>2587038142@qq.com<span class="tag">&lt;/<span class="name">email</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://joylau.cn<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">developer</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">developers</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">scm</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">connection</span>&gt;</span>scm:git:git@github.com:JoyLau/joylau-echarts.git<span class="tag">&lt;/<span class="name">connection</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">developerConnection</span>&gt;</span>scm:git:git@github.com:JoyLau/joylau-echarts.git<span class="tag">&lt;/<span class="name">developerConnection</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>git@github.com:JoyLau/joylau-echarts<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">scm</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.google.code.gson<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>gson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">testResources</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">testResource</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/test/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">testResource</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">testResource</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/test/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">testResource</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">testResources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>release<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">                    <span class="comment">&lt;!--Compiler--&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">                            <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">source</span>&gt;</span></div><div class="line">                            <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">target</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">                    <span class="comment">&lt;!-- Source --&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-source-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">executions</span>&gt;</span></div><div class="line">                            <span class="tag">&lt;<span class="name">execution</span>&gt;</span></div><div class="line">                                <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></div><div class="line">                                <span class="tag">&lt;<span class="name">goals</span>&gt;</span></div><div class="line">                                    <span class="tag">&lt;<span class="name">goal</span>&gt;</span>jar-no-fork<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">                                <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></div><div class="line">                            <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">                    <span class="comment">&lt;!-- Javadoc --&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-javadoc-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">executions</span>&gt;</span></div><div class="line">                            <span class="tag">&lt;<span class="name">execution</span>&gt;</span></div><div class="line">                                <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></div><div class="line">                                <span class="tag">&lt;<span class="name">goals</span>&gt;</span></div><div class="line">                                    <span class="tag">&lt;<span class="name">goal</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">                                <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></div><div class="line">                            <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">                    <span class="comment">&lt;!-- GPG --&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-gpg-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">executions</span>&gt;</span></div><div class="line">                            <span class="tag">&lt;<span class="name">execution</span>&gt;</span></div><div class="line">                                <span class="tag">&lt;<span class="name">phase</span>&gt;</span>verify<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></div><div class="line">                                <span class="tag">&lt;<span class="name">goals</span>&gt;</span></div><div class="line">                                    <span class="tag">&lt;<span class="name">goal</span>&gt;</span>sign<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">                                <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></div><div class="line">                            <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">distributionManagement</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">snapshotRepository</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>oss<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://oss.sonatype.org/content/repositories/snapshots/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">snapshotRepository</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">repository</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>oss<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://oss.sonatype.org/service/local/staging/deploy/maven2/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">distributionManagement</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="上传构件到-OSS-中"><a href="#上传构件到-OSS-中" class="headerlink" title="上传构件到 OSS 中"></a>上传构件到 OSS 中</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mvn clean deploy -P release</div><div class="line"><span class="tag">&lt;<span class="name">--!</span> <span class="attr">jdk1.8</span>后再生成<span class="attr">javadoc</span>时语法较为严格，这时去除<span class="attr">javadoc</span>即可 !<span class="attr">--</span>&gt;</span></div><div class="line">mvn clean deploy -P release -Dmaven.javadoc.skip=true</div></pre></td></tr></table></figure>
+<p>在上传之前会自动弹出一个对话框，需要输入上面提到的 Passphase，它就是刚才设置的 GPG 密钥库的密码。<br>随后会看到大量的 upload 信息，因为在国内网络的缘故，时间有点久，耐心等待吧。</p>
+<h3 id="在-OSS-中发布构件"><a href="#在-OSS-中发布构件" class="headerlink" title="在 OSS 中发布构件"></a>在 OSS 中发布构件</h3><ul>
+<li>在 OSS 中，使用自己的 Sonatype 账号登录后，可在 Staging Repositories 中查看刚才已上传的构件，这些构件目前是放在 Staging 仓库中，可进行模糊查询，快速定位到自己的构件。</li>
+<li>此时，该构件的状态为 Open，需要勾选它，然后点击 Close 按钮。系统会自动验证该构件是否满足指定要求，当验证完毕后，状态会变为 Closed。<br><img src="//static.dexcoder.com/images/201501/VvtDdbqdERgRv1qn.png" alt="1"></li>
+<li>最后，点击 Release 按钮来发布该构件，这一步没有截图，将就看吧知道就行：<br><img src="//static.dexcoder.com/images/201501/2gPUnClPeYP1Vjbb.png" alt="2"></li>
+</ul>
+<h3 id="等待构件审批通过"><a href="#等待构件审批通过" class="headerlink" title="等待构件审批通过"></a>等待构件审批通过</h3><p>这个，又只能等待了，当然他们晚上上班，还是第二天看。当审批通过后，将会收到邮件通知。</p>
+<h3 id="从中央仓库中搜索构件"><a href="#从中央仓库中搜索构件" class="headerlink" title="从中央仓库中搜索构件"></a>从中央仓库中搜索构件</h3><p>这时，就可以在maven的中央仓库中搜索到自己发布的构件了，以后可以直接在pom.xml中使用了！</p>
+<p>中央仓库搜索网站：<a href="http://search.maven.org/" target="_blank" rel="external">http://search.maven.org/</a></p>
+<p>第一次成功发布之后，以后就不用这么麻烦了，可以直接使用Group Id发布任何的构件，当然前提是Group Id没有变。</p>
+<p>以后的发布流程：</p>
+<p>a）构件完成后直接使用maven在命令行上传构建；</p>
+<p>b）在<a href="https://oss.sonatype.org/" target="_blank" rel="external">https://oss.sonatype.org/</a> close并release构件；</p>
+<p>c)等待同步好（大约2小时多）之后，就可以使用了</p>
+<h2 id="遇坑记录"><a href="#遇坑记录" class="headerlink" title="遇坑记录"></a>遇坑记录</h2><ul>
+<li>安装GPG时候，没有安装弹框组件，导致gpg密码框弹不出来</li>
+<li>一开始所有的命令行都在git下操作，每次部署的时候都是提示没有私钥错误，后来发现git生成的gpg密钥对在user更目录下，切换到CMD操作，是生成在AppData下。经查看有私钥，问题解决</li>
+</ul>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ul>
+<li>前一部分为自己实践所写</li>
+<li>后面上传构件，发布版本参考：<a href="http://blog.csdn.net/hj7jay/article/details/51130398" target="_blank" rel="external">http://blog.csdn.net/hj7jay/article/details/51130398</a></li>
+</ul>
+      
+    </div>
+    
+  </div>
+  
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/03/17/Maven-Release-Component/">Maven --- 发布自己的构件到中央仓库</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
+        <p><span>发布时间:</span>2017-03-17, 11:43:01</p>
+        <p><span>最后更新:</span>2017-10-19, 10:06:46</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/17/Maven-Release-Component/" title="Maven --- 发布自己的构件到中央仓库">http://blog.joylau.cn/2017/03/17/Maven-Release-Component/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2017/03/17/Maven-Release-Component/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"CC BY-NC-SA 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/03/21/MySQL-Emoji/">
+                    为网站添加emoji表情支持
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/03/14/Programmer-Boast/">
+                    程序员，那些年吹过的牛逼，最后都自己加班了
+                </a>
+            </div>
+        
+    </nav>
+  
+</article>
+<div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-number">2.</span> <span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#账户注册"><span class="toc-number">2.1.</span> <span class="toc-text">账户注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建并提交工单"><span class="toc-number">2.2.</span> <span class="toc-text">创建并提交工单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gpg生成密钥对"><span class="toc-number">2.3.</span> <span class="toc-text">gpg生成密钥对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置setting-xml文件和pom-xml文件"><span class="toc-number">2.4.</span> <span class="toc-text">配置setting.xml文件和pom.xml文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上传构件到-OSS-中"><span class="toc-number">2.5.</span> <span class="toc-text">上传构件到 OSS 中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在-OSS-中发布构件"><span class="toc-number">2.6.</span> <span class="toc-text">在 OSS 中发布构件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#等待构件审批通过"><span class="toc-number">2.7.</span> <span class="toc-text">等待构件审批通过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从中央仓库中搜索构件"><span class="toc-number">2.8.</span> <span class="toc-text">从中央仓库中搜索构件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#遇坑记录"><span class="toc-number">3.</span> <span class="toc-text">遇坑记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用"><span class="toc-number">4.</span> <span class="toc-text">引用</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏", "显示", !!"false"];
+    </script>
+
+
+    <div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Maven --- 发布自己的构件到中央仓库　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+    
+        <section id="comments">
+    <script type="text/javascript">
+        var loadComment = function(){
+            var appid = 'cysUJIsDc';
+            var conf = 'prod_f3b45651c40acb065b603bb0c1ae489b';
+            var width = window.innerWidth || document.documentElement.clientWidth;
+            if (width < 960) {
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+            } else {
+                var loadJs = function (d, a) {
+                    var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                    var b = document.createElement("script");
+                    b.setAttribute("type", "text/javascript");
+                    b.setAttribute("async","true");
+                    b.setAttribute("charset", "UTF-8");
+                    b.setAttribute("src", d);
+                    if (typeof a === "function") {
+                        if (window.attachEvent) {
+                            b.onreadystatechange = function () {
+                                var e = b.readyState;
+                                if (e === "loaded" || e === "complete") {
+                                    b.onreadystatechange = null;
+                                    a()
+                                }
+                            }
+                        } else {
+                            b.onload = a
+                        }
+                    }
+                    c.appendChild(b)
+                };
+                loadJs("//changyan.sohu.com/upload/changyan.js", function () {
+                    window.changyan.api.config({appid: appid, conf: conf})
+                });
+            }
+        };
+        
+            loadComment();
+        
+    </script>
+    <script>
+        var load$hide = function(){
+            loadComment();
+        }
+    </script>
+
+
+    <!--打赏-->
+    <div id="cyReward" sourceid="2017/03/17/Maven-Release-Component/" role="cylabs" data-use="reward" style="text-align: center"></div>
+    <!--评论表情-->
+    <div id="cyEmoji" sourceid="2017/03/17/Maven-Release-Component/" role="cylabs" data-use="emoji"></div>
+    <!--评论框-->
+    <div id="SOHUCS" style="width: 95%" sid="2017/03/17/Maven-Release-Component/"></div>
+    <script>
+        
+        window.document.write('<script charset="utf-8" type="text/javascript" src="//changyan.itc.cn/js/lib/jquery.js"><\/script>');
+        window.document.write('<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cysUJIsDc"><\/script>');
+        
+    </script>
+</section>
+    
+
+
+<div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/03/21/MySQL-Emoji/" title="上一篇: 为网站添加emoji表情支持">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/03/14/Programmer-Boast/" title="下一篇: 程序员，那些年吹过的牛逼，最后都自己加班了">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/Open-Source-License/">开源许可证</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/16/Maven-ResourceCompressor/">Maven --- 一款打包压缩 js css html 的Maven插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/13/CSS3-Image-Scale/">当鼠标移入图片上慢慢放大的效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/26/Java-Scala/">Java 代码中使用 Scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/SpringBoot-CaffeineCache/">重剑无锋,大巧不工 SpringBoot --- 推荐使用CaffeineCache</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/11/JoyGame/">JoyGame --- 一个情怀游戏平台</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/An-Interesting-Code/">人生从未写过如此有趣的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/Maven-MakeWinServiceForJar/">Maven --- 将 SpringBoot 项目做成Windows服务(Windows Service)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/20/SpringBoot-JoyMedia-MV/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/SpringBoot-JoyMedia-Search/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/SpringBoot-JoyMedia-Node/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/SpringBoot-JoyMedia/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 分析篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/18/SpringBoot-MongoDB/">重剑无锋,大巧不工 SpringBoot --- 整合使用MongoDB</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/ZeroC-Ice/">ZeroC Ice --- 高性能RPC技术王者</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/03/Git-Multi-Repo-Push/">记录一次Git多仓库提交</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/MacOS-Dev-App/">MacOS常用开发使用APP</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/24/MacBookPro-Unboxing/">MacBook Pro 2017 --- 不行！我要开箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/SpringBoot-RESTfulAPI/">重剑无锋,大巧不工 SpringBoot --- RESTful API</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/SpringBoot-RabbitMQ/">重剑无锋,大巧不工 SpringBoot --- 整合RabbitMQ</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/Console-Better/">让你的Windows控制台窗口更优美</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/13/SpringBoot-ConfigurationProperties/">重剑无锋,大巧不工 SpringBoot --- 属性注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-Question-Tips/">重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-RequestBody/">重剑无锋,大巧不工 SpringBoot --- @RequestBody JSON参数处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/09/College-Entrance-Examination-of-2017-for-Progarmmer/">2017年程序员高考试卷</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/05/Skill-Tree-Of-Java/">收集整理一些JAVA学习的技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/02/SolveBrainAndPuzzles/">解决一道智力题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/28/IntelliJIDEA-Plugins/">IntelliJ IDEA 插件开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/27/Redis-Master-Slave/">Redis主从复制 --- 实现读写分离</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/24/SpringCloud-Building/">SpringCloud --- 构建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/06/MyBatis-Joylau-MyBatis/">JoyLau-MyBatis 使用说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/01/Redis-Benchmark/">Redis有多快??? --- 基准性能测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/22/Docker-Command/">Docker菜鸟到熟悉 --- 常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/SpringBoot-SpringBatch/">重剑无锋,大巧不工 SpringBoot --- 批处理SpringBatch</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/MySQL-Emoji/">为网站添加emoji表情支持</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/17/Maven-Release-Component/">Maven --- 发布自己的构件到中央仓库</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/Programmer-Boast/">程序员，那些年吹过的牛逼，最后都自己加班了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/">JS数组去重最简单方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Integrate/">重剑无锋,大巧不工 SpringBoot --- 环境集成</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Research/">重剑无锋,大巧不工 SpringBoot --- 探索篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/SpringBoot-Basic/">重剑无锋,大巧不工 SpringBoot --- 基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/01/SpringBoot-Actuator/">重剑无锋,大巧不工 SpringBoot --- 添加监控端点Actuator</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-GUI/">Linux菜鸟到熟悉 --- 视图界面</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-Command/">Linux菜鸟到熟悉 --- 常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-BuildingEnvironment/">Linux菜鸟到熟悉 --- 生产环境的搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-MountDisk/">Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/Thymeleaf/">重新拾起我曾抛弃的Thymeleaf</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/SSL/">SSL证书部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/TomcatMulti-Root/">Tomcat服务器添加多个Root项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/HelloWorld/">Hello World</a></li></ul>
+
+
+    <script>
+        
+    </script></div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2017 JoyLau All Rights Reserved.
+            </div>
+            <div class="footer-right">
+                <i class="fa fa-heart animated infinite pulse"></i>Hexo Theme by MOxFIVE<i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+<!--百度自动推送-->
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    </div>
+    <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+<script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 10;
+                var backgroundimg = "url(//image.joylau.cn/blog/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+             title: "a.article-title, .article-more-link a", 
+             post: ".article-entry a[href], .copyright a[href]", 
+             tags: ".article-tag a", 
+             categories: ".article-category a, a.tag-list-link", 
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </div>
+</body>

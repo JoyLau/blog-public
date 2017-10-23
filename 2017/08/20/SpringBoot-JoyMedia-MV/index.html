@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="keywords" content="JoyLau,joylau,JoyLau  blog,刘法,刘法的博客,刘法的技术与思考,Java,JavaWeb,Web程序员,Web开发,JavaWeb开发,个人博客">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="JoyLau">
+
+
+
+<meta name="description" content="您的浏览器版本太低，无法观看本视频  JoyMedia --- 观看海量 MV 视频">
+<meta name="keywords" content="SpringBoot,Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）">
+<meta property="og:url" content="http://blog.joylau.cn/2017/08/20/SpringBoot-JoyMedia-MV/index.html">
+<meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
+<meta property="og:description" content="您的浏览器版本太低，无法观看本视频  JoyMedia --- 观看海量 MV 视频">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://image.joylau.cn/blog/joymusic-mv-referer.png">
+<meta property="og:image" content="http://image.joylau.cn/blog/joymusic-mv-no-referer.png">
+<meta property="og:image" content="http://image.joylau.cn/blog/joymusic-mv-no-referer-href.png">
+<meta property="og:updated_time" content="2017-08-24T13:14:08.543Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）">
+<meta name="twitter:description" content="您的浏览器版本太低，无法观看本视频  JoyMedia --- 观看海量 MV 视频">
+<meta name="twitter:image" content="http://image.joylau.cn/blog/joymusic-mv-referer.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="//image.joylau.cn/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ） | JoyLau&#39;s Blog | JoyLau</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">JoyLau</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">刘法的技术学习与思考</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">留言板</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:2587038142@qq.com" title="Email"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/" title="知乎"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/JoyLau" title="GitHub"></a>
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
+                            
+                                <a class="fa 网易云音乐" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/">CMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka/">Eureka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPG/">GPG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GZIP/">GZIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntelliJ-IDEA/">IntelliJ IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/">JSON</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript篇/">JavaScript篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MATE-Desktop/">MATE Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacBookPro/">MacBookPro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugins/">Plugins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/">RabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSL/">SSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBatch/">SpringBatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger2/">Swagger2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroC-Ice/">ZeroC Ice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/emoji/">emoji</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/license/">license</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技能/">技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘挂载/">磁盘挂载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.joylau.cn/">JoyLau</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://life.joylau.cn/">JoyLau’life</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://media.joylau.cn/">JoyMedia</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blog.wfyvv.com/">wfyvv</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://chaxiaoniu.oschina.io/">CherryChang</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，与大家分享交流，同时能够对这些技术进行备忘，以便日后查询</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">JoyLau</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">JoyLau</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">刘法的技术学习与思考</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">留言板</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:2587038142@qq.com" title="Email"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/" title="知乎"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/JoyLau" title="GitHub"></a>
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于">
+</nav>
+      <div class="body-wrap"><article id="post-SpringBoot-JoyMedia-MV" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/20/SpringBoot-JoyMedia-MV/" class="article-date">
+      <time datetime="2017-08-20T02:09:04.000Z" itemprop="datePublished">2017-08-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+           <div id="jl_custom">
+                
+
+                
+            </div>
+        <h1 class="article-title" itemprop="name">
+      重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）
+    </h1>
+      </header>
+      
+      <div class="article-info article-info-post">
+        <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/SpringBoot篇/">SpringBoot篇</a>
+    </div>
+        <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+    </div>
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><center><video src="//image.joylau.cn/blog/joymusic-mv.mp4" loop="true" controls="controls" poster="//image.joylau.cn/blog/joymusic-mv-poster.png">您的浏览器版本太低，无法观看本视频</video></center>
+
+<h3 id="在线地址"><a href="#在线地址" class="headerlink" title="在线地址"></a>在线地址</h3><ul>
+<li><a href="//music.joylau.cn">JoyMusic</a></li>
+</ul>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h3><ul>
+<li>这次要解析的是 网易云音乐的 MV</li>
+<li>需要准备的解析的有</li>
+<li>获取 MV 信息列表</li>
+<li>获取 MV 详细信息</li>
+<li>获取 MV 播放地址</li>
+<li>在线播放 MV</li>
+<li>获取 MV 排行榜</li>
+<li>获取最新 MV</li>
+</ul>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>大部分解析提供的接口都和我以前2篇文章类似,之前的文章有分析过,这里就不再多说了</li>
+<li>这里重点说明下 MV 的播放问题</li>
+</ul>
+<h3 id="关于-MV-的播放"><a href="#关于-MV-的播放" class="headerlink" title="关于 MV 的播放"></a>关于 MV 的播放</h3><ul>
+<li>解析 MV 详细信息,可获得 MV 的真实播放的 MP4 的地址</li>
+<li>但是这个地址,网易云做了防盗链处理</li>
+<li>什么是防盗链?</li>
+<li>一般情况下,我的资源文件,比如 图片, css,js,视频,我们自己放到服务器上可以直接引用</li>
+<li>同样的道理,别人可以访问你的服务器,也可以直接引用</li>
+<li>那么,不想被别人引用怎么办呢?</li>
+<li>这就引申出了防盗链的操作</li>
+<li>最常见的防盗链的处理就是加上 referer识别,就是来源网址信息</li>
+<li>referer 其实是个错误的拼写,这个就是有历史原因了,以前的开发人员在定义这个属性的时候,把这个单词写错了,后来没有人注意到,一直使用到他作为标准</li>
+<li>后来,也没有人去特意改他了,就这么用着吧</li>
+<li>这个是简单防盗链处理</li>
+<li>还有更复杂的,比如 js 加密路径信息,每次请求路径都会变化,这个就复杂了</li>
+<li>很幸运,网易云的 MV 采用的就是 referer 的识别方式</li>
+<li>那么就有相应的破解方法了</li>
+</ul>
+<h3 id="关于-referer"><a href="#关于-referer" class="headerlink" title="关于 referer"></a>关于 referer</h3><ul>
+<li>MP4 的地址在浏览器地址栏直接粘过去是可以播放的,但是由其他网站跳进去的则不能访问,因为带进了 rerferer</li>
+<li>那么,要做的就是去除 请求的 rerferer </li>
+<li>我找了很多资料也尝试了很多次,想在浏览器端把 rerferer 去除掉,基本是实现不了的,如果你实现在页面里单独请求 mp4 地址时不带referer, 请联系我</li>
+<li>那么要做的就是在服务端操作了</li>
+<li>在服务端操作很简单,就是伪造头信息进行请求</li>
+</ul>
+<p>这个是带 referer 的请求,被网易云直接拒绝了</p>
+<p><img src="http://image.joylau.cn/blog/joymusic-mv-referer.png" alt="joymusic-mv-referer"></p>
+<p>这个是复制地址到地址栏,则可以直接播放</p>
+<p><img src="http://image.joylau.cn/blog/joymusic-mv-no-referer.png" alt="joymusic-mv-no-referer"></p>
+<h2 id="服务单去除-referer"><a href="#服务单去除-referer" class="headerlink" title="服务单去除 referer"></a>服务单去除 referer</h2><ul>
+<li>严格来说不能说去除 refere,我们需要将原本我们自己服务器的 referer 修改为网易云服务器的 referer<h3 id="Java-版"><a href="#Java-版" class="headerlink" title="Java 版"></a>Java 版</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playMV</span><span class="params">(HttpServletResponse res, String mvurl)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="keyword">if</span> (StringUtils.isEmpty(mvurl))&#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        res.setContentType(<span class="string">"video/mpeg4; charset=utf-8"</span>);</div><div class="line">        URLConnection connection = <span class="keyword">new</span> URL(mvurl).openConnection();</div><div class="line">        connection.setRequestProperty(<span class="string">"referer"</span>, <span class="string">"http://music.163.com/"</span>);</div><div class="line">        connection.setRequestProperty(<span class="string">"cookie"</span>, <span class="string">"appver=1.5.0.75771;"</span>);</div><div class="line">        connection.connect();</div><div class="line">        InputStream is = connection.getInputStream();</div><div class="line">        OutputStream os = res.getOutputStream();</div><div class="line">        <span class="keyword">byte</span> bf[] = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2048</span>];</div><div class="line">        <span class="keyword">int</span> length;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">while</span> ((length = is.read(bf)) &gt; <span class="number">0</span>) &#123;</div><div class="line">                os.write(bf, <span class="number">0</span>, length);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            is.close();</div><div class="line">            os.close();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        is.close();</div><div class="line">        os.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>解释: </p>
+<ol>
+<li>首先我们请求的资源不是本地的资源,是存储在其他服务器上的,这里用到的是URL</li>
+<li>这里我们需要设置 referer 和 cookie,结合前面使用的 URL, 这里使用的是URLConnection</li>
+<li>后面的就很好理解了,相当于做了一个管道,将读取的文件流原封不动的通过Response返回给调用者</li>
+<li>不要忘了设置 setContentType 为 MP4 的格式</li>
+</ol>
+<h3 id="nodejs-版"><a href="#nodejs-版" class="headerlink" title="nodejs 版"></a>nodejs 版</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</div><div class="line"><span class="keyword">const</span> router = express();</div><div class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">"request"</span>);</div><div class="line"></div><div class="line">router.get(<span class="string">"/"</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> url = req.query.url;</div><div class="line">  <span class="keyword">const</span> headers = &#123;</div><div class="line">    <span class="string">"Referer"</span>: <span class="string">"http://music.163.com/"</span>,</div><div class="line">    <span class="string">"Cookie"</span>: <span class="string">"appver=1.5.0.75771;"</span>,</div><div class="line">    <span class="string">'Content-Type'</span>: <span class="string">'video/mp4'</span>,</div><div class="line">    <span class="string">'Location'</span>: url</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">const</span> options = &#123;</div><div class="line">    <span class="attr">header</span>: headers,</div><div class="line">    <span class="attr">url</span>: url</div><div class="line">  &#125;;</div><div class="line">  request(options).on(<span class="string">'error'</span>, err =&gt; &#123;</div><div class="line">      res.send(&#123; err &#125;)</div><div class="line">    &#125;).pipe(res)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = router;</div></pre></td></tr></table></figure>
+<p>解释:<br>和上面的 Java 版代码是一个意思,主要是 pipe 流管道将文件流返回给调用者</p>
+<h3 id="功能完成"><a href="#功能完成" class="headerlink" title="功能完成"></a>功能完成</h3><ul>
+<li>那么这样解决了 MP4 地址防盗链的问题</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>不足之处也暴露了</li>
+<li>首先这段代码必须部署到服务端</li>
+<li>部署到服务端就需要服务器去拉去 MV 的流信息,这无疑给服务器增加过多的流量压力</li>
+<li>其次,由于使用的流传输,这个 MP4 的播放是不支持快进操作的</li>
+</ul>
+<h2 id="有个简单的解决方式"><a href="#有个简单的解决方式" class="headerlink" title="有个简单的解决方式"></a>有个简单的解决方式</h2><ul>
+<li>在 html5 之后,想去除 referer 信息, a标签有个属性 rel </li>
+<li>将 <code>rel=&quot;noreferrer&quot;</code> 即可在 a 标签的 href 的链接上去除 referer信息</li>
+<li>这一属性已被我使用在播放器的右下角的一个小飞机的按钮上</li>
+<li>点击小飞机按钮就可以直接看 MV 视频了,流量走的是网易云的CDN,不再试自己的服务器</li>
+</ul>
+<p><img src="http://image.joylau.cn/blog/joymusic-mv-no-referer-href.png" alt="joymusic-mv-no-referer-href"></p>
+<h2 id="不完美"><a href="#不完美" class="headerlink" title="不完美"></a>不完美</h2><ul>
+<li>总感觉这个解决不够完美</li>
+<li>如果你看到这篇文章能有更好的解决办法,请联系我</li>
+</ul>
+<blockquote>
+<blockquote>
+<p>欢迎大家来看看试试看!😘 <a href="http://music.joylau.cn" target="_blank" rel="external">http://music.joylau.cn</a>  (当前版本 v1.4)</p>
+</blockquote>
+</blockquote>
+      
+    </div>
+    
+  </div>
+  
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/08/20/SpringBoot-JoyMedia-MV/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
+        <p><span>发布时间:</span>2017-08-20, 10:09:04</p>
+        <p><span>最后更新:</span>2017-08-24, 21:14:08</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/08/20/SpringBoot-JoyMedia-MV/" title="重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）">http://blog.joylau.cn/2017/08/20/SpringBoot-JoyMedia-MV/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2017/08/20/SpringBoot-JoyMedia-MV/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"CC BY-NC-SA 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/">
+                    重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/08/06/SpringBoot-JoyMedia-Search/">
+                    重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）
+                </a>
+            </div>
+        
+    </nav>
+  
+</article>
+<div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#效果展示"><span class="toc-number">1.1.</span> <span class="toc-text">效果展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在线地址"><span class="toc-number">1.2.</span> <span class="toc-text">在线地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-number">2.</span> <span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#需要准备"><span class="toc-number">2.1.</span> <span class="toc-text">需要准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">2.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于-MV-的播放"><span class="toc-number">2.3.</span> <span class="toc-text">关于 MV 的播放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于-referer"><span class="toc-number">2.4.</span> <span class="toc-text">关于 referer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务单去除-referer"><span class="toc-number">3.</span> <span class="toc-text">服务单去除 referer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-版"><span class="toc-number">3.1.</span> <span class="toc-text">Java 版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nodejs-版"><span class="toc-number">3.2.</span> <span class="toc-text">nodejs 版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#功能完成"><span class="toc-number">3.3.</span> <span class="toc-text">功能完成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点"><span class="toc-number">3.4.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有个简单的解决方式"><span class="toc-number">4.</span> <span class="toc-text">有个简单的解决方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不完美"><span class="toc-number">5.</span> <span class="toc-text">不完美</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏", "显示", !!"false"];
+    </script>
+
+
+    <div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+    
+        <section id="comments">
+    <script type="text/javascript">
+        var loadComment = function(){
+            var appid = 'cysUJIsDc';
+            var conf = 'prod_f3b45651c40acb065b603bb0c1ae489b';
+            var width = window.innerWidth || document.documentElement.clientWidth;
+            if (width < 960) {
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+            } else {
+                var loadJs = function (d, a) {
+                    var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                    var b = document.createElement("script");
+                    b.setAttribute("type", "text/javascript");
+                    b.setAttribute("async","true");
+                    b.setAttribute("charset", "UTF-8");
+                    b.setAttribute("src", d);
+                    if (typeof a === "function") {
+                        if (window.attachEvent) {
+                            b.onreadystatechange = function () {
+                                var e = b.readyState;
+                                if (e === "loaded" || e === "complete") {
+                                    b.onreadystatechange = null;
+                                    a()
+                                }
+                            }
+                        } else {
+                            b.onload = a
+                        }
+                    }
+                    c.appendChild(b)
+                };
+                loadJs("//changyan.sohu.com/upload/changyan.js", function () {
+                    window.changyan.api.config({appid: appid, conf: conf})
+                });
+            }
+        };
+        
+            loadComment();
+        
+    </script>
+    <script>
+        var load$hide = function(){
+            loadComment();
+        }
+    </script>
+
+
+    <!--打赏-->
+    <div id="cyReward" sourceid="2017/08/20/SpringBoot-JoyMedia-MV/" role="cylabs" data-use="reward" style="text-align: center"></div>
+    <!--评论表情-->
+    <div id="cyEmoji" sourceid="2017/08/20/SpringBoot-JoyMedia-MV/" role="cylabs" data-use="emoji"></div>
+    <!--评论框-->
+    <div id="SOHUCS" style="width: 95%" sid="2017/08/20/SpringBoot-JoyMedia-MV/"></div>
+    <script>
+        
+        window.document.write('<script charset="utf-8" type="text/javascript" src="//changyan.itc.cn/js/lib/jquery.js"><\/script>');
+        window.document.write('<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cysUJIsDc"><\/script>');
+        
+    </script>
+</section>
+    
+
+
+<div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/" title="上一篇: 重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/08/06/SpringBoot-JoyMedia-Search/" title="下一篇: 重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/Open-Source-License/">开源许可证</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/16/Maven-ResourceCompressor/">Maven --- 一款打包压缩 js css html 的Maven插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/13/CSS3-Image-Scale/">当鼠标移入图片上慢慢放大的效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/26/Java-Scala/">Java 代码中使用 Scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/SpringBoot-CaffeineCache/">重剑无锋,大巧不工 SpringBoot --- 推荐使用CaffeineCache</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/11/JoyGame/">JoyGame --- 一个情怀游戏平台</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/An-Interesting-Code/">人生从未写过如此有趣的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/Maven-MakeWinServiceForJar/">Maven --- 将 SpringBoot 项目做成Windows服务(Windows Service)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/20/SpringBoot-JoyMedia-MV/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/SpringBoot-JoyMedia-Search/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/SpringBoot-JoyMedia-Node/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/SpringBoot-JoyMedia/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 分析篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/18/SpringBoot-MongoDB/">重剑无锋,大巧不工 SpringBoot --- 整合使用MongoDB</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/ZeroC-Ice/">ZeroC Ice --- 高性能RPC技术王者</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/03/Git-Multi-Repo-Push/">记录一次Git多仓库提交</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/MacOS-Dev-App/">MacOS常用开发使用APP</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/24/MacBookPro-Unboxing/">MacBook Pro 2017 --- 不行！我要开箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/SpringBoot-RESTfulAPI/">重剑无锋,大巧不工 SpringBoot --- RESTful API</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/SpringBoot-RabbitMQ/">重剑无锋,大巧不工 SpringBoot --- 整合RabbitMQ</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/Console-Better/">让你的Windows控制台窗口更优美</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/13/SpringBoot-ConfigurationProperties/">重剑无锋,大巧不工 SpringBoot --- 属性注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-Question-Tips/">重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-RequestBody/">重剑无锋,大巧不工 SpringBoot --- @RequestBody JSON参数处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/09/College-Entrance-Examination-of-2017-for-Progarmmer/">2017年程序员高考试卷</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/05/Skill-Tree-Of-Java/">收集整理一些JAVA学习的技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/02/SolveBrainAndPuzzles/">解决一道智力题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/28/IntelliJIDEA-Plugins/">IntelliJ IDEA 插件开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/27/Redis-Master-Slave/">Redis主从复制 --- 实现读写分离</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/24/SpringCloud-Building/">SpringCloud --- 构建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/06/MyBatis-Joylau-MyBatis/">JoyLau-MyBatis 使用说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/01/Redis-Benchmark/">Redis有多快??? --- 基准性能测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/22/Docker-Command/">Docker菜鸟到熟悉 --- 常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/SpringBoot-SpringBatch/">重剑无锋,大巧不工 SpringBoot --- 批处理SpringBatch</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/MySQL-Emoji/">为网站添加emoji表情支持</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/17/Maven-Release-Component/">Maven --- 发布自己的构件到中央仓库</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/Programmer-Boast/">程序员，那些年吹过的牛逼，最后都自己加班了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/">JS数组去重最简单方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Integrate/">重剑无锋,大巧不工 SpringBoot --- 环境集成</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Research/">重剑无锋,大巧不工 SpringBoot --- 探索篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/SpringBoot-Basic/">重剑无锋,大巧不工 SpringBoot --- 基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/01/SpringBoot-Actuator/">重剑无锋,大巧不工 SpringBoot --- 添加监控端点Actuator</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-GUI/">Linux菜鸟到熟悉 --- 视图界面</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-Command/">Linux菜鸟到熟悉 --- 常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-BuildingEnvironment/">Linux菜鸟到熟悉 --- 生产环境的搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-MountDisk/">Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/Thymeleaf/">重新拾起我曾抛弃的Thymeleaf</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/SSL/">SSL证书部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/TomcatMulti-Root/">Tomcat服务器添加多个Root项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/HelloWorld/">Hello World</a></li></ul>
+
+
+    <script>
+        
+    </script></div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2017 JoyLau All Rights Reserved.
+            </div>
+            <div class="footer-right">
+                <i class="fa fa-heart animated infinite pulse"></i>Hexo Theme by MOxFIVE<i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+<!--百度自动推送-->
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    </div>
+    <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+<script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 10;
+                var backgroundimg = "url(//image.joylau.cn/blog/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+             title: "a.article-title, .article-more-link a", 
+             post: ".article-entry a[href], .copyright a[href]", 
+             tags: ".article-tag a", 
+             categories: ".article-category a, a.tag-list-link", 
+             articleNav: "#article-nav a, #post-nav-button a", 
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </div>
+</body>
