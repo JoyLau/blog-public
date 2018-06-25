@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="keywords" content="JoyLau,joylau,JoyLau  blog,刘法,刘法的博客,刘法的技术与思考,Java,JavaWeb,Web程序员,Web开发,JavaWeb开发,个人博客">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="JoyLau">
+
+
+
+<meta name="description" content="JoyMedia --- 搜索自己想听的音乐">
+<meta name="keywords" content="SpringBoot,Jquery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）">
+<meta property="og:url" content="http://blog.joylau.cn/2017/08/06/SpringBoot-JoyMedia-Search/index.html">
+<meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
+<meta property="og:description" content="JoyMedia --- 搜索自己想听的音乐">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://image.joylau.cn/blog/jquery-autocomplate.gif">
+<meta property="og:image" content="http://image.joylau.cn/blog/jquery-autocomplate-div.png">
+<meta property="og:updated_time" content="2018-06-07T05:27:36.220Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）">
+<meta name="twitter:description" content="JoyMedia --- 搜索自己想听的音乐">
+<meta name="twitter:image" content="http://image.joylau.cn/blog/jquery-autocomplate.gif">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="//image.joylau.cn/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ） | JoyLau&#39;s Blog | JoyLau</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+<script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a class="chaffle" data-lang="en" href="/">JoyLau</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle chaffle" data-lang="zh">刘法的技术学习与思考</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li class="chaffle" data-lang="zh">菜单</li>
+                        <li class="chaffle" data-lang="zh">标签</li>
+                        
+                        <li class="chaffle" data-lang="zh">友情链接</li>
+                        
+                        
+                        <li class="chaffle" data-lang="zh">关于</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a class="chaffle" data-lang="zh" href="/">主页</a></li>
+                        
+                            <li><a class="chaffle" data-lang="zh" href="/archives/">所有文章</a></li>
+                        
+                            <li><a class="chaffle" data-lang="zh" href="/tags/">标签云</a></li>
+                        
+                            <li><a class="chaffle" data-lang="zh" href="/about/">留言板</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:2587038142@qq.com" title="Email"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/" title="知乎"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/JoyLau" title="GitHub"></a>
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
+                            
+                                <a class="fa 网易云音乐" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/">CMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Druid/">Druid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka/">Eureka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Filebeat/">Filebeat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPG/">GPG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GZIP/">GZIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntelliJ-IDEA/">IntelliJ IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/">JSON</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logstash/">Logstash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lombok/">Lombok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MATE-Desktop/">MATE Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacBookPro/">MacBookPro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mapper/">Mapper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PageHelper/">PageHelper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugins/">Plugins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/">RabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSL/">SSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBatch/">SpringBatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringSecurity/">SpringSecurity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger2/">Swagger2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroC-Ice/">ZeroC Ice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/emoji/">emoji</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/license/">license</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openoffice/">openoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技能/">技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘挂载/">磁盘挂载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.joylau.cn/">JoyLau</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://life.joylau.cn/">JoyLau’life</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://media.joylau.cn/">JoyMedia</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blog.wfyvv.com/">wfyvv</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://chaxiaoniu.oschina.io/">CherryChang</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，与大家分享交流，同时能够对这些技术进行备忘，以便日后查询</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">JoyLau</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">JoyLau</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">刘法的技术学习与思考</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">留言板</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:2587038142@qq.com" title="Email"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/" title="知乎"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/JoyLau" title="GitHub"></a>
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于">
+</nav>
+      <div class="body-wrap"><article id="post-SpringBoot-JoyMedia-Search" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/06/SpringBoot-JoyMedia-Search/" class="article-date">
+      <time datetime="2017-08-06T10:09:47.000Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+           <div id="jl_custom">
+                
+
+                
+            </div>
+        <h1 class="article-title" itemprop="name">
+      重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）
+    </h1>
+      </header>
+      
+      <div class="article-info article-info-post">
+        <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/SpringBoot篇/">SpringBoot篇</a>
+    </div>
+        <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jquery/">Jquery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+    </div>
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><p><img src="//image.joylau.cn/blog/jquery-autocomplate.gif" alt="JoyMedia - Search"></p>
+<h3 id="在线地址"><a href="#在线地址" class="headerlink" title="在线地址"></a>在线地址</h3><ul>
+<li><a href="//music.joylau.cn">JoyMusic</a><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3></li>
+<li>正如文章图片那样,在搜索框中输入想听的音乐/歌手/专辑</li>
+<li>在输入过程中及输入完成后,显示搜索结果的列表供用户选择<h3 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h3></li>
+<li>REST 接口</li>
+<li>jquery-autocomplete插件</li>
+</ul>
+<h2 id="优美的开始"><a href="#优美的开始" class="headerlink" title="优美的开始"></a>优美的开始</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>引入插件 css: jquery.autocomplete.css</li>
+<li>引入插件 js : jquery.autocomplete.min.js</li>
+<li>写一个数据返回的 REST 接口<h3 id="开始操作"><a href="#开始操作" class="headerlink" title="开始操作"></a>开始操作</h3></li>
+<li>定义搜索的 input 的 id 值</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span> <span class="attr">style</span>=<span class="string">"display: inline"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"input-group"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"input-group-btn"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn btn-sm bg-white btn-icon rounded"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-search"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"keywords"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control input-sm no-border rounded"</span> <span class="attr">placeholder</span>=<span class="string">"搜索  单曲/歌手/专辑..."</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里我定义的是 keywords</li>
+<li>接下来在我们的 js 文件里调用 : $(“#keywords”).autocomplete</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#keywords"</span>).autocomplete(<span class="string">"/music/neteaseCloud/search"</span>, &#123;</span><br><span class="line">        width : <span class="number">350</span>, <span class="comment">// 提示的宽度，溢出隐藏</span></span><br><span class="line">        max : <span class="number">30</span>,<span class="comment">// 显示数量</span></span><br><span class="line">        scrollHeight: <span class="number">600</span>,</span><br><span class="line">        resultsClass: <span class="string">"ac_results animated fadeInUpBig"</span>,</span><br><span class="line">        autoFill : <span class="literal">false</span>,<span class="comment">//自动填充</span></span><br><span class="line">        highlight : <span class="literal">false</span>,</span><br><span class="line">        highlightItem: <span class="literal">true</span>,</span><br><span class="line">        scroll : <span class="literal">true</span>,</span><br><span class="line">        matchContains : <span class="literal">true</span>,</span><br><span class="line">        multiple :<span class="literal">false</span>,</span><br><span class="line">        matchSubset: <span class="literal">false</span>,</span><br><span class="line">        dataType: <span class="string">"json"</span>,</span><br><span class="line">        formatItem: <span class="function"><span class="keyword">function</span>(<span class="params">row, i, max</span>) </span>&#123;</span><br><span class="line">            <span class="comment">//自定义样式</span></span><br><span class="line">        &#125;,</span><br><span class="line">        formatMatch: <span class="function"><span class="keyword">function</span>(<span class="params">row, i, max</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> row.name + row.id;</span><br><span class="line">        &#125;,</span><br><span class="line">        formatResult: <span class="function"><span class="keyword">function</span>(<span class="params">row</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> row.id;</span><br><span class="line">        &#125;,</span><br><span class="line">        parse:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">            <span class="comment">//解释返回的数据，把其存在数组里</span></span><br><span class="line">            <span class="keyword">if</span> (data.data.length === <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> [];</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> $.map(data.data, <span class="function"><span class="keyword">function</span>(<span class="params">row</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> &#123;</span><br><span class="line">                        data: row</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).result(<span class="function"><span class="keyword">function</span>(<span class="params">event, row, formatted</span>) </span>&#123;</span><br><span class="line">        jQuery(<span class="keyword">this</span>).val(row.name + <span class="string">' '</span> + row.author);</span><br><span class="line">        addSearchResult(row.id);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="接下来重点解释这个配置项"><a href="#接下来重点解释这个配置项" class="headerlink" title="接下来重点解释这个配置项"></a>接下来重点解释这个配置项</h3><ul>
+<li>autocomplete 的第一个参数是url, 值得注意的是,这个 url 我们返回的结果数据是 JSON</li>
+<li>后面要专门针对返回的 JSON 数据进行解析</li>
+<li>再往后面来,看到的是一些配置项参数,一些简单的我就不在这多解释了,我这边主要说下我觉得比较重要的</li>
+<li>resultsClass : 这个参数是生成的候选项的父 DIV,如下图所示:</li>
+</ul>
+<p><img src="//image.joylau.cn/blog/jquery-autocomplate-div.png" alt="JoyMedia - AutoComplate-Div"></p>
+<ul>
+<li>默认提供的样式很不好看,默认提供的样式都写在 jquery.autocomplete.css 里面</li>
+<li>在这里面,能看到刚才截图的 div : ac_results</li>
+<li>那么我们要美化的就是 这个 div 和其子元素 li 的样式了</li>
+<li>为了跟契合本站的主题,我采用的黑色主题风格</li>
+<li>给ac_results添加了黑色背景色:background-color: #232c32</li>
+<li>在js文件里搜索ac_results,添加动画效果,并将这个配置写到配置项里:resultsClass: “ac_results animated fadeInUpBig”</li>
+<li>ul 里的 li 是交替的样式的,class 分别为ac_odd和 ac_even,鼠标滑上去的效果为 ac_over,这几个地方自定义下样式</li>
+<li>还有一个配置: matchSubset,设置为 false ,可以避免输入大小写转换的js错误</li>
+<li>formatItem : 返回的每一个结果都会再次处理,这里要做的事是以自己想要的样式显示出来</li>
+<li>formatMatch : 匹配自己在结果集中想要的属性</li>
+<li>formatResult : 自己最终要取的数据是什么</li>
+<li>parse : 针对返回的JSON 数据进行转换,这里通过$. map 转化为 数组</li>
+<li>result : 点击了列表项以后要做什么事情</li>
+</ul>
+<h2 id="完美的结束"><a href="#完美的结束" class="headerlink" title="完美的结束"></a>完美的结束</h2><blockquote>
+<blockquote>
+<p>欢迎大家来听听试试看!😘 <a href="http://music.joylau.cn" target="_blank" rel="noopener">http://music.joylau.cn</a>  (当前版本 v1.3)</p>
+</blockquote>
+</blockquote>
+      
+    </div>
+    
+  </div>
+  
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/08/06/SpringBoot-JoyMedia-Search/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
+        <p><span>发布时间:</span>2017-08-06, 18:09:47</p>
+        <p><span>最后更新:</span>2018-06-07, 13:27:36</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/08/06/SpringBoot-JoyMedia-Search/" title="重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）">http://blog.joylau.cn/2017/08/06/SpringBoot-JoyMedia-Search/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2017/08/06/SpringBoot-JoyMedia-Search/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"CC BY-NC-SA 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/08/20/SpringBoot-JoyMedia-MV/">
+                    重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/07/29/SpringBoot-JoyMedia-Node/">
+                    重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）
+                </a>
+            </div>
+        
+    </nav>
+  
+</article>
+<div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#效果展示"><span class="toc-number">1.1.</span> <span class="toc-text">效果展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在线地址"><span class="toc-number">1.2.</span> <span class="toc-text">在线地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释"><span class="toc-number">1.3.</span> <span class="toc-text">解释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#材料"><span class="toc-number">1.4.</span> <span class="toc-text">材料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优美的开始"><span class="toc-number">2.</span> <span class="toc-text">优美的开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备工作"><span class="toc-number">2.1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始操作"><span class="toc-number">2.2.</span> <span class="toc-text">开始操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接下来重点解释这个配置项"><span class="toc-number">2.3.</span> <span class="toc-text">接下来重点解释这个配置项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完美的结束"><span class="toc-number">3.</span> <span class="toc-text">完美的结束</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏", "显示", !!"false"];
+    </script>
+
+
+    <div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+    
+        <section id="comments">
+    <script type="text/javascript">
+        var loadComment = function(){
+            var appid = 'cysUJIsDc';
+            var conf = 'prod_f3b45651c40acb065b603bb0c1ae489b';
+            var width = window.innerWidth || document.documentElement.clientWidth;
+            if (width < 960) {
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+            } else {
+                var loadJs = function (d, a) {
+                    var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                    var b = document.createElement("script");
+                    b.setAttribute("type", "text/javascript");
+                    b.setAttribute("async","true");
+                    b.setAttribute("charset", "UTF-8");
+                    b.setAttribute("src", d);
+                    if (typeof a === "function") {
+                        if (window.attachEvent) {
+                            b.onreadystatechange = function () {
+                                var e = b.readyState;
+                                if (e === "loaded" || e === "complete") {
+                                    b.onreadystatechange = null;
+                                    a()
+                                }
+                            }
+                        } else {
+                            b.onload = a
+                        }
+                    }
+                    c.appendChild(b)
+                };
+                loadJs("//changyan.sohu.com/upload/changyan.js", function () {
+                    window.changyan.api.config({appid: appid, conf: conf})
+                });
+            }
+        };
+        
+            loadComment();
+        
+    </script>
+    <script>
+        var load$hide = function(){
+            loadComment();
+        }
+    </script>
+
+
+    <!--打赏-->
+    <div id="cyReward" sourceid="2017/08/06/SpringBoot-JoyMedia-Search/" role="cylabs" data-use="reward" style="text-align: center"></div>
+    <!--评论表情-->
+    <div id="cyEmoji" sourceid="2017/08/06/SpringBoot-JoyMedia-Search/" role="cylabs" data-use="emoji"></div>
+    <!--评论框-->
+    <div id="SOHUCS" style="width: 95%" sid="2017/08/06/SpringBoot-JoyMedia-Search/"></div>
+    <script>
+        
+        window.document.write('<script charset="utf-8" type="text/javascript" src="//changyan.itc.cn/js/lib/jquery.js"><\/script>');
+        window.document.write('<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/js/changyan.labs.https.js?appid=cysUJIsDc"><\/script>');
+        
+    </script>
+</section>
+    
+
+
+<div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/08/20/SpringBoot-JoyMedia-MV/" title="上一篇: 重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/07/29/SpringBoot-JoyMedia-Node/" title="下一篇: 重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/IntelliJIDEA-MyConfigs/">IntelliJ IDEA 自用配置记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Linux-OpenOffice/">Linux 安装 OpenOffice 服务小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/21/Elasticsearch-ingest-attachment/">Elasticsearch 文档文本内容搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/20/React-DebugWithIDEA/">React 项目使用 IDEA 进行调试</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/14/MacOS-ChangeMacAddr/">MacOS 修改 mac 地址</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/Elasticsearch-Ik/">Elasticsearch 分词插件的使用及 demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/23/MyBatis-DateFormat/">Mybatis 前后台时间传参格式化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/21/Elasticsearch-Security/">Elasticsearch 集群安全控制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/18/Linux-Systemctl/">Linux菜鸟到熟悉 --- systemctl 托管自定义程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/17/Linux-NoteBookPC/">Linux菜鸟到熟悉 --- 闲置笔记本安装 Centos</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/15/Lombok/">Lombok 注解小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/08/Filebeat-Nginx/">Filebeat 实时收集 Nginx 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/08/Logstash-Nginx/">Logstash 实时收集 Nginx 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/07/Elasticsearch-ELK/">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/07/Elasticsearch-Cluster/">Elasticsearch 集群搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/MacOS-CleanMac/">MacOS 垃圾清理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/">SpringSecurity Session并发过期后会重定向到 /login (入口点问题)问题的解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/SpringBoot-SpringSecurity/">重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/01/JDK8-Stream-Distinct/">关于Jdk 8 Stream Distinct 去重复使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/27/MyBatis-Example/">关于通用 Mapper Example 使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/12/SpringBoot-Assembly-Package/">重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/29/SpringBoot-Druid-MyBatis-Mapper-PageHelper/">重剑无锋,大巧不工 SpringBoot --- 最新版 SpringBoot 整合 Druid,MyBatis,通用 Mapper,PageHelper的脚手架</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/24/JavaScript-Array-Method/">JavaScript 数组的一些常用的方法记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/23/Spark-Integrate-Build/">大数据之路 Spark 环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/22/Hadoop-Integrate-Build/">大数据之路 Hadoop 环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/17/Hadoop-Study-Way/">大数据之路 Hadoop 的学习流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/16/SpringBoot-Elasticsearch-Complex/">重剑无锋,大巧不工 SpringBoot --- 使用 Elasticsearch 进行更复杂的查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/15/FastJson-JSONPath/">FastJSON 还有这样的用法 涨姿势了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/Node-Install-Error/">npm install 居然出错了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/02/SpringBoot-Kafka/">SpringBoot 整合 Kafka 踩坑记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/01/SpringBoot-IDEA-DevTools/">IDEA 中 SpringBoot 项目热部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/SpringBoot-ReadJSONFile/">SpringBoot 读取 JSON 文件并转化为 JSON 对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/26/SpringBoot-Oracle/">SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Elasticsearch-Config/">Elasticsearch 配置说明 && 遇坑记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Hadoop-FristDay/">Hadoop 的第一天</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/SpringBoot-Elasticsearch/">重剑无锋,大巧不工 SpringBoot --- 整合使用 Elasticsearch</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/Open-Source-License/">开源许可证</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/16/Maven-ResourceCompressor/">Maven --- 一款打包压缩 js css html 的Maven插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/13/CSS3-Image-Scale/">当鼠标移入图片上慢慢放大的效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/26/Java-Scala/">Java 代码中使用 Scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/SpringBoot-CaffeineCache/">重剑无锋,大巧不工 SpringBoot --- 推荐使用CaffeineCache</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/11/JoyGame/">JoyGame --- 一个情怀游戏平台</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/An-Interesting-Code/">人生从未写过如此有趣的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/Maven-MakeWinServiceForJar/">Maven --- 将 SpringBoot 项目做成Windows服务(Windows Service)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/20/SpringBoot-JoyMedia-MV/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/SpringBoot-JoyMedia-Search/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/SpringBoot-JoyMedia-Node/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/SpringBoot-JoyMedia/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 分析篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/18/SpringBoot-MongoDB/">重剑无锋,大巧不工 SpringBoot --- 整合使用MongoDB</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/ZeroC-Ice/">ZeroC Ice --- 高性能RPC技术王者</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/03/Git-Multi-Repo-Push/">记录一次Git多仓库提交</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/MacOS-Dev-App/">MacOS常用开发使用APP</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/24/MacBookPro-Unboxing/">MacBook Pro 2017 --- 不行！我要开箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/SpringBoot-RESTfulAPI/">重剑无锋,大巧不工 SpringBoot --- RESTful API</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/SpringBoot-RabbitMQ/">重剑无锋,大巧不工 SpringBoot --- 整合RabbitMQ</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/Console-Better/">让你的Windows控制台窗口更优美</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/13/SpringBoot-ConfigurationProperties/">重剑无锋,大巧不工 SpringBoot --- 属性注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-Question-Tips/">重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-RequestBody/">重剑无锋,大巧不工 SpringBoot --- @RequestBody JSON参数处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/09/College-Entrance-Examination-of-2017-for-Progarmmer/">2017年程序员高考试卷</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/05/Skill-Tree-Of-Java/">收集整理一些JAVA学习的技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/02/SolveBrainAndPuzzles/">解决一道智力题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/28/IntelliJIDEA-Plugins/">IntelliJ IDEA 插件开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/27/Redis-Master-Slave/">Redis主从复制 --- 实现读写分离</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/24/SpringCloud-Building/">SpringCloud --- 构建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/06/MyBatis-Joylau-MyBatis/">JoyLau-MyBatis 使用说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/01/Redis-Benchmark/">Redis有多快??? --- 基准性能测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/22/Docker-Command/">Docker菜鸟到熟悉 --- 常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/SpringBoot-SpringBatch/">重剑无锋,大巧不工 SpringBoot --- 批处理SpringBatch</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/MySQL-Emoji/">为网站添加emoji表情支持</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/17/Maven-Release-Component/">Maven --- 发布自己的构件到中央仓库</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/Programmer-Boast/">程序员，那些年吹过的牛逼，最后都自己加班了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/">JS数组去重最简单方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Integrate/">重剑无锋,大巧不工 SpringBoot --- 环境集成</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Research/">重剑无锋,大巧不工 SpringBoot --- 探索篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/SpringBoot-Basic/">重剑无锋,大巧不工 SpringBoot --- 基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/01/SpringBoot-Actuator/">重剑无锋,大巧不工 SpringBoot --- 添加监控端点Actuator</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-GUI/">Linux菜鸟到熟悉 --- 视图界面</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-Command/">Linux菜鸟到熟悉 --- 常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-BuildingEnvironment/">Linux菜鸟到熟悉 --- 生产环境的搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-MountDisk/">Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/Thymeleaf/">重新拾起我曾抛弃的Thymeleaf</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/SSL/">SSL证书部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/TomcatMulti-Root/">Tomcat服务器添加多个Root项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/HelloWorld/">Hello World</a></li></ul>
+
+
+    <script>
+        
+    </script></div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2017-2018 JoyLau All Rights Reserved.
+            </div>
+            <div class="footer-right">
+                <i class="fa fa-heart animated infinite pulse"></i>Hexo Theme by MOxFIVE<i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+<!--百度自动推送-->
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+<script>
+    $('.chaffle').chaffle();
+</script>
+    </div>
+    <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+<script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 10;
+                var backgroundimg = "url(//image.joylau.cn/blog/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+            
+            
+            
+            
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </div>
+</body>
