@@ -4,11 +4,9 @@
   
     
     <entry>
-      <title></title>
-      <url>http://blog.joylau.cn/2018/06/29/Ubuntu-SystemConfig/</url>
-      <content type="html"><![CDATA[<hr>
-<p>title: Ubuntu 自用配置记录<br>date: 2018-06-28 15:16:22<br>description: 安装完 Ubuntu 后自定义的一些配置记录<br>categories: [Ubuntu篇]<br>tags: [Ubuntu]</p>
-<a id="more"></a>
+      <title><![CDATA[Ubuntu 自用配置记录]]></title>
+      <url>http://blog.joylau.cn/2018/06/28/Ubuntu-SystemConfig/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
 <ol>
 <li><p>关闭并禁用 swap 分区： sudo swapoff 并且 sudo vim /etc/fstab 注释掉 swap 那行</p>
 </li>
@@ -36,6 +34,18 @@
 </li>
 </ol>]]></content>
       
+        <categories>
+            
+            <category> Ubuntu篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Ubuntu </tag>
+            
+        </tags>
         
     </entry>
     
