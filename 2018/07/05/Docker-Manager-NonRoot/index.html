@@ -14,21 +14,18 @@
 
 
 
-<meta name="description" content="SpringBoot为我们做的自动配置，确实方便快捷，但是对于新手来说，如果不大懂SpringBoot内部启动原理，以后难免会吃亏">
-<meta name="keywords" content="SpringBoot,Spring">
+<meta name="description" content="docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重剑无锋,大巧不工 SpringBoot --- 探索篇">
-<meta property="og:url" content="http://blog.joylau.cn/2017/03/14/SpringBoot-Research/index.html">
+<meta property="og:title" content="以非 root 用户身份管理 Docker">
+<meta property="og:url" content="http://blog.joylau.cn/2018/07/05/Docker-Manager-NonRoot/index.html">
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
-<meta property="og:description" content="SpringBoot为我们做的自动配置，确实方便快捷，但是对于新手来说，如果不大懂SpringBoot内部启动原理，以后难免会吃亏">
+<meta property="og:description" content="docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://image.joylau.cn/blog/SpringBootStart-Main.png-image1">
-<meta property="og:image" content="http://image.joylau.cn/blog/SpringBoot-start-model.jpg">
-<meta property="og:updated_time" content="2018-06-07T05:27:36.220Z">
+<meta property="og:updated_time" content="2018-07-05T08:59:34.722Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="重剑无锋,大巧不工 SpringBoot --- 探索篇">
-<meta name="twitter:description" content="SpringBoot为我们做的自动配置，确实方便快捷，但是对于新手来说，如果不大懂SpringBoot内部启动原理，以后难免会吃亏">
-<meta name="twitter:image" content="http://image.joylau.cn/blog/SpringBootStart-Main.png-image1">
+<meta name="twitter:title" content="以非 root 用户身份管理 Docker">
+<meta name="twitter:description" content="docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -60,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>重剑无锋,大巧不工 SpringBoot --- 探索篇 | JoyLau&#39;s Blog | JoyLau</title>
+<title>以非 root 用户身份管理 Docker | JoyLau&#39;s Blog | JoyLau</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -304,11 +301,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于">
 </nav>
-      <div class="body-wrap"><article id="post-SpringBoot-Research" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Docker-Manager-NonRoot" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/03/14/SpringBoot-Research/" class="article-date">
-      <time datetime="2017-03-14T03:21:20.000Z" itemprop="datePublished">2017-03-14</time>
+      <a href="/2018/07/05/Docker-Manager-NonRoot/" class="article-date">
+      <time datetime="2018-07-05T08:51:49.000Z" itemprop="datePublished">2018-07-05</time>
 </a>
     </div>
   
@@ -324,16 +321,16 @@
                 
             </div>
         <h1 class="article-title" itemprop="name">
-      重剑无锋,大巧不工 SpringBoot --- 探索篇
+      以非 root 用户身份管理 Docker
     </h1>
       </header>
       
       <div class="article-info article-info-post">
         <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/SpringBoot篇/">SpringBoot篇</a>
+    <a class="article-category-link" href="/categories/Docker篇/">Docker篇</a>
     </div>
         <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
     </div>
         <div class="clearfix"></div>
       </div>
@@ -343,82 +340,43 @@
       
           
         <a id="more"></a>
-<p><img src="//image.joylau.cn/blog/SpringBootStart-Main.png-image1" alt="SpringBootStart-Main"></p>
-<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>我们开发任何一个Spring Boot项目，都会用到如下的启动类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JoylauApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(JoylauApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>从上面代码可以看出，Annotation定义（@SpringBootApplication）和类定义（SpringApplication.run）最为耀眼，所以要揭开SpringBoot的神秘面纱，我们要从这两位开始就可以了。</p>
-<h2 id="SpringBootApplication背后的秘密"><a href="#SpringBootApplication背后的秘密" class="headerlink" title="SpringBootApplication背后的秘密"></a>SpringBootApplication背后的秘密</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@SpringBootConfiguration</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(</span><br><span class="line">    excludeFilters = &#123;<span class="meta">@Filter</span>(</span><br><span class="line">    type = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;TypeExcludeFilter.class&#125;</span><br><span class="line">), <span class="meta">@Filter</span>(</span><br><span class="line">    type = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;AutoConfigurationExcludeFilter.class&#125;</span><br><span class="line">)&#125;</span><br><span class="line">)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SpringBootApplication &#123;</span><br><span class="line">    <span class="meta">@AliasFor</span>(</span><br><span class="line">        annotation = EnableAutoConfiguration.class,</span><br><span class="line">        attribute = <span class="string">"exclude"</span></span><br><span class="line">    )</span><br><span class="line">    Class&lt;?&gt;[] exclude() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AliasFor</span>(</span><br><span class="line">        annotation = EnableAutoConfiguration.class,</span><br><span class="line">        attribute = <span class="string">"excludeName"</span></span><br><span class="line">    )</span><br><span class="line">    String[] excludeName() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AliasFor</span>(</span><br><span class="line">        annotation = ComponentScan.class,</span><br><span class="line">        attribute = <span class="string">"basePackages"</span></span><br><span class="line">    )</span><br><span class="line">    String[] scanBasePackages() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AliasFor</span>(</span><br><span class="line">        annotation = ComponentScan.class,</span><br><span class="line">        attribute = <span class="string">"basePackageClasses"</span></span><br><span class="line">    )</span><br><span class="line">    Class&lt;?&gt;[] scanBasePackageClasses() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>虽然定义使用了多个Annotation进行了原信息标注，但实际上重要的只有三个Annotation：</p>
-<ul>
-<li><code>@Configuration（@SpringBootConfiguration点开查看发现里面还是应用了@Configuration）</code></li>
-<li><code>@EnableAutoConfiguration</code></li>
-<li><code>@ComponentScan</code><br>所以，如果我们使用如下的SpringBoot启动类，整个SpringBoot应用依然可以与之前的启动类功能对等：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JoylauApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>每次写这3个比较累，所以写一个@SpringBootApplication方便点。接下来分别介绍这3个Annotation。</p>
-<h3 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h3><p>这里的@Configuration对我们来说不陌生，它就是JavaConfig形式的Spring Ioc容器的配置类使用的那个@Configuration，SpringBoot社区推荐使用基于JavaConfig的配置形式，所以，这里的启动类标注了@Configuration之后，本身其实也是一个IoC容器的配置类。<br>举几个简单例子回顾下，XML跟config配置方式的区别：</p>
-<ul>
-<li>表达形式层面<br>基于XML配置的方式是这样：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">default-lazy-init</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--bean定义--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>而基于JavaConfig的配置方式是这样：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockConfiguration</span></span>&#123;</span><br><span class="line">  <span class="comment">//bean定义</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>任何一个标注了@Configuration的Java类定义都是一个JavaConfig配置类。</p>
-<ul>
-<li>注册bean定义层面<br>基于XML的配置形式是这样：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"mockService"</span> <span class="attr">class</span>=<span class="string">"..MockServiceImpl"</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>而基于JavaConfig的配置形式是这样的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockConfiguration</span></span>&#123;</span><br><span class="line">  <span class="meta">@Bean</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> MockService <span class="title">mockService</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> MockServiceImpl();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>任何一个标注了@Bean的方法，其返回值将作为一个bean定义注册到Spring的IoC容器，方法名将默认成该bean定义的id。</p>
-<ul>
-<li>表达依赖注入关系层面<br>为了表达bean与bean之间的依赖关系，在XML形式中一般是这样：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"mockService"</span> <span class="attr">class</span>=<span class="string">"..MockServiceImpl"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">propery</span> <span class="attr">name</span> =<span class="string">"dependencyService"</span> <span class="attr">ref</span>=<span class="string">"dependencyService"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dependencyService"</span> <span class="attr">class</span>=<span class="string">"DependencyServiceImpl"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>而基于JavaConfig的配置形式是这样的:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockConfiguration</span></span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MockService <span class="title">mockService</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MockServiceImpl(dependencyService());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DependencyService <span class="title">dependencyService</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DependencyServiceImpl();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如果一个bean的定义依赖其他bean,则直接调用对应的JavaConfig类中依赖bean的创建方法就可以了。</p>
-<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h3><p>@ComponentScan这个注解在Spring中很重要，它对应XML配置中的<a href="context:component-scan" target="_blank" rel="noopener">context:component-scan</a>元素，@ComponentScan的功能其实就是自动扫描并加载符合条件的组件（比如@Component和@Repository等）或者bean定义，最终将这些bean定义加载到IoC容器中。</p>
-<p>我们可以通过basePackages等属性来细粒度的定制@ComponentScan自动扫描的范围，如果不指定，则默认Spring框架实现会从声明@ComponentScan所在类的package进行扫描。</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。<br>有没有什么方式能够解决？<br>官方文档地址： <a href="https://docs.docker.com/install/linux/linux-postinstall/" target="_blank" rel="noopener">https://docs.docker.com/install/linux/linux-postinstall/</a></p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>docker 守护进程绑定至 Unix 套接字，而不是 TCP 端口。默认情况下，该 Unix 套接字由用户 root 所有，而其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行。</p>
+<p>在使用 docker 命令时，如果您不想使用 sudo，请创建名为 docker 的 Unix 组并向其中添加用户。docker 守护进程启动时，它将使 Unix 套接字的所有权可由 docker 组进行读取/写入。</p>
 <blockquote>
-<p>注：所以SpringBoot的启动类最好是放在root package下，因为默认不指定basePackages。</p>
+<blockquote>
+<blockquote>
+<p>警告： docker 组将授予等同于 root 用户的特权。如需有关此操作如何影响系统安全性的详细信息，请参阅 Docker 守护进程攻击面。</p>
 </blockquote>
-<h3 id="EnableAutoConfiguration"><a href="#EnableAutoConfiguration" class="headerlink" title="@EnableAutoConfiguration"></a>@EnableAutoConfiguration</h3><p>个人感觉@EnableAutoConfiguration这个Annotation最为重要，所以放在最后来解读，大家是否还记得Spring框架提供的各种名字为@Enable开头的Annotation定义？比如@EnableScheduling、@EnableCaching、@EnableMBeanExport等，@EnableAutoConfiguration的理念和做事方式其实一脉相承，简单概括一下就是，借助@Import的支持，收集和注册特定场景相关的bean定义。</p>
-<ul>
-<li>@EnableScheduling是通过@Import将Spring调度框架相关的bean定义都加载到IoC容器。</li>
-<li>@EnableMBeanExport是通过@Import将JMX相关的bean定义加载到IoC容器。<br>而@EnableAutoConfiguration也是借助@Import的帮助，将所有符合自动配置条件的bean定义加载到IoC容器，仅此而已！</li>
-</ul>
-<p>@EnableAutoConfiguration作为一个复合Annotation,其自身定义关键信息如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"deprecation"</span>)</span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@AutoConfigurationPackage</span></span><br><span class="line"><span class="meta">@Import</span>(EnableAutoConfigurationImportSelector.class)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> EnableAutoConfiguration &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>其中，最关键的要属@Import(EnableAutoConfigurationImportSelector.class)，借助EnableAutoConfigurationImportSelector，@EnableAutoConfiguration可以帮助SpringBoot应用将所有符合条件的@Configuration配置都加载到当前SpringBoot创建并使用的IoC容器。就像一只“八爪鱼”一样</p>
-<h3 id="深入探索SpringApplication执行流程"><a href="#深入探索SpringApplication执行流程" class="headerlink" title="深入探索SpringApplication执行流程"></a>深入探索SpringApplication执行流程</h3><p>SpringApplication的run方法的实现是我们本次旅程的主要线路，该方法的主要流程大体可以归纳如下：</p>
-<p>1） 如果我们使用的是SpringApplication的静态run方法，那么，这个方法里面首先要创建一个SpringApplication对象实例，然后调用这个创建好的SpringApplication的实例方法。在SpringApplication实例初始化的时候，它会提前做几件事情：</p>
-<ul>
-<li>根据classpath里面是否存在某个特征类（org.springframework.web.context.ConfigurableWebApplicationContext）来决定是否应该创建一个为Web应用使用的ApplicationContext类型。</li>
-<li>使用SpringFactoriesLoader在应用的classpath中查找并加载所有可用的ApplicationContextInitializer。</li>
-<li>使用SpringFactoriesLoader在应用的classpath中查找并加载所有可用的ApplicationListener。</li>
-<li>推断并设置main方法的定义类。<br>2） SpringApplication实例初始化完成并且完成设置后，就开始执行run方法的逻辑了，方法执行伊始，首先遍历执行所有通过SpringFactoriesLoader可以查找到并加载的SpringApplicationRunListener。调用它们的started()方法，告诉这些SpringApplicationRunListener，“嘿，SpringBoot应用要开始执行咯！”。</li>
-</ul>
-<p>3） 创建并配置当前Spring Boot应用将要使用的Environment（包括配置要使用的PropertySource以及Profile）。</p>
-<p>4） 遍历调用所有SpringApplicationRunListener的environmentPrepared()的方法，告诉他们：“当前SpringBoot应用使用的Environment准备好了咯！”。</p>
-<p>5） 如果SpringApplication的showBanner属性被设置为true，则打印banner。</p>
-<p>6） 根据用户是否明确设置了applicationContextClass类型以及初始化阶段的推断结果，决定该为当前SpringBoot应用创建什么类型的ApplicationContext并创建完成，然后根据条件决定是否添加ShutdownHook，决定是否使用自定义的BeanNameGenerator，决定是否使用自定义的ResourceLoader，当然，最重要的，将之前准备好的Environment设置给创建好的ApplicationContext使用。</p>
-<p>7） ApplicationContext创建好之后，SpringApplication会再次借助Spring-FactoriesLoader，查找并加载classpath中所有可用的ApplicationContext-Initializer，然后遍历调用这些ApplicationContextInitializer的initialize（applicationContext）方法来对已经创建好的ApplicationContext进行进一步的处理。</p>
-<p>8） 遍历调用所有SpringApplicationRunListener的contextPrepared()方法。</p>
-<p>9） 最核心的一步，将之前通过@EnableAutoConfiguration获取的所有配置以及其他形式的IoC容器配置加载到已经准备完毕的ApplicationContext。</p>
-<p>10） 遍历调用所有SpringApplicationRunListener的contextLoaded()方法。</p>
-<p>11） 调用ApplicationContext的refresh()方法，完成IoC容器可用的最后一道工序。</p>
-<p>12） 查找当前ApplicationContext中是否注册有CommandLineRunner，如果有，则遍历执行它们。</p>
-<p>13） 正常情况下，遍历执行SpringApplicationRunListener的finished()方法、（如果整个过程出现异常，则依然调用所有SpringApplicationRunListener的finished()方法，只不过这种情况下会将异常信息一并传入处理）<br>去除事件通知点后，整个流程如下：<br><img src="//image.joylau.cn/blog/SpringBoot-start-model.jpg" alt="SpringBoot-start-model"></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>大部分参考了《SpringBoot揭秘快速构建为服务体系》这本书</p>
+</blockquote>
+</blockquote>
+<p>如需创建 docker 组并添加您的用户，请执行下列操作：</p>
+<ol>
+<li>创建 docker 组。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo groupadd docker</span></span><br></pre></td></tr></table></figure>
+<p>向 docker 组中添加您的用户。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo usermod -aG docker <span class="variable">$USER</span></span></span><br></pre></td></tr></table></figure>
+<p>注销并重新登录，以便对您的组成员资格进行重新评估。</p>
+<p>如果在虚拟机上进行测试，可能必须重启此虚拟机才能使更改生效。</p>
+<p>在桌面 Linux 环境（例如，X Windows）中，彻底从您的会话中注销，然后重新登录。</p>
+<p>验证您是否可以在不使用 sudo 的情况下运行 docker 命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run hello-world</span></span><br></pre></td></tr></table></figure>
+<p>此命令将下载一个测试镜像并在容器中运行它。容器运行时，它将输出一条参考消息并退出。</p>
+<p>经过实测，Ubuntu通过源添加安装最新版 Docker 时，已经自动添加了 docker 组，只需要将 当前用户添加到组里面在重新登录就可以了。</p>
       
     </div>
     
   </div>
   
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/03/14/SpringBoot-Research/">重剑无锋,大巧不工 SpringBoot --- 探索篇</a></p>
+        <p><span>本文标题:</span><a href="/2018/07/05/Docker-Manager-NonRoot/">以非 root 用户身份管理 Docker</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
-        <p><span>发布时间:</span>2017-03-14, 11:21:20</p>
-        <p><span>最后更新:</span>2018-06-07, 13:27:36</p>
+        <p><span>发布时间:</span>2018-07-05, 16:51:49</p>
+        <p><span>最后更新:</span>2018-07-05, 16:59:34</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/03/14/SpringBoot-Research/" title="重剑无锋,大巧不工 SpringBoot --- 探索篇">http://blog.joylau.cn/2017/03/14/SpringBoot-Research/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2017/03/14/SpringBoot-Research/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/05/Docker-Manager-NonRoot/" title="以非 root 用户身份管理 Docker">http://blog.joylau.cn/2018/07/05/Docker-Manager-NonRoot/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2018/07/05/Docker-Manager-NonRoot/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -430,16 +388,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/03/14/SpringBoot-Integrate/">
-                    重剑无锋,大巧不工 SpringBoot --- 环境集成
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/03/13/SpringBoot-Basic/">
-                    重剑无锋,大巧不工 SpringBoot --- 基础篇
+                <a href="/2018/07/02/OfficeSuiteStudy/">
+                    office 套件的一系列研究记录
                 </a>
             </div>
         
@@ -449,7 +401,7 @@
 <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-number">1.</span> <span class="toc-text">开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBootApplication背后的秘密"><span class="toc-number">2.</span> <span class="toc-text">SpringBootApplication背后的秘密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuration"><span class="toc-number">2.1.</span> <span class="toc-text">@Configuration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ComponentScan"><span class="toc-number">2.2.</span> <span class="toc-text">@ComponentScan</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EnableAutoConfiguration"><span class="toc-number">2.3.</span> <span class="toc-text">@EnableAutoConfiguration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入探索SpringApplication执行流程"><span class="toc-number">2.4.</span> <span class="toc-text">深入探索SpringApplication执行流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">2.5.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决"><span class="toc-number">2.</span> <span class="toc-text">解决</span></a></li></ol>
         
     </div>
     <style>
@@ -483,7 +435,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"重剑无锋,大巧不工 SpringBoot --- 探索篇　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"以非 root 用户身份管理 Docker　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -541,11 +493,11 @@
 
 
     <!--打赏-->
-    <div id="cyReward" sourceid="2017/03/14/SpringBoot-Research/" role="cylabs" data-use="reward" style="text-align: center"></div>
+    <div id="cyReward" sourceid="2018/07/05/Docker-Manager-NonRoot/" role="cylabs" data-use="reward" style="text-align: center"></div>
     <!--评论表情-->
-    <div id="cyEmoji" sourceid="2017/03/14/SpringBoot-Research/" role="cylabs" data-use="emoji"></div>
+    <div id="cyEmoji" sourceid="2018/07/05/Docker-Manager-NonRoot/" role="cylabs" data-use="emoji"></div>
     <!--评论框-->
-    <div id="SOHUCS" style="width: 95%" sid="2017/03/14/SpringBoot-Research/"></div>
+    <div id="SOHUCS" style="width: 95%" sid="2018/07/05/Docker-Manager-NonRoot/"></div>
     <script>
         
         window.document.write('<script charset="utf-8" type="text/javascript" src="//changyan.itc.cn/js/lib/jquery.js"><\/script>');
@@ -558,15 +510,13 @@
 
 <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/03/14/SpringBoot-Integrate/" title="上一篇: 重剑无锋,大巧不工 SpringBoot --- 环境集成">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/03/13/SpringBoot-Basic/" title="下一篇: 重剑无锋,大巧不工 SpringBoot --- 基础篇">
+            <a href="/2018/07/02/OfficeSuiteStudy/" title="下一篇: office 套件的一系列研究记录">
                 <i class="fa fa-angle-right"></i>
             </a>
         

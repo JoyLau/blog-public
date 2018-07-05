@@ -4,6 +4,50 @@
   
     
     <entry>
+      <title><![CDATA[以非 root 用户身份管理 Docker]]></title>
+      <url>http://blog.joylau.cn/2018/07/05/Docker-Manager-NonRoot/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。<br>有没有什么方式能够解决？<br>官方文档地址： <a href="https://docs.docker.com/install/linux/linux-postinstall/" target="_blank" rel="noopener">https://docs.docker.com/install/linux/linux-postinstall/</a></p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>docker 守护进程绑定至 Unix 套接字，而不是 TCP 端口。默认情况下，该 Unix 套接字由用户 root 所有，而其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行。</p>
+<p>在使用 docker 命令时，如果您不想使用 sudo，请创建名为 docker 的 Unix 组并向其中添加用户。docker 守护进程启动时，它将使 Unix 套接字的所有权可由 docker 组进行读取/写入。</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>警告： docker 组将授予等同于 root 用户的特权。如需有关此操作如何影响系统安全性的详细信息，请参阅 Docker 守护进程攻击面。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>如需创建 docker 组并添加您的用户，请执行下列操作：</p>
+<ol>
+<li>创建 docker 组。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo groupadd docker</span></span><br></pre></td></tr></table></figure>
+<p>向 docker 组中添加您的用户。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo usermod -aG docker <span class="variable">$USER</span></span></span><br></pre></td></tr></table></figure>
+<p>注销并重新登录，以便对您的组成员资格进行重新评估。</p>
+<p>如果在虚拟机上进行测试，可能必须重启此虚拟机才能使更改生效。</p>
+<p>在桌面 Linux 环境（例如，X Windows）中，彻底从您的会话中注销，然后重新登录。</p>
+<p>验证您是否可以在不使用 sudo 的情况下运行 docker 命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run hello-world</span></span><br></pre></td></tr></table></figure>
+<p>此命令将下载一个测试镜像并在容器中运行它。容器运行时，它将输出一条参考消息并退出。</p>
+<p>经过实测，Ubuntu通过源添加安装最新版 Docker 时，已经自动添加了 docker 组，只需要将 当前用户添加到组里面在重新登录就可以了。</p>]]></content>
+      
+        <categories>
+            
+            <category> Docker篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[office 套件的一系列研究记录]]></title>
       <url>http://blog.joylau.cn/2018/07/02/OfficeSuiteStudy/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -135,7 +179,7 @@
       <title><![CDATA[Ubuntu 自用配置记录]]></title>
       <url>http://blog.joylau.cn/2018/06/28/Ubuntu-SystemConfig/</url>
       <content type="html"><![CDATA[<a id="more"></a>
-<ol>
+<h2 id="安装完系统后的一些配置"><a href="#安装完系统后的一些配置" class="headerlink" title="安装完系统后的一些配置"></a>安装完系统后的一些配置</h2><ol>
 <li><p>关闭并禁用 swap 分区： sudo swapoff 并且 sudo vim /etc/fstab 注释掉 swap 那行</p>
 </li>
 <li><p>开启点击图标最小化： gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true</p>
@@ -160,6 +204,10 @@
 </li>
 <li><p>鼠标移动速度调整<br> xset m N<br> 其中，N是速度，估计取值为0-10<br> 恢复默认 xset m default</p>
 </li>
+</ol>
+<h2 id="apt-get-命令的记录"><a href="#apt-get-命令的记录" class="headerlink" title="apt-get 命令的记录"></a>apt-get 命令的记录</h2><ol>
+<li>卸载软件： sudo apt-get purge docker-ce</li>
+<li>查看软件版本： apt-cache madison docker-ce </li>
 </ol>]]></content>
       
         <categories>
@@ -3879,12 +3927,11 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
     </entry>
     
     <entry>
-      <title><![CDATA[Docker菜鸟到熟悉 --- 常用命令备忘]]></title>
+      <title><![CDATA[Docker常用命令备忘]]></title>
       <url>http://blog.joylau.cn/2017/03/22/Docker-Command/</url>
       <content type="html"><![CDATA[<a id="more"></a>
-<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">////////////////////////////////////////////////////////////////////</span><br><span class="line">//                          _ooOoo_                               //</span><br><span class="line">//                         o8888888o                              //</span><br><span class="line">//                         88<span class="string">" . "</span>88                              //</span><br><span class="line">//                         (| ^_^ |)                              //</span><br><span class="line">//                         O\  =  /O                              //</span><br><span class="line">//                      ____/`---<span class="string">'\____                           //</span></span><br><span class="line"><span class="string">//                    .'</span>  \\|     |//  `.                         //</span><br><span class="line">//                   /  \\|||  :  |||//  \                        //</span><br><span class="line">//                  /  _||||| -:- |||||-  \                       //</span><br><span class="line">//                  |   | \\\  -  /// |   |                       //</span><br><span class="line">//                  | \_|  <span class="string">''</span>\---/<span class="string">''</span>  |   |                       //</span><br><span class="line">//                  \  .-\__  `-`  ___/-. /                       //</span><br><span class="line">//                ___`. .<span class="string">'  /--.--\  `. . ___                     //</span></span><br><span class="line"><span class="string">//              ."" '</span>&lt;  `.___\_&lt;|&gt;_/___.<span class="string">'  &gt;'</span><span class="string">""</span>.                  //</span><br><span class="line">//            | | :  `- \`.;`\ _ /`;.`/ - ` : | |                 //</span><br><span class="line">//            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //</span><br><span class="line">//      ========`-.____`-.___\_____/___.-`____.-<span class="string">'========         //</span></span><br><span class="line"><span class="string">//                           `=---='</span>                              //</span><br><span class="line">//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //</span><br><span class="line">//                    佛祖保佑       永无BUG                        //</span><br><span class="line">////////////////////////////////////////////////////////////////////</span><br></pre></td></tr></table></figure>
-</code></pre><h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><ul>
-<li>安装： <code>yum docker install</code></li>
+<h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><ul>
+<li>安装： <code>yum install docker</code></li>
 <li>卸载： <code>yum remove docker</code></li>
 <li>启动： <code>systemctl start docker</code></li>
 <li>开机自启： <code>systemctl enable docker</code></li>
@@ -3902,11 +3949,20 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
 <li>查看所有容器：  <code>docker ps -a</code></li>
 <li>删除容器：  <code>docker rm id/name</code></li>
 </ul>
-<blockquote>
-<blockquote>
-<p>未完待更……..</p>
-</blockquote>
-</blockquote>]]></content>
+<h2 id="2018-07-05-16-05-00-更新"><a href="#2018-07-05-16-05-00-更新" class="headerlink" title="2018-07-05 16:05:00 更新"></a>2018-07-05 16:05:00 更新</h2><p>拉取docker镜像</p>
+<p>docker pull image_name<br>查看宿主机上的镜像，Docker镜像保存在/var/lib/docker目录下:</p>
+<p>docker images</p>
+<p>删除镜像</p>
+<p>docker rmi  docker.io/tomcat:7.0.77-jre7   或者  docker rmi b39c68b7af30<br>查看当前有哪些容器正在运行</p>
+<p>docker ps<br>查看所有容器</p>
+<p>docker ps -a<br>启动、停止、重启容器命令：</p>
+<p>docker start container_name/container_id<br>docker stop container_name/container_id<br>docker restart container_name/container_id<br>后台启动一个容器后，如果想进入到这个容器，可以使用attach命令：</p>
+<p>docker attach container_name/container_id<br>删除容器的命令：</p>
+<p>docker rm container_name/container_id<br>删除所有停止的容器：</p>
+<p>docker rm $(docker ps -a -q)<br>查看当前系统Docker信息</p>
+<p>docker info<br>从Docker hub上下载某个镜像:</p>
+<p>docker pull centos:latest<br>docker pull centos:latest<br>查找Docker Hub上的nginx镜像</p>
+<p>docker search nginx<br>执行docker pull centos会将Centos这个仓库下面的所有镜像下载到本地repository。</p>]]></content>
       
         <categories>
             
@@ -3916,8 +3972,6 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
         
         
         <tags>
-            
-            <tag> CMD </tag>
             
             <tag> Docker </tag>
             
@@ -4543,22 +4597,21 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
 <li><p>备份 ：mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</p>
 </li>
 <li><p>下载新的CentOS-Base.repo 到/etc/yum.repos.d/</p>
+<p>  CentOS 5 ：</p>
+<p>  wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-5.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-5.repo</a></p>
+<p>  或者</p>
+<p>  curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-5.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-5.repo</a></p>
+<p>  CentOS 6 ： </p>
+<p>  wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-6.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-6.repo</a></p>
+<p>  或者</p>
+<p>  curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-6.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-6.repo</a></p>
+<p>  CentOS 7 ： </p>
+<p>  wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p>
+<p>  或者</p>
+<p>  curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p>
 </li>
-</ul>
-<p>CentOS 5 ：</p>
-<p>wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-5.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-5.repo</a></p>
-<p>或者</p>
-<p>curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-5.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-5.repo</a></p>
-<p>CentOS 6 ： </p>
-<p>wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-6.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-6.repo</a></p>
-<p>或者</p>
-<p>curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-6.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-6.repo</a></p>
-<p>CentOS 7 ： </p>
-<p>wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p>
-<p>或者</p>
-<p>curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p>
-<ul>
-<li>之后运行 yum makecache 生成缓存</li>
+<li><p>之后运行 yum makecache 生成缓存</p>
+</li>
 </ul>
 <h2 id="创建用户，权限，密码等"><a href="#创建用户，权限，密码等" class="headerlink" title="创建用户，权限，密码等"></a>创建用户，权限，密码等</h2><ul>
 <li>adduser es -s /bin/bash  : 创建用户为 es ,shell指定为bash</li>
