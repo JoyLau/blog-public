@@ -14,18 +14,18 @@
 
 
 
-<meta name="description" content="SpringBoot 整合 Kafka 原本想着很简单，按照SpringBoot的原有的套路来就可以了，没想到中间却遇到了许多坑">
-<meta name="keywords" content="SpringBoot,Kafka">
+<meta name="description" content="原来阿里云给每个账户都有分配专属的加速器地址">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot 整合 Kafka 踩坑记录">
-<meta property="og:url" content="http://blog.joylau.cn/2017/11/02/SpringBoot-Kafka/index.html">
+<meta property="og:title" content="Docker 使用阿里云个人专属加速器">
+<meta property="og:url" content="http://blog.joylau.cn/2018/07/12/Docker-AliAccelerator/index.html">
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
-<meta property="og:description" content="SpringBoot 整合 Kafka 原本想着很简单，按照SpringBoot的原有的套路来就可以了，没想到中间却遇到了许多坑">
+<meta property="og:description" content="原来阿里云给每个账户都有分配专属的加速器地址">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-07T05:27:36.220Z">
+<meta property="og:updated_time" content="2018-07-12T01:53:22.650Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpringBoot 整合 Kafka 踩坑记录">
-<meta name="twitter:description" content="SpringBoot 整合 Kafka 原本想着很简单，按照SpringBoot的原有的套路来就可以了，没想到中间却遇到了许多坑">
+<meta name="twitter:title" content="Docker 使用阿里云个人专属加速器">
+<meta name="twitter:description" content="原来阿里云给每个账户都有分配专属的加速器地址">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>SpringBoot 整合 Kafka 踩坑记录 | JoyLau&#39;s Blog | JoyLau</title>
+<title>Docker 使用阿里云个人专属加速器 | JoyLau&#39;s Blog | JoyLau</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -301,11 +301,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于">
 </nav>
-      <div class="body-wrap"><article id="post-SpringBoot-Kafka" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Docker-AliAccelerator" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/11/02/SpringBoot-Kafka/" class="article-date">
-      <time datetime="2017-11-02T03:31:37.000Z" itemprop="datePublished">2017-11-02</time>
+      <a href="/2018/07/12/Docker-AliAccelerator/" class="article-date">
+      <time datetime="2018-07-12T01:48:38.000Z" itemprop="datePublished">2018-07-12</time>
 </a>
     </div>
   
@@ -321,16 +321,16 @@
                 
             </div>
         <h1 class="article-title" itemprop="name">
-      SpringBoot 整合 Kafka 踩坑记录
+      Docker 使用阿里云个人专属加速器
     </h1>
       </header>
       
       <div class="article-info article-info-post">
         <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/SpringBoot篇/">SpringBoot篇</a>
+    <a class="article-category-link" href="/categories/Docker篇/">Docker篇</a>
     </div>
         <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
     </div>
         <div class="clearfix"></div>
       </div>
@@ -340,40 +340,27 @@
       
           
         <a id="more"></a>
-<h3 id="第一个坑"><a href="#第一个坑" class="headerlink" title="第一个坑"></a>第一个坑</h3><p>SpringBoot 在1.5版本后就有了 starter， 但是在依赖列表中却没有找到相应的依赖，原因是名字不叫starter，傻傻的我还用JavaConfig 配置了一遍<br>现在看下整合 starter 之后的是怎么样的吧！</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.kafka<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-kafka<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>上面这个依赖其实就是starter， 不需要些版本，SpringBoot会自己选择版本</p>
-<p>yml配置文件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spring</span><br><span class="line">  kafka:</span><br><span class="line">    bootstrap-servers: 192.168.10.192:9092</span><br><span class="line">    consumer:</span><br><span class="line">      group-id: secondary-identification</span><br><span class="line">    producer:</span><br><span class="line">      batch-size: 65536</span><br><span class="line">      buffer-memory: 524288</span><br></pre></td></tr></table></figure>
-<p>默认只需要 bootstrap-servers 和 group-id 即可</p>
-<p>接下来 生产者 和 消费者</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MsgProducer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> KafkaTemplate kafkaTemplate;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        kafkaTemplate.send(<span class="string">"index-vehicle"</span>,<span class="string">"key"</span>,<span class="string">"hello,kafka"</span>  + LocalDateTime.now().format(DateTimeFormatter.ofPattern(<span class="string">"yyyy-MM-dd HH:mm:ss.SSS"</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MsgConsumer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@KafkaListener</span>(topics = &#123;<span class="string">"index-vehicle"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">processMessage</span><span class="params">(String content)</span> </span>&#123;</span><br><span class="line">        System.out.println(content);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="第二个坑"><a href="#第二个坑" class="headerlink" title="第二个坑"></a>第二个坑</h3><p>可以发消息，但是SpringBoot始终收不到，我用Kafka自带的工具却可以收到，很气愤，搞了好长时间都没有解决<br>后来遍访Google和官方文档，终于找到原因了，只要修改下配置文件的一个配置即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># The address the socket server listens on. It will get the value returned from </span><br><span class="line"># java.net.InetAddress.getCanonicalHostName() if not configured.</span><br><span class="line">#   FORMAT:</span><br><span class="line">#     listeners = listener_name://host_name:port</span><br><span class="line">#   EXAMPLE:</span><br><span class="line">#     listeners = PLAINTEXT://your.host.name:9092</span><br><span class="line">listeners=PLAINTEXT://0.0.0.0:9092</span><br></pre></td></tr></table></figure>
-<p>上面的额这个 listeners，因为我的程序是加了@KafkaListener 来监听消息的，需要开启一个这样的配置项</p>
-<p>这项配置项的含义在此也备注下：</p>
-<blockquote>
-<blockquote>
-<p>监听列表(以逗号分隔 不同的协议(如plaintext,trace,ssl、不同的IP和端口)),hostname如果设置为0.0.0.0则绑定所有的网卡地址；如果hostname为空则绑定默认的网卡。如果没有配置则默认为java.net.InetAddress.getCanonicalHostName()</p>
-</blockquote>
-</blockquote>
-<p>这2个坑在此记录下</p>
-<h2 id="一些常用命令在此记录下"><a href="#一些常用命令在此记录下" class="headerlink" title="一些常用命令在此记录下"></a>一些常用命令在此记录下</h2><p>zookeeper-server-start.bat ../../config/zookeeper.properties   : 开启自带的zookeeper<br>kafka-server-start.bat ../../config.properties   ： 开启kafka<br>kafka-console-consumer.bat –bootstrap-server localhost:9092 –topic myTopic  –from-beginning : 控制台接受指定topic消息<br>kafka-console-producer.bat –broker-list localhost:9092 –topic myTopic  :   指定topic发送消息</p>
-<p>注意的是用命令行创建的producer绑定的主题topic需要用命令行先创建topic，已经创建的就直接发送就好了</p>
+<ol start="0">
+<li>原来阿里云给每个账户都有分配专属的加速器地址</li>
+<li>登录阿里云控制台</li>
+<li>进入容器镜像服务，点击最下方的镜像加速器，会出现个人的专属加速器地址，我的是： <a href="https://0ppztvl0.mirror.aliyuncs.com" target="_blank" rel="noopener">https://0ppztvl0.mirror.aliyuncs.com</a></li>
+<li><p>Docker客户端版本大于1.10.0的用户，创建 <code>/etc/docker/daemon.json</code><br> {<br>   “registry-mirrors”: [“<a href="https://0ppztvl0.mirror.aliyuncs.com&quot;]" target="_blank" rel="noopener">https://0ppztvl0.mirror.aliyuncs.com&quot;]</a><br> }</p>
+<p> sudo systemctl daemon-reload<br> sudo systemctl restart docker</p>
+</li>
+</ol>
       
     </div>
     
   </div>
   
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/11/02/SpringBoot-Kafka/">SpringBoot 整合 Kafka 踩坑记录</a></p>
+        <p><span>本文标题:</span><a href="/2018/07/12/Docker-AliAccelerator/">Docker 使用阿里云个人专属加速器</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
-        <p><span>发布时间:</span>2017-11-02, 11:31:37</p>
-        <p><span>最后更新:</span>2018-06-07, 13:27:36</p>
+        <p><span>发布时间:</span>2018-07-12, 09:48:38</p>
+        <p><span>最后更新:</span>2018-07-12, 09:53:22</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/11/02/SpringBoot-Kafka/" title="SpringBoot 整合 Kafka 踩坑记录">http://blog.joylau.cn/2017/11/02/SpringBoot-Kafka/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2017/11/02/SpringBoot-Kafka/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/12/Docker-AliAccelerator/" title="Docker 使用阿里云个人专属加速器">http://blog.joylau.cn/2018/07/12/Docker-AliAccelerator/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2018/07/12/Docker-AliAccelerator/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -385,16 +372,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/11/07/Node-Install-Error/">
-                    npm install 居然出错了
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/11/01/SpringBoot-IDEA-DevTools/">
-                    IDEA 中 SpringBoot 项目热部署
+                <a href="/2018/07/05/Docker-Manager-NonRoot/">
+                    以非 root 用户身份管理 Docker
                 </a>
             </div>
         
@@ -404,9 +385,9 @@
 <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一个坑"><span class="toc-number">1.</span> <span class="toc-text">第一个坑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二个坑"><span class="toc-number">2.</span> <span class="toc-text">第二个坑</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#一些常用命令在此记录下"><span class="toc-number"></span> <span class="toc-text">一些常用命令在此记录下</span></a>
+            
         
-    </li></div>
+    </div>
     <style>
         .left-col .switch-btn,
         .left-col .switch-area {
@@ -438,7 +419,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"SpringBoot 整合 Kafka 踩坑记录　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Docker 使用阿里云个人专属加速器　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -496,11 +477,11 @@
 
 
     <!--打赏-->
-    <div id="cyReward" sourceid="2017/11/02/SpringBoot-Kafka/" role="cylabs" data-use="reward" style="text-align: center"></div>
+    <div id="cyReward" sourceid="2018/07/12/Docker-AliAccelerator/" role="cylabs" data-use="reward" style="text-align: center"></div>
     <!--评论表情-->
-    <div id="cyEmoji" sourceid="2017/11/02/SpringBoot-Kafka/" role="cylabs" data-use="emoji"></div>
+    <div id="cyEmoji" sourceid="2018/07/12/Docker-AliAccelerator/" role="cylabs" data-use="emoji"></div>
     <!--评论框-->
-    <div id="SOHUCS" style="width: 95%" sid="2017/11/02/SpringBoot-Kafka/"></div>
+    <div id="SOHUCS" style="width: 95%" sid="2018/07/12/Docker-AliAccelerator/"></div>
     <script>
         
         window.document.write('<script charset="utf-8" type="text/javascript" src="//changyan.itc.cn/js/lib/jquery.js"><\/script>');
@@ -513,15 +494,13 @@
 
 <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/11/07/Node-Install-Error/" title="上一篇: npm install 居然出错了">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/11/01/SpringBoot-IDEA-DevTools/" title="下一篇: IDEA 中 SpringBoot 项目热部署">
+            <a href="/2018/07/05/Docker-Manager-NonRoot/" title="下一篇: 以非 root 用户身份管理 Docker">
                 <i class="fa fa-angle-right"></i>
             </a>
         

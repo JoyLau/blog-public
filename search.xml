@@ -4,6 +4,34 @@
   
     
     <entry>
+      <title><![CDATA[Docker 使用阿里云个人专属加速器]]></title>
+      <url>http://blog.joylau.cn/2018/07/12/Docker-AliAccelerator/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<ol start="0">
+<li>原来阿里云给每个账户都有分配专属的加速器地址</li>
+<li>登录阿里云控制台</li>
+<li>进入容器镜像服务，点击最下方的镜像加速器，会出现个人的专属加速器地址，我的是： <a href="https://0ppztvl0.mirror.aliyuncs.com" target="_blank" rel="noopener">https://0ppztvl0.mirror.aliyuncs.com</a></li>
+<li><p>Docker客户端版本大于1.10.0的用户，创建 <code>/etc/docker/daemon.json</code><br> {<br>   “registry-mirrors”: [“<a href="https://0ppztvl0.mirror.aliyuncs.com&quot;]" target="_blank" rel="noopener">https://0ppztvl0.mirror.aliyuncs.com&quot;]</a><br> }</p>
+<p> sudo systemctl daemon-reload<br> sudo systemctl restart docker</p>
+</li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> Docker篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[以非 root 用户身份管理 Docker]]></title>
       <url>http://blog.joylau.cn/2018/07/05/Docker-Manager-NonRoot/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -3962,7 +3990,9 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
 <p>docker rm $(docker ps -a -q)<br>查看当前系统Docker信息</p>
 <p>docker info<br>从Docker hub上下载某个镜像:</p>
 <p>docker pull centos:latest<br>docker pull centos:latest<br>查找Docker Hub上的nginx镜像</p>
-<p>docker search nginx<br>执行docker pull centos会将Centos这个仓库下面的所有镜像下载到本地repository。</p>]]></content>
+<p>docker search nginx<br>执行docker pull centos会将Centos这个仓库下面的所有镜像下载到本地repository。</p>
+<h2 id="2018-07-09-14-02-25-更新"><a href="#2018-07-09-14-02-25-更新" class="headerlink" title="2018-07-09 14:02:25 更新"></a>2018-07-09 14:02:25 更新</h2><p>docker search xxx : 在docker仓库查找镜像<br>docker images | grep xxx : 在本地仓库查找镜像</p>
+<h2 id="2018-07-12-09-44-40-更新"><a href="#2018-07-12-09-44-40-更新" class="headerlink" title="2018-07-12 09:44:40 更新"></a>2018-07-12 09:44:40 更新</h2><p>进入容器： <code>docker exec -it 容器的ID或者NAME /bin/bash</code></p>]]></content>
       
         <categories>
             
