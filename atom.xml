@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2018-07-12T01:53:22.650Z</updated>
+  <updated>2018-07-13T03:41:35.027Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu 最佳编程字体 Monaco 的优化显示</title>
+    <link href="http://blog.joylau.cn/2018/07/13/Ubuntu-Fonts-Monaco/"/>
+    <id>http://blog.joylau.cn/2018/07/13/Ubuntu-Fonts-Monaco/</id>
+    <published>2018-07-13T03:03:44.000Z</published>
+    <updated>2018-07-13T03:41:35.027Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>自从入了 MBP 后就被其默认的字体显示效果吸引了，在编辑器里写代码更是舒服，于是想着把 Mac 下的字体也移植到 Ubuntu 下，但是显示效果并不是特别的好，尤其是粗体字的显示</p><h2 id="前后对比"><a href="#前后对比" class="headerlink" title="前后对比"></a>前后对比</h2><p>左侧使用前，右侧使用后</p><figure class="half"><img src="http://image.joylau.cn/blog/Monaco1.png" width="50%"><img src="http://image.joylau.cn/blog/Monaco4.png" width="50%"></figure><figure class="half"><img src="http://image.joylau.cn/blog/Monaco2.png" width="50%"><img src="http://image.joylau.cn/blog/Monaco5.png" width="50%"></figure><figure class="half"><img src="http://image.joylau.cn/blog/Monaco3.png" width="50%"><img src="http://image.joylau.cn/blog/Monaco6.png" width="50%"></figure><h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><ol><li>该字体为开源字体，字体地址： <a href="https://github.com/vjpr/monaco-bold" target="_blank" rel="noopener">https://github.com/vjpr/monaco-bold</a></li><li>复制到 <code>/usr/share/fonts</code></li><li><code>fc-cache -fv</code> 生成字体缓存</li></ol><p>我的 1080P 分辨率，我的配置如下：<br><img src="http://image.joylau.cn/blog/Monaco7.png" alt="MonacoB2"></p>]]></content>
+    
+    <summary type="html">
+    
+      自从入了 MBP 后就被其默认的字体显示效果吸引了，在编辑器里写代码更是舒服，于是想着把 Mac 下的字体也移植到 Ubuntu 下，但是显示效果并不是特别的好，尤其是粗体字的显示
+    
+    </summary>
+    
+      <category term="Ubuntu篇" scheme="http://blog.joylau.cn/categories/Ubuntu%E7%AF%87/"/>
+    
+    
+      <category term="Ubuntu" scheme="http://blog.joylau.cn/tags/Ubuntu/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker 使用阿里云个人专属加速器</title>
@@ -45,7 +67,7 @@
     <published>2018-07-05T08:51:49.000Z</published>
     <updated>2018-07-05T08:59:34.722Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。<br>有没有什么方式能够解决？<br>官方文档地址： <a href="https://docs.docker.com/install/linux/linux-postinstall/" target="_blank" rel="noopener">https://docs.docker.com/install/linux/linux-postinstall/</a></p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>docker 守护进程绑定至 Unix 套接字，而不是 TCP 端口。默认情况下，该 Unix 套接字由用户 root 所有，而其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行。</p><p>在使用 docker 命令时，如果您不想使用 sudo，请创建名为 docker 的 Unix 组并向其中添加用户。docker 守护进程启动时，它将使 Unix 套接字的所有权可由 docker 组进行读取/写入。</p><blockquote><blockquote><blockquote><p>警告： docker 组将授予等同于 root 用户的特权。如需有关此操作如何影响系统安全性的详细信息，请参阅 Docker 守护进程攻击面。</p></blockquote></blockquote></blockquote><p>如需创建 docker 组并添加您的用户，请执行下列操作：</p><ol><li>创建 docker 组。</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo groupadd docker</span><br></pre></td></tr></table></figure><p>向 docker 组中添加您的用户。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo usermod -aG docker $USER</span><br></pre></td></tr></table></figure><p>注销并重新登录，以便对您的组成员资格进行重新评估。</p><p>如果在虚拟机上进行测试，可能必须重启此虚拟机才能使更改生效。</p><p>在桌面 Linux 环境（例如，X Windows）中，彻底从您的会话中注销，然后重新登录。</p><p>验证您是否可以在不使用 sudo 的情况下运行 docker 命令。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker run hello-world</span><br></pre></td></tr></table></figure><p>此命令将下载一个测试镜像并在容器中运行它。容器运行时，它将输出一条参考消息并退出。</p><p>经过实测，Ubuntu通过源添加安装最新版 Docker 时，已经自动添加了 docker 组，只需要将 当前用户添加到组里面在重新登录就可以了。</p>]]></content>
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。<br>有没有什么方式能够解决？<br>官方文档地址： <a href="https://docs.docker.com/install/linux/linux-postinstall/" target="_blank" rel="noopener">https://docs.docker.com/install/linux/linux-postinstall/</a></p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>docker 守护进程绑定至 Unix 套接字，而不是 TCP 端口。默认情况下，该 Unix 套接字由用户 root 所有，而其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行。</p><p>在使用 docker 命令时，如果您不想使用 sudo，请创建名为 docker 的 Unix 组并向其中添加用户。docker 守护进程启动时，它将使 Unix 套接字的所有权可由 docker 组进行读取/写入。</p><blockquote><blockquote><blockquote><p>警告： docker 组将授予等同于 root 用户的特权。如需有关此操作如何影响系统安全性的详细信息，请参阅 Docker 守护进程攻击面。</p></blockquote></blockquote></blockquote><p>如需创建 docker 组并添加您的用户，请执行下列操作：</p><ol><li>创建 docker 组。</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo groupadd docker</span></span><br></pre></td></tr></table></figure><p>向 docker 组中添加您的用户。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo usermod -aG docker <span class="variable">$USER</span></span></span><br></pre></td></tr></table></figure><p>注销并重新登录，以便对您的组成员资格进行重新评估。</p><p>如果在虚拟机上进行测试，可能必须重启此虚拟机才能使更改生效。</p><p>在桌面 Linux 环境（例如，X Windows）中，彻底从您的会话中注销，然后重新登录。</p><p>验证您是否可以在不使用 sudo 的情况下运行 docker 命令。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run hello-world</span></span><br></pre></td></tr></table></figure><p>此命令将下载一个测试镜像并在容器中运行它。容器运行时，它将输出一条参考消息并退出。</p><p>经过实测，Ubuntu通过源添加安装最新版 Docker 时，已经自动添加了 docker 组，只需要将 当前用户添加到组里面在重新登录就可以了。</p>]]></content>
     
     <summary type="html">
     
@@ -451,30 +473,6 @@
     
     
       <category term="Elasticsearch" scheme="http://blog.joylau.cn/tags/Elasticsearch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MacOS 垃圾清理</title>
-    <link href="http://blog.joylau.cn/2018/04/01/MacOS-CleanMac/"/>
-    <id>http://blog.joylau.cn/2018/04/01/MacOS-CleanMac/</id>
-    <published>2018-04-01T02:32:14.000Z</published>
-    <updated>2018-06-07T05:27:36.220Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><p>GarageBand，这个是系统上的模拟乐器，一般都使用不到</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /Library/Application\ Support/GarageBand</span><br><span class="line">rm -rf /Library/Application\ Support/Logic</span><br><span class="line">rm -rf /Library/Audio/Apple\ Loops</span><br></pre></td></tr></table></figure><p>但是有些系统文件显示占用的空间很大，该怎么看呢</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh *</span><br></pre></td></tr></table></figure><p>这个命令用来查看根目录下，所有文件的大小分布</p><p>比如，我的电脑 Library 文件路径最大</p><p>那就在进入 Library 文件路径，再执行 du -sh *</p><p>直至找到占用内存最大的文件,然后结合实际情况,进行删减</p>]]></content>
-    
-    <summary type="html">
-    
-      MacOS 时间用久了，该怎么清理垃圾了，不想像 windows 那样装个 xx卫士，xx管家来清理，用2个命令就可清理
-    
-    </summary>
-    
-      <category term="MacOS篇" scheme="http://blog.joylau.cn/categories/MacOS%E7%AF%87/"/>
-    
-    
-      <category term="MacOS" scheme="http://blog.joylau.cn/tags/MacOS/"/>
-    
-      <category term="MacBookPro" scheme="http://blog.joylau.cn/tags/MacBookPro/"/>
     
   </entry>
   

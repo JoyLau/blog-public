@@ -4,6 +4,40 @@
   
     
     <entry>
+      <title><![CDATA[Ubuntu 最佳编程字体 Monaco 的优化显示]]></title>
+      <url>http://blog.joylau.cn/2018/07/13/Ubuntu-Fonts-Monaco/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>自从入了 MBP 后就被其默认的字体显示效果吸引了，在编辑器里写代码更是舒服，于是想着把 Mac 下的字体也移植到 Ubuntu 下，但是显示效果并不是特别的好，尤其是粗体字的显示</p>
+<h2 id="前后对比"><a href="#前后对比" class="headerlink" title="前后对比"></a>前后对比</h2><p>左侧使用前，右侧使用后</p>
+<figure class="half"><img src="http://image.joylau.cn/blog/Monaco1.png" width="50%"><img src="http://image.joylau.cn/blog/Monaco4.png" width="50%"></figure>
+
+<figure class="half"><img src="http://image.joylau.cn/blog/Monaco2.png" width="50%"><img src="http://image.joylau.cn/blog/Monaco5.png" width="50%"></figure>
+
+<figure class="half"><img src="http://image.joylau.cn/blog/Monaco3.png" width="50%"><img src="http://image.joylau.cn/blog/Monaco6.png" width="50%"></figure>
+
+<h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><ol>
+<li>该字体为开源字体，字体地址： <a href="https://github.com/vjpr/monaco-bold" target="_blank" rel="noopener">https://github.com/vjpr/monaco-bold</a></li>
+<li>复制到 <code>/usr/share/fonts</code></li>
+<li><code>fc-cache -fv</code> 生成字体缓存</li>
+</ol>
+<p>我的 1080P 分辨率，我的配置如下：<br><img src="http://image.joylau.cn/blog/Monaco7.png" alt="MonacoB2"></p>]]></content>
+      
+        <categories>
+            
+            <category> Ubuntu篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Ubuntu </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Docker 使用阿里云个人专属加速器]]></title>
       <url>http://blog.joylau.cn/2018/07/12/Docker-AliAccelerator/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -49,14 +83,14 @@
 <ol>
 <li>创建 docker 组。</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo groupadd docker</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo groupadd docker</span></span><br></pre></td></tr></table></figure>
 <p>向 docker 组中添加您的用户。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo usermod -aG docker $USER</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo usermod -aG docker <span class="variable">$USER</span></span></span><br></pre></td></tr></table></figure>
 <p>注销并重新登录，以便对您的组成员资格进行重新评估。</p>
 <p>如果在虚拟机上进行测试，可能必须重启此虚拟机才能使更改生效。</p>
 <p>在桌面 Linux 环境（例如，X Windows）中，彻底从您的会话中注销，然后重新登录。</p>
 <p>验证您是否可以在不使用 sudo 的情况下运行 docker 命令。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker run hello-world</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run hello-world</span></span><br></pre></td></tr></table></figure>
 <p>此命令将下载一个测试镜像并在容器中运行它。容器运行时，它将输出一条参考消息并退出。</p>
 <p>经过实测，Ubuntu通过源添加安装最新版 Docker 时，已经自动添加了 docker 组，只需要将 当前用户添加到组里面在重新登录就可以了。</p>]]></content>
       
