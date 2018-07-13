@@ -49,14 +49,14 @@
 <ol>
 <li>创建 docker 组。</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo groupadd docker</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo groupadd docker</span><br></pre></td></tr></table></figure>
 <p>向 docker 组中添加您的用户。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo usermod -aG docker <span class="variable">$USER</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo usermod -aG docker $USER</span><br></pre></td></tr></table></figure>
 <p>注销并重新登录，以便对您的组成员资格进行重新评估。</p>
 <p>如果在虚拟机上进行测试，可能必须重启此虚拟机才能使更改生效。</p>
 <p>在桌面 Linux 环境（例如，X Windows）中，彻底从您的会话中注销，然后重新登录。</p>
 <p>验证您是否可以在不使用 sudo 的情况下运行 docker 命令。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run hello-world</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker run hello-world</span><br></pre></td></tr></table></figure>
 <p>此命令将下载一个测试镜像并在容器中运行它。容器运行时，它将输出一条参考消息并退出。</p>
 <p>经过实测，Ubuntu通过源添加安装最新版 Docker 时，已经自动添加了 docker 组，只需要将 当前用户添加到组里面在重新登录就可以了。</p>]]></content>
       
