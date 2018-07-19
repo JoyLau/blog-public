@@ -14,18 +14,18 @@
 
 
 
-<meta name="description" content="尝试一下更复杂的属性注入吧">
-<meta name="keywords" content="SpringBoot,Spring">
+<meta name="description" content="今天连接远程服务器发生了错误,我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单,想取消的话还是花了一点的功夫">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重剑无锋,大巧不工 SpringBoot --- 属性注入">
-<meta property="og:url" content="http://blog.joylau.cn/2017/06/13/SpringBoot-ConfigurationProperties/index.html">
+<meta property="og:title" content="DenyHosts 清除黑名单 IP 地址">
+<meta property="og:url" content="http://blog.joylau.cn/2018/07/19/Linux-Cancel-DenyHosts/index.html">
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
-<meta property="og:description" content="尝试一下更复杂的属性注入吧">
+<meta property="og:description" content="今天连接远程服务器发生了错误,我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单,想取消的话还是花了一点的功夫">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-07T05:27:36.220Z">
+<meta property="og:updated_time" content="2018-07-19T03:06:02.339Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="重剑无锋,大巧不工 SpringBoot --- 属性注入">
-<meta name="twitter:description" content="尝试一下更复杂的属性注入吧">
+<meta name="twitter:title" content="DenyHosts 清除黑名单 IP 地址">
+<meta name="twitter:description" content="今天连接远程服务器发生了错误,我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单,想取消的话还是花了一点的功夫">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>重剑无锋,大巧不工 SpringBoot --- 属性注入 | JoyLau&#39;s Blog | JoyLau</title>
+<title>DenyHosts 清除黑名单 IP 地址 | JoyLau&#39;s Blog | JoyLau</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -301,11 +301,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于">
 </nav>
-      <div class="body-wrap"><article id="post-SpringBoot-ConfigurationProperties" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Linux-Cancel-DenyHosts" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/06/13/SpringBoot-ConfigurationProperties/" class="article-date">
-      <time datetime="2017-06-13T03:34:58.000Z" itemprop="datePublished">2017-06-13</time>
+      <a href="/2018/07/19/Linux-Cancel-DenyHosts/" class="article-date">
+      <time datetime="2018-07-19T02:47:25.000Z" itemprop="datePublished">2018-07-19</time>
 </a>
     </div>
   
@@ -321,16 +321,16 @@
                 
             </div>
         <h1 class="article-title" itemprop="name">
-      重剑无锋,大巧不工 SpringBoot --- 属性注入
+      DenyHosts 清除黑名单 IP 地址
     </h1>
       </header>
       
       <div class="article-info article-info-post">
         <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/SpringBoot篇/">SpringBoot篇</a>
+    <a class="article-category-link" href="/categories/Linux篇/">Linux篇</a>
     </div>
         <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
     </div>
         <div class="clearfix"></div>
       </div>
@@ -340,26 +340,35 @@
       
           
         <a id="more"></a>
-<h2 id="通常的属性注入"><a href="#通常的属性注入" class="headerlink" title="通常的属性注入"></a>通常的属性注入</h2><p>一般情况下我们使用<strong>Spring</strong>或者<strong>SpringMVC</strong>的时候会使用<code>@Value()</code>注入</p>
-<p>使用<strong>SpringBoot</strong>的时候会使用<code>@ConfigurationProperties(prefix = &quot;xxxx&quot;)</code></p>
-<p>注入自定义的呢？这样：<code>@ConfigurationProperties(prefix = &quot;xxx&quot;,locations = &quot;classpath:config/xxxx.properties&quot;)</code></p>
-<h2 id="更复杂一点的注入"><a href="#更复杂一点的注入" class="headerlink" title="更复杂一点的注入"></a>更复杂一点的注入</h2><p>如上图所示我注入了一个<code>List&lt;String&gt;</code></p>
-<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><p>那么同样的方式，是否可以注入Map<string>,String[]….呢？</string></p>
-<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p><code>properties</code>的文件被读取的时候使用的就是Map,那么我们知道Map是无序了，这样就会导致我们原先要求的一致性可能达不到</p>
-<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p><code>properties</code>文件改成采用<code>yml</code>文件，或者升级<strong>SpringBoot</strong>的版本，貌似新版本采用的<code>LinkedHashMap</code></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>今天连接远程服务器发生了以下的错误<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh_exchange_identification: <span class="built_in">read</span>: Connection reset</span><br></pre></td></tr></table></figure></p>
+<p>我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单<br>本来想只要将当前的 ip 地址在黑名单中去掉就可以了<br>没想到事实并不是如此,为此还查资料花费了一点功夫<br>现记录下来</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ol>
+<li>停用 DenyHosts : <code>systemctl stop denyhosts.service</code></li>
+<li>删除黑名单中当前的ip地址: <code>vim /etc/hosts.deny</code></li>
+<li>进入  <code>/var/lib/denyhosts</code></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 root root    39 2月  16 2015 allowed-hosts</span><br><span class="line">-rw-r--r-- 1 root root 71451 7月  19 10:58 hosts</span><br><span class="line">-rw-r--r-- 1 root root 71270 7月  19 10:58 hosts-restricted</span><br><span class="line">-rw-r--r-- 1 root root 71433 7月  19 10:58 hosts-root</span><br><span class="line">-rw-r--r-- 1 root root 71280 7月  19 10:58 hosts-valid</span><br><span class="line">-rw-r--r-- 1 root root   105 7月  19 10:58 offset</span><br><span class="line">-rw-r--r-- 1 root root     0 7月  19 10:58 suspicious-logins</span><br><span class="line">-rw-r--r-- 1 root root 44731 7月  19 10:58 users-hosts</span><br><span class="line">-rw-r--r-- 1 root root 50925 7月  19 10:58 users-invalid</span><br><span class="line">-rw-r--r-- 1 root root   643 7月  19 10:58 users-valid</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>依次在上面各个文件中移除自己当前的IP地址</li>
+<li>如果要将当前的IP地址添加到白名单中,可以在 /etc/hosts.allow 添加<br>sshd: ip地址<br>allowed-hosts 添加 IP地址</li>
+<li>重启 DenyHosts</li>
+</ol>
+<blockquote>
+<p>注意: 这些文件里有很多被拉入黑名单的IP地址,vim编辑的时候可以在命令行模式下使用 <code>/ip地址</code> 来查找, n 和 N 上下翻动,再在命令行模式下 <code>:noh</code> 取消查找</p>
+</blockquote>
       
     </div>
     
   </div>
   
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/06/13/SpringBoot-ConfigurationProperties/">重剑无锋,大巧不工 SpringBoot --- 属性注入</a></p>
+        <p><span>本文标题:</span><a href="/2018/07/19/Linux-Cancel-DenyHosts/">DenyHosts 清除黑名单 IP 地址</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
-        <p><span>发布时间:</span>2017-06-13, 11:34:58</p>
-        <p><span>最后更新:</span>2018-06-07, 13:27:36</p>
+        <p><span>发布时间:</span>2018-07-19, 10:47:25</p>
+        <p><span>最后更新:</span>2018-07-19, 11:06:02</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/06/13/SpringBoot-ConfigurationProperties/" title="重剑无锋,大巧不工 SpringBoot --- 属性注入">http://blog.joylau.cn/2017/06/13/SpringBoot-ConfigurationProperties/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2017/06/13/SpringBoot-ConfigurationProperties/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/19/Linux-Cancel-DenyHosts/" title="DenyHosts 清除黑名单 IP 地址">http://blog.joylau.cn/2018/07/19/Linux-Cancel-DenyHosts/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2018/07/19/Linux-Cancel-DenyHosts/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -371,16 +380,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/06/16/Console-Better/">
-                    让你的Windows控制台窗口更优美
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/06/12/SpringBoot-Question-Tips/">
-                    重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决
+                <a href="/2018/07/13/Ubuntu-Fonts-Monaco/">
+                    Ubuntu 最佳编程字体 Monaco 的优化显示
                 </a>
             </div>
         
@@ -390,7 +393,7 @@
 <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#通常的属性注入"><span class="toc-number">1.</span> <span class="toc-text">通常的属性注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更复杂一点的注入"><span class="toc-number">2.</span> <span class="toc-text">更复杂一点的注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#拓展"><span class="toc-number">2.1.</span> <span class="toc-text">拓展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思考"><span class="toc-number">2.2.</span> <span class="toc-text">思考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方式"><span class="toc-number">2.3.</span> <span class="toc-text">解决方式</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决"><span class="toc-number">2.</span> <span class="toc-text">解决</span></a></li></ol>
         
     </div>
     <style>
@@ -424,7 +427,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"重剑无锋,大巧不工 SpringBoot --- 属性注入　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"DenyHosts 清除黑名单 IP 地址　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -482,11 +485,11 @@
 
 
     <!--打赏-->
-    <div id="cyReward" sourceid="2017/06/13/SpringBoot-ConfigurationProperties/" role="cylabs" data-use="reward" style="text-align: center"></div>
+    <div id="cyReward" sourceid="2018/07/19/Linux-Cancel-DenyHosts/" role="cylabs" data-use="reward" style="text-align: center"></div>
     <!--评论表情-->
-    <div id="cyEmoji" sourceid="2017/06/13/SpringBoot-ConfigurationProperties/" role="cylabs" data-use="emoji"></div>
+    <div id="cyEmoji" sourceid="2018/07/19/Linux-Cancel-DenyHosts/" role="cylabs" data-use="emoji"></div>
     <!--评论框-->
-    <div id="SOHUCS" style="width: 95%" sid="2017/06/13/SpringBoot-ConfigurationProperties/"></div>
+    <div id="SOHUCS" style="width: 95%" sid="2018/07/19/Linux-Cancel-DenyHosts/"></div>
     <script>
         
         window.document.write('<script charset="utf-8" type="text/javascript" src="//changyan.itc.cn/js/lib/jquery.js"><\/script>');
@@ -499,15 +502,13 @@
 
 <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/06/16/Console-Better/" title="上一篇: 让你的Windows控制台窗口更优美">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/06/12/SpringBoot-Question-Tips/" title="下一篇: 重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决">
+            <a href="/2018/07/13/Ubuntu-Fonts-Monaco/" title="下一篇: Ubuntu 最佳编程字体 Monaco 的优化显示">
                 <i class="fa fa-angle-right"></i>
             </a>
         

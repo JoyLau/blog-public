@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2018-07-18T06:22:55.427Z</updated>
+  <updated>2018-07-19T03:06:02.339Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DenyHosts 清除黑名单 IP 地址</title>
+    <link href="http://blog.joylau.cn/2018/07/19/Linux-Cancel-DenyHosts/"/>
+    <id>http://blog.joylau.cn/2018/07/19/Linux-Cancel-DenyHosts/</id>
+    <published>2018-07-19T02:47:25.000Z</published>
+    <updated>2018-07-19T03:06:02.339Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>今天连接远程服务器发生了以下的错误<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh_exchange_identification: <span class="built_in">read</span>: Connection reset</span><br></pre></td></tr></table></figure></p><p>我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单<br>本来想只要将当前的 ip 地址在黑名单中去掉就可以了<br>没想到事实并不是如此,为此还查资料花费了一点功夫<br>现记录下来</p><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ol><li>停用 DenyHosts : <code>systemctl stop denyhosts.service</code></li><li>删除黑名单中当前的ip地址: <code>vim /etc/hosts.deny</code></li><li>进入  <code>/var/lib/denyhosts</code></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 root root    39 2月  16 2015 allowed-hosts</span><br><span class="line">-rw-r--r-- 1 root root 71451 7月  19 10:58 hosts</span><br><span class="line">-rw-r--r-- 1 root root 71270 7月  19 10:58 hosts-restricted</span><br><span class="line">-rw-r--r-- 1 root root 71433 7月  19 10:58 hosts-root</span><br><span class="line">-rw-r--r-- 1 root root 71280 7月  19 10:58 hosts-valid</span><br><span class="line">-rw-r--r-- 1 root root   105 7月  19 10:58 offset</span><br><span class="line">-rw-r--r-- 1 root root     0 7月  19 10:58 suspicious-logins</span><br><span class="line">-rw-r--r-- 1 root root 44731 7月  19 10:58 users-hosts</span><br><span class="line">-rw-r--r-- 1 root root 50925 7月  19 10:58 users-invalid</span><br><span class="line">-rw-r--r-- 1 root root   643 7月  19 10:58 users-valid</span><br></pre></td></tr></table></figure><ol start="4"><li>依次在上面各个文件中移除自己当前的IP地址</li><li>如果要将当前的IP地址添加到白名单中,可以在 /etc/hosts.allow 添加<br>sshd: ip地址<br>allowed-hosts 添加 IP地址</li><li>重启 DenyHosts</li></ol><blockquote><p>注意: 这些文件里有很多被拉入黑名单的IP地址,vim编辑的时候可以在命令行模式下使用 <code>/ip地址</code> 来查找, n 和 N 上下翻动,再在命令行模式下 <code>:noh</code> 取消查找</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      今天连接远程服务器发生了错误,我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单,想取消的话还是花了一点的功夫
+    
+    </summary>
+    
+      <category term="Linux篇" scheme="http://blog.joylau.cn/categories/Linux%E7%AF%87/"/>
+    
+    
+      <category term="Linux" scheme="http://blog.joylau.cn/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu 最佳编程字体 Monaco 的优化显示</title>
@@ -451,28 +473,6 @@
       <category term="Elasticsearch" scheme="http://blog.joylau.cn/tags/Elasticsearch/"/>
     
       <category term="SpringBoot" scheme="http://blog.joylau.cn/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Elasticsearch 集群搭建</title>
-    <link href="http://blog.joylau.cn/2018/05/07/Elasticsearch-Cluster/"/>
-    <id>http://blog.joylau.cn/2018/05/07/Elasticsearch-Cluster/</id>
-    <published>2018-05-07T03:48:19.000Z</published>
-    <updated>2018-06-07T05:27:36.216Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ol><li>机器三台</li><li>彼此间内网不同，公网可通（因为这个问题花费了很长时间,配置文件里有我的理解说明）</li><li>机器配置很低，需要调节jvm参数来优化</li><li>elasticsearch 版本为 5.3.0</li></ol><h2 id="elasticsearch-yml"><a href="#elasticsearch-yml" class="headerlink" title="elasticsearch.yml"></a>elasticsearch.yml</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">cluster.name: joylau-es</span><br><span class="line">node.name: joylau</span><br><span class="line"><span class="comment"># 有资格作为主节点</span></span><br><span class="line">node.master: <span class="literal">true</span></span><br><span class="line"><span class="comment"># 节点存储数据</span></span><br><span class="line">node.data: <span class="literal">true</span></span><br><span class="line"><span class="comment"># 绑定的ip地址</span></span><br><span class="line"><span class="comment"># 这里原来默认的是 network.host,如果配置了network.host，则一下2个配置的属性都为network.host的值</span></span><br><span class="line"><span class="comment"># 集群中各个节点内网不通，集群搭建不起来的原因就在这里，我也是查阅了大量资料，花费了好长时间，才搞明白</span></span><br><span class="line"><span class="comment"># 绑定地址，这里配置任何ip都能访问</span></span><br><span class="line">network.bind_host: 0.0.0.0</span><br><span class="line"><span class="comment"># 这里配置该节点的公网IP地址，在集群启动时就不会使用默认内网地址寻找策略，就会以配置的公网地址来寻找该节点</span></span><br><span class="line">network.publish_host: ip</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Set a custom port for HTTP:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">http.port: 9268</span><br><span class="line">transport.tcp.port: 9368</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># For more information, consult the network module documentation.</span></span><br><span class="line"><span class="comment"># 集群的各个节点配置</span></span><br><span class="line">discovery.zen.ping.unicast.hosts: [<span class="string">"ip1:9368"</span>, <span class="string">"ip2:9368"</span>, <span class="string">"ip3:9368"</span>]</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Prevent the "split brain" by configuring the majority of nodes (total number of master-eligible nodes / 2 + 1):</span></span><br><span class="line"><span class="comment"># 上句话的意思是采取过半原则的策略配置节点数，为了防止“脑裂”情况，数量建议为 (节点总数/2) + 1</span></span><br><span class="line"><span class="comment"># 我的理解就是最少有多少个节点的时候开始选取主节点，这里我配置的1，比如说我现在有3个几点，其中一个节点的网络断了</span></span><br><span class="line"><span class="comment"># 如果配置的2 的话，那么有2个节点的会投票选取主节点，成为一个集群，剩下的那个节点无法选取主节点而挂了</span></span><br><span class="line"><span class="comment"># 如果配置的 1 的话，剩下的那个节点就会自己成为主节点而单独成为一个集群，这样就有2个集群了</span></span><br><span class="line"><span class="comment"># 说了这么多，大致的意思就是这样，我是这么理解的</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">discovery.zen.minimum_master_nodes: 1</span><br></pre></td></tr></table></figure><p>剩下没贴出配置的都是默认配置</p><p>依照改配置，在各个节点上修改节点名称及network.publish_host，要保证集群名称一样就可以了。</p><h2 id="jvm-options"><a href="#jvm-options" class="headerlink" title="jvm.options"></a>jvm.options</h2><p>主要配置<br>     -Xms1400m<br>     -Xmx1400m</p><p>我这里的机器是2G的运存，经过我的反复调试，能给出elasticsearch最大的内存空间就是1400m了，给多了跑步起来，给少了有不能完全发挥elasticsearch的性能优势<br>机器差，没办法<br>还有一点注意的是初始化内存大小个最大内存大小的配置数值要是一样的，否则会启动出错</p>]]></content>
-    
-    <summary type="html">
-    
-      记录下elasticsearch集群搭建的配置
-    
-    </summary>
-    
-      <category term="大数据篇" scheme="http://blog.joylau.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/"/>
-    
-    
-      <category term="Elasticsearch" scheme="http://blog.joylau.cn/tags/Elasticsearch/"/>
     
   </entry>
   
