@@ -20,7 +20,8 @@
 <li>复制到 <code>/usr/share/fonts</code></li>
 <li><code>fc-cache -fv</code> 生成字体缓存</li>
 </ol>
-<p>我的 1080P 分辨率，我的配置如下：<br><img src="http://image.joylau.cn/blog/Monaco7.png" alt="MonacoB2"></p>]]></content>
+<p>我的 1080P 分辨率，我的配置如下：<br><img src="http://image.joylau.cn/blog/Monaco7.png" alt="MonacoB2"></p>
+<h2 id="2018-07-18-14-22-05-更新"><a href="#2018-07-18-14-22-05-更新" class="headerlink" title="2018-07-18 14:22:05 更新"></a>2018-07-18 14:22:05 更新</h2><p>看到一篇关于 Ubuntu 字体渲染问题的文章: 修复 Ubuntu 中文字体渲染  <a href="https://i-meto.com/fix-chinese-font-display/" target="_blank" rel="noopener">https://i-meto.com/fix-chinese-font-display/</a></p>]]></content>
       
         <categories>
             
@@ -270,7 +271,14 @@
 <h2 id="apt-get-命令的记录"><a href="#apt-get-命令的记录" class="headerlink" title="apt-get 命令的记录"></a>apt-get 命令的记录</h2><ol>
 <li>卸载软件： sudo apt-get purge docker-ce</li>
 <li>查看软件版本： apt-cache madison docker-ce </li>
-</ol>]]></content>
+</ol>
+<h2 id="2018年07月19日09-10-55-更新"><a href="#2018年07月19日09-10-55-更新" class="headerlink" title="2018年07月19日09:10:55 更新"></a>2018年07月19日09:10:55 更新</h2><p>indicator-sysmonitor 显示网速时,在状态栏会左右移动,解决方法是:<br>修改源代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi  /usr/lib/indicator-sysmonitor/sensors.py</span><br></pre></td></tr></table></figure>
+<p>打开后，修改第29行的B_UNITS:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B_UNITS = [<span class="string">'MB'</span>, <span class="string">'GB'</span>, <span class="string">'TB'</span>]</span><br></pre></td></tr></table></figure>
+<p>接着修改下面的bytes_to_human函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bytes_to_human</span><span class="params">(bytes_)</span>:</span>                 </span><br><span class="line">unit = <span class="number">0</span>    </span><br><span class="line">bytes_ = bytes_ / <span class="number">1024</span> / <span class="number">1024</span>    </span><br><span class="line"><span class="keyword">while</span> bytes_ &gt; <span class="number">1024</span>:    </span><br><span class="line">    unit += <span class="number">1</span>    </span><br><span class="line">    bytes_ /= <span class="number">1024</span>    </span><br><span class="line"><span class="comment"># 做成00.00MB/s的形式，避免变化     </span></span><br><span class="line"><span class="keyword">return</span> <span class="string">'&#123;:0&gt;5.2f&#125;&#123;:0&gt;2&#125;'</span>.format(bytes_, B_UNITS[unit])</span><br></pre></td></tr></table></figure>
+<p>然后保存退出，重启就可以了。</p>]]></content>
       
         <categories>
             
