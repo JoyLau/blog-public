@@ -98,7 +98,11 @@
 
 
 
-<script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+    <script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+
+
+    <script src="//image.joylau.cn/blog/lettering.js"></script>
+    <script src="//image.joylau.cn/blog/textillate.js"></script>
 
 </head></html>
 <body>
@@ -314,7 +318,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/07/Elasticsearch-ELK/">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a>
+      <a class="archive-article-title article-tlt-a" href="/2018/05/07/Elasticsearch-ELK/">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -340,7 +344,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/07/Elasticsearch-Cluster/">Elasticsearch 集群搭建</a>
+      <a class="archive-article-title article-tlt-a" href="/2018/05/07/Elasticsearch-Cluster/">Elasticsearch 集群搭建</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -376,7 +380,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/23/Spark-Integrate-Build/">大数据之路 Spark 环境搭建</a>
+      <a class="archive-article-title article-tlt-a" href="/2017/11/23/Spark-Integrate-Build/">大数据之路 Spark 环境搭建</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -402,7 +406,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/22/Hadoop-Integrate-Build/">大数据之路 Hadoop 环境搭建</a>
+      <a class="archive-article-title article-tlt-a" href="/2017/11/22/Hadoop-Integrate-Build/">大数据之路 Hadoop 环境搭建</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -428,7 +432,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/17/Hadoop-Study-Way/">大数据之路 Hadoop 的学习流程</a>
+      <a class="archive-article-title article-tlt-a" href="/2017/11/17/Hadoop-Study-Way/">大数据之路 Hadoop 的学习流程</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -454,7 +458,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/25/Elasticsearch-Config/">Elasticsearch 配置说明 &amp;&amp; 遇坑记录</a>
+      <a class="archive-article-title article-tlt-a" href="/2017/10/25/Elasticsearch-Config/">Elasticsearch 配置说明 &amp;&amp; 遇坑记录</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -540,6 +544,39 @@
 
 <script>
     $('.chaffle').chaffle();
+</script>
+
+
+<script>
+    var animateList = ['flipInX','flipInY','bounceInLeft','bounceInUp','bounceInDown','rotateIn','fadeInUp','fadeInDown'];
+    var animateIndex = Math.ceil(Math.random() * (animateList.length - 1));
+    $('.article-tlt-a').textillate({
+        initialDelay: 100,
+        in: {
+            effect: 'fadeInDown',
+            delayScale: 1.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-description-tlt').textillate({
+        initialDelay: 50,
+        in: {
+            effect: 'fadeIn',
+            delayScale: 0.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-tlt-h').textillate({
+        initialDelay: 100,
+        in: {
+            effect: animateList[animateIndex],
+            delayScale: 2.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
 </script>
     </div>
     <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>

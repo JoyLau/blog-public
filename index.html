@@ -105,7 +105,11 @@
 
 
 
-<script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+    <script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+
+
+    <script src="//image.joylau.cn/blog/lettering.js"></script>
+    <script src="//image.joylau.cn/blog/textillate.js"></script>
 
 </head></html>
 <body>
@@ -337,7 +341,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/19/Linux-Cancel-DenyHosts/">DenyHosts 清除黑名单 IP 地址</a>
+      <a class="article-title article-tlt-a" href="/2018/07/19/Linux-Cancel-DenyHosts/">DenyHosts 清除黑名单 IP 地址</a>
     </h1>
       </header>
       
@@ -345,7 +349,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              今天连接远程服务器发生了错误,我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单,想取消的话还是花了一点的功夫
+              <div class="article-description-tlt">今天连接远程服务器发生了错误,我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单,想取消的话还是花了一点的功夫</div>
           
       
     </div>
@@ -401,7 +405,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/13/Ubuntu-Fonts-Monaco/">Ubuntu 最佳编程字体 Monaco 的优化显示</a>
+      <a class="article-title article-tlt-a" href="/2018/07/13/Ubuntu-Fonts-Monaco/">Ubuntu 最佳编程字体 Monaco 的优化显示</a>
     </h1>
       </header>
       
@@ -409,7 +413,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              自从入了 MBP 后就被其默认的字体显示效果吸引了，在编辑器里写代码更是舒服，于是想着把 Mac 下的字体也移植到 Ubuntu 下，但是显示效果并不是特别的好，尤其是粗体字的显示
+              <div class="article-description-tlt">自从入了 MBP 后就被其默认的字体显示效果吸引了，在编辑器里写代码更是舒服，于是想着把 Mac 下的字体也移植到 Ubuntu 下，但是显示效果并不是特别的好，尤其是粗体字的显示</div>
           
       
     </div>
@@ -465,7 +469,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/12/Docker-AliAccelerator/">Docker 使用阿里云个人专属加速器</a>
+      <a class="article-title article-tlt-a" href="/2018/07/12/Docker-AliAccelerator/">Docker 使用阿里云个人专属加速器</a>
     </h1>
       </header>
       
@@ -473,7 +477,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              原来阿里云给每个账户都有分配专属的加速器地址
+              <div class="article-description-tlt">原来阿里云给每个账户都有分配专属的加速器地址</div>
           
       
     </div>
@@ -529,7 +533,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/05/Docker-Manager-NonRoot/">以非 root 用户身份管理 Docker</a>
+      <a class="article-title article-tlt-a" href="/2018/07/05/Docker-Manager-NonRoot/">以非 root 用户身份管理 Docker</a>
     </h1>
       </header>
       
@@ -537,7 +541,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。
+              <div class="article-description-tlt">docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。</div>
           
       
     </div>
@@ -593,7 +597,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/02/OfficeSuiteStudy/">office 套件的一系列研究记录</a>
+      <a class="article-title article-tlt-a" href="/2018/07/02/OfficeSuiteStudy/">office 套件的一系列研究记录</a>
     </h1>
       </header>
       
@@ -601,7 +605,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              包含 es 的中文分词检索，附件检索，office 套件在线预览等等
+              <div class="article-description-tlt">包含 es 的中文分词检索，附件检索，office 套件在线预览等等</div>
           
       
     </div>
@@ -657,7 +661,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/28/Ubuntu-SystemConfig/">Ubuntu 自用配置记录</a>
+      <a class="article-title article-tlt-a" href="/2018/06/28/Ubuntu-SystemConfig/">Ubuntu 自用配置记录</a>
     </h1>
       </header>
       
@@ -665,7 +669,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              安装完 Ubuntu 后自定义的一些配置记录
+              <div class="article-description-tlt">安装完 Ubuntu 后自定义的一些配置记录</div>
           
       
     </div>
@@ -756,6 +760,39 @@
 
 <script>
     $('.chaffle').chaffle();
+</script>
+
+
+<script>
+    var animateList = ['flipInX','flipInY','bounceInLeft','bounceInUp','bounceInDown','rotateIn','fadeInUp','fadeInDown'];
+    var animateIndex = Math.ceil(Math.random() * (animateList.length - 1));
+    $('.article-tlt-a').textillate({
+        initialDelay: 100,
+        in: {
+            effect: 'fadeInDown',
+            delayScale: 1.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-description-tlt').textillate({
+        initialDelay: 50,
+        in: {
+            effect: 'fadeIn',
+            delayScale: 0.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-tlt-h').textillate({
+        initialDelay: 100,
+        in: {
+            effect: animateList[animateIndex],
+            delayScale: 2.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
 </script>
     </div>
     <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>

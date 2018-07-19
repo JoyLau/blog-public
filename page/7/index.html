@@ -105,7 +105,11 @@
 
 
 
-<script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+    <script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+
+
+    <script src="//image.joylau.cn/blog/lettering.js"></script>
+    <script src="//image.joylau.cn/blog/textillate.js"></script>
 
 </head></html>
 <body>
@@ -337,7 +341,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/01/SpringBoot-IDEA-DevTools/">IDEA 中 SpringBoot 项目热部署</a>
+      <a class="article-title article-tlt-a" href="/2017/11/01/SpringBoot-IDEA-DevTools/">IDEA 中 SpringBoot 项目热部署</a>
     </h1>
       </header>
       
@@ -345,7 +349,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              IDEA 中 SpringBoot 项目热部署
+              <div class="article-description-tlt">IDEA 中 SpringBoot 项目热部署</div>
           
       
     </div>
@@ -401,7 +405,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/30/SpringBoot-ReadJSONFile/">SpringBoot 读取 JSON 文件并转化为 JSON 对象</a>
+      <a class="article-title article-tlt-a" href="/2017/10/30/SpringBoot-ReadJSONFile/">SpringBoot 读取 JSON 文件并转化为 JSON 对象</a>
     </h1>
       </header>
       
@@ -409,7 +413,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              有时候在项目中用 JSONObject 构建一个复杂的 json 对象会很麻烦，要写很多代码，如果我们事先写一个 json 模板文件，读取后在将里面某些属性更改为我们自己定义的，这样的话会省事很多
+              <div class="article-description-tlt">有时候在项目中用 JSONObject 构建一个复杂的 json 对象会很麻烦，要写很多代码，如果我们事先写一个 json 模板文件，读取后在将里面某些属性更改为我们自己定义的，这样的话会省事很多</div>
           
       
     </div>
@@ -465,7 +469,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/26/SpringBoot-Oracle/">SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载</a>
+      <a class="article-title article-tlt-a" href="/2017/10/26/SpringBoot-Oracle/">SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载</a>
     </h1>
       </header>
       
@@ -473,7 +477,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              Oracle 数据库在我平时工作中很少使用，今天使用SpringBoot 连接了 Oracle 进行操作，在此记录下，并记下 Navicat for Oracle 绿色版下载
+              <div class="article-description-tlt">Oracle 数据库在我平时工作中很少使用，今天使用SpringBoot 连接了 Oracle 进行操作，在此记录下，并记下 Navicat for Oracle 绿色版下载</div>
           
       
     </div>
@@ -529,7 +533,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/25/Elasticsearch-Config/">Elasticsearch 配置说明 &amp;&amp; 遇坑记录</a>
+      <a class="article-title article-tlt-a" href="/2017/10/25/Elasticsearch-Config/">Elasticsearch 配置说明 &amp;&amp; 遇坑记录</a>
     </h1>
       </header>
       
@@ -537,7 +541,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              在这留一份 elasticsearch.yml 的配置文件说明，以备查询
+              <div class="article-description-tlt">在这留一份 elasticsearch.yml 的配置文件说明，以备查询</div>
           
       
     </div>
@@ -593,7 +597,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/25/Hadoop-FristDay/">Hadoop 的第一天</a>
+      <a class="article-title article-tlt-a" href="/2017/10/25/Hadoop-FristDay/">Hadoop 的第一天</a>
     </h1>
       </header>
       
@@ -601,7 +605,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              学习 Hadoop 的第一天，在这里记一下学习的心得笔记
+              <div class="article-description-tlt">学习 Hadoop 的第一天，在这里记一下学习的心得笔记</div>
           
       
     </div>
@@ -657,7 +661,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/23/SpringBoot-Elasticsearch/">重剑无锋,大巧不工 SpringBoot --- 整合使用 Elasticsearch</a>
+      <a class="article-title article-tlt-a" href="/2017/10/23/SpringBoot-Elasticsearch/">重剑无锋,大巧不工 SpringBoot --- 整合使用 Elasticsearch</a>
     </h1>
       </header>
       
@@ -665,7 +669,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              SpringBoot 整合 Elasticsearch 的使用和 MongoDB 非常的相像，完全可以很快速的上手
+              <div class="article-description-tlt">SpringBoot 整合 Elasticsearch 的使用和 MongoDB 非常的相像，完全可以很快速的上手</div>
           
       
     </div>
@@ -756,6 +760,39 @@
 
 <script>
     $('.chaffle').chaffle();
+</script>
+
+
+<script>
+    var animateList = ['flipInX','flipInY','bounceInLeft','bounceInUp','bounceInDown','rotateIn','fadeInUp','fadeInDown'];
+    var animateIndex = Math.ceil(Math.random() * (animateList.length - 1));
+    $('.article-tlt-a').textillate({
+        initialDelay: 100,
+        in: {
+            effect: 'fadeInDown',
+            delayScale: 1.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-description-tlt').textillate({
+        initialDelay: 50,
+        in: {
+            effect: 'fadeIn',
+            delayScale: 0.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-tlt-h').textillate({
+        initialDelay: 100,
+        in: {
+            effect: animateList[animateIndex],
+            delayScale: 2.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
 </script>
     </div>
     <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>

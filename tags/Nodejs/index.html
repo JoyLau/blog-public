@@ -98,7 +98,11 @@
 
 
 
-<script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+    <script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+
+
+    <script src="//image.joylau.cn/blog/lettering.js"></script>
+    <script src="//image.joylau.cn/blog/textillate.js"></script>
 
 </head></html>
 <body>
@@ -314,7 +318,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/07/Node-Install-Error/">npm install 居然出错了</a>
+      <a class="archive-article-title article-tlt-a" href="/2017/11/07/Node-Install-Error/">npm install 居然出错了</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -340,7 +344,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/01/HelloWorld/">Hello World</a>
+      <a class="archive-article-title article-tlt-a" href="/2017/01/01/HelloWorld/">Hello World</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -422,6 +426,39 @@
 
 <script>
     $('.chaffle').chaffle();
+</script>
+
+
+<script>
+    var animateList = ['flipInX','flipInY','bounceInLeft','bounceInUp','bounceInDown','rotateIn','fadeInUp','fadeInDown'];
+    var animateIndex = Math.ceil(Math.random() * (animateList.length - 1));
+    $('.article-tlt-a').textillate({
+        initialDelay: 100,
+        in: {
+            effect: 'fadeInDown',
+            delayScale: 1.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-description-tlt').textillate({
+        initialDelay: 50,
+        in: {
+            effect: 'fadeIn',
+            delayScale: 0.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-tlt-h').textillate({
+        initialDelay: 100,
+        in: {
+            effect: animateList[animateIndex],
+            delayScale: 2.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
 </script>
     </div>
     <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>

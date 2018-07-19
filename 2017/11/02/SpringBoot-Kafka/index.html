@@ -100,7 +100,11 @@
 
 
 
-<script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+    <script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+
+
+    <script src="//image.joylau.cn/blog/lettering.js"></script>
+    <script src="//image.joylau.cn/blog/textillate.js"></script>
 
 </head></html>
 <body>
@@ -320,9 +324,7 @@
 
                 
             </div>
-        <h1 class="article-title" itemprop="name">
-      SpringBoot 整合 Kafka 踩坑记录
-    </h1>
+        <h1 class="article-title article-tlt-h" itemprop="name">SpringBoot 整合 Kafka 踩坑记录</h1>
       </header>
       
       <div class="article-info article-info-post">
@@ -583,6 +585,39 @@
 
 <script>
     $('.chaffle').chaffle();
+</script>
+
+
+<script>
+    var animateList = ['flipInX','flipInY','bounceInLeft','bounceInUp','bounceInDown','rotateIn','fadeInUp','fadeInDown'];
+    var animateIndex = Math.ceil(Math.random() * (animateList.length - 1));
+    $('.article-tlt-a').textillate({
+        initialDelay: 100,
+        in: {
+            effect: 'fadeInDown',
+            delayScale: 1.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-description-tlt').textillate({
+        initialDelay: 50,
+        in: {
+            effect: 'fadeIn',
+            delayScale: 0.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-tlt-h').textillate({
+        initialDelay: 100,
+        in: {
+            effect: animateList[animateIndex],
+            delayScale: 2.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
 </script>
     </div>
     <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>

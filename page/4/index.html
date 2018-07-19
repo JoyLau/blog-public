@@ -105,7 +105,11 @@
 
 
 
-<script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+    <script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+
+
+    <script src="//image.joylau.cn/blog/lettering.js"></script>
+    <script src="//image.joylau.cn/blog/textillate.js"></script>
 
 </head></html>
 <body>
@@ -337,7 +341,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/08/Logstash-Nginx/">Logstash 实时收集 Nginx 日志</a>
+      <a class="article-title article-tlt-a" href="/2018/05/08/Logstash-Nginx/">Logstash 实时收集 Nginx 日志</a>
     </h1>
       </header>
       
@@ -345,7 +349,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              吃个晚饭回来继续写上一篇 Logstash 实时收集 Nginx 日志的方法
+              <div class="article-description-tlt">吃个晚饭回来继续写上一篇 Logstash 实时收集 Nginx 日志的方法</div>
           
       
     </div>
@@ -401,7 +405,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/07/Elasticsearch-ELK/">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a>
+      <a class="article-title article-tlt-a" href="/2018/05/07/Elasticsearch-ELK/">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a>
     </h1>
       </header>
       
@@ -409,7 +413,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              Elasticsearch + Logstash + Kibana + SpringBoot 怎么玩
+              <div class="article-description-tlt">Elasticsearch + Logstash + Kibana + SpringBoot 怎么玩</div>
           
       
     </div>
@@ -465,7 +469,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/07/Elasticsearch-Cluster/">Elasticsearch 集群搭建</a>
+      <a class="article-title article-tlt-a" href="/2018/05/07/Elasticsearch-Cluster/">Elasticsearch 集群搭建</a>
     </h1>
       </header>
       
@@ -473,7 +477,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              记录下elasticsearch集群搭建的配置
+              <div class="article-description-tlt">记录下elasticsearch集群搭建的配置</div>
           
       
     </div>
@@ -529,7 +533,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/01/MacOS-CleanMac/">MacOS 垃圾清理</a>
+      <a class="article-title article-tlt-a" href="/2018/04/01/MacOS-CleanMac/">MacOS 垃圾清理</a>
     </h1>
       </header>
       
@@ -537,7 +541,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              MacOS 时间用久了，该怎么清理垃圾了，不想像 windows 那样装个 xx卫士，xx管家来清理，用2个命令就可清理
+              <div class="article-description-tlt">MacOS 时间用久了，该怎么清理垃圾了，不想像 windows 那样装个 xx卫士，xx管家来清理，用2个命令就可清理</div>
           
       
     </div>
@@ -593,7 +597,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/">SpringSecurity Session并发过期后会重定向到 /login (入口点问题)问题的解决</a>
+      <a class="article-title article-tlt-a" href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/">SpringSecurity Session并发过期后会重定向到 /login (入口点问题)问题的解决</a>
     </h1>
       </header>
       
@@ -601,7 +605,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              解决一个在使用 SpringSecurity 时遇到的一个问题
+              <div class="article-description-tlt">解决一个在使用 SpringSecurity 时遇到的一个问题</div>
           
       
     </div>
@@ -657,7 +661,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/28/SpringBoot-SpringSecurity/">重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity</a>
+      <a class="article-title article-tlt-a" href="/2018/03/28/SpringBoot-SpringSecurity/">重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity</a>
     </h1>
       </header>
       
@@ -665,7 +669,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              公司近期有个项目的安全框架是用 Spring Security 搭建的，现在项目做完了，是时候总结一下 SpringBoot 整合 SpringSecurity 的使用了
+              <div class="article-description-tlt">公司近期有个项目的安全框架是用 Spring Security 搭建的，现在项目做完了，是时候总结一下 SpringBoot 整合 SpringSecurity 的使用了</div>
           
       
     </div>
@@ -756,6 +760,39 @@
 
 <script>
     $('.chaffle').chaffle();
+</script>
+
+
+<script>
+    var animateList = ['flipInX','flipInY','bounceInLeft','bounceInUp','bounceInDown','rotateIn','fadeInUp','fadeInDown'];
+    var animateIndex = Math.ceil(Math.random() * (animateList.length - 1));
+    $('.article-tlt-a').textillate({
+        initialDelay: 100,
+        in: {
+            effect: 'fadeInDown',
+            delayScale: 1.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-description-tlt').textillate({
+        initialDelay: 50,
+        in: {
+            effect: 'fadeIn',
+            delayScale: 0.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-tlt-h').textillate({
+        initialDelay: 100,
+        in: {
+            effect: animateList[animateIndex],
+            delayScale: 2.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
 </script>
     </div>
     <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>

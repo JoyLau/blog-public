@@ -98,7 +98,11 @@
 
 
 
-<script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+    <script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+
+
+    <script src="//image.joylau.cn/blog/lettering.js"></script>
+    <script src="//image.joylau.cn/blog/textillate.js"></script>
 
 </head></html>
 <body>
@@ -314,7 +318,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/19/Linux-Cancel-DenyHosts/">DenyHosts 清除黑名单 IP 地址</a>
+      <a class="archive-article-title article-tlt-a" href="/2018/07/19/Linux-Cancel-DenyHosts/">DenyHosts 清除黑名单 IP 地址</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -340,7 +344,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/21/Elasticsearch-Security/">Elasticsearch 集群安全控制</a>
+      <a class="archive-article-title article-tlt-a" href="/2018/05/21/Elasticsearch-Security/">Elasticsearch 集群安全控制</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -366,7 +370,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/18/Linux-Systemctl/">Linux菜鸟到熟悉 --- systemctl 托管自定义程序</a>
+      <a class="archive-article-title article-tlt-a" href="/2018/05/18/Linux-Systemctl/">Linux菜鸟到熟悉 --- systemctl 托管自定义程序</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -392,7 +396,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/17/Linux-NoteBookPC/">Linux菜鸟到熟悉 --- 闲置笔记本安装 Centos</a>
+      <a class="archive-article-title article-tlt-a" href="/2018/05/17/Linux-NoteBookPC/">Linux菜鸟到熟悉 --- 闲置笔记本安装 Centos</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -428,7 +432,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/23/Linux-Command/">Linux菜鸟到熟悉 --- 常用命令备忘</a>
+      <a class="archive-article-title article-tlt-a" href="/2017/02/23/Linux-Command/">Linux菜鸟到熟悉 --- 常用命令备忘</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -454,7 +458,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/23/Linux-BuildingEnvironment/">Linux菜鸟到熟悉 --- 生产环境的搭建</a>
+      <a class="archive-article-title article-tlt-a" href="/2017/02/23/Linux-BuildingEnvironment/">Linux菜鸟到熟悉 --- 生产环境的搭建</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -540,6 +544,39 @@
 
 <script>
     $('.chaffle').chaffle();
+</script>
+
+
+<script>
+    var animateList = ['flipInX','flipInY','bounceInLeft','bounceInUp','bounceInDown','rotateIn','fadeInUp','fadeInDown'];
+    var animateIndex = Math.ceil(Math.random() * (animateList.length - 1));
+    $('.article-tlt-a').textillate({
+        initialDelay: 100,
+        in: {
+            effect: 'fadeInDown',
+            delayScale: 1.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-description-tlt').textillate({
+        initialDelay: 50,
+        in: {
+            effect: 'fadeIn',
+            delayScale: 0.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-tlt-h').textillate({
+        initialDelay: 100,
+        in: {
+            effect: animateList[animateIndex],
+            delayScale: 2.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
 </script>
     </div>
     <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>

@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
 <meta property="og:description" content="今天连接远程服务器发生了错误,我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单,想取消的话还是花了一点的功夫">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-19T03:06:02.339Z">
+<meta property="og:updated_time" content="2018-07-19T03:32:00.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DenyHosts 清除黑名单 IP 地址">
 <meta name="twitter:description" content="今天连接远程服务器发生了错误,我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单,想取消的话还是花了一点的功夫">
@@ -100,7 +100,11 @@
 
 
 
-<script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+    <script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+
+
+    <script src="//image.joylau.cn/blog/lettering.js"></script>
+    <script src="//image.joylau.cn/blog/textillate.js"></script>
 
 </head></html>
 <body>
@@ -320,9 +324,7 @@
 
                 
             </div>
-        <h1 class="article-title" itemprop="name">
-      DenyHosts 清除黑名单 IP 地址
-    </h1>
+        <h1 class="article-title article-tlt-h" itemprop="name">DenyHosts 清除黑名单 IP 地址</h1>
       </header>
       
       <div class="article-info article-info-post">
@@ -365,7 +367,7 @@
         <p><span>本文标题:</span><a href="/2018/07/19/Linux-Cancel-DenyHosts/">DenyHosts 清除黑名单 IP 地址</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
         <p><span>发布时间:</span>2018-07-19, 10:47:25</p>
-        <p><span>最后更新:</span>2018-07-19, 11:06:02</p>
+        <p><span>最后更新:</span>2018-07-19, 11:32:00</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/19/Linux-Cancel-DenyHosts/" title="DenyHosts 清除黑名单 IP 地址">http://blog.joylau.cn/2018/07/19/Linux-Cancel-DenyHosts/</a>
             <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2018/07/19/Linux-Cancel-DenyHosts/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -570,6 +572,39 @@
 
 <script>
     $('.chaffle').chaffle();
+</script>
+
+
+<script>
+    var animateList = ['flipInX','flipInY','bounceInLeft','bounceInUp','bounceInDown','rotateIn','fadeInUp','fadeInDown'];
+    var animateIndex = Math.ceil(Math.random() * (animateList.length - 1));
+    $('.article-tlt-a').textillate({
+        initialDelay: 100,
+        in: {
+            effect: 'fadeInDown',
+            delayScale: 1.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-description-tlt').textillate({
+        initialDelay: 50,
+        in: {
+            effect: 'fadeIn',
+            delayScale: 0.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-tlt-h').textillate({
+        initialDelay: 100,
+        in: {
+            effect: animateList[animateIndex],
+            delayScale: 2.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
 </script>
     </div>
     <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>

@@ -98,7 +98,11 @@
 
 
 
-<script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+    <script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+
+
+    <script src="//image.joylau.cn/blog/lettering.js"></script>
+    <script src="//image.joylau.cn/blog/textillate.js"></script>
 
 </head></html>
 <body>
@@ -314,7 +318,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/01/JDK8-Stream-Distinct/">关于Jdk 8 Stream Distinct 去重复使用记录</a>
+      <a class="archive-article-title article-tlt-a" href="/2018/03/01/JDK8-Stream-Distinct/">关于Jdk 8 Stream Distinct 去重复使用记录</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -340,7 +344,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/27/MyBatis-Example/">关于通用 Mapper Example 使用记录</a>
+      <a class="archive-article-title article-tlt-a" href="/2018/02/27/MyBatis-Example/">关于通用 Mapper Example 使用记录</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -376,7 +380,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/12/SpringBoot-Assembly-Package/">重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件</a>
+      <a class="archive-article-title article-tlt-a" href="/2017/12/12/SpringBoot-Assembly-Package/">重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -402,7 +406,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/29/SpringBoot-Druid-MyBatis-Mapper-PageHelper/">重剑无锋,大巧不工 SpringBoot --- 最新版 SpringBoot 整合 Druid,MyBatis,通用 Mapper,PageHelper的脚手架</a>
+      <a class="archive-article-title article-tlt-a" href="/2017/11/29/SpringBoot-Druid-MyBatis-Mapper-PageHelper/">重剑无锋,大巧不工 SpringBoot --- 最新版 SpringBoot 整合 Druid,MyBatis,通用 Mapper,PageHelper的脚手架</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -428,7 +432,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/24/JavaScript-Array-Method/">JavaScript 数组的一些常用的方法记录</a>
+      <a class="archive-article-title article-tlt-a" href="/2017/11/24/JavaScript-Array-Method/">JavaScript 数组的一些常用的方法记录</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -454,7 +458,7 @@
 </a>
         </div>
          <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/23/Spark-Integrate-Build/">大数据之路 Spark 环境搭建</a>
+      <a class="archive-article-title article-tlt-a" href="/2017/11/23/Spark-Integrate-Build/">大数据之路 Spark 环境搭建</a>
     </h1>
         <div class="article-info info-on-archive">
           <div class="article-category tagcloud">
@@ -540,6 +544,39 @@
 
 <script>
     $('.chaffle').chaffle();
+</script>
+
+
+<script>
+    var animateList = ['flipInX','flipInY','bounceInLeft','bounceInUp','bounceInDown','rotateIn','fadeInUp','fadeInDown'];
+    var animateIndex = Math.ceil(Math.random() * (animateList.length - 1));
+    $('.article-tlt-a').textillate({
+        initialDelay: 100,
+        in: {
+            effect: 'fadeInDown',
+            delayScale: 1.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-description-tlt').textillate({
+        initialDelay: 50,
+        in: {
+            effect: 'fadeIn',
+            delayScale: 0.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-tlt-h').textillate({
+        initialDelay: 100,
+        in: {
+            effect: animateList[animateIndex],
+            delayScale: 2.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
 </script>
     </div>
     <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>

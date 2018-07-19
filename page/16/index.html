@@ -105,7 +105,11 @@
 
 
 
-<script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+    <script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+
+
+    <script src="//image.joylau.cn/blog/lettering.js"></script>
+    <script src="//image.joylau.cn/blog/textillate.js"></script>
 
 </head></html>
 <body>
@@ -337,7 +341,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/20/TomcatMulti-Root/">Tomcat服务器添加多个Root项目</a>
+      <a class="article-title article-tlt-a" href="/2017/02/20/TomcatMulti-Root/">Tomcat服务器添加多个Root项目</a>
     </h1>
       </header>
       
@@ -345,7 +349,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              官网下载的Tomcat默认的配置是只有一个ROOT，但如果想开启一个Tomcat，而在根目录下运行多个项目该怎么做呢?
+              <div class="article-description-tlt">官网下载的Tomcat默认的配置是只有一个ROOT，但如果想开启一个Tomcat，而在根目录下运行多个项目该怎么做呢?</div>
           
       
     </div>
@@ -401,7 +405,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/01/HelloWorld/">Hello World</a>
+      <a class="article-title article-tlt-a" href="/2017/01/01/HelloWorld/">Hello World</a>
     </h1>
       </header>
       
@@ -409,7 +413,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              作为一名程序员，第一篇博客那必须是HelloWorld。第一篇博客想介绍下自己搭建这个博客的用途，以及该博客搭建的框架及技术，最后说一下关于博客这块以后的建设。
+              <div class="article-description-tlt">作为一名程序员，第一篇博客那必须是HelloWorld。第一篇博客想介绍下自己搭建这个博客的用途，以及该博客搭建的框架及技术，最后说一下关于博客这块以后的建设。</div>
           
       
     </div>
@@ -500,6 +504,39 @@
 
 <script>
     $('.chaffle').chaffle();
+</script>
+
+
+<script>
+    var animateList = ['flipInX','flipInY','bounceInLeft','bounceInUp','bounceInDown','rotateIn','fadeInUp','fadeInDown'];
+    var animateIndex = Math.ceil(Math.random() * (animateList.length - 1));
+    $('.article-tlt-a').textillate({
+        initialDelay: 100,
+        in: {
+            effect: 'fadeInDown',
+            delayScale: 1.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-description-tlt').textillate({
+        initialDelay: 50,
+        in: {
+            effect: 'fadeIn',
+            delayScale: 0.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-tlt-h').textillate({
+        initialDelay: 100,
+        in: {
+            effect: animateList[animateIndex],
+            delayScale: 2.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
 </script>
     </div>
     <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
