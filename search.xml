@@ -4,6 +4,104 @@
   
     
     <entry>
+      <title><![CDATA[NamedParameterJdbcTemplate 使用具名参数记录]]></title>
+      <url>http://blog.joylau.cn/2018/07/30/Spring-NamedParameterJdbcTemplate/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近维护了一个比较老的项目，操作数据库直接用的 Spring 的 JdbcTemplate，有很多地方我们传入的参数都是不确定的<br>简单的还好，复杂的 sql 语句在代码里用字符串拼接起来简直不能忍，<br>又不想对原来的项目有什么大的改动，就想这能不能在现在的基础上优化一下<br>还好有 NamedParameterJdbcTemplate</p>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p>具名参数: SQL 按名称(以冒号开头)而不是按位置进行指定. 具名参数更易于维护, 也提升了可读性. 具名参数由框架类在运行时用占位符取代<br>具名参数只在 NamedParameterJdbcTemplate 中得到支持。NamedParameterJdbcTemplate可以使用全部jdbcTemplate方法</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><ol>
+<li>该类位于 <code>org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate</code></li>
+<li>有2个构造方法，参数分别是 DataSource 和 JdbcOperations</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Create a new NamedParameterJdbcTemplate for the given &#123;<span class="doctag">@link</span> DataSource&#125;.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Creates a classic Spring &#123;<span class="doctag">@link</span> org.springframework.jdbc.core.JdbcTemplate&#125; and wraps it.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> dataSource the JDBC DataSource to access</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">NamedParameterJdbcTemplate</span><span class="params">(DataSource dataSource)</span> </span>&#123;</span><br><span class="line">    Assert.notNull(dataSource, <span class="string">"DataSource must not be null"</span>);</span><br><span class="line">    <span class="keyword">this</span>.classicJdbcTemplate = <span class="keyword">new</span> JdbcTemplate(dataSource);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Create a new NamedParameterJdbcTemplate for the given classic</span></span><br><span class="line"><span class="comment"> * Spring &#123;<span class="doctag">@link</span> org.springframework.jdbc.core.JdbcTemplate&#125;.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> classicJdbcTemplate the classic Spring JdbcTemplate to wrap</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">NamedParameterJdbcTemplate</span><span class="params">(JdbcOperations classicJdbcTemplate)</span> </span>&#123;</span><br><span class="line">    Assert.notNull(classicJdbcTemplate, <span class="string">"JdbcTemplate must not be null"</span>);</span><br><span class="line">    <span class="keyword">this</span>.classicJdbcTemplate = classicJdbcTemplate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>实例化 bean 只要将 dataSource 或者 JdbcTemplate 传入到构造参数即可</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"namedParameterJdbcTemplate"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
+<li>注入 namedParameterJdbcTemplate</li>
+</ol>
+<h3 id="参数的传入"><a href="#参数的传入" class="headerlink" title="参数的传入"></a>参数的传入</h3><p>namedParameterJdbcTemplate 参数传入有 2 中方法：</p>
+<ol>
+<li><code>Map&lt;String, ?&gt; paramMap</code> 我们熟知的 map</li>
+<li><p><code>SqlParameterSource paramSource</code><br> 该接口默认的实现有三个类：</p>
+<p> <code>MapSqlParameterSource</code> 实现非常简单，只是封装了java.util.Map；<br> 当 Map&lt;String, ?&gt; paramMap 用吧 或者 new MapSqlParameterSource(paramMap) 参数为 map</p>
+<p> <code>BeanPropertySqlParameterSource</code> 封装了一个JavaBean对象，通过JavaBean对象属性来决定命名参数的值。<br>  new BeanPropertySqlParameterSource(dto) new 出一个 BeanPropertySqlParameterSource 对象，构造方法传入实体类即可，绝大部分情况下我们都使用这种方式</p>
+<p> <code>EmptySqlParameterSource</code> 一个空的SqlParameterSource ，常用来占位使用<br>  没用过</p>
+</li>
+</ol>
+<h3 id="数据返回"><a href="#数据返回" class="headerlink" title="数据返回"></a>数据返回</h3><ol>
+<li>返回 Map</li>
+<li><p>返回 RowMapper 包装好的实体类，该类有2中实现<br> SingleColumnRowMapper ，sql结果为一个单列的数据，如List<string> , List<integer>,String,Integer等</integer></string></p>
+<p> BeanPropertyRowMapper， sql结果匹配到对象 List&lt; XxxVO&gt; , XxxVO</p>
+</li>
+</ol>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">KnowledgeInfo info = <span class="keyword">new</span> KnowledgeInfo();</span><br><span class="line">info.setAuditState(<span class="string">"1"</span>);</span><br><span class="line">List&lt;KnowledgeInfo&gt; infos = namedParameterJdbcTemplate.query(</span><br><span class="line">        sql,</span><br><span class="line">        <span class="keyword">new</span> BeanPropertySqlParameterSource(info),</span><br><span class="line">        <span class="keyword">new</span> BeanPropertyRowMapper&lt;&gt;(KnowledgeInfo.class)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>注意： sql 语句中的参数使用 <code>:参数名</code> 进行占位</p>]]></content>
+      
+        <categories>
+            
+            <category> Spring </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Spring </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Oracle 里 number 类型对应 JdbcType bean 类型记录]]></title>
+      <url>http://blog.joylau.cn/2018/07/29/OracleNubmer-JdbcType/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th>number长度</th>
+<th>Java类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1~4</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>5~9</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>10~18</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>18+</td>
+<td>BigDecimal</td>
+</tr>
+</tbody>
+</table>
+<p>须指定number类型的大小。</p>]]></content>
+      
+        <categories>
+            
+            <category> Java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[DenyHosts 清除黑名单 IP 地址]]></title>
       <url>http://blog.joylau.cn/2018/07/19/Linux-Cancel-DenyHosts/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -347,6 +445,7 @@
 <h3 id="自动导包优化"><a href="#自动导包优化" class="headerlink" title="自动导包优化"></a>自动导包优化</h3><p>File | Settings | Editor | General | Auto Import， 勾选 fly</p>
 <h3 id="设置-alt"><a href="#设置-alt" class="headerlink" title="设置 alt + /"></a>设置 alt + /</h3><p>File | Settings | Keymap | main menu | code | completion | basic 设为 alt + /<br>同时 取消 cyclic expand word 的 快捷键</p>
 <h3 id="自动提示忽略大小写"><a href="#自动提示忽略大小写" class="headerlink" title="自动提示忽略大小写"></a>自动提示忽略大小写</h3><p>File | Settings | Editor | General | Code Completion，将 case sensitive completion 修改为NONE</p>
+<h3 id="编辑器设置多Tab页"><a href="#编辑器设置多Tab页" class="headerlink" title="编辑器设置多Tab页"></a>编辑器设置多Tab页</h3><p>File | Settings | Editor | General | Editor Tabs 去掉 show tabs in single row</p>
 <h3 id="idea64-vmoptions-配置"><a href="#idea64-vmoptions-配置" class="headerlink" title="idea64.vmoptions 配置"></a>idea64.vmoptions 配置</h3><p>16G 以上的机器：<br>    -Xms512m<br>    -Xmx1500m<br>    -XX:ReservedCodeCacheSize=500m<br>    -XX:SoftRefLRUPolicyMSPerMB=100<br>添加编码 ：<br>    -Dfile.encoding=UTF-8</p>
 <h3 id="idea-properties-配置"><a href="#idea-properties-配置" class="headerlink" title="idea.properties 配置"></a>idea.properties 配置</h3><p>控制台打印日志的行数：默认为 1024，不限制的话：<br>    idea.cycle.buffer.size=disabled</p>]]></content>
       
@@ -532,7 +631,7 @@
 <ol>
 <li>@JsonFormat(pattern=”yyyy-MM-dd HH:mm:ss”,timezone=”GMT+8”) ： 后台 Date 类型转时间字符串，注意时区 （后台 -&gt; 前台）</li>
 <li>@DateTimeFormat(pattern=”yyyy-MM-dd HH:mm:ss”) ：前台时间格式参数转为 javabean 的 Date 类型 （前台 -&gt; 后台）</li>
-<li>@JSONField(name=”end_time”, format=”yyyy-MM-dd hh:mm:ss”) ： fastjson 专用，定义json 的 key，还有时间的格式化，也可以分别在 get set 方法上注解</li>
+<li>@JSONField(name=”end_time”, format=”yyyy-MM-dd HH:mm:ss”) ： fastjson 专用，定义json 的 key，还有时间的格式化，也可以分别在 get set 方法上注解</li>
 </ol>]]></content>
       
         <categories>
