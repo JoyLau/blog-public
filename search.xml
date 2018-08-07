@@ -7,6 +7,7 @@
       <title><![CDATA[Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理]]></title>
       <url>http://blog.joylau.cn/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/</url>
       <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>这一段时间 GitHub 在国内的访问又出问题,代码提交不上去,需要在 Git 上走代理了</p>
 <h2 id="Git-使用-ss-代理配置"><a href="#Git-使用-ss-代理配置" class="headerlink" title="Git 使用 ss 代理配置"></a>Git 使用 ss 代理配置</h2><ol>
 <li>需要全局 git 都走代理</li>
 </ol>
@@ -2799,9 +2800,9 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
         
         <tags>
             
-            <tag> 技能 </tag>
-            
             <tag> 程序员 </tag>
+            
+            <tag> 技能 </tag>
             
         </tags>
         
