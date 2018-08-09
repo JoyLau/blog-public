@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2018-08-07T08:38:59.790Z</updated>
+  <updated>2018-08-09T02:29:19.757Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>$(...).autocomplete is not a function 问题的解决</title>
+    <link href="http://blog.joylau.cn/2018/08/09/Jquery-Load-Plugins/"/>
+    <id>http://blog.joylau.cn/2018/08/09/Jquery-Load-Plugins/</id>
+    <published>2018-08-09T02:04:52.000Z</published>
+    <updated>2018-08-09T02:29:19.757Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>因项目需求,需要一个自动提示的功能,想到之前有 jquery 的 jQuery-Autocomplete 插件,于是就直接拿来用了,<br>直接在github 上找到了一个 starts 最多的项目 <a href="https://github.com/devbridge/jQuery-Autocomplete.git" target="_blank" rel="noopener">jQuery-Autocomplete</a><br>看了下插件的 API 可配置项很多,有一个 appendTo 配置,是我想要的,于是就决定使用这个差价</p><p>直接把 插件下载下来 放到项目中去,直接 $(…).autocomplete is not a function<br>……</p><p>项目中我写的只是其中的一个模块,页面的代码是纯 html 页面写的,然后通过 panel 引入 html 代码片段<br>很奇怪,为什么插件无法加载</p><p>于是就就把官方的demo跑了一下,没有问题</p><p>又怀疑是 jQuery 版本的问题,<br>官方的demo jQuery 版本是 1.8.2,项目使用的是1.11.1,<br>于是又在官方的 demo 下替换jQuery的版本<br>发现使用没有问题</p><p>又怀疑是插件的版本过高,于是再 GitHub 的 release 上找了个2014年发布的1.2.2的版本,这已经是能找到的最低版本了<br>发现还是不行</p><p>这就奇怪了,我之前也引入过其他的插件,正常使用都没有问题,偏偏使用这个有问题<br>于是想着插件的引入方式有问题,打开一看,jQuery插件的引入方式都是大同小异的<br>本人前端不擅长,也不知道怎么改…..</p><p>于是又在 GitHub上找了其他的插件,有的能用,但是没有我想要的功能….</p><p>一直这么来来回回的测试,已经晚上 10 点了…..<br>从吃完晚饭一直研究到现在还是没有解决<br>心里好气啊!!!!!<br>空调一关,直接回家了!!!!</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>今天早上来又差了点资料,找到了个不太靠谱,但又想尝试了下的方法<br><a href="https://blog.verysu.com/article/328" target="_blank" rel="noopener">TypeError: $(…).autocomplete is not a function</a></p><p>试一下吧,没想到真的可以</p><p>发一张对比图</p><p><img src="http://image.joylau.cn/blog/Jquery-Load-Plugins.md.png" alt="query-Load-Plugins"></p>]]></content>
+    
+    <summary type="html">
+    
+      因项目需求,需要一个自动提示的功能,想到之前有 jquery 的 jQuery-Autocomplete 插件,于是就直接拿来用了,但是使用情况却不是如此
+    
+    </summary>
+    
+      <category term="前端篇" scheme="http://blog.joylau.cn/categories/%E5%89%8D%E7%AB%AF%E7%AF%87/"/>
+    
+    
+      <category term="Jquery" scheme="http://blog.joylau.cn/tags/Jquery/"/>
+    
+  </entry>
   
   <entry>
     <title>Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理</title>
@@ -247,9 +269,9 @@
     <link href="http://blog.joylau.cn/2018/06/25/IntelliJIDEA-MyConfigs/"/>
     <id>http://blog.joylau.cn/2018/06/25/IntelliJIDEA-MyConfigs/</id>
     <published>2018-06-25T08:57:59.000Z</published>
-    <updated>2018-07-25T11:31:05.357Z</updated>
+    <updated>2018-08-08T01:00:56.948Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我自己在多个系统中都有使用 IDEA， IDEA登录账户的话是支持配置同步的。但是由于每个系统的环境变量配置（JAVA_HOME,MAVEN_HOME,GIT,NODE,…..），文件目录结构，字体，快捷键等等不同,导致一套配置并不能很好的通用，于是我在此记录下我平时的一些配置，忘了的话翻出来看看，马上就能达到我要的配置</p><h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><ol><li>UI 菜单字体</li><li>编辑器字体 注意：在 Ubuntu 系统下中文字体显得很难看，这时候设置支持中文的第二字体</li><li>控制台字体</li></ol><h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>插件我使用的是 IDEA 的自动同步功能，在一台客户端下载过的插件都会自动同步，这个不需担心</p><h3 id="编辑器变量颜色"><a href="#编辑器变量颜色" class="headerlink" title="编辑器变量颜色"></a>编辑器变量颜色</h3><p>进入设置： File | Settings | Editor | Color Scheme | Language Defaults， 开启 Semantic highlighting 功能</p><h3 id="代码改动后目录颜色"><a href="#代码改动后目录颜色" class="headerlink" title="代码改动后目录颜色"></a>代码改动后目录颜色</h3><p>File | Settings | Version Control， 开启 show directoris with ….</p><h3 id="自动导包优化"><a href="#自动导包优化" class="headerlink" title="自动导包优化"></a>自动导包优化</h3><p>File | Settings | Editor | General | Auto Import， 勾选 fly</p><h3 id="设置-alt"><a href="#设置-alt" class="headerlink" title="设置 alt + /"></a>设置 alt + /</h3><p>File | Settings | Keymap | main menu | code | completion | basic 设为 alt + /<br>同时 取消 cyclic expand word 的 快捷键</p><h3 id="自动提示忽略大小写"><a href="#自动提示忽略大小写" class="headerlink" title="自动提示忽略大小写"></a>自动提示忽略大小写</h3><p>File | Settings | Editor | General | Code Completion，将 case sensitive completion 修改为NONE</p><h3 id="编辑器设置多Tab页"><a href="#编辑器设置多Tab页" class="headerlink" title="编辑器设置多Tab页"></a>编辑器设置多Tab页</h3><p>File | Settings | Editor | General | Editor Tabs 去掉 show tabs in single row</p><h3 id="idea64-vmoptions-配置"><a href="#idea64-vmoptions-配置" class="headerlink" title="idea64.vmoptions 配置"></a>idea64.vmoptions 配置</h3><p>16G 以上的机器：<br>    -Xms512m<br>    -Xmx1500m<br>    -XX:ReservedCodeCacheSize=500m<br>    -XX:SoftRefLRUPolicyMSPerMB=100<br>添加编码 ：<br>    -Dfile.encoding=UTF-8</p><h3 id="idea-properties-配置"><a href="#idea-properties-配置" class="headerlink" title="idea.properties 配置"></a>idea.properties 配置</h3><p>控制台打印日志的行数：默认为 1024，不限制的话：<br>    idea.cycle.buffer.size=disabled</p>]]></content>
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我自己在多个系统中都有使用 IDEA， IDEA登录账户的话是支持配置同步的。但是由于每个系统的环境变量配置（JAVA_HOME,MAVEN_HOME,GIT,NODE,…..），文件目录结构，字体，快捷键等等不同,导致一套配置并不能很好的通用，于是我在此记录下我平时的一些配置，忘了的话翻出来看看，马上就能达到我要的配置</p><h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><ol><li>UI 菜单字体</li><li>编辑器字体 注意：在 Ubuntu 系统下中文字体显得很难看，这时候设置支持中文的第二字体</li><li>控制台字体</li></ol><h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>插件我使用的是 IDEA 的自动同步功能，在一台客户端下载过的插件都会自动同步，这个不需担心</p><h3 id="编辑器变量颜色"><a href="#编辑器变量颜色" class="headerlink" title="编辑器变量颜色"></a>编辑器变量颜色</h3><p>进入设置： File | Settings | Editor | Color Scheme | Language Defaults， 开启 Semantic highlighting 功能</p><h3 id="代码改动后目录颜色"><a href="#代码改动后目录颜色" class="headerlink" title="代码改动后目录颜色"></a>代码改动后目录颜色</h3><p>File | Settings | Version Control， 开启 show directoris with ….</p><h3 id="自动导包优化"><a href="#自动导包优化" class="headerlink" title="自动导包优化"></a>自动导包优化</h3><p>File | Settings | Editor | General | Auto Import， 勾选 fly</p><h3 id="设置-alt"><a href="#设置-alt" class="headerlink" title="设置 alt + /"></a>设置 alt + /</h3><p>File | Settings | Keymap | main menu | code | completion | basic 设为 alt + /<br>同时 取消 cyclic expand word 的 快捷键</p><h3 id="自动提示忽略大小写"><a href="#自动提示忽略大小写" class="headerlink" title="自动提示忽略大小写"></a>自动提示忽略大小写</h3><p>File | Settings | Editor | General | Code Completion，将 case sensitive completion 修改为NONE</p><h3 id="编辑器设置多Tab页"><a href="#编辑器设置多Tab页" class="headerlink" title="编辑器设置多Tab页"></a>编辑器设置多Tab页</h3><p>File | Settings | Editor | General | Editor Tabs 去掉 show tabs in single row</p><h3 id="提示-serialVersionUID-的生成"><a href="#提示-serialVersionUID-的生成" class="headerlink" title="提示 serialVersionUID 的生成"></a>提示 serialVersionUID 的生成</h3><p>File | Settings | Editor | Inspections | Serialization issues | Serializable class without ’serialVersionUID’ </p><h3 id="idea64-vmoptions-配置"><a href="#idea64-vmoptions-配置" class="headerlink" title="idea64.vmoptions 配置"></a>idea64.vmoptions 配置</h3><p>16G 以上的机器：<br>    -Xms512m<br>    -Xmx1500m<br>    -XX:ReservedCodeCacheSize=500m<br>    -XX:SoftRefLRUPolicyMSPerMB=100<br>添加编码 ：<br>    -Dfile.encoding=UTF-8</p><h3 id="idea-properties-配置"><a href="#idea-properties-配置" class="headerlink" title="idea.properties 配置"></a>idea.properties 配置</h3><p>控制台打印日志的行数：默认为 1024，不限制的话：<br>    idea.cycle.buffer.size=disabled</p>]]></content>
     
     <summary type="html">
     
@@ -436,30 +458,6 @@
     <summary type="html">
     
       有时我们会将我们的代码部署到服务器上，希望我们服务能够开机启动和被系统托管
-    
-    </summary>
-    
-      <category term="Linux篇" scheme="http://blog.joylau.cn/categories/Linux%E7%AF%87/"/>
-    
-    
-      <category term="CMD" scheme="http://blog.joylau.cn/tags/CMD/"/>
-    
-      <category term="Linux" scheme="http://blog.joylau.cn/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux菜鸟到熟悉 --- 闲置笔记本安装 Centos</title>
-    <link href="http://blog.joylau.cn/2018/05/17/Linux-NoteBookPC/"/>
-    <id>http://blog.joylau.cn/2018/05/17/Linux-NoteBookPC/</id>
-    <published>2018-05-17T08:29:58.000Z</published>
-    <updated>2018-08-01T08:38:47.410Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ol><li>以前的笔记本是 windows7 的操作系统</li><li>6GB 内存</li><li>还剩 96G 硬盘</li><li>打算安装 Centos 7.2</li></ol><h2 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h2><ol><li>U 盘一个（&gt;= 8G）</li><li>centos 镜像文件</li><li>刻录软件 UltraISO （官网直接下载试用版的即可）</li></ol><h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ol><li>在 windows 系统下压缩出磁盘空间或者直接格式化一个盘出来用来装 centos ，注意盘的格式 要为fat32</li><li>UltraISO 烧录镜像到U盘，U盘会被磁盘格式会改变且会被格式化</li><li>重启系统，以U盘启动</li><li>指定U盘安装</li><li>安装配置</li><li>等待进入系统</li></ol><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol><li>在 U 盘启动的时候，在安装界面上会有三个选项，选择第一个 Install Centos，按tab键进行配置</li><li>找到U盘位置的方法： <code>vmlinuz initrd=initrd.img linux dd</code></li><li>这个时候很容易找到 U 的device，记下来(我当时U的device是 sdb4)，重启机器，在进入上一步的步骤</li><li>这时，将参数改为 ： <code>vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4</code> 接下来等待即可</li><li>选择安装位置，下方一定要选择自定义分区</li><li>分区策略就选默认的，创建新的分区，分区的大小就按照默认分配的就好，不需要改变</li></ol><h2 id="WiFi-问题"><a href="#WiFi-问题" class="headerlink" title="WiFi 问题"></a>WiFi 问题</h2><p>因为笔记本自带了 wifi 模块，想着不要用网线扯来扯去的，直接用wifi连接网络就好了啊<br>一切都没想象的那么简单….</p><p>因为我之前安装的时候选择了最小化安装，进去系统后什么都没有，一起都用通过命令行来解决<br>第一次我是根据这篇文章的步骤来的 <a href="http://www.jb51.net/article/100300.htm" target="_blank" rel="noopener">http://www.jb51.net/article/100300.htm</a><br>中间遇到了很多问题 network 服务不可用；systemctl restart network 也起不来，一直报错；ping 域名不通，ping ip 不通；ifconfig 命令不存在….总之一大堆问题<br>问题一个个解决，最后终于连上家里的wifi<br>后来重启了下，一切回到解放前<br>我去….<br>一顿惆怅<br>后来我装了个gnome图形界面，连上了wifi<br>在切换命令行使用，不使用图形界面，现在一切完好，而且内存占用空间大幅减少</p><h2 id="WiFi-连接命令"><a href="#WiFi-连接命令" class="headerlink" title="WiFi 连接命令"></a>WiFi 连接命令</h2><ol><li>设置NetworkManager自动启动<br> chkconfig NetworkManager on</li><li>安装NetworkManager-wifi<br> yum -y install NetworkManager-wifi</li><li>开启WiFi<br> nmcli r wifi on</li><li>测试（扫描信号）<br> nmcli dev wifi<br> 扫描不到可用 iw wlp8s0b1(网卡名称) scan | grep SSID 扫描一下</li><li>连接<br> nmcli dev wifi connect password</li></ol><p>注： 总结多次安装 centos 系统得出一个结论，如果在安装过程中选择打开 WiFi 并连接网络，系统安装完成后，会在 /etc/sysconfig/network-scripts/ 目录下生成一个 ifcfg-WiFi名称 文件和 keys-WiFi名称的密码文件，之后安装 NetworkManage-wifi 便可每次开机都能自动启动 WiFi，如果是装完系统在命令连接的话则每次重启后都需要自己手动连接 WiFi，这是扫描原因暂且不得而知</p><h2 id="切换命令行和图形界面"><a href="#切换命令行和图形界面" class="headerlink" title="切换命令行和图形界面"></a>切换命令行和图形界面</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl set-default multi-user.target  //设置成命令模式</span><br><span class="line">systemctl set-default graphical.target  //设置成图形模式</span><br></pre></td></tr></table></figure><h2 id="关闭盖子不睡眠"><a href="#关闭盖子不睡眠" class="headerlink" title="关闭盖子不睡眠"></a>关闭盖子不睡眠</h2><p>vim /etc/systemd/logind.conf  </p><p>HandlePowerKey　　　　  按下电源键后会触发的行为<br>HandleSleepKey　　 　　 按下挂起键后会触发的行为<br>HandleHibernateKey  　　按下休眠键后会触发的行为<br>HandleLidSwitch　　 　　关闭笔记本盖子后会触发的行为</p><p>只需要把HandleLidSwitch选项设置为 HandleLidSwitch=lock </p><p>设置完成保存后运行 systemctl restart systemd-logind 命令才生效</p><h2 id="恢复-Windows-启动项"><a href="#恢复-Windows-启动项" class="headerlink" title="恢复 Windows 启动项"></a>恢复 Windows 启动项</h2><p>windows 7、8/10 安装centos7双系统后，默认会将mbr改写成为grub2，而默认的centos7不识别windows 的ntfs分区，所以启动项没有windows。<br>可以用3条命令，即可将windows添加到grub2的启动项。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y install epel-release</span><br><span class="line">yum -y install ntfs-3g</span><br><span class="line">grub2-mkconfig -o /boot/grub2/grub.cfg</span><br></pre></td></tr></table></figure><p>重启</p><h2 id="最小化安装时配置静态-IP-地址"><a href="#最小化安装时配置静态-IP-地址" class="headerlink" title="最小化安装时配置静态 IP 地址"></a>最小化安装时配置静态 IP 地址</h2><ol><li><p>vim /etc/sysconfig/network-scripts/ifcfg-网络接口名称,默认第一个是网络接口名称</p></li><li><p>修改以下红色标注的配置</p><p> TYPE=Ethernet</p> <font color="red" size="3">BOOTPROTO=static</font><p> DEFROUTE=yes</p><p> IPV4_FAILURE_FATAL=no</p><p> IPV6INIT=yes</p><p> IPV6_AUTOCONF=yes</p><p> IPV6_DEFROUTE=yes</p><p> IPV6_FAILURE_FATAL=no</p><p> NAME=eno16777736</p><p> UUID=9e8d604f-d991-4aa2-88a3-4c679e6f139c</p><p> DEVICE=eno16777736</p><p> ONBOOT=yes</p><p> PEERDNS=yes</p><p> PEERROUTES=yes</p><p> IPV6_PEERDNS=yes</p><p> IPV6_PEERROUTES=yes</p><p> <font color="red" size="3">HWADDR=B8:70:F4:24:61:A7</font>  #MAC地址</p><p> <font color="red" size="3">IPADDR=192.168.10.29</font>     #静态IP</p><p> <font color="red" size="3">GATEWAY=192.168.10.1</font>     #默认网关</p><p> <font color="red" size="3">NETMASK=255.255.255.0</font>    #子网掩码</p><p> <font color="red" size="3">DNS1=61.132.163.68</font>       #DNS配置</p></li><li><p>重启网络服务 ：service network restart</p></li></ol><h2 id="时间同步"><a href="#时间同步" class="headerlink" title="时间同步"></a>时间同步</h2><p>更新时间 2018-08-01 16:36:09<br>系统安装 ntpdate<br>查看本地时间： date<br>本地时间与服务器时间同步 ： ntpdate ntp1.aliyun.com<br>查看bois时间： hwclock<br>将本地时间写入到bois时间内： hwclock -w</p>]]></content>
-    
-    <summary type="html">
-    
-      家里以前的废旧笔记本突发奇想的想利用起来，由于我自己已经有很好的笔记本配置了，以前的闲置的笔记本打算装个 Centos 做开发使用
     
     </summary>
     
