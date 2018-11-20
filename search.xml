@@ -4,6 +4,85 @@
   
     
     <entry>
+      <title><![CDATA[Docker OpenVPN 服务搭建记录]]></title>
+      <url>http://blog.joylau.cn/2018/11/21/Docker-OpenVPN/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="OpenVPN-服务端部署"><a href="#OpenVPN-服务端部署" class="headerlink" title="OpenVPN 服务端部署"></a>OpenVPN 服务端部署</h2><ol>
+<li>全局变量配置: OVPN_DATA=”/home/joylau/ovpn-data”</li>
+<li>mkdir ${OVPN_DATA} , cd ${OVPN_DATA}</li>
+<li>这里我使用的是 tcp, udp 的好像没映射, 我用起来有问题,后来换的 tcp 方式, docker run -v ${OVPN_DATA}:/etc/openvpn –rm kylemanna/openvpn ovpn_genconfig -u tcp://公网 IP</li>
+<li>初始化,这里的密码我们都设置为 123456, docker run -v ${OVPN_DATA}:/etc/openvpn –rm -it kylemanna/openvpn ovpn_initpki</li>
+<li>创建用户 liufa , 不使用密码的话在最后面加上 nopass, 使用密码就键入密码,这里我们使用 123456, docker run -v ${OVPN_DATA}:/etc/openvpn –rm -it kylemanna/openvpn easyrsa build-client-full liufa nopass</li>
+<li>为用户 liufa 生成秘钥, docker run -v ${OVPN_DATA}:/etc/openvpn –rm kylemanna/openvpn ovpn_getclient liufa &gt; ${OVPN_DATA}/liufa.ovpn</li>
+<li>运行容器,这里我的宿主机端口为 6001,docker run –name openvpn -v ${OVPN_DATA}:/etc/openvpn -d -p 6001:1194 –privileged kylemanna/openvpn</li>
+</ol>
+<h2 id="OpenVPN-客户端使用说明"><a href="#OpenVPN-客户端使用说明" class="headerlink" title="OpenVPN 客户端使用说明"></a>OpenVPN 客户端使用说明</h2><p><img src="https://img.shields.io/badge/author-joylau-green.svg" alt="">    <img src="https://img.shields.io/badge/date-2018--11--20-yellow.svg" alt="">    <img src="https://img.shields.io/badge/version-1.0-blue.svg" alt=""></p>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><ol>
+<li>安装 openVPN windows 客户端，地址：<a href="https://swupdate.openvpn.org/community/releases/openvpn-install-2.4.6-I602.exe" target="_blank" rel="noopener">https://swupdate.openvpn.org/community/releases/openvpn-install-2.4.6-I602.exe</a> , 该地址需要梯子</li>
+<li>启动客户端，右键，选择 import file, 导入 ovpn 文件，文件请 联系管理员发给你</li>
+<li>右键 connect,如果弹出框提示输入密码，输入默认密码 123456 ，等待连接成功即可</li>
+</ol>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ol>
+<li>安装 openvpn：<code>sudo yum install openvpn</code> 或者 <code>sudo apt install openvpn</code></li>
+<li>找到 ovpn 文件所在目录： <code>sudo openvpn --config ./liufa.ovpn</code>, 看到成功信息时即连接成功</li>
+<li>可以用 nohup 以守护进程运行</li>
+</ol>
+<h3 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h3><ol>
+<li>安装 Tunnelblick，地址：<a href="https://tunnelblick.net/" target="_blank" rel="noopener">https://tunnelblick.net/</a></li>
+<li>导入 ovpn文件</li>
+<li>状态栏上点击连接VPN</li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> Docker篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> OpenVPN </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Docker 私服搭建记录]]></title>
+      <url>http://blog.joylau.cn/2018/11/19/Docker-PrivateRepo/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<ol>
+<li>docker pull registry</li>
+<li><p>docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 –restart=always –privileged=true –name registry registry:latest<br> 参数说明<br> -itd：在容器中打开一个伪终端进行交互操作，并在后台运行；<br> -v：把宿主机的/data/registry目录绑定 到 容器/var/lib/registry目录(这个目录是registry容器中存放镜像文件的目录)，来实现数据的持久化；<br> -p：映射端口；访问宿主机的5000端口就访问到registry容器的服务了；<br> –restart=always：这是重启的策略，假如这个容器异常退出会自动重启容器；<br> –privileged=true 在CentOS7中的安全模块selinux把权限禁掉了，参数给容器加特权，不加上传镜像会报权限错误OSError: [Errno 13] Permission denied: ‘/tmp/registry/repositories/liibrary’)或者（Received unexpected HTTP status: 500 Internal Server Error）错误<br> –name registry：创建容器命名为registry，你可以随便命名；<br> registry:latest：这个是刚才pull下来的镜像；</p>
+</li>
+<li><p>测试是否成功: curl <a href="http://127.0.0.1:5000/v2/_catalog" target="_blank" rel="noopener">http://127.0.0.1:5000/v2/_catalog</a>, 返回仓库的镜像列表</p>
+</li>
+<li>在中央仓库下载一个镜像: docker pull openjdk</li>
+<li>更改这个镜像的标签: docker tag imageId domain:5000/openjdk 或者 docker tag imageName:tag domain:5000/openjdk</li>
+<li>上传镜像到私服: docker push domain:5000/openjdk</li>
+</ol>
+<p>报错: Get <a href="https://172.18.18.90:5000/v2/" target="_blank" rel="noopener">https://172.18.18.90:5000/v2/</a>: http: server gave HTTP response to HTTPS client</p>
+<p>解决: 需要https的方法才能上传，我们可以修改下daemon.json<br>      vim /etc/docker/daemon.json<br>      {<br>        “insecure-registries”: [ “domain:5000”]<br>      }</p>]]></content>
+      
+        <categories>
+            
+            <category> Docker篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[记录 -- Docker 三种方式部署 ownCloud]]></title>
       <url>http://blog.joylau.cn/2018/10/26/Docker-ownCloud/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -5351,7 +5430,29 @@ redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速�
 <li>现在还缺一个系统启动时的配置:<code>chkconfig redis on</code></li>
 <li>执行之后，redis便是以系统服务启动、关闭了  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start redis;</span><br><span class="line">systemctl stop redis;</span><br><span class="line">systemctl restart redis;</span><br></pre></td></tr></table></figure>
 </li>
-</ul>]]></content>
+</ul>
+<h2 id="FTP-服务端安装"><a href="#FTP-服务端安装" class="headerlink" title="FTP 服务端安装"></a>FTP 服务端安装</h2><ol>
+<li>yum install vsftpd</li>
+<li>修改 vim /etc/vsftpd/vsftpd.conf<br> <code>anonymous_enable=NO</code> : 不允许匿名用户登录<br> <code>chroot_local_user=YES</code> : 用户不能跳出当前的 home 目录</li>
+<li>安装好之后其实已经创建了个 ftp 的用户了,可以查看 /etc/passwd 文件,只是没有密码,这个时候使用 ftp 工具来登录是可以看到目录的,默认 ftp 的 home 目录在 /var/ftp/ 下    </li>
+<li>修改 ftp 用户密码 passwd ftp</li>
+<li>这时使用 ftp 用户登录,发现不能 上传文件和删除文件,有 553 错误</li>
+</ol>
+<h3 id="解决不能上传和删除文件"><a href="#解决不能上传和删除文件" class="headerlink" title="解决不能上传和删除文件"></a>解决不能上传和删除文件</h3><ol>
+<li><p>首先 selinux 会默认拦截 vsftp,想要不被拦截的话,可以关闭 selinux, 但是关闭后安全性得不到保障,可能会出现其他的问题,这里我们不关闭,可以开放权限</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">setenforce 0 #暂时让SELinux进入Permissive模式</span><br><span class="line">getsebool -a | grep ftpd #查看 ftpd 的权限</span><br><span class="line"></span><br><span class="line">ftpd_anon_write --&gt; off</span><br><span class="line">ftpd_connect_all_unreserved --&gt; off</span><br><span class="line">ftpd_connect_db --&gt; off</span><br><span class="line">ftpd_full_access --&gt; on</span><br><span class="line">ftpd_use_cifs --&gt; off</span><br><span class="line">ftpd_use_fusefs --&gt; off</span><br><span class="line">ftpd_use_nfs --&gt; off</span><br><span class="line">ftpd_use_passive_mode --&gt; off</span><br><span class="line"></span><br><span class="line">setsebool -P ftpd_full_access 1 # 设置ftpd_full_access的权限为 on</span><br><span class="line"></span><br><span class="line">setenforce 1 # 开启 selinux</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这时 selinux 已经开放了 vsftpd 的权限</p>
+</li>
+<li><p>给 ftp 用户的 home 目录赋予写的权限 chmod a+w /var/ftp</p>
+</li>
+<li><p>vsftpd 在新版本时,如果检测到用户不能跳出当前的 home 目录,那么用户的 home 不能有写的权限,会报 500 OOPS: vsftpd: refusing to run with writable root inside chroot() 错误,这时就尴尬了</p>
+</li>
+<li><p>解决方式: 在配置文件中添加: allow_writeable_chroot=YES</p>
+</li>
+<li><p>重启 vsftpd</p>
+</li>
+</ol>]]></content>
       
         <categories>
             

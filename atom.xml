@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2018-10-26T03:28:19.392Z</updated>
+  <updated>2018-11-20T17:28:38.017Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker OpenVPN 服务搭建记录</title>
+    <link href="http://blog.joylau.cn/2018/11/21/Docker-OpenVPN/"/>
+    <id>http://blog.joylau.cn/2018/11/21/Docker-OpenVPN/</id>
+    <published>2018-11-20T16:29:23.000Z</published>
+    <updated>2018-11-20T17:28:38.017Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="OpenVPN-服务端部署"><a href="#OpenVPN-服务端部署" class="headerlink" title="OpenVPN 服务端部署"></a>OpenVPN 服务端部署</h2><ol><li>全局变量配置: OVPN_DATA=”/home/joylau/ovpn-data”</li><li>mkdir ${OVPN_DATA} , cd ${OVPN_DATA}</li><li>这里我使用的是 tcp, udp 的好像没映射, 我用起来有问题,后来换的 tcp 方式, docker run -v ${OVPN_DATA}:/etc/openvpn –rm kylemanna/openvpn ovpn_genconfig -u tcp://公网 IP</li><li>初始化,这里的密码我们都设置为 123456, docker run -v ${OVPN_DATA}:/etc/openvpn –rm -it kylemanna/openvpn ovpn_initpki</li><li>创建用户 liufa , 不使用密码的话在最后面加上 nopass, 使用密码就键入密码,这里我们使用 123456, docker run -v ${OVPN_DATA}:/etc/openvpn –rm -it kylemanna/openvpn easyrsa build-client-full liufa nopass</li><li>为用户 liufa 生成秘钥, docker run -v ${OVPN_DATA}:/etc/openvpn –rm kylemanna/openvpn ovpn_getclient liufa &gt; ${OVPN_DATA}/liufa.ovpn</li><li>运行容器,这里我的宿主机端口为 6001,docker run –name openvpn -v ${OVPN_DATA}:/etc/openvpn -d -p 6001:1194 –privileged kylemanna/openvpn</li></ol><h2 id="OpenVPN-客户端使用说明"><a href="#OpenVPN-客户端使用说明" class="headerlink" title="OpenVPN 客户端使用说明"></a>OpenVPN 客户端使用说明</h2><p><img src="https://img.shields.io/badge/author-joylau-green.svg" alt="">    <img src="https://img.shields.io/badge/date-2018--11--20-yellow.svg" alt="">    <img src="https://img.shields.io/badge/version-1.0-blue.svg" alt=""></p><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><ol><li>安装 openVPN windows 客户端，地址：<a href="https://swupdate.openvpn.org/community/releases/openvpn-install-2.4.6-I602.exe" target="_blank" rel="noopener">https://swupdate.openvpn.org/community/releases/openvpn-install-2.4.6-I602.exe</a> , 该地址需要梯子</li><li>启动客户端，右键，选择 import file, 导入 ovpn 文件，文件请 联系管理员发给你</li><li>右键 connect,如果弹出框提示输入密码，输入默认密码 123456 ，等待连接成功即可</li></ol><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ol><li>安装 openvpn：<code>sudo yum install openvpn</code> 或者 <code>sudo apt install openvpn</code></li><li>找到 ovpn 文件所在目录： <code>sudo openvpn --config ./liufa.ovpn</code>, 看到成功信息时即连接成功</li><li>可以用 nohup 以守护进程运行</li></ol><h3 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h3><ol><li>安装 Tunnelblick，地址：<a href="https://tunnelblick.net/" target="_blank" rel="noopener">https://tunnelblick.net/</a></li><li>导入 ovpn文件</li><li>状态栏上点击连接VPN</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      出差在外或者在家工作都需要连接公司网络,没有 VPN 怎么能行
+    
+    </summary>
+    
+      <category term="Docker篇" scheme="http://blog.joylau.cn/categories/Docker%E7%AF%87/"/>
+    
+    
+      <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
+    
+      <category term="OpenVPN" scheme="http://blog.joylau.cn/tags/OpenVPN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker 私服搭建记录</title>
+    <link href="http://blog.joylau.cn/2018/11/19/Docker-PrivateRepo/"/>
+    <id>http://blog.joylau.cn/2018/11/19/Docker-PrivateRepo/</id>
+    <published>2018-11-19T14:51:33.000Z</published>
+    <updated>2018-11-20T17:28:38.017Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><ol><li>docker pull registry</li><li><p>docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 –restart=always –privileged=true –name registry registry:latest<br> 参数说明<br> -itd：在容器中打开一个伪终端进行交互操作，并在后台运行；<br> -v：把宿主机的/data/registry目录绑定 到 容器/var/lib/registry目录(这个目录是registry容器中存放镜像文件的目录)，来实现数据的持久化；<br> -p：映射端口；访问宿主机的5000端口就访问到registry容器的服务了；<br> –restart=always：这是重启的策略，假如这个容器异常退出会自动重启容器；<br> –privileged=true 在CentOS7中的安全模块selinux把权限禁掉了，参数给容器加特权，不加上传镜像会报权限错误OSError: [Errno 13] Permission denied: ‘/tmp/registry/repositories/liibrary’)或者（Received unexpected HTTP status: 500 Internal Server Error）错误<br> –name registry：创建容器命名为registry，你可以随便命名；<br> registry:latest：这个是刚才pull下来的镜像；</p></li><li><p>测试是否成功: curl <a href="http://127.0.0.1:5000/v2/_catalog" target="_blank" rel="noopener">http://127.0.0.1:5000/v2/_catalog</a>, 返回仓库的镜像列表</p></li><li>在中央仓库下载一个镜像: docker pull openjdk</li><li>更改这个镜像的标签: docker tag imageId domain:5000/openjdk 或者 docker tag imageName:tag domain:5000/openjdk</li><li>上传镜像到私服: docker push domain:5000/openjdk</li></ol><p>报错: Get <a href="https://172.18.18.90:5000/v2/" target="_blank" rel="noopener">https://172.18.18.90:5000/v2/</a>: http: server gave HTTP response to HTTPS client</p><p>解决: 需要https的方法才能上传，我们可以修改下daemon.json<br>      vim /etc/docker/daemon.json<br>      {<br>        “insecure-registries”: [ “domain:5000”]<br>      }</p>]]></content>
+    
+    <summary type="html">
+    
+      国内的网络环境不好,在 docker build 的时候经常因为网络的问题失败,很是苦恼
+    
+    </summary>
+    
+      <category term="Docker篇" scheme="http://blog.joylau.cn/categories/Docker%E7%AF%87/"/>
+    
+    
+      <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>记录 -- Docker 三种方式部署 ownCloud</title>
@@ -421,50 +467,6 @@
       <category term="nodejs" scheme="http://blog.joylau.cn/tags/nodejs/"/>
     
       <category term="react" scheme="http://blog.joylau.cn/tags/react/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MacOS 修改 mac 地址</title>
-    <link href="http://blog.joylau.cn/2018/06/14/MacOS-ChangeMacAddr/"/>
-    <id>http://blog.joylau.cn/2018/06/14/MacOS-ChangeMacAddr/</id>
-    <published>2018-06-14T01:03:16.000Z</published>
-    <updated>2018-06-25T08:53:48.429Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><p>公司的网络接入是需要 ip 地址和 mac 地址绑定在一起的，笔记接入的 WiFi 没绑定就无法上网，公司那么多电脑不用，就使用他们已经绑定好的 静态 IP 地址和 mac 地址来上网</p><ol><li>随机生成一个全新的MAC网卡地址</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'</span><br></pre></td></tr></table></figure><ol start="2"><li>断开airport无线网卡连接</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -z</span><br></pre></td></tr></table></figure><ol start="3"><li>修改 mac 地址</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ifconfig en0 ether xx:xx:xx:xx:xx:xx</span><br></pre></td></tr></table></figure><p>xx:xx:xx:xx:xx:xx ＝输入你想要修改成的MAC地址来代替。</p><p>en0 ＝ 输入你想要修改成的网卡代替。一般 en0 就为无线网卡</p><ol start="4"><li>重新打开网络</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">networksetup -detectnewhardware</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      公司的网络接入是需要 ip 地址和 mac 地址绑定在一起的，笔记接入的 WiFi 没绑定就无法上网，公司那么多电脑不用，就使用他们已经绑定好的 静态 IP 地址和 mac 地址来上网
-    
-    </summary>
-    
-      <category term="MacOS篇" scheme="http://blog.joylau.cn/categories/MacOS%E7%AF%87/"/>
-    
-    
-      <category term="MacOS" scheme="http://blog.joylau.cn/tags/MacOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Elasticsearch 分词插件的使用及 demo</title>
-    <link href="http://blog.joylau.cn/2018/06/12/Elasticsearch-Ik/"/>
-    <id>http://blog.joylau.cn/2018/06/12/Elasticsearch-Ik/</id>
-    <published>2018-06-12T02:53:54.000Z</published>
-    <updated>2018-06-25T08:53:48.429Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><p><img src="http://image.joylau.cn/blog/idioms.gif" alt="IdiomsDictionary"></p><p><a href="https://github.com/JoyLau/es-doc-node" target="_blank" rel="noopener">https://github.com/JoyLau/es-doc-node</a></p>]]></content>
-    
-    <summary type="html">
-    
-      记录下 ik 分词插件的使用,及使用 react + antd 做了一个小 demo
-    
-    </summary>
-    
-      <category term="大数据篇" scheme="http://blog.joylau.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/"/>
-    
-    
-      <category term="Elasticsearch" scheme="http://blog.joylau.cn/tags/Elasticsearch/"/>
     
   </entry>
   
