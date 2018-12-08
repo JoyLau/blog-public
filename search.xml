@@ -4,6 +4,165 @@
   
     
     <entry>
+      <title><![CDATA[Yum 私服搭建记录]]></title>
+      <url>http://blog.joylau.cn/2018/12/08/Linux-Private-Yum/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>有时我们的服务器网络并不允许连接互联网,这时候 yum 安装软件就有很多麻烦事情了, 我们也许会通过 yumdownloader 来从可以连接互联网的机器上下载好 rpm 安装包,<br>然后再拷贝到 服务器上.<br>命令 : <code>yumdownloader  --resolve mariadb-server</code> , 所有依赖下载到当前文件夹下</p>
+<p>这样做会存在很多问题:</p>
+<ol>
+<li>虽然上述命令已经加上了 <code>--resolve</code> 来解决依赖,但是一些基础的依赖包仍然没有下载到,这时安装就有问题了</li>
+<li>下载的很多依赖包都有安装的先后顺序,包太多的话,根本无法搞清楚顺序</li>
+</ol>
+<h2 id="rsync-同步科大的源"><a href="#rsync-同步科大的源" class="headerlink" title="rsync 同步科大的源"></a>rsync 同步科大的源</h2><ol>
+<li><code>yum install rsync</code></li>
+<li><code>df -h</code> 查看磁盘上目录的存储的空间情况</li>
+<li>找到最大的磁盘的空间目录,最好准备好 50 GB 以上的空间</li>
+<li>新建目录如下:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ./yum_data/centos/7/os/x86_64</span><br><span class="line">mkdir -p ./yum_data/centos/7/extras/x86_64</span><br><span class="line">mkdir -p ./yum_data/centos/7/updates/x86_64</span><br><span class="line">mkdir -p ./yum_data/centos/7/epel/x86_64</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>开始同步 base extras updates epel 源</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> yum_data</span><br><span class="line">rsync -av rsync://rsync.mirrors.ustc.edu.cn/centos/7/os/x86_64/ ./centos/7/os/x86_64/</span><br><span class="line">rsync -av rsync://rsync.mirrors.ustc.edu.cn/centos/7/extras/x86_64/ ./centos/7/extras/x86_64/</span><br><span class="line">rsync -av rsync://rsync.mirrors.ustc.edu.cn/centos/7/updates/x86_64/ ./7/updates/x86_64/</span><br><span class="line">rsync -av rsync://rsync.mirrors.ustc.edu.cn/epel/7/x86_64/ ./epel/7/x86_64/</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>开始漫长的等待……</li>
+<li>等待全部同步完毕, <code>tar -czf yum_data.tar.gz ./yum_data</code> ,压缩目录</li>
+<li>压缩包拷贝到服务器上</li>
+</ol>
+<h2 id="配置本地-yum-源"><a href="#配置本地-yum-源" class="headerlink" title="配置本地 yum 源"></a>配置本地 yum 源</h2><ol>
+<li>找到一个空间大的目录下,解压包: <code>tar -xvf yum_data.tar.gz</code></li>
+<li>创建一个新的源配置: <code>touch /etc/yum.repos.d/private.repo</code></li>
+<li>插入一下内容:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">local</span>-base]</span><br><span class="line">name=Base Server Repository</span><br><span class="line">baseurl=file:///home/liufa/yum_data/centos/7/os/x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">priority=1</span><br><span class="line">[<span class="built_in">local</span>-extras]</span><br><span class="line">name=Extras Repository</span><br><span class="line">baseurl=file:///home/liufa/yum_data/centos/7/extras/x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">priority=2</span><br><span class="line">[<span class="built_in">local</span>-updates]</span><br><span class="line">name=Updates Server Repository</span><br><span class="line">baseurl=file:///home/liufa/yum_data/centos/7/updates/x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">priority=3</span><br><span class="line">[<span class="built_in">local</span>-epel]</span><br><span class="line">name=Epel Server Repository</span><br><span class="line">baseurl=file:///home/liufa/yum_data/centos/7/epel/x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">priority=4</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>禁用原来的 Base Extras Updates 源: <code>yum-config-manager --disable Base,Extras,Updates</code></li>
+<li><code>yum clean all</code></li>
+<li><code>yum makecache</code></li>
+<li><code>yum repolist</code> 查看源信息</li>
+</ol>
+<h2 id="配置网络-yum-源"><a href="#配置网络-yum-源" class="headerlink" title="配置网络 yum 源"></a>配置网络 yum 源</h2><p>有时候我们搭建的私有 yum 还需要提供给其他的机器使用,这时候再做一个网络的 yum 即可,用 Apache 或者 Nginx 搭建个服务即可</p>
+<ol>
+<li><code>yum install nginx</code></li>
+<li><code>vim /etc/nginx/nginx.conf</code> 修改</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80 default_server;</span><br><span class="line">    listen       [::]:80 default_server;</span><br><span class="line">    server_name  _;</span><br><span class="line">    root         /home/liufa/yum_data;</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Load configuration files for the default server block.</span></span><br><span class="line">    include /etc/nginx/default.d/*.conf;</span><br><span class="line">    </span><br><span class="line">    location / &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    error_page 404 /404.html;</span><br><span class="line">        location = /40x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    error_page 500 502 503 504 /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>这时 private.repo 里的 baseurl 全改为网络地址即可</li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> Linux篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> YUM </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[$.post() 和 $.ajax() 的问题记录]]></title>
+      <url>http://blog.joylau.cn/2018/12/04/Jquery-Post/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>想着写个 demo, 用个简单的 jq 的 post 请求传递数组,却发现遇到了不少问题…<br>一顿研究,总结如下:</p>
+<h3 id="post"><a href="#post" class="headerlink" title="$.post()"></a>$.post()</h3><p>语法:<br>$.post(url,data,success(data, textStatus, jqXHR),dataType)</p>
+<p>url    必需。规定把请求发送到哪个 URL。<br>data    可选。映射或字符串值。规定连同请求发送到服务器的数据。<br>success(data, textStatus, jqXHR)    可选。请求成功时执行的回调函数。<br>dataType    可选。规定预期的服务器响应的数据类型。默认执行智能判断（xml、json、script 或 html</p>
+<p>总结需要注意的是: </p>
+<ul>
+<li><ol>
+<li>请求的 Content-Type 是 <code>application/x-www-form-urlencoded; charset=UTF-8</code> 就是表单提交的,dataType值得是规定服务器的响应方式</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>第二个参数 data 的类型是键值对的对象,不能为 JSON.stringify 后的 json 字符串,序列化后也是 key 的数据</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>传数组会有问题,会将数组中每个对象的拆开然后堆到一起作为键值对传输数据, 可以通过 <code>jQuery.ajaxSettings.traditional = true;</code> 在 post 请求之前设置,防止这样的情况发生,但是对象不会被序列化,会变成 Object 这样的格式,这也不是我们想要的结果</li>
+</ol>
+</li>
+</ul>
+<h3 id="ajax"><a href="#ajax" class="headerlink" title="$.ajax()"></a>$.ajax()</h3><p>很传统的使用方式了:<br>发送 post 请求<br>我们的 points 的是数组,里面是多个对象<br>数据传输使用 Request Payload 方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: <span class="string">'POST'</span>,</span><br><span class="line">    url: location.origin + <span class="string">"/trafficService/pixelToLngLat"</span>,</span><br><span class="line">    data: <span class="built_in">JSON</span>.stringify(points),</span><br><span class="line">    contentType: <span class="string">"application/json; charset=UTF-8"</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res, status</span>) </span>&#123;</span><br><span class="line">        res.map(<span class="function"><span class="params">point</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.info(point)</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>后台使用方式:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/pixelToLngLat"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> JSONArray <span class="title">pixelToLngLat</span><span class="params">(@RequestBody JSONArray points)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> restTemplate.postForObject(baiduApi.getNodeService() + <span class="string">"/traffic/pixelToLngLat"</span>,points,JSONArray.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>很传统的使用方式</p>
+<h3 id="强行使用-post"><a href="#强行使用-post" class="headerlink" title="强行使用 $.post()"></a>强行使用 $.post()</h3><p>这个时候我们参数还是传输的键值对方式,只不过将值转化为 json 字符串进行传输</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jQuery.ajaxSettings.traditional = <span class="literal">true</span>;</span><br><span class="line">$.post(location.origin + <span class="string">"/trafficService/pixelToLngLat"</span>, &#123;<span class="attr">points</span>:<span class="built_in">JSON</span>.stringify(points)&#125;,<span class="function"><span class="keyword">function</span> (<span class="params">res, status</span>) </span>&#123;</span><br><span class="line">    res.map(<span class="function"><span class="params">point</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.info(point)</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;,<span class="string">"json"</span>)</span><br></pre></td></tr></table></figure>
+<p>后台使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/pixelToLngLat"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> JSONArray <span class="title">pixelToLngLat</span><span class="params">(@RequestParam(<span class="string">"points"</span>)</span> String points)</span>&#123;</span><br><span class="line">    JSONArray array = JSONArray.parseArray(points);</span><br><span class="line">    <span class="keyword">return</span> restTemplate.postForObject(baiduApi.getNodeService() + <span class="string">"/traffic/pixelToLngLat"</span>,array,JSONArray.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>表单提交方式,如果后台有相应的对象的来接受参数的话,直接在方法是使用对象即可,不需要再通过 JSONObject 将字符串转数组了,这种方式 $.ajax() 同样也适用</p>
+</blockquote>]]></content>
+      
+        <categories>
+            
+            <category> 前端篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Jquery </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[关于Jdk 8 Stream 的使用记录]]></title>
+      <url>http://blog.joylau.cn/2018/11/29/JDK8-Stream-Use/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="reduce-使用记录"><a href="#reduce-使用记录" class="headerlink" title="reduce() 使用记录"></a>reduce() 使用记录</h2><p>reduce 有三种方法可以使用:</p>
+<ul>
+<li><code>Optional&lt;T&gt; reduce(BinaryOperator&lt;T&gt; accumulator)</code></li>
+<li><code>T reduce(T identity, BinaryOperator&lt;T&gt; accumulator)</code></li>
+<li><code>&lt;U&gt; U reduce(U identity,BiFunction&lt;U, ? super T, U&gt; accumulator,BinaryOperator&lt;U&gt; combiner)</code></li>
+</ul>
+<p>第一种传入二元运算表达式,第二种是带初始值的二元运算表达式,这里着重记录下第三种的使用方式</p>
+<p>第三种第一个参数方法的返回值类型,<br>第二个参数是一个二元运算表达式,这个表达式的第一个参数是方法的返回值,也就是方法的第一个参数,第二个参数是 Stream 里的值<br>第三个参数也是一个二元运算表达式,表达式的2个参数都是方法返回值的类型,用于对返回值类型的操作</p>
+<p>第三个参数在非并发的情况下返回任何类型(甚至是 null)都没有影响,因为在非并发情况下,第三个二元表达式根本不会执行</p>
+<p>那么第三个二元表达式用在并发的情况下,在并发的情况下,第二个二元表达式的第一个参数始终是方法的第一个类型,第三个三元表达式用于将不同线程操作的结果汇总起来</p>
+<h2 id="map-和-flatMap"><a href="#map-和-flatMap" class="headerlink" title="map() 和 flatMap()"></a>map() 和 flatMap()</h2><p>区别在于, map() 返回自定义对象, 而 flatMap() 返回 Stream 流对象</p>
+<h2 id="distinct-使用记录"><a href="#distinct-使用记录" class="headerlink" title="distinct() 使用记录"></a>distinct() 使用记录</h2><p>最近在 lamda 的 stream 进行 list 去重复的时候，发现没有生效<br>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Map&lt;String, List&lt;FollowAnalysisPojo&gt;&gt;&gt; maps = allList</span><br><span class="line">            .parallelStream()</span><br><span class="line">            .distinct()</span><br><span class="line">            .collect(Collectors.groupingBy(FollowAnalysisPojo::getMainPlateNum,Collectors.groupingBy(FollowAnalysisPojo::getPlateNum)));</span><br></pre></td></tr></table></figure>
+<p>实体类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FollowAnalysisPojo</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*被跟车牌*/</span></span><br><span class="line">    <span class="keyword">private</span> String mainPlateNum;</span><br><span class="line">    <span class="comment">/*跟踪车牌*/</span></span><br><span class="line">    <span class="keyword">private</span> String plateNum;</span><br><span class="line">    <span class="keyword">private</span> String vehicleType;</span><br><span class="line">    <span class="keyword">private</span> String siteName;</span><br><span class="line">    <span class="keyword">private</span> String directionName;</span><br><span class="line">    <span class="comment">/*车主时间*/</span></span><br><span class="line">    <span class="keyword">private</span> String passTimeMain;</span><br><span class="line">    <span class="comment">/*伴随时间*/</span></span><br><span class="line">    <span class="keyword">private</span> String passTimeSub;</span><br><span class="line">    <span class="comment">/*跟踪次数*/</span></span><br><span class="line">    <span class="keyword">private</span> Integer trackCount;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*该条记录被跟踪车占据的行数，用于在前端合并单元格*/</span></span><br><span class="line">    <span class="keyword">private</span> Integer mainRowSpan = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*该条记录跟踪车占据的行数，用于在前端合并单元格*/</span></span><br><span class="line">    <span class="keyword">private</span> Integer rowSpan;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String key = UUID.randomUUID().toString();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码是想做 先对查询出来的数据进行去重复的操作，然后在按照被跟车牌和跟踪车牌进行分组操作<br>有点需要说明的是 <code>parallelStream()</code> 比我们常用的 <code>stream()</code> 是并行多管操作，速度上更快</p>
+<p>然后发现的问题是并没有去重复，当时也在奇怪 distinct() 里并没有任何参数来指定如何使用规则来去重复</p>
+<h3 id="正解"><a href="#正解" class="headerlink" title="正解"></a>正解</h3><p>重写List中实体类的 <code>equals()</code> 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FollowAnalysisPojo</span> </span>&#123;</span><br><span class="line">    ......</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当车主时间,伴随时间都相同时，则认为是一个对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> obj 对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> Boolean</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!(obj <span class="keyword">instanceof</span> FollowAnalysisPojo))<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        FollowAnalysisPojo followAnalysisPojo = (FollowAnalysisPojo)obj;</span><br><span class="line">        <span class="keyword">return</span> passTimeMain.equals(followAnalysisPojo.passTimeMain) &amp;&amp; passTimeSub.equals(followAnalysisPojo.passTimeSub);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样我们就按照我自定义的规则进行去重复了<br>运行了一下，发现还是不起作用<br>debug了一下，发现根本没有执行重写的 equals 方法<br>原来还需要重写 <code>hashCode()</code> 方法<br>在 <code>equals()</code> 方法 执行前会先执行 <code>hashCode()</code> 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FollowAnalysisPojo</span> </span>&#123;</span><br><span class="line">    ......</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重新 equals 方法必须重新 hashCode方法</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> int</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = passTimeMain.hashCode();</span><br><span class="line">        result = <span class="number">31</span> * result + passTimeMain.hashCode();</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就可以了。</p>
+<h3 id="2018-9-13-更新"><a href="#2018-9-13-更新" class="headerlink" title="2018-9-13 更新"></a>2018-9-13 更新</h3><p>如果我们不重写方法，有没有办法按照List中bean的某个属性来去重复呢？答案是有的，利用的是 stream 的 reduce，用一个set 来存放 key,代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List&lt;JSONObject&gt; result = trails.stream()</span><br><span class="line">            .filter(distinctByKey(VehicleTrail::getPlateNbr))</span><br><span class="line">            .collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>  &lt;T&gt; <span class="function">Predicate&lt;T&gt; <span class="title">distinctByKey</span><span class="params">(Function&lt;? <span class="keyword">super</span> T, ?&gt; keyExtractor)</span> </span>&#123;</span><br><span class="line">    Set&lt;Object&gt; seen = ConcurrentHashMap.newKeySet();</span><br><span class="line">    <span class="keyword">return</span> t -&gt; seen.add(keyExtractor.apply(t));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> Java篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[重剑无锋,大巧不工 SpringBoot --- 理解 ThreadPoolTaskExecutor]]></title>
       <url>http://blog.joylau.cn/2018/11/24/SpringBoot-ThreadPoolTaskExecutor/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -1640,39 +1799,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[关于Jdk 8 Stream Distinct 去重复使用记录]]></title>
-      <url>http://blog.joylau.cn/2018/03/01/JDK8-Stream-Distinct/</url>
-      <content type="html"><![CDATA[<a id="more"></a>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>最近在 lamda 的 stream 进行 list 去重复的时候，发现没有生效<br>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Map&lt;String, List&lt;FollowAnalysisPojo&gt;&gt;&gt; maps = allList</span><br><span class="line">            .parallelStream()</span><br><span class="line">            .distinct()</span><br><span class="line">            .collect(Collectors.groupingBy(FollowAnalysisPojo::getMainPlateNum,Collectors.groupingBy(FollowAnalysisPojo::getPlateNum)));</span><br></pre></td></tr></table></figure>
-<p>实体类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FollowAnalysisPojo</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*被跟车牌*/</span></span><br><span class="line">    <span class="keyword">private</span> String mainPlateNum;</span><br><span class="line">    <span class="comment">/*跟踪车牌*/</span></span><br><span class="line">    <span class="keyword">private</span> String plateNum;</span><br><span class="line">    <span class="keyword">private</span> String vehicleType;</span><br><span class="line">    <span class="keyword">private</span> String siteName;</span><br><span class="line">    <span class="keyword">private</span> String directionName;</span><br><span class="line">    <span class="comment">/*车主时间*/</span></span><br><span class="line">    <span class="keyword">private</span> String passTimeMain;</span><br><span class="line">    <span class="comment">/*伴随时间*/</span></span><br><span class="line">    <span class="keyword">private</span> String passTimeSub;</span><br><span class="line">    <span class="comment">/*跟踪次数*/</span></span><br><span class="line">    <span class="keyword">private</span> Integer trackCount;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*该条记录被跟踪车占据的行数，用于在前端合并单元格*/</span></span><br><span class="line">    <span class="keyword">private</span> Integer mainRowSpan = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*该条记录跟踪车占据的行数，用于在前端合并单元格*/</span></span><br><span class="line">    <span class="keyword">private</span> Integer rowSpan;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String key = UUID.randomUUID().toString();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>上面的代码是想做 先对查询出来的数据进行去重复的操作，然后在按照被跟车牌和跟踪车牌进行分组操作<br>有点需要说明的是 <code>parallelStream()</code> 比我们常用的 <code>stream()</code> 是并行多管操作，速度上更快</p>
-<p>然后发现的问题是并没有去重复，当时也在奇怪 distinct() 里并没有任何参数来指定如何使用规则来去重复</p>
-<h3 id="正解"><a href="#正解" class="headerlink" title="正解"></a>正解</h3><p>重写List中实体类的 <code>equals()</code> 方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FollowAnalysisPojo</span> </span>&#123;</span><br><span class="line">    ......</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当车主时间,伴随时间都相同时，则认为是一个对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> obj 对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> Boolean</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!(obj <span class="keyword">instanceof</span> FollowAnalysisPojo))<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        FollowAnalysisPojo followAnalysisPojo = (FollowAnalysisPojo)obj;</span><br><span class="line">        <span class="keyword">return</span> passTimeMain.equals(followAnalysisPojo.passTimeMain) &amp;&amp; passTimeSub.equals(followAnalysisPojo.passTimeSub);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样我们就按照我自定义的规则进行去重复了<br>运行了一下，发现还是不起作用<br>debug了一下，发现根本没有执行重写的 equals 方法<br>原来还需要重写 <code>hashCode()</code> 方法<br>在 <code>equals()</code> 方法 执行前会先执行 <code>hashCode()</code> 方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FollowAnalysisPojo</span> </span>&#123;</span><br><span class="line">    ......</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重新 equals 方法必须重新 hashCode方法</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> int</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = passTimeMain.hashCode();</span><br><span class="line">        result = <span class="number">31</span> * result + passTimeMain.hashCode();</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样就可以了。</p>
-<h2 id="2018-9-13-更新"><a href="#2018-9-13-更新" class="headerlink" title="2018-9-13 更新"></a>2018-9-13 更新</h2><p>如果我们不重写方法，有没有办法按照List中bean的某个属性来去重复呢？答案是有的，利用的是 stream 的 reduce，用一个set 来存放 key,代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List&lt;JSONObject&gt; result = trails.stream()</span><br><span class="line">            .filter(distinctByKey(VehicleTrail::getPlateNbr))</span><br><span class="line">            .collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>  &lt;T&gt; <span class="function">Predicate&lt;T&gt; <span class="title">distinctByKey</span><span class="params">(Function&lt;? <span class="keyword">super</span> T, ?&gt; keyExtractor)</span> </span>&#123;</span><br><span class="line">    Set&lt;Object&gt; seen = ConcurrentHashMap.newKeySet();</span><br><span class="line">    <span class="keyword">return</span> t -&gt; seen.add(keyExtractor.apply(t));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-        <categories>
-            
-            <category> Java篇 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> java </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[关于通用 Mapper Example 使用记录]]></title>
       <url>http://blog.joylau.cn/2018/02/27/MyBatis-Example/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -3070,9 +3196,9 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
         
         <tags>
             
-            <tag> 程序员 </tag>
-            
             <tag> 技能 </tag>
+            
+            <tag> 程序员 </tag>
             
         </tags>
         
@@ -5514,6 +5640,23 @@ redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速�
 </li>
 <li><p>重启 vsftpd</p>
 </li>
+</ol>
+<h2 id="RabbitMQ-服务端安装"><a href="#RabbitMQ-服务端安装" class="headerlink" title="RabbitMQ 服务端安装"></a>RabbitMQ 服务端安装</h2><ol>
+<li>yum install rabbitmq-server</li>
+<li>rabbitmq-plugins enable rabbitmq_management</li>
+<li>systemctl start rabbitmq-server</li>
+</ol>
+<h2 id="MariaDB-的安装"><a href="#MariaDB-的安装" class="headerlink" title="MariaDB 的安装"></a>MariaDB 的安装</h2><ol>
+<li><code>yum install mariadb-server</code></li>
+<li>登入 mariadb <code>mysql -uroot -p</code> , 第一次登陆是 root 用户没有密码,直接进入即可</li>
+<li>初始化设置: <code>mysql_secure_installation</code> ,可以设置 root 密码,移除匿名账号等等…</li>
+<li>设置 root 可远程登录: <ol>
+<li><code>mysql -uroot -p</code> 登录</li>
+<li><code>GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39;IDENTIFIED BY &#39;123456&#39; WITH GRANT OPTION;</code> 授权 root 账户,密码 123456</li>
+<li><code>flush privileges;</code></li>
+</ol>
+</li>
+<li>继续后续操作</li>
 </ol>]]></content>
       
         <categories>
