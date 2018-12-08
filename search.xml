@@ -77,18 +77,9 @@
 <p>url    必需。规定把请求发送到哪个 URL。<br>data    可选。映射或字符串值。规定连同请求发送到服务器的数据。<br>success(data, textStatus, jqXHR)    可选。请求成功时执行的回调函数。<br>dataType    可选。规定预期的服务器响应的数据类型。默认执行智能判断（xml、json、script 或 html</p>
 <p>总结需要注意的是: </p>
 <ul>
-<li><ol>
 <li>请求的 Content-Type 是 <code>application/x-www-form-urlencoded; charset=UTF-8</code> 就是表单提交的,dataType值得是规定服务器的响应方式</li>
-</ol>
-</li>
-<li><ol start="2">
 <li>第二个参数 data 的类型是键值对的对象,不能为 JSON.stringify 后的 json 字符串,序列化后也是 key 的数据</li>
-</ol>
-</li>
-<li><ol start="3">
 <li>传数组会有问题,会将数组中每个对象的拆开然后堆到一起作为键值对传输数据, 可以通过 <code>jQuery.ajaxSettings.traditional = true;</code> 在 post 请求之前设置,防止这样的情况发生,但是对象不会被序列化,会变成 Object 这样的格式,这也不是我们想要的结果</li>
-</ol>
-</li>
 </ul>
 <h3 id="ajax"><a href="#ajax" class="headerlink" title="$.ajax()"></a>$.ajax()</h3><p>很传统的使用方式了:<br>发送 post 请求<br>我们的 points 的是数组,里面是多个对象<br>数据传输使用 Request Payload 方式</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: <span class="string">'POST'</span>,</span><br><span class="line">    url: location.origin + <span class="string">"/trafficService/pixelToLngLat"</span>,</span><br><span class="line">    data: <span class="built_in">JSON</span>.stringify(points),</span><br><span class="line">    contentType: <span class="string">"application/json; charset=UTF-8"</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res, status</span>) </span>&#123;</span><br><span class="line">        res.map(<span class="function"><span class="params">point</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.info(point)</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -3196,9 +3187,9 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
         
         <tags>
             
-            <tag> 技能 </tag>
-            
             <tag> 程序员 </tag>
+            
+            <tag> 技能 </tag>
             
         </tags>
         
@@ -5672,11 +5663,11 @@ redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速�
             
             <tag> Linux </tag>
             
-            <tag> JDK </tag>
+            <tag> MySQL </tag>
             
             <tag> Tomcat </tag>
             
-            <tag> MySQL </tag>
+            <tag> JDK </tag>
             
             <tag> Redis </tag>
             
@@ -5895,13 +5886,13 @@ redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速�
             
             <tag> Nginx </tag>
             
-            <tag> Tomcat </tag>
-            
             <tag> SSL </tag>
             
             <tag> HTTPS </tag>
             
             <tag> Apache </tag>
+            
+            <tag> Tomcat </tag>
             
         </tags>
         
