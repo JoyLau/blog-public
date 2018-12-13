@@ -4,6 +4,76 @@
   
     
     <entry>
+      <title><![CDATA[Linux 定时删除 10 天前的日志文件]]></title>
+      <url>http://blog.joylau.cn/2018/12/13/Linux-Cron/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们的程序在 Linux 上运行会产生大量日志文件,这些日志文件如果不定时清理的话会很快将磁盘沾满</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="配置一个定时清理的任务"><a href="#配置一个定时清理的任务" class="headerlink" title="配置一个定时清理的任务"></a>配置一个定时清理的任务</h3><ol>
+<li><code>crontab -e</code> , 添加一个定时任务</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10 * * * * /home/liufa/app/cron/del_log.sh</span><br></pre></td></tr></table></figure>
+<p>每天 0 点 10 分运行上述命令文件</p>
+<ol start="2">
+<li><p>创建文件: del_log.sh</p>
+</li>
+<li><p>删除 10 天的日志文件 </p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line">find /home/liufa/app/node/logs -mtime +10 -name <span class="string">"*.log"</span> -<span class="built_in">exec</span> rm -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>启动定时任务, <code>systemctl start crond</code></li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> Linux篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Crond </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Docker Build Image 问题记录]]></title>
+      <url>http://blog.joylau.cn/2018/12/13/Docker-Build/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="时区问题"><a href="#时区问题" class="headerlink" title="时区问题"></a>时区问题</h3><p>时区的配置在 <code>/etc/localtime</code></p>
+<p>localtime 文件会指向 <code>/usr/share/zoneinfo/Asia/</code> 目录下的某个文件</p>
+<p>我们只需要将其指向 ShangHai 即可</p>
+<p>Dockerfile 可以这样配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RUN rm -rf /etc/localtime &amp;&amp; \</span><br><span class="line">    ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
+<p>先删除,在创建一个软连接即可</p>
+<h3 id="pm2-web-命令错误问题"><a href="#pm2-web-命令错误问题" class="headerlink" title="pm2-web 命令错误问题"></a>pm2-web 命令错误问题</h3><p>通常我们都是将 node_modules 文件夹直接复制到镜像中</p>
+<p>有时候会出现问题,就比如 pm2-web ,构建成镜像后,命令无法使用</p>
+<p>原因在于开发的机器的操作系统和镜像的操作系统不一致,会导致一些包出问题</p>
+<p>解决的方式就是重新 <code>nmp install</code></p>
+<p>Dockerfile 如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RUN rm -rf ./node_modules &amp;&amp; \</span><br><span class="line">    rm -rf ./package-lock.json &amp;&amp; \</span><br><span class="line">    npm install</span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> Docker篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Yum 私服搭建记录]]></title>
       <url>http://blog.joylau.cn/2018/12/08/Linux-Private-Yum/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -277,7 +347,20 @@
 <li>上传镜像到私服: docker push domain:5000/openjdk</li>
 </ol>
 <p>报错: Get <a href="https://172.18.18.90:5000/v2/" target="_blank" rel="noopener">https://172.18.18.90:5000/v2/</a>: http: server gave HTTP response to HTTPS client</p>
-<p>解决: 需要https的方法才能上传，我们可以修改下daemon.json<br>      vim /etc/docker/daemon.json<br>      {<br>        “insecure-registries”: [ “domain:5000”]<br>      }</p>]]></content>
+<p>解决: 需要https的方法才能上传，我们可以修改下daemon.json<br>      vim /etc/docker/daemon.json<br>      {<br>        “insecure-registries”: [ “domain:5000”]<br>      }</p>
+<h3 id="无网络搭建"><a href="#无网络搭建" class="headerlink" title="无网络搭建"></a>无网络搭建</h3><ol>
+<li>在有网络的机器上 <code>docker pull registry</code></li>
+<li><code>docker save registry &gt; registry.tar</code> 保存到个 tar 包</li>
+<li>拷贝到服务器上, <code>docker load -i registry.tar</code> 导入镜像</li>
+<li><code>docker images</code> 查看镜像</li>
+<li>再继续上面的操作</li>
+</ol>
+<h3 id="docker-开启-tcp-端口"><a href="#docker-开启-tcp-端口" class="headerlink" title="docker 开启 tcp 端口"></a>docker 开启 tcp 端口</h3><ul>
+<li><code>vim /usr/lib/systemd/system/docker.service</code></li>
+</ul>
+<p>修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/usr/bin/dockerd-current -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock \</span><br></pre></td></tr></table></figure>
+<p>重启即可,之后 idea 可输入 tcp://ip:2375 连接</p>]]></content>
       
         <categories>
             
@@ -5542,7 +5625,7 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
 </ul>
 <h3 id="MySQL卸载"><a href="#MySQL卸载" class="headerlink" title="MySQL卸载"></a>MySQL卸载</h3><ul>
 <li><code>yum remove  mysql mysql-server mysql-libs mysql-server;</code></li>
-<li><code>rpm -qa|grep mysql</code>(查询出来的东东yum remove掉)</li>
+<li><code>rpm -qa|grep mysql</code>(查询出来的东西yum remove掉)</li>
 <li><code>find / -name mysql</code> (将找到的相关东西delete掉；)</li>
 </ul>
 <h3 id="值得注意的是："><a href="#值得注意的是：" class="headerlink" title="值得注意的是："></a>值得注意的是：</h3><ul>
@@ -5648,6 +5731,61 @@ redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速�
 </ol>
 </li>
 <li>继续后续操作</li>
+</ol>
+<h3 id="Mybatis-连接-MariaDB-中文乱码问题"><a href="#Mybatis-连接-MariaDB-中文乱码问题" class="headerlink" title="Mybatis 连接 MariaDB 中文乱码问题"></a>Mybatis 连接 MariaDB 中文乱码问题</h3><p>MariaDB的默认编码是latin1，插入中文会乱码，因此需要将编码改为utf8</p>
+<ul>
+<li><p>首先设置数据库的编码都为 utf8</p>
+<ol>
+<li><code>SHOW VARIABLES LIKE &#39;character%&#39;;</code> 查看编码</li>
+<li>修改 /etc/my.cnf.d/client.cnf , 在 <code>[client]</code> 里加入 <code>default-character-set=utf8</code></li>
+<li>修改 /etc/my.cnf.d/server.cnf , 在 <code>[mysqld]</code> 里加入 <code>character-set-server=utf8</code></li>
+<li><code>systemctl restart mariadb</code> 重启生效</li>
+<li>再次查看 <code>SHOW VARIABLES LIKE &#39;character%&#39;;</code> 查看编码</li>
+</ol>
+</li>
+<li><p>建库,建表,表里的 varchar 字段的字符集都用 <code>utf8</code>, 排序规则都用 <code>utf8_unicode_ci</code></p>
+</li>
+<li><p>至此服务端就配置完成了</p>
+</li>
+<li><p>连接数据配置文件,加上参数</p>
+</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">datasource:</span></span><br><span class="line"><span class="attr">  druid:</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://34.0.7.183:3306/traffic-service?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false</span></span><br></pre></td></tr></table></figure>
+<h2 id="DNS-服务安装"><a href="#DNS-服务安装" class="headerlink" title="DNS 服务安装"></a>DNS 服务安装</h2><ol>
+<li><code>yum install bind</code> 安装完成后服务名为 <code>named</code></li>
+<li><code>vim /etc/named.conf</code></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">options &#123;</span><br><span class="line">        listen-on port 53 &#123; 34.0.7.183; &#125;;</span><br><span class="line">        listen-on-v6 port 53 &#123; ::1; &#125;;</span><br><span class="line">        directory       <span class="string">"/var/named"</span>;</span><br><span class="line">        dump-file       <span class="string">"/var/named/data/cache_dump.db"</span>;</span><br><span class="line">        statistics-file <span class="string">"/var/named/data/named_stats.txt"</span>;</span><br><span class="line">        memstatistics-file <span class="string">"/var/named/data/named_mem_stats.txt"</span>;</span><br><span class="line">        recursing-file  <span class="string">"/var/named/data/named.recursing"</span>;</span><br><span class="line">        secroots-file   <span class="string">"/var/named/data/named.secroots"</span>;</span><br><span class="line">        allow-query     &#123; any; &#125;;</span><br><span class="line"></span><br><span class="line">        /* </span><br><span class="line">         - If you are building an AUTHORITATIVE DNS server, <span class="keyword">do</span> NOT <span class="built_in">enable</span> recursion.</span><br><span class="line">         - If you are building a RECURSIVE (caching) DNS server, you need to <span class="built_in">enable</span> </span><br><span class="line">           recursion. </span><br><span class="line">         - If your recursive DNS server has a public IP address, you MUST <span class="built_in">enable</span> access </span><br><span class="line">           control to <span class="built_in">limit</span> queries to your legitimate users. Failing to <span class="keyword">do</span> so will</span><br><span class="line">           cause your server to become part of large scale DNS amplification </span><br><span class="line">           attacks. Implementing BCP38 within your network would greatly</span><br><span class="line">           reduce such attack surface </span><br><span class="line">        */</span><br><span class="line">        recursion yes;</span><br><span class="line"></span><br><span class="line">        dnssec-enable yes;</span><br><span class="line">        dnssec-validation yes;</span><br><span class="line"></span><br><span class="line">        /* Path to ISC DLV key */</span><br><span class="line">        bindkeys-file <span class="string">"/etc/named.iscdlv.key"</span>;</span><br><span class="line"></span><br><span class="line">        managed-keys-directory <span class="string">"/var/named/dynamic"</span>;</span><br><span class="line"></span><br><span class="line">        pid-file <span class="string">"/run/named/named.pid"</span>;</span><br><span class="line">        session-keyfile <span class="string">"/run/named/session.key"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">logging &#123;</span><br><span class="line">        channel default_debug &#123;</span><br><span class="line">                file <span class="string">"data/named.run"</span>;</span><br><span class="line">                severity dynamic;</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">zone <span class="string">"."</span> IN &#123;</span><br><span class="line">        <span class="built_in">type</span> hint;</span><br><span class="line">        file <span class="string">"named.ca"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">include <span class="string">"/etc/named.rfc1912.zones"</span>;</span><br><span class="line">include <span class="string">"/etc/named.root.key"</span>;</span><br></pre></td></tr></table></figure>
+<p><code>listen-on port 53 { 127.0.0.1; };</code>       # 指定服务监听的端口，建议写本机IP，减少服务器消耗<br><code>allow-query     { any; };</code>               # 允许哪些客户端访问DNS服务，此处改为“any”，表示任意主机</p>
+<p>修改这2项配置即可<br><code>include &quot;/etc/named.rfc1912.zones&quot;;</code>    # include代表该文件是子配置文件</p>
+<ol start="3">
+<li><code>vim /etc/named.rfc1912.zones</code> , 添加一个我们自定义的域名配置,这里我使用的是 <code>baidu.com</code></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zone <span class="string">"baidu.com"</span> IN &#123;</span><br><span class="line">        <span class="built_in">type</span> master;</span><br><span class="line">        file <span class="string">"data/baidu.com.zone"</span>;</span><br><span class="line">        allow-update &#123; none; &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上述文件默认的目录在 <code>/var/named/data</code> 目录下</p>
+<ol start="4">
+<li><code>vim /var/named/data/baidu.com.zone</code></li>
+</ol>
+<p>配置如下: 注意格式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$TTL</span> 1D</span><br><span class="line">@       IN SOA         baidu.com. root (</span><br><span class="line">                                        1       ; serial</span><br><span class="line">                                        1D      ; refresh</span><br><span class="line">                                        1H      ; retry</span><br><span class="line">                                        1W      ; expire</span><br><span class="line">                                        0 )     ; minimum</span><br><span class="line"></span><br><span class="line">@       IN      NS      ns.baidu.com.</span><br><span class="line">ns      IN      A       34.0.7.183</span><br><span class="line">@       IN      A       34.0.7.183</span><br><span class="line"><span class="built_in">test</span>    IN      A       34.0.7.183</span><br><span class="line">liufa   IN      A       34.0.7.227</span><br></pre></td></tr></table></figure>
+<p>注意第一条记录 <code>ns.baidu.com.</code> 的解析必须添加否则会报错,添加之后,再加一条 ns 子域名的解析,直接指向自己即可</p>
+<p>这里附上一些配置的解释:</p>
+<ul>
+<li>serial：序列号。可以供从服务器判断何时获取新数据的，这里我设成今天的日期。更新数据文件必须要更新这个序列号，否则从服务器将不更新</li>
+<li>refresh：指定多长时间从服务器要与主服务器进行核对</li>
+<li>retry：如果从服务器试图检查主服务器的序列号时，主服务器没有响应，则经过这个时间后将重新进行检查</li>
+<li>expire：将决定从服务器在没有主服务器的情况下权威地持续提供域数据服务的时间长短</li>
+<li>minimum：高速缓存否定回答的存活时间</li>
+<li>SOA记录：每个区仅有一个SOA记录，该区一直延伸到遇见另一个SOA记录为止。SOA记录包括区的名字，一个技术联系人和各种不同的超时值</li>
+<li>IN记录：使用“IN”，对应的是internet</li>
+<li>A记录：是DNS数据库的核心。一个主机必须为它的每个网络接口得到一条A记录</li>
+<li>NS记录：识别对一个区有权威性的服务器（即所有主服务器和从服务器），并把子域委托给其他机构。</li>
+<li>MX记录：电子邮件系统就是使用MX记录来更有效的路由邮件。</li>
+<li>PTR记录：从IP地址到主机名的反向映射。与A记录一样，必须为每个网络接口有一条PTR记录。</li>
+</ul>
+<ol start="5">
+<li><code>chown root:named baidu.com.zone</code> 修改权限</li>
+<li><code>systemctl restart named</code></li>
 </ol>]]></content>
       
         <categories>
@@ -5663,11 +5801,11 @@ redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速�
             
             <tag> Linux </tag>
             
-            <tag> MySQL </tag>
+            <tag> JDK </tag>
             
             <tag> Tomcat </tag>
             
-            <tag> JDK </tag>
+            <tag> MySQL </tag>
             
             <tag> Redis </tag>
             
@@ -5886,13 +6024,13 @@ redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速�
             
             <tag> Nginx </tag>
             
+            <tag> Tomcat </tag>
+            
             <tag> SSL </tag>
             
             <tag> HTTPS </tag>
             
             <tag> Apache </tag>
-            
-            <tag> Tomcat </tag>
             
         </tags>
         
