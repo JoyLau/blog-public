@@ -4,6 +4,92 @@
   
     
     <entry>
+      <title><![CDATA[SpringCloud --- Docker 部署问题记录]]></title>
+      <url>http://blog.joylau.cn/2018/12/18/SpringCloud-Docker/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="Docker-容器中-IP-的配置"><a href="#Docker-容器中-IP-的配置" class="headerlink" title="Docker 容器中 IP 的配置"></a>Docker 容器中 IP 的配置</h3><p>将 spring cloud 项目部署到 docker 容器中后,虽然可以配置容器的端口映射到宿主机的端口<br>但是在 eureka 界面显示的instance id 是一串随机的字符串,类似于 d97d725bf6ae 这样的<br>但是,事实上,我们想让他显示出 IP ,这样我们可以直接点击而打开 info 端点信息</p>
+<p>修改 3 处配置项:</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line"><span class="attr">  client:</span></span><br><span class="line"><span class="attr">    service-url:</span></span><br><span class="line"><span class="attr">      defaultZone:</span> <span class="attr">http://34.0.7.183:9368/eureka/</span></span><br><span class="line"><span class="attr">  instance:</span></span><br><span class="line"><span class="attr">    prefer-ip-address:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    instance-id:</span> <span class="string">$&#123;eureka.instance.ip-address&#125;:$&#123;server.port&#125;</span></span><br><span class="line"><span class="attr">    ip-address:</span> <span class="number">34.0</span><span class="number">.7</span><span class="number">.183</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>eureka.instance.prefer-ip-address</code> 配置为 true , 表示 instance 使用 ip 配置</li>
+<li><code>eureka.instance.prefer-ip-address</code> 配置当前 instance 的物理 IP</li>
+<li><code>eureka.instance.prefer-instance-id</code> 界面上的 instance-id 显示为 ip + 端口</li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> SpringCloud篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> SpringCloud </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[MacOS 上路由表的操作记录]]></title>
+      <url>http://blog.joylau.cn/2018/12/14/MacOS-Route/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<ol>
+<li><p>查看路由表: <code>netstat -nr</code></p>
+</li>
+<li><p>添加路由: <code>sudo route add 34.0.7.0 34.0.7.1</code></p>
+</li>
+<li><p>删除路由: <code>sudo route delete 0.0.0.0</code></p>
+</li>
+<li><p>清空路由表: <code>networksetup -setadditionalroutes &quot;Ethernet&quot;</code>,  “Ethernet” 指定路由走哪个设备（查看当前的设备可以使用这个命令 <code>networksetup -listallnetworkservices</code></p>
+</li>
+<li><p>清空路由表: <code>sudo route flush</code> , 是否有效没测试过,通过 <code>man route</code> 看到的,等哪天试过了,再来更新这个内容是否有效</p>
+</li>
+</ol>
+<h3 id="无线网卡和-USB-有线网卡同时使用"><a href="#无线网卡和-USB-有线网卡同时使用" class="headerlink" title="无线网卡和 USB 有线网卡同时使用"></a>无线网卡和 USB 有线网卡同时使用</h3><p>我这里的使用场景是无线接外网, USB 网卡接内网,无线路由的网关是 192.168.0.1, USB 网卡的网关是 34.0.7.1</p>
+<ol>
+<li><p>删除默认路由: <code>sudo route delete 0.0.0.0</code></p>
+</li>
+<li><p>添加默认路由走无线网卡: <code>sudo route add 0.0.0.0 192.168.0.1</code></p>
+</li>
+<li><p>内网走 USB 网卡: <code>sudo route add 34.0.7.0 34.0.7.1</code></p>
+</li>
+<li><p>调整网络顺序,网络属性里面的多个网卡的优先级顺序问题。基本原则是哪个网卡访问互联网，他的优先级就在上面就可以了</p>
+</li>
+</ol>
+<blockquote>
+<p>有个问题没搞明白, 按逻辑说这样添加的静态路由是临时的,在重启后会消失失效,可实际上我重启了之后并没有失效</p>
+</blockquote>
+<h3 id="配置永久静态路由"><a href="#配置永久静态路由" class="headerlink" title="配置永久静态路由"></a>配置永久静态路由</h3><ol>
+<li><p><code>networksetup</code> mac 自带的工具,升级到最新的Sierra后拥有,是个“系统偏好设置”中网络设置工具的终端版</p>
+</li>
+<li><p><code>networksetup –help</code> 可以查看具体的帮助</p>
+</li>
+<li><p>添加静态永久路由: <code>networksetup -setadditionalroutes &quot;USB 10/100/1000 LAN&quot; 10.188.12.0 255.255.255.0 192.168.8.254</code><br> “USB 10/100/1000 LAN” 指定路由走哪个设备（查看当前的设备可以使用这个命令 <code>networksetup -listallnetworkservices</code> </p>
+</li>
+<li><p><code>netstat -nr</code> 查看路由表</p>
+</li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> MacOS篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> MacOS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Linux 定时删除 10 天前的日志文件]]></title>
       <url>http://blog.joylau.cn/2018/12/13/Linux-Cron/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -360,7 +446,41 @@
 </ul>
 <p>修改</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/usr/bin/dockerd-current -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock \</span><br></pre></td></tr></table></figure>
-<p>重启即可,之后 idea 可输入 tcp://ip:2375 连接</p>]]></content>
+<p>重启即可,之后 idea 可输入 tcp://ip:2375 连接</p>
+<h3 id="允许跨域请求"><a href="#允许跨域请求" class="headerlink" title="允许跨域请求"></a>允许跨域请求</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">version: 0.1</span><br><span class="line"><span class="built_in">log</span>:</span><br><span class="line">  fields:</span><br><span class="line">    service: registry</span><br><span class="line">storage:</span><br><span class="line">  cache:</span><br><span class="line">    blobdescriptor: inmemory</span><br><span class="line">  filesystem:</span><br><span class="line">    rootdirectory: /var/lib/registry</span><br><span class="line">http:</span><br><span class="line">  addr: :5000</span><br><span class="line">  headers:</span><br><span class="line">    X-Content-Type-Options: [nosniff]</span><br><span class="line">    Access-Control-Allow-Headers: [<span class="string">'Origin,Accept,Content-Type,Authorization'</span>]</span><br><span class="line">    Access-Control-Allow-Origin: [<span class="string">'*'</span>]</span><br><span class="line">    Access-Control-Allow-Methods: [<span class="string">'GET,POST,PUT,DELETE'</span>]</span><br><span class="line">health:</span><br><span class="line">  storagedriver:</span><br><span class="line">    enabled: <span class="literal">true</span></span><br><span class="line">    interval: 10s</span><br><span class="line">    threshold: 3</span><br></pre></td></tr></table></figure>
+<p>head 添加</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Access-Control-Allow-Headers:</span> <span class="string">['Origin,Accept,Content-Type,Authorization']</span></span><br><span class="line"><span class="attr">Access-Control-Allow-Origin:</span> <span class="string">['*']</span></span><br><span class="line"><span class="attr">Access-Control-Allow-Methods:</span> <span class="string">['GET,POST,PUT,DELETE']</span></span><br></pre></td></tr></table></figure>
+<p>之后保存到本地,再挂载到容器的 /etc/docker/registry/config.yml 中</p>
+<h3 id="Harbor-搭建-Docker-私服"><a href="#Harbor-搭建-Docker-私服" class="headerlink" title="Harbor 搭建 Docker 私服"></a>Harbor 搭建 Docker 私服</h3><p>上述方式搭建的 docker 私服,属于比较简单使用的方法,只能在命令行上操作,很不方便,比如不能直接删除镜像,无法添加用户,设置私有仓库<br>Harbor 是一个图形化的私服管理界面,安装使用更易于操作</p>
+<blockquote>
+<p>Harbor是一个用于存储和分发Docker镜像的企业级Registry服务器，通过添加一些企业必需的功能特性，例如安全、标识和管理等，扩展了开源Docker Distribution。作为一个企业级私有Registry服务器，Harbor提供了更好的性能和安全。提升用户使用Registry构建和运行环境传输镜像的效率。</p>
+</blockquote>
+<ol>
+<li>下载离线包: <a href="https://github.com/goharbor/harbor/releases" target="_blank" rel="noopener">https://github.com/goharbor/harbor/releases</a></li>
+<li>解压</li>
+<li>更改配置文件 <code>docker-compose.yml</code> 私服的仓库端口我们默认设置为 5000,但是 docker-compose.yml 文件中并没有配置,我们需要添加一个 ports 配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">registry:</span></span><br><span class="line"><span class="attr">  networks:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">harbor</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">5000</span><span class="string">:5000</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>Harbor 默认使用的是 80 端口,不想使用的话可切换其他端口, 配置在 docker-compose.yml 的最下方</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">proxy:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="string">goharbor/nginx-photon:v1.7.0</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">9339</span><span class="string">:80</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">443</span><span class="string">:443</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">4443</span><span class="string">:4443</span></span><br></pre></td></tr></table></figure>
+<p>此处需要注意的是,如果更改了其他端口,则需要在 <code>common/templates/registry/config.yml</code> 文件中更改一个配置 realm 加上端口,否则登录会出现错误</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">    auth:</span></span><br><span class="line"><span class="attr">      token:</span></span><br><span class="line"><span class="attr">        issuer:</span> <span class="string">harbor-token-issuer</span></span><br><span class="line"><span class="attr">        realm:</span> <span class="string">$public_url:9339/service/token</span></span><br><span class="line"><span class="attr">        rootcertbundle:</span> <span class="string">/etc/registry/root.crt</span></span><br><span class="line"><span class="attr">        service:</span> <span class="string">harbor-registry</span></span><br><span class="line"><span class="string">```</span> </span><br><span class="line"></span><br><span class="line"><span class="number">5.</span> <span class="string">修改配置文件</span> <span class="string">`harbor.cfg`</span></span><br><span class="line"></span><br><span class="line"><span class="string">```</span> <span class="string">bash</span></span><br><span class="line">    <span class="string">hostname</span> <span class="string">=</span> <span class="number">34.0</span><span class="number">.7</span><span class="number">.183</span> <span class="comment">## 改为 IP 或者 域名,不要写错 localhost 或者 127.0.0.1</span></span><br><span class="line">    <span class="string">ui_url_protocol</span> <span class="string">=</span> <span class="string">http</span> <span class="comment">## http 方式</span></span><br><span class="line">    <span class="string">harbor_admin_password</span> <span class="string">=</span> <span class="string">Hardor12345</span> <span class="comment">## admin 账号的默认登录密码</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li><p><code>./prepare</code> 完成配置</p>
+</li>
+<li><p><code>./install.sh</code> 开始安装</p>
+</li>
+<li><p>打开浏览器</p>
+</li>
+<li><p>创建一个项目 <code>joylau</code> 注意这个名称很重要,名称对不上的话,会造成 image push 不成功,还有就是若果这个项目的是公开的话,则所有人都可以 pull ,但是 push 的话是需要登录的,登录的用户名和密码在该项目的成员下.默认的 admin 用户就可以</p>
+</li>
+<li><p>登录,退出命令 <code>docker login 34.0.7.183:5000 ; docker logout 34.0.7.183:5000</code></p>
+</li>
+<li><p>之后的操作都是日常操作了</p>
+</li>
+</ol>]]></content>
       
         <categories>
             
@@ -5733,7 +5853,7 @@ redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速�
 <li>继续后续操作</li>
 </ol>
 <h3 id="Mybatis-连接-MariaDB-中文乱码问题"><a href="#Mybatis-连接-MariaDB-中文乱码问题" class="headerlink" title="Mybatis 连接 MariaDB 中文乱码问题"></a>Mybatis 连接 MariaDB 中文乱码问题</h3><p>MariaDB的默认编码是latin1，插入中文会乱码，因此需要将编码改为utf8</p>
-<ul>
+<ol>
 <li><p>首先设置数据库的编码都为 utf8</p>
 <ol>
 <li><code>SHOW VARIABLES LIKE &#39;character%&#39;;</code> 查看编码</li>
@@ -5749,7 +5869,7 @@ redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速�
 </li>
 <li><p>连接数据配置文件,加上参数</p>
 </li>
-</ul>
+</ol>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">datasource:</span></span><br><span class="line"><span class="attr">  druid:</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://34.0.7.183:3306/traffic-service?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false</span></span><br></pre></td></tr></table></figure>
 <h2 id="DNS-服务安装"><a href="#DNS-服务安装" class="headerlink" title="DNS 服务安装"></a>DNS 服务安装</h2><ol>
 <li><code>yum install bind</code> 安装完成后服务名为 <code>named</code></li>

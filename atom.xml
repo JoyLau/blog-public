@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2018-12-13T09:11:00.057Z</updated>
+  <updated>2018-12-18T05:56:47.423Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringCloud --- Docker 部署问题记录</title>
+    <link href="http://blog.joylau.cn/2018/12/18/SpringCloud-Docker/"/>
+    <id>http://blog.joylau.cn/2018/12/18/SpringCloud-Docker/</id>
+    <published>2018-12-18T00:45:35.000Z</published>
+    <updated>2018-12-18T05:56:47.423Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="Docker-容器中-IP-的配置"><a href="#Docker-容器中-IP-的配置" class="headerlink" title="Docker 容器中 IP 的配置"></a>Docker 容器中 IP 的配置</h3><p>将 spring cloud 项目部署到 docker 容器中后,虽然可以配置容器的端口映射到宿主机的端口<br>但是在 eureka 界面显示的instance id 是一串随机的字符串,类似于 d97d725bf6ae 这样的<br>但是,事实上,我们想让他显示出 IP ,这样我们可以直接点击而打开 info 端点信息</p><p>修改 3 处配置项:</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line"><span class="attr">  client:</span></span><br><span class="line"><span class="attr">    service-url:</span></span><br><span class="line"><span class="attr">      defaultZone:</span> <span class="attr">http://34.0.7.183:9368/eureka/</span></span><br><span class="line"><span class="attr">  instance:</span></span><br><span class="line"><span class="attr">    prefer-ip-address:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    instance-id:</span> <span class="string">$&#123;eureka.instance.ip-address&#125;:$&#123;server.port&#125;</span></span><br><span class="line"><span class="attr">    ip-address:</span> <span class="number">34.0</span><span class="number">.7</span><span class="number">.183</span></span><br></pre></td></tr></table></figure><ol><li><code>eureka.instance.prefer-ip-address</code> 配置为 true , 表示 instance 使用 ip 配置</li><li><code>eureka.instance.prefer-ip-address</code> 配置当前 instance 的物理 IP</li><li><code>eureka.instance.prefer-instance-id</code> 界面上的 instance-id 显示为 ip + 端口</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      该篇文章记录使用 Docker 部署 SpringCloud 遇到的问题
+    
+    </summary>
+    
+      <category term="SpringCloud篇" scheme="http://blog.joylau.cn/categories/SpringCloud%E7%AF%87/"/>
+    
+    
+      <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
+    
+      <category term="SpringCloud" scheme="http://blog.joylau.cn/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MacOS 上路由表的操作记录</title>
+    <link href="http://blog.joylau.cn/2018/12/14/MacOS-Route/"/>
+    <id>http://blog.joylau.cn/2018/12/14/MacOS-Route/</id>
+    <published>2018-12-14T08:04:39.000Z</published>
+    <updated>2018-12-18T05:56:47.423Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><ol><li><p>查看路由表: <code>netstat -nr</code></p></li><li><p>添加路由: <code>sudo route add 34.0.7.0 34.0.7.1</code></p></li><li><p>删除路由: <code>sudo route delete 0.0.0.0</code></p></li><li><p>清空路由表: <code>networksetup -setadditionalroutes &quot;Ethernet&quot;</code>,  “Ethernet” 指定路由走哪个设备（查看当前的设备可以使用这个命令 <code>networksetup -listallnetworkservices</code></p></li><li><p>清空路由表: <code>sudo route flush</code> , 是否有效没测试过,通过 <code>man route</code> 看到的,等哪天试过了,再来更新这个内容是否有效</p></li></ol><h3 id="无线网卡和-USB-有线网卡同时使用"><a href="#无线网卡和-USB-有线网卡同时使用" class="headerlink" title="无线网卡和 USB 有线网卡同时使用"></a>无线网卡和 USB 有线网卡同时使用</h3><p>我这里的使用场景是无线接外网, USB 网卡接内网,无线路由的网关是 192.168.0.1, USB 网卡的网关是 34.0.7.1</p><ol><li><p>删除默认路由: <code>sudo route delete 0.0.0.0</code></p></li><li><p>添加默认路由走无线网卡: <code>sudo route add 0.0.0.0 192.168.0.1</code></p></li><li><p>内网走 USB 网卡: <code>sudo route add 34.0.7.0 34.0.7.1</code></p></li><li><p>调整网络顺序,网络属性里面的多个网卡的优先级顺序问题。基本原则是哪个网卡访问互联网，他的优先级就在上面就可以了</p></li></ol><blockquote><p>有个问题没搞明白, 按逻辑说这样添加的静态路由是临时的,在重启后会消失失效,可实际上我重启了之后并没有失效</p></blockquote><h3 id="配置永久静态路由"><a href="#配置永久静态路由" class="headerlink" title="配置永久静态路由"></a>配置永久静态路由</h3><ol><li><p><code>networksetup</code> mac 自带的工具,升级到最新的Sierra后拥有,是个“系统偏好设置”中网络设置工具的终端版</p></li><li><p><code>networksetup –help</code> 可以查看具体的帮助</p></li><li><p>添加静态永久路由: <code>networksetup -setadditionalroutes &quot;USB 10/100/1000 LAN&quot; 10.188.12.0 255.255.255.0 192.168.8.254</code><br> “USB 10/100/1000 LAN” 指定路由走哪个设备（查看当前的设备可以使用这个命令 <code>networksetup -listallnetworkservices</code> </p></li><li><p><code>netstat -nr</code> 查看路由表</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      记录下 MacOS 上关于路由的记录
+    
+    </summary>
+    
+      <category term="MacOS篇" scheme="http://blog.joylau.cn/categories/MacOS%E7%AF%87/"/>
+    
+    
+      <category term="MacOS" scheme="http://blog.joylau.cn/tags/MacOS/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux 定时删除 10 天前的日志文件</title>
@@ -183,9 +229,9 @@
     <link href="http://blog.joylau.cn/2018/11/19/Docker-PrivateRepo/"/>
     <id>http://blog.joylau.cn/2018/11/19/Docker-PrivateRepo/</id>
     <published>2018-11-19T14:51:33.000Z</published>
-    <updated>2018-12-13T09:11:00.057Z</updated>
+    <updated>2018-12-18T05:56:47.423Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a><ol><li>docker pull registry</li><li><p>docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 –restart=always –privileged=true –name registry registry:latest<br> 参数说明<br> -itd：在容器中打开一个伪终端进行交互操作，并在后台运行；<br> -v：把宿主机的/data/registry目录绑定 到 容器/var/lib/registry目录(这个目录是registry容器中存放镜像文件的目录)，来实现数据的持久化；<br> -p：映射端口；访问宿主机的5000端口就访问到registry容器的服务了；<br> –restart=always：这是重启的策略，假如这个容器异常退出会自动重启容器；<br> –privileged=true 在CentOS7中的安全模块selinux把权限禁掉了，参数给容器加特权，不加上传镜像会报权限错误OSError: [Errno 13] Permission denied: ‘/tmp/registry/repositories/liibrary’)或者（Received unexpected HTTP status: 500 Internal Server Error）错误<br> –name registry：创建容器命名为registry，你可以随便命名；<br> registry:latest：这个是刚才pull下来的镜像；</p></li><li><p>测试是否成功: curl <a href="http://127.0.0.1:5000/v2/_catalog" target="_blank" rel="noopener">http://127.0.0.1:5000/v2/_catalog</a>, 返回仓库的镜像列表</p></li><li>在中央仓库下载一个镜像: docker pull openjdk</li><li>更改这个镜像的标签: docker tag imageId domain:5000/openjdk 或者 docker tag imageName:tag domain:5000/openjdk</li><li>上传镜像到私服: docker push domain:5000/openjdk</li></ol><p>报错: Get <a href="https://172.18.18.90:5000/v2/" target="_blank" rel="noopener">https://172.18.18.90:5000/v2/</a>: http: server gave HTTP response to HTTPS client</p><p>解决: 需要https的方法才能上传，我们可以修改下daemon.json<br>      vim /etc/docker/daemon.json<br>      {<br>        “insecure-registries”: [ “domain:5000”]<br>      }</p><h3 id="无网络搭建"><a href="#无网络搭建" class="headerlink" title="无网络搭建"></a>无网络搭建</h3><ol><li>在有网络的机器上 <code>docker pull registry</code></li><li><code>docker save registry &gt; registry.tar</code> 保存到个 tar 包</li><li>拷贝到服务器上, <code>docker load -i registry.tar</code> 导入镜像</li><li><code>docker images</code> 查看镜像</li><li>再继续上面的操作</li></ol><h3 id="docker-开启-tcp-端口"><a href="#docker-开启-tcp-端口" class="headerlink" title="docker 开启 tcp 端口"></a>docker 开启 tcp 端口</h3><ul><li><code>vim /usr/lib/systemd/system/docker.service</code></li></ul><p>修改</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/usr/bin/dockerd-current -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock \</span><br></pre></td></tr></table></figure><p>重启即可,之后 idea 可输入 tcp://ip:2375 连接</p>]]></content>
+    <content type="html"><![CDATA[<a id="more"></a><ol><li>docker pull registry</li><li><p>docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 –restart=always –privileged=true –name registry registry:latest<br> 参数说明<br> -itd：在容器中打开一个伪终端进行交互操作，并在后台运行；<br> -v：把宿主机的/data/registry目录绑定 到 容器/var/lib/registry目录(这个目录是registry容器中存放镜像文件的目录)，来实现数据的持久化；<br> -p：映射端口；访问宿主机的5000端口就访问到registry容器的服务了；<br> –restart=always：这是重启的策略，假如这个容器异常退出会自动重启容器；<br> –privileged=true 在CentOS7中的安全模块selinux把权限禁掉了，参数给容器加特权，不加上传镜像会报权限错误OSError: [Errno 13] Permission denied: ‘/tmp/registry/repositories/liibrary’)或者（Received unexpected HTTP status: 500 Internal Server Error）错误<br> –name registry：创建容器命名为registry，你可以随便命名；<br> registry:latest：这个是刚才pull下来的镜像；</p></li><li><p>测试是否成功: curl <a href="http://127.0.0.1:5000/v2/_catalog" target="_blank" rel="noopener">http://127.0.0.1:5000/v2/_catalog</a>, 返回仓库的镜像列表</p></li><li>在中央仓库下载一个镜像: docker pull openjdk</li><li>更改这个镜像的标签: docker tag imageId domain:5000/openjdk 或者 docker tag imageName:tag domain:5000/openjdk</li><li>上传镜像到私服: docker push domain:5000/openjdk</li></ol><p>报错: Get <a href="https://172.18.18.90:5000/v2/" target="_blank" rel="noopener">https://172.18.18.90:5000/v2/</a>: http: server gave HTTP response to HTTPS client</p><p>解决: 需要https的方法才能上传，我们可以修改下daemon.json<br>      vim /etc/docker/daemon.json<br>      {<br>        “insecure-registries”: [ “domain:5000”]<br>      }</p><h3 id="无网络搭建"><a href="#无网络搭建" class="headerlink" title="无网络搭建"></a>无网络搭建</h3><ol><li>在有网络的机器上 <code>docker pull registry</code></li><li><code>docker save registry &gt; registry.tar</code> 保存到个 tar 包</li><li>拷贝到服务器上, <code>docker load -i registry.tar</code> 导入镜像</li><li><code>docker images</code> 查看镜像</li><li>再继续上面的操作</li></ol><h3 id="docker-开启-tcp-端口"><a href="#docker-开启-tcp-端口" class="headerlink" title="docker 开启 tcp 端口"></a>docker 开启 tcp 端口</h3><ul><li><code>vim /usr/lib/systemd/system/docker.service</code></li></ul><p>修改</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/usr/bin/dockerd-current -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock \</span><br></pre></td></tr></table></figure><p>重启即可,之后 idea 可输入 tcp://ip:2375 连接</p><h3 id="允许跨域请求"><a href="#允许跨域请求" class="headerlink" title="允许跨域请求"></a>允许跨域请求</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">version: 0.1</span><br><span class="line"><span class="built_in">log</span>:</span><br><span class="line">  fields:</span><br><span class="line">    service: registry</span><br><span class="line">storage:</span><br><span class="line">  cache:</span><br><span class="line">    blobdescriptor: inmemory</span><br><span class="line">  filesystem:</span><br><span class="line">    rootdirectory: /var/lib/registry</span><br><span class="line">http:</span><br><span class="line">  addr: :5000</span><br><span class="line">  headers:</span><br><span class="line">    X-Content-Type-Options: [nosniff]</span><br><span class="line">    Access-Control-Allow-Headers: [<span class="string">'Origin,Accept,Content-Type,Authorization'</span>]</span><br><span class="line">    Access-Control-Allow-Origin: [<span class="string">'*'</span>]</span><br><span class="line">    Access-Control-Allow-Methods: [<span class="string">'GET,POST,PUT,DELETE'</span>]</span><br><span class="line">health:</span><br><span class="line">  storagedriver:</span><br><span class="line">    enabled: <span class="literal">true</span></span><br><span class="line">    interval: 10s</span><br><span class="line">    threshold: 3</span><br></pre></td></tr></table></figure><p>head 添加</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Access-Control-Allow-Headers:</span> <span class="string">['Origin,Accept,Content-Type,Authorization']</span></span><br><span class="line"><span class="attr">Access-Control-Allow-Origin:</span> <span class="string">['*']</span></span><br><span class="line"><span class="attr">Access-Control-Allow-Methods:</span> <span class="string">['GET,POST,PUT,DELETE']</span></span><br></pre></td></tr></table></figure><p>之后保存到本地,再挂载到容器的 /etc/docker/registry/config.yml 中</p><h3 id="Harbor-搭建-Docker-私服"><a href="#Harbor-搭建-Docker-私服" class="headerlink" title="Harbor 搭建 Docker 私服"></a>Harbor 搭建 Docker 私服</h3><p>上述方式搭建的 docker 私服,属于比较简单使用的方法,只能在命令行上操作,很不方便,比如不能直接删除镜像,无法添加用户,设置私有仓库<br>Harbor 是一个图形化的私服管理界面,安装使用更易于操作</p><blockquote><p>Harbor是一个用于存储和分发Docker镜像的企业级Registry服务器，通过添加一些企业必需的功能特性，例如安全、标识和管理等，扩展了开源Docker Distribution。作为一个企业级私有Registry服务器，Harbor提供了更好的性能和安全。提升用户使用Registry构建和运行环境传输镜像的效率。</p></blockquote><ol><li>下载离线包: <a href="https://github.com/goharbor/harbor/releases" target="_blank" rel="noopener">https://github.com/goharbor/harbor/releases</a></li><li>解压</li><li>更改配置文件 <code>docker-compose.yml</code> 私服的仓库端口我们默认设置为 5000,但是 docker-compose.yml 文件中并没有配置,我们需要添加一个 ports 配置</li></ol><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">registry:</span></span><br><span class="line"><span class="attr">  networks:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">harbor</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">5000</span><span class="string">:5000</span></span><br></pre></td></tr></table></figure><ol start="4"><li>Harbor 默认使用的是 80 端口,不想使用的话可切换其他端口, 配置在 docker-compose.yml 的最下方</li></ol><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">proxy:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="string">goharbor/nginx-photon:v1.7.0</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">9339</span><span class="string">:80</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">443</span><span class="string">:443</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">4443</span><span class="string">:4443</span></span><br></pre></td></tr></table></figure><p>此处需要注意的是,如果更改了其他端口,则需要在 <code>common/templates/registry/config.yml</code> 文件中更改一个配置 realm 加上端口,否则登录会出现错误</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">    auth:</span></span><br><span class="line"><span class="attr">      token:</span></span><br><span class="line"><span class="attr">        issuer:</span> <span class="string">harbor-token-issuer</span></span><br><span class="line"><span class="attr">        realm:</span> <span class="string">$public_url:9339/service/token</span></span><br><span class="line"><span class="attr">        rootcertbundle:</span> <span class="string">/etc/registry/root.crt</span></span><br><span class="line"><span class="attr">        service:</span> <span class="string">harbor-registry</span></span><br><span class="line"><span class="string">```</span> </span><br><span class="line"></span><br><span class="line"><span class="number">5.</span> <span class="string">修改配置文件</span> <span class="string">`harbor.cfg`</span></span><br><span class="line"></span><br><span class="line"><span class="string">```</span> <span class="string">bash</span></span><br><span class="line">    <span class="string">hostname</span> <span class="string">=</span> <span class="number">34.0</span><span class="number">.7</span><span class="number">.183</span> <span class="comment">## 改为 IP 或者 域名,不要写错 localhost 或者 127.0.0.1</span></span><br><span class="line">    <span class="string">ui_url_protocol</span> <span class="string">=</span> <span class="string">http</span> <span class="comment">## http 方式</span></span><br><span class="line">    <span class="string">harbor_admin_password</span> <span class="string">=</span> <span class="string">Hardor12345</span> <span class="comment">## admin 账号的默认登录密码</span></span><br></pre></td></tr></table></figure><ol start="6"><li><p><code>./prepare</code> 完成配置</p></li><li><p><code>./install.sh</code> 开始安装</p></li><li><p>打开浏览器</p></li><li><p>创建一个项目 <code>joylau</code> 注意这个名称很重要,名称对不上的话,会造成 image push 不成功,还有就是若果这个项目的是公开的话,则所有人都可以 pull ,但是 push 的话是需要登录的,登录的用户名和密码在该项目的成员下.默认的 admin 用户就可以</p></li><li><p>登录,退出命令 <code>docker login 34.0.7.183:5000 ; docker logout 34.0.7.183:5000</code></p></li><li><p>之后的操作都是日常操作了</p></li></ol>]]></content>
     
     <summary type="html">
     
@@ -421,50 +467,6 @@
     
     
       <category term="Ubuntu" scheme="http://blog.joylau.cn/tags/Ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker 使用阿里云个人专属加速器</title>
-    <link href="http://blog.joylau.cn/2018/07/12/Docker-AliAccelerator/"/>
-    <id>http://blog.joylau.cn/2018/07/12/Docker-AliAccelerator/</id>
-    <published>2018-07-12T01:48:38.000Z</published>
-    <updated>2018-07-12T01:53:22.650Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><ol start="0"><li>原来阿里云给每个账户都有分配专属的加速器地址</li><li>登录阿里云控制台</li><li>进入容器镜像服务，点击最下方的镜像加速器，会出现个人的专属加速器地址，我的是： <a href="https://0ppztvl0.mirror.aliyuncs.com" target="_blank" rel="noopener">https://0ppztvl0.mirror.aliyuncs.com</a></li><li><p>Docker客户端版本大于1.10.0的用户，创建 <code>/etc/docker/daemon.json</code><br> {<br>   “registry-mirrors”: [“<a href="https://0ppztvl0.mirror.aliyuncs.com&quot;]" target="_blank" rel="noopener">https://0ppztvl0.mirror.aliyuncs.com&quot;]</a><br> }</p><p> sudo systemctl daemon-reload<br> sudo systemctl restart docker</p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      原来阿里云给每个账户都有分配专属的加速器地址
-    
-    </summary>
-    
-      <category term="Docker篇" scheme="http://blog.joylau.cn/categories/Docker%E7%AF%87/"/>
-    
-    
-      <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>以非 root 用户身份管理 Docker</title>
-    <link href="http://blog.joylau.cn/2018/07/05/Docker-Manager-NonRoot/"/>
-    <id>http://blog.joylau.cn/2018/07/05/Docker-Manager-NonRoot/</id>
-    <published>2018-07-05T08:51:49.000Z</published>
-    <updated>2018-07-05T08:59:34.722Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。<br>有没有什么方式能够解决？<br>官方文档地址： <a href="https://docs.docker.com/install/linux/linux-postinstall/" target="_blank" rel="noopener">https://docs.docker.com/install/linux/linux-postinstall/</a></p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>docker 守护进程绑定至 Unix 套接字，而不是 TCP 端口。默认情况下，该 Unix 套接字由用户 root 所有，而其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行。</p><p>在使用 docker 命令时，如果您不想使用 sudo，请创建名为 docker 的 Unix 组并向其中添加用户。docker 守护进程启动时，它将使 Unix 套接字的所有权可由 docker 组进行读取/写入。</p><blockquote><blockquote><blockquote><p>警告： docker 组将授予等同于 root 用户的特权。如需有关此操作如何影响系统安全性的详细信息，请参阅 Docker 守护进程攻击面。</p></blockquote></blockquote></blockquote><p>如需创建 docker 组并添加您的用户，请执行下列操作：</p><ol><li>创建 docker 组。</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo groupadd docker</span></span><br></pre></td></tr></table></figure><p>向 docker 组中添加您的用户。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo usermod -aG docker <span class="variable">$USER</span></span></span><br></pre></td></tr></table></figure><p>注销并重新登录，以便对您的组成员资格进行重新评估。</p><p>如果在虚拟机上进行测试，可能必须重启此虚拟机才能使更改生效。</p><p>在桌面 Linux 环境（例如，X Windows）中，彻底从您的会话中注销，然后重新登录。</p><p>验证您是否可以在不使用 sudo 的情况下运行 docker 命令。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run hello-world</span></span><br></pre></td></tr></table></figure><p>此命令将下载一个测试镜像并在容器中运行它。容器运行时，它将输出一条参考消息并退出。</p><p>经过实测，Ubuntu通过源添加安装最新版 Docker 时，已经自动添加了 docker 组，只需要将 当前用户添加到组里面在重新登录就可以了。</p>]]></content>
-    
-    <summary type="html">
-    
-      docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。
-    
-    </summary>
-    
-      <category term="Docker篇" scheme="http://blog.joylau.cn/categories/Docker%E7%AF%87/"/>
-    
-    
-      <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
     
   </entry>
   
