@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="keywords" content="JoyLau,joylau,JoyLau  blog,刘法,刘法的博客,刘法的技术与思考,Java,JavaWeb,Web程序员,Web开发,JavaWeb开发,个人博客">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="JoyLau">
+
+
+
+<meta name="description" content="SpringBoot 整合 Kafka 原本想着很简单，按照SpringBoot的原有的套路来就可以了，没想到中间却遇到了许多坑">
+<meta name="keywords" content="SpringBoot,Kafka">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot 整合 Kafka 踩坑记录">
+<meta property="og:url" content="http://blog.joylau.cn/2017/11/02/SpringBoot-Kafka/index.html">
+<meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
+<meta property="og:description" content="SpringBoot 整合 Kafka 原本想着很简单，按照SpringBoot的原有的套路来就可以了，没想到中间却遇到了许多坑">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-07T05:27:36.220Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot 整合 Kafka 踩坑记录">
+<meta name="twitter:description" content="SpringBoot 整合 Kafka 原本想着很简单，按照SpringBoot的原有的套路来就可以了，没想到中间却遇到了许多坑">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="//image.joylau.cn/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>SpringBoot 整合 Kafka 踩坑记录 | JoyLau&#39;s Blog | JoyLau</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+
+
+    <script src="//image.joylau.cn/blog/lettering.js"></script>
+    <script src="//image.joylau.cn/blog/textillate.js"></script>
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a class="chaffle" data-lang="en" href="/">JoyLau</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle chaffle" data-lang="zh">刘法的技术学习与思考</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li class="chaffle" data-lang="zh">菜单</li>
+                        <li class="chaffle" data-lang="zh">标签</li>
+                        
+                        <li class="chaffle" data-lang="zh">友情链接</li>
+                        
+                        
+                        <li class="chaffle" data-lang="zh">关于</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a class="chaffle" data-lang="zh" href="/">主页</a></li>
+                        
+                            <li><a class="chaffle" data-lang="zh" href="/archives/">所有文章</a></li>
+                        
+                            <li><a class="chaffle" data-lang="zh" href="/tags/">标签云</a></li>
+                        
+                            <li><a class="chaffle" data-lang="zh" href="/about/">留言板</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:2587038142@qq.com" title="Email"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/" title="知乎"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/JoyLau" title="GitHub"></a>
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
+                            
+                                <a class="fa 网易云音乐" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/">CMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crond/">Crond</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker-Compose/">Docker-Compose</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Druid/">Druid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka/">Eureka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Filebeat/">Filebeat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPG/">GPG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GZIP/">GZIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntelliJ-IDEA/">IntelliJ IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/">JSON</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LibreOffice/">LibreOffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logstash/">Logstash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lombok/">Lombok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MATE-Desktop/">MATE Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacBookPro/">MacBookPro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mapper/">Mapper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenOffice/">OpenOffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenVPN/">OpenVPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PageHelper/">PageHelper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugins/">Plugins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/">RabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSL/">SSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBatch/">SpringBatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringSecurity/">SpringSecurity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger2/">Swagger2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YUM/">YUM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroC-Ice/">ZeroC Ice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/emoji/">emoji</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/license/">license</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openoffice/">openoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ownCloud/">ownCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技能/">技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘挂载/">磁盘挂载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.joylau.cn/">JoyLau</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://life.joylau.cn/">JoyLau’life</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://media.joylau.cn/">JoyMedia</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blog.wfyvv.com/">wfyvv</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://chaxiaoniu.oschina.io/">CherryChang</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，与大家分享交流，同时能够对这些技术进行备忘，以便日后查询</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">JoyLau</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">JoyLau</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">刘法的技术学习与思考</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">留言板</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:2587038142@qq.com" title="Email"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/" title="知乎"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/JoyLau" title="GitHub"></a>
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于">
+</nav>
+      <div class="body-wrap"><article id="post-SpringBoot-Kafka" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/02/SpringBoot-Kafka/" class="article-date">
+      <time datetime="2017-11-02T03:31:37.000Z" itemprop="datePublished">2017-11-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+           <div id="jl_custom">
+                
+
+                
+            </div>
+        <h1 class="article-title article-tlt-h" itemprop="name">SpringBoot 整合 Kafka 踩坑记录</h1>
+      </header>
+      
+      <div class="article-info article-info-post">
+        <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/SpringBoot篇/">SpringBoot篇</a>
+    </div>
+        <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+    </div>
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+<h3 id="第一个坑"><a href="#第一个坑" class="headerlink" title="第一个坑"></a>第一个坑</h3><p>SpringBoot 在1.5版本后就有了 starter， 但是在依赖列表中却没有找到相应的依赖，原因是名字不叫starter，傻傻的我还用JavaConfig 配置了一遍<br>现在看下整合 starter 之后的是怎么样的吧！</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.kafka<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-kafka<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面这个依赖其实就是starter， 不需要些版本，SpringBoot会自己选择版本</p>
+<p>yml配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spring</span><br><span class="line">  kafka:</span><br><span class="line">    bootstrap-servers: 192.168.10.192:9092</span><br><span class="line">    consumer:</span><br><span class="line">      group-id: secondary-identification</span><br><span class="line">    producer:</span><br><span class="line">      batch-size: 65536</span><br><span class="line">      buffer-memory: 524288</span><br></pre></td></tr></table></figure>
+<p>默认只需要 bootstrap-servers 和 group-id 即可</p>
+<p>接下来 生产者 和 消费者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MsgProducer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> KafkaTemplate kafkaTemplate;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        kafkaTemplate.send(<span class="string">"index-vehicle"</span>,<span class="string">"key"</span>,<span class="string">"hello,kafka"</span>  + LocalDateTime.now().format(DateTimeFormatter.ofPattern(<span class="string">"yyyy-MM-dd HH:mm:ss.SSS"</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MsgConsumer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@KafkaListener</span>(topics = &#123;<span class="string">"index-vehicle"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">processMessage</span><span class="params">(String content)</span> </span>&#123;</span><br><span class="line">        System.out.println(content);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="第二个坑"><a href="#第二个坑" class="headerlink" title="第二个坑"></a>第二个坑</h3><p>可以发消息，但是SpringBoot始终收不到，我用Kafka自带的工具却可以收到，很气愤，搞了好长时间都没有解决<br>后来遍访Google和官方文档，终于找到原因了，只要修改下配置文件的一个配置即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># The address the socket server listens on. It will get the value returned from </span><br><span class="line"># java.net.InetAddress.getCanonicalHostName() if not configured.</span><br><span class="line">#   FORMAT:</span><br><span class="line">#     listeners = listener_name://host_name:port</span><br><span class="line">#   EXAMPLE:</span><br><span class="line">#     listeners = PLAINTEXT://your.host.name:9092</span><br><span class="line">listeners=PLAINTEXT://0.0.0.0:9092</span><br></pre></td></tr></table></figure>
+<p>上面的额这个 listeners，因为我的程序是加了@KafkaListener 来监听消息的，需要开启一个这样的配置项</p>
+<p>这项配置项的含义在此也备注下：</p>
+<blockquote>
+<blockquote>
+<p>监听列表(以逗号分隔 不同的协议(如plaintext,trace,ssl、不同的IP和端口)),hostname如果设置为0.0.0.0则绑定所有的网卡地址；如果hostname为空则绑定默认的网卡。如果没有配置则默认为java.net.InetAddress.getCanonicalHostName()</p>
+</blockquote>
+</blockquote>
+<p>这2个坑在此记录下</p>
+<h2 id="一些常用命令在此记录下"><a href="#一些常用命令在此记录下" class="headerlink" title="一些常用命令在此记录下"></a>一些常用命令在此记录下</h2><p>zookeeper-server-start.bat ../../config/zookeeper.properties   : 开启自带的zookeeper<br>kafka-server-start.bat ../../config.properties   ： 开启kafka<br>kafka-console-consumer.bat –bootstrap-server localhost:9092 –topic myTopic  –from-beginning : 控制台接受指定topic消息<br>kafka-console-producer.bat –broker-list localhost:9092 –topic myTopic  :   指定topic发送消息</p>
+<p>注意的是用命令行创建的producer绑定的主题topic需要用命令行先创建topic，已经创建的就直接发送就好了</p>
+      
+    </div>
+    
+  </div>
+  
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/11/02/SpringBoot-Kafka/">SpringBoot 整合 Kafka 踩坑记录</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
+        <p><span>发布时间:</span>2017-11-02, 11:31:37</p>
+        <p><span>最后更新:</span>2018-06-07, 13:27:36</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/11/02/SpringBoot-Kafka/" title="SpringBoot 整合 Kafka 踩坑记录">http://blog.joylau.cn/2017/11/02/SpringBoot-Kafka/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2017/11/02/SpringBoot-Kafka/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"CC BY-NC-SA 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/11/07/Node-Install-Error/">
+                    npm install 居然出错了
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/11/01/SpringBoot-IDEA-DevTools/">
+                    IDEA 中 SpringBoot 项目热部署
+                </a>
+            </div>
+        
+    </nav>
+  
+</article>
+<div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一个坑"><span class="toc-number">1.</span> <span class="toc-text">第一个坑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二个坑"><span class="toc-number">2.</span> <span class="toc-text">第二个坑</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#一些常用命令在此记录下"><span class="toc-number"></span> <span class="toc-text">一些常用命令在此记录下</span></a>
+        
+    </li></div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏", "显示", !!"false"];
+    </script>
+
+
+    <div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"SpringBoot 整合 Kafka 踩坑记录　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+    
+
+
+<div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/11/07/Node-Install-Error/" title="上一篇: npm install 居然出错了">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/11/01/SpringBoot-IDEA-DevTools/" title="下一篇: IDEA 中 SpringBoot 项目热部署">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/12/24/JDK8-Stream-Use/">关于Jdk 8 Stream 的使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/19/Docker-Exec-Failed/">Docker exec failed docker 无法进入容器问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/19/Docker-Compose-StartOrder/">Docker-Compose 中多容器启动顺序问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/18/SpringCloud-Docker/">SpringCloud --- Docker 部署问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/14/MacOS-Route/">MacOS 上路由表的操作记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/13/Linux-Cron/">Linux 定时删除 10 天前的日志文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/13/Docker-Build/">Docker Build Image 问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/08/Linux-Private-Yum/">Yum 私服搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/04/Jquery-Post/">$.post() 和 $.ajax() 的问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/24/SpringBoot-ThreadPoolTaskExecutor/">重剑无锋,大巧不工 SpringBoot --- 理解 ThreadPoolTaskExecutor</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/21/Docker-OpenVPN/">Docker OpenVPN 服务搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/Docker-PrivateRepo/">Docker 私服搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/26/Docker-ownCloud/">记录 -- Docker 三种方式部署 ownCloud</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/Elasticsearch-AutoComplete/">Elasticsearch 关键字自动补全的实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/Elasticsearch-SearchAll/">Elasticsearch 查询全部数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/Jquery-Load-Plugins/">$(...).autocomplete is not a function 问题的解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/">Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/03/BroadbandSpeedConversion/">宽带速率转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/30/Spring-NamedParameterJdbcTemplate/">NamedParameterJdbcTemplate 使用具名参数记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/29/OracleNubmer-JdbcType/">Oracle 里 number 类型对应 JdbcType bean 类型记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/19/Linux-Cancel-DenyHosts/">DenyHosts 清除黑名单 IP 地址</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/Ubuntu-Fonts-Monaco/">Ubuntu 最佳编程字体 Monaco 的优化显示</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/12/Docker-AliAccelerator/">Docker 使用阿里云个人专属加速器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/05/Docker-Manager-NonRoot/">以非 root 用户身份管理 Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/02/OfficeSuiteStudy/">office 套件的一系列研究记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/28/Ubuntu-SystemConfig/">Ubuntu 自用配置记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/IntelliJIDEA-MyConfigs/">IntelliJ IDEA 自用配置记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Linux-OpenOffice/">Linux 安装 OpenOffice 服务小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/21/Elasticsearch-ingest-attachment/">Elasticsearch 文档文本内容搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/20/React-DebugWithIDEA/">React 项目使用 IDEA 进行调试</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/14/MacOS-ChangeMacAddr/">MacOS 修改 mac 地址</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/Elasticsearch-Ik/">Elasticsearch 分词插件的使用及 demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/23/MyBatis-DateFormat/">Mybatis 前后台时间传参格式化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/21/Elasticsearch-Security/">Elasticsearch 集群安全控制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/18/Linux-Systemctl/">Linux菜鸟到熟悉 --- systemctl 托管自定义程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/17/Linux-NoteBookPC/">Linux菜鸟到熟悉 --- 闲置笔记本安装 Centos</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/15/Lombok/">Lombok 注解小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/08/Filebeat-Nginx/">Filebeat 实时收集 Nginx 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/08/Logstash-Nginx/">Logstash 实时收集 Nginx 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/07/Elasticsearch-ELK/">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/07/Elasticsearch-Cluster/">Elasticsearch 集群搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/MacOS-CleanMac/">MacOS 垃圾清理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/">SpringSecurity Session并发过期后会重定向到 /login (入口点问题)问题的解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/SpringBoot-SpringSecurity/">重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/27/MyBatis-Example/">关于通用 Mapper Example 使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/12/SpringBoot-Assembly-Package/">重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/29/SpringBoot-Druid-MyBatis-Mapper-PageHelper/">重剑无锋,大巧不工 SpringBoot --- 最新版 SpringBoot 整合 Druid,MyBatis,通用 Mapper,PageHelper的脚手架</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/24/JavaScript-Array-Method/">JavaScript 数组的一些常用的方法记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/23/Spark-Integrate-Build/">大数据之路 Spark 环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/22/Hadoop-Integrate-Build/">大数据之路 Hadoop 环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/17/Hadoop-Study-Way/">大数据之路 Hadoop 的学习流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/16/SpringBoot-Elasticsearch-Complex/">重剑无锋,大巧不工 SpringBoot --- 使用 Elasticsearch 进行更复杂的查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/15/FastJson-JSONPath/">FastJSON 还有这样的用法 涨姿势了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/Node-Install-Error/">npm install 居然出错了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/02/SpringBoot-Kafka/">SpringBoot 整合 Kafka 踩坑记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/01/SpringBoot-IDEA-DevTools/">IDEA 中 SpringBoot 项目热部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/SpringBoot-ReadJSONFile/">SpringBoot 读取 JSON 文件并转化为 JSON 对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/26/SpringBoot-Oracle/">SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Elasticsearch-Config/">Elasticsearch 配置说明 && 遇坑记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Hadoop-FristDay/">Hadoop 的第一天</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/SpringBoot-Elasticsearch/">重剑无锋,大巧不工 SpringBoot --- 整合使用 Elasticsearch</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/Open-Source-License/">开源许可证</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/16/Maven-ResourceCompressor/">Maven --- 一款打包压缩 js css html 的Maven插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/13/CSS3-Image-Scale/">当鼠标移入图片上慢慢放大的效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/26/Java-Scala/">Java 代码中使用 Scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/SpringBoot-CaffeineCache/">重剑无锋,大巧不工 SpringBoot --- 推荐使用CaffeineCache</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/11/JoyGame/">JoyGame --- 一个情怀游戏平台</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/An-Interesting-Code/">人生从未写过如此有趣的代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/Maven-MakeWinServiceForJar/">Maven --- 将 SpringBoot 项目做成Windows服务(Windows Service)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/20/SpringBoot-JoyMedia-MV/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/SpringBoot-JoyMedia-Search/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/SpringBoot-JoyMedia-Node/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/SpringBoot-JoyMedia/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 分析篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/18/SpringBoot-MongoDB/">重剑无锋,大巧不工 SpringBoot --- 整合使用MongoDB</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/ZeroC-Ice/">ZeroC Ice --- 高性能RPC技术王者</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/03/Git-Multi-Repo-Push/">记录一次Git多仓库提交</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/MacOS-Dev-App/">MacOS常用开发使用APP</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/24/MacBookPro-Unboxing/">MacBook Pro 2017 --- 不行！我要开箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/SpringBoot-RESTfulAPI/">重剑无锋,大巧不工 SpringBoot --- RESTful API</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/SpringBoot-RabbitMQ/">重剑无锋,大巧不工 SpringBoot --- 整合RabbitMQ</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/Console-Better/">让你的Windows控制台窗口更优美</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/13/SpringBoot-ConfigurationProperties/">重剑无锋,大巧不工 SpringBoot --- 属性注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-Question-Tips/">重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-RequestBody/">重剑无锋,大巧不工 SpringBoot --- @RequestBody JSON参数处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/09/College-Entrance-Examination-of-2017-for-Progarmmer/">2017年程序员高考试卷</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/05/Skill-Tree-Of-Java/">收集整理一些JAVA学习的技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/02/SolveBrainAndPuzzles/">解决一道智力题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/28/IntelliJIDEA-Plugins/">IntelliJ IDEA 插件开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/27/Redis-Master-Slave/">Redis主从复制 --- 实现读写分离</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/24/SpringCloud-Building/">SpringCloud --- 构建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/06/MyBatis-Joylau-MyBatis/">JoyLau-MyBatis 使用说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/01/Redis-Benchmark/">Redis有多快??? --- 基准性能测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/22/Docker-Command/">Docker常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/SpringBoot-SpringBatch/">重剑无锋,大巧不工 SpringBoot --- 批处理SpringBatch</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/MySQL-Emoji/">为网站添加emoji表情支持</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/17/Maven-Release-Component/">Maven --- 发布自己的构件到中央仓库</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/Programmer-Boast/">程序员，那些年吹过的牛逼，最后都自己加班了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/">JS数组去重最简单方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Integrate/">重剑无锋,大巧不工 SpringBoot --- 环境集成</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Research/">重剑无锋,大巧不工 SpringBoot --- 探索篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/SpringBoot-Basic/">重剑无锋,大巧不工 SpringBoot --- 基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/01/SpringBoot-Actuator/">重剑无锋,大巧不工 SpringBoot --- 添加监控端点Actuator</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-GUI/">Linux菜鸟到熟悉 --- 视图界面</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-Command/">Linux菜鸟到熟悉 --- 常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-BuildingEnvironment/">Linux菜鸟到熟悉 --- 生产环境的搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-MountDisk/">Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/Thymeleaf/">重新拾起我曾抛弃的Thymeleaf</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/SSL/">SSL证书部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/TomcatMulti-Root/">Tomcat服务器添加多个Root项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/HelloWorld/">Hello World</a></li></ul>
+
+
+    <script>
+        
+    </script></div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2017-2019 JoyLau All Rights Reserved.
+            </div>
+            <div class="footer-right">
+                <i class="fa fa-heart animated infinite pulse"></i>Hexo Theme by MOxFIVE<i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+<!--百度自动推送-->
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+<script>
+    $('.chaffle').chaffle();
+</script>
+
+
+<script>
+    var animateList = ['flipInX','flipInY','bounceInLeft','bounceInUp','bounceInDown','rotateIn','fadeInUp','fadeInDown'];
+    var animateIndex = Math.ceil(Math.random() * (animateList.length - 1));
+    $('.article-tlt-a').textillate({
+        initialDelay: 100,
+        in: {
+            effect: 'fadeInDown',
+            delayScale: 1.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-description-tlt').textillate({
+        initialDelay: 50,
+        in: {
+            effect: 'fadeIn',
+            delayScale: 0.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-tlt-h').textillate({
+        initialDelay: 100,
+        in: {
+            effect: animateList[animateIndex],
+            delayScale: 2.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+</script>
+    </div>
+    <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+<script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 10;
+                var backgroundimg = "url(//image.joylau.cn/blog/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+            
+            
+            
+            
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </div>
+</body>
