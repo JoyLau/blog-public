@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2019-01-04T05:26:26.526Z</updated>
+  <updated>2019-01-15T03:07:05.608Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Gradle 构建 elastic-job 项目的奇怪依赖问题</title>
+    <link href="http://blog.joylau.cn/2019/01/14/Gradle-Elastic-Job-Dependency/"/>
+    <id>http://blog.joylau.cn/2019/01/14/Gradle-Elastic-Job-Dependency/</id>
+    <published>2019-01-14T09:54:39.000Z</published>
+    <updated>2019-01-15T03:07:05.608Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><ol><li>按照官网的说法, gradle 的配置如下:</li></ol><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">compile (<span class="string">'com.dangdang:elastic-job-lite-core:2.1.5'</span>)</span><br><span class="line">    </span><br><span class="line">compile (<span class="string">'com.dangdang:elastic-job-lite-spring:2.1.5'</span>)</span><br></pre></td></tr></table></figure><ol start="2"><li>这样配置后,写好示例代码,发现始终连接不上 zookeeper,抛出以下错误:</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">***************************</span><br><span class="line">APPLICATION FAILED TO START</span><br><span class="line">***************************</span><br><span class="line"></span><br><span class="line">Description:</span><br><span class="line"></span><br><span class="line">An attempt was made to call the method org.apache.curator.framework.api.CreateBuilder.creatingParentsIfNeeded()Lorg/apache/curator/framework/api/ProtectACLCreateModePathAndBytesable; but it does not exist. Its class, org.apache.curator.framework.api.CreateBuilder, is available from the following locations:</span><br><span class="line"></span><br><span class="line">    jar:file:/Users/joylau/.gradle/caches/modules-<span class="number">2</span>/files-<span class="number">2.1</span>/org.apache.curator/curator-framework/<span class="number">4.0</span>.1/<span class="number">3</span>da85d2bda41cb43dc18c089820b67d12ba38826/curator-framework-<span class="number">4.0</span>.1.jar!/org/apache/curator/framework/api/CreateBuilder.class</span><br><span class="line"></span><br><span class="line">It was loaded from the following location:</span><br><span class="line"></span><br><span class="line">    file:/Users/joylau/.gradle/caches/modules-<span class="number">2</span>/files-<span class="number">2.1</span>/org.apache.curator/curator-framework/<span class="number">4.0</span>.1/<span class="number">3</span>da85d2bda41cb43dc18c089820b67d12ba38826/curator-framework-<span class="number">4.0</span>.1.jar</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Action:</span><br><span class="line"></span><br><span class="line">Correct the classpath of your application so that it contains a single, compatible version of org.apache.curator.framework.api.CreateBuilder</span><br></pre></td></tr></table></figure><ol start="3"><li><p>一开始我以为是搭建的 zookeeper 环境有问题,但是用其他工具可以连接的上</p></li><li><p>又怀疑是 zookeeper 的版本问题,查看了 <code>com.dangdang:elastic-job-common-core:2.1.5</code> , 发现其依赖的 zookeeper 版本是 <code>org.apache.zookeeper:zookeeper:3.5.3-beta</code></p></li><li><p>于是又用 docker 搭建了个 3.5.3-beta 的版本的 zookeeper 单机版</p></li><li><p>结果问题依旧…….</p></li><li><p>中间查找问题花费了很长的时间…..</p></li><li><p>后来把官方的 demo clone 到本地跑次看看,官方的 demo 仅仅依赖一个包 <code>com.dangdang:elastic-job-lite-core:2.1.5</code></p></li><li><p>发现这个 demo 没有问题,可以连接的上 zookeeper</p></li><li><p>对比发现2个项目的依赖版本号不一致</p></li></ol><p><img src="http://image.joylau.cn/blog/elastic-job-gradle-dependencies.png" alt="对比图"></p><ol start="11"><li><p>看到 demo 里依赖的 <code>org.apache.curator:curator-framework</code> 和 <code>org.apache.curator:curator-recipes</code> 都是 2.10.0, 而我引入的版本却是gradle 上的最新版 4.0.1, 而且也能看到2者的 zookeeper 的版本也不一致,一个是 3.4.6,一个是 3.5.3-beta</p></li><li><p>问题所在找到了</p></li><li><p>解决问题</p></li></ol><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">compile (<span class="string">'com.dangdang:elastic-job-lite-core:2.1.5'</span>)</span><br><span class="line"></span><br><span class="line">compile (<span class="string">'com.dangdang:elastic-job-lite-spring:2.1.5'</span>)</span><br><span class="line"></span><br><span class="line">compile (<span class="string">'org.apache.curator:curator-framework:2.10.0'</span>)</span><br><span class="line"></span><br><span class="line">compile (<span class="string">'org.apache.curator:curator-recipes:2.10.0'</span>)</span><br></pre></td></tr></table></figure><ol start="14"><li><p>手动声明版本为 2.10.0</p></li><li><p>问题解决,但是为什么 gradle 会造成这样的问题? 为什么传递依赖时, gradle 会去找最新的依赖版本? 这些问题我还没搞清楚….</p></li><li><p>日后搞清楚了,或者有眉目了,再来更新这篇文章.</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      用 gradle 构建的基于 springboot 的 elastic-job 的项目发现始终连接不上 zookeeper, 一顿研究后,发现事情并不简单.....
+    
+    </summary>
+    
+      <category term="Gradle篇" scheme="http://blog.joylau.cn/categories/Gradle%E7%AF%87/"/>
+    
+    
+      <category term="Gradle" scheme="http://blog.joylau.cn/tags/Gradle/"/>
+    
+  </entry>
   
   <entry>
     <title>关于Jdk 8 Stream 的使用记录</title>
@@ -447,28 +469,6 @@
     
     
       <category term="Spring" scheme="http://blog.joylau.cn/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Oracle 里 number 类型对应 JdbcType bean 类型记录</title>
-    <link href="http://blog.joylau.cn/2018/07/29/OracleNubmer-JdbcType/"/>
-    <id>http://blog.joylau.cn/2018/07/29/OracleNubmer-JdbcType/</id>
-    <published>2018-07-29T02:31:44.000Z</published>
-    <updated>2018-07-30T01:16:30.911Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><table><thead><tr><th>number长度</th><th>Java类型</th></tr></thead><tbody><tr><td>1~4</td><td>Short</td></tr><tr><td>5~9</td><td>Integer</td></tr><tr><td>10~18</td><td>Long</td></tr><tr><td>18+</td><td>BigDecimal</td></tr></tbody></table><p>须指定number类型的大小。</p>]]></content>
-    
-    <summary type="html">
-    
-      Oracle 里 number 类型对应 JdbcType bean 类型记录
-    
-    </summary>
-    
-      <category term="Java" scheme="http://blog.joylau.cn/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="http://blog.joylau.cn/tags/Java/"/>
     
   </entry>
   
