@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
 <meta property="og:description" content="我们的程序在 Linux 上运行会产生大量日志文件,这些日志文件如果不定时清理的话会很快将磁盘沾满">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-21T06:46:48.555Z">
+<meta property="og:updated_time" content="2019-01-23T07:01:05.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 定时删除 10 天前的日志文件">
 <meta name="twitter:description" content="我们的程序在 Linux 上运行会产生大量日志文件,这些日志文件如果不定时清理的话会很快将磁盘沾满">
@@ -343,10 +343,12 @@
           
         <a id="more"></a>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们的程序在 Linux 上运行会产生大量日志文件,这些日志文件如果不定时清理的话会很快将磁盘沾满</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For details see man 4 crontabs</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Example of job definition:</span></span><br><span class="line"><span class="comment"># .---------------- minute (0 - 59)</span></span><br><span class="line"><span class="comment"># |  .------------- hour (0 - 23)</span></span><br><span class="line"><span class="comment"># |  |  .---------- day of month (1 - 31)</span></span><br><span class="line"><span class="comment"># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span></span><br><span class="line"><span class="comment"># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span></span><br><span class="line"><span class="comment"># |  |  |  |  |</span></span><br><span class="line"><span class="comment"># *  *  *  *  * user-name  command to be executed</span></span><br></pre></td></tr></table></figure>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="配置一个定时清理的任务"><a href="#配置一个定时清理的任务" class="headerlink" title="配置一个定时清理的任务"></a>配置一个定时清理的任务</h3><ol>
-<li><code>crontab -e</code> , 添加一个定时任务, 获取 <code>vim /etc/crontab</code> 添加一条记录</li>
+<li><code>crontab -e</code> , 添加一个定时任务, 或者 <code>vim /etc/crontab</code> 添加一条记录</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10 * * * * /home/liufa/app/cron/del_log.sh &gt; /dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10 * * * * root sh /home/liufa/app/cron/del_log.sh &gt; /dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
 <p>每天 0 点 10 分运行上述命令文件</p>
 <ol start="2">
 <li><p>创建文件: del_log.sh</p>
@@ -358,7 +360,7 @@
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line">find /home/liufa/app/node/logs -mtime +10 -name <span class="string">"*.log"</span> -<span class="built_in">exec</span> rm -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure>
 <ol start="4">
-<li>启动定时任务, <code>systemctl start crond</code></li>
+<li>重启定时任务, <code>systemctl restart crond</code> , 在 Ubuntu 上叫 cron <code>systemctl restart cron</code></li>
 </ol>
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol>
 <li>执行脚本使用/bin/sh（防止脚本无执行权限），要执行的文件路径是从根开始的绝对路径（防止找不到文件）</li>
@@ -377,7 +379,7 @@
         <p><span>本文标题:</span><a href="/2018/12/13/Linux-Cron/">Linux 定时删除 10 天前的日志文件</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
         <p><span>发布时间:</span>2018-12-13, 15:23:09</p>
-        <p><span>最后更新:</span>2018-12-21, 14:46:48</p>
+        <p><span>最后更新:</span>2019-01-23, 15:01:05</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/12/13/Linux-Cron/" title="Linux 定时删除 10 天前的日志文件">http://blog.joylau.cn/2018/12/13/Linux-Cron/</a>
             <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2018/12/13/Linux-Cron/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -411,7 +413,7 @@
 <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置一个定时清理的任务"><span class="toc-number">2.1.</span> <span class="toc-text">配置一个定时清理的任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-number">2.2.</span> <span class="toc-text">注意</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">3.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置一个定时清理的任务"><span class="toc-number">3.1.</span> <span class="toc-text">配置一个定时清理的任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-number">3.2.</span> <span class="toc-text">注意</span></a></li></ol></li></ol>
         
     </div>
     <style>

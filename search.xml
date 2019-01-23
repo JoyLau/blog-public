@@ -348,10 +348,12 @@
       <url>http://blog.joylau.cn/2018/12/13/Linux-Cron/</url>
       <content type="html"><![CDATA[<a id="more"></a>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们的程序在 Linux 上运行会产生大量日志文件,这些日志文件如果不定时清理的话会很快将磁盘沾满</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For details see man 4 crontabs</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Example of job definition:</span></span><br><span class="line"><span class="comment"># .---------------- minute (0 - 59)</span></span><br><span class="line"><span class="comment"># |  .------------- hour (0 - 23)</span></span><br><span class="line"><span class="comment"># |  |  .---------- day of month (1 - 31)</span></span><br><span class="line"><span class="comment"># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span></span><br><span class="line"><span class="comment"># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span></span><br><span class="line"><span class="comment"># |  |  |  |  |</span></span><br><span class="line"><span class="comment"># *  *  *  *  * user-name  command to be executed</span></span><br></pre></td></tr></table></figure>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="配置一个定时清理的任务"><a href="#配置一个定时清理的任务" class="headerlink" title="配置一个定时清理的任务"></a>配置一个定时清理的任务</h3><ol>
-<li><code>crontab -e</code> , 添加一个定时任务, 获取 <code>vim /etc/crontab</code> 添加一条记录</li>
+<li><code>crontab -e</code> , 添加一个定时任务, 或者 <code>vim /etc/crontab</code> 添加一条记录</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10 * * * * /home/liufa/app/cron/del_log.sh &gt; /dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10 * * * * root sh /home/liufa/app/cron/del_log.sh &gt; /dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
 <p>每天 0 点 10 分运行上述命令文件</p>
 <ol start="2">
 <li><p>创建文件: del_log.sh</p>
@@ -363,7 +365,7 @@
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line">find /home/liufa/app/node/logs -mtime +10 -name <span class="string">"*.log"</span> -<span class="built_in">exec</span> rm -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure>
 <ol start="4">
-<li>启动定时任务, <code>systemctl start crond</code></li>
+<li>重启定时任务, <code>systemctl restart crond</code> , 在 Ubuntu 上叫 cron <code>systemctl restart cron</code></li>
 </ol>
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol>
 <li>执行脚本使用/bin/sh（防止脚本无执行权限），要执行的文件路径是从根开始的绝对路径（防止找不到文件）</li>
@@ -3621,9 +3623,9 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
         
         <tags>
             
-            <tag> 程序员 </tag>
-            
             <tag> 技能 </tag>
+            
+            <tag> 程序员 </tag>
             
         </tags>
         
@@ -5832,7 +5834,13 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line">gperftools-libs-2.6.1-1.el7.i686 : Libraries provided by gperftools</span><br><span class="line">Repo        : Private-Base</span><br><span class="line">Matched from:</span><br><span class="line">Provides    : libprofiler.so.0</span><br></pre></td></tr></table></figure>
 <p>找到后安装即可 <code>yum install gperftools-libs</code></p>
 <h2 id="2018-12-20-更新"><a href="#2018-12-20-更新" class="headerlink" title="2018-12-20 更新"></a>2018-12-20 更新</h2><ol>
-<li><code>/dev/null 2&gt;&amp;1</code> 解释<br> 0是标准输入    <code>使用&lt;或&lt;&lt;</code><br> 1是标准输出   <code>使用&gt;或&gt;&gt;</code><br> 2是标准错误输出  <code>使用2&gt;或2&gt;&gt;</code><br> <code>&gt;/dev/null 2&gt;&amp;1</code>  即错误输出与标准输出全部重定向到空,可以写成 <code>1&gt;/dev/null 2&gt;/dev/null</code></li>
+<li><code>/dev/null 2&gt;&amp;1</code> 解释<br> <code>&gt;</code> 覆盖原来的内容<br> <code>&gt;&gt;</code> 在原来的内容上追加新的内容<br> 0是标准输入    <code>使用&lt;或&lt;&lt;</code><br> 1是标准输出   <code>使用&gt;或&gt;&gt;</code><br> 2是标准错误输出  <code>使用2&gt;或2&gt;&gt;</code><br> <code>&gt;/dev/null 2&gt;&amp;1</code>  即错误输出与标准输出全部重定向到空,可以写成 <code>1&gt;/dev/null 2&gt;/dev/null</code><br> 标准输入0和标准输出1可以省略。（当其出现重定向符号左侧时)<br> 文件描述符在重定向符号左侧时直接写即可，在右侧时前面加&amp;<br> 文件描述符与重定向符号之间不能有空格</li>
+</ol>
+<h2 id="2019-01-23-更新"><a href="#2019-01-23-更新" class="headerlink" title="2019-01-23 更新"></a>2019-01-23 更新</h2><ol start="0">
+<li>在命令后加个<code>&amp;</code> 代表该命令在后台运行, shell 的控制台会立即释放,但是和守护进程又不一样, shell 断开会终止运行</li>
+<li><code>command &gt; file.log 2&gt;&amp;1</code> 等价于 <code>command 2&gt;file.log 1&gt;&amp;2</code> 前一个指的是标准错误重定向到标准输出,标准输出在重定向到文件 file.log 中, 其中 1 省略了;后一个指的是标准输出重定向到标准错误,标准错误又重定向到文件 file.log, 其中2 不能省略</li>
+<li>shell 脚本中无法报命令不存在的错误: 在 shell 脚本第一行使用 <code>#!/usr/bin/env bash</code> 或者 <code>#!/usr/bin/bash</code> 或者 <code>#!/bin/bash</code></li>
+<li>如果运行还是命令不存在的话: 创建一个软连接 <code>ln -s command /usr/bin/command</code>, 参数 -s 创建了个符号链接,相当于快捷方式,不加参数 -s 就是创建硬链接,相当于文件拷贝</li>
 </ol>]]></content>
       
         <categories>
