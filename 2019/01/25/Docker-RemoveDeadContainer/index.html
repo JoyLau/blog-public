@@ -14,25 +14,18 @@
 
 
 
-<meta name="description" content="我们通常在阿里云上购买实例时通常都会选择再购买一块或多块数据盘。 在登录实例后，这些数据盘并不能直接使用，系统需要先格式化数据盘，然后挂载数据盘。">
-<meta name="keywords" content="Linux,磁盘挂载">
+<meta name="description" content="Docker 删除 状态为Dead 的容器">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux菜鸟到熟悉 --- 数据盘的格式化和挂载">
-<meta property="og:url" content="http://blog.joylau.cn/2017/02/23/Linux-MountDisk/index.html">
+<meta property="og:title" content="Docker 删除 状态为Dead 的容器">
+<meta property="og:url" content="http://blog.joylau.cn/2019/01/25/Docker-RemoveDeadContainer/index.html">
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
-<meta property="og:description" content="我们通常在阿里云上购买实例时通常都会选择再购买一块或多块数据盘。 在登录实例后，这些数据盘并不能直接使用，系统需要先格式化数据盘，然后挂载数据盘。">
+<meta property="og:description" content="Docker 删除 状态为Dead 的容器">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://image.joylau.cn/blog/Thymeleaf.png">
-<meta property="og:image" content="http://image.joylau.cn/blog/linux1.jpg">
-<meta property="og:image" content="http://image.joylau.cn/blog/linux2.jpg">
-<meta property="og:image" content="http://image.joylau.cn/blog/linux3.jpg">
-<meta property="og:image" content="http://image.joylau.cn/blog/linux4.jpg">
-<meta property="og:image" content="http://image.joylau.cn/blog/linux5.jpg">
-<meta property="og:updated_time" content="2018-06-07T05:27:36.220Z">
+<meta property="og:updated_time" content="2019-01-25T16:01:05.876Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux菜鸟到熟悉 --- 数据盘的格式化和挂载">
-<meta name="twitter:description" content="我们通常在阿里云上购买实例时通常都会选择再购买一块或多块数据盘。 在登录实例后，这些数据盘并不能直接使用，系统需要先格式化数据盘，然后挂载数据盘。">
-<meta name="twitter:image" content="http://image.joylau.cn/blog/Thymeleaf.png">
+<meta name="twitter:title" content="Docker 删除 状态为Dead 的容器">
+<meta name="twitter:description" content="Docker 删除 状态为Dead 的容器">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -64,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Linux菜鸟到熟悉 --- 数据盘的格式化和挂载 | JoyLau&#39;s Blog | JoyLau</title>
+<title>Docker 删除 状态为Dead 的容器 | JoyLau&#39;s Blog | JoyLau</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -312,11 +305,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于">
 </nav>
-      <div class="body-wrap"><article id="post-Linux-MountDisk" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Docker-RemoveDeadContainer" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/02/23/Linux-MountDisk/" class="article-date">
-      <time datetime="2017-02-23T04:01:25.000Z" itemprop="datePublished">2017-02-23</time>
+      <a href="/2019/01/25/Docker-RemoveDeadContainer/" class="article-date">
+      <time datetime="2019-01-25T05:31:48.000Z" itemprop="datePublished">2019-01-25</time>
 </a>
     </div>
   
@@ -331,15 +324,15 @@
 
                 
             </div>
-        <h1 class="article-title article-tlt-h" itemprop="name">Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</h1>
+        <h1 class="article-title article-tlt-h" itemprop="name">Docker 删除 状态为Dead 的容器</h1>
       </header>
       
       <div class="article-info article-info-post">
         <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Linux篇/">Linux篇</a>
+    <a class="article-category-link" href="/categories/Docker篇/">Docker篇</a>
     </div>
         <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/磁盘挂载/">磁盘挂载</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
     </div>
         <div class="clearfix"></div>
       </div>
@@ -349,59 +342,36 @@
       
           
         <a id="more"></a>
-<p><img src="//image.joylau.cn/blog/Thymeleaf.png" alt="Thymeleaf"></p>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
-<li>云服务器 <strong>ECS</strong> 仅支持对<strong>数据盘</strong>进行二次分区，而不支持对 <strong>系统盘</strong> 进行二次分区（不管是 <strong>Windows</strong> 还是 <strong>Linux</strong> 系统）</li>
-<li>强行使用第三方工具对系统盘进行二次分区操作，可能引发未知风险，如系统崩溃、数据丢失等。</li>
-<li>对新购的数据盘可以选择分区或者不分区，这个根据自身的情况而定</li>
-<li>下面内容的<code>xvdb</code>和 <code>vdb</code>分别对应非 I/O优化I/O 优化；非 I/O 优化和 I/O 优化的区别在于，前者比后者多一个字母 x</li>
-<li>新数据盘的挂载可以自定义文件夹，本示例中用的是/mnt</li>
-</ul>
-<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><ul>
-<li>运行 <code>fdisk -l</code> 命令查看数据盘。注意：在没有分区和格式化数据盘之前，使用 <code>df -h</code> 命令是无法看到数据盘的。在下面的示例中，有一个 5 GB 的数据盘需要挂载。</li>
-<li>如果执行了 <code>fdisk -l</code> 命令后，没有发现 /dev/xvdb，则表示您的实例没有数据盘，因此无需挂载</li>
-</ul>
-<p><img src="//image.joylau.cn/blog/linux1.jpg" alt="Image1"></p>
-<h3 id="需要进行分区的情况"><a href="#需要进行分区的情况" class="headerlink" title="需要进行分区的情况"></a>需要进行分区的情况</h3><ul>
-<li>运行 <code>fdisk /dev/xvdb</code>，对数据盘进行分区。根据提示，依次输入 n，p，1，两次回车，wq，分区就开始了。</li>
-</ul>
-<p><img src="//image.joylau.cn/blog/linux2.jpg" alt="Image2"></p>
-<ul>
-<li>运行 <code>fdisk -l</code> 命令，查看新的分区。新分区 xvdb1 已经创建好。如下面示例中的/dev/xvdb1。</li>
-</ul>
-<p><img src="//image.joylau.cn/blog/linux3.jpg" alt="Image3"></p>
-<h3 id="不需要进行分区的情况"><a href="#不需要进行分区的情况" class="headerlink" title="不需要进行分区的情况"></a>不需要进行分区的情况</h3><blockquote>
-<p>一般情况下我都是直接格式化一整块数据盘，然后挂载的。</p>
-</blockquote>
-<ul>
-<li>运行 <code>mkfs.ext3 /dev/xvdb1</code>，对新分区进行格式化。格式化所需时间取决于数据盘大小。您也可自主决定选用其他文件格式，如 <code>ext4</code> 等。</li>
-</ul>
-<p><img src="//image.joylau.cn/blog/linux4.jpg" alt="Image4"></p>
-<ul>
-<li>运行 <code>echo /dev/xvdb1 /mnt ext3 defaults 0 0 &gt;&gt; /etc/fstab</code> 写入新分区信息。完成后，可以使用 <code>cat /etc/fstab</code> 命令查看。</li>
-</ul>
-<p><img src="//image.joylau.cn/blog/linux5.jpg" alt="Image5"></p>
-<blockquote>
-<p>Ubuntu 12.04 不支持 barrier，所以对该系统正确的命令是：<code>echo /dev/xvdb1 /mnt ext3 defaults 0 0 &gt;&gt; /etc/fstab</code><br>  如果需要把数据盘单独挂载到某个文件夹，比如单独用来存放网页，可以修改以上命令中的 /mnt 部分。</p>
-</blockquote>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
-<li><p>运行   <code>mount /dev/xvdb1 /mnt</code> 挂载新分区，然后执行 <code>df -h</code> 查看分区。如果出现数据盘信息，说明挂载成功，可以使用新分区了。</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/xvdb1 /mnt</span><br><span class="line">df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/xvda1       40G  1.5G   36G   4% /</span><br><span class="line">tmpfs           498M     0  498M   0% /dev/shm</span><br><span class="line">/dev/xvdb1      5.0G  139M  4.6G   3% /mnt</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><p>因为一些不正确的操作,导致容器的状态变成了 dead</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS                      PORTS                                                              NAMES</span><br><span class="line">c21c993c5107        34.0.7.183:5000/joylau/traffic-service:2.1.7          <span class="string">"java -Djava.secur..."</span>   2 weeks ago         Dead                                                                                           traffic-service</span><br><span class="line">dfbd1cdb31c2        34.0.7.183:5000/joylau/traffic-service-admin:1.2.1    <span class="string">"java -Djava.secur..."</span>   2 weeks ago         Dead                                                                                           traffic-service-admin</span><br><span class="line">8778a28ab120        34.0.7.183:5000/joylau/traffic-service-data:2.0.4     <span class="string">"java -Djava.secur..."</span>   2 weeks ago         Dead                                                                                           traffic-service-data</span><br><span class="line">65a3885e08b5        34.0.7.183:5000/joylau/traffic-service-node:1.2.3     <span class="string">"/bin/sh -c './nod..."</span>   2 weeks ago         Dead                                                                                           traffic-service-node</span><br><span class="line">90700440e1df        34.0.7.183:5000/joylau/traffic-service-server:1.2.1   <span class="string">"java -Djava.secur..."</span>   2 weeks ago         Dead                                                                                           traffic-service-server</span><br></pre></td></tr></table></figure>
+<p>这类的容器删除时会报错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker rm c21c993c5107</span></span><br><span class="line">Error response from daemon: Driver overlay2 failed to remove root filesystem c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64: remove /var/lib/docker/overlay2/099974dbeef827a3bbd932b7b36502763482ae8df25bd80f61a288b71b0ab810/merged: device or resource busy</span><br></pre></td></tr></table></figure>
+<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>找到 filesystem 后面的字符串</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># grep c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64 /proc/*/mountinfo</span></span><br></pre></td></tr></table></figure>
+<p>得到如下输出:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/proc/28032/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28033/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28034/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28035/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28036/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28037/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28038/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28039/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28040/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28041/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28042/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28043/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28044/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28045/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28046/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28047/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br><span class="line">/proc/28048/mountinfo:973 957 0:164 / /var/lib/docker/containers/c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64/shm rw,nosuid,nodev,noexec,relatime shared:189 - tmpfs shm rw,size=65536k</span><br></pre></td></tr></table></figure>
+<p>proc 和 mountinfo 中间的数字将其 kill 掉即可</p>
+<p>写一个批量处理的脚本列出所有的 pid</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64 /proc/*/mountinfo | awk <span class="string">'&#123;print substr($1,7,5)&#125;'</span></span><br></pre></td></tr></table></figure>
+<p>再 kill 掉</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep c21c993c51073f41653aa7fd37dbfd232f8439ca79fd4315a410d0b41d8b0e64 /proc/*/mountinfo | awk <span class="string">'&#123;print substr($1,7,5)&#125;'</span> | xargs <span class="built_in">kill</span> -9</span><br></pre></td></tr></table></figure>
+<p>print 是awk打印指定内容的主要命令</p>
+<p>$0           表示整个当前行<br>$1           每行第一个字段,每个字段以空格隔开<br>substr($1,7,5) 每行第一个字段,第7个字符开始,截取5个字符</p>
+<p>然后在 <code>docker rm container</code></p>
+<p>完美解决.</p>
       
     </div>
     
   </div>
   
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/02/23/Linux-MountDisk/">Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</a></p>
+        <p><span>本文标题:</span><a href="/2019/01/25/Docker-RemoveDeadContainer/">Docker 删除 状态为Dead 的容器</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
-        <p><span>发布时间:</span>2017-02-23, 12:01:25</p>
-        <p><span>最后更新:</span>2018-06-07, 13:27:36</p>
+        <p><span>发布时间:</span>2019-01-25, 13:31:48</p>
+        <p><span>最后更新:</span>2019-01-26, 00:01:05</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/02/23/Linux-MountDisk/" title="Linux菜鸟到熟悉 --- 数据盘的格式化和挂载">http://blog.joylau.cn/2017/02/23/Linux-MountDisk/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2017/02/23/Linux-MountDisk/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/01/25/Docker-RemoveDeadContainer/" title="Docker 删除 状态为Dead 的容器">http://blog.joylau.cn/2019/01/25/Docker-RemoveDeadContainer/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2019/01/25/Docker-RemoveDeadContainer/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -413,16 +383,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/02/23/Linux-BuildingEnvironment/">
-                    Linux菜鸟到熟悉 --- 生产环境的搭建
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/02/20/Thymeleaf/">
-                    重新拾起我曾抛弃的Thymeleaf
+                <a href="/2019/01/24/Elasticsearch-Analyzer/">
+                    Elasticsearch analyzer 和 search_analyzer 的使用记录
                 </a>
             </div>
         
@@ -432,7 +396,7 @@
 <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">1.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-number">2.</span> <span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#需要进行分区的情况"><span class="toc-number">2.1.</span> <span class="toc-text">需要进行分区的情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不需要进行分区的情况"><span class="toc-number">2.2.</span> <span class="toc-text">不需要进行分区的情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#错误信息"><span class="toc-number">1.</span> <span class="toc-text">错误信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方式"><span class="toc-number">2.</span> <span class="toc-text">解决方式</span></a></li></ol>
         
     </div>
     <style>
@@ -466,7 +430,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Linux菜鸟到熟悉 --- 数据盘的格式化和挂载　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Docker 删除 状态为Dead 的容器　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -480,15 +444,13 @@
 
 <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/02/23/Linux-BuildingEnvironment/" title="上一篇: Linux菜鸟到熟悉 --- 生产环境的搭建">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/02/20/Thymeleaf/" title="下一篇: 重新拾起我曾抛弃的Thymeleaf">
+            <a href="/2019/01/24/Elasticsearch-Analyzer/" title="下一篇: Elasticsearch analyzer 和 search_analyzer 的使用记录">
                 <i class="fa fa-angle-right"></i>
             </a>
         
