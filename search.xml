@@ -1098,11 +1098,11 @@
 <li>生成 pac 文件</li>
 </ol>
 <p>安装 pip </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo pip install genpac</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pip install --upgrade genpac</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo pip install genpac</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pip install -U genpac <span class="comment">## 安装或更新</span></span></span><br></pre></td></tr></table></figure>
 <p>创建 user-rules.txt 文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir vpnPAC</span><br><span class="line">cd vpnPAC</span><br><span class="line">touch user-rules.txt</span><br></pre></td></tr></table></figure>
 <p>生成 autoproxy.pac 文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genpac -p "SOCKS5 127.0.0.1:1080" --gfwlist-proxy="SOCKS5 127.0.0.1:1080" --output="autoproxy.pac" --gfwlist-url="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" --user-rule-from="user-rules.txt"</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genpac --format=pac --pac-proxy="SOCKS5 127.0.0.1:1080" --output="autoproxy2.pac" --gfwlist-url="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" --user-rule-from="user-rules.txt"</span><br></pre></td></tr></table></figure>
 <p>github 上的 gfwlist.txt 文件可能读取不到,多试几次</p>
 <ol start="4">
 <li>配置使用</li>

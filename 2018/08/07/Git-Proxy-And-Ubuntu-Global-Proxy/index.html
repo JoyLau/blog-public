@@ -23,7 +23,7 @@
 <meta property="og:description" content="这一段时间 GitHub 在国内的访问又出问题,代码提交不上去,需要在 Git 上走代理了">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://image.joylau.cn/blog/ubuntu-global-proxy.png">
-<meta property="og:updated_time" content="2018-08-07T08:38:59.790Z">
+<meta property="og:updated_time" content="2019-03-13T10:29:08.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理">
 <meta name="twitter:description" content="这一段时间 GitHub 在国内的访问又出问题,代码提交不上去,需要在 Git 上走代理了">
@@ -364,11 +364,11 @@
 <li>生成 pac 文件</li>
 </ol>
 <p>安装 pip </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo pip install genpac</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pip install --upgrade genpac</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo pip install genpac</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pip install -U genpac <span class="comment">## 安装或更新</span></span></span><br></pre></td></tr></table></figure>
 <p>创建 user-rules.txt 文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir vpnPAC</span><br><span class="line">cd vpnPAC</span><br><span class="line">touch user-rules.txt</span><br></pre></td></tr></table></figure>
 <p>生成 autoproxy.pac 文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genpac -p "SOCKS5 127.0.0.1:1080" --gfwlist-proxy="SOCKS5 127.0.0.1:1080" --output="autoproxy.pac" --gfwlist-url="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" --user-rule-from="user-rules.txt"</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genpac --format=pac --pac-proxy="SOCKS5 127.0.0.1:1080" --output="autoproxy2.pac" --gfwlist-url="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" --user-rule-from="user-rules.txt"</span><br></pre></td></tr></table></figure>
 <p>github 上的 gfwlist.txt 文件可能读取不到,多试几次</p>
 <ol start="4">
 <li>配置使用</li>
@@ -383,7 +383,7 @@
         <p><span>本文标题:</span><a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/">Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
         <p><span>发布时间:</span>2018-08-07, 16:12:53</p>
-        <p><span>最后更新:</span>2018-08-07, 16:38:59</p>
+        <p><span>最后更新:</span>2019-03-13, 18:29:08</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理">http://blog.joylau.cn/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/</a>
             <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
