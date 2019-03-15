@@ -4,6 +4,65 @@
   
     
     <entry>
+      <title><![CDATA[Linux(CentOS, Ubuntu) 编译安装 OpenCV4]]></title>
+      <url>http://blog.joylau.cn/2019/03/15/OpenCV-Build/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="为什么没有-Windows-下的编译安装"><a href="#为什么没有-Windows-下的编译安装" class="headerlink" title="为什么没有 Windows 下的编译安装"></a>为什么没有 Windows 下的编译安装</h3><p>因为官网已经提供的编译好的 exe 包,双击运行就会解压到特定的目录了,除此之外官网还提供了 ios 版和 安卓版<br>这里着重记录下 CentOS 和 Ubuntu 下的安装,因为官网没有提供编译好的包</p>
+<h3 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h3><ol>
+<li>GCC 4.4.x or later</li>
+<li>CMake 2.8.7 or higher</li>
+<li>Git</li>
+<li>GTK+2.x or higher, including headers (libgtk2.0-dev)</li>
+<li>pkg-config</li>
+<li>Python 2.6 or later and Numpy 1.5 or later with developer packages (python-dev, python-numpy)</li>
+<li>ffmpeg or libav development packages: libavcodec-dev, libavformat-dev, libswscale-dev</li>
+<li>[optional] libtbb2 libtbb-dev</li>
+<li>[optional] libdc1394 2.x</li>
+<li>[optional] libjpeg-dev, libpng-dev, libtiff-dev, libjasper-dev, libdc1394-22-dev</li>
+<li>[optional] CUDA Toolkit 6.5 or higher</li>
+</ol>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>安装常用的开发编译工具包, Centos 的命令为: yum groupinstall “Development Tools”, Ubuntu 的命令为: apt-get install build-essential</li>
+<li>安装 cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev</li>
+<li>mkdir opencv4; cd opencv4</li>
+<li>git clone <a href="https://github.com/opencv/opencv.git" target="_blank" rel="noopener">https://github.com/opencv/opencv.git</a></li>
+<li>git clone <a href="https://github.com/opencv/opencv_contrib.git" target="_blank" rel="noopener">https://github.com/opencv/opencv_contrib.git</a></li>
+<li>cd opencv</li>
+<li>mkdir build</li>
+<li>cd build</li>
+<li>cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..  (如果不工作的话,删除 -D的空格,cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..)</li>
+<li>make -j7 # runs 7 jobs in parallel 使用7个并行任务来编译</li>
+<li>生成文档 cd ~/opencv/build/doc/; make -j7 doxygen</li>
+<li>make install</li>
+</ol>
+<h3 id="CentOS-上-CMake-版本太低的解决方法"><a href="#CentOS-上-CMake-版本太低的解决方法" class="headerlink" title="CentOS 上 CMake 版本太低的解决方法"></a>CentOS 上 CMake 版本太低的解决方法</h3><ol>
+<li>yum 上安装的版本太低,先卸载掉版本低的,yum remove cmake</li>
+<li><p>cd /opt<br>tar zxvf cmake-3.10.2-Linux-x86_64.tar.gz</p>
+</li>
+<li><p>vim /etc/profile<br>export CMAKE_HOME=/opt/cmake-3.10.2-Linux-x86_64<br>export PATH=$PATH:$CMAKE_HOME/bin</p>
+</li>
+<li><p>source /etc/profile </p>
+</li>
+</ol>
+<h3 id="没有生成-opencv-410-jar"><a href="#没有生成-opencv-410-jar" class="headerlink" title="没有生成 opencv-410.jar"></a>没有生成 opencv-410.jar</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Java:                          </span><br><span class="line">--     ant:                         /bin/ant (ver 1.9.4)</span><br><span class="line">--     JNI:                         /usr/lib/jvm/java-1.8.0-openjdk/include /usr/lib/jvm/java-1.8.0-openjdk/include/linux /usr/lib/jvm/java-1.8.0-openjdk/include</span><br><span class="line">--     Java wrappers:               YES</span><br><span class="line">--     Java tests:                  NO</span><br></pre></td></tr></table></figure>
+<p>需要 ant 环境,安装后即可, java 即可进行调用</p>]]></content>
+      
+        <categories>
+            
+            <category> OpenCV篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> OpenCV </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Docker-Swarm 自定义服务部署的节点]]></title>
       <url>http://blog.joylau.cn/2019/03/01/Docker-Swarm-Choice-Node/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -6027,21 +6086,11 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
 <li><p>备份 ：mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</p>
 </li>
 <li><p>下载新的CentOS-Base.repo 到/etc/yum.repos.d/</p>
-<p>  CentOS 5 ：</p>
-<p>  wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-5.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-5.repo</a></p>
-<p>  或者</p>
-<p>  curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-5.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-5.repo</a></p>
-<p>  CentOS 6 ： </p>
-<p>  wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-6.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-6.repo</a></p>
-<p>  或者</p>
-<p>  curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-6.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-6.repo</a></p>
-<p>  CentOS 7 ： </p>
-<p>  wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p>
-<p>  或者</p>
-<p>  curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p>
 </li>
-<li><p>之后运行 yum makecache 生成缓存</p>
-</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># CentOS 5 ：</span></span></span><br><span class="line"></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 或者</span></span></span><br><span class="line"></span><br><span class="line">curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># CentOS 6 ： </span></span></span><br><span class="line"></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 或者</span></span></span><br><span class="line"></span><br><span class="line">curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># CentOS 7 ： </span></span></span><br><span class="line"></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 或者</span></span></span><br><span class="line"></span><br><span class="line">curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+<ul>
+<li>之后运行 yum makecache 生成缓存</li>
 </ul>
 <h2 id="创建用户，权限，密码等"><a href="#创建用户，权限，密码等" class="headerlink" title="创建用户，权限，密码等"></a>创建用户，权限，密码等</h2><ul>
 <li>adduser es -s /bin/bash  : 创建用户为 es ,shell指定为bash</li>
@@ -6078,7 +6127,11 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
 <h2 id="2019-03-07-更新"><a href="#2019-03-07-更新" class="headerlink" title="2019-03-07 更新"></a>2019-03-07 更新</h2><p>没有联网的机器做时间服务器,写了个接口获取网络的时间,然后服务器使用 crontab 定时设置时间<br>java:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 同步时间</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"traffic/syncDateTime"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">syncDateTime</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    String taobaoTime = <span class="string">"http://api.m.taobao.com/rest/api.do?api=mtop.common.getTimestamp"</span>;</span><br><span class="line">    String suningTime = <span class="string">"http://quan.suning.com/getSysTime.do"</span>;</span><br><span class="line">    JSONObject jsonObject;</span><br><span class="line">    jsonObject = getDateTime(taobaoTime);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> != jsonObject &amp;&amp; jsonObject.containsKey(<span class="string">"data"</span>)) &#123;</span><br><span class="line">        String time = jsonObject.getJSONObject(<span class="string">"data"</span>).getString(<span class="string">"t"</span>);</span><br><span class="line">        <span class="keyword">return</span> LocalDateTime.ofEpochSecond(Long.parseLong(time) / <span class="number">1000</span>, <span class="number">0</span>, ZoneOffset.ofHours(<span class="number">8</span>))</span><br><span class="line">                .format(DateTimeFormatter.ofPattern(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    jsonObject = getDateTime(suningTime);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> != jsonObject &amp;&amp; jsonObject.containsKey(<span class="string">"sysTime2"</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> jsonObject.getString(<span class="string">"sysTime2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> JSONObject <span class="title">getDateTime</span><span class="params">(String url)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> restTemplate.getForObject(url,JSONObject.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>shell:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line">time=$(curl -G -s http://34.0.7.227:9338/traffic/syncDateTime)</span><br><span class="line"><span class="keyword">if</span> [ ! -n <span class="string">"<span class="variable">$time</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"time is null...."</span>  </span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  date -s <span class="string">"<span class="variable">$&#123;time&#125;</span>"</span></span><br><span class="line">  hwclock -w</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line">time=$(curl -G -s http://34.0.7.227:9338/traffic/syncDateTime)</span><br><span class="line"><span class="keyword">if</span> [ ! -n <span class="string">"<span class="variable">$time</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"time is null...."</span>  </span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  date -s <span class="string">"<span class="variable">$&#123;time&#125;</span>"</span></span><br><span class="line">  hwclock -w</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<h2 id="2019-03-15-更新"><a href="#2019-03-15-更新" class="headerlink" title="2019-03-15 更新"></a>2019-03-15 更新</h2><ol>
+<li>shell 修改文件固定行的内容</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">"108c 'update content'"</span> filename</span><br></pre></td></tr></table></figure>]]></content>
       
         <categories>
             
