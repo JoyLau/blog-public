@@ -198,6 +198,44 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Validated 注解的 groups 使用记录]]></title>
+      <url>http://blog.joylau.cn/2019/01/26/SpringBoot-Validated/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="Valid-和-Validated"><a href="#Valid-和-Validated" class="headerlink" title="@Valid 和 @Validated"></a>@Valid 和 @Validated</h3><ol>
+<li><code>@Valid</code> 和 <code>@Validated</code> 注解都用于字段校验</li>
+<li><code>@Valid</code> 所属包为：<code>javax.validation.Valid</code> ; <code>@Validated</code> 所属包为 <code>org.springframework.validation.annotation.Validated</code></li>
+<li><code>@Validated</code> 是 <code>@Valid</code> 的一次封装，是Spring提供的校验机制使用。<code>@Valid</code> 不提供分组功能</li>
+</ol>
+<h3 id="Validated的特殊用法"><a href="#Validated的特殊用法" class="headerlink" title="@Validated的特殊用法"></a>@Validated的特殊用法</h3><p>当一个实体类需要多种验证方式时，例：对于一个实体类的id来说，新增的时候是不需要的，对于更新时是必须的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Attachment</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"id can not be blank!"</span>, groups = &#123;All.class, Update.class&#125;)</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"fileName can not be blank!"</span>, groups = &#123;All.class&#125;)</span><br><span class="line">    <span class="keyword">private</span> String fileName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"filePath can not be blank!"</span>, groups = &#123;All.class&#125;)</span><br><span class="line">    <span class="keyword">private</span> String filePath;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Field</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">byte</span>[] data;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"metaData can not be empty!"</span>, groups = &#123;All.class&#125;)</span><br><span class="line">    <span class="keyword">private</span> String metaData;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"uploadTime can not be blank!"</span>, groups = &#123;All.class&#125;)</span><br><span class="line">    <span class="keyword">private</span> String uploadTime;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Attachment</span><span class="params">(@NotBlank(message = <span class="string">"id can not be blank!"</span>, groups = &#123;All.class, Update.class&#125;)</span> String id) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">All</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Update</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>单独对 <code>groups</code> 进行校验</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 添加附件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"addAttachment"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> MessageBody <span class="title">addAttachment</span><span class="params">(@RequestParam(<span class="string">"file"</span>)</span> <span class="keyword">final</span> MultipartFile multipartFile,</span></span><br><span class="line"><span class="function">                                 @<span class="title">Validated</span><span class="params">(Attachment.All.class)</span> Attachment attachment,</span></span><br><span class="line"><span class="function">                                 BindingResult results)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> attachmentApiService.addAttachment(multipartFile,attachment,results);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 更新单个附件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"updateAttachment"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> MessageBody <span class="title">updateAttachment</span><span class="params">(@RequestParam(value = <span class="string">"file"</span>,required = <span class="keyword">false</span>)</span> <span class="keyword">final</span> MultipartFile multipartFile,</span></span><br><span class="line"><span class="function">                                    @<span class="title">Validated</span><span class="params">(Attachment.Update.class)</span> Attachment attachment)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> attachmentApiService.updateAttachment(multipartFile,attachment);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用注意"><a href="#使用注意" class="headerlink" title="使用注意"></a>使用注意</h3><ol>
+<li>校验的注解中不分配 groups，默认每次都要进行验证</li>
+<li>@Validated 没有添加 groups 属性时，默认验证没有分组的验证属性</li>
+<li>@Validated 添加特定 groups 属性时,只校验该注解中分配了该 groups 的属性</li>
+<li>一个功能方法上处理多个模型对象时，需添加多个验证结果对象,如下所示</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/addPeople"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="meta">@ResponseBody</span> <span class="function">String <span class="title">addPeople</span><span class="params">(@Validated People p,BindingResult result,@Validated Person p2,BindingResult result2)</span>  </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> SpringBoot篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> SpringBoot </tag>
+            
+            <tag> Spring </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Docker 删除 状态为Dead 的容器]]></title>
       <url>http://blog.joylau.cn/2019/01/25/Docker-RemoveDeadContainer/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -3945,9 +3983,9 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
         
         <tags>
             
-            <tag> 程序员 </tag>
-            
             <tag> 技能 </tag>
+            
+            <tag> 程序员 </tag>
             
         </tags>
         
@@ -6161,7 +6199,13 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
 <h2 id="2019-03-15-更新"><a href="#2019-03-15-更新" class="headerlink" title="2019-03-15 更新"></a>2019-03-15 更新</h2><ol>
 <li>shell 修改文件固定行的内容</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">"108c 'update content'"</span> filename</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">"108c 'update content'"</span> filename</span><br></pre></td></tr></table></figure>
+<h2 id="2019-03-18-更新"><a href="#2019-03-18-更新" class="headerlink" title="2019-03-18 更新"></a>2019-03-18 更新</h2><h4 id="删除-Ubuntu-多余内核"><a href="#删除-Ubuntu-多余内核" class="headerlink" title="删除 Ubuntu 多余内核"></a>删除 Ubuntu 多余内核</h4><ol>
+<li><code>dpkg --get-selections|grep linux</code> : 查看全部安装的内核</li>
+<li>确定当前使用的内核,一般为版本号最新的内核,删除旧内核: <code>sudo apt remove linux-headers-4.15.0-43    linux-headers-4.15.0-43-generic linux-image-4.15.0-43-generic linux-modules-4.15.0-43-generic linux-modules-extra-4.15.0-43-generic</code></li>
+<li>再次输入第一步的命令查看现在的内核信息,现在会看到刚才删除的内核会出现 <code>deinstall</code> 的状态</li>
+<li>删除 <code>deinstall</code> 状态的内核: <code>sudo dpkg -P xxxxxx</code></li>
+</ol>]]></content>
       
         <categories>
             

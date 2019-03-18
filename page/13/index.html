@@ -310,7 +310,60 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于">
 </nav>
-      <div class="body-wrap"><article id="post-Java-Scala" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-CSS3-Image-Scale" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/13/CSS3-Image-Scale/" class="article-date">
+      <time datetime="2017-10-13T07:07:54.000Z" itemprop="datePublished">2017-10-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+           <div id="jl_custom">
+                
+
+                
+            </div>
+        <h1 itemprop="name">
+      <a class="article-title article-tlt-a" href="/2017/10/13/CSS3-Image-Scale/">当鼠标移入图片上慢慢放大的效果</a>
+    </h1>
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <div class="article-description-tlt"><center><img src="http://image.joylau.cn/blog/image-scale.gif" alt="image-scale"></center></div>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+
+      <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/前端篇/">前端篇</a>
+    </div>
+      <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/">CSS3</a></li></ul>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2017/10/13/CSS3-Image-Scale/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+  
+    <article id="post-Java-Scala" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2017/09/26/Java-Scala/" class="article-date">
@@ -575,59 +628,6 @@
   
 </article>
   
-    <article id="post-SpringBoot-JoyMedia-NoReferer" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/" class="article-date">
-      <time datetime="2017-08-29T03:13:24.000Z" itemprop="datePublished">2017-08-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-           <div id="jl_custom">
-                
-
-                
-            </div>
-        <h1 itemprop="name">
-      <a class="article-title article-tlt-a" href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）</a>
-    </h1>
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <div class="article-description-tlt"><center><img src="//image.joylau.cn/blog/joymusic-mv-noreferer.png" alt="JoyMusic-NoReferer"></center><br>JoyMedia --- 解决上篇文章 MV 防盗链加上 referer 认证的问题<br>同时加上下滑看 MV 评论时,将视频缩小化到右下角,一边看 MV 一边看热评两不误</div>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-
-      <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/SpringBoot篇/">SpringBoot篇</a>
-    </div>
-      <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/12/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/14/">Next &raquo;</a>
@@ -639,7 +639,7 @@
 <script>
     $.each($('div#jl_custom'),function(a,b){
         if($(b).html().indexOf('博主已更新')<0 && $('span.page-number.current').text()==1){
-            $(b).append("<img src='//image.joylau.cn/blog/new.gif' alt='这是博主刚出炉的新文章哦~'/>")
+            $(b).append("<img class='new_post_image' src='//image.joylau.cn/blog/new.gif' alt='New post'/>");
             return false;
         }
     })
