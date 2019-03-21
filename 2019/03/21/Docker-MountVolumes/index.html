@@ -14,18 +14,18 @@
 
 
 
-<meta name="description" content="今天连接远程服务器发生了错误,我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单,想取消的话还是花了一点的功夫">
-<meta name="keywords" content="Linux">
+<meta name="description" content="解决 Docker 容器挂载宿主机上的目录时出现 Permission denied 的错误">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DenyHosts 清除黑名单 IP 地址">
-<meta property="og:url" content="http://blog.joylau.cn/2018/07/19/Linux-Cancel-DenyHosts/index.html">
+<meta property="og:title" content="Docker 容器挂载宿主机上的目录时出现 Permission denied">
+<meta property="og:url" content="http://blog.joylau.cn/2019/03/21/Docker-MountVolumes/index.html">
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
-<meta property="og:description" content="今天连接远程服务器发生了错误,我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单,想取消的话还是花了一点的功夫">
+<meta property="og:description" content="解决 Docker 容器挂载宿主机上的目录时出现 Permission denied 的错误">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-19T03:32:00.283Z">
+<meta property="og:updated_time" content="2019-03-21T10:17:43.109Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DenyHosts 清除黑名单 IP 地址">
-<meta name="twitter:description" content="今天连接远程服务器发生了错误,我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单,想取消的话还是花了一点的功夫">
+<meta name="twitter:title" content="Docker 容器挂载宿主机上的目录时出现 Permission denied">
+<meta name="twitter:description" content="解决 Docker 容器挂载宿主机上的目录时出现 Permission denied 的错误">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>DenyHosts 清除黑名单 IP 地址 | JoyLau&#39;s Blog | JoyLau</title>
+<title>Docker 容器挂载宿主机上的目录时出现 Permission denied | JoyLau&#39;s Blog | JoyLau</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -305,11 +305,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于">
 </nav>
-      <div class="body-wrap"><article id="post-Linux-Cancel-DenyHosts" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Docker-MountVolumes" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/07/19/Linux-Cancel-DenyHosts/" class="article-date">
-      <time datetime="2018-07-19T02:47:25.000Z" itemprop="datePublished">2018-07-19</time>
+      <a href="/2019/03/21/Docker-MountVolumes/" class="article-date">
+      <time datetime="2019-03-21T08:27:48.000Z" itemprop="datePublished">2019-03-21</time>
 </a>
     </div>
   
@@ -324,15 +324,15 @@
 
                 
             </div>
-        <h1 class="article-title article-tlt-h" itemprop="name">DenyHosts 清除黑名单 IP 地址</h1>
+        <h1 class="article-title article-tlt-h" itemprop="name">Docker 容器挂载宿主机上的目录时出现 Permission denied</h1>
       </header>
       
       <div class="article-info article-info-post">
         <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Linux篇/">Linux篇</a>
+    <a class="article-category-link" href="/categories/Docker篇/">Docker篇</a>
     </div>
         <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
     </div>
         <div class="clearfix"></div>
       </div>
@@ -342,35 +342,42 @@
       
           
         <a id="more"></a>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>今天连接远程服务器发生了以下的错误<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh_exchange_identification: <span class="built_in">read</span>: Connection reset</span><br></pre></td></tr></table></figure></p>
-<p>我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单<br>本来想只要将当前的 ip 地址在黑名单中去掉就可以了<br>没想到事实并不是如此,为此还查资料花费了一点功夫<br>现记录下来</p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ol>
-<li>停用 DenyHosts : <code>systemctl stop denyhosts.service</code></li>
-<li>删除黑名单中当前的ip地址: <code>vim /etc/hosts.deny</code></li>
-<li>进入  <code>/var/lib/denyhosts</code></li>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>启动 docker 容器时挂载容器以前存在的数据文件时出现了 Permission denied 的错误</p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ol>
+<li>首先以为是挂载的文件夹有读写数据的权限问题 <code>chmod -R 777 xxxx</code> , 没有解决，依然报错</li>
+<li>再分析是文件目录的所属者的问题： <code>chown -R gname:uname xxxx</code> , 没有解决，依然报错</li>
+<li>这时我们进入容器之后 使用 ll 查看挂载的目录的所属者，发现组名和户名跟宿主机的组名和用户名不一致</li>
+<li>原因在于，操作系统判断用户组和用户其实并不是根据名称来的，而是根据名称对应的 id 来的</li>
+<li>查看用户组和用户名对象的 id, 可查看 <code>/etc/passwd</code></li>
+<li>此时，我们需要将宿主机的用户组用户的 ID 和 容器内挂在目录所需的用户组和用户的 ID 对应起来，写一直即可</li>
+<li>举个例子</li>
+<li>redis 镜像产生的数据文件在 <code>/var/lib/redis</code> 中，并且该目录的用户组和用户都为 <code>redis</code>， 此时我们查看容器的 <code>redis:redis</code> 的 id , 假如是 <code>102:103</code></li>
+<li>此时我们宿主机挂载目录是 <code>/opt/docker/redis/data</code> ,我们改变这个目录的所属者 <code>chown -R 102:103 /opt/docker/redis/data</code></li>
+<li>不要管 <code>102:103</code> 在宿主机系统中有没有该用户组和用户</li>
+<li>再次进入容器就可以看到 <code>/var/lib/redis</code> 目录的所属者是正确的了</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 root root    39 2月  16 2015 allowed-hosts</span><br><span class="line">-rw-r--r-- 1 root root 71451 7月  19 10:58 hosts</span><br><span class="line">-rw-r--r-- 1 root root 71270 7月  19 10:58 hosts-restricted</span><br><span class="line">-rw-r--r-- 1 root root 71433 7月  19 10:58 hosts-root</span><br><span class="line">-rw-r--r-- 1 root root 71280 7月  19 10:58 hosts-valid</span><br><span class="line">-rw-r--r-- 1 root root   105 7月  19 10:58 offset</span><br><span class="line">-rw-r--r-- 1 root root     0 7月  19 10:58 suspicious-logins</span><br><span class="line">-rw-r--r-- 1 root root 44731 7月  19 10:58 users-hosts</span><br><span class="line">-rw-r--r-- 1 root root 50925 7月  19 10:58 users-invalid</span><br><span class="line">-rw-r--r-- 1 root root   643 7月  19 10:58 users-valid</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>依次在上面各个文件中移除自己当前的IP地址</li>
-<li>如果要将当前的IP地址添加到白名单中,可以在 /etc/hosts.allow 添加<br>sshd: ip地址<br>allowed-hosts 添加 IP地址</li>
-<li>重启 DenyHosts</li>
+<h3 id="mysql-和-mariaDB-的问题"><a href="#mysql-和-mariaDB-的问题" class="headerlink" title="mysql 和 mariaDB 的问题"></a>mysql 和 mariaDB 的问题</h3><p>这样的情况也发生在 mysql 和 mariaDB 上<br>按照上述的方法似乎没有奏效，确切的说奏效一半<br>因为 <code>/var/lib/mysql</code> 目录中文件夹可以看到，文件却没有权限看到<br>类似这样</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">190321 06:02:13 mysqld_safe Logging to '/var/lib/mysql/d240623581db.err'.</span><br><span class="line">190321 06:02:13 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql</span><br><span class="line">chown: /var/lib/mysql/60689c28e4a1.err: Permission denied</span><br><span class="line">chown: /var/lib/mysql/60689c28e4a1.pid: Permission denied</span><br><span class="line">chown: /var/lib/mysql/aria_log.00000001: Permission denied</span><br><span class="line">chown: /var/lib/mysql/aria_log_control: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_buffer_pool: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ibdata1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_logfile0: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_logfile1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ibtmp1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/multi-master.info: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000001: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000002: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000003: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000004: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000005: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000006: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000007: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000008: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000009: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.index: Permission denied</span><br><span class="line">chown: /var/lib/mysql/owncloud: Permission denied</span><br><span class="line">chown: /var/lib/mysql/performance_schema: Permission denied</span><br><span class="line">chown: /var/lib/mysql: Permission denied</span><br><span class="line">chown: /var/lib/mysql: Permission denied</span><br><span class="line">190321 06:02:14 mysqld_safe Logging to '/var/lib/mysql/d240623581db.err'.</span><br><span class="line">190321 06:02:14 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql</span><br><span class="line">chown: /var/lib/mysql/60689c28e4a1.err: Permission denied</span><br><span class="line">chown: /var/lib/mysql/60689c28e4a1.pid: Permission denied</span><br><span class="line">chown: /var/lib/mysql/aria_log.00000001: Permission denied</span><br><span class="line">chown: /var/lib/mysql/aria_log_control: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_buffer_pool: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ibdata1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_logfile0: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_logfile1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ibtmp1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/multi-master.info: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000001: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000002: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000003: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000004: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000005: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000006: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000007: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000008: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000009: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.index: Permission denied</span><br><span class="line">chown: /var/lib/mysql/owncloud: Permission denied</span><br><span class="line">chown: /var/lib/mysql/performance_schema: Permission denied</span><br><span class="line">chown: /var/lib/mysql: Permission denied</span><br><span class="line">chown: /var/lib/mysql: Permission denied</span><br></pre></td></tr></table></figure>
+<p>原因分析是：<br>SELinux 造成的<br>有以下 4 中解决方法：</p>
+<ol>
+<li><code>setenforce 0</code> : 临时关闭 </li>
+<li><code>vi /etc/selinux/config</code> ： 将 <code>SELINUX=enforcing</code> 改为 <code>SELINUX=disabled</code> ，重启</li>
+<li>在docker run 中加入 <code>--privileged=true</code> 给容器加上特定权限</li>
+<li>修改 SELinux 规则 <code>chcon -t mysqld_db_t  -R /opt/docker/mysql/data</code></li>
 </ol>
-<blockquote>
-<p>注意: 这些文件里有很多被拉入黑名单的IP地址,vim编辑的时候可以在命令行模式下使用 <code>/ip地址</code> 来查找, n 和 N 上下翻动,再在命令行模式下 <code>:noh</code> 取消查找</p>
-</blockquote>
       
     </div>
     
   </div>
   
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/07/19/Linux-Cancel-DenyHosts/">DenyHosts 清除黑名单 IP 地址</a></p>
+        <p><span>本文标题:</span><a href="/2019/03/21/Docker-MountVolumes/">Docker 容器挂载宿主机上的目录时出现 Permission denied</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
-        <p><span>发布时间:</span>2018-07-19, 10:47:25</p>
-        <p><span>最后更新:</span>2018-07-19, 11:32:00</p>
+        <p><span>发布时间:</span>2019-03-21, 16:27:48</p>
+        <p><span>最后更新:</span>2019-03-21, 18:17:43</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/07/19/Linux-Cancel-DenyHosts/" title="DenyHosts 清除黑名单 IP 地址">http://blog.joylau.cn/2018/07/19/Linux-Cancel-DenyHosts/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2018/07/19/Linux-Cancel-DenyHosts/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/21/Docker-MountVolumes/" title="Docker 容器挂载宿主机上的目录时出现 Permission denied">http://blog.joylau.cn/2019/03/21/Docker-MountVolumes/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2019/03/21/Docker-MountVolumes/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -382,16 +389,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/07/29/OracleNubmer-JdbcType/">
-                    Oracle 里 number 类型对应 JdbcType bean 类型记录
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/07/13/Ubuntu-Fonts-Monaco/">
-                    Ubuntu 最佳编程字体 Monaco 的优化显示
+                <a href="/2019/03/20/IntelliJIDEA-Support-@-Alias/">
+                    IntelliJ IDEA (WebStorm) 识别 @ 作为别名进行导包
                 </a>
             </div>
         
@@ -401,7 +402,7 @@
 <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决"><span class="toc-number">2.</span> <span class="toc-text">解决</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题"><span class="toc-number">1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决"><span class="toc-number">2.</span> <span class="toc-text">解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql-和-mariaDB-的问题"><span class="toc-number">3.</span> <span class="toc-text">mysql 和 mariaDB 的问题</span></a></li></ol>
         
     </div>
     <style>
@@ -435,7 +436,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"DenyHosts 清除黑名单 IP 地址　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Docker 容器挂载宿主机上的目录时出现 Permission denied　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -449,15 +450,13 @@
 
 <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/07/29/OracleNubmer-JdbcType/" title="上一篇: Oracle 里 number 类型对应 JdbcType bean 类型记录">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/07/13/Ubuntu-Fonts-Monaco/" title="下一篇: Ubuntu 最佳编程字体 Monaco 的优化显示">
+            <a href="/2019/03/20/IntelliJIDEA-Support-@-Alias/" title="下一篇: IntelliJ IDEA (WebStorm) 识别 @ 作为别名进行导包">
                 <i class="fa fa-angle-right"></i>
             </a>
         
