@@ -14,18 +14,20 @@
 
 
 
-<meta name="description" content="java 8 lamda 表达式的 stream 有很多实用的方法，这里记录下日常的使用记录">
-<meta name="keywords" content="java">
+<meta name="description" content="记录一下一些学习数字图像处理的基础知识与概念">
+<meta name="keywords" content="OpenCV">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于Jdk 8 Stream 的使用记录">
-<meta property="og:url" content="http://blog.joylau.cn/2018/12/24/JDK8-Stream-Use/index.html">
+<meta property="og:title" content="OpenCV 基础知识与概念">
+<meta property="og:url" content="http://blog.joylau.cn/2019/03/28/OpenCV-Basic/index.html">
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
-<meta property="og:description" content="java 8 lamda 表达式的 stream 有很多实用的方法，这里记录下日常的使用记录">
+<meta property="og:description" content="记录一下一些学习数字图像处理的基础知识与概念">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-04T05:26:26.526Z">
+<meta property="og:image" content="http://image.joylau.cn/blog/OpenCV-HSV.png">
+<meta property="og:updated_time" content="2019-04-01T16:01:04.983Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于Jdk 8 Stream 的使用记录">
-<meta name="twitter:description" content="java 8 lamda 表达式的 stream 有很多实用的方法，这里记录下日常的使用记录">
+<meta name="twitter:title" content="OpenCV 基础知识与概念">
+<meta name="twitter:description" content="记录一下一些学习数字图像处理的基础知识与概念">
+<meta name="twitter:image" content="http://image.joylau.cn/blog/OpenCV-HSV.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>关于Jdk 8 Stream 的使用记录 | JoyLau&#39;s Blog | JoyLau</title>
+<title>OpenCV 基础知识与概念 | JoyLau&#39;s Blog | JoyLau</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -305,11 +307,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于">
 </nav>
-      <div class="body-wrap"><article id="post-JDK8-Stream-Use" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-OpenCV-Basic" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/12/24/JDK8-Stream-Use/" class="article-date">
-      <time datetime="2018-12-24T15:27:38.000Z" itemprop="datePublished">2018-12-24</time>
+      <a href="/2019/03/28/OpenCV-Basic/" class="article-date">
+      <time datetime="2019-03-28T08:10:51.000Z" itemprop="datePublished">2019-03-28</time>
 </a>
     </div>
   
@@ -324,15 +326,15 @@
 
                 
             </div>
-        <h1 class="article-title article-tlt-h" itemprop="name">关于Jdk 8 Stream 的使用记录</h1>
+        <h1 class="article-title article-tlt-h" itemprop="name">OpenCV 基础知识与概念</h1>
       </header>
       
       <div class="article-info article-info-post">
         <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Java篇/">Java篇</a>
+    <a class="article-category-link" href="/categories/OpenCV篇/">OpenCV篇</a>
     </div>
         <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/">OpenCV</a></li></ul>
     </div>
         <div class="clearfix"></div>
       </div>
@@ -342,52 +344,128 @@
       
           
         <a id="more"></a>
-<h2 id="LocalDateTime-将-long-格式的时间转化本地时间字符串"><a href="#LocalDateTime-将-long-格式的时间转化本地时间字符串" class="headerlink" title="LocalDateTime 将 long 格式的时间转化本地时间字符串"></a>LocalDateTime 将 long 格式的时间转化本地时间字符串</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LocalDateTime</span><br><span class="line">        .ofEpochSecond(System.currentTimeMillis() / <span class="number">1000</span>, <span class="number">0</span>, ZoneOffset.ofHours(<span class="number">8</span>))</span><br><span class="line">        .format(DateTimeFormatter.ofPattern(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>))</span><br></pre></td></tr></table></figure>
-<h2 id="reduce-导致的源集合对象改变"><a href="#reduce-导致的源集合对象改变" class="headerlink" title="reduce 导致的源集合对象改变"></a>reduce 导致的源集合对象改变</h2><p>例如下属代码导致 images 里的 DataImage 对象里的 stake 对象的数量改变</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String,List&lt;HighwayStake&gt;&gt; roadStakeMap = images.stream()</span><br><span class="line">               .filter(image -&gt; !image.getStakes().isEmpty())</span><br><span class="line">               .map(DataImage::getStakes())</span><br><span class="line">               .reduce((highwayStakes, highwayStakes2) -&gt; &#123;</span><br><span class="line">                   highwayStakes2.addAll(highwayStakes);</span><br><span class="line">                   <span class="keyword">return</span> highwayStakes2;</span><br><span class="line">               &#125;)</span><br><span class="line">               .orElse(<span class="keyword">new</span> ArrayList&lt;&gt;())</span><br><span class="line">               .stream()</span><br><span class="line">               .collect(Collectors.groupingBy(HighwayStake::getDlmc));</span><br></pre></td></tr></table></figure>
-<p>因为对 dataImage 的 stakes 集合进行了合并,将 map 操作改为 复制一个新的 list , 而不是操作原来的 stakes</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String,List&lt;HighwayStake&gt;&gt; roadStakeMap = images.stream()</span><br><span class="line">               .filter(image -&gt; !image.getStakes().isEmpty())</span><br><span class="line">               .map(dataImage -&gt; <span class="keyword">new</span> ArrayList&lt;&gt;(dataImage.getStakes()))</span><br><span class="line">               .reduce((highwayStakes, highwayStakes2) -&gt; &#123;</span><br><span class="line">                   highwayStakes2.addAll(highwayStakes);</span><br><span class="line">                   <span class="keyword">return</span> highwayStakes2;</span><br><span class="line">               &#125;)</span><br><span class="line">               .orElse(<span class="keyword">new</span> ArrayList&lt;&gt;())</span><br><span class="line">               .stream()</span><br><span class="line">               .collect(Collectors.groupingBy(HighwayStake::getDlmc));</span><br></pre></td></tr></table></figure>
-<h2 id="List-的深度拷贝"><a href="#List-的深度拷贝" class="headerlink" title="List 的深度拷贝"></a>List 的深度拷贝</h2><p>上述的问题实际上是一个 list 的拷贝,而且是 浅度复制</p>
-<p><code>new ArrayList&lt;&gt;(list)</code> 和 <code>Collections.copy(dest,src)</code> 都是浅度复制</p>
-<p>下面代码是一个靠谱的 深度拷贝, 需要 T 实现序列化接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * list 深度复制</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">deepCopy</span><span class="params">(List&lt;T&gt; source)</span> </span>&#123;</span><br><span class="line">    ByteArrayOutputStream byteOut = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">    List&lt;T&gt; dest = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(byteOut);</span><br><span class="line">        out.writeObject(source);</span><br><span class="line"></span><br><span class="line">        ByteArrayInputStream byteIn = <span class="keyword">new</span> ByteArrayInputStream(byteOut.toByteArray());</span><br><span class="line">        ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(byteIn);</span><br><span class="line">        dest = (List&lt;T&gt;) in.readObject();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException | ClassNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="reduce-使用记录"><a href="#reduce-使用记录" class="headerlink" title="reduce() 使用记录"></a>reduce() 使用记录</h2><p>reduce 有三种方法可以使用:</p>
+<h2 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h2><h3 id="数字图像"><a href="#数字图像" class="headerlink" title="数字图像"></a>数字图像</h3><p>数字图像指的是现在的图像都是以二维数字表示，每个像素的灰度值均由一个数字表示，范围为0-255(2^8)</p>
+<h3 id="二值图像"><a href="#二值图像" class="headerlink" title="二值图像"></a>二值图像</h3><p>图像中每个像素的灰度值仅可取0或1，即不是取黑，就是取白，二值图像可理解为黑白图像</p>
+<h3 id="灰度图像"><a href="#灰度图像" class="headerlink" title="灰度图像"></a>灰度图像</h3><p>图像中每个像素可以由0-255的灰度值表示，具体表现为从全黑到全白中间有255个介于中间的灰色值可以取</p>
+<h3 id="彩色图像"><a href="#彩色图像" class="headerlink" title="彩色图像"></a>彩色图像</h3><p>每幅图像是由三幅灰度图像组合而成，依次表示红绿蓝三通道的灰度值，即我们熟知的RGB，此时彩色图像要视为三维的 <code>[height，width, 3]</code></p>
+<h2 id="CvType"><a href="#CvType" class="headerlink" title="CvType"></a>CvType</h2><h3 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h3><p>OpenCV 中，图像可以分别为1，2，3，4 通道</p>
 <ul>
-<li><code>Optional&lt;T&gt; reduce(BinaryOperator&lt;T&gt; accumulator)</code></li>
-<li><code>T reduce(T identity, BinaryOperator&lt;T&gt; accumulator)</code></li>
-<li><code>&lt;U&gt; U reduce(U identity,BiFunction&lt;U, ? super T, U&gt; accumulator,BinaryOperator&lt;U&gt; combiner)</code></li>
+<li>通道为灰度图；</li>
+<li>通道的图像是RGB555和RGB565。2通道图在程序处理中会用到，如傅里叶变换，可能会用到，一个通道为实数，一个通道为虚数，主要是编程方便。RGB555是16位的，2个字节，5+6+5，第一字节的前5位是R，后三位+第二字节是G，第二字节后5位是B，可见对原图像进行压缩了</li>
+<li>通道为彩色图（RGB）；</li>
+<li>通道为 RGBA ，是RGB加上一个A通道，也叫alpha通道，表示透明度，PNG图像是一种典型的4通道图像。alpha通道可以赋值0到1，或者0到255，表示透明到不透明</li>
 </ul>
-<p>第一种传入二元运算表达式,第二种是带初始值的二元运算表达式,这里着重记录下第三种的使用方式</p>
-<p>第三种第一个参数方法的返回值类型,<br>第二个参数是一个二元运算表达式,这个表达式的第一个参数是方法的返回值,也就是方法的第一个参数,第二个参数是 Stream 里的值<br>第三个参数也是一个二元运算表达式,表达式的2个参数都是方法返回值的类型,用于对返回值类型的操作</p>
-<p>第三个参数在非并发的情况下返回任何类型(甚至是 null)都没有影响,因为在非并发情况下,第三个二元表达式根本不会执行</p>
-<p>那么第三个二元表达式用在并发的情况下,在并发的情况下,第二个二元表达式的第一个参数始终是方法的第一个类型,第三个三元表达式用于将不同线程操作的结果汇总起来</p>
-<h2 id="map-和-flatMap"><a href="#map-和-flatMap" class="headerlink" title="map() 和 flatMap()"></a>map() 和 flatMap()</h2><p>区别在于, map() 返回自定义对象, 而 flatMap() 返回 Stream 流对象</p>
-<h2 id="distinct-使用记录"><a href="#distinct-使用记录" class="headerlink" title="distinct() 使用记录"></a>distinct() 使用记录</h2><p>最近在 lamda 的 stream 进行 list 去重复的时候，发现没有生效<br>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Map&lt;String, List&lt;FollowAnalysisPojo&gt;&gt;&gt; maps = allList</span><br><span class="line">            .parallelStream()</span><br><span class="line">            .distinct()</span><br><span class="line">            .collect(Collectors.groupingBy(FollowAnalysisPojo::getMainPlateNum,Collectors.groupingBy(FollowAnalysisPojo::getPlateNum)));</span><br></pre></td></tr></table></figure>
-<p>实体类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FollowAnalysisPojo</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*被跟车牌*/</span></span><br><span class="line">    <span class="keyword">private</span> String mainPlateNum;</span><br><span class="line">    <span class="comment">/*跟踪车牌*/</span></span><br><span class="line">    <span class="keyword">private</span> String plateNum;</span><br><span class="line">    <span class="keyword">private</span> String vehicleType;</span><br><span class="line">    <span class="keyword">private</span> String siteName;</span><br><span class="line">    <span class="keyword">private</span> String directionName;</span><br><span class="line">    <span class="comment">/*车主时间*/</span></span><br><span class="line">    <span class="keyword">private</span> String passTimeMain;</span><br><span class="line">    <span class="comment">/*伴随时间*/</span></span><br><span class="line">    <span class="keyword">private</span> String passTimeSub;</span><br><span class="line">    <span class="comment">/*跟踪次数*/</span></span><br><span class="line">    <span class="keyword">private</span> Integer trackCount;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*该条记录被跟踪车占据的行数，用于在前端合并单元格*/</span></span><br><span class="line">    <span class="keyword">private</span> Integer mainRowSpan = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*该条记录跟踪车占据的行数，用于在前端合并单元格*/</span></span><br><span class="line">    <span class="keyword">private</span> Integer rowSpan;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String key = UUID.randomUUID().toString();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>上面的代码是想做 先对查询出来的数据进行去重复的操作，然后在按照被跟车牌和跟踪车牌进行分组操作<br>有点需要说明的是 <code>parallelStream()</code> 比我们常用的 <code>stream()</code> 是并行多管操作，速度上更快</p>
-<p>然后发现的问题是并没有去重复，当时也在奇怪 distinct() 里并没有任何参数来指定如何使用规则来去重复</p>
-<h3 id="正解"><a href="#正解" class="headerlink" title="正解"></a>正解</h3><p>重写List中实体类的 <code>equals()</code> 方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FollowAnalysisPojo</span> </span>&#123;</span><br><span class="line">    ......</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当车主时间,伴随时间都相同时，则认为是一个对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> obj 对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> Boolean</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!(obj <span class="keyword">instanceof</span> FollowAnalysisPojo))<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        FollowAnalysisPojo followAnalysisPojo = (FollowAnalysisPojo)obj;</span><br><span class="line">        <span class="keyword">return</span> passTimeMain.equals(followAnalysisPojo.passTimeMain) &amp;&amp; passTimeSub.equals(followAnalysisPojo.passTimeSub);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样我们就按照我自定义的规则进行去重复了<br>运行了一下，发现还是不起作用<br>debug了一下，发现根本没有执行重写的 equals 方法<br>原来还需要重写 <code>hashCode()</code> 方法<br>在 <code>equals()</code> 方法 执行前会先执行 <code>hashCode()</code> 方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FollowAnalysisPojo</span> </span>&#123;</span><br><span class="line">    ......</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重新 equals 方法必须重新 hashCode方法</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> int</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = passTimeMain.hashCode();</span><br><span class="line">        result = <span class="number">31</span> * result + passTimeMain.hashCode();</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样就可以了。</p>
-<h3 id="2018-9-13-更新"><a href="#2018-9-13-更新" class="headerlink" title="2018-9-13 更新"></a>2018-9-13 更新</h3><p>如果我们不重写方法，有没有办法按照List中bean的某个属性来去重复呢？答案是有的，利用的是 stream 的 reduce，用一个set 来存放 key,代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List&lt;JSONObject&gt; result = trails.stream()</span><br><span class="line">            .filter(distinctByKey(VehicleTrail::getPlateNbr))</span><br><span class="line">            .collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>  &lt;T&gt; <span class="function">Predicate&lt;T&gt; <span class="title">distinctByKey</span><span class="params">(Function&lt;? <span class="keyword">super</span> T, ?&gt; keyExtractor)</span> </span>&#123;</span><br><span class="line">    Set&lt;Object&gt; seen = ConcurrentHashMap.newKeySet();</span><br><span class="line">    <span class="keyword">return</span> t -&gt; seen.add(keyExtractor.apply(t));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>常使用的是1，3，4通道； 2通道不常见</p>
+<h3 id="组合规则"><a href="#组合规则" class="headerlink" title="组合规则"></a>组合规则</h3><p><code>CV_[bite](U|S|F)C[channels]</code></p>
+<ul>
+<li><p>bite : 比特数，位数。 有 8bite，16bite，32bite，64bite,对应在 Mat 中，每个像素的所占的空间大小，8位即 CV_8</p>
+</li>
+<li><p>U|S|F ：</p>
+<ul>
+<li>U : unsigned int , 无符号整形</li>
+<li>S : signed int , 有符号整形</li>
+<li>F : float , 单精度浮点型,float类型本身即有符号</li>
+</ul>
+</li>
+</ul>
+<p>这里的有符号、无符号是针对图像二进制编码来讲的。我在写的过程中大多数情况下都是使用的无符号，即 CV_8U ,CV_16U，当有计算时可能会介入有符号（存在负数），没学过 C++，对底层也一知半解，望高手解答。</p>
+<ul>
+<li>C (channels)：图像的通道数</li>
+</ul>
+<p>比如: <code>CV_8UC3</code> 即 8位无符号的3通道（RGB 彩色）图像</p>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><ul>
+<li><p>8U</p>
+<ul>
+<li>说明：无符号的8位图</li>
+<li>值：CV_8UC1,CV_8UC2,CV_8UC3,CV_8UC4</li>
+<li>通道取值范围：0~255</li>
+</ul>
+</li>
+<li><p>8S</p>
+<ul>
+<li>说明：有符号的8位图</li>
+<li>值：CV_8SC1,CV_8SC2,CV_8SC3,CV_8SC4</li>
+<li>通道取值范围：-128~127</li>
+</ul>
+</li>
+<li><p>16U</p>
+<ul>
+<li>说明：无符号的16位图</li>
+<li>值：CV_16UC1,CV_16UC2,CV_16UC3,CV_16UC4</li>
+<li>通道取值范围：0~65535</li>
+</ul>
+</li>
+<li><p>16S</p>
+<ul>
+<li>说明：有符号的16位图</li>
+<li>值：CV_16SC1,CV_16SC2,CV_16SC3,CV_16SC4</li>
+<li>通道取值范围：-32768~32767</li>
+</ul>
+</li>
+<li><p>32S</p>
+<ul>
+<li>说明：无符号的32位图</li>
+<li>值：CV_32SC1,CV_32SC2,CV_32SC3,CV_32SC4</li>
+<li>通道取值范围：2147483648~2147483647</li>
+</ul>
+</li>
+<li><p>32F</p>
+<ul>
+<li>说明：浮点型32位图</li>
+<li>值：CV_32FC1,CV_32FC2,CV_32FC3,CV_32FC4</li>
+<li>通道取值范围：1.18<em>(10(-38次方))~3.40</em>(10(38次方))</li>
+</ul>
+</li>
+<li><p>64F</p>
+<ul>
+<li>说明：浮点型64位图<br>-值：CV_64FC1,CV_64FC2,CV_64FC3,CV_64FC4</li>
+<li>通道取值范围：2.23<em>(10(-308次方))~1.79</em>(10(308次方))</li>
+</ul>
+</li>
+<li><p>1U</p>
+<ul>
+<li>说明：1位</li>
+<li>值：IPL_DEPTH_1U</li>
+<li>通道取值范围：0~1</li>
+</ul>
+</li>
+</ul>
+<h2 id="色彩空间"><a href="#色彩空间" class="headerlink" title="色彩空间"></a>色彩空间</h2><h3 id="常见的色彩空间"><a href="#常见的色彩空间" class="headerlink" title="常见的色彩空间"></a>常见的色彩空间</h3><ul>
+<li>RGB</li>
+<li>HSV</li>
+<li>HIS</li>
+<li>YCRCB</li>
+<li>YUV</li>
+</ul>
+<h3 id="HSV"><a href="#HSV" class="headerlink" title="HSV"></a>HSV</h3><p>HSV分别是色调（Hue），饱和度（Saturation）和亮度（Value）</p>
+<p>H调整颜色；S越大，图像色彩越丰富，颜色越鲜艳；V越大，图像越亮</p>
+<h4 id="HSV颜色取值范围"><a href="#HSV颜色取值范围" class="headerlink" title="HSV颜色取值范围"></a>HSV颜色取值范围</h4><ul>
+<li><p>H:  0— 180 : 之所以不是 360,是因为 8 位图 最大是 255,360 已经超出范围,以 180 为限定</p>
+</li>
+<li><p>S:  0— 255</p>
+</li>
+<li><p>V:  0— 255</p>
+</li>
+</ul>
+<p>记住下面这张图, 可使用这张图中的范围来查找某种颜色</p>
+<p><img src="http://image.joylau.cn/blog/OpenCV-HSV.png" alt="HSV"></p>
+<h4 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h4><p><code>Imgproc.cvtColor(src,des,Imgproc.COLOR_BGR2HSV);</code></p>
+<blockquote>
+<p>更新中…..</p>
+</blockquote>
       
     </div>
     
   </div>
   
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/12/24/JDK8-Stream-Use/">关于Jdk 8 Stream 的使用记录</a></p>
+        <p><span>本文标题:</span><a href="/2019/03/28/OpenCV-Basic/">OpenCV 基础知识与概念</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
-        <p><span>发布时间:</span>2018-12-24, 23:27:38</p>
-        <p><span>最后更新:</span>2019-01-04, 13:26:26</p>
+        <p><span>发布时间:</span>2019-03-28, 16:10:51</p>
+        <p><span>最后更新:</span>2019-04-02, 00:01:04</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/12/24/JDK8-Stream-Use/" title="关于Jdk 8 Stream 的使用记录">http://blog.joylau.cn/2018/12/24/JDK8-Stream-Use/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2018/12/24/JDK8-Stream-Use/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/28/OpenCV-Basic/" title="OpenCV 基础知识与概念">http://blog.joylau.cn/2019/03/28/OpenCV-Basic/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2019/03/28/OpenCV-Basic/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -399,16 +477,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/01/14/Gradle-Elastic-Job-Dependency/">
-                    Gradle 构建 elastic-job 项目的奇怪依赖问题
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/12/19/Docker-Exec-Failed/">
-                    Docker exec failed docker 无法进入容器问题解决
+                <a href="/2019/03/21/Docker-MountVolumes/">
+                    Docker 容器挂载宿主机上的目录时出现 Permission denied
                 </a>
             </div>
         
@@ -418,7 +490,7 @@
 <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LocalDateTime-将-long-格式的时间转化本地时间字符串"><span class="toc-number">1.</span> <span class="toc-text">LocalDateTime 将 long 格式的时间转化本地时间字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reduce-导致的源集合对象改变"><span class="toc-number">2.</span> <span class="toc-text">reduce 导致的源集合对象改变</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List-的深度拷贝"><span class="toc-number">3.</span> <span class="toc-text">List 的深度拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reduce-使用记录"><span class="toc-number">4.</span> <span class="toc-text">reduce() 使用记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map-和-flatMap"><span class="toc-number">5.</span> <span class="toc-text">map() 和 flatMap()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#distinct-使用记录"><span class="toc-number">6.</span> <span class="toc-text">distinct() 使用记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正解"><span class="toc-number">6.1.</span> <span class="toc-text">正解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2018-9-13-更新"><span class="toc-number">6.2.</span> <span class="toc-text">2018-9-13 更新</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一些概念"><span class="toc-number">1.</span> <span class="toc-text">一些概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数字图像"><span class="toc-number">1.1.</span> <span class="toc-text">数字图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二值图像"><span class="toc-number">1.2.</span> <span class="toc-text">二值图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#灰度图像"><span class="toc-number">1.3.</span> <span class="toc-text">灰度图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#彩色图像"><span class="toc-number">1.4.</span> <span class="toc-text">彩色图像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CvType"><span class="toc-number">2.</span> <span class="toc-text">CvType</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通道"><span class="toc-number">2.1.</span> <span class="toc-text">通道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合规则"><span class="toc-number">2.2.</span> <span class="toc-text">组合规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数说明"><span class="toc-number">2.3.</span> <span class="toc-text">参数说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#色彩空间"><span class="toc-number">3.</span> <span class="toc-text">色彩空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常见的色彩空间"><span class="toc-number">3.1.</span> <span class="toc-text">常见的色彩空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HSV"><span class="toc-number">3.2.</span> <span class="toc-text">HSV</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HSV颜色取值范围"><span class="toc-number">3.2.1.</span> <span class="toc-text">HSV颜色取值范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#转换方法"><span class="toc-number">3.2.2.</span> <span class="toc-text">转换方法</span></a></li></ol></li></ol></li></ol>
         
     </div>
     <style>
@@ -452,7 +524,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"关于Jdk 8 Stream 的使用记录　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"OpenCV 基础知识与概念　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -466,15 +538,13 @@
 
 <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/01/14/Gradle-Elastic-Job-Dependency/" title="上一篇: Gradle 构建 elastic-job 项目的奇怪依赖问题">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/12/19/Docker-Exec-Failed/" title="下一篇: Docker exec failed docker 无法进入容器问题解决">
+            <a href="/2019/03/21/Docker-MountVolumes/" title="下一篇: Docker 容器挂载宿主机上的目录时出现 Permission denied">
                 <i class="fa fa-angle-right"></i>
             </a>
         

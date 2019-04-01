@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2019-03-21T10:17:43.109Z</updated>
+  <updated>2019-04-01T16:01:04.983Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OpenCV 基础知识与概念</title>
+    <link href="http://blog.joylau.cn/2019/03/28/OpenCV-Basic/"/>
+    <id>http://blog.joylau.cn/2019/03/28/OpenCV-Basic/</id>
+    <published>2019-03-28T08:10:51.000Z</published>
+    <updated>2019-04-01T16:01:04.983Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h2><h3 id="数字图像"><a href="#数字图像" class="headerlink" title="数字图像"></a>数字图像</h3><p>数字图像指的是现在的图像都是以二维数字表示，每个像素的灰度值均由一个数字表示，范围为0-255(2^8)</p><h3 id="二值图像"><a href="#二值图像" class="headerlink" title="二值图像"></a>二值图像</h3><p>图像中每个像素的灰度值仅可取0或1，即不是取黑，就是取白，二值图像可理解为黑白图像</p><h3 id="灰度图像"><a href="#灰度图像" class="headerlink" title="灰度图像"></a>灰度图像</h3><p>图像中每个像素可以由0-255的灰度值表示，具体表现为从全黑到全白中间有255个介于中间的灰色值可以取</p><h3 id="彩色图像"><a href="#彩色图像" class="headerlink" title="彩色图像"></a>彩色图像</h3><p>每幅图像是由三幅灰度图像组合而成，依次表示红绿蓝三通道的灰度值，即我们熟知的RGB，此时彩色图像要视为三维的 <code>[height，width, 3]</code></p><h2 id="CvType"><a href="#CvType" class="headerlink" title="CvType"></a>CvType</h2><h3 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h3><p>OpenCV 中，图像可以分别为1，2，3，4 通道</p><ul><li>通道为灰度图；</li><li>通道的图像是RGB555和RGB565。2通道图在程序处理中会用到，如傅里叶变换，可能会用到，一个通道为实数，一个通道为虚数，主要是编程方便。RGB555是16位的，2个字节，5+6+5，第一字节的前5位是R，后三位+第二字节是G，第二字节后5位是B，可见对原图像进行压缩了</li><li>通道为彩色图（RGB）；</li><li>通道为 RGBA ，是RGB加上一个A通道，也叫alpha通道，表示透明度，PNG图像是一种典型的4通道图像。alpha通道可以赋值0到1，或者0到255，表示透明到不透明</li></ul><p>常使用的是1，3，4通道； 2通道不常见</p><h3 id="组合规则"><a href="#组合规则" class="headerlink" title="组合规则"></a>组合规则</h3><p><code>CV_[bite](U|S|F)C[channels]</code></p><ul><li><p>bite : 比特数，位数。 有 8bite，16bite，32bite，64bite,对应在 Mat 中，每个像素的所占的空间大小，8位即 CV_8</p></li><li><p>U|S|F ：</p><ul><li>U : unsigned int , 无符号整形</li><li>S : signed int , 有符号整形</li><li>F : float , 单精度浮点型,float类型本身即有符号</li></ul></li></ul><p>这里的有符号、无符号是针对图像二进制编码来讲的。我在写的过程中大多数情况下都是使用的无符号，即 CV_8U ,CV_16U，当有计算时可能会介入有符号（存在负数），没学过 C++，对底层也一知半解，望高手解答。</p><ul><li>C (channels)：图像的通道数</li></ul><p>比如: <code>CV_8UC3</code> 即 8位无符号的3通道（RGB 彩色）图像</p><h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><ul><li><p>8U</p><ul><li>说明：无符号的8位图</li><li>值：CV_8UC1,CV_8UC2,CV_8UC3,CV_8UC4</li><li>通道取值范围：0~255</li></ul></li><li><p>8S</p><ul><li>说明：有符号的8位图</li><li>值：CV_8SC1,CV_8SC2,CV_8SC3,CV_8SC4</li><li>通道取值范围：-128~127</li></ul></li><li><p>16U</p><ul><li>说明：无符号的16位图</li><li>值：CV_16UC1,CV_16UC2,CV_16UC3,CV_16UC4</li><li>通道取值范围：0~65535</li></ul></li><li><p>16S</p><ul><li>说明：有符号的16位图</li><li>值：CV_16SC1,CV_16SC2,CV_16SC3,CV_16SC4</li><li>通道取值范围：-32768~32767</li></ul></li><li><p>32S</p><ul><li>说明：无符号的32位图</li><li>值：CV_32SC1,CV_32SC2,CV_32SC3,CV_32SC4</li><li>通道取值范围：2147483648~2147483647</li></ul></li><li><p>32F</p><ul><li>说明：浮点型32位图</li><li>值：CV_32FC1,CV_32FC2,CV_32FC3,CV_32FC4</li><li>通道取值范围：1.18<em>(10(-38次方))~3.40</em>(10(38次方))</li></ul></li><li><p>64F</p><ul><li>说明：浮点型64位图<br>-值：CV_64FC1,CV_64FC2,CV_64FC3,CV_64FC4</li><li>通道取值范围：2.23<em>(10(-308次方))~1.79</em>(10(308次方))</li></ul></li><li><p>1U</p><ul><li>说明：1位</li><li>值：IPL_DEPTH_1U</li><li>通道取值范围：0~1</li></ul></li></ul><h2 id="色彩空间"><a href="#色彩空间" class="headerlink" title="色彩空间"></a>色彩空间</h2><h3 id="常见的色彩空间"><a href="#常见的色彩空间" class="headerlink" title="常见的色彩空间"></a>常见的色彩空间</h3><ul><li>RGB</li><li>HSV</li><li>HIS</li><li>YCRCB</li><li>YUV</li></ul><h3 id="HSV"><a href="#HSV" class="headerlink" title="HSV"></a>HSV</h3><p>HSV分别是色调（Hue），饱和度（Saturation）和亮度（Value）</p><p>H调整颜色；S越大，图像色彩越丰富，颜色越鲜艳；V越大，图像越亮</p><h4 id="HSV颜色取值范围"><a href="#HSV颜色取值范围" class="headerlink" title="HSV颜色取值范围"></a>HSV颜色取值范围</h4><ul><li><p>H:  0— 180 : 之所以不是 360,是因为 8 位图 最大是 255,360 已经超出范围,以 180 为限定</p></li><li><p>S:  0— 255</p></li><li><p>V:  0— 255</p></li></ul><p>记住下面这张图, 可使用这张图中的范围来查找某种颜色</p><p><img src="http://image.joylau.cn/blog/OpenCV-HSV.png" alt="HSV"></p><h4 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h4><p><code>Imgproc.cvtColor(src,des,Imgproc.COLOR_BGR2HSV);</code></p><blockquote><p>更新中…..</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      记录一下一些学习数字图像处理的基础知识与概念
+    
+    </summary>
+    
+      <category term="OpenCV篇" scheme="http://blog.joylau.cn/categories/OpenCV%E7%AF%87/"/>
+    
+    
+      <category term="OpenCV" scheme="http://blog.joylau.cn/tags/OpenCV/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker 容器挂载宿主机上的目录时出现 Permission denied</title>
@@ -449,28 +471,6 @@
       <category term="Linux" scheme="http://blog.joylau.cn/tags/Linux/"/>
     
       <category term="YUM" scheme="http://blog.joylau.cn/tags/YUM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>$.post() 和 $.ajax() 的问题记录</title>
-    <link href="http://blog.joylau.cn/2018/12/04/Jquery-Post/"/>
-    <id>http://blog.joylau.cn/2018/12/04/Jquery-Post/</id>
-    <published>2018-12-04T03:02:40.000Z</published>
-    <updated>2018-12-08T06:32:50.248Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>想着写个 demo, 用个简单的 jq 的 post 请求传递数组,却发现遇到了不少问题…<br>一顿研究,总结如下:</p><h3 id="post"><a href="#post" class="headerlink" title="$.post()"></a>$.post()</h3><p>语法:<br>$.post(url,data,success(data, textStatus, jqXHR),dataType)</p><p>url    必需。规定把请求发送到哪个 URL。<br>data    可选。映射或字符串值。规定连同请求发送到服务器的数据。<br>success(data, textStatus, jqXHR)    可选。请求成功时执行的回调函数。<br>dataType    可选。规定预期的服务器响应的数据类型。默认执行智能判断（xml、json、script 或 html</p><p>总结需要注意的是: </p><ul><li>请求的 Content-Type 是 <code>application/x-www-form-urlencoded; charset=UTF-8</code> 就是表单提交的,dataType值得是规定服务器的响应方式</li><li>第二个参数 data 的类型是键值对的对象,不能为 JSON.stringify 后的 json 字符串,序列化后也是 key 的数据</li><li>传数组会有问题,会将数组中每个对象的拆开然后堆到一起作为键值对传输数据, 可以通过 <code>jQuery.ajaxSettings.traditional = true;</code> 在 post 请求之前设置,防止这样的情况发生,但是对象不会被序列化,会变成 Object 这样的格式,这也不是我们想要的结果</li></ul><h3 id="ajax"><a href="#ajax" class="headerlink" title="$.ajax()"></a>$.ajax()</h3><p>很传统的使用方式了:<br>发送 post 请求<br>我们的 points 的是数组,里面是多个对象<br>数据传输使用 Request Payload 方式</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: <span class="string">'POST'</span>,</span><br><span class="line">    url: location.origin + <span class="string">"/trafficService/pixelToLngLat"</span>,</span><br><span class="line">    data: <span class="built_in">JSON</span>.stringify(points),</span><br><span class="line">    contentType: <span class="string">"application/json; charset=UTF-8"</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res, status</span>) </span>&#123;</span><br><span class="line">        res.map(<span class="function"><span class="params">point</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.info(point)</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>后台使用方式:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/pixelToLngLat"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> JSONArray <span class="title">pixelToLngLat</span><span class="params">(@RequestBody JSONArray points)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> restTemplate.postForObject(baiduApi.getNodeService() + <span class="string">"/traffic/pixelToLngLat"</span>,points,JSONArray.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>很传统的使用方式</p><h3 id="强行使用-post"><a href="#强行使用-post" class="headerlink" title="强行使用 $.post()"></a>强行使用 $.post()</h3><p>这个时候我们参数还是传输的键值对方式,只不过将值转化为 json 字符串进行传输</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jQuery.ajaxSettings.traditional = <span class="literal">true</span>;</span><br><span class="line">$.post(location.origin + <span class="string">"/trafficService/pixelToLngLat"</span>, &#123;<span class="attr">points</span>:<span class="built_in">JSON</span>.stringify(points)&#125;,<span class="function"><span class="keyword">function</span> (<span class="params">res, status</span>) </span>&#123;</span><br><span class="line">    res.map(<span class="function"><span class="params">point</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.info(point)</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;,<span class="string">"json"</span>)</span><br></pre></td></tr></table></figure><p>后台使用</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/pixelToLngLat"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> JSONArray <span class="title">pixelToLngLat</span><span class="params">(@RequestParam(<span class="string">"points"</span>)</span> String points)</span>&#123;</span><br><span class="line">    JSONArray array = JSONArray.parseArray(points);</span><br><span class="line">    <span class="keyword">return</span> restTemplate.postForObject(baiduApi.getNodeService() + <span class="string">"/traffic/pixelToLngLat"</span>,array,JSONArray.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote><p>表单提交方式,如果后台有相应的对象的来接受参数的话,直接在方法是使用对象即可,不需要再通过 JSONObject 将字符串转数组了,这种方式 $.ajax() 同样也适用</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      想着写个 demo, 用个简单的 jq 的 post 请求传递数组,却发现遇到了不少问题...
-    
-    </summary>
-    
-      <category term="前端篇" scheme="http://blog.joylau.cn/categories/%E5%89%8D%E7%AB%AF%E7%AF%87/"/>
-    
-    
-      <category term="Jquery" scheme="http://blog.joylau.cn/tags/Jquery/"/>
     
   </entry>
   

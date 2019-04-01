@@ -4,6 +4,135 @@
   
     
     <entry>
+      <title><![CDATA[OpenCV 基础知识与概念]]></title>
+      <url>http://blog.joylau.cn/2019/03/28/OpenCV-Basic/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h2><h3 id="数字图像"><a href="#数字图像" class="headerlink" title="数字图像"></a>数字图像</h3><p>数字图像指的是现在的图像都是以二维数字表示，每个像素的灰度值均由一个数字表示，范围为0-255(2^8)</p>
+<h3 id="二值图像"><a href="#二值图像" class="headerlink" title="二值图像"></a>二值图像</h3><p>图像中每个像素的灰度值仅可取0或1，即不是取黑，就是取白，二值图像可理解为黑白图像</p>
+<h3 id="灰度图像"><a href="#灰度图像" class="headerlink" title="灰度图像"></a>灰度图像</h3><p>图像中每个像素可以由0-255的灰度值表示，具体表现为从全黑到全白中间有255个介于中间的灰色值可以取</p>
+<h3 id="彩色图像"><a href="#彩色图像" class="headerlink" title="彩色图像"></a>彩色图像</h3><p>每幅图像是由三幅灰度图像组合而成，依次表示红绿蓝三通道的灰度值，即我们熟知的RGB，此时彩色图像要视为三维的 <code>[height，width, 3]</code></p>
+<h2 id="CvType"><a href="#CvType" class="headerlink" title="CvType"></a>CvType</h2><h3 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h3><p>OpenCV 中，图像可以分别为1，2，3，4 通道</p>
+<ul>
+<li>通道为灰度图；</li>
+<li>通道的图像是RGB555和RGB565。2通道图在程序处理中会用到，如傅里叶变换，可能会用到，一个通道为实数，一个通道为虚数，主要是编程方便。RGB555是16位的，2个字节，5+6+5，第一字节的前5位是R，后三位+第二字节是G，第二字节后5位是B，可见对原图像进行压缩了</li>
+<li>通道为彩色图（RGB）；</li>
+<li>通道为 RGBA ，是RGB加上一个A通道，也叫alpha通道，表示透明度，PNG图像是一种典型的4通道图像。alpha通道可以赋值0到1，或者0到255，表示透明到不透明</li>
+</ul>
+<p>常使用的是1，3，4通道； 2通道不常见</p>
+<h3 id="组合规则"><a href="#组合规则" class="headerlink" title="组合规则"></a>组合规则</h3><p><code>CV_[bite](U|S|F)C[channels]</code></p>
+<ul>
+<li><p>bite : 比特数，位数。 有 8bite，16bite，32bite，64bite,对应在 Mat 中，每个像素的所占的空间大小，8位即 CV_8</p>
+</li>
+<li><p>U|S|F ：</p>
+<ul>
+<li>U : unsigned int , 无符号整形</li>
+<li>S : signed int , 有符号整形</li>
+<li>F : float , 单精度浮点型,float类型本身即有符号</li>
+</ul>
+</li>
+</ul>
+<p>这里的有符号、无符号是针对图像二进制编码来讲的。我在写的过程中大多数情况下都是使用的无符号，即 CV_8U ,CV_16U，当有计算时可能会介入有符号（存在负数），没学过 C++，对底层也一知半解，望高手解答。</p>
+<ul>
+<li>C (channels)：图像的通道数</li>
+</ul>
+<p>比如: <code>CV_8UC3</code> 即 8位无符号的3通道（RGB 彩色）图像</p>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><ul>
+<li><p>8U</p>
+<ul>
+<li>说明：无符号的8位图</li>
+<li>值：CV_8UC1,CV_8UC2,CV_8UC3,CV_8UC4</li>
+<li>通道取值范围：0~255</li>
+</ul>
+</li>
+<li><p>8S</p>
+<ul>
+<li>说明：有符号的8位图</li>
+<li>值：CV_8SC1,CV_8SC2,CV_8SC3,CV_8SC4</li>
+<li>通道取值范围：-128~127</li>
+</ul>
+</li>
+<li><p>16U</p>
+<ul>
+<li>说明：无符号的16位图</li>
+<li>值：CV_16UC1,CV_16UC2,CV_16UC3,CV_16UC4</li>
+<li>通道取值范围：0~65535</li>
+</ul>
+</li>
+<li><p>16S</p>
+<ul>
+<li>说明：有符号的16位图</li>
+<li>值：CV_16SC1,CV_16SC2,CV_16SC3,CV_16SC4</li>
+<li>通道取值范围：-32768~32767</li>
+</ul>
+</li>
+<li><p>32S</p>
+<ul>
+<li>说明：无符号的32位图</li>
+<li>值：CV_32SC1,CV_32SC2,CV_32SC3,CV_32SC4</li>
+<li>通道取值范围：2147483648~2147483647</li>
+</ul>
+</li>
+<li><p>32F</p>
+<ul>
+<li>说明：浮点型32位图</li>
+<li>值：CV_32FC1,CV_32FC2,CV_32FC3,CV_32FC4</li>
+<li>通道取值范围：1.18<em>(10(-38次方))~3.40</em>(10(38次方))</li>
+</ul>
+</li>
+<li><p>64F</p>
+<ul>
+<li>说明：浮点型64位图<br>-值：CV_64FC1,CV_64FC2,CV_64FC3,CV_64FC4</li>
+<li>通道取值范围：2.23<em>(10(-308次方))~1.79</em>(10(308次方))</li>
+</ul>
+</li>
+<li><p>1U</p>
+<ul>
+<li>说明：1位</li>
+<li>值：IPL_DEPTH_1U</li>
+<li>通道取值范围：0~1</li>
+</ul>
+</li>
+</ul>
+<h2 id="色彩空间"><a href="#色彩空间" class="headerlink" title="色彩空间"></a>色彩空间</h2><h3 id="常见的色彩空间"><a href="#常见的色彩空间" class="headerlink" title="常见的色彩空间"></a>常见的色彩空间</h3><ul>
+<li>RGB</li>
+<li>HSV</li>
+<li>HIS</li>
+<li>YCRCB</li>
+<li>YUV</li>
+</ul>
+<h3 id="HSV"><a href="#HSV" class="headerlink" title="HSV"></a>HSV</h3><p>HSV分别是色调（Hue），饱和度（Saturation）和亮度（Value）</p>
+<p>H调整颜色；S越大，图像色彩越丰富，颜色越鲜艳；V越大，图像越亮</p>
+<h4 id="HSV颜色取值范围"><a href="#HSV颜色取值范围" class="headerlink" title="HSV颜色取值范围"></a>HSV颜色取值范围</h4><ul>
+<li><p>H:  0— 180 : 之所以不是 360,是因为 8 位图 最大是 255,360 已经超出范围,以 180 为限定</p>
+</li>
+<li><p>S:  0— 255</p>
+</li>
+<li><p>V:  0— 255</p>
+</li>
+</ul>
+<p>记住下面这张图, 可使用这张图中的范围来查找某种颜色</p>
+<p><img src="http://image.joylau.cn/blog/OpenCV-HSV.png" alt="HSV"></p>
+<h4 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h4><p><code>Imgproc.cvtColor(src,des,Imgproc.COLOR_BGR2HSV);</code></p>
+<blockquote>
+<p>更新中…..</p>
+</blockquote>]]></content>
+      
+        <categories>
+            
+            <category> OpenCV篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> OpenCV </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Docker 容器挂载宿主机上的目录时出现 Permission denied]]></title>
       <url>http://blog.joylau.cn/2019/03/21/Docker-MountVolumes/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -4075,9 +4204,9 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
         
         <tags>
             
-            <tag> 技能 </tag>
-            
             <tag> 程序员 </tag>
+            
+            <tag> 技能 </tag>
             
         </tags>
         
