@@ -4,6 +4,80 @@
   
     
     <entry>
+      <title><![CDATA[OpenCV 读取数据流图片]]></title>
+      <url>http://blog.joylau.cn/2019/04/03/OpenCV-ByteImage/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>OpenCV 提供的 API 是直接根据路径读取图片的, 在实际生产环境中,可能大部分情况下都是直接读取网络图片</p>
+<p>在内存就完成图片和 opencv 的 Mat 对象的转换</p>
+<p>那么该如何读取 byte[] 的图片呢?</p>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><p>openCV 提供的 API</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mat src = Imgcodecs.imread(<span class="string">"/static/img/17.png"</span>);</span><br></pre></td></tr></table></figure>
+<p>很简单的就转化为 Mat 对象</p>
+<p>而 该方法后面还有一个参数, flags, 该参数可选项有:</p>
+<ul>
+<li><strong>IMREAD_UNCHANGED</strong> = -1,</li>
+<li><strong>IMREAD_GRAYSCALE</strong> = 0,</li>
+<li><strong>IMREAD_COLOR</strong> = 1,</li>
+<li><strong>IMREAD_ANYDEPTH</strong> = 2,</li>
+<li><strong>IMREAD_ANYCOLOR</strong> = 4,</li>
+<li><strong>IMREAD_LOAD_GDAL</strong> = 8,</li>
+<li><strong>IMREAD_REDUCED_GRAYSCALE_2</strong> = 16,</li>
+<li><strong>IMREAD_REDUCED_COLOR_2</strong> = 17,</li>
+<li><strong>IMREAD_REDUCED_GRAYSCALE_4</strong> = 32,</li>
+<li><strong>IMREAD_REDUCED_COLOR_4</strong> = 33,</li>
+<li><strong>IMREAD_REDUCED_GRAYSCALE_8</strong> = 64,</li>
+<li><strong>IMREAD_REDUCED_COLOR_8</strong> = 65,</li>
+<li><strong>IMREAD_IGNORE_ORIENTATION</strong> = 128;</li>
+</ul>
+<p>IMREAD_UNCHANGED: 以图片原有的方式读入,不进行任何改变<br>IMREAD_GRAYSCALE: 以灰度图读取<br>IMREAD_COLOR: 以彩色图读取</p>
+<h3 id="过渡"><a href="#过渡" class="headerlink" title="过渡"></a>过渡</h3><p>为了支持 OpenCV 读取 byte[] 的图片,为此我查找了很多资料做了大量的实验,有很多失败报错了,也有读取成功的,下面我将一一列举出来….</p>
+<h3 id="读取失败"><a href="#读取失败" class="headerlink" title="读取失败"></a>读取失败</h3><h4 id="Converters-类"><a href="#Converters-类" class="headerlink" title="Converters 类"></a>Converters 类</h4><p>我留意到 opencv 提供的 api 里有一个 <code>utils</code> 包, 里面有个转换类 <code>Converters</code>, 可以将 Mat 和 一些 java 的基本数据类型进行互相转换,其中有这样 2 个方法: <code>vector_uchar_to_Mat</code> 和 <code>vector_char_to_Mat</code><br>参数是 <code>List&lt;Byte&gt;</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testConvertChar2Mat</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span></span>&#123;</span><br><span class="line">        <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">        List&lt;Byte&gt; bs = CollectionUtils.arrayToList(bytes);</span><br><span class="line">        <span class="keyword">return</span> Converters.vector_uchar_to_Mat(bs);</span><br><span class="line"><span class="comment">//        return Converters.vector_char_to_Mat(bs);</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><code>vector_uchar_to_Mat</code>  指有符号</p>
+<p>转换出来的图片是一个像素的竖直线,读取失败</p>
+<h4 id="new-Mat"><a href="#new-Mat" class="headerlink" title="new Mat"></a>new Mat</h4><p>Mat 对象除了转化得到,还可以 new , 再利用 Mat 的 put 方法,来创建 Mat</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testNewMat</span><span class="params">(<span class="keyword">int</span> height, <span class="keyword">int</span> width, <span class="keyword">byte</span>[] bytes)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    Mat data = <span class="keyword">new</span> Mat(height, width, CvType.CV_8UC3);</span><br><span class="line">    data.put(<span class="number">0</span>, <span class="number">0</span>, bytes);</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>转换出来的图片也不对,一些花花绿绿的像素点</p>
+<h4 id="new-BufferByte"><a href="#new-BufferByte" class="headerlink" title="new BufferByte"></a>new BufferByte</h4><p>Mat 对象还有个构造方法,最后一个参数是传入 BufferByte,这时只需要在上述步骤中再将 byte[] 转化为 BufferByte</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testNewBuffer</span><span class="params">(<span class="keyword">int</span> height, <span class="keyword">int</span> width, <span class="keyword">byte</span>[] bytes)</span></span>&#123;</span><br><span class="line">    ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Mat(height, width, CvType.CV_8UC3,byteBuffer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>抛出异常: <strong>CvException [org.opencv.core.CvException: cv::Exception: OpenCV(4.1.0-pre) /Users/joylau/opencv4/opencv/modules/core/include/opencv2/core/mat.inl.hpp:548: error: (-215:Assertion failed) total() == 0 || data != NULL in function ‘Mat’</strong></p>
+<h3 id="读取成功"><a href="#读取成功" class="headerlink" title="读取成功"></a>读取成功</h3><h4 id="BufferedImage-转换"><a href="#BufferedImage-转换" class="headerlink" title="BufferedImage 转换"></a>BufferedImage 转换</h4><p>一次我在调试代码时 发现<code>HighGui.waitKey();</code> 的实现是将 Mat 对象转化为 BufferedImage 的逻辑,于是我明白了,OpenCV 里操作的 Mat 在显示的时候也需要转化为 BufferedImage<br>源码里有这样一段代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Image <span class="title">toBufferedImage</span><span class="params">(Mat m)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> type = BufferedImage.TYPE_BYTE_GRAY;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (m.channels() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        type = BufferedImage.TYPE_3BYTE_BGR;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> bufferSize = m.channels() * m.cols() * m.rows();</span><br><span class="line">    <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[bufferSize];</span><br><span class="line">    m.get(<span class="number">0</span>, <span class="number">0</span>, b); <span class="comment">// get all the pixels</span></span><br><span class="line">    BufferedImage image = <span class="keyword">new</span> BufferedImage(m.cols(), m.rows(), type);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">byte</span>[] targetPixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();</span><br><span class="line">    System.arraycopy(b, <span class="number">0</span>, targetPixels, <span class="number">0</span>, b.length);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时,我逆向转化,将 byte[] 转 BufferedImage ,BufferedImage 再转 Mat 即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] getBufferedImageByte(<span class="keyword">byte</span>[] bytes) <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">    BufferedImage bImage = ImageIO.read(<span class="keyword">new</span> ByteArrayInputStream(bytes));</span><br><span class="line">    <span class="keyword">return</span> ((DataBufferByte) bImage.getRaster().getDataBuffer()).getData();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 再将从 BufferedImage 得到的 byte[] 使用 new Mat 对象</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testNewMat</span><span class="params">(<span class="keyword">int</span> height, <span class="keyword">int</span> width, <span class="keyword">byte</span>[] bytes)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    Mat data = <span class="keyword">new</span> Mat(height, width, CvType.CV_8UC3);</span><br><span class="line">    data.put(<span class="number">0</span>, <span class="number">0</span>, bytes);</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该方法成功读取显示了图片</p>
+<p>于是又引发了我的思考: 为什么直接从文件读取的 byte[] 无法被转化,而 BufferedImage 中得到的 byte[] 却可以被转化</p>
+<p>于是我将 BufferedImage 中得到的 byte[] 在使用,调用 <code>Converters.vector_char_to_Mat</code> 方法</p>
+<p>可惜却失败了…..</p>
+<h4 id="imdecode"><a href="#imdecode" class="headerlink" title="imdecode"></a>imdecode</h4><p>Imgcodecs 类中有一个编码的方法 <code>Imgcodecs.imdecode(Mat buf, int flags)</code><br>Mat 还有个子类 MatOfByte</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testImdecode</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Imgcodecs.imdecode(<span class="keyword">new</span> MatOfByte(bytes), Imgcodecs.IMREAD_COLOR);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该方法可成功转化</p>
+<p>而且比上一个方法的优势是:</p>
+<ol>
+<li>byte[] 不需要再通过 BufferedImage 转化</li>
+<li>不需要初始化 Mat 的长和宽</li>
+</ol>
+<p>为此还可以逆向得出 Mat 转换成 byte[] 的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Mat转换成byte数组</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> matrix        要转换的Mat</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fileExtension 格式为 ".jpg", ".png", etc</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] mat2Byte(Mat matrix, String fileExtension) &#123;</span><br><span class="line">    MatOfByte mob = <span class="keyword">new</span> MatOfByte();</span><br><span class="line">    Imgcodecs.imencode(fileExtension, matrix, mob);</span><br><span class="line">    <span class="keyword">return</span> mob.toArray();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>以下是全部测试代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by liuf on 2019-04-01.</span></span><br><span class="line"><span class="comment"> * cn.joylau.code</span></span><br><span class="line"><span class="comment"> * liuf@ahtsoft.com</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Byte2Mat</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);</span><br><span class="line"></span><br><span class="line"><span class="comment">//        Mat mat = testImdecode(getImageByte());</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//        Mat mat = testConvertChar2Mat(getBufferedImageByte(getImageByte()));</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//        Mat mat = testNewBuffer(480,480,getImageByte());</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//        Mat mat = testNewMat(480,480,getImageByte());</span></span><br><span class="line"></span><br><span class="line">        Mat mat = testNewMat(<span class="number">480</span>,<span class="number">480</span>,getBufferedImageByte(getImageByte()));</span><br><span class="line"></span><br><span class="line">        log.info(<span class="string">"&#123;&#125;,&#123;&#125;"</span>,mat.rows(),mat.cols());</span><br><span class="line">        HighGui.imshow(<span class="string">"byte2mat"</span>,mat);</span><br><span class="line">        HighGui.waitKey();</span><br><span class="line">        HighGui.destroyAllWindows();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] getImageByte() <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">        Resource resource = <span class="keyword">new</span> FileSystemResource(<span class="string">"/Users/joylau/work/anhui-project/traffic-service-layer/src/main/resources/static/img/1.jpg"</span>);</span><br><span class="line">        <span class="keyword">return</span> IOUtils.toByteArray(resource.getInputStream());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] getBufferedImageByte(<span class="keyword">byte</span>[] bytes) <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">        BufferedImage bImage = ImageIO.read(<span class="keyword">new</span> ByteArrayInputStream(bytes));</span><br><span class="line">        <span class="keyword">return</span> ((DataBufferByte) bImage.getRaster().getDataBuffer()).getData();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testNewMat</span><span class="params">(<span class="keyword">int</span> height, <span class="keyword">int</span> width, <span class="keyword">byte</span>[] bytes)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Mat data = <span class="keyword">new</span> Mat(height, width, CvType.CV_8UC3);</span><br><span class="line">        data.put(<span class="number">0</span>, <span class="number">0</span>, bytes);</span><br><span class="line">        <span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testNewBuffer</span><span class="params">(<span class="keyword">int</span> height, <span class="keyword">int</span> width, <span class="keyword">byte</span>[] bytes)</span></span>&#123;</span><br><span class="line">        ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Mat(height, width, CvType.CV_8UC3,byteBuffer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testConvertChar2Mat</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span></span>&#123;</span><br><span class="line">        <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">        List&lt;Byte&gt; bs = CollectionUtils.arrayToList(bytes);</span><br><span class="line">        <span class="keyword">return</span> Converters.vector_uchar_to_Mat(bs);</span><br><span class="line"><span class="comment">//        return Converters.vector_char_to_Mat(bs);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testImdecode</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Imgcodecs.imdecode(<span class="keyword">new</span> MatOfByte(bytes), Imgcodecs.IMREAD_COLOR);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Mat转换成byte数组</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> matrix        要转换的Mat</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> fileExtension 格式为 ".jpg", ".png", etc</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] mat2Byte(Mat matrix, String fileExtension) &#123;</span><br><span class="line">        MatOfByte mob = <span class="keyword">new</span> MatOfByte();</span><br><span class="line">        Imgcodecs.imencode(fileExtension, matrix, mob);</span><br><span class="line">        <span class="keyword">return</span> mob.toArray();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> OpenCV篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> OpenCV </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[OpenCV 基础知识与概念]]></title>
       <url>http://blog.joylau.cn/2019/03/28/OpenCV-Basic/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -20,80 +94,47 @@
 </ul>
 <p>常使用的是1，3，4通道； 2通道不常见</p>
 <h3 id="组合规则"><a href="#组合规则" class="headerlink" title="组合规则"></a>组合规则</h3><p><code>CV_[bite](U|S|F)C[channels]</code></p>
-<ul>
-<li><p>bite : 比特数，位数。 有 8bite，16bite，32bite，64bite,对应在 Mat 中，每个像素的所占的空间大小，8位即 CV_8</p>
-</li>
-<li><p>U|S|F ：</p>
-<ul>
-<li>U : unsigned int , 无符号整形</li>
-<li>S : signed int , 有符号整形</li>
-<li>F : float , 单精度浮点型,float类型本身即有符号</li>
-</ul>
-</li>
-</ul>
-<p>这里的有符号、无符号是针对图像二进制编码来讲的。我在写的过程中大多数情况下都是使用的无符号，即 CV_8U ,CV_16U，当有计算时可能会介入有符号（存在负数），没学过 C++，对底层也一知半解，望高手解答。</p>
-<ul>
-<li>C (channels)：图像的通道数</li>
-</ul>
+<p>bite : 比特数，位数。 有 8bite，16bite，32bite，64bite,对应在 Mat 中，每个像素的所占的空间大小，8位即 CV_8</p>
+<p>U|S|F ：</p>
+<pre><code>- U : unsigned int , 无符号整形
+- S : signed int , 有符号整形
+- F : float , 单精度浮点型,float类型本身即有符号
+</code></pre><p>这里的有符号、无符号是针对图像二进制编码来讲的。我在写的过程中大多数情况下都是使用的无符号，即 CV_8U ,CV_16U，当有计算时可能会介入有符号（存在负数），没学过 C++，对底层也一知半解，望高手解答。</p>
+<p>C (channels)：图像的通道数</p>
 <p>比如: <code>CV_8UC3</code> 即 8位无符号的3通道（RGB 彩色）图像</p>
-<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><ul>
-<li><p>8U</p>
-<ul>
-<li>说明：无符号的8位图</li>
-<li>值：CV_8UC1,CV_8UC2,CV_8UC3,CV_8UC4</li>
-<li>通道取值范围：0~255</li>
-</ul>
-</li>
-<li><p>8S</p>
-<ul>
-<li>说明：有符号的8位图</li>
-<li>值：CV_8SC1,CV_8SC2,CV_8SC3,CV_8SC4</li>
-<li>通道取值范围：-128~127</li>
-</ul>
-</li>
-<li><p>16U</p>
-<ul>
-<li>说明：无符号的16位图</li>
-<li>值：CV_16UC1,CV_16UC2,CV_16UC3,CV_16UC4</li>
-<li>通道取值范围：0~65535</li>
-</ul>
-</li>
-<li><p>16S</p>
-<ul>
-<li>说明：有符号的16位图</li>
-<li>值：CV_16SC1,CV_16SC2,CV_16SC3,CV_16SC4</li>
-<li>通道取值范围：-32768~32767</li>
-</ul>
-</li>
-<li><p>32S</p>
-<ul>
-<li>说明：无符号的32位图</li>
-<li>值：CV_32SC1,CV_32SC2,CV_32SC3,CV_32SC4</li>
-<li>通道取值范围：2147483648~2147483647</li>
-</ul>
-</li>
-<li><p>32F</p>
-<ul>
-<li>说明：浮点型32位图</li>
-<li>值：CV_32FC1,CV_32FC2,CV_32FC3,CV_32FC4</li>
-<li>通道取值范围：1.18<em>(10(-38次方))~3.40</em>(10(38次方))</li>
-</ul>
-</li>
-<li><p>64F</p>
-<ul>
-<li>说明：浮点型64位图<br>-值：CV_64FC1,CV_64FC2,CV_64FC3,CV_64FC4</li>
-<li>通道取值范围：2.23<em>(10(-308次方))~1.79</em>(10(308次方))</li>
-</ul>
-</li>
-<li><p>1U</p>
-<ul>
-<li>说明：1位</li>
-<li>值：IPL_DEPTH_1U</li>
-<li>通道取值范围：0~1</li>
-</ul>
-</li>
-</ul>
-<h2 id="色彩空间"><a href="#色彩空间" class="headerlink" title="色彩空间"></a>色彩空间</h2><h3 id="常见的色彩空间"><a href="#常见的色彩空间" class="headerlink" title="常见的色彩空间"></a>常见的色彩空间</h3><ul>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><p>8U</p>
+<pre><code>- 说明：无符号的8位图
+- 值：CV_8UC1,CV_8UC2,CV_8UC3,CV_8UC4
+- 通道取值范围：0~255
+</code></pre><p>8S</p>
+<pre><code>- 说明：有符号的8位图
+- 值：CV_8SC1,CV_8SC2,CV_8SC3,CV_8SC4
+- 通道取值范围：-128~127
+</code></pre><p>16U</p>
+<pre><code>- 说明：无符号的16位图
+- 值：CV_16UC1,CV_16UC2,CV_16UC3,CV_16UC4
+- 通道取值范围：0~65535
+</code></pre><p>16S</p>
+<pre><code>- 说明：有符号的16位图
+- 值：CV_16SC1,CV_16SC2,CV_16SC3,CV_16SC4
+- 通道取值范围：-32768~32767
+</code></pre><p>32S</p>
+<pre><code>- 说明：无符号的32位图
+- 值：CV_32SC1,CV_32SC2,CV_32SC3,CV_32SC4
+- 通道取值范围：2147483648~2147483647
+</code></pre><p>32F</p>
+<pre><code>- 说明：浮点型32位图
+- 值：CV_32FC1,CV_32FC2,CV_32FC3,CV_32FC4
+- 通道取值范围：1.18*(10(-38次方))~3.40*(10(38次方))
+</code></pre><p>64F</p>
+<pre><code>- 说明：浮点型64位图
+-值：CV_64FC1,CV_64FC2,CV_64FC3,CV_64FC4
+- 通道取值范围：2.23*(10(-308次方))~1.79*(10(308次方))
+</code></pre><p>1U</p>
+<pre><code>- 说明：1位
+- 值：IPL_DEPTH_1U
+- 通道取值范围：0~1
+</code></pre><h2 id="色彩空间"><a href="#色彩空间" class="headerlink" title="色彩空间"></a>色彩空间</h2><h3 id="常见的色彩空间"><a href="#常见的色彩空间" class="headerlink" title="常见的色彩空间"></a>常见的色彩空间</h3><ul>
 <li>RGB</li>
 <li>HSV</li>
 <li>HIS</li>
@@ -102,20 +143,17 @@
 </ul>
 <h3 id="HSV"><a href="#HSV" class="headerlink" title="HSV"></a>HSV</h3><p>HSV分别是色调（Hue），饱和度（Saturation）和亮度（Value）</p>
 <p>H调整颜色；S越大，图像色彩越丰富，颜色越鲜艳；V越大，图像越亮</p>
-<h4 id="HSV颜色取值范围"><a href="#HSV颜色取值范围" class="headerlink" title="HSV颜色取值范围"></a>HSV颜色取值范围</h4><ul>
-<li><p>H:  0— 180 : 之所以不是 360,是因为 8 位图 最大是 255,360 已经超出范围,以 180 为限定</p>
+<h4 id="HSV颜色取值范围"><a href="#HSV颜色取值范围" class="headerlink" title="HSV颜色取值范围"></a>HSV颜色取值范围</h4><ol>
+<li><p>H:0— 180 : 之所以不是 360,是因为 8 位图 最大是 255,360 已经超出范围,以 180 为限定</p>
 </li>
-<li><p>S:  0— 255</p>
+<li><p>S: 0— 255</p>
 </li>
-<li><p>V:  0— 255</p>
+<li><p>V: 0— 255</p>
 </li>
-</ul>
+</ol>
 <p>记住下面这张图, 可使用这张图中的范围来查找某种颜色</p>
 <p><img src="http://image.joylau.cn/blog/OpenCV-HSV.png" alt="HSV"></p>
-<h4 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h4><p><code>Imgproc.cvtColor(src,des,Imgproc.COLOR_BGR2HSV);</code></p>
-<blockquote>
-<p>更新中…..</p>
-</blockquote>]]></content>
+<h4 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h4><p><code>Imgproc.cvtColor(src,det,Imgproc.COLOR_BGR2HSV);</code></p>]]></content>
       
         <categories>
             
@@ -1118,7 +1156,7 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnBean</span>(Executor.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExecutorConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ThreadPoolTaskExecutor <span class="title">trafficServiceExecutor</span><span class="params">(@Autowired Executor executor)</span> </span>&#123;</span><br><span class="line">        ThreadPoolTaskExecutor threadPoolTaskExecutor = <span class="keyword">new</span> ThreadPoolTaskExecutor();</span><br><span class="line">        threadPoolTaskExecutor.setCorePoolSize(executor.getCorePoolSize());</span><br><span class="line">        threadPoolTaskExecutor.setMaxPoolSize(executor.getMaxPoolSize());</span><br><span class="line">        threadPoolTaskExecutor.setQueueCapacity(executor.getQueueCapacity());</span><br><span class="line">        threadPoolTaskExecutor.setThreadNamePrefix(executor.getThreadNamePrefix());</span><br><span class="line">        threadPoolTaskExecutor.setRejectedExecutionHandler(<span class="keyword">new</span> ThreadPoolExecutor.CallerRunsPolicy());</span><br><span class="line">        threadPoolTaskExecutor.initialize();</span><br><span class="line">        <span class="keyword">return</span> threadPoolTaskExecutor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>仅此步骤,我们在使用的时候,只需要注解 @Async(“trafficServiceExecutor”) 配置好 name 即可</p>
-<h3 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h3><p>理解图<br><img src="http://image.joylau.cn/blog/springboot-ThreadPoolTaskExecutor.jpg" alt=""></p>
+<h3 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h3><p>理解图<br><img src="http://image.joylau.cn/blog/springboot-ThreadPoolTaskExecutor.jpg" alt></p>
 <h3 id="看点数据"><a href="#看点数据" class="headerlink" title="看点数据"></a>看点数据</h3><p>在线程池整个运作过程中,想看下运行状态的话可以这么做:<br>常用状态：</p>
 <ul>
 <li><code>taskCount</code>：线程需要执行的任务个数。</li>
@@ -1168,7 +1206,7 @@
 <li>创建的文件中端口默认使用的是 1194, 而我用的是 6001,那我们还得修改下 liufa.ovpn 文件的端口</li>
 <li>运行容器,这里我的宿主机端口为 6001, <code>docker run --name openvpn -v ${OVPN_DATA}:/etc/openvpn -d -p 6001:1194 --privileged kylemanna/openvpn</code></li>
 </ol>
-<h2 id="OpenVPN-客户端使用说明"><a href="#OpenVPN-客户端使用说明" class="headerlink" title="OpenVPN 客户端使用说明"></a>OpenVPN 客户端使用说明</h2><p><img src="https://img.shields.io/badge/author-joylau-green.svg" alt="">    <img src="https://img.shields.io/badge/date-2018--11--20-yellow.svg" alt="">    <img src="https://img.shields.io/badge/version-1.0-blue.svg" alt=""></p>
+<h2 id="OpenVPN-客户端使用说明"><a href="#OpenVPN-客户端使用说明" class="headerlink" title="OpenVPN 客户端使用说明"></a>OpenVPN 客户端使用说明</h2><p><img src="https://img.shields.io/badge/author-joylau-green.svg" alt>    <img src="https://img.shields.io/badge/date-2018--11--20-yellow.svg" alt>    <img src="https://img.shields.io/badge/version-1.0-blue.svg" alt></p>
 <h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><ol>
 <li>安装 openVPN windows 客户端，地址：<a href="https://swupdate.openvpn.org/community/releases/openvpn-install-2.4.6-I602.exe" target="_blank" rel="noopener">https://swupdate.openvpn.org/community/releases/openvpn-install-2.4.6-I602.exe</a> , 该地址需要梯子</li>
 <li>启动客户端，右键，选择 import file, 导入 ovpn 文件，文件请 联系管理员发给你</li>
@@ -3906,7 +3944,7 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
 </blockquote>
 <h2 id="开源许可证教程"><a href="#开源许可证教程" class="headerlink" title="开源许可证教程"></a>开源许可证教程</h2><p>作为一个开发者，如果你打算开源自己的代码，千万不要忘记，选择一种开源许可证（license）。</p>
 <p>许多开发者对开源许可证了解很少，不清楚有哪些许可证，应该怎么选择。本文介绍开源许可证的基本知识，主要参考了 OpenSource.com （<a href="https://opensource.com/article/17/9/9-open-source-software-rules-startups" target="_blank" rel="noopener">1</a>，<a href="https://opensource.com/article/17/9/open-source-licensing" target="_blank" rel="noopener">2</a>）。</p>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2017/bg2017101101.jpg" alt=""></p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2017/bg2017101101.jpg" alt></p>
 <h2 id="一、什么是开源许可证"><a href="#一、什么是开源许可证" class="headerlink" title="一、什么是开源许可证"></a>一、什么是开源许可证</h2><p>开源许可证是一种法律许可。通过它，版权拥有人明确允许，用户可以免费地使用、修改、共享版权软件。</p>
 <p>版权法默认禁止共享，也就是说，没有许可证的软件，就等同于保留版权，虽然开源了，用户只能看看源码，不能用，一用就会侵犯版权。所以软件开源的话，必须明确地授予用户开源许可证。</p>
 <h2 id="二、开源许可证的种类"><a href="#二、开源许可证的种类" class="headerlink" title="二、开源许可证的种类"></a>二、开源许可证的种类</h2><p>目前，国际公认的开源许可证共有<a href="https://opensource.org/licenses/alphabetical" target="_blank" rel="noopener">80多种</a>。它们的共同特征是，都允许用户免费地使用、修改、共享源码，但是都有各自的使用条件。</p>

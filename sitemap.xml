@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.joylau.cn/2019/04/03/OpenCV-ByteImage/</loc>
+    
+    <lastmod>2019-04-03T08:18:19.104Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.joylau.cn/2019/03/28/OpenCV-Basic/</loc>
     
-    <lastmod>2019-04-01T16:01:04.983Z</lastmod>
+    <lastmod>2019-04-03T02:48:24.772Z</lastmod>
     
   </url>
   
@@ -51,14 +58,14 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2019/03/01/Docker-Swarm-Choice-Node/</loc>
+    <loc>http://blog.joylau.cn/2019/02/18/Docker-Swarm-Cluster/</loc>
     
     <lastmod>2019-03-01T16:01:05.148Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2019/02/18/Docker-Swarm-Cluster/</loc>
+    <loc>http://blog.joylau.cn/2019/03/01/Docker-Swarm-Choice-Node/</loc>
     
     <lastmod>2019-03-01T16:01:05.148Z</lastmod>
     
@@ -142,6 +149,13 @@
   </url>
   
   <url>
+    <loc>http://blog.joylau.cn/2018/12/19/Docker-Exec-Failed/</loc>
+    
+    <lastmod>2018-12-19T12:18:49.455Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.joylau.cn/2018/12/18/SpringCloud-Docker/</loc>
     
     <lastmod>2018-12-19T12:18:49.455Z</lastmod>
@@ -149,9 +163,9 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2018/12/19/Docker-Exec-Failed/</loc>
+    <loc>http://blog.joylau.cn/2017/02/23/Linux-BuildingEnvironment/</loc>
     
-    <lastmod>2018-12-19T12:18:49.455Z</lastmod>
+    <lastmod>2018-12-18T05:56:47.423Z</lastmod>
     
   </url>
   
@@ -164,13 +178,6 @@
   
   <url>
     <loc>http://blog.joylau.cn/2018/11/19/Docker-PrivateRepo/</loc>
-    
-    <lastmod>2018-12-18T05:56:47.423Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2017/02/23/Linux-BuildingEnvironment/</loc>
     
     <lastmod>2018-12-18T05:56:47.423Z</lastmod>
     
@@ -317,28 +324,7 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/10/25/Elasticsearch-Config/</loc>
-    
-    <lastmod>2018-06-25T08:53:48.429Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.joylau.cn/2018/06/14/MacOS-ChangeMacAddr/</loc>
-    
-    <lastmod>2018-06-25T08:53:48.429Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2018/06/21/Elasticsearch-ingest-attachment/</loc>
-    
-    <lastmod>2018-06-25T08:53:48.429Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2018/06/12/Elasticsearch-Ik/</loc>
     
     <lastmod>2018-06-25T08:53:48.429Z</lastmod>
     
@@ -352,6 +338,13 @@
   </url>
   
   <url>
+    <loc>http://blog.joylau.cn/2018/06/12/Elasticsearch-Ik/</loc>
+    
+    <lastmod>2018-06-25T08:53:48.429Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.joylau.cn/2018/06/22/Linux-OpenOffice/</loc>
     
     <lastmod>2018-06-25T08:53:48.429Z</lastmod>
@@ -359,28 +352,35 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/03/17/Maven-Release-Component/</loc>
+    <loc>http://blog.joylau.cn/2017/10/25/Elasticsearch-Config/</loc>
     
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2018/03/28/SpringBoot-SpringSecurity/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    <lastmod>2018-06-25T08:53:48.429Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/</loc>
+    <loc>http://blog.joylau.cn/2018/06/21/Elasticsearch-ingest-attachment/</loc>
     
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    <lastmod>2018-06-25T08:53:48.429Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://blog.joylau.cn/2018/05/18/Linux-Systemctl/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/about/index.html</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2017/03/21/SpringBoot-SpringBatch/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -401,21 +401,21 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/06/24/MacBookPro-Unboxing/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2017/06/12/SpringBoot-RequestBody/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.joylau.cn/2018/04/01/MacOS-CleanMac/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2017/03/14/SpringBoot-Research/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2017/06/16/SpringBoot-RabbitMQ/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -429,7 +429,14 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/09/04/Maven-MakeWinServiceForJar/</loc>
+    <loc>http://blog.joylau.cn/2017/02/23/Linux-GUI/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2017/06/24/MacBookPro-Unboxing/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -443,13 +450,6 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/04/24/SpringCloud-Building/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.joylau.cn/2017/10/16/Maven-ResourceCompressor/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
@@ -457,21 +457,14 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/07/10/ZeroC-Ice/</loc>
+    <loc>http://blog.joylau.cn/2017/09/04/Maven-MakeWinServiceForJar/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2018/02/27/MyBatis-Example/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2017/04/06/MyBatis-Joylau-MyBatis/</loc>
+    <loc>http://blog.joylau.cn/2017/06/12/SpringBoot-RequestBody/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -485,14 +478,14 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/11/07/Node-Install-Error/</loc>
+    <loc>http://blog.joylau.cn/2018/02/27/MyBatis-Example/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/about/index.html</loc>
+    <loc>http://blog.joylau.cn/2017/11/07/Node-Install-Error/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -506,14 +499,35 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/10/30/SpringBoot-ReadJSONFile/</loc>
+    <loc>http://blog.joylau.cn/2017/04/06/MyBatis-Joylau-MyBatis/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/03/21/SpringBoot-SpringBatch/</loc>
+    <loc>http://blog.joylau.cn/2017/03/17/Maven-Release-Component/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2017/06/18/SpringBoot-RESTfulAPI/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2018/03/28/SpringBoot-SpringSecurity/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2017/04/24/SpringCloud-Building/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -521,6 +535,20 @@
   
   <url>
     <loc>http://blog.joylau.cn/tags/index.html</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2017/07/10/ZeroC-Ice/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2017/02/23/Linux-MountDisk/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -541,21 +569,14 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/04/27/Redis-Master-Slave/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2017/02/23/Linux-GUI/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.joylau.cn/2017/02/20/SSL/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2017/04/27/Redis-Master-Slave/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -576,14 +597,21 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/11/23/Spark-Integrate-Build/</loc>
+    <loc>http://blog.joylau.cn/2017/03/01/SpringBoot-Actuator/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/02/20/Thymeleaf/</loc>
+    <loc>http://blog.joylau.cn/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2017/11/23/Spark-Integrate-Build/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -597,14 +625,7 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/03/01/SpringBoot-Actuator/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2017/03/13/SpringBoot-Basic/</loc>
+    <loc>http://blog.joylau.cn/2017/06/13/SpringBoot-ConfigurationProperties/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -618,7 +639,7 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/06/13/SpringBoot-ConfigurationProperties/</loc>
+    <loc>http://blog.joylau.cn/2017/03/13/SpringBoot-Basic/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -632,14 +653,7 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/11/16/SpringBoot-Elasticsearch-Complex/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2017/02/23/Linux-MountDisk/</loc>
+    <loc>http://blog.joylau.cn/2017/11/01/SpringBoot-IDEA-DevTools/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -653,14 +667,7 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/11/01/SpringBoot-IDEA-DevTools/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2017/03/14/SpringBoot-Integrate/</loc>
+    <loc>http://blog.joylau.cn/2017/02/20/Thymeleaf/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -674,21 +681,14 @@
   </url>
   
   <url>
+    <loc>http://blog.joylau.cn/2017/11/16/SpringBoot-Elasticsearch-Complex/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.joylau.cn/2017/08/29/SpringBoot-JoyMedia-NoReferer/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2017/07/29/SpringBoot-JoyMedia-Node/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2017/08/06/SpringBoot-JoyMedia-Search/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -702,7 +702,14 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/07/18/SpringBoot-MongoDB/</loc>
+    <loc>http://blog.joylau.cn/2017/08/06/SpringBoot-JoyMedia-Search/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2017/07/29/SpringBoot-JoyMedia-Node/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
@@ -723,6 +730,20 @@
   </url>
   
   <url>
+    <loc>http://blog.joylau.cn/2017/03/14/SpringBoot-Integrate/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2017/07/18/SpringBoot-MongoDB/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.joylau.cn/2017/06/12/SpringBoot-Question-Tips/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
@@ -730,35 +751,14 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/06/18/SpringBoot-RESTfulAPI/</loc>
+    <loc>http://blog.joylau.cn/2017/10/30/SpringBoot-ReadJSONFile/</loc>
     
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/06/16/SpringBoot-RabbitMQ/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2017/03/14/SpringBoot-Research/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2017/07/03/Git-Multi-Repo-Push/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2017/09/11/JoyGame/</loc>
+    <loc>http://blog.joylau.cn/2018/05/08/Filebeat-Nginx/</loc>
     
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     
@@ -766,6 +766,13 @@
   
   <url>
     <loc>http://blog.joylau.cn/2017/11/24/JavaScript-Array-Method/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.joylau.cn/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/</loc>
     
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     
@@ -793,14 +800,14 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/11/17/Hadoop-Study-Way/</loc>
+    <loc>http://blog.joylau.cn/2017/11/22/Hadoop-Integrate-Build/</loc>
     
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/11/22/Hadoop-Integrate-Build/</loc>
+    <loc>http://blog.joylau.cn/2017/11/17/Hadoop-Study-Way/</loc>
     
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     
@@ -814,14 +821,7 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/</loc>
-    
-    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.joylau.cn/2018/05/08/Filebeat-Nginx/</loc>
+    <loc>http://blog.joylau.cn/2017/09/11/JoyGame/</loc>
     
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     
@@ -842,6 +842,13 @@
   </url>
   
   <url>
+    <loc>http://blog.joylau.cn/2017/07/03/Git-Multi-Repo-Push/</loc>
+    
+    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.joylau.cn/2018/05/07/Elasticsearch-ELK/</loc>
     
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
@@ -856,7 +863,7 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/06/16/Console-Better/</loc>
+    <loc>http://blog.joylau.cn/2017/06/09/College-Entrance-Examination-of-2017-for-Progarmmer/</loc>
     
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     
@@ -870,7 +877,7 @@
   </url>
   
   <url>
-    <loc>http://blog.joylau.cn/2017/06/09/College-Entrance-Examination-of-2017-for-Progarmmer/</loc>
+    <loc>http://blog.joylau.cn/2017/06/16/Console-Better/</loc>
     
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     
