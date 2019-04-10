@@ -4,6 +4,105 @@
   
     
     <entry>
+      <title><![CDATA[Ubuntu 优雅的远程桌面服务端配置]]></title>
+      <url>http://blog.joylau.cn/2019/04/10/Ubuntu-Remote-Desktop/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>上一篇文章记录了因为远程桌面连接把 Ubuntu 的 <code>/home</code> 弄坏了<br>好一番折腾。。。。<br>其实这个远程桌面我早就想重新配置了，今天我终于受不了它了，于是我觉得仔细研究一番找到适合我自己的方式来操作</p>
+<h2 id="以前的方式"><a href="#以前的方式" class="headerlink" title="以前的方式"></a>以前的方式</h2><p>之前我的远程配置是 <code>xrdp</code> + <code>tightvncserver</code><br>然后我每次都是使用 Windows 上的 <code>mstsc</code> 来连接的<br>连接上后会出现 <code>xrpd</code> 的登录选项<br>每次我都选第一个 <code>sesman-Xvnc</code> 然后输入用户名密码即可</p>
+<p>可这样的连接方式有个很不好的方面，就是这种方式是多用户的，想回家继续没干完的事情<br>连接上发现是一个新的桌面<br>都不知道做到什么地方了</p>
+<p>这也就算了</p>
+<p>最大的问题远程操作操作这就没响应了，鼠标的指针变成了 × 号，所有的东西都不能点，而且第二天到公司桌面卡死不动，只能重启桌面或重启系统，很多打开软件和工具都会还原</p>
+<p>这是我最不能忍的地方</p>
+<h2 id="决定改变"><a href="#决定改变" class="headerlink" title="决定改变"></a>决定改变</h2><p>我决定不使用这种方式来进行远程，远程 <code>teamviewer</code> 是比较合适的选择，但是工作由于连接的终端太多，被检测商用，每次连接都是只有 1 min 的操作时间<br>很尴尬…</p>
+<p>最后决定使用轻量级的 <code>vnc</code> 服务来解决这个问题，并且搭配 <code>xrdp</code> 的 <code>any vnc</code> 来使用 <code>mstsc</code> 远程连接</p>
+<h2 id="重新配置"><a href="#重新配置" class="headerlink" title="重新配置"></a>重新配置</h2><h3 id="x11vnc"><a href="#x11vnc" class="headerlink" title="x11vnc"></a>x11vnc</h3><ol>
+<li>卸载以前的 vnc 服务端</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt remove tigervncserver</span><br><span class="line">sudo apt remove tightvncserver</span><br><span class="line">systemcrl auto remove</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>安装 <code>x11vnc</code> ,并进行配置</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install x11vnc -y</span><br><span class="line"></span><br><span class="line">sudo x11vnc -storepasswd /etc/x11vnc.pass <span class="comment"># 配置访问密码并存储</span></span><br><span class="line"></span><br><span class="line">vim  /lib/systemd/system/x11vnc.service <span class="comment"># 创建系统服务</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务配置</span></span><br><span class="line">[Unit]</span><br><span class="line">Description=Start x11vnc at startup.</span><br><span class="line">After=multi-user.target</span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/usr/bin/x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /etc/x11vnc.pass -rfbport 5900 -shared</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">enable</span> x11vnc.service</span><br><span class="line">systemctl start x11vnc.service</span><br></pre></td></tr></table></figure>
+<h3 id="问题及解决"><a href="#问题及解决" class="headerlink" title="问题及解决"></a>问题及解决</h3><p>下载 vnc-view 新建一个连接发现连不上…<br>尴尬。。。<br>检查 <code>5900</code> 端口，是开放的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">joylau@joylau-work-192:~$ sudo netstat -tnlp | grep :5900</span><br><span class="line">tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      4022/vino-server</span><br><span class="line">tcp6       0      0 :::5900                 :::*                    LISTEN      4022/vino-server</span><br></pre></td></tr></table></figure>
+<p>但是使用的进程是 <code>vino-server</code> ，这是 Ubuntu 自带程序开启的服务<br>原来端口被占用了<br>关闭服务 ： 找到桌面共享，关闭 <code>允许其他人查看您的桌面</code><br>重启 <code>x11vnc</code> 服务<br>连接成功</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>现在有 4 中方式使用</p>
+<ol>
+<li>使用 <code>vnc-view</code> 使用是单用户的，类似 <code>teamviewer</code> 那样，2 边操作都能互相看见</li>
+<li>使用 <code>mstsc</code> , 连接到 <code>xrdp</code> 后，再选中 <code>any vnc</code> 使用 <code>vnc</code> 协议连接，效果和第一种是一样的，只不过不需要客户端了</li>
+<li>浏览器直接远程，这种最方便，下面有说明</li>
+<li>以前的那种使用方式， 多用户的，估计我是不会再用了</li>
+</ol>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>第三种多用户方式连接，没连接一次就生成一个新的桌面，这个很烦，想连接回上次的桌面，可修改配置 <code>/etc/xrdp/xrdp.ini</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[globals]</span><br><span class="line"></span><br><span class="line">bitmap_cache=yes 位图缓存</span><br><span class="line"></span><br><span class="line">bitmap_compression=yes 位图压缩</span><br><span class="line"></span><br><span class="line">port=3389 xrdp监听的端口（重要）</span><br><span class="line"></span><br><span class="line">crypt_level=low 加密程度（low为40位，high为128位，medium为双40位）</span><br><span class="line"></span><br><span class="line">channel_code=1</span><br><span class="line"></span><br><span class="line">max_bpp=24 XRDP最大连接数</span><br><span class="line"></span><br><span class="line">[xrdp1]</span><br><span class="line"></span><br><span class="line">name=sesman-Xvnc XRDP的连接模式</span><br><span class="line"></span><br><span class="line">lib=libvnc.so</span><br><span class="line"></span><br><span class="line">username=ask</span><br><span class="line"></span><br><span class="line">password=ask</span><br><span class="line"></span><br><span class="line">ip=127.0.0.1</span><br><span class="line"></span><br><span class="line">port=-1</span><br></pre></td></tr></table></figure>
+<p>修改 port 为 固定端口号或者 <code>ask-1</code><br>下次连接不修改即可</p>
+<p>注：再记录下 <code>sesman.ini</code> 的配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">[Globals]</span><br><span class="line"></span><br><span class="line">ListenAddress=127.0.0.1 监听ip地址(默认即可)</span><br><span class="line"></span><br><span class="line">ListenPort=3350 监听端口(默认即可)</span><br><span class="line"></span><br><span class="line">EnableUserWindowManager=1 1为开启,可让用户自定义自己的启动脚本</span><br><span class="line"></span><br><span class="line">UserWindowManager=startwm.sh</span><br><span class="line"></span><br><span class="line">DefaultWindowManager=startwm.sh</span><br><span class="line"></span><br><span class="line">[Security]</span><br><span class="line"></span><br><span class="line">AllowRootLogin=1 允许root登陆</span><br><span class="line"></span><br><span class="line">MaxLoginRetry=4 最大重试次数</span><br><span class="line"></span><br><span class="line">TerminalServerUsers=tSUSErs 允许连接的用户组(如果不存在则默认全部用户允许连接)</span><br><span class="line"></span><br><span class="line">TerminalServerAdmins=tsadmins 允许连接的超级用户(如果不存在则默认全部用户允许连接)</span><br><span class="line"></span><br><span class="line">[Sessions]</span><br><span class="line"></span><br><span class="line">MaxSessions=10 每个用户最大会话数</span><br><span class="line"></span><br><span class="line">KillDisconnected=0 是否立即关闭断开的连接(如果为1,则断开连接后会自动注销)</span><br><span class="line"></span><br><span class="line">IdleTimeLimit=0 空闲会话时间限制(0为没有限制)</span><br><span class="line"></span><br><span class="line">DisconnectedTimeLimit=0 断开连接的存活时间(0为没有限制)</span><br><span class="line"></span><br><span class="line">[Logging]</span><br><span class="line"></span><br><span class="line">LogFile=./sesman.log 登陆日志文件</span><br><span class="line"></span><br><span class="line">LogLevel=DEBUG 登陆日志记录等级(级别分别为,core,error,warn,info,debug)</span><br><span class="line"></span><br><span class="line">EnableSyslog=0 是否开启日志</span><br><span class="line"></span><br><span class="line">SyslogLevel=DEBUG 系统日志记录等级</span><br></pre></td></tr></table></figure>
+<h2 id="使用浏览器来远程桌面"><a href="#使用浏览器来远程桌面" class="headerlink" title="使用浏览器来远程桌面"></a>使用浏览器来远程桌面</h2><p>像阿里云等云服务提供商一样直接在浏览器上进行远程操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run  -e REMOTE_HOST=192.168.10.192 -e REMOTE_PORT=5900 -p 8081:8081 -d --restart always --name novnc dougw/novnc</span><br></pre></td></tr></table></figure>
+<p>打开浏览器 <a href="http://host:8081/vnc.html" target="_blank" rel="noopener">http://host:8081/vnc.html</a></p>
+<p>秀啊！！！</p>]]></content>
+      
+        <categories>
+            
+            <category> Ubuntu篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Ubuntu </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[记录一次 Ubuntu 因磁盘问题导致开机进入紧急模式的情况]]></title>
+      <url>http://blog.joylau.cn/2019/04/10/Linux-Fix-DiskError/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在家里使用 vnc 协议远程连接公司的 Ubuntu 电脑<br>导致桌面卡死<br>期间还遇到了 搜狗输入法崩溃，提示我删除用户目录下的一个文件然后重启<br>鼠标可以动<br>界面上的任何东西都无法点击<br>没再操作<br>等第二天到公司解决</p>
+<h2 id="不重启解决-Ubuntu-桌面卡死"><a href="#不重启解决-Ubuntu-桌面卡死" class="headerlink" title="不重启解决 Ubuntu 桌面卡死"></a>不重启解决 Ubuntu 桌面卡死</h2><p>这样的情况遇到很多了<br>ctrl + alt + f1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ps -t tty7</span><br><span class="line"></span><br><span class="line">PID TTY          TIME CMD</span><br><span class="line">1758 tty7     00:00:55 Xorg</span><br><span class="line"></span><br><span class="line"><span class="built_in">kill</span> -9 1758</span><br></pre></td></tr></table></figure>
+<p>之后桌面上的应用都会被关闭，回到登录界面</p>
+<h2 id="重启进入紧急模式"><a href="#重启进入紧急模式" class="headerlink" title="重启进入紧急模式"></a>重启进入紧急模式</h2><p>之后我想着电脑很久没关机了，想重启一下，顺便去倒杯水<br>回来之后发现系统正在进行磁盘检测并且之后进入了紧急模式</p>
+<p><code>journalctl -xb</code> 查看启动日志</p>
+<p>一直往下翻</p>
+<p>发现 <code>/dev/sdb6</code> 分区出现问题导致系统无法启动</p>
+<p>使用 <code>lsblk</code> 查看分区挂载情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">joylau@joylau-work-192:~$ lsblk -f</span><br><span class="line">NAME   FSTYPE   LABEL    UUID                                 MOUNTPOINT</span><br><span class="line">loop1  squashfs                                               /snap/core/6405</span><br><span class="line">sdb                                                           </span><br><span class="line">├─sdb2                                                        </span><br><span class="line">├─sdb5 ext4              4ff695c6-b2ef-46d9-8501-c7e8ee61edda /</span><br><span class="line">├─sdb1 ext4              98f0eb66-3d90-4bc5-a1f0-d3117de87809 /boot</span><br><span class="line">└─sdb6 ext4              76ad5dc1-37b7-4624-830b-d923dac8ac48 </span><br><span class="line">loop4  squashfs                                               /snap/redis-desktop-manager/191</span><br><span class="line">loop2  squashfs                                               /snap/core/6673</span><br><span class="line">loop0  squashfs                                               /snap/redis-desktop-manager/156</span><br><span class="line">sdc                                                           </span><br><span class="line">├─sdc2 ntfs     新加卷   AE5CA91F5CA8E2F7                     /media/extra</span><br><span class="line">└─sdc1 ntfs     新加卷   0CBC9840BC9825EC                     </span><br><span class="line">sda                                                           </span><br><span class="line">├─sda2 ntfs              5E68EE4D68EE240D                     </span><br><span class="line">├─sda7 ntfs              EAD67107D670D573                     </span><br><span class="line">├─sda5 ntfs              9E14908214905ED9                     </span><br><span class="line">├─sda3                                                        </span><br><span class="line">├─sda1 ntfs     系统保留 A27AE98B7AE95C93                     </span><br><span class="line">└─sda6 ntfs              E2D84A6BD84A3E53                     /media/extra_2</span><br><span class="line">loop3  squashfs</span><br></pre></td></tr></table></figure>
+<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>上面看到 sdb6 没有挂载点，实际上是有的，只不过现在出问题了没有挂载上<br>可以找 UUID <strong>76ad5dc1-37b7-4624-830b-d923dac8ac48</strong></p>
+<p>查看 <code>/etc/fstab</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /etc/fstab: static file system information.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Use 'blkid' to print the universally unique identifier for a</span></span><br><span class="line"><span class="comment"># device; this may be used with UUID= as a more robust way to name devices</span></span><br><span class="line"><span class="comment"># that works even if disks are added and removed. See fstab(5).</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span></span><br><span class="line"><span class="comment"># / was on /dev/sdb5 during installation</span></span><br><span class="line">UUID=4ff695c6-b2ef-46d9-8501-c7e8ee61edda /               ext4    errors=remount-ro 0       1</span><br><span class="line"><span class="comment"># /boot was on /dev/sdb1 during installation</span></span><br><span class="line">UUID=98f0eb66-3d90-4bc5-a1f0-d3117de87809 /boot           ext4    defaults        0       2</span><br><span class="line"><span class="comment"># /home was on /dev/sdb6 during installation</span></span><br><span class="line">UUID=76ad5dc1-37b7-4624-830b-d923dac8ac48 /home           ext4    defaults        0       2</span><br><span class="line"><span class="comment"># swap was on /dev/sdc5 during installation</span></span><br><span class="line"><span class="comment">#UUID=a99b0d98-9282-4e52-8f49-74b9b1f2ed8e none            swap    sw              0       0</span></span><br><span class="line"></span><br><span class="line">UUID=AE5CA91F5CA8E2F7                     /media/extra    ntfs   defaults         0       0</span><br><span class="line">UUID=E2D84A6BD84A3E53                     /media/extra_2    ntfs   defaults         0       0</span><br></pre></td></tr></table></figure>
+<p>查看到 <strong>76ad5dc1-37b7-4624-830b-d923dac8ac48</strong> 对应挂载的 <code>/home</code> 目录</p>
+<p>后面的 pass 写的是 2 ，就是说开机进行磁盘检查，并且数值越小，越先检查</p>
+<p>这里有个临时的解决方式就是将 <code>/home</code> 的 pass 改为 0 ，也就是开机不进行检查，该分区有问题并不代表分区不可用</p>
+<p>改完后依然可以访问 <code>/home</code> 目录</p>
+<h2 id="磁盘修复"><a href="#磁盘修复" class="headerlink" title="磁盘修复"></a>磁盘修复</h2><p>强迫症让我不能就这么将就<br>我觉得修复这个磁盘错误<br>使用命令修复这个错误如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fsck -y /dev/sdb6</span><br></pre></td></tr></table></figure>
+<p>结果提示 分区已挂载，操作被终止</p>
+<p>修改 fstab 将 sdb6 挂载的那行注释<br>重启<br>进入紧急模式<br>运行 <code>fsck -y /dev/sdb6</code><br>这时会打印很多日志<br>重复执行，直到没有日志打印</p>
+<p>这时在修改 fstab, 去掉注释，pass 改为 2<br>重启<br>解决 </p>]]></content>
+      
+        <categories>
+            
+            <category> Linux篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Ubuntu </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Docker 启动报错： Error starting daemon： Error initializing network controller： list bridge addresses failed： no available network]]></title>
       <url>http://blog.joylau.cn/2019/04/08/Docker-Start-Error/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -1247,20 +1346,33 @@
 <h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ol>
 <li>安装 openvpn：<code>sudo yum install openvpn</code> 或者 <code>sudo apt install openvpn</code></li>
 <li>找到 ovpn 文件所在目录： <code>sudo openvpn --config ./liufa.ovpn</code>, 看到成功信息时即连接成功</li>
-<li>可以用 nohup 以守护进程运行</li>
+<li><code>--daemon</code> 参数以守护进程运行</li>
+<li>或者写个 service 文件以守护进程并且开机启动运行</li>
 </ol>
 <h3 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h3><ol>
 <li>安装 Tunnelblick，地址：<a href="https://tunnelblick.net/" target="_blank" rel="noopener">https://tunnelblick.net/</a></li>
 <li>导入 ovpn文件</li>
 <li>状态栏上点击连接VPN</li>
 </ol>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
-<li>连接上 VPN 后,默认所有流量都⾛的 VPN,但事实上我们并不想这么做. </li>
-<li>⽐如公司内⽹的⽹段为 192.168.10.0 ⽹段,我们先删除 2 个 0.0.0.0 的路由: <code>route delete 0.0.0.0</code></li>
-<li>然后添加 0.0.0.0 到本机的⽹段 <code>route add 0.0.0.0 mask 255.255.255.0 本机内⽹网关</code> </li>
-<li>再指定 10 ⽹段⾛ VPN 通道 <code>route add 192.168.10.0 mask 255.255.255.0 VPN 网关</code></li>
+<h2 id="路由设置"><a href="#路由设置" class="headerlink" title="路由设置"></a>路由设置</h2><p>连接上 VPN 后,默认所有流量都走的 VPN,但事实上我们并不想这么做</p>
+<h3 id="Windows-上路由手动配置"><a href="#Windows-上路由手动配置" class="headerlink" title="Windows 上路由手动配置"></a>Windows 上路由手动配置</h3><ul>
+<li>⽐如公司内网的网段为 192.168.10.0 网段,我们先删除 2 个 0.0.0.0 的路由: <code>route delete 0.0.0.0</code></li>
+<li>然后添加 0.0.0.0 到本机的网段 <code>route add 0.0.0.0 mask 255.255.255.0 本机内网网关</code> </li>
+<li>再指定 10 网段走 VPN 通道 <code>route add 192.168.10.0 mask 255.255.255.0 VPN 网关</code></li>
 <li>以上路由添加默认是临时的,重启失效,⽤久保存可加 -p 参数</li>
-</ul>]]></content>
+</ul>
+<h3 id="OpenVPN-服务端配置"><a href="#OpenVPN-服务端配置" class="headerlink" title="OpenVPN 服务端配置"></a>OpenVPN 服务端配置</h3><p>修改配置文件 <code>openvpn.conf</code><br>在 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### Route Configurations Below</span></span><br><span class="line">route 192.168.254.0 255.255.255.0</span><br></pre></td></tr></table></figure>
+<p>下面添加路由即可， 客户端连接时会收到服务端推送的路由</p>
+<h3 id="OpenVPN-客户端设置"><a href="#OpenVPN-客户端设置" class="headerlink" title="OpenVPN 客户端设置"></a>OpenVPN 客户端设置</h3><p>很多时候我们希望自己的客户端能够自定义路由，而且更该服务端的配置并不是一个相对较好的做法</p>
+<p>找到我们的 ovpn 配置文件 </p>
+<p>到最后一行</p>
+<p><code>redirect-gateway def1</code><br>即是我们全部流量走 VPN 的配置</p>
+<h4 id="route-nopull"><a href="#route-nopull" class="headerlink" title="route-nopull"></a>route-nopull</h4><p>客户端加入这个参数后,OpenVPN 连接后不会添加路由,也就是不会有任何网络请求走 OpenVPN</p>
+<h4 id="vpn-gateway"><a href="#vpn-gateway" class="headerlink" title="vpn_gateway"></a>vpn_gateway</h4><p>当客户端加入 <code>route-nopull</code> 后,所有出去的访问都不从 OpenVPN 出去,但可通过添加 vpn_gateway 参数使部分IP访问走 OpenVPN 出去</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">route 192.168.255.0 255.255.255.0 vpn_gateway</span><br><span class="line">route 192.168.10.0 255.255.255.0 vpn_gateway</span><br></pre></td></tr></table></figure>
+<h4 id="net-gateway"><a href="#net-gateway" class="headerlink" title="net_gateway"></a>net_gateway</h4><p>和 <code>vpn_gateway</code> 相反,他表示在默认出去的访问全部走 OpenVPN 时,强行指定部分 IP 访问不通过 OpenVPN 出去</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">max-routes 1000 <span class="comment"># 表示可以添加路由的条数,默认只允许添加100条路由,如果少于100条路由可不加这个参数</span></span><br><span class="line">route 172.121.0.0 255.255.0.0 net_gateway</span><br></pre></td></tr></table></figure>]]></content>
       
         <categories>
             
