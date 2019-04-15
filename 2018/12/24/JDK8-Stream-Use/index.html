@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
 <meta property="og:description" content="java 8 lamda 表达式的 stream 有很多实用的方法，这里记录下日常的使用记录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-04T05:26:26.526Z">
+<meta property="og:updated_time" content="2019-04-15T16:01:05.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Jdk 8 Stream 的使用记录">
 <meta name="twitter:description" content="java 8 lamda 表达式的 stream 有很多实用的方法，这里记录下日常的使用记录">
@@ -375,6 +375,7 @@
 <p>这样就可以了。</p>
 <h3 id="2018-9-13-更新"><a href="#2018-9-13-更新" class="headerlink" title="2018-9-13 更新"></a>2018-9-13 更新</h3><p>如果我们不重写方法，有没有办法按照List中bean的某个属性来去重复呢？答案是有的，利用的是 stream 的 reduce，用一个set 来存放 key,代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List&lt;JSONObject&gt; result = trails.stream()</span><br><span class="line">            .filter(distinctByKey(VehicleTrail::getPlateNbr))</span><br><span class="line">            .collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>  &lt;T&gt; <span class="function">Predicate&lt;T&gt; <span class="title">distinctByKey</span><span class="params">(Function&lt;? <span class="keyword">super</span> T, ?&gt; keyExtractor)</span> </span>&#123;</span><br><span class="line">    Set&lt;Object&gt; seen = ConcurrentHashMap.newKeySet();</span><br><span class="line">    <span class="keyword">return</span> t -&gt; seen.add(keyExtractor.apply(t));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2个集合的元素两两组合成一个-n-m-的集合"><a href="#2个集合的元素两两组合成一个-n-m-的集合" class="headerlink" title="2个集合的元素两两组合成一个 n * m 的集合"></a>2个集合的元素两两组合成一个 n * m 的集合</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Integer[] xs = <span class="keyword">new</span> Integer[]&#123;<span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">Integer[] ys = <span class="keyword">new</span> Integer[]&#123;<span class="number">5</span>, <span class="number">6</span>&#125;;</span><br><span class="line"></span><br><span class="line">List&lt;Image&gt; images = Arrays.stream(xs).flatMap(x -&gt; Arrays.stream(ys).map(y -&gt; <span class="keyword">new</span> Image(x,y))).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -384,7 +385,7 @@
         <p><span>本文标题:</span><a href="/2018/12/24/JDK8-Stream-Use/">关于Jdk 8 Stream 的使用记录</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
         <p><span>发布时间:</span>2018-12-24, 23:27:38</p>
-        <p><span>最后更新:</span>2019-01-04, 13:26:26</p>
+        <p><span>最后更新:</span>2019-04-16, 00:01:05</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/12/24/JDK8-Stream-Use/" title="关于Jdk 8 Stream 的使用记录">http://blog.joylau.cn/2018/12/24/JDK8-Stream-Use/</a>
             <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2018/12/24/JDK8-Stream-Use/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -418,7 +419,7 @@
 <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LocalDateTime-将-long-格式的时间转化本地时间字符串"><span class="toc-number">1.</span> <span class="toc-text">LocalDateTime 将 long 格式的时间转化本地时间字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reduce-导致的源集合对象改变"><span class="toc-number">2.</span> <span class="toc-text">reduce 导致的源集合对象改变</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List-的深度拷贝"><span class="toc-number">3.</span> <span class="toc-text">List 的深度拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reduce-使用记录"><span class="toc-number">4.</span> <span class="toc-text">reduce() 使用记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map-和-flatMap"><span class="toc-number">5.</span> <span class="toc-text">map() 和 flatMap()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#distinct-使用记录"><span class="toc-number">6.</span> <span class="toc-text">distinct() 使用记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正解"><span class="toc-number">6.1.</span> <span class="toc-text">正解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2018-9-13-更新"><span class="toc-number">6.2.</span> <span class="toc-text">2018-9-13 更新</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LocalDateTime-将-long-格式的时间转化本地时间字符串"><span class="toc-number">1.</span> <span class="toc-text">LocalDateTime 将 long 格式的时间转化本地时间字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reduce-导致的源集合对象改变"><span class="toc-number">2.</span> <span class="toc-text">reduce 导致的源集合对象改变</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List-的深度拷贝"><span class="toc-number">3.</span> <span class="toc-text">List 的深度拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reduce-使用记录"><span class="toc-number">4.</span> <span class="toc-text">reduce() 使用记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map-和-flatMap"><span class="toc-number">5.</span> <span class="toc-text">map() 和 flatMap()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#distinct-使用记录"><span class="toc-number">6.</span> <span class="toc-text">distinct() 使用记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正解"><span class="toc-number">6.1.</span> <span class="toc-text">正解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2018-9-13-更新"><span class="toc-number">6.2.</span> <span class="toc-text">2018-9-13 更新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2个集合的元素两两组合成一个-n-m-的集合"><span class="toc-number">7.</span> <span class="toc-text">2个集合的元素两两组合成一个 n * m 的集合</span></a></li></ol>
         
     </div>
     <style>
