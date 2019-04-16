@@ -6827,6 +6827,9 @@ redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速�
 <li>rabbitmq-plugins enable rabbitmq_management</li>
 <li>systemctl start rabbitmq-server</li>
 </ol>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
+<li>当主机的 hostname 不是 localhost 时, 启动会报错: <code>unable to connect to epmd (port 4369) on 68: badarg (unknown POSIX error)</code> , 这时在文件中 <code>/etc/rabbitmq/rabbitmq-env.conf</code> 写入 <code>NODENAME=rabbit@localhost</code> 保存重启.</li>
+</ol>
 <h2 id="MariaDB-的安装"><a href="#MariaDB-的安装" class="headerlink" title="MariaDB 的安装"></a>MariaDB 的安装</h2><ol>
 <li><code>yum install mariadb-server</code></li>
 <li>登入 mariadb <code>mysql -uroot -p</code> , 第一次登陆是 root 用户没有密码,直接进入即可</li>
