@@ -1132,21 +1132,28 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Docker Build Image 问题记录]]></title>
-      <url>http://blog.joylau.cn/2018/12/13/Docker-Build/</url>
+      <title><![CDATA[Docker 问题记录]]></title>
+      <url>http://blog.joylau.cn/2018/12/13/Docker-Questions/</url>
       <content type="html"><![CDATA[<a id="more"></a>
-<h3 id="时区问题"><a href="#时区问题" class="headerlink" title="时区问题"></a>时区问题</h3><p>时区的配置在 <code>/etc/localtime</code></p>
+<h3 id="时区问题"><a href="#时区问题" class="headerlink" title="时区问题"></a>时区问题</h3><h4 id="镜像的时区"><a href="#镜像的时区" class="headerlink" title="镜像的时区"></a>镜像的时区</h4><p>时区的配置在 <code>/etc/localtime</code></p>
 <p>localtime 文件会指向 <code>/usr/share/zoneinfo/Asia/</code> 目录下的某个文件</p>
 <p>我们只需要将其指向 ShangHai 即可</p>
 <p>Dockerfile 可以这样配置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RUN rm -rf /etc/localtime &amp;&amp; \</span><br><span class="line">    ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
 <p>先删除,在创建一个软连接即可</p>
+<h4 id="springboot-应用的时区"><a href="#springboot-应用的时区" class="headerlink" title="springboot 应用的时区"></a>springboot 应用的时区</h4><p>如果构建的 springboot 项目的镜像,基于 jib 插件构建的话,并且基础镜像选择的是 openjdk:8<br>那么这时 <code>jvmFlags</code> 参数加上一个 <code>-Duser.timezone=GMT+08</code> boot 服务启动时会使用东八区的时间<br>而且这不会改变容器的时区,如果你进入容器,执行 date 打印的话,还是会发现时间少 8 个小时<br>但是对于应用来说已经没有问题了</p>
+<h4 id="mariadb-容器的时区"><a href="#mariadb-容器的时区" class="headerlink" title="mariadb 容器的时区"></a>mariadb 容器的时区</h4><p>默认官方的 mariadb 的镜像时区是 0 时区的,想要改变的话,添加执行参数 <code>--default-time-zone=&#39;+8:00&#39;</code><br>完整 docker-compose.yml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">db:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="string">mariadb</span></span><br><span class="line"><span class="attr">  container_name:</span> <span class="string">mariadb</span></span><br><span class="line"><span class="attr">  restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">  networks:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">job-net</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">3306</span><span class="string">:3306</span></span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">/home/liufa/joy-job/db-data:/var/lib/mysql</span></span><br><span class="line"><span class="attr">  environment:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">MYSQL_ROOT_PASSWORD=123456</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">MYSQL_ROOT_HOST=%</span></span><br><span class="line"><span class="attr">  command:</span> <span class="bullet">--default-time-zone='+8:00'</span></span><br></pre></td></tr></table></figure>
 <h3 id="pm2-web-命令错误问题"><a href="#pm2-web-命令错误问题" class="headerlink" title="pm2-web 命令错误问题"></a>pm2-web 命令错误问题</h3><p>通常我们都是将 node_modules 文件夹直接复制到镜像中</p>
 <p>有时候会出现问题,就比如 pm2-web ,构建成镜像后,命令无法使用</p>
 <p>原因在于开发的机器的操作系统和镜像的操作系统不一致,会导致一些包出问题</p>
 <p>解决的方式就是重新 <code>nmp install</code></p>
 <p>Dockerfile 如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RUN rm -rf ./node_modules &amp;&amp; \</span><br><span class="line">    rm -rf ./package-lock.json &amp;&amp; \</span><br><span class="line">    npm install</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RUN rm -rf ./node_modules &amp;&amp; \</span><br><span class="line">    rm -rf ./package-lock.json &amp;&amp; \</span><br><span class="line">    npm install</span><br></pre></td></tr></table></figure>
+<h3 id="更改-docker数据目录"><a href="#更改-docker数据目录" class="headerlink" title="更改 docker数据目录"></a>更改 docker数据目录</h3><p>默认安装的 docker 数据目录在 <code>/var/lib/docker</code> 下<br>想要更改的话<br>在 docker 的 service 文件添加参数 <code>--graph=/home/lifa</code><br>之后重启 docker 服务</p>
+<h3 id="查看-docker-使用的空间"><a href="#查看-docker-使用的空间" class="headerlink" title="查看 docker 使用的空间"></a>查看 docker 使用的空间</h3><p>有时我们下载镜像和运行的容器多了,会占用很多磁盘,该怎么查看呢?<br><code>du sh *</code><br>或者<br><code>du -m --max-depth=1</code></p>
+<h3 id="基于已有-docker-镜像制作自己的镜像"><a href="#基于已有-docker-镜像制作自己的镜像" class="headerlink" title="基于已有 docker 镜像制作自己的镜像"></a>基于已有 docker 镜像制作自己的镜像</h3><p>比如说 openjdk:8 ,我想让他支持 node , php , python 等该怎么办?<br>有个简单方法<br>先 pull 下来<br>再<br><code>docker run -it openjdk:8 /bin/bash</code><br>这样就进入到该镜像了,我们可以安装自己需要的东西了<br>我自己遇到了棘手的问题<br>就是 openjdk:8 是 debian 系统的,使用的是 apt-get 包管理器<br>要安装其他东西就要先更新源<br>可以使用 <code>apt update</code> 更新<br>但是我遇到的问题是更新了也无法安装….<br>于是我就想着切换到阿里或者科大的源<br>但是发现这个简单的镜像连 vi 和 gedit 等编辑器都没有,又没法安装他们<br>无法编辑 <code>/etc/apt/source.list</code> 源文件<br>后来我是 cp 先备份,在 <code>echo &quot;xxxx&quot; &gt;&gt; /ect/apt/source.list</code> 更新的<br>之后再 update 就可以安装了<br>安装好之后退出容器,之后<br><code>docker commit containID xxx/xxxx:latest</code><br>提交容器的改变,之后就看到一个新的镜像了</p>
+<p>还有一种方式是编写 dockerfile 文件<br>我觉得没有这种方式方便,就不说了</p>]]></content>
       
         <categories>
             
