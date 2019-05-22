@@ -4,6 +4,468 @@
   
     
     <entry>
+      <title><![CDATA[日常折腾 --- 软路由攒机记录]]></title>
+      <url>http://blog.joylau.cn/2019/05/22/Daily-Soft-Router/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>上篇说到了家里使用多条宽带,而一般的路由器无法使用多个运营商的宽带进行拨号,这就需要软路由了,其实也就是个小主机</p>
+<h3 id="实机"><a href="#实机" class="headerlink" title="实机"></a>实机</h3><p>看下我攒的把</p>
+<p><img src="http://image.joylau.cn/blog/IMG_0314.jpg" alt></p>
+<p><img src="http://image.joylau.cn/blog/IMG_0315.jpg" alt></p>
+<p><img src="http://image.joylau.cn/blog/IMG_0316.jpg" alt></p>
+<h3 id="硬件配置"><a href="#硬件配置" class="headerlink" title="硬件配置"></a>硬件配置</h3><h3 id="主要硬件"><a href="#主要硬件" class="headerlink" title="主要硬件"></a>主要硬件</h3><ul>
+<li>CPU Intel(R) Atom(TM) CPU D525 @ 1.80GHz | 512 KB | 1796 MHz | ×4</li>
+<li>硬盘 ATA DragonDiamond D2 5 (3.75GB)</li>
+<li>内存 2037MB</li>
+<li>主板芯片：Intel Corporation Atom Processor D4xx/D5xx/N4xx/N5xx DMI Bridge (rev 02)</li>
+<li>网卡：Intel Corporation 82583V Gigabit Network Connection (eth0 20:90:30:e8:2f:99)</li>
+<li>网卡：Intel Corporation 82583V Gigabit Network Connection (eth1 20:90:30:e8:2f:9a)</li>
+<li>网卡：Intel Corporation 82583V Gigabit Network Connection (eth2 20:90:30:e8:2f:9b)</li>
+<li>网卡：Intel Corporation 82583V Gigabit Network Connection (eth3 20:90:30:e8:2f:9c)</li>
+</ul>
+<h3 id="其它硬件"><a href="#其它硬件" class="headerlink" title="其它硬件"></a>其它硬件</h3><ul>
+<li>显卡：Intel Corporation Atom Processor D4xx/D5xx/N4xx/N5xx Integrated Graphics Controller (rev 02)</li>
+<li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #4 (rev 03)</li>
+<li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #5 (rev 03)</li>
+<li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB2 EHCI Controller #2 (rev 03)</li>
+<li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #1 (rev 03)</li>
+<li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #2 (rev 03)</li>
+<li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #3 (rev 03)</li>
+<li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB2 EHCI Controller #1 (rev 03)</li>
+<li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 1 (rev 03)</li>
+<li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 2 (rev 03)</li>
+<li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 3 (rev 03)</li>
+<li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 4 (rev 03)</li>
+<li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 5 (rev 03)</li>
+<li>PCI桥：Intel Corporation 82801 Mobile PCI Bridge (rev f3)</li>
+<li>IDE接口：Intel Corporation 82801HM/HEM (ICH8M/ICH8M-E) IDE Controller (rev 03)</li>
+<li>IDE接口：Intel Corporation 82801HM/HEM (ICH8M/ICH8M-E) SATA Controller [IDE mode] (rev 03)</li>
+<li>SMBus：Intel Corporation 82801H (ICH8 Family) SMBus Controller (rev 03)</li>
+</ul>
+<h3 id="我的使用"><a href="#我的使用" class="headerlink" title="我的使用"></a>我的使用</h3><ol>
+<li>四个网口,2 个作为 WAN 口,一个电信宽带,一个长城宽带,一个作为 LAN 口,接台式机,最后一个作为 LAN 口,接路由器的 LAN 口提供 WIFI</li>
+<li>2 个宽带使用负载均衡实现宽带叠加</li>
+<li>端口分流,实现 WIFI 设备走长城宽带的流量,台式机和一些静态的 DHCP 的 IP 走电信流量</li>
+<li>还有一些端口映射和 DMZ 主机和动态域名绑定等普通路由器的功能 (支持 阿里云的 DDNS, 提供 accessKey 和 Access Key Secret 即可)</li>
+</ol>
+<h3 id="花费"><a href="#花费" class="headerlink" title="花费"></a>花费</h3><p>目前这样的配置完全跑个软路由系统绰绰有余了, 我用的是 iKuai, CPU 温度在 22 度左右, CPU 使用率低于 10%, 内存使用率 20% 左右<br>全部花费 234 元</p>]]></content>
+      
+        <categories>
+            
+            <category> 日常折腾篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 日常折腾 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[日常折腾 --- 家里网线改造记录]]></title>
+      <url>http://blog.joylau.cn/2019/05/22/Daily-Reform-Cable/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我新办了个电信宽带,并且搞到了公网 IP, 但是原来的长城宽带没到期我还想继续用,而且办的电信宽带有 iTV, 我还想看电视<br>但是现在从墙里的多媒体集线箱到我卧室的线有 2 根,一根电话线,一根超 5 类网线<br>看我如何改造操作</p>
+<h3 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h3><ol>
+<li>一根电话线(4 根铜线)</li>
+<li>一根超 5 类网线</li>
+</ol>
+<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><ol>
+<li>同时使用 电信宽带和原来的长城宽带</li>
+<li>能看 iTV 电视, iTV 的线不与电信宽带共享速率, 也就是电信宽带和 iTV 都直接接到电信的光猫上</li>
+</ol>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+<li>百兆网类,网络数据的传输使用的 B 类网线接法的 1,2,3,6 根线</li>
+<li>4,5,7,8 其实并没有参与数据传输,只是保持数据的稳定性以及抗干扰</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">7</th>
+<th style="text-align:center">8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">颜色</td>
+<td style="text-align:center">白橙</td>
+<td style="text-align:center">橙</td>
+<td style="text-align:center">白绿</td>
+<td style="text-align:center">蓝</td>
+<td style="text-align:center">白蓝</td>
+<td style="text-align:center">绿</td>
+<td style="text-align:center">白棕</td>
+<td style="text-align:center">棕</td>
+</tr>
+</tbody>
+</table>
+<p>进行拆分</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>颜色</td>
+<td>白橙</td>
+<td>橙</td>
+<td>白绿</td>
+<td>绿</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>4</th>
+<th>5</th>
+<th>7</th>
+<th>8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>颜色</td>
+<td>蓝</td>
+<td>白蓝</td>
+<td>白棕</td>
+<td>棕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h3><ul>
+<li>8 根铜线的超五类网线分拆为 2 个 4 根线的网线</li>
+<li>这 2 根线分别直接连接电信光猫,一根连接光猫的 LAN1 口, 一根连接 LAN2 口</li>
+<li>电话线也按 1,2,3,6 的接法连接长城宽带</li>
+</ul>
+<h3 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h3><ul>
+<li>水晶头</li>
+<li>网线钳</li>
+<li>网线直通连接器</li>
+<li>软路由</li>
+</ul>]]></content>
+      
+        <categories>
+            
+            <category> 日常折腾篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 日常折腾 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[OpenCV --- 知识点速记]]></title>
+      <url>http://blog.joylau.cn/2019/05/17/OpenCV-Knowledge-Points/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h4 id="CV-type-的转换"><a href="#CV-type-的转换" class="headerlink" title="CV type 的转换"></a>CV type 的转换</h4><p>CV_8UC3 转 CV_8UC1 : convertTo 或者 cvtColor<br>CV_8UC1 转 CV_8UC3 : cvtColor (灰度相同,通道已经转化, CV_GRAY2RGB)</p>
+<h4 id="Mat-初始化"><a href="#Mat-初始化" class="headerlink" title="Mat 初始化"></a>Mat 初始化</h4><p>Mat.zeros: 创建全 0 矩阵<br>Mat.ones: 创建全 1 矩阵<br>Mat.eye: 创建单位矩阵</p>
+<h4 id="零碎"><a href="#零碎" class="headerlink" title="零碎"></a>零碎</h4><ol>
+<li>判断点与多边形的关系: pointPolygonTest  </li>
+<li>ROI 区域: Rect(col,row,width,height)<ol>
+<li>col: x 坐标 (坐标以 0 开始, 左上角 0,0)</li>
+<li>row: y 坐标</li>
+<li>width: 宽度</li>
+<li>height: 高度</li>
+</ol>
+</li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> OpenCV篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> OpenCV </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)]]></title>
+      <url>http://blog.joylau.cn/2019/05/15/OpenCV-Baidu-Traffic-4/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>本篇主要内容:</p>
+<ol>
+<li>搭建离线地址解析服务</li>
+</ol>
+<h3 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h3><p>继上篇研究内容之后,重新思考了之前抛出的问题: 如何获取某个省或市的道路信息?</p>
+<p>之前对于该问题的解法有 2 种:</p>
+<ol>
+<li><p>使用总队或者支队提供的道路信息,然后根据分析出来的经纬度和提供的道路信息进行匹配</p>
+</li>
+<li><p>调用互联网接口,进行经纬度转道路地址</p>
+</li>
+</ol>
+<p>分析这 2 中方式之后,其弊端很明显:</p>
+<p>第一种方式:  </p>
+<ol>
+<li><p>无法确定总队或者支队是否能够提供道路信息; </p>
+</li>
+<li><p>提供的数据又是否足够详细全面,要知道在百度地图 17 等级下,解析出来的道路是很详细的 </p>
+</li>
+<li><p>姑且算是提供了,格式又是否能够统一? 能否做到一套代码解决普遍问题?</p>
+</li>
+</ol>
+<p>第二种方式:</p>
+<ol>
+<li><p>需要个人申请 key ,才能调用 API</p>
+</li>
+<li><p>解析 API 每日有次数限制, 5000次/天,对于该城市版分析服务来说,远远不够 </p>
+</li>
+</ol>
+<p>经过一番分析和折腾后,于内网搭建了离线版的地址解析服务,提供 API,将经纬度转化为道路信息, API 返回数据如下:</p>
+<p><img src="http://image.joylau.cn/blog/geocoder-reverse.png" alt></p>
+<p>支持返回的数据很详细: 省,市,行政区划,邮编,道路名,附近的建筑物,公交站牌,商场等</p>
+<p>该服务 数据范围覆盖全国,  支持多线程调用,  单次 API 调用耗时为 10 ms - 30 ms 左右,  对机器的磁盘要求高</p>
+<p>最后,我录了个短视频看下实际的使用效果:</p>
+<center><video src="http://image.joylau.cn/blog/geocoder-reverse.mp4" loop="true" controls="controls">您的浏览器版本太低，无法观看本视频</video></center>]]></content>
+      
+        <categories>
+            
+            <category> OpenCV篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> OpenCV </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[OpenCV --- 基于 OpenCV 的百度路况研究记录 (三)]]></title>
+      <url>http://blog.joylau.cn/2019/05/10/OpenCV-Baidu-Traffic-3/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>本篇研究的内容有:</p>
+<ol>
+<li><p>分析得到的大量拥堵点抽稀处理</p>
+</li>
+<li><p>拥堵区域骨架提取</p>
+</li>
+<li><p>部分优化算法和性能</p>
+</li>
+</ol>
+<h3 id="抽稀处理"><a href="#抽稀处理" class="headerlink" title="抽稀处理"></a>抽稀处理</h3><p>根据之前的处理得到一张瓦片的一块拥堵区域时,需要对其进行结构化数据的分析:将坐标转化为百度坐标系的坐标,坐标转经纬度,拥堵距离计算,</p>
+<p>但是一块区域有很多的拥堵点,如果要对每个点进行操作计算的话,会导致性能问题,而且对于密集的点来说</p>
+<p>意义不大,没有必要这么做,如果说能够给这些点进行稀释处理,仅仅分析稀释后点,那么既能保证数据的正确性,又能提升算法的性能</p>
+<p>算法的基本思想: 连接起点 A 和终点 B, 找出某一点到线段 AB 距离 S 最大的点 P, 如果 S 小于手动设置的阈值 H, 则舍弃其他点,直接连接 A B, 抽稀完成</p>
+<p>如 S &gt; H , 则以 P 为终点, 分别计算 2 端 AP 和 PB 上点到相应线段的最大距离,再重复上述步骤, 直到所有的距离均小于 S , 抽稀完成 </p>
+<p>抽稀结果示例:<br><img src="http://image.joylau.cn/blog/baidu-traffic/2019-04-30-2.27.04.png" alt>  </p>
+<p>上图中,已经将上面的拥堵部分大量点稀释的只剩下 3 个点了,这三个点还是位于原来的轨迹上, 可能看的不太清楚,放大了看  </p>
+<p><img src="http://image.joylau.cn/blog/baidu-traffic/2019-04-30-2.27.19.png" alt><br><img src="http://image.joylau.cn/blog/baidu-traffic/2019-04-30-2.27.26.png" alt>  </p>
+<p>示例 2 :</p>
+<p><img src="http://image.joylau.cn/blog/baidu-traffic/2019-04-30-4.15.27.png" alt>  </p>
+<p>对于抽稀最大直观效果,我通过下面 2 张动图来演示:  </p>
+<p>抽稀前:<br><img src="http://image.joylau.cn/blog/baidu-traffic/2019-04-30-2.02.49.gif" alt></p>
+<p>抽稀后:<br><img src="http://image.joylau.cn/blog/baidu-traffic/2019-04-30-2.05.08.gif" alt></p>
+<h3 id="骨架提取"><a href="#骨架提取" class="headerlink" title="骨架提取"></a>骨架提取</h3><p>骨架提取是指从原来的图中层层剥离点,最后仍然要保持原来的形状</p>
+<p>算法基本思想:<br><img src="http://image.joylau.cn/blog/baidu-traffic/2019-04-30-16-52-57.jpeg" alt></p>
+<p>效果示例:</p>
+<p>我以这张拥堵瓦片图来看, 我提取出左上角的拥堵部分来处理</p>
+<p><img src="http://image.joylau.cn/blog/baidu-traffic/17.png" alt></p>
+<p>轮廓提取:</p>
+<p><img src="http://image.joylau.cn/blog/baidu-traffic/2019-04-30-2.24.43.png" alt></p>
+<p>填充内部:<br><img src="http://image.joylau.cn/blog/baidu-traffic/2019-04-30-2.24.59.png" alt></p>
+<p>上述 2 中图进行加运算, 得到整个拥堵部分,再进行骨架提取:</p>
+<p><img src="http://image.joylau.cn/blog/baidu-traffic/2019-04-30-2.25.07.png" alt></p>
+<p>已经得到最小化的骨架了,基本上都是 1 像素值,这对后续的处理很有利,再放大点看:<br><img src="http://image.joylau.cn/blog/baidu-traffic/2019-04-30-2.25.24.png" alt></p>
+<p>最后,我录了个视频，以展示目前的演示效果:</p>
+<center><video src="http://image.joylau.cn/blog/baidu-traffic/traffic-demo.mp4" loop="true" controls="controls">您的浏览器版本太低，无法观看本视频</video></center>]]></content>
+      
+        <categories>
+            
+            <category> OpenCV篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> OpenCV </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[OpenCV --- 基于 OpenCV 的百度路况研究记录 (二)]]></title>
+      <url>http://blog.joylau.cn/2019/05/05/OpenCV-Baidu-Traffic-2/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>本篇就之前对于拥堵路段为曲线状且涉及多个路段时分析的结果差强人意的情况进行了算法重构</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>之前算法核心是 找出分段拥堵,并提取信息<br>之前算法的缺陷是使用霍夫变换提取瓦片中的直线时, 无法很好的控制参数, 导致在临近的曲线情况下分析结果不正确<br>简单示意图:<br><img src="http://image.joylau.cn/blog/baidu-traffic/8.gif" alt>  </p>
+<p>在二维的坐标系中, 控制直线的是参数 m(斜率) 和 b(截距)</p>
+<p>转化为极坐标系再化简后,控制直线的参数是  θ (极角) 和 r(极径)</p>
+<p>原来的思路是曲线是有很多小部分的直线段构成的,如若能够将曲线分成适合的若干线段,那么同样可以将整个曲线提取出来,继而提取其他信息</p>
+<p>这种思路得考虑三种主要的参数:</p>
+<ol>
+<li><p>threshold：识别某部分为一条直线时必须达到的值</p>
+</li>
+<li><p>min_theta：检测到的直线的最小角度</p>
+</li>
+<li><p>max_theta：检测到的直线的最大角度</p>
+</li>
+</ol>
+<p>然而经过多次测试,按照这个想法进行处理,结果并不好, 出现更多的结果是</p>
+<ol>
+<li><p>曲线 a 会被他的相邻曲线 b 干扰,继续分析的结果是会从 a 与 b 的相邻端直接跳到 b 曲线上,接着分析的线路走向就会直接沿着 b 走下去, 就是上次截图所示的结果</p>
+</li>
+<li><p>曲线 a 会有多处幅度较大的弯曲时,会沿着角度大的地方直接放射出去, 例如下面所测试的</p>
+</li>
+</ol>
+<h3 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h3><p>下面测试的参数</p>
+<p>threshold: 65</p>
+<p>min_theta: 0</p>
+<p>max_theta: 5</p>
+<p><img src="http://image.joylau.cn/blog/baidu-traffic/9.gif" alt>  </p>
+<p>对于形态各异的瓦片图来说,很难调整出一个适当的参数.  </p>
+<p>于是我开始重整思路, 但是思路的核心还是不变: 找出分段拥堵  </p>
+<p>目前的思路是:</p>
+<ol>
+<li><p>读入瓦片原图(RGBA)</p>
+</li>
+<li><p>进行色彩空间转换: 将带透明通道的 RGBA 转换为 BGR, 再将 BRG 转化为 HSV 色彩空间,方便颜色的提取</p>
+</li>
+<li><p>在 HSV 的色彩空间上提取出黄色(缓行)和红色(拥堵), 并各自区分保存</p>
+</li>
+<li><p>得到的图像信息二值化, 方便下一步处理</p>
+</li>
+<li><p>在二值化的图像上提取黄色和红色的边缘信息, 分析边缘信息得到分段拥堵的外包矩形</p>
+</li>
+<li><p>已有的黄,红拥堵段做外包矩形的位置定位,得出分段拥堵信息</p>
+</li>
+<li><p>大量坐标点抽稀处理</p>
+</li>
+</ol>
+<p>开发一系列流程截图如下:</p>
+<p><img src="http://image.joylau.cn/blog/baidu-traffic/10.gif" alt>  </p>
+<p>图示的顺序依次对应思路的步骤, 在最后一张图中,已经将分析出来的分段拥堵信息再绘制到原图上, 准确度很高  </p>
+<p>对于之前算法没有解决的瓦片,这个算法暂时算是解决了,那么面对更加复杂的拥堵情况呢?  </p>
+<p>为此我特地抽取了北京天安门附近的拥堵瓦片图  </p>
+<p><img src="http://image.joylau.cn/blog/baidu-traffic/11.gif" alt>  </p>
+<p>这张图里反应的拥堵情况应该很具有代表性了,下面再用此算法对这张图进行分析:  </p>
+<p><img src="http://image.joylau.cn/blog/baidu-traffic/12.gif" alt>  </p>
+<p>值得一提的是, 前一张图片处理耗时时间是: 0.08534727 s; 而后一张图片处理的时间是: 0.084427357 s, 时间基本无差.</p>]]></content>
+      
+        <categories>
+            
+            <category> OpenCV篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> OpenCV </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[OpenCV --- 基于 OpenCV 的百度路况研究记录 (一)]]></title>
+      <url>http://blog.joylau.cn/2019/05/01/OpenCV-Baidu-Traffic-1/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>城市版交通路况的分析基于高速公路路况的基础上以合肥为试点城市进行的研究课题. </p>
+<h3 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h3><p>目前该研究课题已完成:</p>
+<ol>
+<li>筛选出合肥市在百度地图 17 等级下的路况瓦片 62354 张</li>
+<li>对合肥二环路内圈的路况进行分析,目前分析出的路况开发截图</li>
+</ol>
+<p><img src="http://image.joylau.cn/blog/baidu-traffic/1.gif" alt></p>
+<p>分析结果: 用蓝色的线表示,画线时未区分颜色,实际分析已区分<br><img src="http://image.joylau.cn/blog/baidu-traffic/2.gif" alt></p>
+<p>目前已分析提取出的数据有:</p>
+<ol>
+<li><p>拥堵段 2 端点的经纬度(百度,WGS84坐标系)</p>
+</li>
+<li><p>拥堵段距离,精确到到 0.1 m</p>
+</li>
+<li><p>拥堵段的拥堵状态 (缓行,拥堵,严重拥堵)</p>
+</li>
+<li><p>拥堵段的 WKT 空间信息, 单段 拥堵为 lineString格式, 近距离多段拥堵为 multiLineString 格式, 此信息可直接绘制在地图上</p>
+</li>
+<li><p>提取出瓦片的拥堵信息,再根据我们自己项目中使用的地图的比例尺渲染成适合我们地图的路况图层</p>
+</li>
+</ol>
+<p>目前该研究课题存在的问题:</p>
+<ol>
+<li>有些复杂路口分析不正确,例如:<br><img src="http://image.joylau.cn/blog/baidu-traffic/3.gif" alt>  </li>
+</ol>
+<p>进行分析后,会变成下面这样:<br><img src="http://image.joylau.cn/blog/baidu-traffic/4.gif" alt>  </p>
+<p>还有这样的:<br><img src="http://image.joylau.cn/blog/baidu-traffic/5.gif" alt>  </p>
+<p>结果 :<br><img src="http://image.joylau.cn/blog/baidu-traffic/6.gif" alt>  </p>
+<p>目前的分析算法对于单张瓦片多处拥堵,且拥堵路段呈直线状分析结果准确,对于拥堵路段为曲线状且涉及多个路段时分析的结果不如人意,这是目前分析算法的原因,尚待改进.  </p>
+<p>性能问题,我目前测试了合肥二环路内圈的路况耗时日志结果如下:<br><img src="http://image.joylau.cn/blog/baidu-traffic/7.gif" alt>  </p>
+<p>该测试结果是我在笔记本上运行的结果,其中参数配置是:  </p>
+<ol>
+<li><p>CPU : 2.8 GHz Intel Core i7-4 * 2核心, RAM:  16 GB 2133 MHz LPDDR3 , Graphics Card: Radeon Pro 555 2 GB</p>
+</li>
+<li><p>程序运行核心线程数 2 , 最大线程数 5, 运行过程中 CPU 使用率 50% ~ 60%</p>
+</li>
+<li><p>测试时间  4 月 16 日下午 16 点左右</p>
+</li>
+</ol>
+<p>测试结果: 单机运行, 12685 张图片耗时 714 s, 平均处理速度 18 张/秒 左右</p>
+<p>相对于安徽高速,城市版的瓦片分析已经从 Java 的图片处理切换到 OpenCV,有个因素是 OpenCV 绝大数 API 是支持图形卡加速的,我本机的开发环境是开启了图形卡加速,但是一般的服务器是没有图形卡的.</p>
+<p>未知因素: 获取合肥市内路网信息,获取后可进一步分析出以下信息:</p>
+<ol>
+<li><p>获取详细的拥堵文字描述信息</p>
+</li>
+<li><p>按照某一条路进行分组,方便对一条路上多段拥堵进行合并</p>
+</li>
+<li><p>分析出拥堵路段涉及的行政区划</p>
+</li>
+<li><p>分析出该次拥堵的状态(首次拥堵,持续拥堵,结束拥堵),及拥堵持续时间</p>
+</li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> OpenCV篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> OpenCV </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[重剑无锋,大巧不工 SpringBoot --- 序列化返回对象时忽略空或者 null 属性]]></title>
       <url>http://blog.joylau.cn/2019/04/25/SpringBoot-Response-Ignore-Null/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -4446,9 +4908,9 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
         
         <tags>
             
-            <tag> 技能 </tag>
-            
             <tag> 程序员 </tag>
+            
+            <tag> 技能 </tag>
             
         </tags>
         
@@ -6903,13 +7365,14 @@ redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速�
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">options &#123;</span><br><span class="line">        listen-on port 53 &#123; 34.0.7.183; &#125;;</span><br><span class="line">        listen-on-v6 port 53 &#123; ::1; &#125;;</span><br><span class="line">        directory       <span class="string">"/var/named"</span>;</span><br><span class="line">        dump-file       <span class="string">"/var/named/data/cache_dump.db"</span>;</span><br><span class="line">        statistics-file <span class="string">"/var/named/data/named_stats.txt"</span>;</span><br><span class="line">        memstatistics-file <span class="string">"/var/named/data/named_mem_stats.txt"</span>;</span><br><span class="line">        recursing-file  <span class="string">"/var/named/data/named.recursing"</span>;</span><br><span class="line">        secroots-file   <span class="string">"/var/named/data/named.secroots"</span>;</span><br><span class="line">        allow-query     &#123; any; &#125;;</span><br><span class="line"></span><br><span class="line">        /* </span><br><span class="line">         - If you are building an AUTHORITATIVE DNS server, <span class="keyword">do</span> NOT <span class="built_in">enable</span> recursion.</span><br><span class="line">         - If you are building a RECURSIVE (caching) DNS server, you need to <span class="built_in">enable</span> </span><br><span class="line">           recursion. </span><br><span class="line">         - If your recursive DNS server has a public IP address, you MUST <span class="built_in">enable</span> access </span><br><span class="line">           control to <span class="built_in">limit</span> queries to your legitimate users. Failing to <span class="keyword">do</span> so will</span><br><span class="line">           cause your server to become part of large scale DNS amplification </span><br><span class="line">           attacks. Implementing BCP38 within your network would greatly</span><br><span class="line">           reduce such attack surface </span><br><span class="line">        */</span><br><span class="line">        recursion yes;</span><br><span class="line"></span><br><span class="line">        dnssec-enable yes;</span><br><span class="line">        dnssec-validation yes;</span><br><span class="line"></span><br><span class="line">        /* Path to ISC DLV key */</span><br><span class="line">        bindkeys-file <span class="string">"/etc/named.iscdlv.key"</span>;</span><br><span class="line"></span><br><span class="line">        managed-keys-directory <span class="string">"/var/named/dynamic"</span>;</span><br><span class="line"></span><br><span class="line">        pid-file <span class="string">"/run/named/named.pid"</span>;</span><br><span class="line">        session-keyfile <span class="string">"/run/named/session.key"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">logging &#123;</span><br><span class="line">        channel default_debug &#123;</span><br><span class="line">                file <span class="string">"data/named.run"</span>;</span><br><span class="line">                severity dynamic;</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">zone <span class="string">"."</span> IN &#123;</span><br><span class="line">        <span class="built_in">type</span> hint;</span><br><span class="line">        file <span class="string">"named.ca"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">include <span class="string">"/etc/named.rfc1912.zones"</span>;</span><br><span class="line">include <span class="string">"/etc/named.root.key"</span>;</span><br></pre></td></tr></table></figure>
 <p><code>listen-on port 53 { 127.0.0.1; };</code>       # 指定服务监听的端口，建议写本机IP，减少服务器消耗<br><code>allow-query     { any; };</code>               # 允许哪些客户端访问DNS服务，此处改为“any”，表示任意主机</p>
-<p>修改这2项配置即可<br><code>include &quot;/etc/named.rfc1912.zones&quot;;</code>    # include代表该文件是子配置文件</p>
-<ol start="3">
+<p>修改这2项配置即可</p>
+<h3 id="配置自定义域名解析"><a href="#配置自定义域名解析" class="headerlink" title="配置自定义域名解析"></a>配置自定义域名解析</h3><p><code>include &quot;/etc/named.rfc1912.zones&quot;;</code>    # include代表该文件是子配置文件</p>
+<ol>
 <li><code>vim /etc/named.rfc1912.zones</code> , 添加一个我们自定义的域名配置,这里我使用的是 <code>baidu.com</code></li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zone <span class="string">"baidu.com"</span> IN &#123;</span><br><span class="line">        <span class="built_in">type</span> master;</span><br><span class="line">        file <span class="string">"data/baidu.com.zone"</span>;</span><br><span class="line">        allow-update &#123; none; &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>上述文件默认的目录在 <code>/var/named/data</code> 目录下</p>
-<ol start="4">
+<ol start="2">
 <li><code>vim /var/named/data/baidu.com.zone</code></li>
 </ol>
 <p>配置如下: 注意格式</p>
@@ -6929,9 +7392,47 @@ redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速�
 <li>MX记录：电子邮件系统就是使用MX记录来更有效的路由邮件。</li>
 <li>PTR记录：从IP地址到主机名的反向映射。与A记录一样，必须为每个网络接口有一条PTR记录。</li>
 </ul>
-<ol start="5">
+<ol start="3">
 <li><code>chown root:named baidu.com.zone</code> 修改权限</li>
 <li><code>systemctl restart named</code></li>
+</ol>
+<h2 id="PostgreSQL-安装"><a href="#PostgreSQL-安装" class="headerlink" title="PostgreSQL 安装"></a>PostgreSQL 安装</h2><h3 id="说明-3"><a href="#说明-3" class="headerlink" title="说明"></a>说明</h3><p>yum 安装的版本可能比较低,对于一些应用来说可能不好,这里使用官网的安装包</p>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><ol>
+<li>打开 <a href="https://www.postgresql.org/download/linux/redhat/" target="_blank" rel="noopener">https://www.postgresql.org/download/linux/redhat/</a></li>
+<li>选择版本</li>
+<li>安装源,我这里以 10 为例, <code>yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm</code></li>
+<li>安装程序, <code>yum install postgresql10</code> , <code>yum install postgresql10-server</code></li>
+<li>初始化数据库 <code>/usr/pgsql-10/bin/postgresql-10-setup initdb</code></li>
+<li>开机启动 <code>systemctl enable postgresql-10;systemctl start postgresql-10</code></li>
+</ol>
+<h3 id="修改管理员密码"><a href="#修改管理员密码" class="headerlink" title="修改管理员密码"></a>修改管理员密码</h3><p>数据库的默认管理员用户是 postgres, 在 PostgreSQL 安装好后会创建用户 postgres</p>
+<ol>
+<li>切换到 postgres 用户 <code>su postgres</code></li>
+<li>执行 <code>psql</code> 登陆数据库</li>
+<li>修改密码: <code>ALTER USER postgres WITH PASSWORD &#39;postgres&#39;;</code></li>
+</ol>
+<h3 id="配置远程访问"><a href="#配置远程访问" class="headerlink" title="配置远程访问"></a>配置远程访问</h3><ol>
+<li>修改 <code>postgresql.conf</code> 文件的 <code>listen_address = *</code></li>
+<li>用户授权: 修改 <code>pg_hba.conf</code> 添加 <code>host all all 0.0.0.0/0 password</code> 一行</li>
+</ol>
+<p>说明:</p>
+<ul>
+<li>ident: 系统用户和数据库用户对于即可访问</li>
+<li>md5: md5 加密的密码认证</li>
+<li>password: 明文密码</li>
+<li>trust: 无需密码</li>
+<li>reject: 拒接认证</li>
+</ul>
+<h3 id="修改数据存放目录"><a href="#修改数据存放目录" class="headerlink" title="修改数据存放目录"></a>修改数据存放目录</h3><ol>
+<li>修改 <code>/usr/lib/systemd/system/postgresql-10.service</code> 的 <code>PGDATA</code></li>
+<li><code>systemctl daemon-reload</code></li>
+<li><code>postgresql-step initdb</code> 初始化数据库,遇到权限问题,先创建好目录<ol>
+<li>chrow -R postgres:postgres /…</li>
+<li>chmod -R 700 /…</li>
+<li>实在不行就使用 postgres 的身份操作</li>
+</ol>
+</li>
+<li>如果之前数据库有数据,可以直接拷贝数据目录,之后目录的权限设定好即可</li>
 </ol>]]></content>
       
         <categories>
