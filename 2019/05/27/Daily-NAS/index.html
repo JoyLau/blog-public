@@ -14,18 +14,20 @@
 
 
 
-<meta name="description" content="OpenCV 提供的 API 是直接根据路径读取图片的,那么该如何读取 byte[] 的图片呢?">
-<meta name="keywords" content="OpenCV">
+<meta name="description" content="蜗牛星际安装黑群晖">
+<meta name="keywords" content="日常折腾">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV 读取数据流图片">
-<meta property="og:url" content="http://blog.joylau.cn/2019/04/03/OpenCV-ByteImage/index.html">
+<meta property="og:title" content="日常折腾 --- 蜗牛星际安装黑群晖">
+<meta property="og:url" content="http://blog.joylau.cn/2019/05/27/Daily-NAS/index.html">
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
-<meta property="og:description" content="OpenCV 提供的 API 是直接根据路径读取图片的,那么该如何读取 byte[] 的图片呢?">
+<meta property="og:description" content="蜗牛星际安装黑群晖">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-03T08:18:19.104Z">
+<meta property="og:image" content="http://image.joylau.cn/blog/heiqun_catg.jpg">
+<meta property="og:updated_time" content="2019-05-27T16:01:04.567Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OpenCV 读取数据流图片">
-<meta name="twitter:description" content="OpenCV 提供的 API 是直接根据路径读取图片的,那么该如何读取 byte[] 的图片呢?">
+<meta name="twitter:title" content="日常折腾 --- 蜗牛星际安装黑群晖">
+<meta name="twitter:description" content="蜗牛星际安装黑群晖">
+<meta name="twitter:image" content="http://image.joylau.cn/blog/heiqun_catg.jpg">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>OpenCV 读取数据流图片 | JoyLau&#39;s Blog | JoyLau</title>
+<title>日常折腾 --- 蜗牛星际安装黑群晖 | JoyLau&#39;s Blog | JoyLau</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -305,11 +307,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于">
 </nav>
-      <div class="body-wrap"><article id="post-OpenCV-ByteImage" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Daily-NAS" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/03/OpenCV-ByteImage/" class="article-date">
-      <time datetime="2019-04-03T02:54:28.000Z" itemprop="datePublished">2019-04-03</time>
+      <a href="/2019/05/27/Daily-NAS/" class="article-date">
+      <time datetime="2019-05-27T02:29:53.000Z" itemprop="datePublished">2019-05-27</time>
 </a>
     </div>
   
@@ -324,15 +326,15 @@
 
                 
             </div>
-        <h1 class="article-title article-tlt-h" itemprop="name">OpenCV 读取数据流图片</h1>
+        <h1 class="article-title article-tlt-h" itemprop="name">日常折腾 --- 蜗牛星际安装黑群晖</h1>
       </header>
       
       <div class="article-info article-info-post">
         <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/OpenCV篇/">OpenCV篇</a>
+    <a class="article-category-link" href="/categories/日常折腾篇/">日常折腾篇</a>
     </div>
         <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/">OpenCV</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日常折腾/">日常折腾</a></li></ul>
     </div>
         <div class="clearfix"></div>
       </div>
@@ -342,73 +344,51 @@
       
           
         <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>OpenCV 提供的 API 是直接根据路径读取图片的, 在实际生产环境中,可能大部分情况下都是直接读取网络图片</p>
-<p>在内存就完成图片和 opencv 的 Mat 对象的转换</p>
-<p>那么该如何读取 byte[] 的图片呢?</p>
-<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><p>openCV 提供的 API</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mat src = Imgcodecs.imread(<span class="string">"/static/img/17.png"</span>);</span><br></pre></td></tr></table></figure>
-<p>很简单的就转化为 Mat 对象</p>
-<p>而 该方法后面还有一个参数, flags, 该参数可选项有:</p>
-<ul>
-<li><strong>IMREAD_UNCHANGED</strong> = -1,</li>
-<li><strong>IMREAD_GRAYSCALE</strong> = 0,</li>
-<li><strong>IMREAD_COLOR</strong> = 1,</li>
-<li><strong>IMREAD_ANYDEPTH</strong> = 2,</li>
-<li><strong>IMREAD_ANYCOLOR</strong> = 4,</li>
-<li><strong>IMREAD_LOAD_GDAL</strong> = 8,</li>
-<li><strong>IMREAD_REDUCED_GRAYSCALE_2</strong> = 16,</li>
-<li><strong>IMREAD_REDUCED_COLOR_2</strong> = 17,</li>
-<li><strong>IMREAD_REDUCED_GRAYSCALE_4</strong> = 32,</li>
-<li><strong>IMREAD_REDUCED_COLOR_4</strong> = 33,</li>
-<li><strong>IMREAD_REDUCED_GRAYSCALE_8</strong> = 64,</li>
-<li><strong>IMREAD_REDUCED_COLOR_8</strong> = 65,</li>
-<li><strong>IMREAD_IGNORE_ORIENTATION</strong> = 128;</li>
-</ul>
-<p>IMREAD_UNCHANGED: 以图片原有的方式读入,不进行任何改变<br>IMREAD_GRAYSCALE: 以灰度图读取<br>IMREAD_COLOR: 以彩色图读取</p>
-<h3 id="过渡"><a href="#过渡" class="headerlink" title="过渡"></a>过渡</h3><p>为了支持 OpenCV 读取 byte[] 的图片,为此我查找了很多资料做了大量的实验,有很多失败报错了,也有读取成功的,下面我将一一列举出来….</p>
-<h3 id="读取失败"><a href="#读取失败" class="headerlink" title="读取失败"></a>读取失败</h3><h4 id="Converters-类"><a href="#Converters-类" class="headerlink" title="Converters 类"></a>Converters 类</h4><p>我留意到 opencv 提供的 api 里有一个 <code>utils</code> 包, 里面有个转换类 <code>Converters</code>, 可以将 Mat 和 一些 java 的基本数据类型进行互相转换,其中有这样 2 个方法: <code>vector_uchar_to_Mat</code> 和 <code>vector_char_to_Mat</code><br>参数是 <code>List&lt;Byte&gt;</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testConvertChar2Mat</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span></span>&#123;</span><br><span class="line">        <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">        List&lt;Byte&gt; bs = CollectionUtils.arrayToList(bytes);</span><br><span class="line">        <span class="keyword">return</span> Converters.vector_uchar_to_Mat(bs);</span><br><span class="line"><span class="comment">//        return Converters.vector_char_to_Mat(bs);</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p><code>vector_uchar_to_Mat</code>  指有符号</p>
-<p>转换出来的图片是一个像素的竖直线,读取失败</p>
-<h4 id="new-Mat"><a href="#new-Mat" class="headerlink" title="new Mat"></a>new Mat</h4><p>Mat 对象除了转化得到,还可以 new , 再利用 Mat 的 put 方法,来创建 Mat</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testNewMat</span><span class="params">(<span class="keyword">int</span> height, <span class="keyword">int</span> width, <span class="keyword">byte</span>[] bytes)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    Mat data = <span class="keyword">new</span> Mat(height, width, CvType.CV_8UC3);</span><br><span class="line">    data.put(<span class="number">0</span>, <span class="number">0</span>, bytes);</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>转换出来的图片也不对,一些花花绿绿的像素点</p>
-<h4 id="new-BufferByte"><a href="#new-BufferByte" class="headerlink" title="new BufferByte"></a>new BufferByte</h4><p>Mat 对象还有个构造方法,最后一个参数是传入 BufferByte,这时只需要在上述步骤中再将 byte[] 转化为 BufferByte</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testNewBuffer</span><span class="params">(<span class="keyword">int</span> height, <span class="keyword">int</span> width, <span class="keyword">byte</span>[] bytes)</span></span>&#123;</span><br><span class="line">    ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Mat(height, width, CvType.CV_8UC3,byteBuffer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>抛出异常: <strong>CvException [org.opencv.core.CvException: cv::Exception: OpenCV(4.1.0-pre) /Users/joylau/opencv4/opencv/modules/core/include/opencv2/core/mat.inl.hpp:548: error: (-215:Assertion failed) total() == 0 || data != NULL in function ‘Mat’</strong></p>
-<h3 id="读取成功"><a href="#读取成功" class="headerlink" title="读取成功"></a>读取成功</h3><h4 id="BufferedImage-转换"><a href="#BufferedImage-转换" class="headerlink" title="BufferedImage 转换"></a>BufferedImage 转换</h4><p>一次我在调试代码时 发现<code>HighGui.waitKey();</code> 的实现是将 Mat 对象转化为 BufferedImage 的逻辑,于是我明白了,OpenCV 里操作的 Mat 在显示的时候也需要转化为 BufferedImage<br>源码里有这样一段代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Image <span class="title">toBufferedImage</span><span class="params">(Mat m)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> type = BufferedImage.TYPE_BYTE_GRAY;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (m.channels() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        type = BufferedImage.TYPE_3BYTE_BGR;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> bufferSize = m.channels() * m.cols() * m.rows();</span><br><span class="line">    <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[bufferSize];</span><br><span class="line">    m.get(<span class="number">0</span>, <span class="number">0</span>, b); <span class="comment">// get all the pixels</span></span><br><span class="line">    BufferedImage image = <span class="keyword">new</span> BufferedImage(m.cols(), m.rows(), type);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">byte</span>[] targetPixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();</span><br><span class="line">    System.arraycopy(b, <span class="number">0</span>, targetPixels, <span class="number">0</span>, b.length);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>此时,我逆向转化,将 byte[] 转 BufferedImage ,BufferedImage 再转 Mat 即可</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] getBufferedImageByte(<span class="keyword">byte</span>[] bytes) <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">    BufferedImage bImage = ImageIO.read(<span class="keyword">new</span> ByteArrayInputStream(bytes));</span><br><span class="line">    <span class="keyword">return</span> ((DataBufferByte) bImage.getRaster().getDataBuffer()).getData();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 再将从 BufferedImage 得到的 byte[] 使用 new Mat 对象</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testNewMat</span><span class="params">(<span class="keyword">int</span> height, <span class="keyword">int</span> width, <span class="keyword">byte</span>[] bytes)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    Mat data = <span class="keyword">new</span> Mat(height, width, CvType.CV_8UC3);</span><br><span class="line">    data.put(<span class="number">0</span>, <span class="number">0</span>, bytes);</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>该方法成功读取显示了图片</p>
-<p>于是又引发了我的思考: 为什么直接从文件读取的 byte[] 无法被转化,而 BufferedImage 中得到的 byte[] 却可以被转化</p>
-<p>于是我将 BufferedImage 中得到的 byte[] 在使用,调用 <code>Converters.vector_char_to_Mat</code> 方法</p>
-<p>可惜却失败了…..</p>
-<h4 id="imdecode"><a href="#imdecode" class="headerlink" title="imdecode"></a>imdecode</h4><p>Imgcodecs 类中有一个编码的方法 <code>Imgcodecs.imdecode(Mat buf, int flags)</code><br>Mat 还有个子类 MatOfByte</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testImdecode</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Imgcodecs.imdecode(<span class="keyword">new</span> MatOfByte(bytes), Imgcodecs.IMREAD_COLOR);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>该方法可成功转化</p>
-<p>而且比上一个方法的优势是:</p>
-<ol>
-<li>byte[] 不需要再通过 BufferedImage 转化</li>
-<li>不需要初始化 Mat 的长和宽</li>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>前一段时间矿难,坑了 20 亿, 5600 多的矿机现在 200 多的甩卖</p>
+<h3 id="蜗牛星际"><a href="#蜗牛星际" class="headerlink" title="蜗牛星际"></a>蜗牛星际</h3><p>蜗牛星际指的是这批矿机的名字, 现一共有四款<br>型号根据网口数据不一样也有不一样的叫法。一个网口称为单，两个网口称为双。<br>分别有：A单，A双；B单，B双；C单，C双；D单。<br>下面是网络上整理的一个表单</p>
+<p><img src="http://image.joylau.cn/blog/heiqun_catg.jpg" alt></p>
+<p>我买的是 B 款单网口的 intel i211 的网卡<br>双网卡,还有一个网卡是 82583 需要短接主板上 2 个触电可完美使用双千兆</p>
+<h3 id="安装黑群晖"><a href="#安装黑群晖" class="headerlink" title="安装黑群晖"></a>安装黑群晖</h3><h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><p>U 盘作为引导启动盘, 系统装入主板上的 16 G SATA 盘</p>
+<h4 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h4><p>将引导系统和系统主程序都装入 sata 盘上</p>
+<p>我选择的是第二种，因为我不想插着个 U 盘在后面的主板上，而且我也没有那么小的U盘</p>
+<h4 id="方式一安装步骤"><a href="#方式一安装步骤" class="headerlink" title="方式一安装步骤"></a>方式一安装步骤</h4><ol start="0">
+<li>所需资料: 链接: <a href="https://pan.baidu.com/s/1Dk220UoOpDFuTjSV9dUAHw" target="_blank" rel="noopener">https://pan.baidu.com/s/1Dk220UoOpDFuTjSV9dUAHw</a> 提取码: c32z </li>
+<li>插入优盘, 使用芯片精灵查看 U盘的 vid 和 pid ,记录下来</li>
+<li>将引导系统写入 U 盘</li>
+<li>打开 U盘,找到 grub.cfg 文件,修改 pid 和 vid 和 U 盘中的一致即可</li>
+<li>重启</li>
+<li>找到机器的 IP,在浏览器上打开,端口默认是 5000, 在线安装最先的版本即可</li>
 </ol>
-<p>为此还可以逆向得出 Mat 转换成 byte[] 的方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Mat转换成byte数组</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> matrix        要转换的Mat</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fileExtension 格式为 ".jpg", ".png", etc</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] mat2Byte(Mat matrix, String fileExtension) &#123;</span><br><span class="line">    MatOfByte mob = <span class="keyword">new</span> MatOfByte();</span><br><span class="line">    Imgcodecs.imencode(fileExtension, matrix, mob);</span><br><span class="line">    <span class="keyword">return</span> mob.toArray();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>以下是全部测试代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by liuf on 2019-04-01.</span></span><br><span class="line"><span class="comment"> * cn.joylau.code</span></span><br><span class="line"><span class="comment"> * liuf@ahtsoft.com</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Byte2Mat</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);</span><br><span class="line"></span><br><span class="line"><span class="comment">//        Mat mat = testImdecode(getImageByte());</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//        Mat mat = testConvertChar2Mat(getBufferedImageByte(getImageByte()));</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//        Mat mat = testNewBuffer(480,480,getImageByte());</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//        Mat mat = testNewMat(480,480,getImageByte());</span></span><br><span class="line"></span><br><span class="line">        Mat mat = testNewMat(<span class="number">480</span>,<span class="number">480</span>,getBufferedImageByte(getImageByte()));</span><br><span class="line"></span><br><span class="line">        log.info(<span class="string">"&#123;&#125;,&#123;&#125;"</span>,mat.rows(),mat.cols());</span><br><span class="line">        HighGui.imshow(<span class="string">"byte2mat"</span>,mat);</span><br><span class="line">        HighGui.waitKey();</span><br><span class="line">        HighGui.destroyAllWindows();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] getImageByte() <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">        Resource resource = <span class="keyword">new</span> FileSystemResource(<span class="string">"/Users/joylau/work/anhui-project/traffic-service-layer/src/main/resources/static/img/1.jpg"</span>);</span><br><span class="line">        <span class="keyword">return</span> IOUtils.toByteArray(resource.getInputStream());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] getBufferedImageByte(<span class="keyword">byte</span>[] bytes) <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">        BufferedImage bImage = ImageIO.read(<span class="keyword">new</span> ByteArrayInputStream(bytes));</span><br><span class="line">        <span class="keyword">return</span> ((DataBufferByte) bImage.getRaster().getDataBuffer()).getData();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testNewMat</span><span class="params">(<span class="keyword">int</span> height, <span class="keyword">int</span> width, <span class="keyword">byte</span>[] bytes)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Mat data = <span class="keyword">new</span> Mat(height, width, CvType.CV_8UC3);</span><br><span class="line">        data.put(<span class="number">0</span>, <span class="number">0</span>, bytes);</span><br><span class="line">        <span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testNewBuffer</span><span class="params">(<span class="keyword">int</span> height, <span class="keyword">int</span> width, <span class="keyword">byte</span>[] bytes)</span></span>&#123;</span><br><span class="line">        ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Mat(height, width, CvType.CV_8UC3,byteBuffer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testConvertChar2Mat</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span></span>&#123;</span><br><span class="line">        <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">        List&lt;Byte&gt; bs = CollectionUtils.arrayToList(bytes);</span><br><span class="line">        <span class="keyword">return</span> Converters.vector_uchar_to_Mat(bs);</span><br><span class="line"><span class="comment">//        return Converters.vector_char_to_Mat(bs);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Mat <span class="title">testImdecode</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Imgcodecs.imdecode(<span class="keyword">new</span> MatOfByte(bytes), Imgcodecs.IMREAD_COLOR);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Mat转换成byte数组</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> matrix        要转换的Mat</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> fileExtension 格式为 ".jpg", ".png", etc</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] mat2Byte(Mat matrix, String fileExtension) &#123;</span><br><span class="line">        MatOfByte mob = <span class="keyword">new</span> MatOfByte();</span><br><span class="line">        Imgcodecs.imencode(fileExtension, matrix, mob);</span><br><span class="line">        <span class="keyword">return</span> mob.toArray();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="方式二安装步骤"><a href="#方式二安装步骤" class="headerlink" title="方式二安装步骤"></a>方式二安装步骤</h4><ol>
+<li>U 盘上安装一份 PE 系统，这里推荐使用微 PE</li>
+<li>将系统镜像 和 写盘工具 拷贝到 U 盘上：链接: <a href="https://pan.baidu.com/s/1T2KibqcSi6t99BPq8VQA7g" target="_blank" rel="noopener">https://pan.baidu.com/s/1T2KibqcSi6t99BPq8VQA7g</a> 提取码: y7x5 ; 链接: <a href="https://pan.baidu.com/s/1QhAkpGxjYoJiKGgMSdFhyQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1QhAkpGxjYoJiKGgMSdFhyQ</a> 提取码: 1s45 </li>
+<li>进入 PE 系统，使用 diskgenius 删除 ssd 上的所有分区，再使用写盘工具将镜像写入 ssd 上</li>
+<li>重启系统</li>
+</ol>
+<h3 id="如何洗白"><a href="#如何洗白" class="headerlink" title="如何洗白?"></a>如何洗白?</h3><p>想要洗白, 修改 grub.cfg 配置文件的 sn 和 mac 地址即可<br>mac 地址需要是 001132 开头的<br>这就需要修改机器的物理 IP<br>我这里提供一个方法: 链接: <a href="https://pan.baidu.com/s/1km_LpQprkxPvpQOoe8Pq9w" target="_blank" rel="noopener">https://pan.baidu.com/s/1km_LpQprkxPvpQOoe8Pq9w</a> 提取码: qsvd<br>SN 需要算号器,我这里提供个工具: 链接: <a href="https://pan.baidu.com/s/1-k9Wp82occb6IzUxt37EBw" target="_blank" rel="noopener">https://pan.baidu.com/s/1-k9Wp82occb6IzUxt37EBw</a> 提取码: yxj6</p>
+<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><ol>
+<li>自带的 ZUMA 电源并不是很好,带 4 块硬盘怕只能呵呵,想稳定点还是换个好点的电源,我换了台达 80 金牌 DPS-400AB-12A 1U 电源</li>
+<li>有条件的话,硬盘的背板也还是换了吧,看着做工不是很好</li>
+</ol>
+<h3 id="关于洗白"><a href="#关于洗白" class="headerlink" title="关于洗白"></a>关于洗白</h3><p>个人的建议是:不要洗白!</p>
+<ol>
+<li>因为洗白的主要是用群晖的快连功能,但是据我所用快连的速度并不是很好,还不如自建内网穿透服务  </li>
+<li>容易被检测出来,容易被封号,一旦被封号,系统显示硬盘损毁,数据拷贝不出来,就损失大了  </li>
+</ol>
+<p>黑群一时爽,一直黑群一直爽</p>
       
     </div>
     
   </div>
   
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/04/03/OpenCV-ByteImage/">OpenCV 读取数据流图片</a></p>
+        <p><span>本文标题:</span><a href="/2019/05/27/Daily-NAS/">日常折腾 --- 蜗牛星际安装黑群晖</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
-        <p><span>发布时间:</span>2019-04-03, 10:54:28</p>
-        <p><span>最后更新:</span>2019-04-03, 16:18:19</p>
+        <p><span>发布时间:</span>2019-05-27, 10:29:53</p>
+        <p><span>最后更新:</span>2019-05-28, 00:01:04</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/04/03/OpenCV-ByteImage/" title="OpenCV 读取数据流图片">http://blog.joylau.cn/2019/04/03/OpenCV-ByteImage/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2019/04/03/OpenCV-ByteImage/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/05/27/Daily-NAS/" title="日常折腾 --- 蜗牛星际安装黑群晖">http://blog.joylau.cn/2019/05/27/Daily-NAS/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2019/05/27/Daily-NAS/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -420,16 +400,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/04/08/Docker-Start-Error/">
-                    Docker 启动报错： Error starting daemon： Error initializing network controller： list bridge addresses failed： no available network
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/28/OpenCV-Basic/">
-                    OpenCV 基础知识与概念
+                <a href="/2019/05/22/Daily-Soft-Router/">
+                    日常折腾 --- 软路由攒机记录
                 </a>
             </div>
         
@@ -439,7 +413,7 @@
 <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API"><span class="toc-number">2.</span> <span class="toc-text">API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过渡"><span class="toc-number">3.</span> <span class="toc-text">过渡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#读取失败"><span class="toc-number">4.</span> <span class="toc-text">读取失败</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Converters-类"><span class="toc-number">4.1.</span> <span class="toc-text">Converters 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new-Mat"><span class="toc-number">4.2.</span> <span class="toc-text">new Mat</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new-BufferByte"><span class="toc-number">4.3.</span> <span class="toc-text">new BufferByte</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#读取成功"><span class="toc-number">5.</span> <span class="toc-text">读取成功</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BufferedImage-转换"><span class="toc-number">5.1.</span> <span class="toc-text">BufferedImage 转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#imdecode"><span class="toc-number">5.2.</span> <span class="toc-text">imdecode</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">6.</span> <span class="toc-text">最后</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#蜗牛星际"><span class="toc-number">2.</span> <span class="toc-text">蜗牛星际</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装黑群晖"><span class="toc-number">3.</span> <span class="toc-text">安装黑群晖</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方式一"><span class="toc-number">3.1.</span> <span class="toc-text">方式一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方式二"><span class="toc-number">3.2.</span> <span class="toc-text">方式二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方式一安装步骤"><span class="toc-number">3.3.</span> <span class="toc-text">方式一安装步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方式二安装步骤"><span class="toc-number">3.4.</span> <span class="toc-text">方式二安装步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何洗白"><span class="toc-number">4.</span> <span class="toc-text">如何洗白?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建议"><span class="toc-number">5.</span> <span class="toc-text">建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于洗白"><span class="toc-number">6.</span> <span class="toc-text">关于洗白</span></a></li></ol>
         
     </div>
     <style>
@@ -473,7 +447,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"OpenCV 读取数据流图片　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"日常折腾 --- 蜗牛星际安装黑群晖　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -487,15 +461,13 @@
 
 <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/08/Docker-Start-Error/" title="上一篇: Docker 启动报错： Error starting daemon： Error initializing network controller： list bridge addresses failed： no available network">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/28/OpenCV-Basic/" title="下一篇: OpenCV 基础知识与概念">
+            <a href="/2019/05/22/Daily-Soft-Router/" title="下一篇: 日常折腾 --- 软路由攒机记录">
                 <i class="fa fa-angle-right"></i>
             </a>
         

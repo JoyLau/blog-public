@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title><![CDATA[日常折腾 --- 蜗牛星际安装黑群晖]]></title>
+      <url>http://blog.joylau.cn/2019/05/27/Daily-NAS/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>前一段时间矿难,坑了 20 亿, 5600 多的矿机现在 200 多的甩卖</p>
+<h3 id="蜗牛星际"><a href="#蜗牛星际" class="headerlink" title="蜗牛星际"></a>蜗牛星际</h3><p>蜗牛星际指的是这批矿机的名字, 现一共有四款<br>型号根据网口数据不一样也有不一样的叫法。一个网口称为单，两个网口称为双。<br>分别有：A单，A双；B单，B双；C单，C双；D单。<br>下面是网络上整理的一个表单</p>
+<p><img src="http://image.joylau.cn/blog/heiqun_catg.jpg" alt></p>
+<p>我买的是 B 款单网口的 intel i211 的网卡<br>双网卡,还有一个网卡是 82583 需要短接主板上 2 个触电可完美使用双千兆</p>
+<h3 id="安装黑群晖"><a href="#安装黑群晖" class="headerlink" title="安装黑群晖"></a>安装黑群晖</h3><h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><p>U 盘作为引导启动盘, 系统装入主板上的 16 G SATA 盘</p>
+<h4 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h4><p>将引导系统和系统主程序都装入 sata 盘上</p>
+<p>我选择的是第二种，因为我不想插着个 U 盘在后面的主板上，而且我也没有那么小的U盘</p>
+<h4 id="方式一安装步骤"><a href="#方式一安装步骤" class="headerlink" title="方式一安装步骤"></a>方式一安装步骤</h4><ol start="0">
+<li>所需资料: 链接: <a href="https://pan.baidu.com/s/1Dk220UoOpDFuTjSV9dUAHw" target="_blank" rel="noopener">https://pan.baidu.com/s/1Dk220UoOpDFuTjSV9dUAHw</a> 提取码: c32z </li>
+<li>插入优盘, 使用芯片精灵查看 U盘的 vid 和 pid ,记录下来</li>
+<li>将引导系统写入 U 盘</li>
+<li>打开 U盘,找到 grub.cfg 文件,修改 pid 和 vid 和 U 盘中的一致即可</li>
+<li>重启</li>
+<li>找到机器的 IP,在浏览器上打开,端口默认是 5000, 在线安装最先的版本即可</li>
+</ol>
+<h4 id="方式二安装步骤"><a href="#方式二安装步骤" class="headerlink" title="方式二安装步骤"></a>方式二安装步骤</h4><ol>
+<li>U 盘上安装一份 PE 系统，这里推荐使用微 PE</li>
+<li>将系统镜像 和 写盘工具 拷贝到 U 盘上：链接: <a href="https://pan.baidu.com/s/1T2KibqcSi6t99BPq8VQA7g" target="_blank" rel="noopener">https://pan.baidu.com/s/1T2KibqcSi6t99BPq8VQA7g</a> 提取码: y7x5 ; 链接: <a href="https://pan.baidu.com/s/1QhAkpGxjYoJiKGgMSdFhyQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1QhAkpGxjYoJiKGgMSdFhyQ</a> 提取码: 1s45 </li>
+<li>进入 PE 系统，使用 diskgenius 删除 ssd 上的所有分区，再使用写盘工具将镜像写入 ssd 上</li>
+<li>重启系统</li>
+</ol>
+<h3 id="如何洗白"><a href="#如何洗白" class="headerlink" title="如何洗白?"></a>如何洗白?</h3><p>想要洗白, 修改 grub.cfg 配置文件的 sn 和 mac 地址即可<br>mac 地址需要是 001132 开头的<br>这就需要修改机器的物理 IP<br>我这里提供一个方法: 链接: <a href="https://pan.baidu.com/s/1km_LpQprkxPvpQOoe8Pq9w" target="_blank" rel="noopener">https://pan.baidu.com/s/1km_LpQprkxPvpQOoe8Pq9w</a> 提取码: qsvd<br>SN 需要算号器,我这里提供个工具: 链接: <a href="https://pan.baidu.com/s/1-k9Wp82occb6IzUxt37EBw" target="_blank" rel="noopener">https://pan.baidu.com/s/1-k9Wp82occb6IzUxt37EBw</a> 提取码: yxj6</p>
+<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><ol>
+<li>自带的 ZUMA 电源并不是很好,带 4 块硬盘怕只能呵呵,想稳定点还是换个好点的电源,我换了台达 80 金牌 DPS-400AB-12A 1U 电源</li>
+<li>有条件的话,硬盘的背板也还是换了吧,看着做工不是很好</li>
+</ol>
+<h3 id="关于洗白"><a href="#关于洗白" class="headerlink" title="关于洗白"></a>关于洗白</h3><p>个人的建议是:不要洗白!</p>
+<ol>
+<li>因为洗白的主要是用群晖的快连功能,但是据我所用快连的速度并不是很好,还不如自建内网穿透服务  </li>
+<li>容易被检测出来,容易被封号,一旦被封号,系统显示硬盘损毁,数据拷贝不出来,就损失大了  </li>
+</ol>
+<p>黑群一时爽,一直黑群一直爽</p>]]></content>
+      
+        <categories>
+            
+            <category> 日常折腾篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 日常折腾 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[日常折腾 --- 软路由攒机记录]]></title>
       <url>http://blog.joylau.cn/2019/05/22/Daily-Soft-Router/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -4908,9 +4960,9 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
         
         <tags>
             
-            <tag> 技能 </tag>
-            
             <tag> 程序员 </tag>
+            
+            <tag> 技能 </tag>
             
         </tags>
         
