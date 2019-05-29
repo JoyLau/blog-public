@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2019-05-27T16:01:04.567Z</updated>
+  <updated>2019-05-29T16:01:05.903Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -17,13 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>群晖系列 --- 如何恢复群晖系统数据盘的数据</title>
+    <link href="http://blog.joylau.cn/2019/05/29/Synology-Recover-Data/"/>
+    <id>http://blog.joylau.cn/2019/05/29/Synology-Recover-Data/</id>
+    <published>2019-05-29T00:51:18.000Z</published>
+    <updated>2019-05-29T16:01:05.903Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>之前使用的是二合一的引导安装黑群晖系统,进入系统中发现一个 9G 的存储空间,顺手就把他删除了,重新建了个存储池,把 mSATA 盘上的引导折腾没了,无法进入系统<br>在 PE 系统下发现无法读取数据盘的数据<br>那么重做系统后如何恢复数据?</p><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>使用计算机和 Ubuntu live CD 恢复其硬盘上存储的数据。<br>确保 Synology NAS 硬盘上运行的文件系统是 EXT4 或 Btrfs</p><h3 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h3><ol><li>准备一台具有足够数量硬盘插槽的计算机，用于安装从 Synology NAS 卸下的硬盘。</li><li>从 Synology NAS 中卸下硬盘，然后将其安装到计算机中。对于 RAID 或 SHR 配置，必须同时在计算机中安装所有硬盘（不包括 Hot Spare 硬盘）。</li><li>在 Windows 上创建可启动 U 盘中的说明准备 Ubuntu 环境。</li><li>打开终端</li><li>如果要从 RAID 或 SHR 配置恢复数据，请执行步骤 6 到 9；如果要从只有一个硬盘的基本存储类型恢复文件，请执行步骤 9。</li><li>输入以下命令（sudo 执行 root 权限）。<ul><li>Ubuntu@ubuntu:~$ sudo -i</li></ul></li><li>输入以下命令以安装 mdadm 和 lvm2两者都是 RAID 管理工具。必须安装 lvm2，否则 vgchange 无法正常工作。<ul><li>root@ubuntu:~$ apt-get update</li><li>root@ubuntu:~$ apt-get install -y mdadm lvm2</li></ul></li><li>输入以下命令以装载从 Synology NAS 中卸下的所有硬盘。根据 Synology NAS 上的存储池配置，结果可能有所不同。<ul><li>root@ubuntu:~$ mdadm -Asf &amp;&amp; vgchange -ay</li></ul></li><li>输入以下命令以采用只读方式装载所有硬盘，从而可访问数据。在 ${device_path} 中输入设备路径，并在 ${mount_point} 中输入装载点。数据会放在装载点下。<ul><li>$ mount ${device_path} ${mount_point} -o ro</li></ul></li></ol><h3 id="Ubuntu-启动盘制作"><a href="#Ubuntu-启动盘制作" class="headerlink" title="Ubuntu 启动盘制作"></a>Ubuntu 启动盘制作</h3><h4 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h4><ul><li>一个4GB或更大的 U 盘</li><li>Microsoft Windows XP或更高版本</li><li>Rufus，一款免费的开源工具</li><li>一个Ubuntu ISO 文件<h4 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h4><img src="http://image.joylau.cn/blog/rufus-ubuntu.png" alt></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      之前有段时间折腾数据盘,把 mSATA 盘上的引导折腾没了,无法进入系统
+    
+    </summary>
+    
+      <category term="群晖篇" scheme="http://blog.joylau.cn/categories/%E7%BE%A4%E6%99%96%E7%AF%87/"/>
+    
+    
+      <category term="群晖" scheme="http://blog.joylau.cn/tags/%E7%BE%A4%E6%99%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title>日常折腾 --- 蜗牛星际安装黑群晖</title>
     <link href="http://blog.joylau.cn/2019/05/27/Daily-NAS/"/>
     <id>http://blog.joylau.cn/2019/05/27/Daily-NAS/</id>
     <published>2019-05-27T02:29:53.000Z</published>
-    <updated>2019-05-27T16:01:04.567Z</updated>
+    <updated>2019-05-29T16:01:05.903Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>前一段时间矿难,坑了 20 亿, 5600 多的矿机现在 200 多的甩卖</p><h3 id="蜗牛星际"><a href="#蜗牛星际" class="headerlink" title="蜗牛星际"></a>蜗牛星际</h3><p>蜗牛星际指的是这批矿机的名字, 现一共有四款<br>型号根据网口数据不一样也有不一样的叫法。一个网口称为单，两个网口称为双。<br>分别有：A单，A双；B单，B双；C单，C双；D单。<br>下面是网络上整理的一个表单</p><p><img src="http://image.joylau.cn/blog/heiqun_catg.jpg" alt></p><p>我买的是 B 款单网口的 intel i211 的网卡<br>双网卡,还有一个网卡是 82583 需要短接主板上 2 个触电可完美使用双千兆</p><h3 id="安装黑群晖"><a href="#安装黑群晖" class="headerlink" title="安装黑群晖"></a>安装黑群晖</h3><h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><p>U 盘作为引导启动盘, 系统装入主板上的 16 G SATA 盘</p><h4 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h4><p>将引导系统和系统主程序都装入 sata 盘上</p><p>我选择的是第二种，因为我不想插着个 U 盘在后面的主板上，而且我也没有那么小的U盘</p><h4 id="方式一安装步骤"><a href="#方式一安装步骤" class="headerlink" title="方式一安装步骤"></a>方式一安装步骤</h4><ol start="0"><li>所需资料: 链接: <a href="https://pan.baidu.com/s/1Dk220UoOpDFuTjSV9dUAHw" target="_blank" rel="noopener">https://pan.baidu.com/s/1Dk220UoOpDFuTjSV9dUAHw</a> 提取码: c32z </li><li>插入优盘, 使用芯片精灵查看 U盘的 vid 和 pid ,记录下来</li><li>将引导系统写入 U 盘</li><li>打开 U盘,找到 grub.cfg 文件,修改 pid 和 vid 和 U 盘中的一致即可</li><li>重启</li><li>找到机器的 IP,在浏览器上打开,端口默认是 5000, 在线安装最先的版本即可</li></ol><h4 id="方式二安装步骤"><a href="#方式二安装步骤" class="headerlink" title="方式二安装步骤"></a>方式二安装步骤</h4><ol><li>U 盘上安装一份 PE 系统，这里推荐使用微 PE</li><li>将系统镜像 和 写盘工具 拷贝到 U 盘上：链接: <a href="https://pan.baidu.com/s/1T2KibqcSi6t99BPq8VQA7g" target="_blank" rel="noopener">https://pan.baidu.com/s/1T2KibqcSi6t99BPq8VQA7g</a> 提取码: y7x5 ; 链接: <a href="https://pan.baidu.com/s/1QhAkpGxjYoJiKGgMSdFhyQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1QhAkpGxjYoJiKGgMSdFhyQ</a> 提取码: 1s45 </li><li>进入 PE 系统，使用 diskgenius 删除 ssd 上的所有分区，再使用写盘工具将镜像写入 ssd 上</li><li>重启系统</li></ol><h3 id="如何洗白"><a href="#如何洗白" class="headerlink" title="如何洗白?"></a>如何洗白?</h3><p>想要洗白, 修改 grub.cfg 配置文件的 sn 和 mac 地址即可<br>mac 地址需要是 001132 开头的<br>这就需要修改机器的物理 IP<br>我这里提供一个方法: 链接: <a href="https://pan.baidu.com/s/1km_LpQprkxPvpQOoe8Pq9w" target="_blank" rel="noopener">https://pan.baidu.com/s/1km_LpQprkxPvpQOoe8Pq9w</a> 提取码: qsvd<br>SN 需要算号器,我这里提供个工具: 链接: <a href="https://pan.baidu.com/s/1-k9Wp82occb6IzUxt37EBw" target="_blank" rel="noopener">https://pan.baidu.com/s/1-k9Wp82occb6IzUxt37EBw</a> 提取码: yxj6</p><h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><ol><li>自带的 ZUMA 电源并不是很好,带 4 块硬盘怕只能呵呵,想稳定点还是换个好点的电源,我换了台达 80 金牌 DPS-400AB-12A 1U 电源</li><li>有条件的话,硬盘的背板也还是换了吧,看着做工不是很好</li></ol><h3 id="关于洗白"><a href="#关于洗白" class="headerlink" title="关于洗白"></a>关于洗白</h3><p>个人的建议是:不要洗白!</p><ol><li>因为洗白的主要是用群晖的快连功能,但是据我所用快连的速度并不是很好,还不如自建内网穿透服务  </li><li>容易被检测出来,容易被封号,一旦被封号,系统显示硬盘损毁,数据拷贝不出来,就损失大了  </li></ol><p>黑群一时爽,一直黑群一直爽</p>]]></content>
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>前一段时间矿难,坑了 20 亿, 5600 多的矿机现在 200 多的甩卖</p><h3 id="蜗牛星际"><a href="#蜗牛星际" class="headerlink" title="蜗牛星际"></a>蜗牛星际</h3><p>蜗牛星际指的是这批矿机的名字, 现一共有四款<br>型号根据网口数据不一样也有不一样的叫法。一个网口称为单，两个网口称为双。<br>分别有：A单，A双；B单，B双；C单，C双；D单。<br>下面是网络上整理的一个表单</p><p><img src="http://image.joylau.cn/blog/heiqun_catg.jpg" alt></p><p>我买的是 B 款单网口的 intel i211 的网卡<br>双网卡,还有一个网卡是 82583 需要短接主板上 2 个触电可完美使用双千兆</p><h3 id="安装黑群晖"><a href="#安装黑群晖" class="headerlink" title="安装黑群晖"></a>安装黑群晖</h3><h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><p>U 盘作为引导启动盘, 系统装入主板上的 16 G SATA 盘</p><h4 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h4><p>将引导系统和系统主程序都装入 sata 盘上</p><p>我选择的是第二种，因为我不想插着个 U 盘在后面的主板上，而且我也没有那么小的U盘</p><h4 id="方式一安装步骤"><a href="#方式一安装步骤" class="headerlink" title="方式一安装步骤"></a>方式一安装步骤</h4><ol start="0"><li>所需资料: 链接: <a href="https://pan.baidu.com/s/1Dk220UoOpDFuTjSV9dUAHw" target="_blank" rel="noopener">https://pan.baidu.com/s/1Dk220UoOpDFuTjSV9dUAHw</a> 提取码: c32z </li><li>插入优盘, 使用芯片精灵查看 U盘的 vid 和 pid ,记录下来</li><li>将引导系统写入 U 盘</li><li>打开 U盘,找到 grub.cfg 文件,修改 pid 和 vid 和 U 盘中的一致即可</li><li>重启</li><li>找到机器的 IP,在浏览器上打开,端口默认是 5000, 在线安装最先的版本即可</li></ol><h4 id="方式二安装步骤"><a href="#方式二安装步骤" class="headerlink" title="方式二安装步骤"></a>方式二安装步骤</h4><ol><li>U 盘上安装一份 PE 系统，这里推荐使用微 PE</li><li>将系统镜像 和 写盘工具 拷贝到 U 盘上：链接: <a href="https://pan.baidu.com/s/1T2KibqcSi6t99BPq8VQA7g" target="_blank" rel="noopener">https://pan.baidu.com/s/1T2KibqcSi6t99BPq8VQA7g</a> 提取码: y7x5 ; 链接: <a href="https://pan.baidu.com/s/1QhAkpGxjYoJiKGgMSdFhyQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1QhAkpGxjYoJiKGgMSdFhyQ</a> 提取码: 1s45 </li><li>进入 PE 系统，使用 diskgenius 删除 ssd 上的所有分区，再使用写盘工具将镜像写入 ssd 上</li><li>重启系统</li></ol><h3 id="如何洗白"><a href="#如何洗白" class="headerlink" title="如何洗白?"></a>如何洗白?</h3><p>想要洗白, 修改 grub.cfg 配置文件的 sn 和 mac 地址即可<br>mac 地址需要是 001132 开头的<br>这就需要修改机器的物理 IP<br>我这里提供一个方法: 链接: <a href="https://pan.baidu.com/s/1km_LpQprkxPvpQOoe8Pq9w" target="_blank" rel="noopener">https://pan.baidu.com/s/1km_LpQprkxPvpQOoe8Pq9w</a> 提取码: qsvd<br>SN 需要算号器,我这里提供个工具: 链接: <a href="https://pan.baidu.com/s/1-k9Wp82occb6IzUxt37EBw" target="_blank" rel="noopener">https://pan.baidu.com/s/1-k9Wp82occb6IzUxt37EBw</a> 提取码: yxj6</p><h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><ol><li>自带的 ZUMAX 电源并不是很好,带 4 块硬盘怕只能呵呵,想稳定点还是换个好点的电源,我换了台达 80 金牌 DPS-400AB-12A 1U 电源</li><li>有条件的话,硬盘的背板也还是换了吧,看着做工不是很好</li></ol><h3 id="关于洗白"><a href="#关于洗白" class="headerlink" title="关于洗白"></a>关于洗白</h3><p>个人的建议是:不要洗白!</p><ol><li>因为洗白的主要是用群晖的快连功能,但是据我所用快连的速度并不是很好,还不如自建内网穿透服务  </li><li>容易被检测出来,容易被封号,一旦被封号,系统显示硬盘损毁,数据拷贝不出来,就损失大了  </li></ol><p>黑群一时爽,一直黑群一直爽</p>]]></content>
     
     <summary type="html">
     
@@ -430,30 +452,6 @@
     <summary type="html">
     
       使用 docker stack 部署一组服务时,docker 会根据集群的每个节点的资源的情况来进行分配,作为使用者无法参与其中的分配,该怎么解决呢?
-    
-    </summary>
-    
-      <category term="Docker篇" scheme="http://blog.joylau.cn/categories/Docker%E7%AF%87/"/>
-    
-    
-      <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
-    
-      <category term="Docker Swarm" scheme="http://blog.joylau.cn/tags/Docker-Swarm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker-Swarm 集群搭建</title>
-    <link href="http://blog.joylau.cn/2019/02/18/Docker-Swarm-Cluster/"/>
-    <id>http://blog.joylau.cn/2019/02/18/Docker-Swarm-Cluster/</id>
-    <published>2019-02-18T03:36:04.000Z</published>
-    <updated>2019-03-01T16:01:05.148Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ol><li>docker 18.09</li></ol><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ol><li>本篇文章中的搭建过程有多台物理机,如果说是自己测试使用的话,或者只有一台机器,可以使用 docker-machine 来创建多个 docker 主机</li><li>比如创建一个主机名为 work 的 docker 主机 : <code>docker-machine create -d virtualbox worker</code></li><li>之后进入刚才创建的主机 : <code>docker-machine ssh worker</code></li><li>然后就当成是一台独立机器来执行以下的操作</li></ol><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol><li>初始化 swarm 集群 : <code>docker swarm init --advertise-addr 34.0.7.183</code><ol><li>机器有多个网卡的指定 IP 地址 –advertise-addr</li><li>默认创建的是管理节点</li></ol></li><li>加入刚才创建 swarm 集群</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker swarm join --token SWMTKN-1-1o1yfsquxasw7c7ah4t7lmd4i89i62u74tutzhtcbgb7wx6csc-1hf4tjv9oz9vpo937955mi0z2 34.0.7.183:2377</span><br></pre></td></tr></table></figure><p>如果说忘了集群管理节点的 token, 可以使用 <code>docker swarm join-token work/manage</code> 来查看加入该集群的命令</p><ol start="3"><li>查看集群节点: <code>docker node list</code></li></ol><h3 id="服务部署"><a href="#服务部署" class="headerlink" title="服务部署"></a>服务部署</h3><ol><li><p>单服务部署 <code>docker service create --name nginx -p 80:80 --replaces 4 containAddress</code><br> 上述命令部署了4个 nginx 服务,如果集群有2台主机的话,会在每台主机上部署 2 个服务</p></li><li><p>多服务部署, 使用 yml 配置文件,具体语法参看 <a href="https://docs.docker.com/compose/compose-file/" target="_blank" rel="noopener">https://docs.docker.com/compose/compose-file/</a></p></li></ol><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><h4 id="docker-swarm"><a href="#docker-swarm" class="headerlink" title="docker swarm"></a>docker swarm</h4><p>docker swarm init    初始化集群<br>docker swarm join-token worker    查看工作节点的 token<br>docker swarm join-token manager    查看管理节点的 token<br>docker swarm join  加入集群中</p><h4 id="docker-stack"><a href="#docker-stack" class="headerlink" title="docker stack"></a>docker stack</h4><p>docker stack deploy    部署新的服务或更新现有服务<br>docker stack ls    列出现有服务<br>docker stack ps    列出服务中的任务<br>docker stack rm    删除服务<br>docker stack services    列出服务中的具体项<br>docker stack down    移除某个服务（不会删除数据）</p><h4 id="docker-node"><a href="#docker-node" class="headerlink" title="docker node"></a>docker node</h4><p>docker node ls    查看所有集群节点<br>docker node rm    删除某个节点（-f强制删除）<br>docker node inspect    查看节点详情<br>docker node demote    节点降级，由管理节点降级为工作节点<br>docker node promote    节点升级，由工作节点升级为管理节点<br>docker node update    更新节点<br>docker node ps    查看节点中的 Task 任务</p><h4 id="docker-service"><a href="#docker-service" class="headerlink" title="docker service"></a>docker service</h4><p>docker service create    部署服务<br>docker service inspect    查看服务详情<br>docker service logs    产看某个服务日志<br>docker service ls    查看所有服务详情<br>docker service rm    删除某个服务（-f强制删除）<br>docker service scale    设置某个服务个数<br>docker service update    更新某个服务</p><h4 id="docker-machine"><a href="#docker-machine" class="headerlink" title="docker machine"></a>docker machine</h4><p>docker-machine create    创建一个 Docker 主机（常用-d virtualbox）<br>docker-machine ls    查看所有的 Docker 主机<br>docker-machine ssh    SSH 到主机上执行命令<br>docker-machine env    显示连接到某个主机需要的环境变量<br>docker-machine inspect    输出主机更多信息<br>docker-machine kill    停止某个主机<br>docker-machine restart    重启某台主机<br>docker-machine rm    删除某台主机<br>docker-machine scp    在主机之间复制文件<br>docker-machine start    启动一个主机<br>docker-machine status    查看主机状态<br>docker-machine stop    停止一个主机</p><h3 id="swarm-集群节点可视化工具"><a href="#swarm-集群节点可视化工具" class="headerlink" title="swarm 集群节点可视化工具"></a>swarm 集群节点可视化工具</h3><p>portainer : 很强大的工具,可以监控本机和远程服务器或者集群环境,远程 docker 主机的话需要远程 docker 主机开启在 2375 端口的服务</p><p><a href="https://www.portainer.io/installation/" target="_blank" rel="noopener">https://www.portainer.io/installation/</a></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  portainer:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="number">34.0</span><span class="number">.7</span><span class="number">.183</span><span class="string">:5000/joylau/portainer:latest</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">portainer</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="number">80</span><span class="string">:9000</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/home/liufa/portainer/data:/data</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      记录下 docker swarm 集群搭建的过程
     
     </summary>
     
