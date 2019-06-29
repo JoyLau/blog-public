@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2019-06-11T16:01:05.036Z</updated>
+  <updated>2019-06-29T16:01:06.367Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>群晖系列 --- 使用群晖搭建 Docker 私有仓库并管理</title>
+    <link href="http://blog.joylau.cn/2019/06/29/Synology-Private-Docker/"/>
+    <id>http://blog.joylau.cn/2019/06/29/Synology-Private-Docker/</id>
+    <published>2019-06-29T02:51:45.000Z</published>
+    <updated>2019-06-29T16:01:06.367Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>docker 仓库存储大量的镜像,占用的空间很大,放到群晖上存储再合适不过了<br>之前写过基于 docker compose 使用 Harbor 搭建 Docker 私有仓库并管理,但是群晖里只有 docker 的管理,没有 docker compose 的直接支持<br>现在来个简单的仓库管理</p><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ol><li>安装 docker 套件<br>2, 下载 registry 和 joxit/docker-registry-ui 镜像</li><li>分别启动这 2 个容器,注意配置</li></ol><h3 id="registry-配置"><a href="#registry-配置" class="headerlink" title="registry 配置"></a>registry 配置</h3><ol><li>配置挂载目录</li><li>配置环境变量,因为默认的 registry 镜像不支持跨域请求和没有开启删除镜像的功能,我曾尝试在镜像里修改配置文件,然后在导出镜像,但是失败了,新导出的镜像启动后无法提供服务</li><li>环境配置如下</li></ol><p><img src="http://image.joylau.cn/blog/Synology-Private-Docker.png" alt="Synology-Private-Docker"></p><p>REGISTRY_STORAGE_DELETE_ENABLED:true<br>REGISTRY_HTTP_HEADERS_Access-Control-Allow-Headers:[‘Origin,Accept,Content-Type,Authorization’]<br>REGISTRY_HTTP_HEADERS_Access-Control-Allow-Methods:[‘GET,POST,PUT,DELETE’]<br>REGISTRY_HTTP_HEADERS_Access-Control-Allow-Origin:[‘*’]<br>REGISTRY_HTTP_HEADERS_Access-Control-Expose-Headers:[‘Docker-Content-Digest’]  </p><h3 id="后续配置"><a href="#后续配置" class="headerlink" title="后续配置"></a>后续配置</h3><p>路由器开启端口映射即可</p>]]></content>
+    
+    <summary type="html">
+    
+      之前写过基于 docker compose 使用 Harbor 搭建 Docker 私有仓库并管理,但是群晖里只有 docker 的管理,没有 docker compose 的直接支持
+    
+    </summary>
+    
+      <category term="群晖篇" scheme="http://blog.joylau.cn/categories/%E7%BE%A4%E6%99%96%E7%AF%87/"/>
+    
+    
+      <category term="群晖" scheme="http://blog.joylau.cn/tags/%E7%BE%A4%E6%99%96/"/>
+    
+  </entry>
   
   <entry>
     <title>基于 iKuai 软路由系统的单线多拨和多线多拨</title>
@@ -437,28 +459,6 @@
     
     
       <category term="OpenCV" scheme="http://blog.joylau.cn/tags/OpenCV/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker 容器挂载宿主机上的目录时出现 Permission denied</title>
-    <link href="http://blog.joylau.cn/2019/03/21/Docker-MountVolumes/"/>
-    <id>http://blog.joylau.cn/2019/03/21/Docker-MountVolumes/</id>
-    <published>2019-03-21T08:27:48.000Z</published>
-    <updated>2019-03-21T10:17:43.109Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>启动 docker 容器时挂载容器以前存在的数据文件时出现了 Permission denied 的错误</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ol><li>首先以为是挂载的文件夹有读写数据的权限问题 <code>chmod -R 777 xxxx</code> , 没有解决，依然报错</li><li>再分析是文件目录的所属者的问题： <code>chown -R gname:uname xxxx</code> , 没有解决，依然报错</li><li>这时我们进入容器之后 使用 ll 查看挂载的目录的所属者，发现组名和户名跟宿主机的组名和用户名不一致</li><li>原因在于，操作系统判断用户组和用户其实并不是根据名称来的，而是根据名称对应的 id 来的</li><li>查看用户组和用户名对象的 id, 可查看 <code>/etc/passwd</code></li><li>此时，我们需要将宿主机的用户组用户的 ID 和 容器内挂在目录所需的用户组和用户的 ID 对应起来，写一直即可</li><li>举个例子</li><li>redis 镜像产生的数据文件在 <code>/var/lib/redis</code> 中，并且该目录的用户组和用户都为 <code>redis</code>， 此时我们查看容器的 <code>redis:redis</code> 的 id , 假如是 <code>102:103</code></li><li>此时我们宿主机挂载目录是 <code>/opt/docker/redis/data</code> ,我们改变这个目录的所属者 <code>chown -R 102:103 /opt/docker/redis/data</code></li><li>不要管 <code>102:103</code> 在宿主机系统中有没有该用户组和用户</li><li>再次进入容器就可以看到 <code>/var/lib/redis</code> 目录的所属者是正确的了</li></ol><h3 id="mysql-和-mariaDB-的问题"><a href="#mysql-和-mariaDB-的问题" class="headerlink" title="mysql 和 mariaDB 的问题"></a>mysql 和 mariaDB 的问题</h3><p>这样的情况也发生在 mysql 和 mariaDB 上<br>按照上述的方法似乎没有奏效，确切的说奏效一半<br>因为 <code>/var/lib/mysql</code> 目录中文件夹可以看到，文件却没有权限看到<br>类似这样</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">190321 06:02:13 mysqld_safe Logging to '/var/lib/mysql/d240623581db.err'.</span><br><span class="line">190321 06:02:13 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql</span><br><span class="line">chown: /var/lib/mysql/60689c28e4a1.err: Permission denied</span><br><span class="line">chown: /var/lib/mysql/60689c28e4a1.pid: Permission denied</span><br><span class="line">chown: /var/lib/mysql/aria_log.00000001: Permission denied</span><br><span class="line">chown: /var/lib/mysql/aria_log_control: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_buffer_pool: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ibdata1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_logfile0: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_logfile1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ibtmp1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/multi-master.info: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000001: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000002: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000003: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000004: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000005: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000006: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000007: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000008: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000009: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.index: Permission denied</span><br><span class="line">chown: /var/lib/mysql/owncloud: Permission denied</span><br><span class="line">chown: /var/lib/mysql/performance_schema: Permission denied</span><br><span class="line">chown: /var/lib/mysql: Permission denied</span><br><span class="line">chown: /var/lib/mysql: Permission denied</span><br><span class="line">190321 06:02:14 mysqld_safe Logging to '/var/lib/mysql/d240623581db.err'.</span><br><span class="line">190321 06:02:14 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql</span><br><span class="line">chown: /var/lib/mysql/60689c28e4a1.err: Permission denied</span><br><span class="line">chown: /var/lib/mysql/60689c28e4a1.pid: Permission denied</span><br><span class="line">chown: /var/lib/mysql/aria_log.00000001: Permission denied</span><br><span class="line">chown: /var/lib/mysql/aria_log_control: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_buffer_pool: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ibdata1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_logfile0: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_logfile1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ibtmp1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/multi-master.info: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000001: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000002: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000003: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000004: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000005: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000006: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000007: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000008: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000009: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.index: Permission denied</span><br><span class="line">chown: /var/lib/mysql/owncloud: Permission denied</span><br><span class="line">chown: /var/lib/mysql/performance_schema: Permission denied</span><br><span class="line">chown: /var/lib/mysql: Permission denied</span><br><span class="line">chown: /var/lib/mysql: Permission denied</span><br></pre></td></tr></table></figure><p>原因分析是：<br>SELinux 造成的<br>有以下 4 中解决方法：</p><ol><li><code>setenforce 0</code> : 临时关闭 </li><li><code>vi /etc/selinux/config</code> ： 将 <code>SELINUX=enforcing</code> 改为 <code>SELINUX=disabled</code> ，重启</li><li>在docker run 中加入 <code>--privileged=true</code> 给容器加上特定权限</li><li>修改 SELinux 规则 <code>chcon -t mysqld_db_t  -R /opt/docker/mysql/data</code></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      解决 Docker 容器挂载宿主机上的目录时出现 Permission denied 的错误
-    
-    </summary>
-    
-      <category term="Docker篇" scheme="http://blog.joylau.cn/categories/Docker%E7%AF%87/"/>
-    
-    
-      <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
     
   </entry>
   
