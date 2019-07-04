@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2019-06-29T16:01:06.367Z</updated>
+  <updated>2019-07-04T16:01:05.503Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Gradle 配置代理</title>
+    <link href="http://blog.joylau.cn/2019/07/04/Gradle-Proxy/"/>
+    <id>http://blog.joylau.cn/2019/07/04/Gradle-Proxy/</id>
+    <published>2019-07-04T06:52:04.000Z</published>
+    <updated>2019-07-04T16:01:05.503Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>用 gradle 构建经常失败,主要是国内网络的原因,这时候配置 gradle 使用代理,构建过程要轻松许多</p><h3 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h3><ol><li><p>JVM system properties<br>例如:<br>System.setProperty(‘http.proxyHost’, ‘<a href="http://www.somehost.org&#39;" target="_blank" rel="noopener">www.somehost.org&#39;</a>)</p></li><li><p>配置 gradle.properties</p></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">## http</span><br><span class="line">systemProp.http.proxyHost=www.somehost.org</span><br><span class="line">systemProp.http.proxyPort=8080</span><br><span class="line">systemProp.http.proxyUser=userid</span><br><span class="line">systemProp.http.proxyPassword=password</span><br><span class="line">systemProp.http.nonProxyHosts=*.nonproxyrepos.com|localhost</span><br><span class="line"></span><br><span class="line">## https</span><br><span class="line">systemProp.https.proxyHost=www.somehost.org</span><br><span class="line">systemProp.https.proxyPort=8080</span><br><span class="line">systemProp.https.proxyUser=userid</span><br><span class="line">systemProp.https.proxyPassword=password</span><br><span class="line">systemProp.https.nonProxyHosts=*.nonproxyrepos.com|localhost</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      用 gradle 构建经常失败,主要是国内网络的原因,这时候配置代理,构建过程要轻松许多
+    
+    </summary>
+    
+      <category term="Gradle篇" scheme="http://blog.joylau.cn/categories/Gradle%E7%AF%87/"/>
+    
+    
+      <category term="Gradle" scheme="http://blog.joylau.cn/tags/Gradle/"/>
+    
+  </entry>
   
   <entry>
     <title>群晖系列 --- 使用群晖搭建 Docker 私有仓库并管理</title>
@@ -430,28 +452,6 @@
     <summary type="html">
     
       OpenCV 提供的 API 是直接根据路径读取图片的,那么该如何读取 byte[] 的图片呢?
-    
-    </summary>
-    
-      <category term="OpenCV篇" scheme="http://blog.joylau.cn/categories/OpenCV%E7%AF%87/"/>
-    
-    
-      <category term="OpenCV" scheme="http://blog.joylau.cn/tags/OpenCV/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OpenCV 基础知识与概念</title>
-    <link href="http://blog.joylau.cn/2019/03/28/OpenCV-Basic/"/>
-    <id>http://blog.joylau.cn/2019/03/28/OpenCV-Basic/</id>
-    <published>2019-03-28T08:10:51.000Z</published>
-    <updated>2019-04-03T02:48:24.772Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h2 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h2><h3 id="数字图像"><a href="#数字图像" class="headerlink" title="数字图像"></a>数字图像</h3><p>数字图像指的是现在的图像都是以二维数字表示，每个像素的灰度值均由一个数字表示，范围为0-255(2^8)</p><h3 id="二值图像"><a href="#二值图像" class="headerlink" title="二值图像"></a>二值图像</h3><p>图像中每个像素的灰度值仅可取0或1，即不是取黑，就是取白，二值图像可理解为黑白图像</p><h3 id="灰度图像"><a href="#灰度图像" class="headerlink" title="灰度图像"></a>灰度图像</h3><p>图像中每个像素可以由0-255的灰度值表示，具体表现为从全黑到全白中间有255个介于中间的灰色值可以取</p><h3 id="彩色图像"><a href="#彩色图像" class="headerlink" title="彩色图像"></a>彩色图像</h3><p>每幅图像是由三幅灰度图像组合而成，依次表示红绿蓝三通道的灰度值，即我们熟知的RGB，此时彩色图像要视为三维的 <code>[height，width, 3]</code></p><h2 id="CvType"><a href="#CvType" class="headerlink" title="CvType"></a>CvType</h2><h3 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h3><p>OpenCV 中，图像可以分别为1，2，3，4 通道</p><ul><li>通道为灰度图；</li><li>通道的图像是RGB555和RGB565。2通道图在程序处理中会用到，如傅里叶变换，可能会用到，一个通道为实数，一个通道为虚数，主要是编程方便。RGB555是16位的，2个字节，5+6+5，第一字节的前5位是R，后三位+第二字节是G，第二字节后5位是B，可见对原图像进行压缩了</li><li>通道为彩色图（RGB）；</li><li>通道为 RGBA ，是RGB加上一个A通道，也叫alpha通道，表示透明度，PNG图像是一种典型的4通道图像。alpha通道可以赋值0到1，或者0到255，表示透明到不透明</li></ul><p>常使用的是1，3，4通道； 2通道不常见</p><h3 id="组合规则"><a href="#组合规则" class="headerlink" title="组合规则"></a>组合规则</h3><p><code>CV_[bite](U|S|F)C[channels]</code></p><p>bite : 比特数，位数。 有 8bite，16bite，32bite，64bite,对应在 Mat 中，每个像素的所占的空间大小，8位即 CV_8</p><p>U|S|F ：</p><pre><code>- U : unsigned int , 无符号整形- S : signed int , 有符号整形- F : float , 单精度浮点型,float类型本身即有符号</code></pre><p>这里的有符号、无符号是针对图像二进制编码来讲的。我在写的过程中大多数情况下都是使用的无符号，即 CV_8U ,CV_16U，当有计算时可能会介入有符号（存在负数），没学过 C++，对底层也一知半解，望高手解答。</p><p>C (channels)：图像的通道数</p><p>比如: <code>CV_8UC3</code> 即 8位无符号的3通道（RGB 彩色）图像</p><h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><p>8U</p><pre><code>- 说明：无符号的8位图- 值：CV_8UC1,CV_8UC2,CV_8UC3,CV_8UC4- 通道取值范围：0~255</code></pre><p>8S</p><pre><code>- 说明：有符号的8位图- 值：CV_8SC1,CV_8SC2,CV_8SC3,CV_8SC4- 通道取值范围：-128~127</code></pre><p>16U</p><pre><code>- 说明：无符号的16位图- 值：CV_16UC1,CV_16UC2,CV_16UC3,CV_16UC4- 通道取值范围：0~65535</code></pre><p>16S</p><pre><code>- 说明：有符号的16位图- 值：CV_16SC1,CV_16SC2,CV_16SC3,CV_16SC4- 通道取值范围：-32768~32767</code></pre><p>32S</p><pre><code>- 说明：无符号的32位图- 值：CV_32SC1,CV_32SC2,CV_32SC3,CV_32SC4- 通道取值范围：2147483648~2147483647</code></pre><p>32F</p><pre><code>- 说明：浮点型32位图- 值：CV_32FC1,CV_32FC2,CV_32FC3,CV_32FC4- 通道取值范围：1.18*(10(-38次方))~3.40*(10(38次方))</code></pre><p>64F</p><pre><code>- 说明：浮点型64位图-值：CV_64FC1,CV_64FC2,CV_64FC3,CV_64FC4- 通道取值范围：2.23*(10(-308次方))~1.79*(10(308次方))</code></pre><p>1U</p><pre><code>- 说明：1位- 值：IPL_DEPTH_1U- 通道取值范围：0~1</code></pre><h2 id="色彩空间"><a href="#色彩空间" class="headerlink" title="色彩空间"></a>色彩空间</h2><h3 id="常见的色彩空间"><a href="#常见的色彩空间" class="headerlink" title="常见的色彩空间"></a>常见的色彩空间</h3><ul><li>RGB</li><li>HSV</li><li>HIS</li><li>YCRCB</li><li>YUV</li></ul><h3 id="HSV"><a href="#HSV" class="headerlink" title="HSV"></a>HSV</h3><p>HSV分别是色调（Hue），饱和度（Saturation）和亮度（Value）</p><p>H调整颜色；S越大，图像色彩越丰富，颜色越鲜艳；V越大，图像越亮</p><h4 id="HSV颜色取值范围"><a href="#HSV颜色取值范围" class="headerlink" title="HSV颜色取值范围"></a>HSV颜色取值范围</h4><ol><li><p>H:0— 180 : 之所以不是 360,是因为 8 位图 最大是 255,360 已经超出范围,以 180 为限定</p></li><li><p>S: 0— 255</p></li><li><p>V: 0— 255</p></li></ol><p>记住下面这张图, 可使用这张图中的范围来查找某种颜色</p><p><img src="http://image.joylau.cn/blog/OpenCV-HSV.png" alt="HSV"></p><h4 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h4><p><code>Imgproc.cvtColor(src,det,Imgproc.COLOR_BGR2HSV);</code></p>]]></content>
-    
-    <summary type="html">
-    
-      记录一下一些学习数字图像处理的基础知识与概念
     
     </summary>
     

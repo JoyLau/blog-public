@@ -4,6 +4,34 @@
   
     
     <entry>
+      <title><![CDATA[Gradle 配置代理]]></title>
+      <url>http://blog.joylau.cn/2019/07/04/Gradle-Proxy/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>用 gradle 构建经常失败,主要是国内网络的原因,这时候配置 gradle 使用代理,构建过程要轻松许多</p>
+<h3 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h3><ol>
+<li><p>JVM system properties<br>例如:<br>System.setProperty(‘http.proxyHost’, ‘<a href="http://www.somehost.org&#39;" target="_blank" rel="noopener">www.somehost.org&#39;</a>)</p>
+</li>
+<li><p>配置 gradle.properties</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">## http</span><br><span class="line">systemProp.http.proxyHost=www.somehost.org</span><br><span class="line">systemProp.http.proxyPort=8080</span><br><span class="line">systemProp.http.proxyUser=userid</span><br><span class="line">systemProp.http.proxyPassword=password</span><br><span class="line">systemProp.http.nonProxyHosts=*.nonproxyrepos.com|localhost</span><br><span class="line"></span><br><span class="line">## https</span><br><span class="line">systemProp.https.proxyHost=www.somehost.org</span><br><span class="line">systemProp.https.proxyPort=8080</span><br><span class="line">systemProp.https.proxyUser=userid</span><br><span class="line">systemProp.https.proxyPassword=password</span><br><span class="line">systemProp.https.nonProxyHosts=*.nonproxyrepos.com|localhost</span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> Gradle篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Gradle </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[群晖系列 --- 使用群晖搭建 Docker 私有仓库并管理]]></title>
       <url>http://blog.joylau.cn/2019/06/29/Synology-Private-Docker/</url>
       <content type="html"><![CDATA[<a id="more"></a>
