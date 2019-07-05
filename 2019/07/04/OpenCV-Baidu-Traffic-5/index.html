@@ -1,0 +1,9241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+<!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="keywords" content="JoyLau,joylau,JoyLau  blog,刘法,刘法的博客,刘法的技术与思考,Java,JavaWeb,Web程序员,Web开发,JavaWeb开发,个人博客">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="JoyLau">
+
+
+
+<meta name="description" content="基于 OpenCV 的百度路况研究记录的性能测试报告">
+<meta name="keywords" content="OpenCV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试">
+<meta property="og:url" content="http://blog.joylau.cn/2019/07/04/OpenCV-Baidu-Traffic-5/index.html">
+<meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
+<meta property="og:description" content="基于 OpenCV 的百度路况研究记录的性能测试报告">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://image.joylau.cn/blog/ts_cpu-overview.gif">
+<meta property="og:image" content="http://image.joylau.cn/blog/ts_cpu.gif">
+<meta property="og:image" content="http://image.joylau.cn/blog/ts_thread.gif">
+<meta property="og:image" content="http://image.joylau.cn/blog/ts_thread_waiting.png">
+<meta property="og:image" content="http://image.joylau.cn/blog/ts_memory.gif">
+<meta property="og:image" content="http://image.joylau.cn/blog/ts_disk.gif">
+<meta property="og:image" content="http://image.joylau.cn/blog/ts_networks.gif">
+<meta property="og:image" content="http://image.joylau.cn/blog/ts_file_system.png">
+<meta property="og:updated_time" content="2019-07-05T16:01:06.329Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试">
+<meta name="twitter:description" content="基于 OpenCV 的百度路况研究记录的性能测试报告">
+<meta name="twitter:image" content="http://image.joylau.cn/blog/ts_cpu-overview.gif">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="//image.joylau.cn/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试 | JoyLau&#39;s Blog | JoyLau</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script src="//image.joylau.cn/blog/chaffle.min.js"></script>
+
+
+    <script src="//image.joylau.cn/blog/lettering.js"></script>
+    <script src="//image.joylau.cn/blog/textillate.js"></script>
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a class="chaffle" data-lang="en" href="/">JoyLau</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle chaffle" data-lang="zh">刘法的技术学习与思考</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li class="chaffle" data-lang="zh">菜单</li>
+                        <li class="chaffle" data-lang="zh">标签</li>
+                        
+                        <li class="chaffle" data-lang="zh">友情链接</li>
+                        
+                        
+                        <li class="chaffle" data-lang="zh">关于</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a class="chaffle" data-lang="zh" href="/">主页</a></li>
+                        
+                            <li><a class="chaffle" data-lang="zh" href="/archives/">所有文章</a></li>
+                        
+                            <li><a class="chaffle" data-lang="zh" href="/tags/">标签云</a></li>
+                        
+                            <li><a class="chaffle" data-lang="zh" href="/about/">留言板</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:2587038142@qq.com" title="Email"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/" title="知乎"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/JoyLau" title="GitHub"></a>
+                            
+                                <a class="fa Facebook" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
+                            
+                                <a class="fa 网易云音乐" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/">CMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crond/">Crond</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker-Swarm/">Docker Swarm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker-Compose/">Docker-Compose</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Druid/">Druid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka/">Eureka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Filebeat/">Filebeat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPG/">GPG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GZIP/">GZIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntelliJ-IDEA/">IntelliJ IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/">JSON</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LibreOffice/">LibreOffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logstash/">Logstash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lombok/">Lombok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MATE-Desktop/">MATE Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacBookPro/">MacBookPro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mapper/">Mapper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/">OpenCV</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenOffice/">OpenOffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenVPN/">OpenVPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PageHelper/">PageHelper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugins/">Plugins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/">RabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSL/">SSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBatch/">SpringBatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringSecurity/">SpringSecurity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger2/">Swagger2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YUM/">YUM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroC-Ice/">ZeroC Ice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/emoji/">emoji</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/license/">license</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openoffice/">openoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ownCloud/">ownCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技能/">技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常折腾/">日常折腾</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘挂载/">磁盘挂载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/群晖/">群晖</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.joylau.cn/">JoyLau</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://life.joylau.cn/">JoyLau’life</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://media.joylau.cn/">JoyMedia</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blog.wfyvv.com/">wfyvv</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://chaxiaoniu.oschina.io/">CherryChang</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，与大家分享交流，同时能够对这些技术进行备忘，以便日后查询</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">JoyLau</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">JoyLau</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">刘法的技术学习与思考</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">留言板</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:2587038142@qq.com" title="Email"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/" title="知乎"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/JoyLau" title="GitHub"></a>
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于">
+</nav>
+      <div class="body-wrap"><article id="post-OpenCV-Baidu-Traffic-5" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/07/04/OpenCV-Baidu-Traffic-5/" class="article-date">
+      <time datetime="2019-07-04T07:13:13.000Z" itemprop="datePublished">2019-07-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+           <div id="jl_custom">
+                
+
+                
+            </div>
+        <h1 class="article-title article-tlt-h" itemprop="name">OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试</h1>
+      </header>
+      
+      <div class="article-info article-info-post">
+        <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/OpenCV篇/">OpenCV篇</a>
+    </div>
+        <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/">OpenCV</a></li></ul>
+    </div>
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><p>基于百度地图的路况分析服务目前实现的功能有:</p>
+<ol>
+<li>根据给定的行政区划(省,市,区,县等)获取任一缩放等级下的瓦片</li>
+<li>提取分析拥堵数据(拥堵等级,拥堵点集,拥堵空间数据,拥堵距离,道路代码,省,市,区县,镇,街区,道路名,道路车道数,拥堵方向,拥堵描述,拥堵趋势变化,拥堵时长)</li>
+<li>分析性能监控,日志记录</li>
+</ol>
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性:"></a>特性:</h4><ol>
+<li>简单: 提供 web 界面,可支持在线查看,分析,调试路况信息</li>
+<li>实时: 提供根据给定的区域范围 (矩形区域) 实时分析该区域拥堵数据的 API</li>
+<li>弹性: 分布式计算分析,弹性增加或减少机器</li>
+<li>易部署: 所有复杂的环境和依赖都已打包成镜像, 一条命令即可部署启动</li>
+<li>少依赖: 服务的地理位置解析不依赖互联网接口及其他第三方接口,全部由分析服务自己解决</li>
+</ol>
+<h4 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h4><p>输入: 百度地图瓦片<br>输出: 拥堵数据</p>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><h4 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h4><p>合肥市(行政区划范围)第 17 等级下的全部地图瓦片, 共 <code>61172</code> 张瓦片,其中有道路信息(截止 2019-06-28) 的有 <code>18092</code> 张 </p>
+<h4 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h4><ol start="0">
+<li>centOS : 7.5</li>
+<li>openjdk : 12</li>
+<li>openCV : 4.1.0</li>
+<li>docker : 18.09</li>
+<li>docker compose : 1.24.0</li>
+<li>redis : 5.0.5</li>
+<li>zookeeper : 3.5.5</li>
+<li>rabbitMQ : 3.7.15-management</li>
+<li>mariadb: 10.4.6</li>
+<li>postgres : 11.4</li>
+<li>node : 8.16.0</li>
+<li>PostGIS : 2.5.0</li>
+<li>PHP : 7.3.6 (PHP-pgsql, PHP-intl)</li>
+<li>Apache : 2.4</li>
+</ol>
+<h4 id="测试机器配置"><a href="#测试机器配置" class="headerlink" title="测试机器配置"></a>测试机器配置</h4><p>暂时没有找到更合适的机器用来长时间运行测试,本次使用的是公司的机器,运行着几个服务,但对系统资源的占用都不大,可以忽略对本次性能测试的影响  </p>
+<p>CPU : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz x64 / 单颗 / 8 核<br>GPU : Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor Integrated Graphics Controller / 核显<br>MEM : 组合内存, 4 个插槽, 共 24G</p>
+<pre><code>1. 8G Kingston DDR3 1600MHz
+2. 8G Kingston DDR3 1600MHz
+3. 4G Samsung DDR3 1600MHz
+4. 4G Hynix/Hyundai DDR3 1600MHz
+</code></pre><p>DISK : INTEL SSDSC2BW240H6 240G<br>NETWORK : Intel Corporation Ethernet Connection I217-LM 1000M</p>
+<p>网络 : 中国电信 50M 对等宽带, PING 60ms, 抖动 28ms, 丢包 0% (公司网络正常使用情况下)<br>局域网 : 100M 局域网</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><h4 id="测试说明"><a href="#测试说明" class="headerlink" title="测试说明"></a>测试说明</h4><ol>
+<li>服务部署在单台机器上, 线程跑满</li>
+<li>目前已稳定运行一星期 (<strong>2019年06月28日 - 2019年07月05日</strong>)</li>
+<li>从中抽取其中 1 天的分析数据 (<strong>2019年07月04日13:12:40 - 2019年07月05日13:12:40</strong>)</li>
+<li>本次测试的功能包含了已经开发完成的全部功能</li>
+</ol>
+<h4 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h4><table>
+<thead>
+<tr>
+<th>id</th>
+<th>task_id</th>
+<th>max_thread_size</th>
+<th>start_time</th>
+<th>end_time</th>
+<th>total_time</th>
+<th>network_time</th>
+<th>all_count</th>
+<th>error_count</th>
+<th>congest_count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>102</td>
+<td>1562217160232</td>
+<td>8</td>
+<td>2019-07-04 13:12:40</td>
+<td>2019-07-04 13:14:16</td>
+<td>95</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>152</td>
+</tr>
+<tr>
+<td>103</td>
+<td>1562217280004</td>
+<td>8</td>
+<td>2019-07-04 13:14:40</td>
+<td>2019-07-04 13:16:18</td>
+<td>98</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>153</td>
+</tr>
+<tr>
+<td>104</td>
+<td>1562217400004</td>
+<td>8</td>
+<td>2019-07-04 13:16:40</td>
+<td>2019-07-04 13:18:14</td>
+<td>94</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>142</td>
+</tr>
+<tr>
+<td>105</td>
+<td>1562217520003</td>
+<td>8</td>
+<td>2019-07-04 13:18:40</td>
+<td>2019-07-04 13:20:18</td>
+<td>98</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>151</td>
+</tr>
+<tr>
+<td>106</td>
+<td>1562217640004</td>
+<td>8</td>
+<td>2019-07-04 13:20:40</td>
+<td>2019-07-04 13:22:21</td>
+<td>101</td>
+<td>90</td>
+<td>18902</td>
+<td>0</td>
+<td>158</td>
+</tr>
+<tr>
+<td>107</td>
+<td>1562217760003</td>
+<td>8</td>
+<td>2019-07-04 13:22:40</td>
+<td>2019-07-04 13:24:13</td>
+<td>93</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>166</td>
+</tr>
+<tr>
+<td>108</td>
+<td>1562217880004</td>
+<td>8</td>
+<td>2019-07-04 13:24:40</td>
+<td>2019-07-04 13:26:16</td>
+<td>96</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>165</td>
+</tr>
+<tr>
+<td>109</td>
+<td>1562218000003</td>
+<td>8</td>
+<td>2019-07-04 13:26:40</td>
+<td>2019-07-04 13:28:17</td>
+<td>97</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>157</td>
+</tr>
+<tr>
+<td>110</td>
+<td>1562218120004</td>
+<td>8</td>
+<td>2019-07-04 13:28:40</td>
+<td>2019-07-04 13:30:18</td>
+<td>98</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>171</td>
+</tr>
+<tr>
+<td>111</td>
+<td>1562218240003</td>
+<td>8</td>
+<td>2019-07-04 13:30:40</td>
+<td>2019-07-04 13:32:16</td>
+<td>96</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>164</td>
+</tr>
+<tr>
+<td>112</td>
+<td>1562218360003</td>
+<td>8</td>
+<td>2019-07-04 13:32:40</td>
+<td>2019-07-04 13:34:29</td>
+<td>109</td>
+<td>97</td>
+<td>18902</td>
+<td>0</td>
+<td>163</td>
+</tr>
+<tr>
+<td>113</td>
+<td>1562218480004</td>
+<td>8</td>
+<td>2019-07-04 13:34:40</td>
+<td>2019-07-04 13:36:16</td>
+<td>96</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>169</td>
+</tr>
+<tr>
+<td>114</td>
+<td>1562218600003</td>
+<td>8</td>
+<td>2019-07-04 13:36:40</td>
+<td>2019-07-04 13:38:17</td>
+<td>97</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>182</td>
+</tr>
+<tr>
+<td>115</td>
+<td>1562218720003</td>
+<td>8</td>
+<td>2019-07-04 13:38:40</td>
+<td>2019-07-04 13:40:17</td>
+<td>97</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>182</td>
+</tr>
+<tr>
+<td>116</td>
+<td>1562218840004</td>
+<td>8</td>
+<td>2019-07-04 13:40:40</td>
+<td>2019-07-04 13:42:18</td>
+<td>98</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>201</td>
+</tr>
+<tr>
+<td>117</td>
+<td>1562218960004</td>
+<td>8</td>
+<td>2019-07-04 13:42:40</td>
+<td>2019-07-04 13:44:19</td>
+<td>99</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>196</td>
+</tr>
+<tr>
+<td>118</td>
+<td>1562219080003</td>
+<td>8</td>
+<td>2019-07-04 13:44:40</td>
+<td>2019-07-04 13:46:16</td>
+<td>96</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>188</td>
+</tr>
+<tr>
+<td>119</td>
+<td>1562219200003</td>
+<td>8</td>
+<td>2019-07-04 13:46:40</td>
+<td>2019-07-04 13:48:15</td>
+<td>95</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>174</td>
+</tr>
+<tr>
+<td>120</td>
+<td>1562219320003</td>
+<td>8</td>
+<td>2019-07-04 13:48:40</td>
+<td>2019-07-04 13:50:16</td>
+<td>96</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>176</td>
+</tr>
+<tr>
+<td>121</td>
+<td>1562219440003</td>
+<td>8</td>
+<td>2019-07-04 13:50:40</td>
+<td>2019-07-04 13:52:19</td>
+<td>99</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>195</td>
+</tr>
+<tr>
+<td>122</td>
+<td>1562219560003</td>
+<td>8</td>
+<td>2019-07-04 13:52:40</td>
+<td>2019-07-04 13:54:26</td>
+<td>106</td>
+<td>93</td>
+<td>18902</td>
+<td>0</td>
+<td>182</td>
+</tr>
+<tr>
+<td>123</td>
+<td>1562219680003</td>
+<td>8</td>
+<td>2019-07-04 13:54:40</td>
+<td>2019-07-04 13:56:27</td>
+<td>107</td>
+<td>95</td>
+<td>18902</td>
+<td>0</td>
+<td>185</td>
+</tr>
+<tr>
+<td>124</td>
+<td>1562219800003</td>
+<td>8</td>
+<td>2019-07-04 13:56:40</td>
+<td>2019-07-04 13:58:19</td>
+<td>99</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>189</td>
+</tr>
+<tr>
+<td>125</td>
+<td>1562219920003</td>
+<td>8</td>
+<td>2019-07-04 13:58:40</td>
+<td>2019-07-04 14:00:28</td>
+<td>108</td>
+<td>96</td>
+<td>18902</td>
+<td>0</td>
+<td>195</td>
+</tr>
+<tr>
+<td>126</td>
+<td>1562220040003</td>
+<td>8</td>
+<td>2019-07-04 14:00:40</td>
+<td>2019-07-04 14:02:25</td>
+<td>105</td>
+<td>93</td>
+<td>18902</td>
+<td>0</td>
+<td>209</td>
+</tr>
+<tr>
+<td>127</td>
+<td>1562220160003</td>
+<td>8</td>
+<td>2019-07-04 14:02:40</td>
+<td>2019-07-04 14:04:22</td>
+<td>102</td>
+<td>90</td>
+<td>18902</td>
+<td>0</td>
+<td>205</td>
+</tr>
+<tr>
+<td>128</td>
+<td>1562220280003</td>
+<td>8</td>
+<td>2019-07-04 14:04:40</td>
+<td>2019-07-04 14:06:18</td>
+<td>98</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>214</td>
+</tr>
+<tr>
+<td>129</td>
+<td>1562220400003</td>
+<td>8</td>
+<td>2019-07-04 14:06:40</td>
+<td>2019-07-04 14:08:16</td>
+<td>96</td>
+<td>83</td>
+<td>18901</td>
+<td>1</td>
+<td>219</td>
+</tr>
+<tr>
+<td>130</td>
+<td>1562220520003</td>
+<td>8</td>
+<td>2019-07-04 14:08:40</td>
+<td>2019-07-04 14:10:16</td>
+<td>96</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>226</td>
+</tr>
+<tr>
+<td>131</td>
+<td>1562220640003</td>
+<td>8</td>
+<td>2019-07-04 14:10:40</td>
+<td>2019-07-04 14:12:19</td>
+<td>99</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>240</td>
+</tr>
+<tr>
+<td>132</td>
+<td>1562220760002</td>
+<td>8</td>
+<td>2019-07-04 14:12:40</td>
+<td>2019-07-04 14:14:18</td>
+<td>98</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>228</td>
+</tr>
+<tr>
+<td>133</td>
+<td>1562220880003</td>
+<td>8</td>
+<td>2019-07-04 14:14:40</td>
+<td>2019-07-04 14:16:22</td>
+<td>102</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>219</td>
+</tr>
+<tr>
+<td>134</td>
+<td>1562221000003</td>
+<td>8</td>
+<td>2019-07-04 14:16:40</td>
+<td>2019-07-04 14:18:17</td>
+<td>97</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>230</td>
+</tr>
+<tr>
+<td>135</td>
+<td>1562221120003</td>
+<td>8</td>
+<td>2019-07-04 14:18:40</td>
+<td>2019-07-04 14:20:20</td>
+<td>100</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>247</td>
+</tr>
+<tr>
+<td>136</td>
+<td>1562221240003</td>
+<td>8</td>
+<td>2019-07-04 14:20:40</td>
+<td>2019-07-04 14:22:17</td>
+<td>97</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>218</td>
+</tr>
+<tr>
+<td>137</td>
+<td>1562221360003</td>
+<td>8</td>
+<td>2019-07-04 14:22:40</td>
+<td>2019-07-04 14:24:18</td>
+<td>98</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>256</td>
+</tr>
+<tr>
+<td>138</td>
+<td>1562221480003</td>
+<td>8</td>
+<td>2019-07-04 14:24:40</td>
+<td>2019-07-04 14:26:23</td>
+<td>103</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>233</td>
+</tr>
+<tr>
+<td>139</td>
+<td>1562221600003</td>
+<td>8</td>
+<td>2019-07-04 14:26:40</td>
+<td>2019-07-04 14:28:23</td>
+<td>103</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>246</td>
+</tr>
+<tr>
+<td>140</td>
+<td>1562221720003</td>
+<td>8</td>
+<td>2019-07-04 14:28:40</td>
+<td>2019-07-04 14:30:22</td>
+<td>102</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>241</td>
+</tr>
+<tr>
+<td>141</td>
+<td>1562221840003</td>
+<td>8</td>
+<td>2019-07-04 14:30:40</td>
+<td>2019-07-04 14:32:15</td>
+<td>95</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>231</td>
+</tr>
+<tr>
+<td>142</td>
+<td>1562221960004</td>
+<td>8</td>
+<td>2019-07-04 14:32:40</td>
+<td>2019-07-04 14:34:17</td>
+<td>97</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>241</td>
+</tr>
+<tr>
+<td>143</td>
+<td>1562222080003</td>
+<td>8</td>
+<td>2019-07-04 14:34:40</td>
+<td>2019-07-04 14:36:17</td>
+<td>97</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>241</td>
+</tr>
+<tr>
+<td>144</td>
+<td>1562222200002</td>
+<td>8</td>
+<td>2019-07-04 14:36:40</td>
+<td>2019-07-04 14:38:52</td>
+<td>132</td>
+<td>120</td>
+<td>18902</td>
+<td>0</td>
+<td>258</td>
+</tr>
+<tr>
+<td>145</td>
+<td>1562222340003</td>
+<td>8</td>
+<td>2019-07-04 14:39:00</td>
+<td>2019-07-04 14:40:37</td>
+<td>97</td>
+<td>82</td>
+<td>18901</td>
+<td>1</td>
+<td>263</td>
+</tr>
+<tr>
+<td>146</td>
+<td>1562222500043</td>
+<td>8</td>
+<td>2019-07-04 14:41:40</td>
+<td>2019-07-04 14:43:14</td>
+<td>94</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>219</td>
+</tr>
+<tr>
+<td>147</td>
+<td>1562222620004</td>
+<td>8</td>
+<td>2019-07-04 14:43:40</td>
+<td>2019-07-04 14:45:29</td>
+<td>109</td>
+<td>97</td>
+<td>18902</td>
+<td>0</td>
+<td>208</td>
+</tr>
+<tr>
+<td>148</td>
+<td>1562222740004</td>
+<td>8</td>
+<td>2019-07-04 14:45:40</td>
+<td>2019-07-04 14:47:18</td>
+<td>98</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>219</td>
+</tr>
+<tr>
+<td>149</td>
+<td>1562222860004</td>
+<td>8</td>
+<td>2019-07-04 14:47:40</td>
+<td>2019-07-04 14:49:12</td>
+<td>92</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>237</td>
+</tr>
+<tr>
+<td>150</td>
+<td>1562222980003</td>
+<td>8</td>
+<td>2019-07-04 14:49:40</td>
+<td>2019-07-04 14:51:12</td>
+<td>92</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>212</td>
+</tr>
+<tr>
+<td>151</td>
+<td>1562223100004</td>
+<td>8</td>
+<td>2019-07-04 14:51:40</td>
+<td>2019-07-04 14:53:15</td>
+<td>95</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>248</td>
+</tr>
+<tr>
+<td>152</td>
+<td>1562223220003</td>
+<td>8</td>
+<td>2019-07-04 14:53:40</td>
+<td>2019-07-04 14:55:22</td>
+<td>102</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>242</td>
+</tr>
+<tr>
+<td>153</td>
+<td>1562223340003</td>
+<td>8</td>
+<td>2019-07-04 14:55:40</td>
+<td>2019-07-04 14:57:18</td>
+<td>98</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>258</td>
+</tr>
+<tr>
+<td>154</td>
+<td>1562223460003</td>
+<td>8</td>
+<td>2019-07-04 14:57:40</td>
+<td>2019-07-04 14:59:19</td>
+<td>99</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>258</td>
+</tr>
+<tr>
+<td>155</td>
+<td>1562223580003</td>
+<td>8</td>
+<td>2019-07-04 14:59:40</td>
+<td>2019-07-04 15:01:24</td>
+<td>104</td>
+<td>88</td>
+<td>18900</td>
+<td>2</td>
+<td>270</td>
+</tr>
+<tr>
+<td>156</td>
+<td>1562223700003</td>
+<td>8</td>
+<td>2019-07-04 15:01:40</td>
+<td>2019-07-04 15:03:18</td>
+<td>98</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>254</td>
+</tr>
+<tr>
+<td>157</td>
+<td>1562223820003</td>
+<td>8</td>
+<td>2019-07-04 15:03:40</td>
+<td>2019-07-04 15:05:57</td>
+<td>137</td>
+<td>113</td>
+<td>18902</td>
+<td>0</td>
+<td>253</td>
+</tr>
+<tr>
+<td>158</td>
+<td>1562223960003</td>
+<td>8</td>
+<td>2019-07-04 15:06:00</td>
+<td>2019-07-04 15:07:50</td>
+<td>110</td>
+<td>97</td>
+<td>18902</td>
+<td>0</td>
+<td>262</td>
+</tr>
+<tr>
+<td>159</td>
+<td>1562224080004</td>
+<td>8</td>
+<td>2019-07-04 15:08:00</td>
+<td>2019-07-04 15:09:44</td>
+<td>104</td>
+<td>90</td>
+<td>18902</td>
+<td>0</td>
+<td>250</td>
+</tr>
+<tr>
+<td>160</td>
+<td>1562224200003</td>
+<td>8</td>
+<td>2019-07-04 15:10:00</td>
+<td>2019-07-04 15:11:44</td>
+<td>104</td>
+<td>92</td>
+<td>18902</td>
+<td>0</td>
+<td>244</td>
+</tr>
+<tr>
+<td>161</td>
+<td>1562224320004</td>
+<td>8</td>
+<td>2019-07-04 15:12:00</td>
+<td>2019-07-04 15:13:46</td>
+<td>106</td>
+<td>93</td>
+<td>18902</td>
+<td>0</td>
+<td>259</td>
+</tr>
+<tr>
+<td>162</td>
+<td>1562224440003</td>
+<td>8</td>
+<td>2019-07-04 15:14:00</td>
+<td>2019-07-04 15:15:42</td>
+<td>102</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>239</td>
+</tr>
+<tr>
+<td>163</td>
+<td>1562224560003</td>
+<td>8</td>
+<td>2019-07-04 15:16:00</td>
+<td>2019-07-04 15:17:43</td>
+<td>103</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>269</td>
+</tr>
+<tr>
+<td>164</td>
+<td>1562224680003</td>
+<td>8</td>
+<td>2019-07-04 15:18:00</td>
+<td>2019-07-04 15:19:35</td>
+<td>95</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>241</td>
+</tr>
+<tr>
+<td>165</td>
+<td>1562224780003</td>
+<td>8</td>
+<td>2019-07-04 15:19:40</td>
+<td>2019-07-04 15:21:19</td>
+<td>99</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>254</td>
+</tr>
+<tr>
+<td>166</td>
+<td>1562224900003</td>
+<td>8</td>
+<td>2019-07-04 15:21:40</td>
+<td>2019-07-04 15:23:16</td>
+<td>96</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>262</td>
+</tr>
+<tr>
+<td>167</td>
+<td>1562225020003</td>
+<td>8</td>
+<td>2019-07-04 15:23:40</td>
+<td>2019-07-04 15:25:16</td>
+<td>96</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>268</td>
+</tr>
+<tr>
+<td>168</td>
+<td>1562225140003</td>
+<td>8</td>
+<td>2019-07-04 15:25:40</td>
+<td>2019-07-04 15:27:35</td>
+<td>115</td>
+<td>99</td>
+<td>18900</td>
+<td>2</td>
+<td>254</td>
+</tr>
+<tr>
+<td>169</td>
+<td>1562225260003</td>
+<td>8</td>
+<td>2019-07-04 15:27:40</td>
+<td>2019-07-04 15:29:52</td>
+<td>132</td>
+<td>118</td>
+<td>18902</td>
+<td>0</td>
+<td>252</td>
+</tr>
+<tr>
+<td>170</td>
+<td>1562225400003</td>
+<td>8</td>
+<td>2019-07-04 15:30:00</td>
+<td>2019-07-04 15:31:57</td>
+<td>117</td>
+<td>103</td>
+<td>18902</td>
+<td>0</td>
+<td>240</td>
+</tr>
+<tr>
+<td>171</td>
+<td>1562225520003</td>
+<td>8</td>
+<td>2019-07-04 15:32:00</td>
+<td>2019-07-04 15:33:44</td>
+<td>104</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>260</td>
+</tr>
+<tr>
+<td>172</td>
+<td>1562225640003</td>
+<td>8</td>
+<td>2019-07-04 15:34:00</td>
+<td>2019-07-04 15:35:42</td>
+<td>102</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>264</td>
+</tr>
+<tr>
+<td>173</td>
+<td>1562225760003</td>
+<td>8</td>
+<td>2019-07-04 15:36:00</td>
+<td>2019-07-04 15:37:41</td>
+<td>101</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>277</td>
+</tr>
+<tr>
+<td>174</td>
+<td>1562225880002</td>
+<td>8</td>
+<td>2019-07-04 15:38:00</td>
+<td>2019-07-04 15:39:50</td>
+<td>110</td>
+<td>94</td>
+<td>18900</td>
+<td>2</td>
+<td>275</td>
+</tr>
+<tr>
+<td>175</td>
+<td>1562226000003</td>
+<td>8</td>
+<td>2019-07-04 15:40:00</td>
+<td>2019-07-04 15:41:39</td>
+<td>99</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>281</td>
+</tr>
+<tr>
+<td>176</td>
+<td>1562226100003</td>
+<td>8</td>
+<td>2019-07-04 15:41:40</td>
+<td>2019-07-04 15:43:17</td>
+<td>97</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>304</td>
+</tr>
+<tr>
+<td>177</td>
+<td>1562226220004</td>
+<td>8</td>
+<td>2019-07-04 15:43:40</td>
+<td>2019-07-04 15:45:21</td>
+<td>101</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>269</td>
+</tr>
+<tr>
+<td>178</td>
+<td>1562226340002</td>
+<td>8</td>
+<td>2019-07-04 15:45:40</td>
+<td>2019-07-04 15:47:24</td>
+<td>104</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>284</td>
+</tr>
+<tr>
+<td>179</td>
+<td>1562226460003</td>
+<td>8</td>
+<td>2019-07-04 15:47:40</td>
+<td>2019-07-04 15:49:22</td>
+<td>102</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>290</td>
+</tr>
+<tr>
+<td>180</td>
+<td>1562226580003</td>
+<td>8</td>
+<td>2019-07-04 15:49:40</td>
+<td>2019-07-04 15:51:23</td>
+<td>103</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>287</td>
+</tr>
+<tr>
+<td>181</td>
+<td>1562226700003</td>
+<td>8</td>
+<td>2019-07-04 15:51:40</td>
+<td>2019-07-04 15:53:21</td>
+<td>101</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>260</td>
+</tr>
+<tr>
+<td>182</td>
+<td>1562226820003</td>
+<td>8</td>
+<td>2019-07-04 15:53:40</td>
+<td>2019-07-04 15:55:34</td>
+<td>114</td>
+<td>99</td>
+<td>18902</td>
+<td>0</td>
+<td>276</td>
+</tr>
+<tr>
+<td>183</td>
+<td>1562226940004</td>
+<td>8</td>
+<td>2019-07-04 15:55:40</td>
+<td>2019-07-04 15:57:50</td>
+<td>130</td>
+<td>113</td>
+<td>18901</td>
+<td>1</td>
+<td>280</td>
+</tr>
+<tr>
+<td>184</td>
+<td>1562227080003</td>
+<td>8</td>
+<td>2019-07-04 15:58:00</td>
+<td>2019-07-04 15:59:54</td>
+<td>114</td>
+<td>99</td>
+<td>18902</td>
+<td>0</td>
+<td>259</td>
+</tr>
+<tr>
+<td>185</td>
+<td>1562227200003</td>
+<td>8</td>
+<td>2019-07-04 16:00:00</td>
+<td>2019-07-04 16:01:43</td>
+<td>103</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>258</td>
+</tr>
+<tr>
+<td>186</td>
+<td>1562227320003</td>
+<td>8</td>
+<td>2019-07-04 16:02:00</td>
+<td>2019-07-04 16:03:48</td>
+<td>108</td>
+<td>94</td>
+<td>18902</td>
+<td>0</td>
+<td>265</td>
+</tr>
+<tr>
+<td>187</td>
+<td>1562227440002</td>
+<td>8</td>
+<td>2019-07-04 16:04:00</td>
+<td>2019-07-04 16:05:39</td>
+<td>99</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>257</td>
+</tr>
+<tr>
+<td>188</td>
+<td>1562227540003</td>
+<td>8</td>
+<td>2019-07-04 16:05:40</td>
+<td>2019-07-04 16:07:21</td>
+<td>101</td>
+<td>87</td>
+<td>18901</td>
+<td>1</td>
+<td>251</td>
+</tr>
+<tr>
+<td>189</td>
+<td>1562227660003</td>
+<td>8</td>
+<td>2019-07-04 16:07:40</td>
+<td>2019-07-04 16:09:20</td>
+<td>100</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>239</td>
+</tr>
+<tr>
+<td>190</td>
+<td>1562227780003</td>
+<td>8</td>
+<td>2019-07-04 16:09:40</td>
+<td>2019-07-04 16:11:28</td>
+<td>108</td>
+<td>95</td>
+<td>18902</td>
+<td>0</td>
+<td>264</td>
+</tr>
+<tr>
+<td>191</td>
+<td>1562227900003</td>
+<td>8</td>
+<td>2019-07-04 16:11:40</td>
+<td>2019-07-04 16:13:15</td>
+<td>95</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>284</td>
+</tr>
+<tr>
+<td>192</td>
+<td>1562228020002</td>
+<td>8</td>
+<td>2019-07-04 16:13:40</td>
+<td>2019-07-04 16:15:46</td>
+<td>126</td>
+<td>114</td>
+<td>18902</td>
+<td>0</td>
+<td>247</td>
+</tr>
+<tr>
+<td>193</td>
+<td>1562228160003</td>
+<td>8</td>
+<td>2019-07-04 16:16:00</td>
+<td>2019-07-04 16:17:39</td>
+<td>99</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>274</td>
+</tr>
+<tr>
+<td>194</td>
+<td>1562228260003</td>
+<td>8</td>
+<td>2019-07-04 16:17:40</td>
+<td>2019-07-04 16:19:22</td>
+<td>102</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>269</td>
+</tr>
+<tr>
+<td>195</td>
+<td>1562228380003</td>
+<td>8</td>
+<td>2019-07-04 16:19:40</td>
+<td>2019-07-04 16:21:28</td>
+<td>108</td>
+<td>93</td>
+<td>18901</td>
+<td>1</td>
+<td>252</td>
+</tr>
+<tr>
+<td>196</td>
+<td>1562228500004</td>
+<td>8</td>
+<td>2019-07-04 16:21:40</td>
+<td>2019-07-04 16:23:33</td>
+<td>113</td>
+<td>97</td>
+<td>18899</td>
+<td>3</td>
+<td>252</td>
+</tr>
+<tr>
+<td>197</td>
+<td>1562228620003</td>
+<td>8</td>
+<td>2019-07-04 16:23:40</td>
+<td>2019-07-04 16:25:46</td>
+<td>126</td>
+<td>101</td>
+<td>18898</td>
+<td>4</td>
+<td>269</td>
+</tr>
+<tr>
+<td>198</td>
+<td>1562228760002</td>
+<td>8</td>
+<td>2019-07-04 16:26:00</td>
+<td>2019-07-04 16:27:51</td>
+<td>111</td>
+<td>93</td>
+<td>18899</td>
+<td>3</td>
+<td>250</td>
+</tr>
+<tr>
+<td>199</td>
+<td>1562228880003</td>
+<td>8</td>
+<td>2019-07-04 16:28:00</td>
+<td>2019-07-04 16:29:35</td>
+<td>95</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>247</td>
+</tr>
+<tr>
+<td>200</td>
+<td>1562228980002</td>
+<td>8</td>
+<td>2019-07-04 16:29:40</td>
+<td>2019-07-04 16:31:22</td>
+<td>102</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>252</td>
+</tr>
+<tr>
+<td>201</td>
+<td>1562229100003</td>
+<td>8</td>
+<td>2019-07-04 16:31:40</td>
+<td>2019-07-04 16:33:21</td>
+<td>101</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>226</td>
+</tr>
+<tr>
+<td>202</td>
+<td>1562229220003</td>
+<td>8</td>
+<td>2019-07-04 16:33:40</td>
+<td>2019-07-04 16:35:23</td>
+<td>103</td>
+<td>91</td>
+<td>18902</td>
+<td>0</td>
+<td>241</td>
+</tr>
+<tr>
+<td>203</td>
+<td>1562229340002</td>
+<td>8</td>
+<td>2019-07-04 16:35:40</td>
+<td>2019-07-04 16:37:28</td>
+<td>108</td>
+<td>91</td>
+<td>18899</td>
+<td>3</td>
+<td>266</td>
+</tr>
+<tr>
+<td>204</td>
+<td>1562229460003</td>
+<td>8</td>
+<td>2019-07-04 16:37:40</td>
+<td>2019-07-04 16:40:41</td>
+<td>181</td>
+<td>159</td>
+<td>18901</td>
+<td>1</td>
+<td>264</td>
+</tr>
+<tr>
+<td>205</td>
+<td>1562229660003</td>
+<td>8</td>
+<td>2019-07-04 16:41:00</td>
+<td>2019-07-04 16:42:42</td>
+<td>102</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>260</td>
+</tr>
+<tr>
+<td>206</td>
+<td>1562229780002</td>
+<td>8</td>
+<td>2019-07-04 16:43:00</td>
+<td>2019-07-04 16:44:36</td>
+<td>96</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>240</td>
+</tr>
+<tr>
+<td>207</td>
+<td>1562229880003</td>
+<td>8</td>
+<td>2019-07-04 16:44:40</td>
+<td>2019-07-04 16:46:20</td>
+<td>100</td>
+<td>85</td>
+<td>18901</td>
+<td>1</td>
+<td>242</td>
+</tr>
+<tr>
+<td>208</td>
+<td>1562230000003</td>
+<td>8</td>
+<td>2019-07-04 16:46:40</td>
+<td>2019-07-04 16:48:22</td>
+<td>102</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>243</td>
+</tr>
+<tr>
+<td>209</td>
+<td>1562230120002</td>
+<td>8</td>
+<td>2019-07-04 16:48:40</td>
+<td>2019-07-04 16:50:33</td>
+<td>113</td>
+<td>88</td>
+<td>18900</td>
+<td>2</td>
+<td>255</td>
+</tr>
+<tr>
+<td>210</td>
+<td>1562230240003</td>
+<td>8</td>
+<td>2019-07-04 16:50:40</td>
+<td>2019-07-04 16:52:27</td>
+<td>106</td>
+<td>93</td>
+<td>18902</td>
+<td>0</td>
+<td>244</td>
+</tr>
+<tr>
+<td>211</td>
+<td>1562230360003</td>
+<td>8</td>
+<td>2019-07-04 16:52:40</td>
+<td>2019-07-04 16:54:21</td>
+<td>101</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>276</td>
+</tr>
+<tr>
+<td>212</td>
+<td>1562230480003</td>
+<td>8</td>
+<td>2019-07-04 16:54:40</td>
+<td>2019-07-04 16:56:25</td>
+<td>105</td>
+<td>89</td>
+<td>18900</td>
+<td>2</td>
+<td>284</td>
+</tr>
+<tr>
+<td>213</td>
+<td>1562230600003</td>
+<td>8</td>
+<td>2019-07-04 16:56:40</td>
+<td>2019-07-04 16:58:19</td>
+<td>99</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>290</td>
+</tr>
+<tr>
+<td>214</td>
+<td>1562230720002</td>
+<td>8</td>
+<td>2019-07-04 16:58:40</td>
+<td>2019-07-04 17:00:57</td>
+<td>137</td>
+<td>97</td>
+<td>18894</td>
+<td>8</td>
+<td>282</td>
+</tr>
+<tr>
+<td>215</td>
+<td>1562230860003</td>
+<td>8</td>
+<td>2019-07-04 17:01:00</td>
+<td>2019-07-04 17:02:40</td>
+<td>100</td>
+<td>85</td>
+<td>18901</td>
+<td>1</td>
+<td>264</td>
+</tr>
+<tr>
+<td>216</td>
+<td>1562230980002</td>
+<td>8</td>
+<td>2019-07-04 17:03:00</td>
+<td>2019-07-04 17:04:50</td>
+<td>110</td>
+<td>97</td>
+<td>18902</td>
+<td>0</td>
+<td>296</td>
+</tr>
+<tr>
+<td>217</td>
+<td>1562231100003</td>
+<td>8</td>
+<td>2019-07-04 17:05:00</td>
+<td>2019-07-04 17:06:58</td>
+<td>118</td>
+<td>102</td>
+<td>18902</td>
+<td>0</td>
+<td>267</td>
+</tr>
+<tr>
+<td>218</td>
+<td>1562231220003</td>
+<td>8</td>
+<td>2019-07-04 17:07:00</td>
+<td>2019-07-04 17:09:00</td>
+<td>120</td>
+<td>103</td>
+<td>18902</td>
+<td>0</td>
+<td>289</td>
+</tr>
+<tr>
+<td>219</td>
+<td>1562231380003</td>
+<td>8</td>
+<td>2019-07-04 17:09:40</td>
+<td>2019-07-04 17:11:37</td>
+<td>117</td>
+<td>101</td>
+<td>18902</td>
+<td>0</td>
+<td>360</td>
+</tr>
+<tr>
+<td>220</td>
+<td>1562231500003</td>
+<td>8</td>
+<td>2019-07-04 17:11:40</td>
+<td>2019-07-04 17:13:46</td>
+<td>126</td>
+<td>100</td>
+<td>18901</td>
+<td>1</td>
+<td>347</td>
+</tr>
+<tr>
+<td>221</td>
+<td>1562231640003</td>
+<td>8</td>
+<td>2019-07-04 17:14:00</td>
+<td>2019-07-04 17:16:21</td>
+<td>141</td>
+<td>122</td>
+<td>18901</td>
+<td>1</td>
+<td>342</td>
+</tr>
+<tr>
+<td>222</td>
+<td>1562231800003</td>
+<td>8</td>
+<td>2019-07-04 17:16:40</td>
+<td>2019-07-04 17:18:52</td>
+<td>132</td>
+<td>113</td>
+<td>18902</td>
+<td>0</td>
+<td>354</td>
+</tr>
+<tr>
+<td>223</td>
+<td>1562231940003</td>
+<td>8</td>
+<td>2019-07-04 17:19:00</td>
+<td>2019-07-04 17:20:56</td>
+<td>116</td>
+<td>97</td>
+<td>18901</td>
+<td>1</td>
+<td>349</td>
+</tr>
+<tr>
+<td>224</td>
+<td>1562232060003</td>
+<td>8</td>
+<td>2019-07-04 17:21:00</td>
+<td>2019-07-04 17:22:51</td>
+<td>111</td>
+<td>93</td>
+<td>18902</td>
+<td>0</td>
+<td>352</td>
+</tr>
+<tr>
+<td>225</td>
+<td>1562232180003</td>
+<td>8</td>
+<td>2019-07-04 17:23:00</td>
+<td>2019-07-04 17:24:44</td>
+<td>104</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>375</td>
+</tr>
+<tr>
+<td>226</td>
+<td>1562232300002</td>
+<td>8</td>
+<td>2019-07-04 17:25:00</td>
+<td>2019-07-04 17:27:01</td>
+<td>121</td>
+<td>91</td>
+<td>18899</td>
+<td>3</td>
+<td>385</td>
+</tr>
+<tr>
+<td>227</td>
+<td>1562232460002</td>
+<td>8</td>
+<td>2019-07-04 17:27:40</td>
+<td>2019-07-04 17:29:30</td>
+<td>110</td>
+<td>91</td>
+<td>18902</td>
+<td>0</td>
+<td>390</td>
+</tr>
+<tr>
+<td>228</td>
+<td>1562232580002</td>
+<td>8</td>
+<td>2019-07-04 17:29:40</td>
+<td>2019-07-04 17:31:47</td>
+<td>127</td>
+<td>105</td>
+<td>18900</td>
+<td>2</td>
+<td>407</td>
+</tr>
+<tr>
+<td>229</td>
+<td>1562232720003</td>
+<td>8</td>
+<td>2019-07-04 17:32:00</td>
+<td>2019-07-04 17:33:46</td>
+<td>105</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>415</td>
+</tr>
+<tr>
+<td>230</td>
+<td>1562232840003</td>
+<td>8</td>
+<td>2019-07-04 17:34:00</td>
+<td>2019-07-04 17:35:54</td>
+<td>114</td>
+<td>82</td>
+<td>18901</td>
+<td>1</td>
+<td>431</td>
+</tr>
+<tr>
+<td>231</td>
+<td>1562232960003</td>
+<td>8</td>
+<td>2019-07-04 17:36:00</td>
+<td>2019-07-04 17:37:56</td>
+<td>116</td>
+<td>93</td>
+<td>18901</td>
+<td>1</td>
+<td>468</td>
+</tr>
+<tr>
+<td>232</td>
+<td>1562233080003</td>
+<td>8</td>
+<td>2019-07-04 17:38:00</td>
+<td>2019-07-04 17:39:45</td>
+<td>105</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>499</td>
+</tr>
+<tr>
+<td>233</td>
+<td>1562233200003</td>
+<td>8</td>
+<td>2019-07-04 17:40:00</td>
+<td>2019-07-04 17:41:47</td>
+<td>107</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>490</td>
+</tr>
+<tr>
+<td>234</td>
+<td>1562233320002</td>
+<td>8</td>
+<td>2019-07-04 17:42:00</td>
+<td>2019-07-04 17:43:55</td>
+<td>115</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>499</td>
+</tr>
+<tr>
+<td>235</td>
+<td>1562233440002</td>
+<td>8</td>
+<td>2019-07-04 17:44:00</td>
+<td>2019-07-04 17:45:42</td>
+<td>102</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>491</td>
+</tr>
+<tr>
+<td>236</td>
+<td>1562233560003</td>
+<td>8</td>
+<td>2019-07-04 17:46:00</td>
+<td>2019-07-04 17:47:49</td>
+<td>109</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>506</td>
+</tr>
+<tr>
+<td>237</td>
+<td>1562233680002</td>
+<td>8</td>
+<td>2019-07-04 17:48:00</td>
+<td>2019-07-04 17:49:46</td>
+<td>106</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>521</td>
+</tr>
+<tr>
+<td>238</td>
+<td>1562233800002</td>
+<td>8</td>
+<td>2019-07-04 17:50:00</td>
+<td>2019-07-04 17:51:49</td>
+<td>109</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>547</td>
+</tr>
+<tr>
+<td>239</td>
+<td>1562233920003</td>
+<td>8</td>
+<td>2019-07-04 17:52:00</td>
+<td>2019-07-04 17:53:48</td>
+<td>108</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>558</td>
+</tr>
+<tr>
+<td>240</td>
+<td>1562234040003</td>
+<td>8</td>
+<td>2019-07-04 17:54:00</td>
+<td>2019-07-04 17:55:51</td>
+<td>111</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>557</td>
+</tr>
+<tr>
+<td>241</td>
+<td>1562234160002</td>
+<td>8</td>
+<td>2019-07-04 17:56:00</td>
+<td>2019-07-04 17:57:51</td>
+<td>111</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>574</td>
+</tr>
+<tr>
+<td>242</td>
+<td>1562234280002</td>
+<td>8</td>
+<td>2019-07-04 17:58:00</td>
+<td>2019-07-04 17:59:51</td>
+<td>111</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>613</td>
+</tr>
+<tr>
+<td>243</td>
+<td>1562234400003</td>
+<td>8</td>
+<td>2019-07-04 18:00:00</td>
+<td>2019-07-04 18:01:58</td>
+<td>118</td>
+<td>84</td>
+<td>18899</td>
+<td>3</td>
+<td>577</td>
+</tr>
+<tr>
+<td>244</td>
+<td>1562234520003</td>
+<td>8</td>
+<td>2019-07-04 18:02:00</td>
+<td>2019-07-04 18:03:45</td>
+<td>105</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>568</td>
+</tr>
+<tr>
+<td>245</td>
+<td>1562234640003</td>
+<td>8</td>
+<td>2019-07-04 18:04:00</td>
+<td>2019-07-04 18:05:47</td>
+<td>107</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>554</td>
+</tr>
+<tr>
+<td>246</td>
+<td>1562234760003</td>
+<td>8</td>
+<td>2019-07-04 18:06:00</td>
+<td>2019-07-04 18:07:47</td>
+<td>107</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>561</td>
+</tr>
+<tr>
+<td>247</td>
+<td>1562234880002</td>
+<td>8</td>
+<td>2019-07-04 18:08:00</td>
+<td>2019-07-04 18:09:46</td>
+<td>106</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>533</td>
+</tr>
+<tr>
+<td>248</td>
+<td>1562235000003</td>
+<td>8</td>
+<td>2019-07-04 18:10:00</td>
+<td>2019-07-04 18:11:47</td>
+<td>107</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>530</td>
+</tr>
+<tr>
+<td>249</td>
+<td>1562235120002</td>
+<td>8</td>
+<td>2019-07-04 18:12:00</td>
+<td>2019-07-04 18:13:48</td>
+<td>108</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>571</td>
+</tr>
+<tr>
+<td>250</td>
+<td>1562235240002</td>
+<td>8</td>
+<td>2019-07-04 18:14:00</td>
+<td>2019-07-04 18:15:52</td>
+<td>112</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>582</td>
+</tr>
+<tr>
+<td>251</td>
+<td>1562235360003</td>
+<td>8</td>
+<td>2019-07-04 18:16:00</td>
+<td>2019-07-04 18:17:50</td>
+<td>110</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>602</td>
+</tr>
+<tr>
+<td>252</td>
+<td>1562235480003</td>
+<td>8</td>
+<td>2019-07-04 18:18:00</td>
+<td>2019-07-04 18:19:48</td>
+<td>108</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>571</td>
+</tr>
+<tr>
+<td>253</td>
+<td>1562235600002</td>
+<td>8</td>
+<td>2019-07-04 18:20:00</td>
+<td>2019-07-04 18:21:52</td>
+<td>112</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>588</td>
+</tr>
+<tr>
+<td>254</td>
+<td>1562235720003</td>
+<td>8</td>
+<td>2019-07-04 18:22:00</td>
+<td>2019-07-04 18:23:53</td>
+<td>113</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>588</td>
+</tr>
+<tr>
+<td>255</td>
+<td>1562235840003</td>
+<td>8</td>
+<td>2019-07-04 18:24:00</td>
+<td>2019-07-04 18:25:48</td>
+<td>108</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>565</td>
+</tr>
+<tr>
+<td>256</td>
+<td>1562235960002</td>
+<td>8</td>
+<td>2019-07-04 18:26:00</td>
+<td>2019-07-04 18:27:51</td>
+<td>111</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>577</td>
+</tr>
+<tr>
+<td>257</td>
+<td>1562236080003</td>
+<td>8</td>
+<td>2019-07-04 18:28:00</td>
+<td>2019-07-04 18:29:48</td>
+<td>108</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>558</td>
+</tr>
+<tr>
+<td>258</td>
+<td>1562236200003</td>
+<td>8</td>
+<td>2019-07-04 18:30:00</td>
+<td>2019-07-04 18:31:50</td>
+<td>110</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>555</td>
+</tr>
+<tr>
+<td>259</td>
+<td>1562236320002</td>
+<td>8</td>
+<td>2019-07-04 18:32:00</td>
+<td>2019-07-04 18:33:50</td>
+<td>110</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>547</td>
+</tr>
+<tr>
+<td>260</td>
+<td>1562236440004</td>
+<td>8</td>
+<td>2019-07-04 18:34:00</td>
+<td>2019-07-04 18:35:46</td>
+<td>106</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>546</td>
+</tr>
+<tr>
+<td>261</td>
+<td>1562236560003</td>
+<td>8</td>
+<td>2019-07-04 18:36:00</td>
+<td>2019-07-04 18:37:51</td>
+<td>111</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>508</td>
+</tr>
+<tr>
+<td>262</td>
+<td>1562236680003</td>
+<td>8</td>
+<td>2019-07-04 18:38:00</td>
+<td>2019-07-04 18:39:46</td>
+<td>106</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>509</td>
+</tr>
+<tr>
+<td>263</td>
+<td>1562236800003</td>
+<td>8</td>
+<td>2019-07-04 18:40:00</td>
+<td>2019-07-04 18:41:54</td>
+<td>114</td>
+<td>83</td>
+<td>18901</td>
+<td>1</td>
+<td>511</td>
+</tr>
+<tr>
+<td>264</td>
+<td>1562236920003</td>
+<td>8</td>
+<td>2019-07-04 18:42:00</td>
+<td>2019-07-04 18:43:49</td>
+<td>109</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>517</td>
+</tr>
+<tr>
+<td>265</td>
+<td>1562237040003</td>
+<td>8</td>
+<td>2019-07-04 18:44:00</td>
+<td>2019-07-04 18:45:45</td>
+<td>105</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>493</td>
+</tr>
+<tr>
+<td>266</td>
+<td>1562237160003</td>
+<td>8</td>
+<td>2019-07-04 18:46:00</td>
+<td>2019-07-04 18:47:45</td>
+<td>105</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>498</td>
+</tr>
+<tr>
+<td>267</td>
+<td>1562237280003</td>
+<td>8</td>
+<td>2019-07-04 18:48:00</td>
+<td>2019-07-04 18:49:47</td>
+<td>107</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>482</td>
+</tr>
+<tr>
+<td>268</td>
+<td>1562237400002</td>
+<td>8</td>
+<td>2019-07-04 18:50:00</td>
+<td>2019-07-04 18:51:44</td>
+<td>104</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>466</td>
+</tr>
+<tr>
+<td>269</td>
+<td>1562237520003</td>
+<td>8</td>
+<td>2019-07-04 18:52:00</td>
+<td>2019-07-04 18:53:44</td>
+<td>104</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>458</td>
+</tr>
+<tr>
+<td>270</td>
+<td>1562237640003</td>
+<td>8</td>
+<td>2019-07-04 18:54:00</td>
+<td>2019-07-04 18:55:42</td>
+<td>102</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>458</td>
+</tr>
+<tr>
+<td>271</td>
+<td>1562237760002</td>
+<td>8</td>
+<td>2019-07-04 18:56:00</td>
+<td>2019-07-04 18:57:42</td>
+<td>102</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>453</td>
+</tr>
+<tr>
+<td>272</td>
+<td>1562237880003</td>
+<td>8</td>
+<td>2019-07-04 18:58:00</td>
+<td>2019-07-04 18:59:44</td>
+<td>104</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>440</td>
+</tr>
+<tr>
+<td>273</td>
+<td>1562238000002</td>
+<td>8</td>
+<td>2019-07-04 19:00:00</td>
+<td>2019-07-04 19:01:41</td>
+<td>101</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>403</td>
+</tr>
+<tr>
+<td>274</td>
+<td>1562238120003</td>
+<td>8</td>
+<td>2019-07-04 19:02:00</td>
+<td>2019-07-04 19:03:41</td>
+<td>101</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>381</td>
+</tr>
+<tr>
+<td>275</td>
+<td>1562238240002</td>
+<td>8</td>
+<td>2019-07-04 19:04:00</td>
+<td>2019-07-04 19:05:41</td>
+<td>101</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>349</td>
+</tr>
+<tr>
+<td>276</td>
+<td>1562238360002</td>
+<td>8</td>
+<td>2019-07-04 19:06:00</td>
+<td>2019-07-04 19:07:37</td>
+<td>97</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>352</td>
+</tr>
+<tr>
+<td>277</td>
+<td>1562238460003</td>
+<td>8</td>
+<td>2019-07-04 19:07:40</td>
+<td>2019-07-04 19:09:16</td>
+<td>96</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>329</td>
+</tr>
+<tr>
+<td>278</td>
+<td>1562238580002</td>
+<td>8</td>
+<td>2019-07-04 19:09:40</td>
+<td>2019-07-04 19:11:18</td>
+<td>98</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>354</td>
+</tr>
+<tr>
+<td>279</td>
+<td>1562238700002</td>
+<td>8</td>
+<td>2019-07-04 19:11:40</td>
+<td>2019-07-04 19:13:17</td>
+<td>97</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>329</td>
+</tr>
+<tr>
+<td>280</td>
+<td>1562238820003</td>
+<td>8</td>
+<td>2019-07-04 19:13:40</td>
+<td>2019-07-04 19:15:15</td>
+<td>95</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>320</td>
+</tr>
+<tr>
+<td>281</td>
+<td>1562238940002</td>
+<td>8</td>
+<td>2019-07-04 19:15:40</td>
+<td>2019-07-04 19:17:15</td>
+<td>95</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>296</td>
+</tr>
+<tr>
+<td>282</td>
+<td>1562239060002</td>
+<td>8</td>
+<td>2019-07-04 19:17:40</td>
+<td>2019-07-04 19:19:17</td>
+<td>97</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>303</td>
+</tr>
+<tr>
+<td>283</td>
+<td>1562239180003</td>
+<td>8</td>
+<td>2019-07-04 19:19:40</td>
+<td>2019-07-04 19:21:17</td>
+<td>97</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>311</td>
+</tr>
+<tr>
+<td>284</td>
+<td>1562239300002</td>
+<td>8</td>
+<td>2019-07-04 19:21:40</td>
+<td>2019-07-04 19:23:16</td>
+<td>96</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>304</td>
+</tr>
+<tr>
+<td>285</td>
+<td>1562239420003</td>
+<td>8</td>
+<td>2019-07-04 19:23:40</td>
+<td>2019-07-04 19:25:12</td>
+<td>92</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>314</td>
+</tr>
+<tr>
+<td>286</td>
+<td>1562239540003</td>
+<td>8</td>
+<td>2019-07-04 19:25:40</td>
+<td>2019-07-04 19:27:13</td>
+<td>93</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>280</td>
+</tr>
+<tr>
+<td>287</td>
+<td>1562239660003</td>
+<td>8</td>
+<td>2019-07-04 19:27:40</td>
+<td>2019-07-04 19:29:11</td>
+<td>91</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>299</td>
+</tr>
+<tr>
+<td>288</td>
+<td>1562239780002</td>
+<td>8</td>
+<td>2019-07-04 19:29:40</td>
+<td>2019-07-04 19:31:14</td>
+<td>94</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>312</td>
+</tr>
+<tr>
+<td>289</td>
+<td>1562239900002</td>
+<td>8</td>
+<td>2019-07-04 19:31:40</td>
+<td>2019-07-04 19:33:15</td>
+<td>95</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>269</td>
+</tr>
+<tr>
+<td>290</td>
+<td>1562240020002</td>
+<td>8</td>
+<td>2019-07-04 19:33:40</td>
+<td>2019-07-04 19:35:14</td>
+<td>94</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>264</td>
+</tr>
+<tr>
+<td>291</td>
+<td>1562240140003</td>
+<td>8</td>
+<td>2019-07-04 19:35:40</td>
+<td>2019-07-04 19:37:18</td>
+<td>98</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>243</td>
+</tr>
+<tr>
+<td>292</td>
+<td>1562240260002</td>
+<td>8</td>
+<td>2019-07-04 19:37:40</td>
+<td>2019-07-04 19:39:14</td>
+<td>94</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>262</td>
+</tr>
+<tr>
+<td>293</td>
+<td>1562240380003</td>
+<td>8</td>
+<td>2019-07-04 19:39:40</td>
+<td>2019-07-04 19:41:16</td>
+<td>96</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>275</td>
+</tr>
+<tr>
+<td>294</td>
+<td>1562240500003</td>
+<td>8</td>
+<td>2019-07-04 19:41:40</td>
+<td>2019-07-04 19:43:18</td>
+<td>98</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>269</td>
+</tr>
+<tr>
+<td>295</td>
+<td>1562240620003</td>
+<td>8</td>
+<td>2019-07-04 19:43:40</td>
+<td>2019-07-04 19:45:16</td>
+<td>96</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>268</td>
+</tr>
+<tr>
+<td>296</td>
+<td>1562240740003</td>
+<td>8</td>
+<td>2019-07-04 19:45:40</td>
+<td>2019-07-04 19:47:15</td>
+<td>95</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>258</td>
+</tr>
+<tr>
+<td>297</td>
+<td>1562240860003</td>
+<td>8</td>
+<td>2019-07-04 19:47:40</td>
+<td>2019-07-04 19:49:18</td>
+<td>98</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>261</td>
+</tr>
+<tr>
+<td>298</td>
+<td>1562240980002</td>
+<td>8</td>
+<td>2019-07-04 19:49:40</td>
+<td>2019-07-04 19:51:16</td>
+<td>96</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>264</td>
+</tr>
+<tr>
+<td>299</td>
+<td>1562241100003</td>
+<td>8</td>
+<td>2019-07-04 19:51:40</td>
+<td>2019-07-04 19:53:13</td>
+<td>93</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>256</td>
+</tr>
+<tr>
+<td>300</td>
+<td>1562241220003</td>
+<td>8</td>
+<td>2019-07-04 19:53:40</td>
+<td>2019-07-04 19:55:14</td>
+<td>94</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>280</td>
+</tr>
+<tr>
+<td>301</td>
+<td>1562241340002</td>
+<td>8</td>
+<td>2019-07-04 19:55:40</td>
+<td>2019-07-04 19:57:15</td>
+<td>95</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>278</td>
+</tr>
+<tr>
+<td>302</td>
+<td>1562241460003</td>
+<td>8</td>
+<td>2019-07-04 19:57:40</td>
+<td>2019-07-04 19:59:12</td>
+<td>92</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>265</td>
+</tr>
+<tr>
+<td>303</td>
+<td>1562241580003</td>
+<td>8</td>
+<td>2019-07-04 19:59:40</td>
+<td>2019-07-04 20:01:14</td>
+<td>94</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>258</td>
+</tr>
+<tr>
+<td>304</td>
+<td>1562241700003</td>
+<td>8</td>
+<td>2019-07-04 20:01:40</td>
+<td>2019-07-04 20:03:14</td>
+<td>94</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>265</td>
+</tr>
+<tr>
+<td>305</td>
+<td>1562241820003</td>
+<td>8</td>
+<td>2019-07-04 20:03:40</td>
+<td>2019-07-04 20:05:12</td>
+<td>92</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>266</td>
+</tr>
+<tr>
+<td>306</td>
+<td>1562241940003</td>
+<td>8</td>
+<td>2019-07-04 20:05:40</td>
+<td>2019-07-04 20:07:16</td>
+<td>96</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>296</td>
+</tr>
+<tr>
+<td>307</td>
+<td>1562242060002</td>
+<td>8</td>
+<td>2019-07-04 20:07:40</td>
+<td>2019-07-04 20:09:15</td>
+<td>95</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>296</td>
+</tr>
+<tr>
+<td>308</td>
+<td>1562242180002</td>
+<td>8</td>
+<td>2019-07-04 20:09:40</td>
+<td>2019-07-04 20:11:17</td>
+<td>97</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>306</td>
+</tr>
+<tr>
+<td>309</td>
+<td>1562242300003</td>
+<td>8</td>
+<td>2019-07-04 20:11:40</td>
+<td>2019-07-04 20:13:16</td>
+<td>96</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>291</td>
+</tr>
+<tr>
+<td>310</td>
+<td>1562242420003</td>
+<td>8</td>
+<td>2019-07-04 20:13:40</td>
+<td>2019-07-04 20:15:12</td>
+<td>92</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>267</td>
+</tr>
+<tr>
+<td>311</td>
+<td>1562242540002</td>
+<td>8</td>
+<td>2019-07-04 20:15:40</td>
+<td>2019-07-04 20:17:11</td>
+<td>91</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>255</td>
+</tr>
+<tr>
+<td>312</td>
+<td>1562242660003</td>
+<td>8</td>
+<td>2019-07-04 20:17:40</td>
+<td>2019-07-04 20:19:16</td>
+<td>96</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>273</td>
+</tr>
+<tr>
+<td>313</td>
+<td>1562242780003</td>
+<td>8</td>
+<td>2019-07-04 20:19:40</td>
+<td>2019-07-04 20:21:14</td>
+<td>94</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>284</td>
+</tr>
+<tr>
+<td>314</td>
+<td>1562242900002</td>
+<td>8</td>
+<td>2019-07-04 20:21:40</td>
+<td>2019-07-04 20:23:15</td>
+<td>95</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>260</td>
+</tr>
+<tr>
+<td>315</td>
+<td>1562243020003</td>
+<td>8</td>
+<td>2019-07-04 20:23:40</td>
+<td>2019-07-04 20:25:12</td>
+<td>92</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>266</td>
+</tr>
+<tr>
+<td>316</td>
+<td>1562243140003</td>
+<td>8</td>
+<td>2019-07-04 20:25:40</td>
+<td>2019-07-04 20:27:18</td>
+<td>98</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>269</td>
+</tr>
+<tr>
+<td>317</td>
+<td>1562243260008</td>
+<td>8</td>
+<td>2019-07-04 20:27:40</td>
+<td>2019-07-04 20:29:18</td>
+<td>98</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>297</td>
+</tr>
+<tr>
+<td>318</td>
+<td>1562243380003</td>
+<td>8</td>
+<td>2019-07-04 20:29:40</td>
+<td>2019-07-04 20:31:20</td>
+<td>100</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>289</td>
+</tr>
+<tr>
+<td>319</td>
+<td>1562243500002</td>
+<td>8</td>
+<td>2019-07-04 20:31:40</td>
+<td>2019-07-04 20:33:16</td>
+<td>96</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>264</td>
+</tr>
+<tr>
+<td>320</td>
+<td>1562243620002</td>
+<td>8</td>
+<td>2019-07-04 20:33:40</td>
+<td>2019-07-04 20:35:16</td>
+<td>96</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>278</td>
+</tr>
+<tr>
+<td>321</td>
+<td>1562243740002</td>
+<td>8</td>
+<td>2019-07-04 20:35:40</td>
+<td>2019-07-04 20:37:15</td>
+<td>95</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>269</td>
+</tr>
+<tr>
+<td>322</td>
+<td>1562243860003</td>
+<td>8</td>
+<td>2019-07-04 20:37:40</td>
+<td>2019-07-04 20:39:13</td>
+<td>93</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>264</td>
+</tr>
+<tr>
+<td>323</td>
+<td>1562243980002</td>
+<td>8</td>
+<td>2019-07-04 20:39:40</td>
+<td>2019-07-04 20:41:16</td>
+<td>96</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>236</td>
+</tr>
+<tr>
+<td>324</td>
+<td>1562244100002</td>
+<td>8</td>
+<td>2019-07-04 20:41:40</td>
+<td>2019-07-04 20:43:16</td>
+<td>96</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>248</td>
+</tr>
+<tr>
+<td>325</td>
+<td>1562244220002</td>
+<td>8</td>
+<td>2019-07-04 20:43:40</td>
+<td>2019-07-04 20:45:14</td>
+<td>94</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>273</td>
+</tr>
+<tr>
+<td>326</td>
+<td>1562244340002</td>
+<td>8</td>
+<td>2019-07-04 20:45:40</td>
+<td>2019-07-04 20:47:12</td>
+<td>92</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>256</td>
+</tr>
+<tr>
+<td>327</td>
+<td>1562244460004</td>
+<td>8</td>
+<td>2019-07-04 20:47:40</td>
+<td>2019-07-04 20:49:15</td>
+<td>95</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>274</td>
+</tr>
+<tr>
+<td>328</td>
+<td>1562244580003</td>
+<td>8</td>
+<td>2019-07-04 20:49:40</td>
+<td>2019-07-04 20:51:15</td>
+<td>95</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>284</td>
+</tr>
+<tr>
+<td>329</td>
+<td>1562244700002</td>
+<td>8</td>
+<td>2019-07-04 20:51:40</td>
+<td>2019-07-04 20:53:15</td>
+<td>95</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>276</td>
+</tr>
+<tr>
+<td>330</td>
+<td>1562244820002</td>
+<td>8</td>
+<td>2019-07-04 20:53:40</td>
+<td>2019-07-04 20:55:15</td>
+<td>95</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>235</td>
+</tr>
+<tr>
+<td>331</td>
+<td>1562244940003</td>
+<td>8</td>
+<td>2019-07-04 20:55:40</td>
+<td>2019-07-04 20:57:12</td>
+<td>92</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>250</td>
+</tr>
+<tr>
+<td>332</td>
+<td>1562245060003</td>
+<td>8</td>
+<td>2019-07-04 20:57:40</td>
+<td>2019-07-04 20:59:13</td>
+<td>93</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>273</td>
+</tr>
+<tr>
+<td>333</td>
+<td>1562245180003</td>
+<td>8</td>
+<td>2019-07-04 20:59:40</td>
+<td>2019-07-04 21:01:10</td>
+<td>90</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>259</td>
+</tr>
+<tr>
+<td>334</td>
+<td>1562245300002</td>
+<td>8</td>
+<td>2019-07-04 21:01:40</td>
+<td>2019-07-04 21:03:13</td>
+<td>93</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>214</td>
+</tr>
+<tr>
+<td>335</td>
+<td>1562245420002</td>
+<td>8</td>
+<td>2019-07-04 21:03:40</td>
+<td>2019-07-04 21:05:11</td>
+<td>91</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>226</td>
+</tr>
+<tr>
+<td>336</td>
+<td>1562245540002</td>
+<td>8</td>
+<td>2019-07-04 21:05:40</td>
+<td>2019-07-04 21:07:15</td>
+<td>95</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>237</td>
+</tr>
+<tr>
+<td>337</td>
+<td>1562245660002</td>
+<td>8</td>
+<td>2019-07-04 21:07:40</td>
+<td>2019-07-04 21:09:11</td>
+<td>91</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>219</td>
+</tr>
+<tr>
+<td>338</td>
+<td>1562245780003</td>
+<td>8</td>
+<td>2019-07-04 21:09:40</td>
+<td>2019-07-04 21:11:19</td>
+<td>99</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>236</td>
+</tr>
+<tr>
+<td>339</td>
+<td>1562245900002</td>
+<td>8</td>
+<td>2019-07-04 21:11:40</td>
+<td>2019-07-04 21:13:10</td>
+<td>90</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>220</td>
+</tr>
+<tr>
+<td>340</td>
+<td>1562246020003</td>
+<td>8</td>
+<td>2019-07-04 21:13:40</td>
+<td>2019-07-04 21:15:13</td>
+<td>93</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>222</td>
+</tr>
+<tr>
+<td>341</td>
+<td>1562246140003</td>
+<td>8</td>
+<td>2019-07-04 21:15:40</td>
+<td>2019-07-04 21:17:10</td>
+<td>90</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>197</td>
+</tr>
+<tr>
+<td>342</td>
+<td>1562246260003</td>
+<td>8</td>
+<td>2019-07-04 21:17:40</td>
+<td>2019-07-04 21:19:11</td>
+<td>91</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>218</td>
+</tr>
+<tr>
+<td>343</td>
+<td>1562246380002</td>
+<td>8</td>
+<td>2019-07-04 21:19:40</td>
+<td>2019-07-04 21:21:15</td>
+<td>95</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>212</td>
+</tr>
+<tr>
+<td>344</td>
+<td>1562246500003</td>
+<td>8</td>
+<td>2019-07-04 21:21:40</td>
+<td>2019-07-04 21:23:14</td>
+<td>94</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>199</td>
+</tr>
+<tr>
+<td>345</td>
+<td>1562246620002</td>
+<td>8</td>
+<td>2019-07-04 21:23:40</td>
+<td>2019-07-04 21:25:14</td>
+<td>94</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>208</td>
+</tr>
+<tr>
+<td>346</td>
+<td>1562246740003</td>
+<td>8</td>
+<td>2019-07-04 21:25:40</td>
+<td>2019-07-04 21:27:14</td>
+<td>94</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>212</td>
+</tr>
+<tr>
+<td>347</td>
+<td>1562246860003</td>
+<td>8</td>
+<td>2019-07-04 21:27:40</td>
+<td>2019-07-04 21:29:14</td>
+<td>94</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>211</td>
+</tr>
+<tr>
+<td>348</td>
+<td>1562246980003</td>
+<td>8</td>
+<td>2019-07-04 21:29:40</td>
+<td>2019-07-04 21:31:16</td>
+<td>96</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>207</td>
+</tr>
+<tr>
+<td>349</td>
+<td>1562247100003</td>
+<td>8</td>
+<td>2019-07-04 21:31:40</td>
+<td>2019-07-04 21:33:19</td>
+<td>99</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>212</td>
+</tr>
+<tr>
+<td>350</td>
+<td>1562247220002</td>
+<td>8</td>
+<td>2019-07-04 21:33:40</td>
+<td>2019-07-04 21:35:20</td>
+<td>100</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>193</td>
+</tr>
+<tr>
+<td>351</td>
+<td>1562247340002</td>
+<td>8</td>
+<td>2019-07-04 21:35:40</td>
+<td>2019-07-04 21:37:23</td>
+<td>103</td>
+<td>91</td>
+<td>18902</td>
+<td>0</td>
+<td>198</td>
+</tr>
+<tr>
+<td>352</td>
+<td>1562247460002</td>
+<td>8</td>
+<td>2019-07-04 21:37:40</td>
+<td>2019-07-04 21:39:16</td>
+<td>96</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>206</td>
+</tr>
+<tr>
+<td>353</td>
+<td>1562247580002</td>
+<td>8</td>
+<td>2019-07-04 21:39:40</td>
+<td>2019-07-04 21:41:13</td>
+<td>93</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>223</td>
+</tr>
+<tr>
+<td>354</td>
+<td>1562247700002</td>
+<td>8</td>
+<td>2019-07-04 21:41:40</td>
+<td>2019-07-04 21:43:14</td>
+<td>94</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>210</td>
+</tr>
+<tr>
+<td>355</td>
+<td>1562247820002</td>
+<td>8</td>
+<td>2019-07-04 21:43:40</td>
+<td>2019-07-04 21:45:13</td>
+<td>93</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>209</td>
+</tr>
+<tr>
+<td>356</td>
+<td>1562247940002</td>
+<td>8</td>
+<td>2019-07-04 21:45:40</td>
+<td>2019-07-04 21:47:09</td>
+<td>89</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>191</td>
+</tr>
+<tr>
+<td>357</td>
+<td>1562248060003</td>
+<td>8</td>
+<td>2019-07-04 21:47:40</td>
+<td>2019-07-04 21:49:12</td>
+<td>92</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>187</td>
+</tr>
+<tr>
+<td>358</td>
+<td>1562248180002</td>
+<td>8</td>
+<td>2019-07-04 21:49:40</td>
+<td>2019-07-04 21:51:11</td>
+<td>91</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>181</td>
+</tr>
+<tr>
+<td>359</td>
+<td>1562248300003</td>
+<td>8</td>
+<td>2019-07-04 21:51:40</td>
+<td>2019-07-04 21:53:13</td>
+<td>93</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>185</td>
+</tr>
+<tr>
+<td>360</td>
+<td>1562248420003</td>
+<td>8</td>
+<td>2019-07-04 21:53:40</td>
+<td>2019-07-04 21:55:12</td>
+<td>92</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>173</td>
+</tr>
+<tr>
+<td>361</td>
+<td>1562248540002</td>
+<td>8</td>
+<td>2019-07-04 21:55:40</td>
+<td>2019-07-04 21:57:06</td>
+<td>86</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>158</td>
+</tr>
+<tr>
+<td>362</td>
+<td>1562248660034</td>
+<td>8</td>
+<td>2019-07-04 21:57:40</td>
+<td>2019-07-04 21:59:12</td>
+<td>92</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>178</td>
+</tr>
+<tr>
+<td>363</td>
+<td>1562248780002</td>
+<td>8</td>
+<td>2019-07-04 21:59:40</td>
+<td>2019-07-04 22:01:14</td>
+<td>94</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>182</td>
+</tr>
+<tr>
+<td>364</td>
+<td>1562248900002</td>
+<td>8</td>
+<td>2019-07-04 22:01:40</td>
+<td>2019-07-04 22:03:12</td>
+<td>92</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>195</td>
+</tr>
+<tr>
+<td>365</td>
+<td>1562249020002</td>
+<td>8</td>
+<td>2019-07-04 22:03:40</td>
+<td>2019-07-04 22:05:10</td>
+<td>90</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>189</td>
+</tr>
+<tr>
+<td>366</td>
+<td>1562249140003</td>
+<td>8</td>
+<td>2019-07-04 22:05:40</td>
+<td>2019-07-04 22:07:13</td>
+<td>93</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>171</td>
+</tr>
+<tr>
+<td>367</td>
+<td>1562249260002</td>
+<td>8</td>
+<td>2019-07-04 22:07:40</td>
+<td>2019-07-04 22:09:19</td>
+<td>99</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>170</td>
+</tr>
+<tr>
+<td>368</td>
+<td>1562249380002</td>
+<td>8</td>
+<td>2019-07-04 22:09:40</td>
+<td>2019-07-04 22:11:16</td>
+<td>96</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>173</td>
+</tr>
+<tr>
+<td>369</td>
+<td>1562249500003</td>
+<td>8</td>
+<td>2019-07-04 22:11:40</td>
+<td>2019-07-04 22:13:19</td>
+<td>99</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>175</td>
+</tr>
+<tr>
+<td>370</td>
+<td>1562249620003</td>
+<td>8</td>
+<td>2019-07-04 22:13:40</td>
+<td>2019-07-04 22:15:16</td>
+<td>96</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>153</td>
+</tr>
+<tr>
+<td>371</td>
+<td>1562249740002</td>
+<td>8</td>
+<td>2019-07-04 22:15:40</td>
+<td>2019-07-04 22:17:15</td>
+<td>95</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>171</td>
+</tr>
+<tr>
+<td>372</td>
+<td>1562249860003</td>
+<td>8</td>
+<td>2019-07-04 22:17:40</td>
+<td>2019-07-04 22:19:12</td>
+<td>92</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>193</td>
+</tr>
+<tr>
+<td>373</td>
+<td>1562249980002</td>
+<td>8</td>
+<td>2019-07-04 22:19:40</td>
+<td>2019-07-04 22:21:10</td>
+<td>90</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>172</td>
+</tr>
+<tr>
+<td>374</td>
+<td>1562250100002</td>
+<td>8</td>
+<td>2019-07-04 22:21:40</td>
+<td>2019-07-04 22:23:11</td>
+<td>91</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>158</td>
+</tr>
+<tr>
+<td>375</td>
+<td>1562250220003</td>
+<td>8</td>
+<td>2019-07-04 22:23:40</td>
+<td>2019-07-04 22:25:10</td>
+<td>90</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>159</td>
+</tr>
+<tr>
+<td>376</td>
+<td>1562250340003</td>
+<td>8</td>
+<td>2019-07-04 22:25:40</td>
+<td>2019-07-04 22:27:11</td>
+<td>91</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>146</td>
+</tr>
+<tr>
+<td>377</td>
+<td>1562250460002</td>
+<td>8</td>
+<td>2019-07-04 22:27:40</td>
+<td>2019-07-04 22:29:11</td>
+<td>91</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>153</td>
+</tr>
+<tr>
+<td>378</td>
+<td>1562250580002</td>
+<td>8</td>
+<td>2019-07-04 22:29:40</td>
+<td>2019-07-04 22:31:07</td>
+<td>87</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>132</td>
+</tr>
+<tr>
+<td>379</td>
+<td>1562250700003</td>
+<td>8</td>
+<td>2019-07-04 22:31:40</td>
+<td>2019-07-04 22:33:12</td>
+<td>92</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>131</td>
+</tr>
+<tr>
+<td>380</td>
+<td>1562250820002</td>
+<td>8</td>
+<td>2019-07-04 22:33:40</td>
+<td>2019-07-04 22:35:13</td>
+<td>93</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>133</td>
+</tr>
+<tr>
+<td>381</td>
+<td>1562250940003</td>
+<td>8</td>
+<td>2019-07-04 22:35:40</td>
+<td>2019-07-04 22:37:16</td>
+<td>96</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>143</td>
+</tr>
+<tr>
+<td>382</td>
+<td>1562251060002</td>
+<td>8</td>
+<td>2019-07-04 22:37:40</td>
+<td>2019-07-04 22:39:15</td>
+<td>95</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>145</td>
+</tr>
+<tr>
+<td>383</td>
+<td>1562251180003</td>
+<td>8</td>
+<td>2019-07-04 22:39:40</td>
+<td>2019-07-04 22:41:13</td>
+<td>93</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>142</td>
+</tr>
+<tr>
+<td>384</td>
+<td>1562251300003</td>
+<td>8</td>
+<td>2019-07-04 22:41:40</td>
+<td>2019-07-04 22:43:10</td>
+<td>90</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>127</td>
+</tr>
+<tr>
+<td>385</td>
+<td>1562251420004</td>
+<td>8</td>
+<td>2019-07-04 22:43:40</td>
+<td>2019-07-04 22:45:08</td>
+<td>88</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>140</td>
+</tr>
+<tr>
+<td>386</td>
+<td>1562251540004</td>
+<td>8</td>
+<td>2019-07-04 22:45:40</td>
+<td>2019-07-04 22:47:09</td>
+<td>89</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>145</td>
+</tr>
+<tr>
+<td>387</td>
+<td>1562251660003</td>
+<td>8</td>
+<td>2019-07-04 22:47:40</td>
+<td>2019-07-04 22:49:11</td>
+<td>91</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>142</td>
+</tr>
+<tr>
+<td>388</td>
+<td>1562251780002</td>
+<td>8</td>
+<td>2019-07-04 22:49:40</td>
+<td>2019-07-04 22:51:08</td>
+<td>88</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>137</td>
+</tr>
+<tr>
+<td>389</td>
+<td>1562251900003</td>
+<td>8</td>
+<td>2019-07-04 22:51:40</td>
+<td>2019-07-04 22:53:15</td>
+<td>95</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>142</td>
+</tr>
+<tr>
+<td>390</td>
+<td>1562252020004</td>
+<td>8</td>
+<td>2019-07-04 22:53:40</td>
+<td>2019-07-04 22:55:10</td>
+<td>90</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>138</td>
+</tr>
+<tr>
+<td>391</td>
+<td>1562252140002</td>
+<td>8</td>
+<td>2019-07-04 22:55:40</td>
+<td>2019-07-04 22:57:08</td>
+<td>88</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>136</td>
+</tr>
+<tr>
+<td>392</td>
+<td>1562252260004</td>
+<td>8</td>
+<td>2019-07-04 22:57:40</td>
+<td>2019-07-04 22:59:13</td>
+<td>93</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>141</td>
+</tr>
+<tr>
+<td>393</td>
+<td>1562252380005</td>
+<td>8</td>
+<td>2019-07-04 22:59:40</td>
+<td>2019-07-04 23:01:13</td>
+<td>93</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>117</td>
+</tr>
+<tr>
+<td>394</td>
+<td>1562252500005</td>
+<td>8</td>
+<td>2019-07-04 23:01:40</td>
+<td>2019-07-04 23:03:12</td>
+<td>92</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>124</td>
+</tr>
+<tr>
+<td>395</td>
+<td>1562252620003</td>
+<td>8</td>
+<td>2019-07-04 23:03:40</td>
+<td>2019-07-04 23:05:13</td>
+<td>93</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>118</td>
+</tr>
+<tr>
+<td>396</td>
+<td>1562252740002</td>
+<td>8</td>
+<td>2019-07-04 23:05:40</td>
+<td>2019-07-04 23:07:11</td>
+<td>91</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>106</td>
+</tr>
+<tr>
+<td>397</td>
+<td>1562252860002</td>
+<td>8</td>
+<td>2019-07-04 23:07:40</td>
+<td>2019-07-04 23:09:11</td>
+<td>91</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>125</td>
+</tr>
+<tr>
+<td>398</td>
+<td>1562252980003</td>
+<td>8</td>
+<td>2019-07-04 23:09:40</td>
+<td>2019-07-04 23:11:11</td>
+<td>91</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>144</td>
+</tr>
+<tr>
+<td>399</td>
+<td>1562253100002</td>
+<td>8</td>
+<td>2019-07-04 23:11:40</td>
+<td>2019-07-04 23:13:13</td>
+<td>93</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>141</td>
+</tr>
+<tr>
+<td>400</td>
+<td>1562253220005</td>
+<td>8</td>
+<td>2019-07-04 23:13:40</td>
+<td>2019-07-04 23:15:15</td>
+<td>95</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>135</td>
+</tr>
+<tr>
+<td>401</td>
+<td>1562253340004</td>
+<td>8</td>
+<td>2019-07-04 23:15:40</td>
+<td>2019-07-04 23:17:16</td>
+<td>96</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>141</td>
+</tr>
+<tr>
+<td>402</td>
+<td>1562253460005</td>
+<td>8</td>
+<td>2019-07-04 23:17:40</td>
+<td>2019-07-04 23:19:12</td>
+<td>92</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>126</td>
+</tr>
+<tr>
+<td>403</td>
+<td>1562253580004</td>
+<td>8</td>
+<td>2019-07-04 23:19:40</td>
+<td>2019-07-04 23:21:11</td>
+<td>91</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>118</td>
+</tr>
+<tr>
+<td>404</td>
+<td>1562253700003</td>
+<td>8</td>
+<td>2019-07-04 23:21:40</td>
+<td>2019-07-04 23:23:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>107</td>
+</tr>
+<tr>
+<td>405</td>
+<td>1562253820006</td>
+<td>8</td>
+<td>2019-07-04 23:23:40</td>
+<td>2019-07-04 23:25:10</td>
+<td>90</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>123</td>
+</tr>
+<tr>
+<td>406</td>
+<td>1562253940005</td>
+<td>8</td>
+<td>2019-07-04 23:25:40</td>
+<td>2019-07-04 23:27:09</td>
+<td>89</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>105</td>
+</tr>
+<tr>
+<td>407</td>
+<td>1562254060006</td>
+<td>8</td>
+<td>2019-07-04 23:27:40</td>
+<td>2019-07-04 23:29:14</td>
+<td>94</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>106</td>
+</tr>
+<tr>
+<td>408</td>
+<td>1562254180008</td>
+<td>8</td>
+<td>2019-07-04 23:29:40</td>
+<td>2019-07-04 23:31:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>109</td>
+</tr>
+<tr>
+<td>409</td>
+<td>1562254300005</td>
+<td>8</td>
+<td>2019-07-04 23:31:40</td>
+<td>2019-07-04 23:33:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>89</td>
+</tr>
+<tr>
+<td>410</td>
+<td>1562254420003</td>
+<td>8</td>
+<td>2019-07-04 23:33:40</td>
+<td>2019-07-04 23:35:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>93</td>
+</tr>
+<tr>
+<td>411</td>
+<td>1562254540006</td>
+<td>8</td>
+<td>2019-07-04 23:35:40</td>
+<td>2019-07-04 23:37:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>99</td>
+</tr>
+<tr>
+<td>412</td>
+<td>1562254660006</td>
+<td>8</td>
+<td>2019-07-04 23:37:40</td>
+<td>2019-07-04 23:39:10</td>
+<td>90</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>107</td>
+</tr>
+<tr>
+<td>413</td>
+<td>1562254780004</td>
+<td>8</td>
+<td>2019-07-04 23:39:40</td>
+<td>2019-07-04 23:41:08</td>
+<td>88</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>108</td>
+</tr>
+<tr>
+<td>414</td>
+<td>1562254900005</td>
+<td>8</td>
+<td>2019-07-04 23:41:40</td>
+<td>2019-07-04 23:43:05</td>
+<td>85</td>
+<td>76</td>
+<td>18902</td>
+<td>0</td>
+<td>112</td>
+</tr>
+<tr>
+<td>415</td>
+<td>1562255020004</td>
+<td>8</td>
+<td>2019-07-04 23:43:40</td>
+<td>2019-07-04 23:45:10</td>
+<td>90</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>116</td>
+</tr>
+<tr>
+<td>416</td>
+<td>1562255140004</td>
+<td>8</td>
+<td>2019-07-04 23:45:40</td>
+<td>2019-07-04 23:47:10</td>
+<td>90</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>122</td>
+</tr>
+<tr>
+<td>417</td>
+<td>1562255260005</td>
+<td>8</td>
+<td>2019-07-04 23:47:40</td>
+<td>2019-07-04 23:49:12</td>
+<td>92</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>110</td>
+</tr>
+<tr>
+<td>418</td>
+<td>1562255380004</td>
+<td>8</td>
+<td>2019-07-04 23:49:40</td>
+<td>2019-07-04 23:51:15</td>
+<td>95</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>126</td>
+</tr>
+<tr>
+<td>419</td>
+<td>1562255500005</td>
+<td>8</td>
+<td>2019-07-04 23:51:40</td>
+<td>2019-07-04 23:53:15</td>
+<td>95</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>121</td>
+</tr>
+<tr>
+<td>420</td>
+<td>1562255620004</td>
+<td>8</td>
+<td>2019-07-04 23:53:40</td>
+<td>2019-07-04 23:55:13</td>
+<td>93</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>110</td>
+</tr>
+<tr>
+<td>421</td>
+<td>1562255740005</td>
+<td>8</td>
+<td>2019-07-04 23:55:40</td>
+<td>2019-07-04 23:57:10</td>
+<td>90</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>116</td>
+</tr>
+<tr>
+<td>422</td>
+<td>1562255860005</td>
+<td>8</td>
+<td>2019-07-04 23:57:40</td>
+<td>2019-07-04 23:59:07</td>
+<td>87</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>128</td>
+</tr>
+<tr>
+<td>423</td>
+<td>1562255980005</td>
+<td>8</td>
+<td>2019-07-04 23:59:40</td>
+<td>2019-07-05 00:01:07</td>
+<td>87</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>110</td>
+</tr>
+<tr>
+<td>424</td>
+<td>1562256100005</td>
+<td>8</td>
+<td>2019-07-05 00:01:40</td>
+<td>2019-07-05 00:03:07</td>
+<td>87</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>97</td>
+</tr>
+<tr>
+<td>425</td>
+<td>1562256220005</td>
+<td>8</td>
+<td>2019-07-05 00:03:40</td>
+<td>2019-07-05 00:05:09</td>
+<td>89</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>105</td>
+</tr>
+<tr>
+<td>426</td>
+<td>1562256340006</td>
+<td>8</td>
+<td>2019-07-05 00:05:40</td>
+<td>2019-07-05 00:07:08</td>
+<td>88</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>97</td>
+</tr>
+<tr>
+<td>427</td>
+<td>1562256460006</td>
+<td>8</td>
+<td>2019-07-05 00:07:40</td>
+<td>2019-07-05 00:09:09</td>
+<td>89</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>102</td>
+</tr>
+<tr>
+<td>428</td>
+<td>1562256580005</td>
+<td>8</td>
+<td>2019-07-05 00:09:40</td>
+<td>2019-07-05 00:11:05</td>
+<td>85</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>101</td>
+</tr>
+<tr>
+<td>429</td>
+<td>1562256700006</td>
+<td>8</td>
+<td>2019-07-05 00:11:40</td>
+<td>2019-07-05 00:13:08</td>
+<td>88</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>92</td>
+</tr>
+<tr>
+<td>430</td>
+<td>1562256820005</td>
+<td>8</td>
+<td>2019-07-05 00:13:40</td>
+<td>2019-07-05 00:15:08</td>
+<td>88</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>93</td>
+</tr>
+<tr>
+<td>431</td>
+<td>1562256940005</td>
+<td>8</td>
+<td>2019-07-05 00:15:40</td>
+<td>2019-07-05 00:17:06</td>
+<td>86</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>85</td>
+</tr>
+<tr>
+<td>432</td>
+<td>1562257060006</td>
+<td>8</td>
+<td>2019-07-05 00:17:40</td>
+<td>2019-07-05 00:19:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>84</td>
+</tr>
+<tr>
+<td>433</td>
+<td>1562257180006</td>
+<td>8</td>
+<td>2019-07-05 00:19:40</td>
+<td>2019-07-05 00:21:09</td>
+<td>89</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>89</td>
+</tr>
+<tr>
+<td>434</td>
+<td>1562257300005</td>
+<td>8</td>
+<td>2019-07-05 00:21:40</td>
+<td>2019-07-05 00:23:03</td>
+<td>83</td>
+<td>75</td>
+<td>18902</td>
+<td>0</td>
+<td>83</td>
+</tr>
+<tr>
+<td>435</td>
+<td>1562257420005</td>
+<td>8</td>
+<td>2019-07-05 00:23:40</td>
+<td>2019-07-05 00:25:05</td>
+<td>85</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>89</td>
+</tr>
+<tr>
+<td>436</td>
+<td>1562257540004</td>
+<td>8</td>
+<td>2019-07-05 00:25:40</td>
+<td>2019-07-05 00:27:05</td>
+<td>85</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>96</td>
+</tr>
+<tr>
+<td>437</td>
+<td>1562257660005</td>
+<td>8</td>
+<td>2019-07-05 00:27:40</td>
+<td>2019-07-05 00:29:15</td>
+<td>95</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>107</td>
+</tr>
+<tr>
+<td>438</td>
+<td>1562257780003</td>
+<td>8</td>
+<td>2019-07-05 00:29:40</td>
+<td>2019-07-05 00:31:15</td>
+<td>95</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>97</td>
+</tr>
+<tr>
+<td>439</td>
+<td>1562257900005</td>
+<td>8</td>
+<td>2019-07-05 00:31:40</td>
+<td>2019-07-05 00:33:16</td>
+<td>96</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>107</td>
+</tr>
+<tr>
+<td>440</td>
+<td>1562258020005</td>
+<td>8</td>
+<td>2019-07-05 00:33:40</td>
+<td>2019-07-05 00:35:13</td>
+<td>93</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>111</td>
+</tr>
+<tr>
+<td>441</td>
+<td>1562258140005</td>
+<td>8</td>
+<td>2019-07-05 00:35:40</td>
+<td>2019-07-05 00:37:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>99</td>
+</tr>
+<tr>
+<td>442</td>
+<td>1562258260005</td>
+<td>8</td>
+<td>2019-07-05 00:37:40</td>
+<td>2019-07-05 00:39:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>92</td>
+</tr>
+<tr>
+<td>443</td>
+<td>1562258380004</td>
+<td>8</td>
+<td>2019-07-05 00:39:40</td>
+<td>2019-07-05 00:41:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>109</td>
+</tr>
+<tr>
+<td>444</td>
+<td>1562258500013</td>
+<td>8</td>
+<td>2019-07-05 00:41:40</td>
+<td>2019-07-05 00:43:11</td>
+<td>91</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>105</td>
+</tr>
+<tr>
+<td>445</td>
+<td>1562258620292</td>
+<td>8</td>
+<td>2019-07-05 00:43:40</td>
+<td>2019-07-05 00:45:08</td>
+<td>88</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>105</td>
+</tr>
+<tr>
+<td>446</td>
+<td>1562258740004</td>
+<td>8</td>
+<td>2019-07-05 00:45:40</td>
+<td>2019-07-05 00:47:00</td>
+<td>80</td>
+<td>72</td>
+<td>18902</td>
+<td>0</td>
+<td>106</td>
+</tr>
+<tr>
+<td>447</td>
+<td>1562258860002</td>
+<td>8</td>
+<td>2019-07-05 00:47:40</td>
+<td>2019-07-05 00:49:15</td>
+<td>95</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>102</td>
+</tr>
+<tr>
+<td>448</td>
+<td>1562258980004</td>
+<td>8</td>
+<td>2019-07-05 00:49:40</td>
+<td>2019-07-05 00:51:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>105</td>
+</tr>
+<tr>
+<td>449</td>
+<td>1562259100004</td>
+<td>8</td>
+<td>2019-07-05 00:51:40</td>
+<td>2019-07-05 00:53:08</td>
+<td>88</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>78</td>
+</tr>
+<tr>
+<td>450</td>
+<td>1562259220002</td>
+<td>8</td>
+<td>2019-07-05 00:53:40</td>
+<td>2019-07-05 00:55:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>83</td>
+</tr>
+<tr>
+<td>451</td>
+<td>1562259340004</td>
+<td>8</td>
+<td>2019-07-05 00:55:40</td>
+<td>2019-07-05 00:57:11</td>
+<td>91</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>80</td>
+</tr>
+<tr>
+<td>452</td>
+<td>1562259460004</td>
+<td>8</td>
+<td>2019-07-05 00:57:40</td>
+<td>2019-07-05 00:59:12</td>
+<td>92</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>76</td>
+</tr>
+<tr>
+<td>453</td>
+<td>1562259580006</td>
+<td>8</td>
+<td>2019-07-05 00:59:40</td>
+<td>2019-07-05 01:01:12</td>
+<td>92</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>84</td>
+</tr>
+<tr>
+<td>454</td>
+<td>1562259700005</td>
+<td>8</td>
+<td>2019-07-05 01:01:40</td>
+<td>2019-07-05 01:03:12</td>
+<td>92</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>88</td>
+</tr>
+<tr>
+<td>455</td>
+<td>1562259820005</td>
+<td>8</td>
+<td>2019-07-05 01:03:40</td>
+<td>2019-07-05 01:05:09</td>
+<td>89</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>83</td>
+</tr>
+<tr>
+<td>456</td>
+<td>1562259940004</td>
+<td>8</td>
+<td>2019-07-05 01:05:40</td>
+<td>2019-07-05 01:07:12</td>
+<td>92</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>97</td>
+</tr>
+<tr>
+<td>457</td>
+<td>1562260060005</td>
+<td>8</td>
+<td>2019-07-05 01:07:40</td>
+<td>2019-07-05 01:09:16</td>
+<td>95</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>98</td>
+</tr>
+<tr>
+<td>458</td>
+<td>1562260180004</td>
+<td>8</td>
+<td>2019-07-05 01:09:40</td>
+<td>2019-07-05 01:11:14</td>
+<td>94</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>88</td>
+</tr>
+<tr>
+<td>459</td>
+<td>1562260300005</td>
+<td>8</td>
+<td>2019-07-05 01:11:40</td>
+<td>2019-07-05 01:13:12</td>
+<td>92</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>101</td>
+</tr>
+<tr>
+<td>460</td>
+<td>1562260420005</td>
+<td>8</td>
+<td>2019-07-05 01:13:40</td>
+<td>2019-07-05 01:15:12</td>
+<td>92</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>107</td>
+</tr>
+<tr>
+<td>461</td>
+<td>1562260540004</td>
+<td>8</td>
+<td>2019-07-05 01:15:40</td>
+<td>2019-07-05 01:17:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>102</td>
+</tr>
+<tr>
+<td>462</td>
+<td>1562260660004</td>
+<td>8</td>
+<td>2019-07-05 01:17:40</td>
+<td>2019-07-05 01:19:16</td>
+<td>96</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>96</td>
+</tr>
+<tr>
+<td>463</td>
+<td>1562260780004</td>
+<td>8</td>
+<td>2019-07-05 01:19:40</td>
+<td>2019-07-05 01:21:18</td>
+<td>98</td>
+<td>90</td>
+<td>18902</td>
+<td>0</td>
+<td>97</td>
+</tr>
+<tr>
+<td>464</td>
+<td>1562260900004</td>
+<td>8</td>
+<td>2019-07-05 01:21:40</td>
+<td>2019-07-05 01:23:15</td>
+<td>95</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>91</td>
+</tr>
+<tr>
+<td>465</td>
+<td>1562261020005</td>
+<td>8</td>
+<td>2019-07-05 01:23:40</td>
+<td>2019-07-05 01:25:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>97</td>
+</tr>
+<tr>
+<td>466</td>
+<td>1562261140004</td>
+<td>8</td>
+<td>2019-07-05 01:25:40</td>
+<td>2019-07-05 01:27:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>93</td>
+</tr>
+<tr>
+<td>467</td>
+<td>1562261260005</td>
+<td>8</td>
+<td>2019-07-05 01:27:40</td>
+<td>2019-07-05 01:29:12</td>
+<td>92</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>82</td>
+</tr>
+<tr>
+<td>468</td>
+<td>1562261380005</td>
+<td>8</td>
+<td>2019-07-05 01:29:40</td>
+<td>2019-07-05 01:31:07</td>
+<td>87</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>82</td>
+</tr>
+<tr>
+<td>469</td>
+<td>1562261500005</td>
+<td>8</td>
+<td>2019-07-05 01:31:40</td>
+<td>2019-07-05 01:33:12</td>
+<td>92</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>74</td>
+</tr>
+<tr>
+<td>470</td>
+<td>1562261620007</td>
+<td>8</td>
+<td>2019-07-05 01:33:40</td>
+<td>2019-07-05 01:35:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>74</td>
+</tr>
+<tr>
+<td>471</td>
+<td>1562261740005</td>
+<td>8</td>
+<td>2019-07-05 01:35:40</td>
+<td>2019-07-05 01:37:12</td>
+<td>92</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>85</td>
+</tr>
+<tr>
+<td>472</td>
+<td>1562261860006</td>
+<td>8</td>
+<td>2019-07-05 01:37:40</td>
+<td>2019-07-05 01:39:16</td>
+<td>96</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>96</td>
+</tr>
+<tr>
+<td>473</td>
+<td>1562261980005</td>
+<td>8</td>
+<td>2019-07-05 01:39:40</td>
+<td>2019-07-05 01:41:12</td>
+<td>92</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>72</td>
+</tr>
+<tr>
+<td>474</td>
+<td>1562262100004</td>
+<td>8</td>
+<td>2019-07-05 01:41:40</td>
+<td>2019-07-05 01:43:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>81</td>
+</tr>
+<tr>
+<td>475</td>
+<td>1562262220004</td>
+<td>8</td>
+<td>2019-07-05 01:43:40</td>
+<td>2019-07-05 01:45:05</td>
+<td>85</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>83</td>
+</tr>
+<tr>
+<td>476</td>
+<td>1562262340007</td>
+<td>8</td>
+<td>2019-07-05 01:45:40</td>
+<td>2019-07-05 01:47:04</td>
+<td>84</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>75</td>
+</tr>
+<tr>
+<td>477</td>
+<td>1562262460010</td>
+<td>8</td>
+<td>2019-07-05 01:47:40</td>
+<td>2019-07-05 01:49:17</td>
+<td>97</td>
+<td>90</td>
+<td>18902</td>
+<td>0</td>
+<td>77</td>
+</tr>
+<tr>
+<td>478</td>
+<td>1562262580007</td>
+<td>8</td>
+<td>2019-07-05 01:49:40</td>
+<td>2019-07-05 01:51:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>97</td>
+</tr>
+<tr>
+<td>479</td>
+<td>1562262700005</td>
+<td>8</td>
+<td>2019-07-05 01:51:40</td>
+<td>2019-07-05 01:53:13</td>
+<td>93</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>85</td>
+</tr>
+<tr>
+<td>480</td>
+<td>1562262954308</td>
+<td>8</td>
+<td>2019-07-05 01:55:54</td>
+<td>2019-07-05 01:57:24</td>
+<td>90</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>75</td>
+</tr>
+<tr>
+<td>481</td>
+<td>1562263060006</td>
+<td>8</td>
+<td>2019-07-05 01:57:40</td>
+<td>2019-07-05 01:59:07</td>
+<td>87</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>78</td>
+</tr>
+<tr>
+<td>482</td>
+<td>1562263180006</td>
+<td>8</td>
+<td>2019-07-05 01:59:40</td>
+<td>2019-07-05 02:01:12</td>
+<td>92</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>86</td>
+</tr>
+<tr>
+<td>483</td>
+<td>1562263300006</td>
+<td>8</td>
+<td>2019-07-05 02:01:40</td>
+<td>2019-07-05 02:03:12</td>
+<td>92</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>88</td>
+</tr>
+<tr>
+<td>484</td>
+<td>1562263420005</td>
+<td>8</td>
+<td>2019-07-05 02:03:40</td>
+<td>2019-07-05 02:05:08</td>
+<td>88</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>89</td>
+</tr>
+<tr>
+<td>485</td>
+<td>1562263540008</td>
+<td>8</td>
+<td>2019-07-05 02:05:40</td>
+<td>2019-07-05 02:07:06</td>
+<td>86</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>92</td>
+</tr>
+<tr>
+<td>486</td>
+<td>1562263660005</td>
+<td>8</td>
+<td>2019-07-05 02:07:40</td>
+<td>2019-07-05 02:09:03</td>
+<td>83</td>
+<td>76</td>
+<td>18902</td>
+<td>0</td>
+<td>90</td>
+</tr>
+<tr>
+<td>487</td>
+<td>1562263780006</td>
+<td>8</td>
+<td>2019-07-05 02:09:40</td>
+<td>2019-07-05 02:11:15</td>
+<td>95</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>83</td>
+</tr>
+<tr>
+<td>488</td>
+<td>1562263900003</td>
+<td>8</td>
+<td>2019-07-05 02:11:40</td>
+<td>2019-07-05 02:13:17</td>
+<td>97</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>83</td>
+</tr>
+<tr>
+<td>489</td>
+<td>1562264020005</td>
+<td>8</td>
+<td>2019-07-05 02:13:40</td>
+<td>2019-07-05 02:15:12</td>
+<td>92</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>94</td>
+</tr>
+<tr>
+<td>490</td>
+<td>1562264140005</td>
+<td>8</td>
+<td>2019-07-05 02:15:40</td>
+<td>2019-07-05 02:17:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>91</td>
+</tr>
+<tr>
+<td>491</td>
+<td>1562264260005</td>
+<td>8</td>
+<td>2019-07-05 02:17:40</td>
+<td>2019-07-05 02:19:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>83</td>
+</tr>
+<tr>
+<td>492</td>
+<td>1562264380004</td>
+<td>8</td>
+<td>2019-07-05 02:19:40</td>
+<td>2019-07-05 02:21:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>82</td>
+</tr>
+<tr>
+<td>493</td>
+<td>1562264500004</td>
+<td>8</td>
+<td>2019-07-05 02:21:40</td>
+<td>2019-07-05 02:23:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>90</td>
+</tr>
+<tr>
+<td>494</td>
+<td>1562264620006</td>
+<td>8</td>
+<td>2019-07-05 02:23:40</td>
+<td>2019-07-05 02:25:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>82</td>
+</tr>
+<tr>
+<td>495</td>
+<td>1562264740007</td>
+<td>8</td>
+<td>2019-07-05 02:25:40</td>
+<td>2019-07-05 02:27:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>81</td>
+</tr>
+<tr>
+<td>496</td>
+<td>1562264860005</td>
+<td>8</td>
+<td>2019-07-05 02:27:40</td>
+<td>2019-07-05 02:29:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>86</td>
+</tr>
+<tr>
+<td>497</td>
+<td>1562264980010</td>
+<td>8</td>
+<td>2019-07-05 02:29:40</td>
+<td>2019-07-05 02:31:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>90</td>
+</tr>
+<tr>
+<td>498</td>
+<td>1562265100006</td>
+<td>8</td>
+<td>2019-07-05 02:31:40</td>
+<td>2019-07-05 02:33:12</td>
+<td>92</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>89</td>
+</tr>
+<tr>
+<td>499</td>
+<td>1562265220006</td>
+<td>8</td>
+<td>2019-07-05 02:33:40</td>
+<td>2019-07-05 02:35:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>85</td>
+</tr>
+<tr>
+<td>500</td>
+<td>1562265340008</td>
+<td>8</td>
+<td>2019-07-05 02:35:40</td>
+<td>2019-07-05 02:37:13</td>
+<td>93</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>90</td>
+</tr>
+<tr>
+<td>501</td>
+<td>1562265460006</td>
+<td>8</td>
+<td>2019-07-05 02:37:40</td>
+<td>2019-07-05 02:39:13</td>
+<td>93</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>74</td>
+</tr>
+<tr>
+<td>502</td>
+<td>1562265580006</td>
+<td>8</td>
+<td>2019-07-05 02:39:40</td>
+<td>2019-07-05 02:41:14</td>
+<td>94</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>91</td>
+</tr>
+<tr>
+<td>503</td>
+<td>1562265700004</td>
+<td>8</td>
+<td>2019-07-05 02:41:40</td>
+<td>2019-07-05 02:43:14</td>
+<td>94</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>97</td>
+</tr>
+<tr>
+<td>504</td>
+<td>1562265820005</td>
+<td>8</td>
+<td>2019-07-05 02:43:40</td>
+<td>2019-07-05 02:45:11</td>
+<td>91</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>99</td>
+</tr>
+<tr>
+<td>505</td>
+<td>1562265940004</td>
+<td>8</td>
+<td>2019-07-05 02:45:40</td>
+<td>2019-07-05 02:47:02</td>
+<td>82</td>
+<td>75</td>
+<td>18902</td>
+<td>0</td>
+<td>108</td>
+</tr>
+<tr>
+<td>506</td>
+<td>1562266060005</td>
+<td>8</td>
+<td>2019-07-05 02:47:40</td>
+<td>2019-07-05 02:49:08</td>
+<td>88</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>107</td>
+</tr>
+<tr>
+<td>507</td>
+<td>1562266180006</td>
+<td>8</td>
+<td>2019-07-05 02:49:40</td>
+<td>2019-07-05 02:51:08</td>
+<td>88</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>98</td>
+</tr>
+<tr>
+<td>508</td>
+<td>1562266300003</td>
+<td>8</td>
+<td>2019-07-05 02:51:40</td>
+<td>2019-07-05 02:53:07</td>
+<td>87</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>107</td>
+</tr>
+<tr>
+<td>509</td>
+<td>1562266420003</td>
+<td>8</td>
+<td>2019-07-05 02:53:40</td>
+<td>2019-07-05 02:55:04</td>
+<td>84</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>88</td>
+</tr>
+<tr>
+<td>510</td>
+<td>1562266540003</td>
+<td>8</td>
+<td>2019-07-05 02:55:40</td>
+<td>2019-07-05 02:57:03</td>
+<td>83</td>
+<td>74</td>
+<td>18902</td>
+<td>0</td>
+<td>107</td>
+</tr>
+<tr>
+<td>511</td>
+<td>1562266660006</td>
+<td>8</td>
+<td>2019-07-05 02:57:40</td>
+<td>2019-07-05 02:59:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>92</td>
+</tr>
+<tr>
+<td>512</td>
+<td>1562266780005</td>
+<td>8</td>
+<td>2019-07-05 02:59:40</td>
+<td>2019-07-05 03:01:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>90</td>
+</tr>
+<tr>
+<td>513</td>
+<td>1562266900006</td>
+<td>8</td>
+<td>2019-07-05 03:01:40</td>
+<td>2019-07-05 03:03:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>100</td>
+</tr>
+<tr>
+<td>514</td>
+<td>1562267020031</td>
+<td>8</td>
+<td>2019-07-05 03:03:40</td>
+<td>2019-07-05 03:05:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>101</td>
+</tr>
+<tr>
+<td>515</td>
+<td>1562267140284</td>
+<td>8</td>
+<td>2019-07-05 03:05:40</td>
+<td>2019-07-05 03:07:15</td>
+<td>94</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>89</td>
+</tr>
+<tr>
+<td>516</td>
+<td>1562267260005</td>
+<td>8</td>
+<td>2019-07-05 03:07:40</td>
+<td>2019-07-05 03:09:16</td>
+<td>96</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>87</td>
+</tr>
+<tr>
+<td>517</td>
+<td>1562267380273</td>
+<td>8</td>
+<td>2019-07-05 03:09:40</td>
+<td>2019-07-05 03:11:16</td>
+<td>96</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>97</td>
+</tr>
+<tr>
+<td>518</td>
+<td>1562267500290</td>
+<td>8</td>
+<td>2019-07-05 03:11:40</td>
+<td>2019-07-05 03:13:14</td>
+<td>94</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>92</td>
+</tr>
+<tr>
+<td>519</td>
+<td>1562267620291</td>
+<td>8</td>
+<td>2019-07-05 03:13:40</td>
+<td>2019-07-05 03:15:14</td>
+<td>93</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>92</td>
+</tr>
+<tr>
+<td>520</td>
+<td>1562267740004</td>
+<td>8</td>
+<td>2019-07-05 03:15:40</td>
+<td>2019-07-05 03:17:08</td>
+<td>88</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>79</td>
+</tr>
+<tr>
+<td>521</td>
+<td>1562267860005</td>
+<td>8</td>
+<td>2019-07-05 03:17:40</td>
+<td>2019-07-05 03:19:03</td>
+<td>83</td>
+<td>76</td>
+<td>18902</td>
+<td>0</td>
+<td>63</td>
+</tr>
+<tr>
+<td>522</td>
+<td>1562267980004</td>
+<td>8</td>
+<td>2019-07-05 03:19:40</td>
+<td>2019-07-05 03:21:07</td>
+<td>87</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>52</td>
+</tr>
+<tr>
+<td>523</td>
+<td>1562268100005</td>
+<td>8</td>
+<td>2019-07-05 03:21:40</td>
+<td>2019-07-05 03:23:06</td>
+<td>86</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>55</td>
+</tr>
+<tr>
+<td>524</td>
+<td>1562268220005</td>
+<td>8</td>
+<td>2019-07-05 03:23:40</td>
+<td>2019-07-05 03:25:02</td>
+<td>82</td>
+<td>75</td>
+<td>18902</td>
+<td>0</td>
+<td>55</td>
+</tr>
+<tr>
+<td>525</td>
+<td>1562268340005</td>
+<td>8</td>
+<td>2019-07-05 03:25:40</td>
+<td>2019-07-05 03:27:04</td>
+<td>84</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>63</td>
+</tr>
+<tr>
+<td>526</td>
+<td>1562268460004</td>
+<td>8</td>
+<td>2019-07-05 03:27:40</td>
+<td>2019-07-05 03:29:06</td>
+<td>86</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>67</td>
+</tr>
+<tr>
+<td>527</td>
+<td>1562268580005</td>
+<td>8</td>
+<td>2019-07-05 03:29:40</td>
+<td>2019-07-05 03:31:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>51</td>
+</tr>
+<tr>
+<td>528</td>
+<td>1562268700005</td>
+<td>8</td>
+<td>2019-07-05 03:31:40</td>
+<td>2019-07-05 03:33:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>66</td>
+</tr>
+<tr>
+<td>529</td>
+<td>1562268820005</td>
+<td>8</td>
+<td>2019-07-05 03:33:40</td>
+<td>2019-07-05 03:35:11</td>
+<td>91</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>63</td>
+</tr>
+<tr>
+<td>530</td>
+<td>1562268940004</td>
+<td>8</td>
+<td>2019-07-05 03:35:40</td>
+<td>2019-07-05 03:37:12</td>
+<td>92</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>51</td>
+</tr>
+<tr>
+<td>531</td>
+<td>1562269060003</td>
+<td>8</td>
+<td>2019-07-05 03:37:40</td>
+<td>2019-07-05 03:39:12</td>
+<td>92</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>62</td>
+</tr>
+<tr>
+<td>532</td>
+<td>1562269180006</td>
+<td>8</td>
+<td>2019-07-05 03:39:40</td>
+<td>2019-07-05 03:41:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>61</td>
+</tr>
+<tr>
+<td>533</td>
+<td>1562269300041</td>
+<td>8</td>
+<td>2019-07-05 03:41:40</td>
+<td>2019-07-05 03:43:12</td>
+<td>92</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>61</td>
+</tr>
+<tr>
+<td>534</td>
+<td>1562269420005</td>
+<td>8</td>
+<td>2019-07-05 03:43:40</td>
+<td>2019-07-05 03:45:12</td>
+<td>92</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>71</td>
+</tr>
+<tr>
+<td>535</td>
+<td>1562269540005</td>
+<td>8</td>
+<td>2019-07-05 03:45:40</td>
+<td>2019-07-05 03:47:12</td>
+<td>92</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>67</td>
+</tr>
+<tr>
+<td>536</td>
+<td>1562269660005</td>
+<td>8</td>
+<td>2019-07-05 03:47:40</td>
+<td>2019-07-05 03:49:11</td>
+<td>91</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>79</td>
+</tr>
+<tr>
+<td>537</td>
+<td>1562269780005</td>
+<td>8</td>
+<td>2019-07-05 03:49:40</td>
+<td>2019-07-05 03:51:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>74</td>
+</tr>
+<tr>
+<td>538</td>
+<td>1562269900004</td>
+<td>8</td>
+<td>2019-07-05 03:51:40</td>
+<td>2019-07-05 03:53:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>81</td>
+</tr>
+<tr>
+<td>539</td>
+<td>1562270020005</td>
+<td>8</td>
+<td>2019-07-05 03:53:40</td>
+<td>2019-07-05 03:55:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>80</td>
+</tr>
+<tr>
+<td>540</td>
+<td>1562270140005</td>
+<td>8</td>
+<td>2019-07-05 03:55:40</td>
+<td>2019-07-05 03:57:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>73</td>
+</tr>
+<tr>
+<td>541</td>
+<td>1562270260305</td>
+<td>8</td>
+<td>2019-07-05 03:57:40</td>
+<td>2019-07-05 03:59:09</td>
+<td>88</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>67</td>
+</tr>
+<tr>
+<td>542</td>
+<td>1562270380004</td>
+<td>8</td>
+<td>2019-07-05 03:59:40</td>
+<td>2019-07-05 04:01:08</td>
+<td>88</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>59</td>
+</tr>
+<tr>
+<td>543</td>
+<td>1562270500005</td>
+<td>8</td>
+<td>2019-07-05 04:01:40</td>
+<td>2019-07-05 04:03:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>60</td>
+</tr>
+<tr>
+<td>544</td>
+<td>1562270620003</td>
+<td>8</td>
+<td>2019-07-05 04:03:40</td>
+<td>2019-07-05 04:05:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>70</td>
+</tr>
+<tr>
+<td>545</td>
+<td>1562270740003</td>
+<td>8</td>
+<td>2019-07-05 04:05:40</td>
+<td>2019-07-05 04:07:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>67</td>
+</tr>
+<tr>
+<td>546</td>
+<td>1562270860004</td>
+<td>8</td>
+<td>2019-07-05 04:07:40</td>
+<td>2019-07-05 04:09:11</td>
+<td>91</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>74</td>
+</tr>
+<tr>
+<td>547</td>
+<td>1562270980007</td>
+<td>8</td>
+<td>2019-07-05 04:09:40</td>
+<td>2019-07-05 04:11:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>74</td>
+</tr>
+<tr>
+<td>548</td>
+<td>1562271100006</td>
+<td>8</td>
+<td>2019-07-05 04:11:40</td>
+<td>2019-07-05 04:13:12</td>
+<td>92</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>67</td>
+</tr>
+<tr>
+<td>549</td>
+<td>1562271220003</td>
+<td>8</td>
+<td>2019-07-05 04:13:40</td>
+<td>2019-07-05 04:15:11</td>
+<td>91</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>61</td>
+</tr>
+<tr>
+<td>550</td>
+<td>1562271340003</td>
+<td>8</td>
+<td>2019-07-05 04:15:40</td>
+<td>2019-07-05 04:17:13</td>
+<td>93</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>73</td>
+</tr>
+<tr>
+<td>551</td>
+<td>1562271460005</td>
+<td>8</td>
+<td>2019-07-05 04:17:40</td>
+<td>2019-07-05 04:19:16</td>
+<td>96</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>74</td>
+</tr>
+<tr>
+<td>552</td>
+<td>1562271580010</td>
+<td>8</td>
+<td>2019-07-05 04:19:40</td>
+<td>2019-07-05 04:21:14</td>
+<td>94</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>78</td>
+</tr>
+<tr>
+<td>553</td>
+<td>1562271700004</td>
+<td>8</td>
+<td>2019-07-05 04:21:40</td>
+<td>2019-07-05 04:23:12</td>
+<td>92</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>83</td>
+</tr>
+<tr>
+<td>554</td>
+<td>1562271820005</td>
+<td>8</td>
+<td>2019-07-05 04:23:40</td>
+<td>2019-07-05 04:25:12</td>
+<td>92</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>65</td>
+</tr>
+<tr>
+<td>555</td>
+<td>1562271940004</td>
+<td>8</td>
+<td>2019-07-05 04:25:40</td>
+<td>2019-07-05 04:27:12</td>
+<td>92</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>75</td>
+</tr>
+<tr>
+<td>556</td>
+<td>1562272060003</td>
+<td>8</td>
+<td>2019-07-05 04:27:40</td>
+<td>2019-07-05 04:29:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>72</td>
+</tr>
+<tr>
+<td>557</td>
+<td>1562272180002</td>
+<td>8</td>
+<td>2019-07-05 04:29:40</td>
+<td>2019-07-05 04:31:15</td>
+<td>95</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>81</td>
+</tr>
+<tr>
+<td>558</td>
+<td>1562272300005</td>
+<td>8</td>
+<td>2019-07-05 04:31:40</td>
+<td>2019-07-05 04:33:15</td>
+<td>95</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>88</td>
+</tr>
+<tr>
+<td>559</td>
+<td>1562272420003</td>
+<td>8</td>
+<td>2019-07-05 04:33:40</td>
+<td>2019-07-05 04:35:14</td>
+<td>94</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>85</td>
+</tr>
+<tr>
+<td>560</td>
+<td>1562272540002</td>
+<td>8</td>
+<td>2019-07-05 04:35:40</td>
+<td>2019-07-05 04:37:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>72</td>
+</tr>
+<tr>
+<td>561</td>
+<td>1562272660005</td>
+<td>8</td>
+<td>2019-07-05 04:37:40</td>
+<td>2019-07-05 04:39:09</td>
+<td>89</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>70</td>
+</tr>
+<tr>
+<td>562</td>
+<td>1562272780004</td>
+<td>8</td>
+<td>2019-07-05 04:39:40</td>
+<td>2019-07-05 04:41:07</td>
+<td>87</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>84</td>
+</tr>
+<tr>
+<td>563</td>
+<td>1562272900004</td>
+<td>8</td>
+<td>2019-07-05 04:41:40</td>
+<td>2019-07-05 04:43:07</td>
+<td>87</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>80</td>
+</tr>
+<tr>
+<td>564</td>
+<td>1562273020005</td>
+<td>8</td>
+<td>2019-07-05 04:43:40</td>
+<td>2019-07-05 04:45:05</td>
+<td>85</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>76</td>
+</tr>
+<tr>
+<td>565</td>
+<td>1562273140005</td>
+<td>8</td>
+<td>2019-07-05 04:45:40</td>
+<td>2019-07-05 04:47:11</td>
+<td>91</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>61</td>
+</tr>
+<tr>
+<td>566</td>
+<td>1562273260004</td>
+<td>8</td>
+<td>2019-07-05 04:47:40</td>
+<td>2019-07-05 04:49:12</td>
+<td>92</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>68</td>
+</tr>
+<tr>
+<td>567</td>
+<td>1562273380288</td>
+<td>8</td>
+<td>2019-07-05 04:49:40</td>
+<td>2019-07-05 04:51:12</td>
+<td>92</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>63</td>
+</tr>
+<tr>
+<td>568</td>
+<td>1562273500174</td>
+<td>8</td>
+<td>2019-07-05 04:51:40</td>
+<td>2019-07-05 04:53:12</td>
+<td>91</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>58</td>
+</tr>
+<tr>
+<td>569</td>
+<td>1562273620003</td>
+<td>8</td>
+<td>2019-07-05 04:53:40</td>
+<td>2019-07-05 04:55:11</td>
+<td>91</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>50</td>
+</tr>
+<tr>
+<td>570</td>
+<td>1562273740003</td>
+<td>8</td>
+<td>2019-07-05 04:55:40</td>
+<td>2019-07-05 04:57:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>57</td>
+</tr>
+<tr>
+<td>571</td>
+<td>1562273860002</td>
+<td>8</td>
+<td>2019-07-05 04:57:40</td>
+<td>2019-07-05 04:59:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>55</td>
+</tr>
+<tr>
+<td>572</td>
+<td>1562273980003</td>
+<td>8</td>
+<td>2019-07-05 04:59:40</td>
+<td>2019-07-05 05:01:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>56</td>
+</tr>
+<tr>
+<td>573</td>
+<td>1562274100002</td>
+<td>8</td>
+<td>2019-07-05 05:01:40</td>
+<td>2019-07-05 05:03:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>62</td>
+</tr>
+<tr>
+<td>574</td>
+<td>1562274220003</td>
+<td>8</td>
+<td>2019-07-05 05:03:40</td>
+<td>2019-07-05 05:05:14</td>
+<td>94</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>53</td>
+</tr>
+<tr>
+<td>575</td>
+<td>1562274340002</td>
+<td>8</td>
+<td>2019-07-05 05:05:40</td>
+<td>2019-07-05 05:07:16</td>
+<td>96</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>53</td>
+</tr>
+<tr>
+<td>576</td>
+<td>1562274460003</td>
+<td>8</td>
+<td>2019-07-05 05:07:40</td>
+<td>2019-07-05 05:09:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>55</td>
+</tr>
+<tr>
+<td>577</td>
+<td>1562274580002</td>
+<td>8</td>
+<td>2019-07-05 05:09:40</td>
+<td>2019-07-05 05:11:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>55</td>
+</tr>
+<tr>
+<td>578</td>
+<td>1562274700002</td>
+<td>8</td>
+<td>2019-07-05 05:11:40</td>
+<td>2019-07-05 05:13:09</td>
+<td>89</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>69</td>
+</tr>
+<tr>
+<td>579</td>
+<td>1562274820003</td>
+<td>8</td>
+<td>2019-07-05 05:13:40</td>
+<td>2019-07-05 05:15:07</td>
+<td>87</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>57</td>
+</tr>
+<tr>
+<td>580</td>
+<td>1562274940003</td>
+<td>8</td>
+<td>2019-07-05 05:15:40</td>
+<td>2019-07-05 05:17:08</td>
+<td>88</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>63</td>
+</tr>
+<tr>
+<td>581</td>
+<td>1562275060002</td>
+<td>8</td>
+<td>2019-07-05 05:17:40</td>
+<td>2019-07-05 05:19:02</td>
+<td>82</td>
+<td>75</td>
+<td>18902</td>
+<td>0</td>
+<td>58</td>
+</tr>
+<tr>
+<td>582</td>
+<td>1562275180002</td>
+<td>8</td>
+<td>2019-07-05 05:19:40</td>
+<td>2019-07-05 05:21:05</td>
+<td>85</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>51</td>
+</tr>
+<tr>
+<td>583</td>
+<td>1562275300003</td>
+<td>8</td>
+<td>2019-07-05 05:21:40</td>
+<td>2019-07-05 05:23:06</td>
+<td>86</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>49</td>
+</tr>
+<tr>
+<td>584</td>
+<td>1562275420003</td>
+<td>8</td>
+<td>2019-07-05 05:23:40</td>
+<td>2019-07-05 05:25:11</td>
+<td>91</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>49</td>
+</tr>
+<tr>
+<td>585</td>
+<td>1562275540003</td>
+<td>8</td>
+<td>2019-07-05 05:25:40</td>
+<td>2019-07-05 05:27:09</td>
+<td>89</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>53</td>
+</tr>
+<tr>
+<td>586</td>
+<td>1562275660003</td>
+<td>8</td>
+<td>2019-07-05 05:27:40</td>
+<td>2019-07-05 05:29:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>64</td>
+</tr>
+<tr>
+<td>587</td>
+<td>1562275780003</td>
+<td>8</td>
+<td>2019-07-05 05:29:40</td>
+<td>2019-07-05 05:31:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>60</td>
+</tr>
+<tr>
+<td>588</td>
+<td>1562275900002</td>
+<td>8</td>
+<td>2019-07-05 05:31:40</td>
+<td>2019-07-05 05:33:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>52</td>
+</tr>
+<tr>
+<td>589</td>
+<td>1562276020003</td>
+<td>8</td>
+<td>2019-07-05 05:33:40</td>
+<td>2019-07-05 05:35:09</td>
+<td>89</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>54</td>
+</tr>
+<tr>
+<td>590</td>
+<td>1562276140002</td>
+<td>8</td>
+<td>2019-07-05 05:35:40</td>
+<td>2019-07-05 05:37:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>53</td>
+</tr>
+<tr>
+<td>591</td>
+<td>1562276260003</td>
+<td>8</td>
+<td>2019-07-05 05:37:40</td>
+<td>2019-07-05 05:39:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>74</td>
+</tr>
+<tr>
+<td>592</td>
+<td>1562276380002</td>
+<td>8</td>
+<td>2019-07-05 05:39:40</td>
+<td>2019-07-05 05:41:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>54</td>
+</tr>
+<tr>
+<td>593</td>
+<td>1562276500002</td>
+<td>8</td>
+<td>2019-07-05 05:41:40</td>
+<td>2019-07-05 05:43:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>63</td>
+</tr>
+<tr>
+<td>594</td>
+<td>1562276620003</td>
+<td>8</td>
+<td>2019-07-05 05:43:40</td>
+<td>2019-07-05 05:45:04</td>
+<td>84</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>68</td>
+</tr>
+<tr>
+<td>595</td>
+<td>1562276740002</td>
+<td>8</td>
+<td>2019-07-05 05:45:40</td>
+<td>2019-07-05 05:47:08</td>
+<td>88</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>82</td>
+</tr>
+<tr>
+<td>596</td>
+<td>1562276860003</td>
+<td>8</td>
+<td>2019-07-05 05:47:40</td>
+<td>2019-07-05 05:49:09</td>
+<td>89</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>61</td>
+</tr>
+<tr>
+<td>597</td>
+<td>1562276980003</td>
+<td>8</td>
+<td>2019-07-05 05:49:40</td>
+<td>2019-07-05 05:51:08</td>
+<td>88</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>60</td>
+</tr>
+<tr>
+<td>598</td>
+<td>1562277100003</td>
+<td>8</td>
+<td>2019-07-05 05:51:40</td>
+<td>2019-07-05 05:53:04</td>
+<td>84</td>
+<td>76</td>
+<td>18902</td>
+<td>0</td>
+<td>73</td>
+</tr>
+<tr>
+<td>599</td>
+<td>1562277220003</td>
+<td>8</td>
+<td>2019-07-05 05:53:40</td>
+<td>2019-07-05 05:55:06</td>
+<td>86</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>64</td>
+</tr>
+<tr>
+<td>600</td>
+<td>1562277340002</td>
+<td>8</td>
+<td>2019-07-05 05:55:40</td>
+<td>2019-07-05 05:57:08</td>
+<td>88</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>79</td>
+</tr>
+<tr>
+<td>601</td>
+<td>1562277460003</td>
+<td>8</td>
+<td>2019-07-05 05:57:40</td>
+<td>2019-07-05 05:59:07</td>
+<td>87</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>77</td>
+</tr>
+<tr>
+<td>602</td>
+<td>1562277580003</td>
+<td>8</td>
+<td>2019-07-05 05:59:40</td>
+<td>2019-07-05 06:01:07</td>
+<td>87</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>74</td>
+</tr>
+<tr>
+<td>603</td>
+<td>1562277700003</td>
+<td>8</td>
+<td>2019-07-05 06:01:40</td>
+<td>2019-07-05 06:03:10</td>
+<td>90</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>74</td>
+</tr>
+<tr>
+<td>604</td>
+<td>1562277820003</td>
+<td>8</td>
+<td>2019-07-05 06:03:40</td>
+<td>2019-07-05 06:05:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>75</td>
+</tr>
+<tr>
+<td>605</td>
+<td>1562277940003</td>
+<td>8</td>
+<td>2019-07-05 06:05:40</td>
+<td>2019-07-05 06:07:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>80</td>
+</tr>
+<tr>
+<td>606</td>
+<td>1562278060002</td>
+<td>8</td>
+<td>2019-07-05 06:07:40</td>
+<td>2019-07-05 06:09:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>73</td>
+</tr>
+<tr>
+<td>607</td>
+<td>1562278180002</td>
+<td>8</td>
+<td>2019-07-05 06:09:40</td>
+<td>2019-07-05 06:11:04</td>
+<td>84</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>70</td>
+</tr>
+<tr>
+<td>608</td>
+<td>1562278300003</td>
+<td>8</td>
+<td>2019-07-05 06:11:40</td>
+<td>2019-07-05 06:13:04</td>
+<td>84</td>
+<td>76</td>
+<td>18902</td>
+<td>0</td>
+<td>80</td>
+</tr>
+<tr>
+<td>609</td>
+<td>1562278420002</td>
+<td>8</td>
+<td>2019-07-05 06:13:40</td>
+<td>2019-07-05 06:15:07</td>
+<td>87</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>97</td>
+</tr>
+<tr>
+<td>610</td>
+<td>1562278540003</td>
+<td>8</td>
+<td>2019-07-05 06:15:40</td>
+<td>2019-07-05 06:17:09</td>
+<td>89</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>103</td>
+</tr>
+<tr>
+<td>611</td>
+<td>1562278660003</td>
+<td>8</td>
+<td>2019-07-05 06:17:40</td>
+<td>2019-07-05 06:19:07</td>
+<td>87</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>104</td>
+</tr>
+<tr>
+<td>612</td>
+<td>1562278780003</td>
+<td>8</td>
+<td>2019-07-05 06:19:40</td>
+<td>2019-07-05 06:21:06</td>
+<td>86</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>65</td>
+</tr>
+<tr>
+<td>613</td>
+<td>1562278900003</td>
+<td>8</td>
+<td>2019-07-05 06:21:40</td>
+<td>2019-07-05 06:23:13</td>
+<td>93</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>76</td>
+</tr>
+<tr>
+<td>614</td>
+<td>1562279020003</td>
+<td>8</td>
+<td>2019-07-05 06:23:40</td>
+<td>2019-07-05 06:25:15</td>
+<td>95</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>88</td>
+</tr>
+<tr>
+<td>615</td>
+<td>1562279140003</td>
+<td>8</td>
+<td>2019-07-05 06:25:40</td>
+<td>2019-07-05 06:27:15</td>
+<td>95</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>101</td>
+</tr>
+<tr>
+<td>616</td>
+<td>1562279260003</td>
+<td>8</td>
+<td>2019-07-05 06:27:40</td>
+<td>2019-07-05 06:29:14</td>
+<td>94</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>75</td>
+</tr>
+<tr>
+<td>617</td>
+<td>1562279380002</td>
+<td>8</td>
+<td>2019-07-05 06:29:40</td>
+<td>2019-07-05 06:31:14</td>
+<td>94</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>97</td>
+</tr>
+<tr>
+<td>618</td>
+<td>1562279500003</td>
+<td>8</td>
+<td>2019-07-05 06:31:40</td>
+<td>2019-07-05 06:33:15</td>
+<td>95</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>97</td>
+</tr>
+<tr>
+<td>619</td>
+<td>1562279620003</td>
+<td>8</td>
+<td>2019-07-05 06:33:40</td>
+<td>2019-07-05 06:35:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>90</td>
+</tr>
+<tr>
+<td>620</td>
+<td>1562279740003</td>
+<td>8</td>
+<td>2019-07-05 06:35:40</td>
+<td>2019-07-05 06:37:07</td>
+<td>87</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>95</td>
+</tr>
+<tr>
+<td>621</td>
+<td>1562279860003</td>
+<td>8</td>
+<td>2019-07-05 06:37:40</td>
+<td>2019-07-05 06:39:05</td>
+<td>85</td>
+<td>76</td>
+<td>18902</td>
+<td>0</td>
+<td>86</td>
+</tr>
+<tr>
+<td>622</td>
+<td>1562279980003</td>
+<td>8</td>
+<td>2019-07-05 06:39:40</td>
+<td>2019-07-05 06:41:12</td>
+<td>92</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>91</td>
+</tr>
+<tr>
+<td>623</td>
+<td>1562280100002</td>
+<td>8</td>
+<td>2019-07-05 06:41:40</td>
+<td>2019-07-05 06:43:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>94</td>
+</tr>
+<tr>
+<td>624</td>
+<td>1562280220002</td>
+<td>8</td>
+<td>2019-07-05 06:43:40</td>
+<td>2019-07-05 06:45:12</td>
+<td>92</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>91</td>
+</tr>
+<tr>
+<td>625</td>
+<td>1562280340003</td>
+<td>8</td>
+<td>2019-07-05 06:45:40</td>
+<td>2019-07-05 06:47:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>88</td>
+</tr>
+<tr>
+<td>626</td>
+<td>1562280460002</td>
+<td>8</td>
+<td>2019-07-05 06:47:40</td>
+<td>2019-07-05 06:49:12</td>
+<td>92</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>121</td>
+</tr>
+<tr>
+<td>627</td>
+<td>1562280580003</td>
+<td>8</td>
+<td>2019-07-05 06:49:40</td>
+<td>2019-07-05 06:51:11</td>
+<td>91</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>97</td>
+</tr>
+<tr>
+<td>628</td>
+<td>1562280700002</td>
+<td>8</td>
+<td>2019-07-05 06:51:40</td>
+<td>2019-07-05 06:53:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>76</td>
+</tr>
+<tr>
+<td>629</td>
+<td>1562280820003</td>
+<td>8</td>
+<td>2019-07-05 06:53:40</td>
+<td>2019-07-05 06:55:10</td>
+<td>90</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>98</td>
+</tr>
+<tr>
+<td>630</td>
+<td>1562280940002</td>
+<td>8</td>
+<td>2019-07-05 06:55:40</td>
+<td>2019-07-05 06:57:15</td>
+<td>95</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>114</td>
+</tr>
+<tr>
+<td>631</td>
+<td>1562281060003</td>
+<td>8</td>
+<td>2019-07-05 06:57:40</td>
+<td>2019-07-05 06:59:15</td>
+<td>95</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>106</td>
+</tr>
+<tr>
+<td>632</td>
+<td>1562281180002</td>
+<td>8</td>
+<td>2019-07-05 06:59:40</td>
+<td>2019-07-05 07:01:16</td>
+<td>96</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>116</td>
+</tr>
+<tr>
+<td>633</td>
+<td>1562281300003</td>
+<td>8</td>
+<td>2019-07-05 07:01:40</td>
+<td>2019-07-05 07:03:14</td>
+<td>94</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>123</td>
+</tr>
+<tr>
+<td>634</td>
+<td>1562281420002</td>
+<td>8</td>
+<td>2019-07-05 07:03:40</td>
+<td>2019-07-05 07:05:08</td>
+<td>88</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>126</td>
+</tr>
+<tr>
+<td>635</td>
+<td>1562281540003</td>
+<td>8</td>
+<td>2019-07-05 07:05:40</td>
+<td>2019-07-05 07:07:09</td>
+<td>89</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>121</td>
+</tr>
+<tr>
+<td>636</td>
+<td>1562281660002</td>
+<td>8</td>
+<td>2019-07-05 07:07:40</td>
+<td>2019-07-05 07:09:14</td>
+<td>94</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>137</td>
+</tr>
+<tr>
+<td>637</td>
+<td>1562281780003</td>
+<td>8</td>
+<td>2019-07-05 07:09:40</td>
+<td>2019-07-05 07:11:13</td>
+<td>93</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>156</td>
+</tr>
+<tr>
+<td>638</td>
+<td>1562281900002</td>
+<td>8</td>
+<td>2019-07-05 07:11:40</td>
+<td>2019-07-05 07:13:11</td>
+<td>91</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>141</td>
+</tr>
+<tr>
+<td>639</td>
+<td>1562282020003</td>
+<td>8</td>
+<td>2019-07-05 07:13:40</td>
+<td>2019-07-05 07:15:10</td>
+<td>90</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>167</td>
+</tr>
+<tr>
+<td>640</td>
+<td>1562282140003</td>
+<td>8</td>
+<td>2019-07-05 07:15:40</td>
+<td>2019-07-05 07:17:13</td>
+<td>93</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>189</td>
+</tr>
+<tr>
+<td>641</td>
+<td>1562282260003</td>
+<td>8</td>
+<td>2019-07-05 07:17:40</td>
+<td>2019-07-05 07:19:12</td>
+<td>92</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>183</td>
+</tr>
+<tr>
+<td>642</td>
+<td>1562282380003</td>
+<td>8</td>
+<td>2019-07-05 07:19:40</td>
+<td>2019-07-05 07:21:15</td>
+<td>95</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>182</td>
+</tr>
+<tr>
+<td>643</td>
+<td>1562282500002</td>
+<td>8</td>
+<td>2019-07-05 07:21:40</td>
+<td>2019-07-05 07:23:15</td>
+<td>95</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>198</td>
+</tr>
+<tr>
+<td>644</td>
+<td>1562282620003</td>
+<td>8</td>
+<td>2019-07-05 07:23:40</td>
+<td>2019-07-05 07:25:12</td>
+<td>92</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>208</td>
+</tr>
+<tr>
+<td>645</td>
+<td>1562282740002</td>
+<td>8</td>
+<td>2019-07-05 07:25:40</td>
+<td>2019-07-05 07:27:09</td>
+<td>89</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>227</td>
+</tr>
+<tr>
+<td>646</td>
+<td>1562282860003</td>
+<td>8</td>
+<td>2019-07-05 07:27:40</td>
+<td>2019-07-05 07:29:15</td>
+<td>95</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>249</td>
+</tr>
+<tr>
+<td>647</td>
+<td>1562282980003</td>
+<td>8</td>
+<td>2019-07-05 07:29:40</td>
+<td>2019-07-05 07:31:17</td>
+<td>97</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>273</td>
+</tr>
+<tr>
+<td>648</td>
+<td>1562283100003</td>
+<td>8</td>
+<td>2019-07-05 07:31:40</td>
+<td>2019-07-05 07:33:17</td>
+<td>97</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>287</td>
+</tr>
+<tr>
+<td>649</td>
+<td>1562283220002</td>
+<td>8</td>
+<td>2019-07-05 07:33:40</td>
+<td>2019-07-05 07:35:14</td>
+<td>94</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>297</td>
+</tr>
+<tr>
+<td>650</td>
+<td>1562283340003</td>
+<td>8</td>
+<td>2019-07-05 07:35:40</td>
+<td>2019-07-05 07:37:17</td>
+<td>97</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>311</td>
+</tr>
+<tr>
+<td>651</td>
+<td>1562283460002</td>
+<td>8</td>
+<td>2019-07-05 07:37:40</td>
+<td>2019-07-05 07:39:22</td>
+<td>102</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>329</td>
+</tr>
+<tr>
+<td>652</td>
+<td>1562283580003</td>
+<td>8</td>
+<td>2019-07-05 07:39:40</td>
+<td>2019-07-05 07:41:16</td>
+<td>96</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>319</td>
+</tr>
+<tr>
+<td>653</td>
+<td>1562283700002</td>
+<td>8</td>
+<td>2019-07-05 07:41:40</td>
+<td>2019-07-05 07:43:17</td>
+<td>97</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>306</td>
+</tr>
+<tr>
+<td>654</td>
+<td>1562283820003</td>
+<td>8</td>
+<td>2019-07-05 07:43:40</td>
+<td>2019-07-05 07:45:19</td>
+<td>99</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>348</td>
+</tr>
+<tr>
+<td>655</td>
+<td>1562283940002</td>
+<td>8</td>
+<td>2019-07-05 07:45:40</td>
+<td>2019-07-05 07:47:19</td>
+<td>99</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>359</td>
+</tr>
+<tr>
+<td>656</td>
+<td>1562284060003</td>
+<td>8</td>
+<td>2019-07-05 07:47:40</td>
+<td>2019-07-05 07:49:16</td>
+<td>96</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>363</td>
+</tr>
+<tr>
+<td>657</td>
+<td>1562284180002</td>
+<td>8</td>
+<td>2019-07-05 07:49:40</td>
+<td>2019-07-05 07:51:17</td>
+<td>97</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>380</td>
+</tr>
+<tr>
+<td>658</td>
+<td>1562284300002</td>
+<td>8</td>
+<td>2019-07-05 07:51:40</td>
+<td>2019-07-05 07:53:22</td>
+<td>102</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>381</td>
+</tr>
+<tr>
+<td>659</td>
+<td>1562284420003</td>
+<td>8</td>
+<td>2019-07-05 07:53:40</td>
+<td>2019-07-05 07:55:20</td>
+<td>100</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>400</td>
+</tr>
+<tr>
+<td>660</td>
+<td>1562284540002</td>
+<td>8</td>
+<td>2019-07-05 07:55:40</td>
+<td>2019-07-05 07:57:15</td>
+<td>95</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>383</td>
+</tr>
+<tr>
+<td>661</td>
+<td>1562284660002</td>
+<td>8</td>
+<td>2019-07-05 07:57:40</td>
+<td>2019-07-05 07:59:19</td>
+<td>99</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>396</td>
+</tr>
+<tr>
+<td>662</td>
+<td>1562284780003</td>
+<td>8</td>
+<td>2019-07-05 07:59:40</td>
+<td>2019-07-05 08:01:25</td>
+<td>105</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>378</td>
+</tr>
+<tr>
+<td>663</td>
+<td>1562284900002</td>
+<td>8</td>
+<td>2019-07-05 08:01:40</td>
+<td>2019-07-05 08:03:23</td>
+<td>103</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>390</td>
+</tr>
+<tr>
+<td>664</td>
+<td>1562285020002</td>
+<td>8</td>
+<td>2019-07-05 08:03:40</td>
+<td>2019-07-05 08:05:23</td>
+<td>103</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>385</td>
+</tr>
+<tr>
+<td>665</td>
+<td>1562285140002</td>
+<td>8</td>
+<td>2019-07-05 08:05:40</td>
+<td>2019-07-05 08:07:22</td>
+<td>102</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>395</td>
+</tr>
+<tr>
+<td>666</td>
+<td>1562285260003</td>
+<td>8</td>
+<td>2019-07-05 08:07:40</td>
+<td>2019-07-05 08:09:20</td>
+<td>100</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>415</td>
+</tr>
+<tr>
+<td>667</td>
+<td>1562285380002</td>
+<td>8</td>
+<td>2019-07-05 08:09:40</td>
+<td>2019-07-05 08:11:21</td>
+<td>101</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>411</td>
+</tr>
+<tr>
+<td>668</td>
+<td>1562285500002</td>
+<td>8</td>
+<td>2019-07-05 08:11:40</td>
+<td>2019-07-05 08:13:24</td>
+<td>104</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>398</td>
+</tr>
+<tr>
+<td>669</td>
+<td>1562285620003</td>
+<td>8</td>
+<td>2019-07-05 08:13:40</td>
+<td>2019-07-05 08:15:24</td>
+<td>104</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>390</td>
+</tr>
+<tr>
+<td>670</td>
+<td>1562285740002</td>
+<td>8</td>
+<td>2019-07-05 08:15:40</td>
+<td>2019-07-05 08:17:24</td>
+<td>104</td>
+<td>82</td>
+<td>18901</td>
+<td>1</td>
+<td>396</td>
+</tr>
+<tr>
+<td>671</td>
+<td>1562285860003</td>
+<td>8</td>
+<td>2019-07-05 08:17:40</td>
+<td>2019-07-05 08:19:25</td>
+<td>105</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>393</td>
+</tr>
+<tr>
+<td>672</td>
+<td>1562285980002</td>
+<td>8</td>
+<td>2019-07-05 08:19:40</td>
+<td>2019-07-05 08:21:23</td>
+<td>103</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>440</td>
+</tr>
+<tr>
+<td>673</td>
+<td>1562286100002</td>
+<td>8</td>
+<td>2019-07-05 08:21:40</td>
+<td>2019-07-05 08:23:29</td>
+<td>109</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>426</td>
+</tr>
+<tr>
+<td>674</td>
+<td>1562286220002</td>
+<td>8</td>
+<td>2019-07-05 08:23:40</td>
+<td>2019-07-05 08:25:29</td>
+<td>109</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>425</td>
+</tr>
+<tr>
+<td>675</td>
+<td>1562286340002</td>
+<td>8</td>
+<td>2019-07-05 08:25:40</td>
+<td>2019-07-05 08:27:28</td>
+<td>108</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>419</td>
+</tr>
+<tr>
+<td>676</td>
+<td>1562286460003</td>
+<td>8</td>
+<td>2019-07-05 08:27:40</td>
+<td>2019-07-05 08:29:27</td>
+<td>107</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>412</td>
+</tr>
+<tr>
+<td>677</td>
+<td>1562286580003</td>
+<td>8</td>
+<td>2019-07-05 08:29:40</td>
+<td>2019-07-05 08:31:22</td>
+<td>102</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>410</td>
+</tr>
+<tr>
+<td>678</td>
+<td>1562286700003</td>
+<td>8</td>
+<td>2019-07-05 08:31:40</td>
+<td>2019-07-05 08:33:20</td>
+<td>100</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>406</td>
+</tr>
+<tr>
+<td>679</td>
+<td>1562286820003</td>
+<td>8</td>
+<td>2019-07-05 08:33:40</td>
+<td>2019-07-05 08:35:34</td>
+<td>114</td>
+<td>90</td>
+<td>18900</td>
+<td>2</td>
+<td>410</td>
+</tr>
+<tr>
+<td>680</td>
+<td>1562286940003</td>
+<td>8</td>
+<td>2019-07-05 08:35:40</td>
+<td>2019-07-05 08:37:24</td>
+<td>104</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>370</td>
+</tr>
+<tr>
+<td>681</td>
+<td>1562287060003</td>
+<td>8</td>
+<td>2019-07-05 08:37:40</td>
+<td>2019-07-05 08:39:24</td>
+<td>104</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>369</td>
+</tr>
+<tr>
+<td>682</td>
+<td>1562287180002</td>
+<td>8</td>
+<td>2019-07-05 08:39:40</td>
+<td>2019-07-05 08:41:28</td>
+<td>108</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>386</td>
+</tr>
+<tr>
+<td>683</td>
+<td>1562287300003</td>
+<td>8</td>
+<td>2019-07-05 08:41:40</td>
+<td>2019-07-05 08:43:27</td>
+<td>107</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>368</td>
+</tr>
+<tr>
+<td>684</td>
+<td>1562287420002</td>
+<td>8</td>
+<td>2019-07-05 08:43:40</td>
+<td>2019-07-05 08:45:25</td>
+<td>105</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>376</td>
+</tr>
+<tr>
+<td>685</td>
+<td>1562287540002</td>
+<td>8</td>
+<td>2019-07-05 08:45:40</td>
+<td>2019-07-05 08:47:24</td>
+<td>104</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>379</td>
+</tr>
+<tr>
+<td>686</td>
+<td>1562287660003</td>
+<td>8</td>
+<td>2019-07-05 08:47:40</td>
+<td>2019-07-05 08:49:22</td>
+<td>102</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>363</td>
+</tr>
+<tr>
+<td>687</td>
+<td>1562287780003</td>
+<td>8</td>
+<td>2019-07-05 08:49:40</td>
+<td>2019-07-05 08:51:26</td>
+<td>106</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>365</td>
+</tr>
+<tr>
+<td>688</td>
+<td>1562287900003</td>
+<td>8</td>
+<td>2019-07-05 08:51:40</td>
+<td>2019-07-05 08:53:23</td>
+<td>103</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>377</td>
+</tr>
+<tr>
+<td>689</td>
+<td>1562288020002</td>
+<td>8</td>
+<td>2019-07-05 08:53:40</td>
+<td>2019-07-05 08:55:21</td>
+<td>101</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>367</td>
+</tr>
+<tr>
+<td>690</td>
+<td>1562288140003</td>
+<td>8</td>
+<td>2019-07-05 08:55:40</td>
+<td>2019-07-05 08:57:20</td>
+<td>100</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>351</td>
+</tr>
+<tr>
+<td>691</td>
+<td>1562288260003</td>
+<td>8</td>
+<td>2019-07-05 08:57:40</td>
+<td>2019-07-05 08:59:21</td>
+<td>101</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>321</td>
+</tr>
+<tr>
+<td>692</td>
+<td>1562288380003</td>
+<td>8</td>
+<td>2019-07-05 08:59:40</td>
+<td>2019-07-05 09:01:18</td>
+<td>98</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>330</td>
+</tr>
+<tr>
+<td>693</td>
+<td>1562288500002</td>
+<td>8</td>
+<td>2019-07-05 09:01:40</td>
+<td>2019-07-05 09:03:18</td>
+<td>98</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>309</td>
+</tr>
+<tr>
+<td>694</td>
+<td>1562288620003</td>
+<td>8</td>
+<td>2019-07-05 09:03:40</td>
+<td>2019-07-05 09:05:22</td>
+<td>102</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>310</td>
+</tr>
+<tr>
+<td>695</td>
+<td>1562288740003</td>
+<td>8</td>
+<td>2019-07-05 09:05:40</td>
+<td>2019-07-05 09:07:19</td>
+<td>99</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>309</td>
+</tr>
+<tr>
+<td>696</td>
+<td>1562288860002</td>
+<td>8</td>
+<td>2019-07-05 09:07:40</td>
+<td>2019-07-05 09:09:19</td>
+<td>99</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>326</td>
+</tr>
+<tr>
+<td>697</td>
+<td>1562288980003</td>
+<td>8</td>
+<td>2019-07-05 09:09:40</td>
+<td>2019-07-05 09:11:13</td>
+<td>93</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>312</td>
+</tr>
+<tr>
+<td>698</td>
+<td>1562289100002</td>
+<td>8</td>
+<td>2019-07-05 09:11:40</td>
+<td>2019-07-05 09:13:13</td>
+<td>93</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>299</td>
+</tr>
+<tr>
+<td>699</td>
+<td>1562289220003</td>
+<td>8</td>
+<td>2019-07-05 09:13:40</td>
+<td>2019-07-05 09:15:20</td>
+<td>100</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>298</td>
+</tr>
+<tr>
+<td>700</td>
+<td>1562289340003</td>
+<td>8</td>
+<td>2019-07-05 09:15:40</td>
+<td>2019-07-05 09:17:44</td>
+<td>124</td>
+<td>107</td>
+<td>18900</td>
+<td>2</td>
+<td>262</td>
+</tr>
+<tr>
+<td>701</td>
+<td>1562289480003</td>
+<td>8</td>
+<td>2019-07-05 09:18:00</td>
+<td>2019-07-05 09:21:22</td>
+<td>202</td>
+<td>172</td>
+<td>18900</td>
+<td>2</td>
+<td>311</td>
+</tr>
+<tr>
+<td>702</td>
+<td>1562289700003</td>
+<td>8</td>
+<td>2019-07-05 09:21:40</td>
+<td>2019-07-05 09:23:38</td>
+<td>118</td>
+<td>102</td>
+<td>18902</td>
+<td>0</td>
+<td>321</td>
+</tr>
+<tr>
+<td>703</td>
+<td>1562289820003</td>
+<td>8</td>
+<td>2019-07-05 09:23:40</td>
+<td>2019-07-05 09:26:13</td>
+<td>153</td>
+<td>124</td>
+<td>18900</td>
+<td>2</td>
+<td>326</td>
+</tr>
+<tr>
+<td>704</td>
+<td>1562290000003</td>
+<td>8</td>
+<td>2019-07-05 09:26:40</td>
+<td>2019-07-05 09:29:12</td>
+<td>152</td>
+<td>129</td>
+<td>18902</td>
+<td>0</td>
+<td>333</td>
+</tr>
+<tr>
+<td>705</td>
+<td>1562290180003</td>
+<td>8</td>
+<td>2019-07-05 09:29:40</td>
+<td>2019-07-05 09:32:59</td>
+<td>199</td>
+<td>178</td>
+<td>18900</td>
+<td>2</td>
+<td>322</td>
+</tr>
+<tr>
+<td>706</td>
+<td>1562290380003</td>
+<td>8</td>
+<td>2019-07-05 09:33:00</td>
+<td>2019-07-05 09:36:27</td>
+<td>207</td>
+<td>162</td>
+<td>18897</td>
+<td>5</td>
+<td>315</td>
+</tr>
+<tr>
+<td>707</td>
+<td>1562290600003</td>
+<td>8</td>
+<td>2019-07-05 09:36:40</td>
+<td>2019-07-05 09:41:17</td>
+<td>277</td>
+<td>238</td>
+<td>18896</td>
+<td>6</td>
+<td>306</td>
+</tr>
+<tr>
+<td>708</td>
+<td>1562290900002</td>
+<td>8</td>
+<td>2019-07-05 09:41:40</td>
+<td>2019-07-05 09:45:31</td>
+<td>231</td>
+<td>201</td>
+<td>18899</td>
+<td>3</td>
+<td>336</td>
+</tr>
+<tr>
+<td>709</td>
+<td>1562291140003</td>
+<td>8</td>
+<td>2019-07-05 09:45:40</td>
+<td>2019-07-05 09:47:49</td>
+<td>129</td>
+<td>111</td>
+<td>18902</td>
+<td>0</td>
+<td>341</td>
+</tr>
+<tr>
+<td>710</td>
+<td>1562291280002</td>
+<td>8</td>
+<td>2019-07-05 09:48:00</td>
+<td>2019-07-05 09:49:40</td>
+<td>100</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>325</td>
+</tr>
+<tr>
+<td>711</td>
+<td>1562291400002</td>
+<td>8</td>
+<td>2019-07-05 09:50:00</td>
+<td>2019-07-05 09:51:38</td>
+<td>98</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>314</td>
+</tr>
+<tr>
+<td>712</td>
+<td>1562291500002</td>
+<td>8</td>
+<td>2019-07-05 09:51:40</td>
+<td>2019-07-05 09:53:19</td>
+<td>99</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>297</td>
+</tr>
+<tr>
+<td>713</td>
+<td>1562291620002</td>
+<td>8</td>
+<td>2019-07-05 09:53:40</td>
+<td>2019-07-05 09:55:22</td>
+<td>102</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>317</td>
+</tr>
+<tr>
+<td>714</td>
+<td>1562291740003</td>
+<td>8</td>
+<td>2019-07-05 09:55:40</td>
+<td>2019-07-05 09:57:26</td>
+<td>106</td>
+<td>89</td>
+<td>18901</td>
+<td>1</td>
+<td>293</td>
+</tr>
+<tr>
+<td>715</td>
+<td>1562291860003</td>
+<td>8</td>
+<td>2019-07-05 09:57:40</td>
+<td>2019-07-05 09:59:27</td>
+<td>107</td>
+<td>91</td>
+<td>18902</td>
+<td>0</td>
+<td>313</td>
+</tr>
+<tr>
+<td>716</td>
+<td>1562291980002</td>
+<td>8</td>
+<td>2019-07-05 09:59:40</td>
+<td>2019-07-05 10:01:25</td>
+<td>105</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>319</td>
+</tr>
+<tr>
+<td>717</td>
+<td>1562292100003</td>
+<td>8</td>
+<td>2019-07-05 10:01:40</td>
+<td>2019-07-05 10:03:22</td>
+<td>102</td>
+<td>84</td>
+<td>18901</td>
+<td>1</td>
+<td>297</td>
+</tr>
+<tr>
+<td>718</td>
+<td>1562292220002</td>
+<td>8</td>
+<td>2019-07-05 10:03:40</td>
+<td>2019-07-05 10:05:25</td>
+<td>105</td>
+<td>87</td>
+<td>18900</td>
+<td>2</td>
+<td>290</td>
+</tr>
+<tr>
+<td>719</td>
+<td>1562292340002</td>
+<td>8</td>
+<td>2019-07-05 10:05:40</td>
+<td>2019-07-05 10:07:16</td>
+<td>96</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>292</td>
+</tr>
+<tr>
+<td>720</td>
+<td>1562292460002</td>
+<td>8</td>
+<td>2019-07-05 10:07:40</td>
+<td>2019-07-05 10:09:23</td>
+<td>103</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>270</td>
+</tr>
+<tr>
+<td>721</td>
+<td>1562292580003</td>
+<td>8</td>
+<td>2019-07-05 10:09:40</td>
+<td>2019-07-05 10:11:29</td>
+<td>109</td>
+<td>93</td>
+<td>18902</td>
+<td>0</td>
+<td>288</td>
+</tr>
+<tr>
+<td>722</td>
+<td>1562292700003</td>
+<td>8</td>
+<td>2019-07-05 10:11:40</td>
+<td>2019-07-05 10:13:24</td>
+<td>104</td>
+<td>87</td>
+<td>18901</td>
+<td>1</td>
+<td>289</td>
+</tr>
+<tr>
+<td>723</td>
+<td>1562292820003</td>
+<td>8</td>
+<td>2019-07-05 10:13:40</td>
+<td>2019-07-05 10:15:32</td>
+<td>112</td>
+<td>94</td>
+<td>18899</td>
+<td>3</td>
+<td>299</td>
+</tr>
+<tr>
+<td>724</td>
+<td>1562292940002</td>
+<td>8</td>
+<td>2019-07-05 10:15:40</td>
+<td>2019-07-05 10:17:16</td>
+<td>96</td>
+<td>79</td>
+<td>18902</td>
+<td>0</td>
+<td>287</td>
+</tr>
+<tr>
+<td>725</td>
+<td>1562293060002</td>
+<td>8</td>
+<td>2019-07-05 10:17:40</td>
+<td>2019-07-05 10:19:17</td>
+<td>97</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>301</td>
+</tr>
+<tr>
+<td>726</td>
+<td>1562293180002</td>
+<td>8</td>
+<td>2019-07-05 10:19:40</td>
+<td>2019-07-05 10:21:48</td>
+<td>128</td>
+<td>101</td>
+<td>18901</td>
+<td>1</td>
+<td>283</td>
+</tr>
+<tr>
+<td>727</td>
+<td>1562293320002</td>
+<td>8</td>
+<td>2019-07-05 10:22:00</td>
+<td>2019-07-05 10:23:46</td>
+<td>106</td>
+<td>90</td>
+<td>18902</td>
+<td>0</td>
+<td>314</td>
+</tr>
+<tr>
+<td>728</td>
+<td>1562293440003</td>
+<td>8</td>
+<td>2019-07-05 10:24:00</td>
+<td>2019-07-05 10:25:43</td>
+<td>103</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>299</td>
+</tr>
+<tr>
+<td>729</td>
+<td>1562293560003</td>
+<td>8</td>
+<td>2019-07-05 10:26:00</td>
+<td>2019-07-05 10:27:38</td>
+<td>98</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>301</td>
+</tr>
+<tr>
+<td>730</td>
+<td>1562293660003</td>
+<td>8</td>
+<td>2019-07-05 10:27:40</td>
+<td>2019-07-05 10:29:24</td>
+<td>104</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>295</td>
+</tr>
+<tr>
+<td>731</td>
+<td>1562293780002</td>
+<td>8</td>
+<td>2019-07-05 10:29:40</td>
+<td>2019-07-05 10:31:21</td>
+<td>101</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>269</td>
+</tr>
+<tr>
+<td>732</td>
+<td>1562293900003</td>
+<td>8</td>
+<td>2019-07-05 10:31:40</td>
+<td>2019-07-05 10:33:21</td>
+<td>101</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>266</td>
+</tr>
+<tr>
+<td>733</td>
+<td>1562294020002</td>
+<td>8</td>
+<td>2019-07-05 10:33:40</td>
+<td>2019-07-05 10:35:17</td>
+<td>97</td>
+<td>81</td>
+<td>18902</td>
+<td>0</td>
+<td>267</td>
+</tr>
+<tr>
+<td>734</td>
+<td>1562294140002</td>
+<td>8</td>
+<td>2019-07-05 10:35:40</td>
+<td>2019-07-05 10:37:15</td>
+<td>95</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>254</td>
+</tr>
+<tr>
+<td>735</td>
+<td>1562294260002</td>
+<td>8</td>
+<td>2019-07-05 10:37:40</td>
+<td>2019-07-05 10:39:20</td>
+<td>100</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>235</td>
+</tr>
+<tr>
+<td>736</td>
+<td>1562294380003</td>
+<td>8</td>
+<td>2019-07-05 10:39:40</td>
+<td>2019-07-05 10:41:18</td>
+<td>98</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>252</td>
+</tr>
+<tr>
+<td>737</td>
+<td>1562294500003</td>
+<td>8</td>
+<td>2019-07-05 10:41:40</td>
+<td>2019-07-05 10:43:23</td>
+<td>103</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>265</td>
+</tr>
+<tr>
+<td>738</td>
+<td>1562294620002</td>
+<td>8</td>
+<td>2019-07-05 10:43:40</td>
+<td>2019-07-05 10:45:30</td>
+<td>110</td>
+<td>94</td>
+<td>18902</td>
+<td>0</td>
+<td>274</td>
+</tr>
+<tr>
+<td>739</td>
+<td>1562294740002</td>
+<td>8</td>
+<td>2019-07-05 10:45:40</td>
+<td>2019-07-05 10:47:23</td>
+<td>103</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>260</td>
+</tr>
+<tr>
+<td>740</td>
+<td>1562294860003</td>
+<td>8</td>
+<td>2019-07-05 10:47:40</td>
+<td>2019-07-05 10:49:22</td>
+<td>102</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>271</td>
+</tr>
+<tr>
+<td>741</td>
+<td>1562294980002</td>
+<td>8</td>
+<td>2019-07-05 10:49:40</td>
+<td>2019-07-05 10:51:25</td>
+<td>105</td>
+<td>90</td>
+<td>18902</td>
+<td>0</td>
+<td>268</td>
+</tr>
+<tr>
+<td>742</td>
+<td>1562295100002</td>
+<td>8</td>
+<td>2019-07-05 10:51:40</td>
+<td>2019-07-05 10:53:23</td>
+<td>103</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>286</td>
+</tr>
+<tr>
+<td>743</td>
+<td>1562295220003</td>
+<td>8</td>
+<td>2019-07-05 10:53:40</td>
+<td>2019-07-05 10:55:25</td>
+<td>105</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>258</td>
+</tr>
+<tr>
+<td>744</td>
+<td>1562295340003</td>
+<td>8</td>
+<td>2019-07-05 10:55:40</td>
+<td>2019-07-05 10:57:54</td>
+<td>134</td>
+<td>117</td>
+<td>18901</td>
+<td>1</td>
+<td>252</td>
+</tr>
+<tr>
+<td>745</td>
+<td>1562295480002</td>
+<td>8</td>
+<td>2019-07-05 10:58:00</td>
+<td>2019-07-05 10:59:55</td>
+<td>115</td>
+<td>98</td>
+<td>18902</td>
+<td>0</td>
+<td>266</td>
+</tr>
+<tr>
+<td>746</td>
+<td>1562295600002</td>
+<td>8</td>
+<td>2019-07-05 11:00:00</td>
+<td>2019-07-05 11:01:44</td>
+<td>104</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>265</td>
+</tr>
+<tr>
+<td>747</td>
+<td>1562295720002</td>
+<td>8</td>
+<td>2019-07-05 11:02:00</td>
+<td>2019-07-05 11:03:49</td>
+<td>109</td>
+<td>94</td>
+<td>18902</td>
+<td>0</td>
+<td>267</td>
+</tr>
+<tr>
+<td>748</td>
+<td>1562295840003</td>
+<td>8</td>
+<td>2019-07-05 11:04:00</td>
+<td>2019-07-05 11:05:45</td>
+<td>105</td>
+<td>86</td>
+<td>18901</td>
+<td>1</td>
+<td>267</td>
+</tr>
+<tr>
+<td>749</td>
+<td>1562295960002</td>
+<td>8</td>
+<td>2019-07-05 11:06:00</td>
+<td>2019-07-05 11:07:46</td>
+<td>106</td>
+<td>91</td>
+<td>18902</td>
+<td>0</td>
+<td>251</td>
+</tr>
+<tr>
+<td>750</td>
+<td>1562296080002</td>
+<td>8</td>
+<td>2019-07-05 11:08:00</td>
+<td>2019-07-05 11:09:41</td>
+<td>101</td>
+<td>85</td>
+<td>18901</td>
+<td>1</td>
+<td>250</td>
+</tr>
+<tr>
+<td>751</td>
+<td>1562296200002</td>
+<td>8</td>
+<td>2019-07-05 11:10:00</td>
+<td>2019-07-05 11:11:48</td>
+<td>108</td>
+<td>91</td>
+<td>18901</td>
+<td>1</td>
+<td>264</td>
+</tr>
+<tr>
+<td>752</td>
+<td>1562296320003</td>
+<td>8</td>
+<td>2019-07-05 11:12:00</td>
+<td>2019-07-05 11:13:41</td>
+<td>101</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>270</td>
+</tr>
+<tr>
+<td>753</td>
+<td>1562296440003</td>
+<td>8</td>
+<td>2019-07-05 11:14:00</td>
+<td>2019-07-05 11:15:45</td>
+<td>105</td>
+<td>90</td>
+<td>18902</td>
+<td>0</td>
+<td>272</td>
+</tr>
+<tr>
+<td>754</td>
+<td>1562296560003</td>
+<td>8</td>
+<td>2019-07-05 11:16:00</td>
+<td>2019-07-05 11:17:42</td>
+<td>102</td>
+<td>88</td>
+<td>18901</td>
+<td>1</td>
+<td>273</td>
+</tr>
+<tr>
+<td>755</td>
+<td>1562296680003</td>
+<td>8</td>
+<td>2019-07-05 11:18:00</td>
+<td>2019-07-05 11:19:40</td>
+<td>100</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>279</td>
+</tr>
+<tr>
+<td>756</td>
+<td>1562296800002</td>
+<td>8</td>
+<td>2019-07-05 11:20:00</td>
+<td>2019-07-05 11:21:44</td>
+<td>104</td>
+<td>91</td>
+<td>18902</td>
+<td>0</td>
+<td>252</td>
+</tr>
+<tr>
+<td>757</td>
+<td>1562296920002</td>
+<td>8</td>
+<td>2019-07-05 11:22:00</td>
+<td>2019-07-05 11:23:50</td>
+<td>110</td>
+<td>95</td>
+<td>18902</td>
+<td>0</td>
+<td>265</td>
+</tr>
+<tr>
+<td>758</td>
+<td>1562297040003</td>
+<td>8</td>
+<td>2019-07-05 11:24:00</td>
+<td>2019-07-05 11:25:40</td>
+<td>100</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>257</td>
+</tr>
+<tr>
+<td>759</td>
+<td>1562297160003</td>
+<td>8</td>
+<td>2019-07-05 11:26:00</td>
+<td>2019-07-05 11:27:41</td>
+<td>101</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>265</td>
+</tr>
+<tr>
+<td>760</td>
+<td>1562297280002</td>
+<td>8</td>
+<td>2019-07-05 11:28:00</td>
+<td>2019-07-05 11:29:47</td>
+<td>107</td>
+<td>93</td>
+<td>18902</td>
+<td>0</td>
+<td>260</td>
+</tr>
+<tr>
+<td>761</td>
+<td>1562297400002</td>
+<td>8</td>
+<td>2019-07-05 11:30:00</td>
+<td>2019-07-05 11:31:45</td>
+<td>105</td>
+<td>92</td>
+<td>18902</td>
+<td>0</td>
+<td>235</td>
+</tr>
+<tr>
+<td>762</td>
+<td>1562297520002</td>
+<td>8</td>
+<td>2019-07-05 11:32:00</td>
+<td>2019-07-05 11:33:38</td>
+<td>98</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>197</td>
+</tr>
+<tr>
+<td>763</td>
+<td>1562297620002</td>
+<td>8</td>
+<td>2019-07-05 11:33:40</td>
+<td>2019-07-05 11:35:26</td>
+<td>106</td>
+<td>94</td>
+<td>18902</td>
+<td>0</td>
+<td>209</td>
+</tr>
+<tr>
+<td>764</td>
+<td>1562297740002</td>
+<td>8</td>
+<td>2019-07-05 11:35:40</td>
+<td>2019-07-05 11:37:21</td>
+<td>101</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>212</td>
+</tr>
+<tr>
+<td>765</td>
+<td>1562297860003</td>
+<td>8</td>
+<td>2019-07-05 11:37:40</td>
+<td>2019-07-05 11:39:19</td>
+<td>99</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>224</td>
+</tr>
+<tr>
+<td>766</td>
+<td>1562297980003</td>
+<td>8</td>
+<td>2019-07-05 11:39:40</td>
+<td>2019-07-05 11:41:13</td>
+<td>93</td>
+<td>80</td>
+<td>18902</td>
+<td>0</td>
+<td>220</td>
+</tr>
+<tr>
+<td>767</td>
+<td>1562298100002</td>
+<td>8</td>
+<td>2019-07-05 11:41:40</td>
+<td>2019-07-05 11:43:37</td>
+<td>117</td>
+<td>102</td>
+<td>18901</td>
+<td>1</td>
+<td>215</td>
+</tr>
+<tr>
+<td>768</td>
+<td>1562298220003</td>
+<td>8</td>
+<td>2019-07-05 11:43:40</td>
+<td>2019-07-05 11:45:27</td>
+<td>107</td>
+<td>95</td>
+<td>18902</td>
+<td>0</td>
+<td>217</td>
+</tr>
+<tr>
+<td>769</td>
+<td>1562298340003</td>
+<td>8</td>
+<td>2019-07-05 11:45:40</td>
+<td>2019-07-05 11:47:31</td>
+<td>111</td>
+<td>98</td>
+<td>18902</td>
+<td>0</td>
+<td>209</td>
+</tr>
+<tr>
+<td>770</td>
+<td>1562298460002</td>
+<td>8</td>
+<td>2019-07-05 11:47:40</td>
+<td>2019-07-05 11:49:21</td>
+<td>101</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>221</td>
+</tr>
+<tr>
+<td>771</td>
+<td>1562298580002</td>
+<td>8</td>
+<td>2019-07-05 11:49:40</td>
+<td>2019-07-05 11:51:18</td>
+<td>97</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>231</td>
+</tr>
+<tr>
+<td>772</td>
+<td>1562298700002</td>
+<td>8</td>
+<td>2019-07-05 11:51:40</td>
+<td>2019-07-05 11:53:23</td>
+<td>103</td>
+<td>92</td>
+<td>18902</td>
+<td>0</td>
+<td>232</td>
+</tr>
+<tr>
+<td>773</td>
+<td>1562298820002</td>
+<td>8</td>
+<td>2019-07-05 11:53:40</td>
+<td>2019-07-05 11:55:20</td>
+<td>100</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>220</td>
+</tr>
+<tr>
+<td>774</td>
+<td>1562298940003</td>
+<td>8</td>
+<td>2019-07-05 11:55:40</td>
+<td>2019-07-05 11:57:24</td>
+<td>104</td>
+<td>90</td>
+<td>18900</td>
+<td>2</td>
+<td>225</td>
+</tr>
+<tr>
+<td>775</td>
+<td>1562299060002</td>
+<td>8</td>
+<td>2019-07-05 11:57:40</td>
+<td>2019-07-05 11:59:57</td>
+<td>137</td>
+<td>121</td>
+<td>18899</td>
+<td>3</td>
+<td>233</td>
+</tr>
+<tr>
+<td>776</td>
+<td>1562299200005</td>
+<td>8</td>
+<td>2019-07-05 12:00:00</td>
+<td>2019-07-05 12:01:41</td>
+<td>101</td>
+<td>85</td>
+<td>18901</td>
+<td>1</td>
+<td>207</td>
+</tr>
+<tr>
+<td>777</td>
+<td>1562299320002</td>
+<td>8</td>
+<td>2019-07-05 12:02:00</td>
+<td>2019-07-05 12:03:37</td>
+<td>97</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>203</td>
+</tr>
+<tr>
+<td>778</td>
+<td>1562299420003</td>
+<td>8</td>
+<td>2019-07-05 12:03:40</td>
+<td>2019-07-05 12:05:18</td>
+<td>98</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>193</td>
+</tr>
+<tr>
+<td>779</td>
+<td>1562299540003</td>
+<td>8</td>
+<td>2019-07-05 12:05:40</td>
+<td>2019-07-05 12:07:17</td>
+<td>97</td>
+<td>83</td>
+<td>18902</td>
+<td>0</td>
+<td>197</td>
+</tr>
+<tr>
+<td>780</td>
+<td>1562299660003</td>
+<td>8</td>
+<td>2019-07-05 12:07:40</td>
+<td>2019-07-05 12:09:10</td>
+<td>90</td>
+<td>77</td>
+<td>18902</td>
+<td>0</td>
+<td>196</td>
+</tr>
+<tr>
+<td>781</td>
+<td>1562299780002</td>
+<td>8</td>
+<td>2019-07-05 12:09:40</td>
+<td>2019-07-05 12:11:10</td>
+<td>90</td>
+<td>78</td>
+<td>18902</td>
+<td>0</td>
+<td>211</td>
+</tr>
+<tr>
+<td>782</td>
+<td>1562299900002</td>
+<td>8</td>
+<td>2019-07-05 12:11:40</td>
+<td>2019-07-05 12:13:19</td>
+<td>99</td>
+<td>86</td>
+<td>18901</td>
+<td>1</td>
+<td>203</td>
+</tr>
+<tr>
+<td>783</td>
+<td>1562300020002</td>
+<td>8</td>
+<td>2019-07-05 12:13:40</td>
+<td>2019-07-05 12:15:17</td>
+<td>97</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>190</td>
+</tr>
+<tr>
+<td>784</td>
+<td>1562300140002</td>
+<td>8</td>
+<td>2019-07-05 12:15:40</td>
+<td>2019-07-05 12:17:18</td>
+<td>98</td>
+<td>87</td>
+<td>18902</td>
+<td>0</td>
+<td>187</td>
+</tr>
+<tr>
+<td>785</td>
+<td>1562300260003</td>
+<td>8</td>
+<td>2019-07-05 12:17:40</td>
+<td>2019-07-05 12:19:20</td>
+<td>100</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>183</td>
+</tr>
+<tr>
+<td>786</td>
+<td>1562300380002</td>
+<td>8</td>
+<td>2019-07-05 12:19:40</td>
+<td>2019-07-05 12:21:25</td>
+<td>105</td>
+<td>95</td>
+<td>18902</td>
+<td>0</td>
+<td>183</td>
+</tr>
+<tr>
+<td>787</td>
+<td>1562300500010</td>
+<td>8</td>
+<td>2019-07-05 12:21:40</td>
+<td>2019-07-05 12:23:19</td>
+<td>99</td>
+<td>87</td>
+<td>18901</td>
+<td>1</td>
+<td>172</td>
+</tr>
+<tr>
+<td>788</td>
+<td>1562300620004</td>
+<td>8</td>
+<td>2019-07-05 12:23:40</td>
+<td>2019-07-05 12:25:13</td>
+<td>93</td>
+<td>82</td>
+<td>18902</td>
+<td>0</td>
+<td>184</td>
+</tr>
+<tr>
+<td>789</td>
+<td>1562300740004</td>
+<td>8</td>
+<td>2019-07-05 12:25:40</td>
+<td>2019-07-05 12:27:20</td>
+<td>100</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>190</td>
+</tr>
+<tr>
+<td>790</td>
+<td>1562300860003</td>
+<td>8</td>
+<td>2019-07-05 12:27:40</td>
+<td>2019-07-05 12:29:20</td>
+<td>100</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>171</td>
+</tr>
+<tr>
+<td>791</td>
+<td>1562300980004</td>
+<td>8</td>
+<td>2019-07-05 12:29:40</td>
+<td>2019-07-05 12:31:25</td>
+<td>105</td>
+<td>94</td>
+<td>18902</td>
+<td>0</td>
+<td>169</td>
+</tr>
+<tr>
+<td>792</td>
+<td>1562301100003</td>
+<td>8</td>
+<td>2019-07-05 12:31:40</td>
+<td>2019-07-05 12:33:19</td>
+<td>99</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>182</td>
+</tr>
+<tr>
+<td>793</td>
+<td>1562301220004</td>
+<td>8</td>
+<td>2019-07-05 12:33:40</td>
+<td>2019-07-05 12:35:16</td>
+<td>96</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>172</td>
+</tr>
+<tr>
+<td>794</td>
+<td>1562301340003</td>
+<td>8</td>
+<td>2019-07-05 12:35:40</td>
+<td>2019-07-05 12:37:21</td>
+<td>101</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>164</td>
+</tr>
+<tr>
+<td>795</td>
+<td>1562301460004</td>
+<td>8</td>
+<td>2019-07-05 12:37:40</td>
+<td>2019-07-05 12:39:17</td>
+<td>97</td>
+<td>85</td>
+<td>18902</td>
+<td>0</td>
+<td>158</td>
+</tr>
+<tr>
+<td>796</td>
+<td>1562301580003</td>
+<td>8</td>
+<td>2019-07-05 12:39:40</td>
+<td>2019-07-05 12:41:25</td>
+<td>105</td>
+<td>93</td>
+<td>18902</td>
+<td>0</td>
+<td>184</td>
+</tr>
+<tr>
+<td>797</td>
+<td>1562301700005</td>
+<td>8</td>
+<td>2019-07-05 12:41:40</td>
+<td>2019-07-05 12:43:19</td>
+<td>99</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>173</td>
+</tr>
+<tr>
+<td>798</td>
+<td>1562301820004</td>
+<td>8</td>
+<td>2019-07-05 12:43:40</td>
+<td>2019-07-05 12:45:14</td>
+<td>94</td>
+<td>84</td>
+<td>18902</td>
+<td>0</td>
+<td>155</td>
+</tr>
+<tr>
+<td>799</td>
+<td>1562301940004</td>
+<td>8</td>
+<td>2019-07-05 12:45:40</td>
+<td>2019-07-05 12:47:20</td>
+<td>100</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>158</td>
+</tr>
+<tr>
+<td>800</td>
+<td>1562302060004</td>
+<td>8</td>
+<td>2019-07-05 12:47:40</td>
+<td>2019-07-05 12:49:18</td>
+<td>98</td>
+<td>88</td>
+<td>18902</td>
+<td>0</td>
+<td>146</td>
+</tr>
+<tr>
+<td>801</td>
+<td>1562302180003</td>
+<td>8</td>
+<td>2019-07-05 12:49:40</td>
+<td>2019-07-05 12:51:26</td>
+<td>106</td>
+<td>93</td>
+<td>18902</td>
+<td>0</td>
+<td>165</td>
+</tr>
+<tr>
+<td>802</td>
+<td>1562302300003</td>
+<td>8</td>
+<td>2019-07-05 12:51:40</td>
+<td>2019-07-05 12:53:23</td>
+<td>103</td>
+<td>92</td>
+<td>18902</td>
+<td>0</td>
+<td>172</td>
+</tr>
+<tr>
+<td>803</td>
+<td>1562302420004</td>
+<td>8</td>
+<td>2019-07-05 12:53:40</td>
+<td>2019-07-05 12:55:29</td>
+<td>109</td>
+<td>96</td>
+<td>18902</td>
+<td>0</td>
+<td>183</td>
+</tr>
+<tr>
+<td>804</td>
+<td>1562302540005</td>
+<td>8</td>
+<td>2019-07-05 12:55:40</td>
+<td>2019-07-05 12:57:26</td>
+<td>106</td>
+<td>95</td>
+<td>18902</td>
+<td>0</td>
+<td>140</td>
+</tr>
+<tr>
+<td>805</td>
+<td>1562302660004</td>
+<td>8</td>
+<td>2019-07-05 12:57:40</td>
+<td>2019-07-05 12:59:20</td>
+<td>100</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>143</td>
+</tr>
+<tr>
+<td>806</td>
+<td>1562302780004</td>
+<td>8</td>
+<td>2019-07-05 12:59:40</td>
+<td>2019-07-05 13:01:21</td>
+<td>101</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>145</td>
+</tr>
+<tr>
+<td>807</td>
+<td>1562302900004</td>
+<td>8</td>
+<td>2019-07-05 13:01:40</td>
+<td>2019-07-05 13:03:25</td>
+<td>105</td>
+<td>94</td>
+<td>18902</td>
+<td>0</td>
+<td>155</td>
+</tr>
+<tr>
+<td>808</td>
+<td>1562303020005</td>
+<td>8</td>
+<td>2019-07-05 13:03:40</td>
+<td>2019-07-05 13:05:18</td>
+<td>98</td>
+<td>86</td>
+<td>18902</td>
+<td>0</td>
+<td>164</td>
+</tr>
+<tr>
+<td>809</td>
+<td>1562303140004</td>
+<td>8</td>
+<td>2019-07-05 13:05:40</td>
+<td>2019-07-05 13:07:19</td>
+<td>99</td>
+<td>89</td>
+<td>18902</td>
+<td>0</td>
+<td>176</td>
+</tr>
+<tr>
+<td>810</td>
+<td>1562303260007</td>
+<td>8</td>
+<td>2019-07-05 13:07:40</td>
+<td>2019-07-05 13:09:22</td>
+<td>102</td>
+<td>91</td>
+<td>18902</td>
+<td>0</td>
+<td>153</td>
+</tr>
+<tr>
+<td>811</td>
+<td>1562303380006</td>
+<td>8</td>
+<td>2019-07-05 13:09:40</td>
+<td>2019-07-05 13:11:21</td>
+<td>101</td>
+<td>91</td>
+<td>18902</td>
+<td>0</td>
+<td>166</td>
+</tr>
+<tr>
+<td>812</td>
+<td>1562303500005</td>
+<td>8</td>
+<td>2019-07-05 13:11:40</td>
+<td>2019-07-05 13:13:18</td>
+<td>98</td>
+<td>85</td>
+<td>18901</td>
+<td>1</td>
+<td>151</td>
+</tr>
+</tbody>
+</table>
+<h4 id="完整数据"><a href="#完整数据" class="headerlink" title="完整数据"></a>完整数据</h4><p>完整数据可通过连接数据库查看:</p>
+<p>DBType: MariaDB<br>schemas: traffic-service-v2<br><del>host: 192.168.10.224</del><br>port: 3306<br>username: root<br>password: 123456</p>
+<h4 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h4><p>通过以上数据,我们可以做个简单汇总分析:</p>
+<ol>
+<li>一个分析周期内网络请求所消耗的时间占用了总消耗时间的 4/5, 这里说的网络请求时间指的是请求百度瓦片所消耗的时间</li>
+<li>一个分析周期内: 总消耗时间的平均值为: 98.7 s, 网络请求所消耗的平均时间为: 85.7 s, 服务处理所消耗的平均时间为 13 s ;至于时间为什么会呈这样的分布,下面会有详细的解释</li>
+<li>7 月 4 日的晚高峰拥堵时间开始与 17:09 左右, 于 19:33 左右结束, 并且在 17:58 至 18:00 达到了最高峰; 在最高峰时间服务分析耗时 31 s, 处理了 613 张拥堵瓦片.同理,还可以对 7 月 5 日进行同样的分析,这里不再列举</li>
+<li>单张瓦片平均处理时间为 : 0.06976290 s</li>
+<li>每个分析周期都会请求 18902 次瓦片,为什么有的周期请求时间断,而有的周期请求时间长?<br>原因有 2 :<pre><code>1. 请求过程中可能会发生阻塞的情况,虽然这种情况较少,但是会拖慢单个线程的处理速度
+2. 每次分析的拥堵状况不同, 涉及拥堵的瓦片被填充的有效像素点的数量也不同,这就导致每次同一编号瓦片,但是大小不同,消耗的时间也就不同
+</code></pre></li>
+</ol>
+<h4 id="机器表现"><a href="#机器表现" class="headerlink" title="机器表现"></a>机器表现</h4><p>经过一周的服务性能测试,机器的表现如下</p>
+<ol>
+<li>CPU</li>
+</ol>
+<p><img src="http://image.joylau.cn/blog/ts_cpu-overview.gif" alt="CPU-OVERVIEW"></p>
+<p>这是一个分析周期的资源占用情况, 一个分析周期指的是分析完一遍合肥市拥堵情况的动作<br>截取其中几分钟的的监控情况如下:</p>
+<p><img src="http://image.joylau.cn/blog/ts_cpu.gif" alt="CPU"></p>
+<p>简单解释:<br>第二张图中每个驼峰代表一次分析过程,图中 11:06 - 11:13,经过了 4 个分析周期,每个分析周期的的大致状态是前期和后期 CPU 占用率都不高,中间部分 CPU 占有率高, 约 80% 左右<br>这是因为在抓取地图瓦片的时候是按 <code>从北向南</code> , <code>从西向东</code> 的顺序来抓取的<br>很显然合肥市市内是较整个合肥市拥堵情况较重的,而市内是则位于整片区域的中心部分<br>于是就能解释为什么在一个分析周期前期和后期 CPU 占用率都不高,中间部分 CPU 占有率高的原因</p>
+<ol start="2">
+<li>线程<br><img src="http://image.joylau.cn/blog/ts_thread.gif" alt="Thread"></li>
+</ol>
+<p>简单解释:<br>重点看 <code>ts_</code> 前缀开头的线程<br>这 8 条线代表分析服务的 8 个线程,绿色代表正在运行, 黄色代表在等待中<br>中间被隔开代表分析服务已经进行了一个周期<br>可以看出单个线程在执行一个分析周期的时候,有至少三分之一的时间是处于等待的<br>这是因为服务分析速度很快,分析完毕之后就从队列中拿出下一条任务出来分析,而在分析之前,会先进行网络请求<br>请求瓦片是 TCP 请求, 经历上一次请求关闭的四次挥手和连接建立的三次握手, 这种 IO 请求的耗时对 CPU 来说简直如隔三秋<br>( 对于一次分析周期,去除无道路信息的瓦片,有 18902 张瓦片, 这些都是几十 KB 到几百 KB 大小不等的图片, 需要进行 18902 次 IO 请求,其开销必然不小 )<br>但是 CPU 不会闲着,他会去处理其他线程的请求<br>这样的分析也能够解释了上述表格中 <code>总耗时</code> 和 <code>网络请求耗时</code> 之间的关系  </p>
+<p>线程中甚至还会出现这样的情况  </p>
+<p><img src="http://image.joylau.cn/blog/ts_thread_waiting.png" alt="Thread Waiting"></p>
+<p>这种情况会拖慢单个线程的执行效率<br>这种情况是因为在请求百度瓦片的时候某一张耗时过长被阻塞了,导致线程一直在等待,直到等待时间大于等于连接超时时间或者数据传输超时时间,该线程会被主动释放,后面又恢复正常运行<br>不过这种情况出现的次数比较少,主要看网络的稳定性,有出现的情况都在日志里记录下来了,即上述表格中的出错数</p>
+<ol start="3">
+<li>内存<br><img src="http://image.joylau.cn/blog/ts_memory.gif" alt="Memory"></li>
+</ol>
+<p>对于服务器内存来说, 24G 内存还是比较吃紧的<br>其中最消耗服务器内存是核心分析服务, 为 java 服务<br>java 12 初始化堆大小和最大堆大小均没有配置,为缺省值<br>这时最大堆大小 Xmx 为物理内存的 1/4 , 即 6 GB</p>
+<p>通过上面的图可以得出:<br>核心分析服务达到峰值时, 以达到最大内存 6G, 后来内存占用又会减少,很有可能是 6G 内存不够使用,已触发 GC, 导致内存释放<br>结合整个机器内存占用普遍在 80% 以上, 更能说明这一点</p>
+<ol start="4">
+<li>磁盘<br><img src="http://image.joylau.cn/blog/ts_disk.gif" alt="Disk"></li>
+</ol>
+<p>磁盘的 IO 情况其实并没有太大变动,只是在分析的高峰会有写入和读取</p>
+<ol start="5">
+<li>网络<br><img src="http://image.joylau.cn/blog/ts_networks.gif" alt="Networks"></li>
+</ol>
+<p>8 线程并发请求, 外网下载速度平稳在 350 kb/s 左右, 对网络带宽大小要求不高,但要求网络稳定,无抖动,无丢包</p>
+<h4 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h4><p>经过上面的分析,我认为可以从下面几个点再继续优化:</p>
+<ol>
+<li>提示机器内存: 显然测试机器的内存有点吃紧, 至少 64 G 为合适</li>
+<li>CPU 的频率不需要太高,可选择核数多 CPU, 因为整个耗时最长的是网络请求时间, 而这种 IO 并不消耗 CPU 时间,可将线程数调节至 CPU 逻辑核心数的 3 倍到 5 倍. 推荐 IntelXeon E5 系列 CPU</li>
+<li>提供更稳定的网络</li>
+<li>既然请求百度的瓦片耗时高,那么先缓存一部分瓦片到本地进行分析,效率是否更高? (下面进行测试) 不过带来的坏处就是丧失了分析服务的实时性</li>
+</ol>
+<h4 id="本地缓存分析"><a href="#本地缓存分析" class="headerlink" title="本地缓存分析"></a>本地缓存分析</h4><p>我事先缓存了 2019年07月04日17:00:00 到 2019年07月04日18:00:00, 60 分钟内每分钟的瓦片数据, 共计 18902 * 60 = 1134120 张瓦片到本地磁盘</p>
+<h5 id="Nginx-读取"><a href="#Nginx-读取" class="headerlink" title="Nginx  读取"></a>Nginx  读取</h5><p>将这 110w 张瓦片放到 nginx 目录下, 在进行测试<br>发现测试结果并不能够令人满意,和上面的结果几乎无差,这里就不再贴出表格数据了<br>仔细分析结果是没错的.还是同样的 TCP 请求,只不过不同的是从远端服务器变成了本地服务器</p>
+<h5 id="本地读取瓦片"><a href="#本地读取瓦片" class="headerlink" title="本地读取瓦片"></a>本地读取瓦片</h5><p>将 TCP 请求更换为本地读取文件形式,结果分析时间令人欣慰, 这里也不贴出表格数据了,放一张日志的截图对比下</p>
+<p><img src="http://image.joylau.cn/blog/ts_file_system.png" alt="File System"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>本分析服务对服务器的要求并不高, 要求 CPU 尽量多核心,网络稳定</li>
+<li>开销时间主要集中在网络请求耗时, 目前较好的解决方式是先本地缓存再分析,牺牲了分析的实时性</li>
+</ol>
+      
+    </div>
+    
+  </div>
+  
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/07/04/OpenCV-Baidu-Traffic-5/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
+        <p><span>发布时间:</span>2019-07-04, 15:13:13</p>
+        <p><span>最后更新:</span>2019-07-06, 00:01:06</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/04/OpenCV-Baidu-Traffic-5/" title="OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试">http://blog.joylau.cn/2019/07/04/OpenCV-Baidu-Traffic-5/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2019/07/04/OpenCV-Baidu-Traffic-5/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"CC BY-NC-SA 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/07/04/Gradle-Proxy/">
+                    Gradle 配置代理
+                </a>
+            </div>
+        
+    </nav>
+  
+</article>
+<div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#功能"><span class="toc-number">1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特性"><span class="toc-number">1.2.</span> <span class="toc-text">特性:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#输入输出"><span class="toc-number">1.3.</span> <span class="toc-text">输入输出</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境"><span class="toc-number">2.</span> <span class="toc-text">环境</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据"><span class="toc-number">2.1.</span> <span class="toc-text">数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#环境依赖"><span class="toc-number">2.2.</span> <span class="toc-text">环境依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试机器配置"><span class="toc-number">2.3.</span> <span class="toc-text">测试机器配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试"><span class="toc-number">3.</span> <span class="toc-text">测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#测试说明"><span class="toc-number">3.1.</span> <span class="toc-text">测试说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试数据"><span class="toc-number">3.2.</span> <span class="toc-text">测试数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#完整数据"><span class="toc-number">3.3.</span> <span class="toc-text">完整数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据分析"><span class="toc-number">3.4.</span> <span class="toc-text">数据分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#机器表现"><span class="toc-number">3.5.</span> <span class="toc-text">机器表现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#性能优化"><span class="toc-number">3.6.</span> <span class="toc-text">性能优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#本地缓存分析"><span class="toc-number">3.7.</span> <span class="toc-text">本地缓存分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Nginx-读取"><span class="toc-number">3.7.1.</span> <span class="toc-text">Nginx  读取</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#本地读取瓦片"><span class="toc-number">3.7.2.</span> <span class="toc-text">本地读取瓦片</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-6 i,
+        .toc-level-6 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏", "显示", !!"false"];
+    </script>
+
+
+    <div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+    
+
+
+<div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/07/04/Gradle-Proxy/" title="下一篇: Gradle 配置代理">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/OpenCV-Baidu-Traffic-5/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/Gradle-Proxy/">Gradle 配置代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/Synology-Private-Docker/">群晖系列 --- 使用群晖搭建 Docker 私有仓库并管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/11/Daily-Multi-PPPoE/">基于 iKuai 软路由系统的单线多拨和多线多拨</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/30/Synology-DouBan-Scraper/">群晖系列 --- 使用豆瓣的削刮器来检索视频的元数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29/Synology-Semi-Activation/">群晖系列 --- 如何半洗白操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29/Synology-Recover-Data/">群晖系列 --- 如何恢复群晖系统数据盘的数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/27/Daily-NAS/">日常折腾 --- 蜗牛星际安装黑群晖</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22/Daily-Soft-Router/">日常折腾 --- 软路由攒机记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22/Daily-Reform-Cable/">日常折腾 --- 家里网线改造记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/17/OpenCV-Knowledge-Points/">OpenCV --- 知识点速记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/OpenCV-Baidu-Traffic-4/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/10/OpenCV-Baidu-Traffic-3/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (三)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/05/OpenCV-Baidu-Traffic-2/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/01/OpenCV-Baidu-Traffic-1/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/25/SpringBoot-Response-Ignore-Null/">重剑无锋,大巧不工 SpringBoot --- 序列化返回对象时忽略空或者 null 属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/SpringBoot-Ajax-FormData/">重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/Ubuntu-Remote-Desktop/">Ubuntu 优雅的远程桌面服务端配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/Linux-Fix-DiskError/">记录一次 Ubuntu 因磁盘问题导致开机进入紧急模式的情况</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/08/Docker-Start-Error/">Docker 启动报错： Error starting daemon： Error initializing network controller： list bridge addresses failed： no available network</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/OpenCV-ByteImage/">OpenCV 读取数据流图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/OpenCV-Basic/">OpenCV 基础知识与概念</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/Docker-MountVolumes/">Docker 容器挂载宿主机上的目录时出现 Permission denied</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/20/IntelliJIDEA-Support-@-Alias/">IntelliJ IDEA (WebStorm) 识别 @ 作为别名进行导包</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/OpenCV-Build/">CentOS , Ubuntu 和 Mac OS 上编译安装 OpenCV4 及 SpringBoot 的结合使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/Docker-Swarm-Choice-Node/">Docker-Swarm 自定义服务部署的节点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/18/Docker-Swarm-Cluster/">Docker-Swarm 集群搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/26/SpringBoot-Validated/">Validated 注解的 groups 使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/25/Docker-RemoveDeadContainer/">Docker 删除 状态为Dead 的容器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/24/Elasticsearch-Analyzer/">Elasticsearch analyzer 和 search_analyzer 的使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/23/Docker-Elasticsearch/">Docker elasticsearch 集群搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/16/SpringBoot-Elasticsearch-HealthCheck/">重剑无锋,大巧不工 SpringBoot --- Elasticsearch health check failed</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/14/Gradle-Elastic-Job-Dependency/">Gradle 构建 elastic-job 项目的奇怪依赖问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/24/JDK8-Stream-Use/">关于Jdk 8 Stream 的使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/19/Docker-Exec-Failed/">Docker exec failed docker 无法进入容器问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/19/Docker-Compose-StartOrder/">Docker-Compose 中多容器启动顺序问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/18/SpringCloud-Docker/">SpringCloud --- Docker 部署问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/14/MacOS-Route/">MacOS 上路由表的操作记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/13/Linux-Cron/">Linux 定时删除 10 天前的日志文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/13/Docker-Questions/">Docker 问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/08/Linux-Private-Yum/">Yum 私服搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/04/Jquery-Post/">$.post() 和 $.ajax() 的问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/24/SpringBoot-ThreadPoolTaskExecutor/">重剑无锋,大巧不工 SpringBoot --- 理解 ThreadPoolTaskExecutor</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/21/Docker-OpenVPN/">Docker OpenVPN 服务搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/Docker-PrivateRepo/">Docker 私服搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/26/Docker-ownCloud/">记录 -- Docker 三种方式部署 ownCloud</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/Elasticsearch-AutoComplete/">Elasticsearch 关键字自动补全的实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/Elasticsearch-SearchAll/">Elasticsearch 查询全部数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/Jquery-Load-Plugins/">$(...).autocomplete is not a function 问题的解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/">Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/03/BroadbandSpeedConversion/">宽带速率转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/30/Spring-NamedParameterJdbcTemplate/">NamedParameterJdbcTemplate 使用具名参数记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/29/OracleNubmer-JdbcType/">Oracle 里 number 类型对应 JdbcType bean 类型记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/19/Linux-Cancel-DenyHosts/">DenyHosts 清除黑名单 IP 地址</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/Ubuntu-Fonts-Monaco/">Ubuntu 最佳编程字体 Monaco 的优化显示</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/12/Docker-AliAccelerator/">Docker 使用阿里云个人专属加速器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/05/Docker-Manager-NonRoot/">以非 root 用户身份管理 Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/02/OfficeSuiteStudy/">office 套件的一系列研究记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/28/Ubuntu-SystemConfig/">Ubuntu 自用配置记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/IntelliJIDEA-MyConfigs/">IntelliJ IDEA 自用配置记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Linux-OpenOffice/">Linux 安装 OpenOffice 服务小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/21/Elasticsearch-ingest-attachment/">Elasticsearch 文档文本内容搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/20/React-DebugWithIDEA/">React 项目使用 IDEA 进行调试</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/14/MacOS-ChangeMacAddr/">MacOS 修改 mac 地址</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/Elasticsearch-Ik/">Elasticsearch 分词插件的使用及 demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/23/MyBatis-DateFormat/">Mybatis 前后台时间传参格式化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/21/Elasticsearch-Security/">Elasticsearch 集群安全控制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/18/Linux-Systemctl/">Linux菜鸟到熟悉 --- systemctl 托管自定义程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/17/Linux-NoteBookPC/">Linux菜鸟到熟悉 --- 闲置笔记本安装 Centos</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/15/Lombok/">Lombok 注解小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/08/Filebeat-Nginx/">Filebeat 实时收集 Nginx 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/08/Logstash-Nginx/">Logstash 实时收集 Nginx 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/07/Elasticsearch-ELK/">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/07/Elasticsearch-Cluster/">Elasticsearch 集群搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/MacOS-CleanMac/">MacOS 垃圾清理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/">SpringSecurity Session并发过期后会重定向到 /login (入口点问题)问题的解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/SpringBoot-SpringSecurity/">重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/27/MyBatis-Example/">关于通用 Mapper Example 使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/12/SpringBoot-Assembly-Package/">重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/29/SpringBoot-Druid-MyBatis-Mapper-PageHelper/">重剑无锋,大巧不工 SpringBoot --- 最新版 SpringBoot 整合 Druid,MyBatis,通用 Mapper,PageHelper的脚手架</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/24/JavaScript-Array-Method/">JavaScript 数组的一些常用的方法记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/23/Spark-Integrate-Build/">大数据之路 Spark 环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/22/Hadoop-Integrate-Build/">大数据之路 Hadoop 环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/17/Hadoop-Study-Way/">大数据之路 Hadoop 的学习流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/16/SpringBoot-Elasticsearch-Complex/">重剑无锋,大巧不工 SpringBoot --- 使用 Elasticsearch 进行更复杂的查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/15/FastJson-JSONPath/">FastJSON 还有这样的用法 涨姿势了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/Node-Install-Error/">npm install 居然出错了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/02/SpringBoot-Kafka/">SpringBoot 整合 Kafka 踩坑记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/01/SpringBoot-IDEA-DevTools/">IDEA 中 SpringBoot 项目热部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/SpringBoot-ReadJSONFile/">SpringBoot 读取 JSON 文件并转化为 JSON 对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/26/SpringBoot-Oracle/">SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Elasticsearch-Config/">Elasticsearch 配置说明 && 遇坑记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Hadoop-FristDay/">Hadoop 的第一天</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/SpringBoot-Elasticsearch/">重剑无锋,大巧不工 SpringBoot --- 整合使用 Elasticsearch</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/Open-Source-License/">开源许可证</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/16/Maven-ResourceCompressor/">Maven --- 一款打包压缩 js css html 的Maven插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/13/CSS3-Image-Scale/">当鼠标移入图片上慢慢放大的效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/26/Java-Scala/">Java 代码中使用 Scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/SpringBoot-CaffeineCache/">重剑无锋,大巧不工 SpringBoot --- 推荐使用CaffeineCache</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/11/JoyGame/">JoyGame --- 一个情怀游戏平台</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/Maven-MakeWinServiceForJar/">Maven --- 将 SpringBoot 项目做成Windows服务(Windows Service)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/20/SpringBoot-JoyMedia-MV/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/SpringBoot-JoyMedia-Search/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/SpringBoot-JoyMedia-Node/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/SpringBoot-JoyMedia/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 分析篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/18/SpringBoot-MongoDB/">重剑无锋,大巧不工 SpringBoot --- 整合使用MongoDB</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/ZeroC-Ice/">ZeroC Ice --- 高性能RPC技术王者</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/03/Git-Multi-Repo-Push/">记录一次Git多仓库提交</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/MacOS-Dev-App/">MacOS常用开发使用APP</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/24/MacBookPro-Unboxing/">MacBook Pro 2017 --- 不行！我要开箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/SpringBoot-RESTfulAPI/">重剑无锋,大巧不工 SpringBoot --- RESTful API</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/SpringBoot-RabbitMQ/">重剑无锋,大巧不工 SpringBoot --- 整合RabbitMQ</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/Console-Better/">让你的Windows控制台窗口更优美</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/13/SpringBoot-ConfigurationProperties/">重剑无锋,大巧不工 SpringBoot --- 属性注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-Question-Tips/">重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-RequestBody/">重剑无锋,大巧不工 SpringBoot --- @RequestBody JSON参数处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/09/College-Entrance-Examination-of-2017-for-Progarmmer/">2017年程序员高考试卷</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/05/Skill-Tree-Of-Java/">收集整理一些JAVA学习的技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/02/SolveBrainAndPuzzles/">解决一道智力题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/28/IntelliJIDEA-Plugins/">IntelliJ IDEA 插件开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/27/Redis-Master-Slave/">Redis主从复制 --- 实现读写分离</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/24/SpringCloud-Building/">SpringCloud --- 构建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/06/MyBatis-Joylau-MyBatis/">JoyLau-MyBatis 使用说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/01/Redis-Benchmark/">Redis有多快??? --- 基准性能测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/22/Docker-Command/">Docker常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/SpringBoot-SpringBatch/">重剑无锋,大巧不工 SpringBoot --- 批处理SpringBatch</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/MySQL-Emoji/">为网站添加emoji表情支持</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/17/Maven-Release-Component/">Maven --- 发布自己的构件到中央仓库</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/Programmer-Boast/">程序员，那些年吹过的牛逼，最后都自己加班了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/">JS数组去重最简单方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Integrate/">重剑无锋,大巧不工 SpringBoot --- 环境集成</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Research/">重剑无锋,大巧不工 SpringBoot --- 探索篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/SpringBoot-Basic/">重剑无锋,大巧不工 SpringBoot --- 基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-GUI/">Linux菜鸟到熟悉 --- 视图界面</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-Command/">Linux菜鸟到熟悉 --- 常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-BuildingEnvironment/">Linux菜鸟到熟悉 --- 生产环境的搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-MountDisk/">Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/Thymeleaf/">重新拾起我曾抛弃的Thymeleaf</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/SSL/">SSL证书部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/TomcatMulti-Root/">Tomcat服务器添加多个Root项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/HelloWorld/">Hello World</a></li></ul>
+
+
+    <script>
+        
+    </script></div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2017-2019 JoyLau All Rights Reserved.
+            </div>
+            <div class="footer-right">
+                <i class="fa fa-heart animated infinite pulse"></i>Hexo Theme by MOxFIVE<i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+<!--百度自动推送-->
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+<script>
+    $('.chaffle').chaffle();
+</script>
+
+
+<script>
+    var animateList = ['flipInX','flipInY','bounceInLeft','bounceInUp','bounceInDown','rotateIn','fadeInUp','fadeInDown'];
+    var animateIndex = Math.ceil(Math.random() * (animateList.length - 1));
+    $('.article-tlt-a').textillate({
+        initialDelay: 100,
+        in: {
+            effect: 'fadeInDown',
+            delayScale: 1.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-description-tlt').textillate({
+        initialDelay: 50,
+        in: {
+            effect: 'fadeIn',
+            delayScale: 1.0,
+            delay: 50,
+            shuffle: true
+        }
+    });
+    $('.article-tlt-h').textillate({
+        initialDelay: 100,
+        in: {
+            effect: animateList[animateIndex],
+            delayScale: 2.5,
+            delay: 50,
+            shuffle: true
+        }
+    });
+</script>
+    </div>
+    <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+<script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 10;
+                var backgroundimg = "url(//image.joylau.cn/blog/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+            
+            
+            
+            
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </div>
+</body>
