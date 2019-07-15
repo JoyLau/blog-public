@@ -4,6 +4,34 @@
   
     
     <entry>
+      <title><![CDATA[Ubuntu 强制设置分辨率]]></title>
+      <url>http://blog.joylau.cn/2019/07/15/Ubuntu-Force-Resolution/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>一次系统重启后,Ubuntu 系统无法正确识别连接的显示器分辨率了,我连接的 2 个显示器,其中一个分辨率正确识别,另一个却无法识别,默认成 1024 的分辨率了</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>强制设置的分辨率起码显示器得支持</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li><code>xrandr</code> 查看当前显示器的设置信息, 记住当前显示接口的名称,我这里是 <code>VGA-1</code>, 而且支持的分辨率列表应该是没有你想要的分辨率,不然的话在设置里就能看到了</li>
+<li>添加一个分辨率,我这里是 1920 * 1080 : <code>cvt 1920 1080</code>; 得到输出: <code>Modeline &quot;1920x1080_60.00&quot;  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync</code></li>
+<li>将 cvt 得到的显示模式使用 xrandr 命令添加:<br> <code>sudo xrandr --newmode &quot;1920x1080_60.00&quot; 173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync</code><br> <code>sudo xrandr --addmode VGA-1 &quot;1920x1080_60.00&quot;</code></li>
+<li>这样设置重启会失效, 将第三步的操作写到 <code>/etc/profile</code> 即可</li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> Ubuntu篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Ubuntu </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试]]></title>
       <url>http://blog.joylau.cn/2019/07/04/OpenCV-Baidu-Traffic-5/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -9547,9 +9575,9 @@
         
         <tags>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
         

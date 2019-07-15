@@ -14,20 +14,18 @@
 
 
 
-<meta name="description" content="基于 OpenCV 的百度路况研究记录">
-<meta name="keywords" content="OpenCV">
+<meta name="description" content="一次系统重启后,Ubuntu 系统无法正确识别连接的显示器分辨率了...">
+<meta name="keywords" content="Ubuntu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)">
-<meta property="og:url" content="http://blog.joylau.cn/2019/05/15/OpenCV-Baidu-Traffic-4/index.html">
+<meta property="og:title" content="Ubuntu 强制设置分辨率">
+<meta property="og:url" content="http://blog.joylau.cn/2019/07/15/Ubuntu-Force-Resolution/index.html">
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
-<meta property="og:description" content="基于 OpenCV 的百度路况研究记录">
+<meta property="og:description" content="一次系统重启后,Ubuntu 系统无法正确识别连接的显示器分辨率了...">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://image.joylau.cn/blog/geocoder-reverse.png">
-<meta property="og:updated_time" content="2019-05-22T16:01:04.372Z">
+<meta property="og:updated_time" content="2019-07-15T16:01:08.496Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)">
-<meta name="twitter:description" content="基于 OpenCV 的百度路况研究记录">
-<meta name="twitter:image" content="http://image.joylau.cn/blog/geocoder-reverse.png">
+<meta name="twitter:title" content="Ubuntu 强制设置分辨率">
+<meta name="twitter:description" content="一次系统重启后,Ubuntu 系统无法正确识别连接的显示器分辨率了...">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -59,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>OpenCV --- 基于 OpenCV 的百度路况研究记录 (四) | JoyLau&#39;s Blog | JoyLau</title>
+<title>Ubuntu 强制设置分辨率 | JoyLau&#39;s Blog | JoyLau</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -307,11 +305,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于">
 </nav>
-      <div class="body-wrap"><article id="post-OpenCV-Baidu-Traffic-4" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Ubuntu-Force-Resolution" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/05/15/OpenCV-Baidu-Traffic-4/" class="article-date">
-      <time datetime="2019-05-15T02:28:53.000Z" itemprop="datePublished">2019-05-15</time>
+      <a href="/2019/07/15/Ubuntu-Force-Resolution/" class="article-date">
+      <time datetime="2019-07-15T01:10:44.000Z" itemprop="datePublished">2019-07-15</time>
 </a>
     </div>
   
@@ -326,15 +324,15 @@
 
                 
             </div>
-        <h1 class="article-title article-tlt-h" itemprop="name">OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)</h1>
+        <h1 class="article-title article-tlt-h" itemprop="name">Ubuntu 强制设置分辨率</h1>
       </header>
       
       <div class="article-info article-info-post">
         <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/OpenCV篇/">OpenCV篇</a>
+    <a class="article-category-link" href="/categories/Ubuntu篇/">Ubuntu篇</a>
     </div>
         <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/">OpenCV</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
     </div>
         <div class="clearfix"></div>
       </div>
@@ -344,54 +342,27 @@
       
           
         <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>本篇主要内容:</p>
-<ol>
-<li>搭建离线地址解析服务</li>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>一次系统重启后,Ubuntu 系统无法正确识别连接的显示器分辨率了,我连接的 2 个显示器,其中一个分辨率正确识别,另一个却无法识别,默认成 1024 的分辨率了</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>强制设置的分辨率起码显示器得支持</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li><code>xrandr</code> 查看当前显示器的设置信息, 记住当前显示接口的名称,我这里是 <code>VGA-1</code>, 而且支持的分辨率列表应该是没有你想要的分辨率,不然的话在设置里就能看到了</li>
+<li>添加一个分辨率,我这里是 1920 * 1080 : <code>cvt 1920 1080</code>; 得到输出: <code>Modeline &quot;1920x1080_60.00&quot;  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync</code></li>
+<li>将 cvt 得到的显示模式使用 xrandr 命令添加:<br> <code>sudo xrandr --newmode &quot;1920x1080_60.00&quot; 173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync</code><br> <code>sudo xrandr --addmode VGA-1 &quot;1920x1080_60.00&quot;</code></li>
+<li>这样设置重启会失效, 将第三步的操作写到 <code>/etc/profile</code> 即可</li>
 </ol>
-<h3 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h3><p>继上篇研究内容之后,重新思考了之前抛出的问题: 如何获取某个省或市的道路信息?</p>
-<p>之前对于该问题的解法有 2 种:</p>
-<ol>
-<li><p>使用总队或者支队提供的道路信息,然后根据分析出来的经纬度和提供的道路信息进行匹配</p>
-</li>
-<li><p>调用互联网接口,进行经纬度转道路地址</p>
-</li>
-</ol>
-<p>分析这 2 中方式之后,其弊端很明显:</p>
-<p>第一种方式:  </p>
-<ol>
-<li><p>无法确定总队或者支队是否能够提供道路信息; </p>
-</li>
-<li><p>提供的数据又是否足够详细全面,要知道在百度地图 17 等级下,解析出来的道路是很详细的 </p>
-</li>
-<li><p>姑且算是提供了,格式又是否能够统一? 能否做到一套代码解决普遍问题?</p>
-</li>
-</ol>
-<p>第二种方式:</p>
-<ol>
-<li><p>需要个人申请 key ,才能调用 API</p>
-</li>
-<li><p>解析 API 每日有次数限制, 5000次/天,对于该城市版分析服务来说,远远不够 </p>
-</li>
-</ol>
-<p>经过一番分析和折腾后,于内网搭建了离线版的地址解析服务,提供 API,将经纬度转化为道路信息, API 返回数据如下:</p>
-<p><img src="http://image.joylau.cn/blog/geocoder-reverse.png" alt></p>
-<p>支持返回的数据很详细: 省,市,行政区划,邮编,道路名,附近的建筑物,公交站牌,商场等</p>
-<p>该服务 数据范围覆盖全国,  支持多线程调用,  单次 API 调用耗时为 10 ms - 30 ms 左右,  对机器的磁盘要求高</p>
-<p>最后,我录了个短视频看下实际的使用效果:</p>
-<center><video src="http://image.joylau.cn/blog/geocoder-reverse.mp4" loop="true" controls="controls">您的浏览器版本太低，无法观看本视频</video></center>
       
     </div>
     
   </div>
   
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/05/15/OpenCV-Baidu-Traffic-4/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)</a></p>
+        <p><span>本文标题:</span><a href="/2019/07/15/Ubuntu-Force-Resolution/">Ubuntu 强制设置分辨率</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
-        <p><span>发布时间:</span>2019-05-15, 10:28:53</p>
-        <p><span>最后更新:</span>2019-05-23, 00:01:04</p>
+        <p><span>发布时间:</span>2019-07-15, 09:10:44</p>
+        <p><span>最后更新:</span>2019-07-16, 00:01:08</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/05/15/OpenCV-Baidu-Traffic-4/" title="OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)">http://blog.joylau.cn/2019/05/15/OpenCV-Baidu-Traffic-4/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2019/05/15/OpenCV-Baidu-Traffic-4/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/15/Ubuntu-Force-Resolution/" title="Ubuntu 强制设置分辨率">http://blog.joylau.cn/2019/07/15/Ubuntu-Force-Resolution/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2019/07/15/Ubuntu-Force-Resolution/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -403,16 +374,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/05/17/OpenCV-Knowledge-Points/">
-                    OpenCV --- 知识点速记
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/05/10/OpenCV-Baidu-Traffic-3/">
-                    OpenCV --- 基于 OpenCV 的百度路况研究记录 (三)
+                <a href="/2019/07/04/OpenCV-Baidu-Traffic-5/">
+                    OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试
                 </a>
             </div>
         
@@ -422,7 +387,7 @@
 <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要内容"><span class="toc-number">2.</span> <span class="toc-text">主要内容</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-number">2.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">3.</span> <span class="toc-text">步骤</span></a></li></ol>
         
     </div>
     <style>
@@ -456,7 +421,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Ubuntu 强制设置分辨率　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -470,15 +435,13 @@
 
 <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/05/17/OpenCV-Knowledge-Points/" title="上一篇: OpenCV --- 知识点速记">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/05/10/OpenCV-Baidu-Traffic-3/" title="下一篇: OpenCV --- 基于 OpenCV 的百度路况研究记录 (三)">
+            <a href="/2019/07/04/OpenCV-Baidu-Traffic-5/" title="下一篇: OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试">
                 <i class="fa fa-angle-right"></i>
             </a>
         
