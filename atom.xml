@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2019-08-19T08:24:49.704Z</updated>
+  <updated>2019-08-23T02:04:46.972Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java 开启子线程执行其他操作，并获取结果</title>
+    <link href="http://blog.joylau.cn/2019/08/23/Java-Future/"/>
+    <id>http://blog.joylau.cn/2019/08/23/Java-Future/</id>
+    <published>2019-08-23T02:01:43.000Z</published>
+    <updated>2019-08-23T02:04:46.972Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><p>示例代码，10后抛出超时错误，并且取消子线程任务的执行</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();</span><br><span class="line">Future&lt;String&gt; future = executorService.submit(() -&gt; &#123;</span><br><span class="line">            ....</span><br><span class="line">        &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> future.get(<span class="number">10</span>, TimeUnit.SECONDS);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    future.cancel(<span class="keyword">true</span>);</span><br><span class="line">    executorService.shutdown();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      Java 开启子线程执行其他操作，并获取结果
+    
+    </summary>
+    
+      <category term="Java篇" scheme="http://blog.joylau.cn/categories/Java%E7%AF%87/"/>
+    
+    
+      <category term="Java" scheme="http://blog.joylau.cn/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Security 禁用匿名用户（anonymous().disable()）后无限重定向到登录页的问题解决</title>
@@ -426,30 +448,6 @@
     <summary type="html">
     
       SpringBoot 序列化返回对象时忽略空或者 null 属性
-    
-    </summary>
-    
-      <category term="SpringBoot篇" scheme="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
-    
-    
-      <category term="SpringBoot" scheme="http://blog.joylau.cn/tags/SpringBoot/"/>
-    
-      <category term="Spring" scheme="http://blog.joylau.cn/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参</title>
-    <link href="http://blog.joylau.cn/2019/04/15/SpringBoot-Ajax-FormData/"/>
-    <id>http://blog.joylau.cn/2019/04/15/SpringBoot-Ajax-FormData/</id>
-    <published>2019-04-15T09:04:19.000Z</published>
-    <updated>2019-05-15T16:01:05.393Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> formData = <span class="keyword">new</span> FormData();</span><br><span class="line"></span><br><span class="line">fileList.forEach(<span class="function"><span class="params">file</span> =&gt;</span> &#123;</span><br><span class="line">    formData.append(<span class="string">'file'</span>, file.originFileObj);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 每个表单是否填写完成</span></span><br><span class="line"><span class="keyword">let</span> params = [];</span><br><span class="line"></span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> data = &#123;&#125;;</span><br><span class="line">data.filePath = <span class="string">""</span>;</span><br><span class="line">data.markers = params;</span><br><span class="line">formData.append(<span class="string">"params"</span>, data);</span><br><span class="line"></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url: <span class="string">"/marker/file"</span>,</span><br><span class="line">    type: <span class="string">"POST"</span>,</span><br><span class="line">    processData: <span class="literal">false</span>,</span><br><span class="line">    contentType: <span class="literal">false</span>,</span><br><span class="line">    data: formData,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="spring-boot-处理"><a href="#spring-boot-处理" class="headerlink" title="spring boot 处理"></a>spring boot 处理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/file"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">markerFile</span><span class="params">(@RequestParam(<span class="string">"file"</span>)</span> MultipartFile multipartFile, Params params)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> markerService.marker(multipartFile,params);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol><li>antd 上传组件里,真正的文件是 file.originFileObj</li><li>params 是复杂的对象的话, spring boot 接受的 Params 对象需要使用 String 字符串进行序列化成对象; 或者将 Params 对象的属性分开来写, 如果某个属性又是复杂对象的话通用需要序列化</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      SpringBoot 使用 Ajax From Data 来上传文件和参数并进行处理
     
     </summary>
     

@@ -4,6 +4,28 @@
   
     
     <entry>
+      <title><![CDATA[Java 开启子线程执行其他操作，并获取结果]]></title>
+      <url>http://blog.joylau.cn/2019/08/23/Java-Future/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<p>示例代码，10后抛出超时错误，并且取消子线程任务的执行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();</span><br><span class="line">Future&lt;String&gt; future = executorService.submit(() -&gt; &#123;</span><br><span class="line">            ....</span><br><span class="line">        &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> future.get(<span class="number">10</span>, TimeUnit.SECONDS);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    future.cancel(<span class="keyword">true</span>);</span><br><span class="line">    executorService.shutdown();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> Java篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Spring Security 禁用匿名用户（anonymous().disable()）后无限重定向到登录页的问题解决]]></title>
       <url>http://blog.joylau.cn/2019/08/19/SpringBoot-SpringSecurity-Anonymous/</url>
       <content type="html"><![CDATA[<a id="more"></a>
