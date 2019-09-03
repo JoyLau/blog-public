@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2019-08-23T02:04:46.972Z</updated>
+  <updated>2019-09-03T09:15:50.860Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git pull 和 git push 记住用户名密码</title>
+    <link href="http://blog.joylau.cn/2019/09/03/Git-RememberMe/"/>
+    <id>http://blog.joylau.cn/2019/09/03/Git-RememberMe/</id>
+    <published>2019-09-03T09:14:14.000Z</published>
+    <updated>2019-09-03T09:15:50.860Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><p>执行 <code>git config credential.helper store</code></p><p>或者在 .gitconfig 添加</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[credential]</span><br><span class="line">helper = store</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      git pull 和 git push 记住用户名密码
+    
+    </summary>
+    
+      <category term="Git篇" scheme="http://blog.joylau.cn/categories/Git%E7%AF%87/"/>
+    
+    
+      <category term="Git" scheme="http://blog.joylau.cn/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>Java 开启子线程执行其他操作，并获取结果</title>
@@ -433,30 +455,6 @@
     
     
       <category term="OpenCV" scheme="http://blog.joylau.cn/tags/OpenCV/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>重剑无锋,大巧不工 SpringBoot --- 序列化返回对象时忽略空或者 null 属性</title>
-    <link href="http://blog.joylau.cn/2019/04/25/SpringBoot-Response-Ignore-Null/"/>
-    <id>http://blog.joylau.cn/2019/04/25/SpringBoot-Response-Ignore-Null/</id>
-    <published>2019-04-25T07:24:19.000Z</published>
-    <updated>2019-05-15T16:01:05.393Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3><p>在类上加入注解<br><code>@JsonInclude(JsonInclude.Include.NON_EMPTY)</code></p><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p><code>Include.Include.ALWAYS</code>: 默认<br><code>Include.NON_DEFAULT</code>: 属性为默认值不序列化<br><code>Include.NON_EMPTY</code>: 属性为 空（””） 或者为 NULL 都不序列化<br><code>Include.NON_NULL</code>: 属性为NULL 不序列化</p>]]></content>
-    
-    <summary type="html">
-    
-      SpringBoot 序列化返回对象时忽略空或者 null 属性
-    
-    </summary>
-    
-      <category term="SpringBoot篇" scheme="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
-    
-    
-      <category term="SpringBoot" scheme="http://blog.joylau.cn/tags/SpringBoot/"/>
-    
-      <category term="Spring" scheme="http://blog.joylau.cn/tags/Spring/"/>
     
   </entry>
   

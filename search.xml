@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title><![CDATA[git pull 和 git push 记住用户名密码]]></title>
+      <url>http://blog.joylau.cn/2019/09/03/Git-RememberMe/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><p>执行 <code>git config credential.helper store</code></p>
+<p>或者在 .gitconfig 添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[credential]</span><br><span class="line">helper = store</span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> Git篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Git </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Java 开启子线程执行其他操作，并获取结果]]></title>
       <url>http://blog.joylau.cn/2019/08/23/Java-Future/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -9727,9 +9750,9 @@
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -14028,9 +14051,9 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
         
         <tags>
             
-            <tag> 程序员 </tag>
-            
             <tag> 技能 </tag>
+            
+            <tag> 程序员 </tag>
             
         </tags>
         
