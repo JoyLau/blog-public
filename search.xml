@@ -4,6 +4,155 @@
   
     
     <entry>
+      <title><![CDATA[Electron --- 知识点小记]]></title>
+      <url>http://blog.joylau.cn/2019/09/11/Electron-Questions/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="Electron-只启动一个实例"><a href="#Electron-只启动一个实例" class="headerlink" title="Electron 只启动一个实例"></a>Electron 只启动一个实例</h3><p>使用 app.requestSingleInstanceLock()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gotTheLock = app.requestSingleInstanceLock();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!gotTheLock) &#123;</span><br><span class="line">    app.quit()</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    app.on(<span class="string">'ready'</span>, createWindow);</span><br><span class="line"></span><br><span class="line">    app.on(<span class="string">'window-all-closed'</span>, () =&gt; &#123;</span><br><span class="line">        app.quit();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    app.on(<span class="string">'activate'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (win == <span class="literal">null</span>) &#123;</span><br><span class="line">            createWindow();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Electron-不显示菜单栏"><a href="#Electron-不显示菜单栏" class="headerlink" title="Electron 不显示菜单栏"></a>Electron 不显示菜单栏</h3><p>经过实测<br><code>Menu.setApplicationMenu(null);</code><br>在 Windows 环境下没有菜单栏, 在 MAC 系统上开发模式下有菜单栏</p>
+<p>正确的解决方式是<br><code>Menu.setApplicationMenu(Menu.buildFromTemplate([]));</code></p>
+<h3 id="注册快捷键"><a href="#注册快捷键" class="headerlink" title="注册快捷键"></a>注册快捷键</h3><p>electron 自带的注册快捷键的功能函数是 globalShortcut, 这个是全局的快捷键,就是说焦点不在当前程序上也能触发快捷键<br>我这里使用的是一个第三方的组件 electron-localshortcut</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">electronLocalshortcut.register(win, <span class="string">'F12'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    win.webContents.isDevToolsOpened() ? win.webContents.closeDevTools() : win.webContents.openDevTools();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">electronLocalshortcut.register(win, <span class="string">'F5'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    win.reload();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="主线程和渲染线程之间的通信"><a href="#主线程和渲染线程之间的通信" class="headerlink" title="主线程和渲染线程之间的通信"></a>主线程和渲染线程之间的通信</h3><p>这里使用的是 ipcMain 和 ipcRenderer<br>渲染进程使用ipcRenderer.send发送异步消息，然后使用on事件监控主进程的返回值。主进程使用on事件监听消息，使用event.sender.send返回数据</p>
+<p>App.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;ipcRenderer&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line">ipcRenderer.send(<span class="string">'asynchronous-message'</span>, <span class="string">'ping'</span>)</span><br><span class="line">ipcRenderer.on(<span class="string">'asynchronous-reply'</span>, (event, arg) =&gt; &#123;</span><br><span class="line">     <span class="built_in">console</span>.log(arg) <span class="comment">// prints "pong"</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>main.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;ipcMain&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line">ipcMain.on(<span class="string">'asynchronous-message'</span>, (event, arg) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(arg)  <span class="comment">// prints "ping"</span></span><br><span class="line">  event.sender.send(<span class="string">'asynchronous-reply'</span>, <span class="string">'pong'</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>渲染进程使用ipcRenderer.sendSync发送同步消息。主进程使用on事件监控消息，使用event.returnValue返回数据给渲染进程。返回值在渲染进程中，就直接体现为ipcRenderer.sendSync的函数返回值</p>
+<h3 id="主线程如何给渲染线程发送消息"><a href="#主线程如何给渲染线程发送消息" class="headerlink" title="主线程如何给渲染线程发送消息"></a>主线程如何给渲染线程发送消息</h3><p>上面的示例没有说主线程如何对小渲染线程发送消息,应该这样做:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">win.webContents.send(<span class="string">'ch-1'</span>, <span class="string">'send'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="渲染进程和渲染进程如何互发消息"><a href="#渲染进程和渲染进程如何互发消息" class="headerlink" title="渲染进程和渲染进程如何互发消息"></a>渲染进程和渲染进程如何互发消息</h3><ol>
+<li>渲染进程的页面自己处理</li>
+<li>通过主线程进行中间转换</li>
+</ol>
+<h3 id="渲染线程如何使用-electron-的功能"><a href="#渲染线程如何使用-electron-的功能" class="headerlink" title="渲染线程如何使用 electron 的功能"></a>渲染线程如何使用 electron 的功能</h3><p>渲染窗口添加配置:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">webPreferences: &#123;</span><br><span class="line">    nodeIntegration: <span class="literal">true</span>, <span class="comment">// 开启 node 功能</span></span><br><span class="line">    preload: path.join(__dirname, <span class="string">'./public/renderer.js'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>添加 renderer.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.electron = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br></pre></td></tr></table></figure>
+<p>渲染进程的页面使用:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> electron = <span class="built_in">window</span>.electron;</span><br><span class="line">electron.xxxx</span><br></pre></td></tr></table></figure>
+<h3 id="主线程和渲染进程如何共享对象"><a href="#主线程和渲染进程如何共享对象" class="headerlink" title="主线程和渲染进程如何共享对象"></a>主线程和渲染进程如何共享对象</h3><p>不需要引入任何包,直接在主线程使用 global</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 共享对象</span></span><br><span class="line">global.shareObject = &#123;</span><br><span class="line">    osInfo: os</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>渲染进程获取信息: let osInfo = electron.remote.getGlobal(‘shareObject’).osInfo;</p>
+<p>主线程修改对象: global.shareObject.osInfo = message;</p>
+<p>渲染线程修改对象: electron.remote.getGlobal(‘shareObject’).osInfo = null;</p>
+<h3 id="区分开发模式还是生产模式"><a href="#区分开发模式还是生产模式" class="headerlink" title="区分开发模式还是生产模式"></a>区分开发模式还是生产模式</h3><p>建议使用 <code>app.isPackaged</code></p>
+<h3 id="通过协议打开第二个实例的情况下触发的事件"><a href="#通过协议打开第二个实例的情况下触发的事件" class="headerlink" title="通过协议打开第二个实例的情况下触发的事件"></a>通过协议打开第二个实例的情况下触发的事件</h3><p>Windows 环境下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.on(<span class="string">'second-instance'</span>, (event, commandLine, workingDirectory) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 当运行第二个实例时,主动对焦</span></span><br><span class="line">    <span class="keyword">if</span> (win) &#123;</span><br><span class="line">        <span class="keyword">if</span> (win.isMinimized()) win.restore();</span><br><span class="line">        win.focus();</span><br><span class="line">        win.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Mac 环境下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// macOS</span></span><br><span class="line">app.on(<span class="string">'open-url'</span>, (event, urlStr) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (win) &#123;</span><br><span class="line">        win.showInactive();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="开发环境和生成环境加载不同的页面"><a href="#开发环境和生成环境加载不同的页面" class="headerlink" title="开发环境和生成环境加载不同的页面"></a>开发环境和生成环境加载不同的页面</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">if</span> (app.isPackaged) &#123;</span><br><span class="line">    win.loadURL(<span class="string">`file://<span class="subst">$&#123;__dirname&#125;</span>/build/index.html`</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    win.loadURL(<span class="string">'http://localhost:3000'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> Electron篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Electron </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Electron --- Create-React-App + Antd + Electron 的搭建]]></title>
+      <url>http://blog.joylau.cn/2019/09/10/Electron-Create-React-App/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="创建-create-react-app-antd-项目"><a href="#创建-create-react-app-antd-项目" class="headerlink" title="创建 create-react-app-antd 项目"></a>创建 create-react-app-antd 项目</h3><ol>
+<li>git clone <a href="https://github.com/ant-design/create-react-app-antd" target="_blank" rel="noopener">https://github.com/ant-design/create-react-app-antd</a></li>
+<li>npm install</li>
+<li>将 webpack 所有内建的配置暴露出来, <code>npm run eject</code>, 如果发现错误,看下 package.json 里 eject 的脚本是不是为 <code>react-scripts eject</code></li>
+<li>修改 config-overrides.js</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">override</span>(<span class="params">config, env</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li><p>修改 webpack.config.js 里的 <code>module.rules.oneOf</code> 支持 css 和 less, 添加</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.(css|less)$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">    <span class="built_in">require</span>.resolve(<span class="string">'style-loader'</span>),</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="built_in">require</span>.resolve(<span class="string">'css-loader'</span>),</span><br><span class="line">      options: &#123;</span><br><span class="line">        importLoaders: <span class="number">1</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="built_in">require</span>.resolve(<span class="string">'postcss-loader'</span>),</span><br><span class="line">      options: &#123;</span><br><span class="line">        <span class="comment">// Necessary for external CSS imports to work</span></span><br><span class="line">        <span class="comment">// https://github.com/facebookincubator/create-react-app/issues/2677</span></span><br><span class="line">        ident: <span class="string">'postcss'</span>,</span><br><span class="line">        plugins: <span class="function"><span class="params">()</span> =&gt;</span> [</span><br><span class="line">          <span class="built_in">require</span>(<span class="string">'postcss-flexbugs-fixes'</span>),</span><br><span class="line">          autoprefixer(&#123;</span><br><span class="line">            browsers: [</span><br><span class="line">              <span class="string">'&gt;1%'</span>,</span><br><span class="line">              <span class="string">'last 4 versions'</span>,</span><br><span class="line">              <span class="string">'Firefox ESR'</span>,</span><br><span class="line">              <span class="string">'not ie &lt; 9'</span>, <span class="comment">// React doesn't support IE8 anyway</span></span><br><span class="line">            ],</span><br><span class="line">            flexbox: <span class="string">'no-2009'</span>,</span><br><span class="line">          &#125;),</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="built_in">require</span>.resolve(<span class="string">'less-loader'</span>),</span><br><span class="line">      options: &#123; <span class="attr">javascriptEnabled</span>: <span class="literal">true</span> &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 start.js 注释掉下面代码关闭项目启动自动打开浏览器</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// openBrowser(urls.localUrlForBrowser);</span></span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li><p>package.json 添加 <code>&quot;homepage&quot;: &quot;.&quot;</code> ,防止打包后的静态文件 index.html 引入 css 和 js 的路径错误</p>
+</li>
+<li><p>App.less 修改为 <code>@import &#39;~antd/dist/antd.less&#39;;</code></p>
+</li>
+</ol>
+<h3 id="添加-electron"><a href="#添加-electron" class="headerlink" title="添加 electron"></a>添加 electron</h3><ol>
+<li>package.json 添加 <code>&quot;main&quot;: &quot;main.js&quot;,</code> 和 electron 依赖</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"main"</span>: <span class="string">"main.js"</span>,</span><br><span class="line">    <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">        <span class="attr">"electron"</span>: <span class="string">"^6.0.7"</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建 main.js,添加以下代码</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;app, BrowserWindow, Menu&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> win;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> windowConfig = &#123;</span><br><span class="line">    width: <span class="number">800</span>,</span><br><span class="line">    height: <span class="number">600</span>,</span><br><span class="line">    title: <span class="string">"Joy Security"</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> menuTemplate = [&#123;</span><br><span class="line">    label: <span class="string">'Joy Security'</span>,</span><br><span class="line">    submenu: [&#123;</span><br><span class="line">        label: <span class="string">'退出'</span>,</span><br><span class="line">        role: <span class="string">'quit'</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        label: <span class="string">`关于 <span class="subst">$&#123;windowConfig.title&#125;</span>`</span>,</span><br><span class="line">        role: <span class="string">'about'</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.on(<span class="string">'ready'</span>, createWindow);</span><br><span class="line"></span><br><span class="line">app.on(<span class="string">'window-all-closed'</span>, () =&gt; &#123;</span><br><span class="line">    app.quit();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.on(<span class="string">'activate'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (win == <span class="literal">null</span>) &#123;</span><br><span class="line">        createWindow();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createWindow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 隐藏菜单栏,兼容 MAC</span></span><br><span class="line">    Menu.setApplicationMenu(Menu.buildFromTemplate([]));</span><br><span class="line"></span><br><span class="line">    win = <span class="keyword">new</span> BrowserWindow(windowConfig);</span><br><span class="line"></span><br><span class="line">    win.loadURL(<span class="string">'http://localhost:3000'</span>);</span><br><span class="line"></span><br><span class="line">    win.on(<span class="string">'close'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="comment">//回收BrowserWindow对象</span></span><br><span class="line">        win = <span class="literal">null</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    win.on(<span class="string">'resize'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="comment">// win.reload();</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>package.json 更改脚本</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"react-start"</span>: <span class="string">"node scripts/start.js"</span>,</span><br><span class="line">    <span class="attr">"eletron-start"</span>: <span class="string">"electron ."</span>,</span><br><span class="line">    <span class="attr">"react-build"</span>: <span class="string">"node scripts/build.js"</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>启动时先 react-start 再 eletron-start 即可看到效果</li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> Electron篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Electron </tag>
+            
+            <tag> React </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[群晖系列 --- 添加私有仓库无法下载镜像问题的解决]]></title>
+      <url>http://blog.joylau.cn/2019/09/09/Synology-Docker-Insecure/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在群晖的 Docker 组件里添加了个人的私有仓库,发现却无法下载镜像….</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>在 Docker 组件里添加新的仓库,并设置为使用仓库,发现在仓库里下载镜像总是失败,状态栏提示查看日志,可是在日志里总看不到东西</p>
+<p>想了想,可能是新添加的 docker 私服是 http 的服务,而不是 https</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ol>
+<li>于是我使用 GateOne 组件进入 shell </li>
+<li>使用命令 docker pull xxx:xxx, 发现报错 <code>Get https://172.18.18.90:5000/v2/: http: server gave HTTP response to HTTPS client</code> , 果然是这个问题</li>
+<li>于是找到 Docker 组件的配置文件目录,在 <code>/var/packages/Docker/etc</code> 目录下,添加配置文件 daemon.json </li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">"insecure-registries"</span>: [<span class="string">"domain:5000"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>重启 Docker 组件, 发现不起作用,在命令行下 pull 依然报错,可想配置文件错了</li>
+<li>转眼看到一个可疑的配置文件 <code>dockerd.json</code>, 里面已经有一些配置了,于是就把配置写到这个里面</li>
+<li>再重启,问题解决.可见群晖对于 docker 是做了一些改变的.</li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> 群晖篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> 群晖 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[InnoSetup --- 使用心得记录]]></title>
       <url>http://blog.joylau.cn/2019/09/04/InnoSetup-Experience/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -269,7 +418,11 @@
 <li><code>xrandr</code> 查看当前显示器的设置信息, 记住当前显示接口的名称,我这里是 <code>VGA-1</code>, 而且支持的分辨率列表应该是没有你想要的分辨率,不然的话在设置里就能看到了</li>
 <li>添加一个分辨率,我这里是 1920 * 1080 : <code>cvt 1920 1080</code>; 得到输出: <code>Modeline &quot;1920x1080_60.00&quot;  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync</code></li>
 <li>将 cvt 得到的显示模式使用 xrandr 命令添加:<br> <code>sudo xrandr --newmode &quot;1920x1080_60.00&quot; 173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync</code><br> <code>sudo xrandr --addmode VGA-1 &quot;1920x1080_60.00&quot;</code></li>
-<li>这样设置重启会失效, 将第三步的操作写到 <code>/etc/profile</code> 即可</li>
+<li>这样设置重启会失效, 将脚本写到一个文件中,并授予执行权限</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">!<span class="comment">#/bin/bash</span></span><br><span class="line">cvt 1920 1080</span><br><span class="line"><span class="comment">## 如果登录用户不是 root ,则需要使用 sudo ,sudo 需要输入密码,可使用下面的方式解决</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"password"</span> | sudo -S xrandr --newmode <span class="string">"1920x1080_60.00"</span> 173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"password"</span> | sudo -S xrandr --addmode VGA-1 <span class="string">"1920x1080_60.00"</span></span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>在 Ubuntu 中搜索 <code>启动应用程序</code>, 将脚本添加进去,完成.</li>
 </ol>]]></content>
       
         <categories>
