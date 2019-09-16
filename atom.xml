@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2019-09-12T16:01:05.650Z</updated>
+  <updated>2019-09-16T06:33:04.875Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,72 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Electron --- Electron-Builder 打包的各种配置</title>
+    <link href="http://blog.joylau.cn/2019/09/14/Electron-Electron-Builder/"/>
+    <id>http://blog.joylau.cn/2019/09/14/Electron-Electron-Builder/</id>
+    <published>2019-09-14T01:00:12.000Z</published>
+    <updated>2019-09-16T06:33:04.875Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="打包的资源无法包含-build-目录"><a href="#打包的资源无法包含-build-目录" class="headerlink" title="打包的资源无法包含 build 目录"></a>打包的资源无法包含 build 目录</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">"files": [</span><br><span class="line">      "**/*",</span><br><span class="line">      "build/",</span><br><span class="line">      "!build/static/js/*.js.map",</span><br><span class="line">      <span class="string">"!src/"</span></span><br><span class="line">    ],</span><br></pre></td></tr></table></figure><p>同时该配置也可防止源码被打包进去,</p><h3 id="查看打包后的目录结构"><a href="#查看打包后的目录结构" class="headerlink" title="查看打包后的目录结构"></a>查看打包后的目录结构</h3><p><code>&quot;asar&quot;: false,</code> </p><h3 id="引入外部文件"><a href="#引入外部文件" class="headerlink" title="引入外部文件"></a>引入外部文件</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">"extraResources": [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"from"</span>: <span class="string">"./LICENSE"</span>,</span><br><span class="line">        <span class="attr">"to"</span>: <span class="string">"./../LICENSE.txt"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure><h3 id="定义安装包输出目录"><a href="#定义安装包输出目录" class="headerlink" title="定义安装包输出目录"></a>定义安装包输出目录</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"directories": &#123;</span><br><span class="line">  "output": "dist"</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><h3 id="Windows-环境下打出-32-位和-64-位二合一包"><a href="#Windows-环境下打出-32-位和-64-位二合一包" class="headerlink" title="Windows 环境下打出 32 位和 64 位二合一包"></a>Windows 环境下打出 32 位和 64 位二合一包</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">"win": &#123;</span><br><span class="line">  "target": [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"target"</span>: <span class="string">"nsis"</span>,</span><br><span class="line">      <span class="attr">"arch"</span>: [</span><br><span class="line">        <span class="string">"ia32"</span>,</span><br><span class="line">        <span class="string">"x64"</span></span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><h3 id="打出的-mac-包写入数据到-Info-plist-文件"><a href="#打出的-mac-包写入数据到-Info-plist-文件" class="headerlink" title="打出的 mac 包写入数据到 Info.plist 文件"></a>打出的 mac 包写入数据到 Info.plist 文件</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">"mac": &#123;</span><br><span class="line">  "extendInfo": &#123;</span><br><span class="line">    "URL types": [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"URL identifier"</span>: <span class="string">"Joy Security"</span>,</span><br><span class="line">        <span class="attr">"URL Schemes"</span>: [</span><br><span class="line">          <span class="string">"joy-security"</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><h3 id="NSIS-配置"><a href="#NSIS-配置" class="headerlink" title="NSIS 配置"></a>NSIS 配置</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">"nsis": &#123;</span><br><span class="line">  "oneClick": false, // 一键安装</span><br><span class="line">  "perMachine": true, // 为所有用户安装</span><br><span class="line">  "allowElevation": true, // 允许权限提升, 设置 false 的话需要重新允许安装程序</span><br><span class="line">  "allowToChangeInstallationDirectory": true, // 允许更改安装目录</span><br><span class="line">  "installerIcon": "./public/icons/win.ico",</span><br><span class="line">  "uninstallerIcon": "./public/icons/win_uninstall.ico",</span><br><span class="line">  "installerHeaderIcon": "./public/icons/win.ico",</span><br><span class="line">  "createDesktopShortcut": true,</span><br><span class="line">  "createStartMenuShortcut": true,</span><br><span class="line">  "shortcutName": "Joy Security",</span><br><span class="line">  "license": "./LICENSE",</span><br><span class="line">  "include": "./public/nsis/installer.nsh" // 包含的脚本</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="NSIS-脚本"><a href="#NSIS-脚本" class="headerlink" title="NSIS 脚本"></a>NSIS 脚本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">!macro customHeader</span><br><span class="line"></span><br><span class="line">!macroend</span><br><span class="line"></span><br><span class="line">!macro preInit</span><br><span class="line"></span><br><span class="line">!macroend</span><br><span class="line"></span><br><span class="line">!macro customInit</span><br><span class="line">        # guid=7e51495b-3f4d-5235-aadd-5636863064f0</span><br><span class="line">        ReadRegStr $0 HKLM &quot;SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\&#123;7e51495b-3f4d-5235-aadd-5636863064f0&#125;&quot; &quot;UninstallString&quot;</span><br><span class="line">        $&#123;If&#125; $0 != &quot;&quot;</span><br><span class="line">            MessageBox MB_ICONINFORMATION|MB_TOPMOST  &quot;检测到系统中已安装本程序，将卸载旧版本&quot; IDOK</span><br><span class="line">            # ExecWait $0 $1</span><br><span class="line">        $&#123;EndIf&#125;</span><br><span class="line">!macroend</span><br><span class="line"></span><br><span class="line">!macro customInstall</span><br><span class="line"></span><br><span class="line">!macroend</span><br><span class="line"></span><br><span class="line">!macro customInstallMode</span><br><span class="line">  # set $isForceMachineInstall or $isForceCurrentInstall</span><br><span class="line">  # to enforce one or the other modes.</span><br><span class="line">  #set $isForceMachineInstall</span><br><span class="line">!macroend</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      Electron-Builder 打包的各种配置记录
+    
+    </summary>
+    
+      <category term="Electron篇" scheme="http://blog.joylau.cn/categories/Electron%E7%AF%87/"/>
+    
+    
+      <category term="Electron" scheme="http://blog.joylau.cn/tags/Electron/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Electron --- Windows 和 MacOS 套娃图标的制作</title>
+    <link href="http://blog.joylau.cn/2019/09/13/Electron-Icon-Icns/"/>
+    <id>http://blog.joylau.cn/2019/09/13/Electron-Icon-Icns/</id>
+    <published>2019-09-13T08:11:42.000Z</published>
+    <updated>2019-09-16T06:33:04.875Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="什么是套娃图标"><a href="#什么是套娃图标" class="headerlink" title="什么是套娃图标"></a>什么是套娃图标</h3><p>可能见过一种套娃的玩具,就是一个大的套着一个小的,每一个玩具的形状颜色都一样,只是大小比例不一样,套娃图标也是这个意思</p><h3 id="什么工具"><a href="#什么工具" class="headerlink" title="什么工具"></a>什么工具</h3><p>需要这么一个工具, IconFX : <a href="http://nas.joylau.cn:5000/sharing/Y3xyQ0OJV" target="_blank" rel="noopener">下载</a></p><p><img src="http://image.joylau.cn/blog/Electron-icon-icns-iconfx.png.png" alt="IconFX"></p><p>制做一组至少有 256<em>256 (此外还有 128</em>128 , 96<em>96, 64</em>64, 48<em>48,32</em>32,16*16)的一套图标, Windows 下格式为 icon, Mac 下格式为 icns</p><h3 id="怎么制作"><a href="#怎么制作" class="headerlink" title="怎么制作"></a>怎么制作</h3><p>使用 PS 制作一张图片或者下载一张图片,按照下面的步骤完成所有大小的图标创建,之后保存.</p><p>图像 — 从图像创建 Windows 图标</p><p><img src="http://image.joylau.cn/blog/Electron-icon-icns-iconfx-make.png" alt="IconFX-make"></p><p>MacOS 也是同样的道理</p>]]></content>
+    
+    <summary type="html">
+    
+      Electron Windows 和 MacOS 套娃图标的制作
+    
+    </summary>
+    
+      <category term="Electron篇" scheme="http://blog.joylau.cn/categories/Electron%E7%AF%87/"/>
+    
+    
+      <category term="Electron" scheme="http://blog.joylau.cn/tags/Electron/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用</title>
+    <link href="http://blog.joylau.cn/2019/09/12/Electron-URL-Scheme/"/>
+    <id>http://blog.joylau.cn/2019/09/12/Electron-URL-Scheme/</id>
+    <published>2019-09-12T03:21:12.000Z</published>
+    <updated>2019-09-16T06:33:04.875Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="什么是-URL-Scheme-协议"><a href="#什么是-URL-Scheme-协议" class="headerlink" title="什么是 URL Scheme 协议"></a>什么是 URL Scheme 协议</h3><p>个人理解为注册一种协议来实现应用间的跳转</p><h3 id="Windows-上的实现"><a href="#Windows-上的实现" class="headerlink" title="Windows 上的实现"></a>Windows 上的实现</h3><p>Windows 上是通过注册表实现的</p><p>通过在 HKCR (HKEY_CALSSES_ROOT) 添加一条注册表记录</p><p><img src="http://image.joylau.cn/blog/Electron-URL-Scheme-win.png" alt="Win Registry"></p><p>其中 command 的命令即为要执行的命令,注意后面要加一个参数 <code>&quot;%1&quot;</code></p><h3 id="Mac-上的实现"><a href="#Mac-上的实现" class="headerlink" title="Mac 上的实现"></a>Mac 上的实现</h3><p>在应用里显示包内容,使用 xcode 查看 Info.plist 找到 URL types – URL Schemes 里添加一项</p><p><img src="http://image.joylau.cn/blog/Electron-URL-Scheme-mac.png" alt="Mac Info.plist"></p><h3 id="Electron-的实现"><a href="#Electron-的实现" class="headerlink" title="Electron 的实现"></a>Electron 的实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.setAsDefaultProtocolClient(PROTOCOL, process.execPath, [<span class="string">`<span class="subst">$&#123;__dirname&#125;</span>`</span>]);</span><br></pre></td></tr></table></figure><p>这一句话即可完成 Windows 下和 macOS 下的协议注册,只不过需要应用启动后才可注册成功,就是说如果安装过后不打开的话,无法通过协议来唤醒应用,解决方式我们后面再讲</p><p>第一个参数为协议的名称, 第二个参数为执行的命令,第三个参数为所传字符串参数数组</p><p>在 Windows 环境下最后一项需要带上当前的项目路径,否则的话在开发模式下会打不开 electron 应用,打包完成后不会存在这个问题, mac 上也不会存在这个问题</p><h3 id="Electron-上协议参数的处理"><a href="#Electron-上协议参数的处理" class="headerlink" title="Electron 上协议参数的处理"></a>Electron 上协议参数的处理</h3><p>参数的处理分 2 中情况</p><ol><li>新打开的窗口</li><li>打开的第二个实例</li></ol><p>对于新打开的窗口:<br>使用 <code>let argv = process.argv;</code> 来获取进程参数,得到的是一个数组,如果做够一项包含我们的协议,则需要根据自己的字符串规则来进行处理</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> argv = process.argv;</span><br><span class="line"><span class="keyword">if</span> (argv[argv.length - <span class="number">1</span>].indexOf(PROTOCOL + <span class="string">"://"</span>) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="comment">//.....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>对于打开的第二个实例:<br>windows 上监听的事件是 <code>second-instance</code>, mac 上监听的事件是 <code>open-url</code>, 2 个事件传入参数还不一样, Windows 下传入的参数是字符串数组,mac 传入的参数是字符串,都包含了协议名称</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">app.on(<span class="string">'second-instance'</span>, (event, commandLine, workingDirectory) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 当运行第二个实例时,主动对焦</span></span><br><span class="line">    <span class="keyword">if</span> (win) &#123;</span><br><span class="line">        <span class="keyword">if</span> (win.isMinimized()) win.restore();</span><br><span class="line">        win.focus();</span><br><span class="line">        win.show();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> message = handleArgv(commandLine);</span><br><span class="line">        processSend(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// macOS</span></span><br><span class="line">app.on(<span class="string">'open-url'</span>, (event, urlStr) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (win) &#123;</span><br><span class="line">        win.showInactive();</span><br><span class="line">        <span class="keyword">let</span> message = handleArgv(urlStr);</span><br><span class="line">        processSend(message);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        global.shareObject.message = handleArgv(urlStr);</span><br><span class="line">        global.shareObject.isSend = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">processSend</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">    global.shareObject.message = message;</span><br><span class="line">    win.webContents.send(<span class="string">'ch-1'</span>, <span class="string">'send'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleArgv</span>(<span class="params">argv</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> urlObj = [];</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(argv)) &#123;</span><br><span class="line">        urlObj = argv[argv.length - <span class="number">1</span>].replace(PROTOCOL + <span class="string">"://"</span>, <span class="string">""</span>).split(<span class="string">"_"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        urlObj = argv.replace(PROTOCOL + <span class="string">"://"</span>, <span class="string">""</span>).split(<span class="string">"_"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> urlObj.length &gt;= <span class="number">2</span> ? &#123;<span class="attr">sessionId</span>: urlObj[<span class="number">0</span>], <span class="attr">url</span>: urlObj[<span class="number">1</span>], <span class="attr">macInfo</span>: os.networkInterfaces()&#125; : &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      Electron Scheme 协议的使用
+    
+    </summary>
+    
+      <category term="Electron篇" scheme="http://blog.joylau.cn/categories/Electron%E7%AF%87/"/>
+    
+    
+      <category term="Electron" scheme="http://blog.joylau.cn/tags/Electron/"/>
+    
+  </entry>
   
   <entry>
     <title>Electron --- 知识点小记</title>
@@ -393,72 +459,6 @@
     
     
       <category term="日常折腾" scheme="http://blog.joylau.cn/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>日常折腾 --- 软路由攒机记录</title>
-    <link href="http://blog.joylau.cn/2019/05/22/Daily-Soft-Router/"/>
-    <id>http://blog.joylau.cn/2019/05/22/Daily-Soft-Router/</id>
-    <published>2019-05-22T06:45:10.000Z</published>
-    <updated>2019-05-22T16:01:04.372Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>上篇说到了家里使用多条宽带,而一般的路由器无法使用多个运营商的宽带进行拨号,这就需要软路由了,其实也就是个小主机</p><h3 id="实机"><a href="#实机" class="headerlink" title="实机"></a>实机</h3><p>看下我攒的把</p><p><img src="http://image.joylau.cn/blog/IMG_0314.jpg" alt></p><p><img src="http://image.joylau.cn/blog/IMG_0315.jpg" alt></p><p><img src="http://image.joylau.cn/blog/IMG_0316.jpg" alt></p><h3 id="硬件配置"><a href="#硬件配置" class="headerlink" title="硬件配置"></a>硬件配置</h3><h3 id="主要硬件"><a href="#主要硬件" class="headerlink" title="主要硬件"></a>主要硬件</h3><ul><li>CPU Intel(R) Atom(TM) CPU D525 @ 1.80GHz | 512 KB | 1796 MHz | ×4</li><li>硬盘 ATA DragonDiamond D2 5 (3.75GB)</li><li>内存 2037MB</li><li>主板芯片：Intel Corporation Atom Processor D4xx/D5xx/N4xx/N5xx DMI Bridge (rev 02)</li><li>网卡：Intel Corporation 82583V Gigabit Network Connection (eth0 20:90:30:e8:2f:99)</li><li>网卡：Intel Corporation 82583V Gigabit Network Connection (eth1 20:90:30:e8:2f:9a)</li><li>网卡：Intel Corporation 82583V Gigabit Network Connection (eth2 20:90:30:e8:2f:9b)</li><li>网卡：Intel Corporation 82583V Gigabit Network Connection (eth3 20:90:30:e8:2f:9c)</li></ul><h3 id="其它硬件"><a href="#其它硬件" class="headerlink" title="其它硬件"></a>其它硬件</h3><ul><li>显卡：Intel Corporation Atom Processor D4xx/D5xx/N4xx/N5xx Integrated Graphics Controller (rev 02)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #4 (rev 03)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #5 (rev 03)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB2 EHCI Controller #2 (rev 03)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #1 (rev 03)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #2 (rev 03)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #3 (rev 03)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB2 EHCI Controller #1 (rev 03)</li><li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 1 (rev 03)</li><li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 2 (rev 03)</li><li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 3 (rev 03)</li><li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 4 (rev 03)</li><li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 5 (rev 03)</li><li>PCI桥：Intel Corporation 82801 Mobile PCI Bridge (rev f3)</li><li>IDE接口：Intel Corporation 82801HM/HEM (ICH8M/ICH8M-E) IDE Controller (rev 03)</li><li>IDE接口：Intel Corporation 82801HM/HEM (ICH8M/ICH8M-E) SATA Controller [IDE mode] (rev 03)</li><li>SMBus：Intel Corporation 82801H (ICH8 Family) SMBus Controller (rev 03)</li></ul><h3 id="我的使用"><a href="#我的使用" class="headerlink" title="我的使用"></a>我的使用</h3><ol><li>四个网口,2 个作为 WAN 口,一个电信宽带,一个长城宽带,一个作为 LAN 口,接台式机,最后一个作为 LAN 口,接路由器的 LAN 口提供 WIFI</li><li>2 个宽带使用负载均衡实现宽带叠加</li><li>端口分流,实现 WIFI 设备走长城宽带的流量,台式机和一些静态的 DHCP 的 IP 走电信流量</li><li>还有一些端口映射和 DMZ 主机和动态域名绑定等普通路由器的功能 (支持 阿里云的 DDNS, 提供 accessKey 和 Access Key Secret 即可)</li></ol><h3 id="花费"><a href="#花费" class="headerlink" title="花费"></a>花费</h3><p>目前这样的配置完全跑个软路由系统绰绰有余了, 我用的是 iKuai, CPU 温度在 22 度左右, CPU 使用率低于 10%, 内存使用率 20% 左右<br>全部花费 234 元</p>]]></content>
-    
-    <summary type="html">
-    
-      日常折腾之家里网线改造记录
-    
-    </summary>
-    
-      <category term="日常折腾篇" scheme="http://blog.joylau.cn/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE%E7%AF%87/"/>
-    
-    
-      <category term="日常折腾" scheme="http://blog.joylau.cn/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>日常折腾 --- 家里网线改造记录</title>
-    <link href="http://blog.joylau.cn/2019/05/22/Daily-Reform-Cable/"/>
-    <id>http://blog.joylau.cn/2019/05/22/Daily-Reform-Cable/</id>
-    <published>2019-05-22T03:43:26.000Z</published>
-    <updated>2019-05-22T16:01:04.372Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我新办了个电信宽带,并且搞到了公网 IP, 但是原来的长城宽带没到期我还想继续用,而且办的电信宽带有 iTV, 我还想看电视<br>但是现在从墙里的多媒体集线箱到我卧室的线有 2 根,一根电话线,一根超 5 类网线<br>看我如何改造操作</p><h3 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h3><ol><li>一根电话线(4 根铜线)</li><li>一根超 5 类网线</li></ol><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><ol><li>同时使用 电信宽带和原来的长城宽带</li><li>能看 iTV 电视, iTV 的线不与电信宽带共享速率, 也就是电信宽带和 iTV 都直接接到电信的光猫上</li></ol><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul><li>百兆网类,网络数据的传输使用的 B 类网线接法的 1,2,3,6 根线</li><li>4,5,7,8 其实并没有参与数据传输,只是保持数据的稳定性以及抗干扰</li></ul><table><thead><tr><th style="text-align:center">序号</th><th style="text-align:center">1</th><th style="text-align:center">2</th><th style="text-align:center">3</th><th style="text-align:center">4</th><th style="text-align:center">5</th><th style="text-align:center">6</th><th style="text-align:center">7</th><th style="text-align:center">8</th></tr></thead><tbody><tr><td style="text-align:center">颜色</td><td style="text-align:center">白橙</td><td style="text-align:center">橙</td><td style="text-align:center">白绿</td><td style="text-align:center">蓝</td><td style="text-align:center">白蓝</td><td style="text-align:center">绿</td><td style="text-align:center">白棕</td><td style="text-align:center">棕</td></tr></tbody></table><p>进行拆分</p><table><thead><tr><th>序号</th><th>1</th><th>2</th><th>3</th><th>6</th></tr></thead><tbody><tr><td>颜色</td><td>白橙</td><td>橙</td><td>白绿</td><td>绿</td></tr></tbody></table><table><thead><tr><th>序号</th><th>4</th><th>5</th><th>7</th><th>8</th></tr></thead><tbody><tr><td>颜色</td><td>蓝</td><td>白蓝</td><td>白棕</td><td>棕</td></tr></tbody></table><h3 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h3><ul><li>8 根铜线的超五类网线分拆为 2 个 4 根线的网线</li><li>这 2 根线分别直接连接电信光猫,一根连接光猫的 LAN1 口, 一根连接 LAN2 口</li><li>电话线也按 1,2,3,6 的接法连接长城宽带</li></ul><h3 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h3><ul><li>水晶头</li><li>网线钳</li><li>网线直通连接器</li><li>软路由</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      日常折腾之家里网线改造记录
-    
-    </summary>
-    
-      <category term="日常折腾篇" scheme="http://blog.joylau.cn/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE%E7%AF%87/"/>
-    
-    
-      <category term="日常折腾" scheme="http://blog.joylau.cn/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OpenCV --- 知识点速记</title>
-    <link href="http://blog.joylau.cn/2019/05/17/OpenCV-Knowledge-Points/"/>
-    <id>http://blog.joylau.cn/2019/05/17/OpenCV-Knowledge-Points/</id>
-    <published>2019-05-17T02:50:34.000Z</published>
-    <updated>2019-05-22T16:01:04.372Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h4 id="CV-type-的转换"><a href="#CV-type-的转换" class="headerlink" title="CV type 的转换"></a>CV type 的转换</h4><p>CV_8UC3 转 CV_8UC1 : convertTo 或者 cvtColor<br>CV_8UC1 转 CV_8UC3 : cvtColor (灰度相同,通道已经转化, CV_GRAY2RGB)</p><h4 id="Mat-初始化"><a href="#Mat-初始化" class="headerlink" title="Mat 初始化"></a>Mat 初始化</h4><p>Mat.zeros: 创建全 0 矩阵<br>Mat.ones: 创建全 1 矩阵<br>Mat.eye: 创建单位矩阵</p><h4 id="零碎"><a href="#零碎" class="headerlink" title="零碎"></a>零碎</h4><ol><li>判断点与多边形的关系: pointPolygonTest  </li><li>ROI 区域: Rect(col,row,width,height)<ol><li>col: x 坐标 (坐标以 0 开始, 左上角 0,0)</li><li>row: y 坐标</li><li>width: 宽度</li><li>height: 高度</li></ol></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      OpenCV 知识点速记
-    
-    </summary>
-    
-      <category term="OpenCV篇" scheme="http://blog.joylau.cn/categories/OpenCV%E7%AF%87/"/>
-    
-    
-      <category term="OpenCV" scheme="http://blog.joylau.cn/tags/OpenCV/"/>
     
   </entry>
   

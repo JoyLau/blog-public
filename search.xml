@@ -4,6 +4,103 @@
   
     
     <entry>
+      <title><![CDATA[Electron --- Electron-Builder 打包的各种配置]]></title>
+      <url>http://blog.joylau.cn/2019/09/14/Electron-Electron-Builder/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="打包的资源无法包含-build-目录"><a href="#打包的资源无法包含-build-目录" class="headerlink" title="打包的资源无法包含 build 目录"></a>打包的资源无法包含 build 目录</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">"files": [</span><br><span class="line">      "**/*",</span><br><span class="line">      "build/",</span><br><span class="line">      "!build/static/js/*.js.map",</span><br><span class="line">      <span class="string">"!src/"</span></span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
+<p>同时该配置也可防止源码被打包进去,</p>
+<h3 id="查看打包后的目录结构"><a href="#查看打包后的目录结构" class="headerlink" title="查看打包后的目录结构"></a>查看打包后的目录结构</h3><p><code>&quot;asar&quot;: false,</code> </p>
+<h3 id="引入外部文件"><a href="#引入外部文件" class="headerlink" title="引入外部文件"></a>引入外部文件</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">"extraResources": [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"from"</span>: <span class="string">"./LICENSE"</span>,</span><br><span class="line">        <span class="attr">"to"</span>: <span class="string">"./../LICENSE.txt"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
+<h3 id="定义安装包输出目录"><a href="#定义安装包输出目录" class="headerlink" title="定义安装包输出目录"></a>定义安装包输出目录</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"directories": &#123;</span><br><span class="line">  "output": "dist"</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h3 id="Windows-环境下打出-32-位和-64-位二合一包"><a href="#Windows-环境下打出-32-位和-64-位二合一包" class="headerlink" title="Windows 环境下打出 32 位和 64 位二合一包"></a>Windows 环境下打出 32 位和 64 位二合一包</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">"win": &#123;</span><br><span class="line">  "target": [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"target"</span>: <span class="string">"nsis"</span>,</span><br><span class="line">      <span class="attr">"arch"</span>: [</span><br><span class="line">        <span class="string">"ia32"</span>,</span><br><span class="line">        <span class="string">"x64"</span></span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h3 id="打出的-mac-包写入数据到-Info-plist-文件"><a href="#打出的-mac-包写入数据到-Info-plist-文件" class="headerlink" title="打出的 mac 包写入数据到 Info.plist 文件"></a>打出的 mac 包写入数据到 Info.plist 文件</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">"mac": &#123;</span><br><span class="line">  "extendInfo": &#123;</span><br><span class="line">    "URL types": [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"URL identifier"</span>: <span class="string">"Joy Security"</span>,</span><br><span class="line">        <span class="attr">"URL Schemes"</span>: [</span><br><span class="line">          <span class="string">"joy-security"</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h3 id="NSIS-配置"><a href="#NSIS-配置" class="headerlink" title="NSIS 配置"></a>NSIS 配置</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">"nsis": &#123;</span><br><span class="line">  "oneClick": false, // 一键安装</span><br><span class="line">  "perMachine": true, // 为所有用户安装</span><br><span class="line">  "allowElevation": true, // 允许权限提升, 设置 false 的话需要重新允许安装程序</span><br><span class="line">  "allowToChangeInstallationDirectory": true, // 允许更改安装目录</span><br><span class="line">  "installerIcon": "./public/icons/win.ico",</span><br><span class="line">  "uninstallerIcon": "./public/icons/win_uninstall.ico",</span><br><span class="line">  "installerHeaderIcon": "./public/icons/win.ico",</span><br><span class="line">  "createDesktopShortcut": true,</span><br><span class="line">  "createStartMenuShortcut": true,</span><br><span class="line">  "shortcutName": "Joy Security",</span><br><span class="line">  "license": "./LICENSE",</span><br><span class="line">  "include": "./public/nsis/installer.nsh" // 包含的脚本</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="NSIS-脚本"><a href="#NSIS-脚本" class="headerlink" title="NSIS 脚本"></a>NSIS 脚本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">!macro customHeader</span><br><span class="line"></span><br><span class="line">!macroend</span><br><span class="line"></span><br><span class="line">!macro preInit</span><br><span class="line"></span><br><span class="line">!macroend</span><br><span class="line"></span><br><span class="line">!macro customInit</span><br><span class="line">        # guid=7e51495b-3f4d-5235-aadd-5636863064f0</span><br><span class="line">        ReadRegStr $0 HKLM &quot;SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\&#123;7e51495b-3f4d-5235-aadd-5636863064f0&#125;&quot; &quot;UninstallString&quot;</span><br><span class="line">        $&#123;If&#125; $0 != &quot;&quot;</span><br><span class="line">            MessageBox MB_ICONINFORMATION|MB_TOPMOST  &quot;检测到系统中已安装本程序，将卸载旧版本&quot; IDOK</span><br><span class="line">            # ExecWait $0 $1</span><br><span class="line">        $&#123;EndIf&#125;</span><br><span class="line">!macroend</span><br><span class="line"></span><br><span class="line">!macro customInstall</span><br><span class="line"></span><br><span class="line">!macroend</span><br><span class="line"></span><br><span class="line">!macro customInstallMode</span><br><span class="line">  # set $isForceMachineInstall or $isForceCurrentInstall</span><br><span class="line">  # to enforce one or the other modes.</span><br><span class="line">  #set $isForceMachineInstall</span><br><span class="line">!macroend</span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> Electron篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Electron </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Electron --- Windows 和 MacOS 套娃图标的制作]]></title>
+      <url>http://blog.joylau.cn/2019/09/13/Electron-Icon-Icns/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="什么是套娃图标"><a href="#什么是套娃图标" class="headerlink" title="什么是套娃图标"></a>什么是套娃图标</h3><p>可能见过一种套娃的玩具,就是一个大的套着一个小的,每一个玩具的形状颜色都一样,只是大小比例不一样,套娃图标也是这个意思</p>
+<h3 id="什么工具"><a href="#什么工具" class="headerlink" title="什么工具"></a>什么工具</h3><p>需要这么一个工具, IconFX : <a href="http://nas.joylau.cn:5000/sharing/Y3xyQ0OJV" target="_blank" rel="noopener">下载</a></p>
+<p><img src="http://image.joylau.cn/blog/Electron-icon-icns-iconfx.png.png" alt="IconFX"></p>
+<p>制做一组至少有 256<em>256 (此外还有 128</em>128 , 96<em>96, 64</em>64, 48<em>48,32</em>32,16*16)的一套图标, Windows 下格式为 icon, Mac 下格式为 icns</p>
+<h3 id="怎么制作"><a href="#怎么制作" class="headerlink" title="怎么制作"></a>怎么制作</h3><p>使用 PS 制作一张图片或者下载一张图片,按照下面的步骤完成所有大小的图标创建,之后保存.</p>
+<p>图像 — 从图像创建 Windows 图标</p>
+<p><img src="http://image.joylau.cn/blog/Electron-icon-icns-iconfx-make.png" alt="IconFX-make"></p>
+<p>MacOS 也是同样的道理</p>]]></content>
+      
+        <categories>
+            
+            <category> Electron篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Electron </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用]]></title>
+      <url>http://blog.joylau.cn/2019/09/12/Electron-URL-Scheme/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="什么是-URL-Scheme-协议"><a href="#什么是-URL-Scheme-协议" class="headerlink" title="什么是 URL Scheme 协议"></a>什么是 URL Scheme 协议</h3><p>个人理解为注册一种协议来实现应用间的跳转</p>
+<h3 id="Windows-上的实现"><a href="#Windows-上的实现" class="headerlink" title="Windows 上的实现"></a>Windows 上的实现</h3><p>Windows 上是通过注册表实现的</p>
+<p>通过在 HKCR (HKEY_CALSSES_ROOT) 添加一条注册表记录</p>
+<p><img src="http://image.joylau.cn/blog/Electron-URL-Scheme-win.png" alt="Win Registry"></p>
+<p>其中 command 的命令即为要执行的命令,注意后面要加一个参数 <code>&quot;%1&quot;</code></p>
+<h3 id="Mac-上的实现"><a href="#Mac-上的实现" class="headerlink" title="Mac 上的实现"></a>Mac 上的实现</h3><p>在应用里显示包内容,使用 xcode 查看 Info.plist 找到 URL types – URL Schemes 里添加一项</p>
+<p><img src="http://image.joylau.cn/blog/Electron-URL-Scheme-mac.png" alt="Mac Info.plist"></p>
+<h3 id="Electron-的实现"><a href="#Electron-的实现" class="headerlink" title="Electron 的实现"></a>Electron 的实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.setAsDefaultProtocolClient(PROTOCOL, process.execPath, [<span class="string">`<span class="subst">$&#123;__dirname&#125;</span>`</span>]);</span><br></pre></td></tr></table></figure>
+<p>这一句话即可完成 Windows 下和 macOS 下的协议注册,只不过需要应用启动后才可注册成功,就是说如果安装过后不打开的话,无法通过协议来唤醒应用,解决方式我们后面再讲</p>
+<p>第一个参数为协议的名称, 第二个参数为执行的命令,第三个参数为所传字符串参数数组</p>
+<p>在 Windows 环境下最后一项需要带上当前的项目路径,否则的话在开发模式下会打不开 electron 应用,打包完成后不会存在这个问题, mac 上也不会存在这个问题</p>
+<h3 id="Electron-上协议参数的处理"><a href="#Electron-上协议参数的处理" class="headerlink" title="Electron 上协议参数的处理"></a>Electron 上协议参数的处理</h3><p>参数的处理分 2 中情况</p>
+<ol>
+<li>新打开的窗口</li>
+<li>打开的第二个实例</li>
+</ol>
+<p>对于新打开的窗口:<br>使用 <code>let argv = process.argv;</code> 来获取进程参数,得到的是一个数组,如果做够一项包含我们的协议,则需要根据自己的字符串规则来进行处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> argv = process.argv;</span><br><span class="line"><span class="keyword">if</span> (argv[argv.length - <span class="number">1</span>].indexOf(PROTOCOL + <span class="string">"://"</span>) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="comment">//.....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于打开的第二个实例:<br>windows 上监听的事件是 <code>second-instance</code>, mac 上监听的事件是 <code>open-url</code>, 2 个事件传入参数还不一样, Windows 下传入的参数是字符串数组,mac 传入的参数是字符串,都包含了协议名称</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">app.on(<span class="string">'second-instance'</span>, (event, commandLine, workingDirectory) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 当运行第二个实例时,主动对焦</span></span><br><span class="line">    <span class="keyword">if</span> (win) &#123;</span><br><span class="line">        <span class="keyword">if</span> (win.isMinimized()) win.restore();</span><br><span class="line">        win.focus();</span><br><span class="line">        win.show();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> message = handleArgv(commandLine);</span><br><span class="line">        processSend(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// macOS</span></span><br><span class="line">app.on(<span class="string">'open-url'</span>, (event, urlStr) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (win) &#123;</span><br><span class="line">        win.showInactive();</span><br><span class="line">        <span class="keyword">let</span> message = handleArgv(urlStr);</span><br><span class="line">        processSend(message);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        global.shareObject.message = handleArgv(urlStr);</span><br><span class="line">        global.shareObject.isSend = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">processSend</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">    global.shareObject.message = message;</span><br><span class="line">    win.webContents.send(<span class="string">'ch-1'</span>, <span class="string">'send'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleArgv</span>(<span class="params">argv</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> urlObj = [];</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(argv)) &#123;</span><br><span class="line">        urlObj = argv[argv.length - <span class="number">1</span>].replace(PROTOCOL + <span class="string">"://"</span>, <span class="string">""</span>).split(<span class="string">"_"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        urlObj = argv.replace(PROTOCOL + <span class="string">"://"</span>, <span class="string">""</span>).split(<span class="string">"_"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> urlObj.length &gt;= <span class="number">2</span> ? &#123;<span class="attr">sessionId</span>: urlObj[<span class="number">0</span>], <span class="attr">url</span>: urlObj[<span class="number">1</span>], <span class="attr">macInfo</span>: os.networkInterfaces()&#125; : &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> Electron篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Electron </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Electron --- 知识点小记]]></title>
       <url>http://blog.joylau.cn/2019/09/11/Electron-Questions/</url>
       <content type="html"><![CDATA[<a id="more"></a>
