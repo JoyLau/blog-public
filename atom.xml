@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2019-09-24T16:01:05.640Z</updated>
+  <updated>2019-09-28T16:01:03.682Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Gradle 升级到 5.x+ 之后遇到的问题记录</title>
+    <link href="http://blog.joylau.cn/2019/09/28/Gradle-Update-5-Questions/"/>
+    <id>http://blog.joylau.cn/2019/09/28/Gradle-Update-5-Questions/</id>
+    <published>2019-09-28T03:59:46.000Z</published>
+    <updated>2019-09-28T16:01:03.682Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="lombok-依赖编译报错"><a href="#lombok-依赖编译报错" class="headerlink" title="lombok 依赖编译报错"></a>lombok 依赖编译报错</h3><p>在gradle4.7以后对于加入依赖lombok方式发生变化，gradle4.7版本以前，可以直接如下引用：</p><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile(<span class="string">"org.projectlombok:lombok:1.18.2"</span>)或者compileOnly(<span class="string">"org.projectlombok:lombok:1.18.2"</span>)</span><br></pre></td></tr></table></figure><p>在gradle5.0这种方式会产生警告,在gradle5.0里面会直接报编译错误</p><p>有 2 中解决方式:</p><ol><li>官方推荐</li></ol><p>开发依赖：</p><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">annotationProcessor <span class="string">'org.projectlombok:lombok:1.18.2'</span></span><br><span class="line"></span><br><span class="line">compileOnly <span class="string">'org.projectlombok:lombok:1.18.2'</span></span><br></pre></td></tr></table></figure><p>测试依赖:</p><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">testAnnotationProcessor <span class="string">'org.projectlombok:lombok:1.18.2'</span></span><br><span class="line"></span><br><span class="line">testCompileOnly <span class="string">'org.projectlombok:lombok:1.18.2'</span></span><br></pre></td></tr></table></figure><ol start="2"><li>gradle-lombok插件方式</li></ol><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;                 </span><br><span class="line">  mavenCentral()          </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plugins &#123; </span><br><span class="line"> </span><br><span class="line">   id <span class="string">'net.ltgt.apt'</span> version <span class="string">'0.10'</span> </span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">  </span><br><span class="line">        compileOnly <span class="string">'org.projectlombok:lombok:1.18.2'</span></span><br><span class="line">        </span><br><span class="line">        apt <span class="string">"org.projectlombok:lombok:1.18.2"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="log4j-报错"><a href="#log4j-报错" class="headerlink" title="log4j 报错"></a>log4j 报错</h3><p>错误信息:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Errors occurred <span class="keyword">while</span> build effective model from /Users/joylau/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.16/88efb1b8d3d993fe339e9e2b201c75eed57d4c65/log4j-1.2.16.pom:</span><br><span class="line"><span class="string">'build.plugins.plugin[io.spring.gradle.dependencymanagement.org.apache.maven.plugins:maven-antrun-plugin].dependencies.dependency.scope'</span> <span class="keyword">for</span> junit:junit:jar must be one of [compile, runtime, system] but is <span class="string">'test'</span>. <span class="keyword">in</span> log4j:log4j:1.2.16</span><br></pre></td></tr></table></figure></p><p>这是因为 Log4J 1.2.16 的 pom 中存在一个Bug。1.2.16 已经在 2010 年停止更新了<br>可以通过声明对 log4j：log4j：1.2.17 的显式依赖<br>或通过依赖关系管理确保使用 1.2.17 来解决</p><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation(<span class="string">"log4j:log4j:1.2.17"</span>)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      之前项目升级到 Gradle 5.2 版本后,出现了一点问题,现记录并解决如下
+    
+    </summary>
+    
+      <category term="Gradle篇" scheme="http://blog.joylau.cn/categories/Gradle%E7%AF%87/"/>
+    
+    
+      <category term="Gradle" scheme="http://blog.joylau.cn/tags/Gradle/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker --- Maridb 容器启动时初始化数据库</title>
@@ -441,28 +463,6 @@
     
     
       <category term="日常折腾" scheme="http://blog.joylau.cn/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>群晖系列 --- 使用豆瓣的削刮器来检索视频的元数据</title>
-    <link href="http://blog.joylau.cn/2019/05/30/Synology-DouBan-Scraper/"/>
-    <id>http://blog.joylau.cn/2019/05/30/Synology-DouBan-Scraper/</id>
-    <published>2019-05-30T02:32:13.000Z</published>
-    <updated>2019-05-30T16:01:04.789Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>Video Station 自带的削刮器好像并不是很好用,很多电视剧都搜不到元数据,换了豆瓣的就比较好用了</p><h3 id="安装方法："><a href="#安装方法：" class="headerlink" title="安装方法："></a>安装方法：</h3><ol><li>开启DSM的ssh，并登入</li><li>执行一句话安装：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -N --no-check-certificate https://sh.9hut.cn/dsvp.sh &amp;&amp; sudo bash dsvp.sh install</span><br></pre></td></tr></table></figure><h3 id="卸载方法："><a href="#卸载方法：" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ol><li>开启DSM的ssh，并登入</li><li>执行一句话卸载：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -N --no-check-certificate https://sh.9hut.cn/dsvp.sh &amp;&amp; sudo bash dsvp.sh uninstall</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      Video Station 自带的削刮器好像并不是很好用,很多电视剧都搜不到元数据,换了豆瓣的就比较好用了
-    
-    </summary>
-    
-      <category term="群晖篇" scheme="http://blog.joylau.cn/categories/%E7%BE%A4%E6%99%96%E7%AF%87/"/>
-    
-    
-      <category term="群晖" scheme="http://blog.joylau.cn/tags/%E7%BE%A4%E6%99%96/"/>
     
   </entry>
   
