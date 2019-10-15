@@ -11258,6 +11258,12 @@
 <ol start="4">
 <li>重启定时任务, <code>systemctl restart crond</code> , 在 Ubuntu 上叫 cron <code>systemctl restart cron</code></li>
 </ol>
+<h3 id="关于定时任务的配置目录"><a href="#关于定时任务的配置目录" class="headerlink" title="关于定时任务的配置目录"></a>关于定时任务的配置目录</h3><ol>
+<li><code>/etc/crontab</code> 文件, 系统级别的定时任务,需要加入用户名</li>
+<li><code>/var/spool/cron</code> 目录, 以用户作为区分,一般会有一个和用户名相同的文件,里面记录了定时任务, 一般使用 crontab -e 创建, 语法中不需要指定用户名</li>
+<li><code>/etc/cron.d/</code> 和 crontab 文件类似,需要指定用户名</li>
+</ol>
+<p>cron执行时，也就是要读取三个地方的配置文件</p>
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol>
 <li>执行脚本使用/bin/sh（防止脚本无执行权限），要执行的文件路径是从根开始的绝对路径（防止找不到文件）</li>
 <li>尽量把要执行的命令放在脚本里，然后把脚本放在定时任务里。对于调用脚本的定时任务，可以把标准输出错误输出重定向到空。</li>
@@ -11278,7 +11284,7 @@
             
             <tag> Linux </tag>
             
-            <tag> Crond </tag>
+            <tag> Cron </tag>
             
         </tags>
         
@@ -12498,9 +12504,9 @@
         
         <tags>
             
-            <tag> nodejs </tag>
-            
             <tag> react </tag>
+            
+            <tag> nodejs </tag>
             
         </tags>
         
