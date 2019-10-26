@@ -4,6 +4,76 @@
   
     
     <entry>
+      <title><![CDATA[PM2 集群模式使用 ES6 语法]]></title>
+      <url>http://blog.joylau.cn/2019/10/27/PM2-Cluster-ES6/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<ol>
+<li>fork 模式下</li>
+</ol>
+<ul>
+<li>使用命令参数 <code>pm2 start app.js --node-args=&quot;--harmony&quot;</code></li>
+<li>json 文件添加配置: <code>&quot;node_args&quot; : &quot;--harmony&quot;</code></li>
+</ul>
+<ol start="2">
+<li>cluster 模式下<br>使用上一篇的方法 <code>require(&quot;babel-register&quot;);</code><br>在更改配置:</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"apps"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"my_name"</span>,</span><br><span class="line">      <span class="attr">"cwd"</span>: <span class="string">"./"</span>,</span><br><span class="line">      <span class="attr">"script"</span>: <span class="string">"bin/start"</span>,</span><br><span class="line">      <span class="attr">"instances"</span> : <span class="string">"max"</span>,</span><br><span class="line">      <span class="attr">"exec_mode"</span> : <span class="string">"cluster"</span>,</span><br><span class="line">      <span class="attr">"log_date_format"</span>: <span class="string">"YYYY-MM-DD HH:mm Z"</span>,</span><br><span class="line">      <span class="attr">"error_file"</span>: <span class="string">"./logs/error.log"</span>,</span><br><span class="line">      <span class="attr">"watch"</span>: [<span class="string">"routes"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里需要注意:</p>
+<ol>
+<li>exec_mode 要改为 <code>cluster</code>, instances 为实例数, max 为 CPU 的核心数,</li>
+<li>script 里配置的直接就是 js 文件,不需要加 node 命令(如 “script”: “node bin/start”) ,否则启动会报错,我踩过这个坑</li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> PM2篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Nodejs </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[NodeJs 使用 ES6 语法]]></title>
+      <url>http://blog.joylau.cn/2019/10/26/Node-Use-ES6/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<ol>
+<li>package.json 添加 </li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">"babel": &#123;</span><br><span class="line">    "presets": [</span><br><span class="line">      <span class="string">"es2015"</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">"devDependencies": &#123;</span><br><span class="line">    "babel-cli": "^6.26.0",</span><br><span class="line">    "babel-preset-es2015": "^6.24.1",</span><br><span class="line">    "babel-register": "^6.26.0"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>npm install</p>
+</li>
+<li><p>有 2 种方法可配置</p>
+</li>
+</ol>
+<ul>
+<li>第一种: 启动命令改为: <code>./node_modules/.bin/babel-node app.js</code></li>
+<li>第二种: 在 app.js 头部里添加 <code>require(&quot;babel-register&quot;);</code></li>
+</ul>]]></content>
+      
+        <categories>
+            
+            <category> Node篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Nodejs </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Gradle 升级到 5.x+ 之后遇到的问题记录]]></title>
       <url>http://blog.joylau.cn/2019/09/28/Gradle-Update-5-Questions/</url>
       <content type="html"><![CDATA[<a id="more"></a>
