@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2019-10-26T16:01:04.097Z</updated>
+  <updated>2019-11-13T16:01:05.956Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>gradle No cached version available for offline mode</title>
+    <link href="http://blog.joylau.cn/2019/11/13/Gradle-Offline-Mode/"/>
+    <id>http://blog.joylau.cn/2019/11/13/Gradle-Offline-Mode/</id>
+    <published>2019-11-13T08:23:12.000Z</published>
+    <updated>2019-11-13T16:01:05.956Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>在 idea 以前的版本里,在 Preferences | Build, Execution, Deployment | Gradle 去掉勾选 Offline work 即可</p><p>但是在最新版 2019.2 里,需要点击 gradle 面板里最上面一排小扳手左边一个图标,取消离线模式 </p>]]></content>
+    
+    <summary type="html">
+    
+      gradle 添加新的依赖报错 No cached version available for offline mode
+    
+    </summary>
+    
+      <category term="Gradle篇" scheme="http://blog.joylau.cn/categories/Gradle%E7%AF%87/"/>
+    
+    
+      <category term="Gradle" scheme="http://blog.joylau.cn/tags/Gradle/"/>
+    
+  </entry>
   
   <entry>
     <title>PM2 集群模式使用 ES6 语法</title>
@@ -441,28 +463,6 @@
     
     
       <category term="OpenCV" scheme="http://blog.joylau.cn/tags/OpenCV/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Gradle 配置代理</title>
-    <link href="http://blog.joylau.cn/2019/07/04/Gradle-Proxy/"/>
-    <id>http://blog.joylau.cn/2019/07/04/Gradle-Proxy/</id>
-    <published>2019-07-04T06:52:04.000Z</published>
-    <updated>2019-07-04T16:01:05.503Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>用 gradle 构建经常失败,主要是国内网络的原因,这时候配置 gradle 使用代理,构建过程要轻松许多</p><h3 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h3><ol><li><p>JVM system properties<br>例如:<br>System.setProperty(‘http.proxyHost’, ‘<a href="http://www.somehost.org&#39;" target="_blank" rel="noopener">www.somehost.org&#39;</a>)</p></li><li><p>配置 gradle.properties</p></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">## http</span><br><span class="line">systemProp.http.proxyHost=www.somehost.org</span><br><span class="line">systemProp.http.proxyPort=8080</span><br><span class="line">systemProp.http.proxyUser=userid</span><br><span class="line">systemProp.http.proxyPassword=password</span><br><span class="line">systemProp.http.nonProxyHosts=*.nonproxyrepos.com|localhost</span><br><span class="line"></span><br><span class="line">## https</span><br><span class="line">systemProp.https.proxyHost=www.somehost.org</span><br><span class="line">systemProp.https.proxyPort=8080</span><br><span class="line">systemProp.https.proxyUser=userid</span><br><span class="line">systemProp.https.proxyPassword=password</span><br><span class="line">systemProp.https.nonProxyHosts=*.nonproxyrepos.com|localhost</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      用 gradle 构建经常失败,主要是国内网络的原因,这时候配置代理,构建过程要轻松许多
-    
-    </summary>
-    
-      <category term="Gradle篇" scheme="http://blog.joylau.cn/categories/Gradle%E7%AF%87/"/>
-    
-    
-      <category term="Gradle" scheme="http://blog.joylau.cn/tags/Gradle/"/>
     
   </entry>
   

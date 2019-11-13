@@ -4,6 +4,28 @@
   
     
     <entry>
+      <title><![CDATA[gradle No cached version available for offline mode]]></title>
+      <url>http://blog.joylau.cn/2019/11/13/Gradle-Offline-Mode/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>在 idea 以前的版本里,在 Preferences | Build, Execution, Deployment | Gradle 去掉勾选 Offline work 即可</p>
+<p>但是在最新版 2019.2 里,需要点击 gradle 面板里最上面一排小扳手左边一个图标,取消离线模式 </p>]]></content>
+      
+        <categories>
+            
+            <category> Gradle篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Gradle </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[PM2 集群模式使用 ES6 语法]]></title>
       <url>http://blog.joylau.cn/2019/10/27/PM2-Cluster-ES6/</url>
       <content type="html"><![CDATA[<a id="more"></a>
