@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title><![CDATA[Docker 日志信息]]></title>
+      <url>http://blog.joylau.cn/2019/11/19/Docker-Logs/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>docker 容器启动, 通过 docker logs -f container 可以实时查看日志</p>
+<p>但是控制台输出的日志太多,会怎么样,容器里控制台输出的日志在宿主机什么位置?</p>
+<p>有时容器输出太多,运行时间长了后,会把磁盘撑满…</p>
+<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><p>docker 里容器的日志都属于标准输出（stdout）<br>每个 container 都是一个特殊的进程，由 docker daemon 创建并启动,docker daemon 来守护和管理</p>
+<p>docker daemon 有一个默认的日志驱动程序，默认为json-file<br>json-file 会把所有容器的标准输出和标准错误以json格式写入文件中，这个文件每行记录一个标准输出或标准错误并用时间戳注释</p>
+<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><ol>
+<li><p>vim /etc/docker/daemon.json</p>
+</li>
+<li><p>增加一条：{“log-driver”: “none”} （也可以添加{“log-opts”: {“max-size”: “10m” }} 来控制log文件的大小）</p>
+</li>
+<li><p>重新加载配置文件并重启docker服务: systemctl daemon-reload</p>
+</li>
+</ol>
+<h2 id="查看日志位置"><a href="#查看日志位置" class="headerlink" title="查看日志位置"></a>查看日志位置</h2><ol>
+<li>docker inspect container_id | grep log</li>
+<li>进入上述目录</li>
+<li>du -sh *</li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> Docker篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[gradle No cached version available for offline mode]]></title>
       <url>http://blog.joylau.cn/2019/11/13/Gradle-Offline-Mode/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -12596,9 +12634,9 @@
         
         <tags>
             
-            <tag> nodejs </tag>
-            
             <tag> react </tag>
+            
+            <tag> nodejs </tag>
             
         </tags>
         
@@ -14646,9 +14684,9 @@ discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;, &q
         
         <tags>
             
-            <tag> 程序员 </tag>
-            
             <tag> 技能 </tag>
+            
+            <tag> 程序员 </tag>
             
         </tags>
         
