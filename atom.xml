@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2019-11-19T16:01:04.205Z</updated>
+  <updated>2019-11-20T16:01:03.771Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring EL 表达式 ${} 和</title>
+    <link href="http://blog.joylau.cn/2019/11/20/SpringBoot-Spel/"/>
+    <id>http://blog.joylau.cn/2019/11/20/SpringBoot-Spel/</id>
+    <published>2019-11-20T02:20:15.000Z</published>
+    <updated>2019-11-20T16:01:03.771Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>个人理解:<br><code>${}</code> : 用于加载外部文件中指定key的值<br><code>#{}</code> : 功能更强大的SpEl表达式，将内容赋值给属性<br><code>#{…}</code> 和 <code>${…}</code> 可以混合使用，但是必须<code>#{}</code>外面，${}在里面,#{ ‘${}’ } ，注意单引号，注意不能反过来</p><h3 id="功能"><a href="#功能" class="headerlink" title="#{} 功能"></a><strong>#{}</strong> 功能</h3><ol><li>直接量表达式: “#{‘Hello World’}”</li><li>使用java代码new/instance of: 此方法只能是java.lang 下的类才可以省略包名 #{“new Spring(‘Hello World’)”}</li><li>使用T(Type): 使用“T(Type)”来表示java.lang.Class实例，同样，只有java.lang 下的类才可以省略包名。此方法一般用来引用常量或静态方法 ,#{“T(Integer).MAX_VALUE”}</li><li>变量: 使用“#bean_id”来获取,#{“beanId.field”}</li><li>方法调用: #{“#abc.substring(0,1)”}</li><li>运算符表达式: 算数表达式,比较表达式,逻辑表达式,赋值表达式,三目表达式,正则表达式</li><li>判断空: #{“name?:’other’”}</li></ol><h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>springboot 和 elasticsearch 的整合包里有一个注解<br>@Document(indexName = “”, type = “”)<br>indexName 和 type 都是字符串<br>这个注解写在实体类上,代表该实体类是一个索引<br>现在, indexName 和 type 不能为固定写死,需要从配置文件读取,<br>于是想到了 spring  的 el 表达式<br>使用<br>@Document(indexName = “${xxxx}”, type = “${xxxx}”)<br>启动后<br>无效,spring 直接将其解析成了字符串<br>于是,查看 @Document 这个注解实现的源码<br>在这个包中 org.springframework.data.elasticsearch.core.mapping 找到了实现类 SimpleElasticsearchPersistentEntity<br>其中</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">SimpleElasticsearchPersistentEntity</span><span class="params">(TypeInformation&lt;T&gt; typeInformation)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(typeInformation);</span><br><span class="line">    <span class="keyword">this</span>.context = <span class="keyword">new</span> StandardEvaluationContext();</span><br><span class="line">    <span class="keyword">this</span>.parser = <span class="keyword">new</span> SpelExpressionParser();</span><br><span class="line"></span><br><span class="line">    Class&lt;T&gt; clazz = typeInformation.getType();</span><br><span class="line">    <span class="keyword">if</span> (clazz.isAnnotationPresent(Document.class)) &#123;</span><br><span class="line">        Document document = clazz.getAnnotation(Document.class);</span><br><span class="line">        Assert.hasText(document.indexName(),</span><br><span class="line">                <span class="string">" Unknown indexName. Make sure the indexName is defined. e.g @Document(indexName=\"foo\")"</span>);</span><br><span class="line">        <span class="keyword">this</span>.indexName = document.indexName();</span><br><span class="line">        <span class="keyword">this</span>.indexType = hasText(document.type()) ? document.type() : clazz.getSimpleName().toLowerCase(Locale.ENGLISH);</span><br><span class="line">        <span class="keyword">this</span>.useServerConfiguration = document.useServerConfiguration();</span><br><span class="line">        <span class="keyword">this</span>.shards = document.shards();</span><br><span class="line">        <span class="keyword">this</span>.replicas = document.replicas();</span><br><span class="line">        <span class="keyword">this</span>.refreshInterval = document.refreshInterval();</span><br><span class="line">        <span class="keyword">this</span>.indexStoreType = document.indexStoreType();</span><br><span class="line">        <span class="keyword">this</span>.createIndexAndMapping = document.createIndex();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (clazz.isAnnotationPresent(Setting.class)) &#123;</span><br><span class="line">        <span class="keyword">this</span>.settingPath = typeInformation.getType().getAnnotation(Setting.class).settingPath();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getIndexName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Expression expression = parser.parseExpression(indexName, ParserContext.TEMPLATE_EXPRESSION);</span><br><span class="line">    <span class="keyword">return</span> expression.getValue(context, String.class);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getIndexType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Expression expression = parser.parseExpression(indexType, ParserContext.TEMPLATE_EXPRESSION);</span><br><span class="line">    <span class="keyword">return</span> expression.getValue(context, String.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>我们看到了 <code>SpelExpressionParser</code> 和 <code>ParserContext.TEMPLATE_EXPRESSION</code><br>那么这里就很肯定 indexName 和 type 是支持 spel 的写法了,只是怎么写,暂时不知道<br>再看<br>ParserContext.TEMPLATE_EXPRESSION 的源码是</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The default ParserContext implementation that enables template expression</span></span><br><span class="line"><span class="comment"> * parsing mode. The expression prefix is "#&#123;" and the expression suffix is "&#125;".</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> #isTemplate()</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">ParserContext TEMPLATE_EXPRESSION = <span class="keyword">new</span> ParserContext() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isTemplate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getExpressionPrefix</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"#&#123;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getExpressionSuffix</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"&#125;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>看到上面的注释,知道是使用 #{}<br>接着<br>新建一个类,使用 @Configuration 和 @ConfigurationProperties(prefix = “xxx”) 注册一个 bean<br>再在实体类上加上注解 @Component 也注册一个bean<br>之后就可以使用 #{bean.indexName} 来读取到配置属性了</p>]]></content>
+    
+    <summary type="html">
+    
+      Spring EL 表达式 ${} 和
+    
+    </summary>
+    
+      <category term="SpringBoot篇" scheme="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
+    
+    
+      <category term="SpringBoot" scheme="http://blog.joylau.cn/tags/SpringBoot/"/>
+    
+      <category term="Spring" scheme="http://blog.joylau.cn/tags/Spring/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker 日志信息</title>
@@ -441,28 +465,6 @@
     
     
       <category term="日常折腾" scheme="http://blog.joylau.cn/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu 强制设置分辨率</title>
-    <link href="http://blog.joylau.cn/2019/07/15/Ubuntu-Force-Resolution/"/>
-    <id>http://blog.joylau.cn/2019/07/15/Ubuntu-Force-Resolution/</id>
-    <published>2019-07-15T01:10:44.000Z</published>
-    <updated>2019-09-12T16:01:05.650Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>一次系统重启后,Ubuntu 系统无法正确识别连接的显示器分辨率了,我连接的 2 个显示器,其中一个分辨率正确识别,另一个却无法识别,默认成 1024 的分辨率了</p><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>强制设置的分辨率起码显示器得支持</p><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol><li><code>xrandr</code> 查看当前显示器的设置信息, 记住当前显示接口的名称,我这里是 <code>VGA-1</code>, 而且支持的分辨率列表应该是没有你想要的分辨率,不然的话在设置里就能看到了</li><li>添加一个分辨率,我这里是 1920 * 1080 : <code>cvt 1920 1080</code>; 得到输出: <code>Modeline &quot;1920x1080_60.00&quot;  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync</code></li><li>将 cvt 得到的显示模式使用 xrandr 命令添加:<br> <code>sudo xrandr --newmode &quot;1920x1080_60.00&quot; 173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync</code><br> <code>sudo xrandr --addmode VGA-1 &quot;1920x1080_60.00&quot;</code></li><li>这样设置重启会失效, 将脚本写到一个文件中,并授予执行权限</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">!<span class="comment">#/bin/bash</span></span><br><span class="line">cvt 1920 1080</span><br><span class="line"><span class="comment">## 如果登录用户不是 root ,则需要使用 sudo ,sudo 需要输入密码,可使用下面的方式解决</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"password"</span> | sudo -S xrandr --newmode <span class="string">"1920x1080_60.00"</span> 173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"password"</span> | sudo -S xrandr --addmode VGA-1 <span class="string">"1920x1080_60.00"</span></span><br></pre></td></tr></table></figure><ol start="5"><li>在 Ubuntu 中搜索 <code>启动应用程序</code>, 将脚本添加进去,完成.</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      一次系统重启后,Ubuntu 系统无法正确识别连接的显示器分辨率了...
-    
-    </summary>
-    
-      <category term="Ubuntu篇" scheme="http://blog.joylau.cn/categories/Ubuntu%E7%AF%87/"/>
-    
-    
-      <category term="Ubuntu" scheme="http://blog.joylau.cn/tags/Ubuntu/"/>
     
   </entry>
   
