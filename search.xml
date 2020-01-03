@@ -24,7 +24,8 @@
 <blockquote>
 <p>注意,这样配置的话, 请求的 uri 是 /metadata, 在 build 后会生成 metadata 文件, 将打包后的文件拷贝到服务器上运行效果不好<br>一般我都注释掉 template, 再将 outPath 写成 /metadata.html</p>
 </blockquote>
-<h3 id="打包不生成-source-map-文件"><a href="#打包不生成-source-map-文件" class="headerlink" title="打包不生成 source-map 文件"></a>打包不生成 source-map 文件</h3><p>在项目更目录下创建文件 .env, 写入: GENERATE_SOURCEMAP=false 即可.</p>]]></content>
+<h3 id="打包不生成-source-map-文件"><a href="#打包不生成-source-map-文件" class="headerlink" title="打包不生成 source-map 文件"></a>打包不生成 source-map 文件</h3><p>在 配置文件 config-overrides.js 添加 <code>process.env.GENERATE_SOURCEMAP = &quot;false&quot;;</code><br>或者  </p>
+<p>在项目更目录下创建文件 .env, 写入: GENERATE_SOURCEMAP=false 即可.</p>]]></content>
       
         <categories>
             
@@ -12771,9 +12772,9 @@
         
         <tags>
             
-            <tag> react </tag>
-            
             <tag> nodejs </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
