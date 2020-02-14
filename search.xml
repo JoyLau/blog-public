@@ -11849,7 +11849,11 @@
 <h4 id="vpn-gateway"><a href="#vpn-gateway" class="headerlink" title="vpn_gateway"></a>vpn_gateway</h4><p>当客户端加入 <code>route-nopull</code> 后,所有出去的访问都不从 OpenVPN 出去,但可通过添加 vpn_gateway 参数使部分IP访问走 OpenVPN 出去</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">route 192.168.255.0 255.255.255.0 vpn_gateway</span><br><span class="line">route 192.168.10.0 255.255.255.0 vpn_gateway</span><br></pre></td></tr></table></figure>
 <h4 id="net-gateway"><a href="#net-gateway" class="headerlink" title="net_gateway"></a>net_gateway</h4><p>和 <code>vpn_gateway</code> 相反,他表示在默认出去的访问全部走 OpenVPN 时,强行指定部分 IP 访问不通过 OpenVPN 出去</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">max-routes 1000 <span class="comment"># 表示可以添加路由的条数,默认只允许添加100条路由,如果少于100条路由可不加这个参数</span></span><br><span class="line">route 172.121.0.0 255.255.0.0 net_gateway</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">max-routes 1000 <span class="comment"># 表示可以添加路由的条数,默认只允许添加100条路由,如果少于100条路由可不加这个参数</span></span><br><span class="line">route 172.121.0.0 255.255.0.0 net_gateway</span><br></pre></td></tr></table></figure>
+<h2 id="客户端互相访问"><a href="#客户端互相访问" class="headerlink" title="客户端互相访问"></a>客户端互相访问</h2><ol>
+<li>配置 client-to-client</li>
+<li>192.168.255.0 的路由要能够走VPN通道, 可以配置 <code>redirect-gateway def1</code> 或者 <code>route-nopull  route 192.168.255.0 255.255.255.0 vpn_gateway</code></li>
+</ol>]]></content>
       
         <categories>
             
@@ -12813,9 +12817,9 @@
         
         <tags>
             
-            <tag> react </tag>
-            
             <tag> nodejs </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
