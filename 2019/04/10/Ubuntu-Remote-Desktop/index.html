@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
 <meta property="og:description" content="Ubuntu 自用远程桌面服务端配置">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-10T10:12:41.443Z">
+<meta property="og:updated_time" content="2020-02-24T16:01:04.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 优雅的远程桌面服务端配置">
 <meta name="twitter:description" content="Ubuntu 自用远程桌面服务端配置">
@@ -358,6 +358,13 @@
 <li>安装 <code>x11vnc</code> ,并进行配置</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install x11vnc -y</span><br><span class="line"></span><br><span class="line">sudo x11vnc -storepasswd /etc/x11vnc.pass <span class="comment"># 配置访问密码并存储</span></span><br><span class="line"></span><br><span class="line">vim  /lib/systemd/system/x11vnc.service <span class="comment"># 创建系统服务</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务配置</span></span><br><span class="line">[Unit]</span><br><span class="line">Description=Start x11vnc at startup.</span><br><span class="line">After=multi-user.target</span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/usr/bin/x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /etc/x11vnc.pass -rfbport 5900 -shared</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">enable</span> x11vnc.service</span><br><span class="line">systemctl start x11vnc.service</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>解决复制粘贴的问题<ul>
+<li><code>sudo apt install autocutsel</code> 安装 autocutsel</li>
+<li><code>autocutsel -f</code> 后台运行</li>
+</ul>
+</li>
+</ol>
 <h3 id="问题及解决"><a href="#问题及解决" class="headerlink" title="问题及解决"></a>问题及解决</h3><p>下载 vnc-view 新建一个连接发现连不上…<br>尴尬。。。<br>检查 <code>5900</code> 端口，是开放的</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">joylau@joylau-work-192:~$ sudo netstat -tnlp | grep :5900</span><br><span class="line">tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      4022/vino-server</span><br><span class="line">tcp6       0      0 :::5900                 :::*                    LISTEN      4022/vino-server</span><br></pre></td></tr></table></figure>
 <p>但是使用的进程是 <code>vino-server</code> ，这是 Ubuntu 自带程序开启的服务<br>原来端口被占用了<br>关闭服务 ： 找到桌面共享，关闭 <code>允许其他人查看您的桌面</code><br>重启 <code>x11vnc</code> 服务<br>连接成功</p>
@@ -386,7 +393,7 @@
         <p><span>本文标题:</span><a href="/2019/04/10/Ubuntu-Remote-Desktop/">Ubuntu 优雅的远程桌面服务端配置</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
         <p><span>发布时间:</span>2019-04-10, 16:32:14</p>
-        <p><span>最后更新:</span>2019-04-10, 18:12:41</p>
+        <p><span>最后更新:</span>2020-02-25, 00:01:04</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/04/10/Ubuntu-Remote-Desktop/" title="Ubuntu 优雅的远程桌面服务端配置">http://blog.joylau.cn/2019/04/10/Ubuntu-Remote-Desktop/</a>
             <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2019/04/10/Ubuntu-Remote-Desktop/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
