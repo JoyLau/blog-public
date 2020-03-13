@@ -356,12 +356,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2019/09/14/Electron-Electron-Builder/</loc>
+    <loc>http://blog.joylau.cn/2019/09/16/Electron-AutoUpdater/</loc>
     <lastmod>2019-09-24T16:01:05.640Z</lastmod>
     <data>
         <display>
-        <title>Electron --- Electron-Builder 打包的各种配置</title>
-        <pubTime>2019-09-14T01:00:12.000Z</pubTime>
+        <title>Electron --- 关于自动更新的一系列折腾</title>
+        <pubTime>2019-09-16T01:00:12.000Z</pubTime>
         
         <tag>Electron</tag>
          
@@ -376,12 +376,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2019/09/16/Electron-AutoUpdater/</loc>
+    <loc>http://blog.joylau.cn/2019/09/14/Electron-Electron-Builder/</loc>
     <lastmod>2019-09-24T16:01:05.640Z</lastmod>
     <data>
         <display>
-        <title>Electron --- 关于自动更新的一系列折腾</title>
-        <pubTime>2019-09-16T01:00:12.000Z</pubTime>
+        <title>Electron --- Electron-Builder 打包的各种配置</title>
+        <pubTime>2019-09-14T01:00:12.000Z</pubTime>
         
         <tag>Electron</tag>
          
@@ -990,6 +990,36 @@
 
     
   <url>
+    <loc>http://blog.joylau.cn/2017/02/23/Linux-BuildingEnvironment/</loc>
+    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
+    <data>
+        <display>
+        <title>Linux菜鸟到熟悉 --- 生产环境的搭建</title>
+        <pubTime>2017-02-23T05:20:42.000Z</pubTime>
+        
+        <tag>Docker</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>JDK</tag>
+         
+        <tag>Tomcat</tag>
+         
+        <tag>MySQL</tag>
+         
+        <tag>Redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux篇" url="http://blog.joylau.cn/categories/Linux%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.joylau.cn/2017/02/23/Linux-MountDisk/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
@@ -1047,36 +1077,6 @@
            
              
               <breadCrumb title="MacOS篇" url="http://blog.joylau.cn/categories/MacOS%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.joylau.cn/2017/02/23/Linux-BuildingEnvironment/</loc>
-    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
-    <data>
-        <display>
-        <title>Linux菜鸟到熟悉 --- 生产环境的搭建</title>
-        <pubTime>2017-02-23T05:20:42.000Z</pubTime>
-        
-        <tag>Docker</tag>
-         
-        <tag>Linux</tag>
-         
-        <tag>JDK</tag>
-         
-        <tag>Tomcat</tag>
-         
-        <tag>MySQL</tag>
-         
-        <tag>Redis</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux篇" url="http://blog.joylau.cn/categories/Linux%E7%AF%87/"/>
           
         </display>
     </data>
@@ -1148,28 +1148,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/03/21/MySQL-Emoji/</loc>
-    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
-    <data>
-        <display>
-        <title>为网站添加emoji表情支持</title>
-        <pubTime>2017-03-21T00:35:04.000Z</pubTime>
-        
-        <tag>MySQL</tag>
-         
-        <tag>emoji</tag>
-         
-         
-           
-             
-              <breadCrumb title="MySQL篇" url="http://blog.joylau.cn/categories/MySQL%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/03/17/Maven-Release-Component/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
@@ -1185,6 +1163,28 @@
            
              
               <breadCrumb title="Maven篇" url="http://blog.joylau.cn/categories/Maven%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/03/21/MySQL-Emoji/</loc>
+    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
+    <data>
+        <display>
+        <title>为网站添加emoji表情支持</title>
+        <pubTime>2017-03-21T00:35:04.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>emoji</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL篇" url="http://blog.joylau.cn/categories/MySQL%E7%AF%87/"/>
           
         </display>
     </data>
@@ -1232,12 +1232,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2019/05/15/OpenCV-Baidu-Traffic-4/</loc>
+    <loc>http://blog.joylau.cn/2019/05/10/OpenCV-Baidu-Traffic-3/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
         <display>
-        <title>OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)</title>
-        <pubTime>2019-05-15T02:28:53.000Z</pubTime>
+        <title>OpenCV --- 基于 OpenCV 的百度路况研究记录 (三)</title>
+        <pubTime>2019-05-10T02:06:41.000Z</pubTime>
         
         <tag>OpenCV</tag>
          
@@ -1252,12 +1252,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2019/05/10/OpenCV-Baidu-Traffic-3/</loc>
+    <loc>http://blog.joylau.cn/2019/05/15/OpenCV-Baidu-Traffic-4/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
         <display>
-        <title>OpenCV --- 基于 OpenCV 的百度路况研究记录 (三)</title>
-        <pubTime>2019-05-10T02:06:41.000Z</pubTime>
+        <title>OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)</title>
+        <pubTime>2019-05-15T02:28:53.000Z</pubTime>
         
         <tag>OpenCV</tag>
          
@@ -1332,16 +1332,16 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/06/13/SpringBoot-ConfigurationProperties/</loc>
+    <loc>http://blog.joylau.cn/2017/12/12/SpringBoot-Assembly-Package/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
         <display>
-        <title>重剑无锋,大巧不工 SpringBoot --- 属性注入</title>
-        <pubTime>2017-06-13T03:34:58.000Z</pubTime>
+        <title>重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件</title>
+        <pubTime>2017-12-12T01:24:39.000Z</pubTime>
         
         <tag>SpringBoot</tag>
          
-        <tag>Spring</tag>
+        <tag>Maven</tag>
          
          
            
@@ -1354,16 +1354,16 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/12/12/SpringBoot-Assembly-Package/</loc>
+    <loc>http://blog.joylau.cn/2017/06/13/SpringBoot-ConfigurationProperties/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
         <display>
-        <title>重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件</title>
-        <pubTime>2017-12-12T01:24:39.000Z</pubTime>
+        <title>重剑无锋,大巧不工 SpringBoot --- 属性注入</title>
+        <pubTime>2017-06-13T03:34:58.000Z</pubTime>
         
         <tag>SpringBoot</tag>
          
-        <tag>Maven</tag>
+        <tag>Spring</tag>
          
          
            
@@ -1404,28 +1404,6 @@
         <display>
         <title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）</title>
         <pubTime>2017-08-29T03:13:24.000Z</pubTime>
-        
-        <tag>SpringBoot</tag>
-         
-        <tag>Node.js</tag>
-         
-         
-           
-             
-              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.joylau.cn/2017/07/29/SpringBoot-JoyMedia-Node/</loc>
-    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
-    <data>
-        <display>
-        <title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</title>
-        <pubTime>2017-07-29T02:09:04.000Z</pubTime>
         
         <tag>SpringBoot</tag>
          
@@ -1486,28 +1464,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/06/12/SpringBoot-Question-Tips/</loc>
-    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
-    <data>
-        <display>
-        <title>重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决</title>
-        <pubTime>2017-06-12T08:11:09.000Z</pubTime>
-        
-        <tag>SpringBoot</tag>
-         
-        <tag>Spring</tag>
-         
-         
-           
-             
-              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/07/18/SpringBoot-MongoDB/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
@@ -1532,6 +1488,28 @@
 
     
   <url>
+    <loc>http://blog.joylau.cn/2017/07/29/SpringBoot-JoyMedia-Node/</loc>
+    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
+    <data>
+        <display>
+        <title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</title>
+        <pubTime>2017-07-29T02:09:04.000Z</pubTime>
+        
+        <tag>SpringBoot</tag>
+         
+        <tag>Node.js</tag>
+         
+         
+           
+             
+              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.joylau.cn/2017/06/18/SpringBoot-RESTfulAPI/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
@@ -1544,6 +1522,28 @@
         <tag>Spring</tag>
          
         <tag>Swagger2</tag>
+         
+         
+           
+             
+              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/06/12/SpringBoot-Question-Tips/</loc>
+    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
+    <data>
+        <display>
+        <title>重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决</title>
+        <pubTime>2017-06-12T08:11:09.000Z</pubTime>
+        
+        <tag>SpringBoot</tag>
+         
+        <tag>Spring</tag>
          
          
            
@@ -2540,12 +2540,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2018/06/12/Elasticsearch-Ik/</loc>
+    <loc>http://blog.joylau.cn/2017/10/25/Elasticsearch-Config/</loc>
     <lastmod>2018-06-25T08:53:48.429Z</lastmod>
     <data>
         <display>
-        <title>Elasticsearch 分词插件的使用及 demo</title>
-        <pubTime>2018-06-12T02:53:54.000Z</pubTime>
+        <title>Elasticsearch 配置说明 && 遇坑记录</title>
+        <pubTime>2017-10-25T06:49:54.000Z</pubTime>
         
         <tag>Elasticsearch</tag>
          
@@ -2560,12 +2560,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/10/25/Elasticsearch-Config/</loc>
+    <loc>http://blog.joylau.cn/2018/06/12/Elasticsearch-Ik/</loc>
     <lastmod>2018-06-25T08:53:48.429Z</lastmod>
     <data>
         <display>
-        <title>Elasticsearch 配置说明 && 遇坑记录</title>
-        <pubTime>2017-10-25T06:49:54.000Z</pubTime>
+        <title>Elasticsearch 分词插件的使用及 demo</title>
+        <pubTime>2018-06-12T02:53:54.000Z</pubTime>
         
         <tag>Elasticsearch</tag>
          
@@ -2686,28 +2686,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2018/05/08/Logstash-Nginx/</loc>
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    <data>
-        <display>
-        <title>Logstash 实时收集 Nginx 日志</title>
-        <pubTime>2018-05-08T00:38:25.000Z</pubTime>
-        
-        <tag>Nginx</tag>
-         
-        <tag>Logstash</tag>
-         
-         
-           
-             
-              <breadCrumb title="大数据篇" url="http://blog.joylau.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2018/05/18/Linux-Systemctl/</loc>
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     <data>
@@ -2723,6 +2701,28 @@
            
              
               <breadCrumb title="Linux篇" url="http://blog.joylau.cn/categories/Linux%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2018/05/08/Logstash-Nginx/</loc>
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    <data>
+        <display>
+        <title>Logstash 实时收集 Nginx 日志</title>
+        <pubTime>2018-05-08T00:38:25.000Z</pubTime>
+        
+        <tag>Nginx</tag>
+         
+        <tag>Logstash</tag>
+         
+         
+           
+             
+              <breadCrumb title="大数据篇" url="http://blog.joylau.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/"/>
           
         </display>
     </data>
@@ -2752,26 +2752,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/11/07/Node-Install-Error/</loc>
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    <data>
-        <display>
-        <title>npm install 居然出错了</title>
-        <pubTime>2017-11-07T02:55:01.000Z</pubTime>
-        
-        <tag>Nodejs</tag>
-         
-         
-           
-             
-              <breadCrumb title="Node篇" url="http://blog.joylau.cn/categories/Node%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2018/02/27/MyBatis-Example/</loc>
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     <data>
@@ -2785,6 +2765,26 @@
            
              
               <breadCrumb title="MyBatis篇" url="http://blog.joylau.cn/categories/MyBatis%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/11/07/Node-Install-Error/</loc>
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    <data>
+        <display>
+        <title>npm install 居然出错了</title>
+        <pubTime>2017-11-07T02:55:01.000Z</pubTime>
+        
+        <tag>Nodejs</tag>
+         
+         
+           
+             
+              <breadCrumb title="Node篇" url="http://blog.joylau.cn/categories/Node%E7%AF%87/"/>
           
         </display>
     </data>
@@ -2852,26 +2852,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/06/02/SolveBrainAndPuzzles/</loc>
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    <data>
-        <display>
-        <title>解决一道智力题</title>
-        <pubTime>2017-06-02T07:34:33.000Z</pubTime>
-        
-        <tag>算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他篇" url="http://blog.joylau.cn/categories/%E5%85%B6%E4%BB%96%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/02/20/SSL/</loc>
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     <data>
@@ -2920,6 +2900,26 @@
 
     
   <url>
+    <loc>http://blog.joylau.cn/2017/06/02/SolveBrainAndPuzzles/</loc>
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    <data>
+        <display>
+        <title>解决一道智力题</title>
+        <pubTime>2017-06-02T07:34:33.000Z</pubTime>
+        
+        <tag>算法</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他篇" url="http://blog.joylau.cn/categories/%E5%85%B6%E4%BB%96%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.joylau.cn/2017/11/23/Spark-Integrate-Build/</loc>
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     <data>
@@ -2933,6 +2933,28 @@
            
              
               <breadCrumb title="大数据篇" url="http://blog.joylau.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/03/13/SpringBoot-Basic/</loc>
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    <data>
+        <display>
+        <title>重剑无锋,大巧不工 SpringBoot --- 基础篇</title>
+        <pubTime>2017-03-13T08:07:01.000Z</pubTime>
+        
+        <tag>SpringBoot</tag>
+         
+        <tag>Spring</tag>
+         
+         
+           
+             
+              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
           
         </display>
     </data>
@@ -2978,28 +3000,6 @@
         <tag>Mapper</tag>
          
         <tag>PageHelper</tag>
-         
-         
-           
-             
-              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.joylau.cn/2017/03/13/SpringBoot-Basic/</loc>
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    <data>
-        <display>
-        <title>重剑无锋,大巧不工 SpringBoot --- 基础篇</title>
-        <pubTime>2017-03-13T08:07:01.000Z</pubTime>
-        
-        <tag>SpringBoot</tag>
-         
-        <tag>Spring</tag>
          
          
            
@@ -3148,6 +3148,28 @@
 
     
   <url>
+    <loc>http://blog.joylau.cn/2017/10/30/SpringBoot-ReadJSONFile/</loc>
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    <data>
+        <display>
+        <title>SpringBoot 读取 JSON 文件并转化为 JSON 对象</title>
+        <pubTime>2017-10-30T03:04:13.000Z</pubTime>
+        
+        <tag>SpringBoot</tag>
+         
+        <tag>JSON</tag>
+         
+         
+           
+             
+              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.joylau.cn/2017/06/12/SpringBoot-RequestBody/</loc>
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     <data>
@@ -3162,28 +3184,6 @@
         <tag>Spring</tag>
          
         <tag>SpringMVC</tag>
-         
-         
-           
-             
-              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.joylau.cn/2017/10/30/SpringBoot-ReadJSONFile/</loc>
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    <data>
-        <display>
-        <title>SpringBoot 读取 JSON 文件并转化为 JSON 对象</title>
-        <pubTime>2017-10-30T03:04:13.000Z</pubTime>
-        
-        <tag>SpringBoot</tag>
-         
-        <tag>JSON</tag>
          
          
            
@@ -3352,28 +3352,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/07/03/Git-Multi-Repo-Push/</loc>
-    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
-    <data>
-        <display>
-        <title>记录一次Git多仓库提交</title>
-        <pubTime>2017-07-03T01:10:02.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-        <tag>GitHub</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git篇" url="http://blog.joylau.cn/categories/Git%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/11/15/FastJson-JSONPath/</loc>
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     <data>
@@ -3409,6 +3387,28 @@
            
              
               <breadCrumb title="大数据篇" url="http://blog.joylau.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/07/03/Git-Multi-Repo-Push/</loc>
+    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
+    <data>
+        <display>
+        <title>记录一次Git多仓库提交</title>
+        <pubTime>2017-07-03T01:10:02.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+        <tag>GitHub</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git篇" url="http://blog.joylau.cn/categories/Git%E7%AF%87/"/>
           
         </display>
     </data>
@@ -3502,26 +3502,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/</loc>
-    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
-    <data>
-        <display>
-        <title>JS数组去重最简单方法</title>
-        <pubTime>2017-03-14T06:22:51.000Z</pubTime>
-        
-        <tag>JavaScript</tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript篇" url="http://blog.joylau.cn/categories/JavaScript%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/09/26/Java-Scala/</loc>
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     <data>
@@ -3535,6 +3515,26 @@
            
              
               <breadCrumb title="Scala篇" url="http://blog.joylau.cn/categories/Scala%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/</loc>
+    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
+    <data>
+        <display>
+        <title>JS数组去重最简单方法</title>
+        <pubTime>2017-03-14T06:22:51.000Z</pubTime>
+        
+        <tag>JavaScript</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript篇" url="http://blog.joylau.cn/categories/JavaScript%E7%AF%87/"/>
           
         </display>
     </data>
