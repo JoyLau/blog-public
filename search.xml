@@ -4,6 +4,103 @@
   
     
     <entry>
+      <title><![CDATA[MacOS HomeBrew 更新遇到的问题解决]]></title>
+      <url>http://blog.joylau.cn/2020/03/18/MacOS-Homebrew-Question/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>brew update 遇到错误, 错误信息如下:</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Updating Homebrew...</span><br><span class="line">Warning: You are using macOS 10.15.</span><br><span class="line">We do not provide support for this pre-release version.</span><br><span class="line">You will encounter build failures with some formulae.</span><br><span class="line">Please create pull requests instead of asking for help on Homebrew's GitHub,</span><br><span class="line">Discourse, Twitter or IRC. You are responsible for resolving any issues you</span><br><span class="line">experience, as you are running this pre-release version.</span><br></pre></td></tr></table></figure>
+<h2 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h2><ol>
+<li>brew doctor</li>
+</ol>
+<p>运行后发现源为科大的源, 于是切换回原来的官方的 brew 源</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd "$(brew --repo)"</span><br><span class="line">git remote set-url origin https://github.com/Homebrew/brew.git</span><br></pre></td></tr></table></figure>
+<p>有其他问题,建议按照提示一一解决掉  </p>
+<ol start="2">
+<li>brew update</li>
+</ol>
+<p>更新成功</p>
+<ol start="3">
+<li>brew config</li>
+</ol>
+<p>查看配置</p>]]></content>
+      
+        <categories>
+            
+            <category> MacOS篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> MacOS </tag>
+            
+            <tag> brew </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法]]></title>
+      <url>http://blog.joylau.cn/2020/03/18/MacOS-Quick-Look/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><p>MacOS 升级到 10.15 版本时,预览文件出现下面的提示</p>
+<center><img src="//image.joylau.cn/blog/qlPlugin-not-work.png" alt="qlPlugin-not-work"></center>
+
+<h2 id="解决方式-1"><a href="#解决方式-1" class="headerlink" title="解决方式 1"></a>解决方式 1</h2><p>删除 ~/Library/QuickLook 目录下的隔离属性 (quarantine attribute) </p>
+<p>运行下面命令查看属性:</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xattr -r ~/Library/QuickLook</span><br></pre></td></tr></table></figure>
+<p>运行下列命令移除这些属性:</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xattr -d -r com.apple.quarantine ~/Library/QuickLook</span><br></pre></td></tr></table></figure>
+<h2 id="解决方式-2"><a href="#解决方式-2" class="headerlink" title="解决方式 2"></a>解决方式 2</h2><ol>
+<li>空格预览文件出现下列提示,点击 取消</li>
+</ol>
+<center><img src="//image.joylau.cn/blog/qlPlugin-not-work.png" alt="qlPlugin-not-work"></center>
+
+<ol start="2">
+<li>转到系统设置里</li>
+</ol>
+<center><img src="//image.joylau.cn/blog/qlPlugin-solution-1.png" alt="qlPlugin-solution-1"></center>
+
+<p>点击 “Allow Anyway”</p>
+<ol start="3">
+<li>使用下列命令打开刚才需要预览的文件</li>
+</ol>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qlmanage -p /path/to/any/file.js</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>此时弹出提示,点击 “open”</li>
+</ol>
+<center><img src="//image.joylau.cn/blog/qlPlugin-solution-2.png" alt="qlPlugin-solution-2"></center>
+
+<ol start="5">
+<li>然后就可以预览该后缀名的所有文件了</li>
+</ol>
+<center><img src="//image.joylau.cn/blog/qlPlugin-solution-3.png" alt="qlPlugin-solution-3"></center>
+
+<ol start="6">
+<li>如果需要预览其他类型的文件,则将上述步骤重新操作一遍, 换个后缀名即可</li>
+</ol>
+<h3 id="最后推荐"><a href="#最后推荐" class="headerlink" title="最后推荐"></a>最后推荐</h3><p>推荐下自己使用的预览插件</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask reinstall qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo</span><br></pre></td></tr></table></figure>
+<p>需要注意的是 <code>qlcolorcode</code> 需要 <code>highlight</code> 库来显示高亮效果, 需要安装:  <code>brew install highlight</code></p>]]></content>
+      
+        <categories>
+            
+            <category> MacOS篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> MacOS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用]]></title>
       <url>http://blog.joylau.cn/2020/03/12/Docker-Java-OOM/</url>
       <content type="html"><![CDATA[<a id="more"></a>

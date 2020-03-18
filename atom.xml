@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2020-03-12T03:49:18.158Z</updated>
+  <updated>2020-03-18T16:01:06.061Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MacOS HomeBrew 更新遇到的问题解决</title>
+    <link href="http://blog.joylau.cn/2020/03/18/MacOS-Homebrew-Question/"/>
+    <id>http://blog.joylau.cn/2020/03/18/MacOS-Homebrew-Question/</id>
+    <published>2020-03-18T04:08:41.000Z</published>
+    <updated>2020-03-18T16:01:06.061Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>brew update 遇到错误, 错误信息如下:</p><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Updating Homebrew...</span><br><span class="line">Warning: You are using macOS 10.15.</span><br><span class="line">We do not provide support for this pre-release version.</span><br><span class="line">You will encounter build failures with some formulae.</span><br><span class="line">Please create pull requests instead of asking for help on Homebrew's GitHub,</span><br><span class="line">Discourse, Twitter or IRC. You are responsible for resolving any issues you</span><br><span class="line">experience, as you are running this pre-release version.</span><br></pre></td></tr></table></figure><h2 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h2><ol><li>brew doctor</li></ol><p>运行后发现源为科大的源, 于是切换回原来的官方的 brew 源</p><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd "$(brew --repo)"</span><br><span class="line">git remote set-url origin https://github.com/Homebrew/brew.git</span><br></pre></td></tr></table></figure><p>有其他问题,建议按照提示一一解决掉  </p><ol start="2"><li>brew update</li></ol><p>更新成功</p><ol start="3"><li>brew config</li></ol><p>查看配置</p>]]></content>
+    
+    <summary type="html">
+    
+      MacOS HomeBrew 更新遇到的问题解决
+    
+    </summary>
+    
+      <category term="MacOS篇" scheme="http://blog.joylau.cn/categories/MacOS%E7%AF%87/"/>
+    
+    
+      <category term="MacOS" scheme="http://blog.joylau.cn/tags/MacOS/"/>
+    
+      <category term="brew" scheme="http://blog.joylau.cn/tags/brew/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法</title>
+    <link href="http://blog.joylau.cn/2020/03/18/MacOS-Quick-Look/"/>
+    <id>http://blog.joylau.cn/2020/03/18/MacOS-Quick-Look/</id>
+    <published>2020-03-18T01:55:40.000Z</published>
+    <updated>2020-03-18T16:01:06.061Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><p>MacOS 升级到 10.15 版本时,预览文件出现下面的提示</p><center><img src="//image.joylau.cn/blog/qlPlugin-not-work.png" alt="qlPlugin-not-work"></center><h2 id="解决方式-1"><a href="#解决方式-1" class="headerlink" title="解决方式 1"></a>解决方式 1</h2><p>删除 ~/Library/QuickLook 目录下的隔离属性 (quarantine attribute) </p><p>运行下面命令查看属性:</p><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xattr -r ~/Library/QuickLook</span><br></pre></td></tr></table></figure><p>运行下列命令移除这些属性:</p><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xattr -d -r com.apple.quarantine ~/Library/QuickLook</span><br></pre></td></tr></table></figure><h2 id="解决方式-2"><a href="#解决方式-2" class="headerlink" title="解决方式 2"></a>解决方式 2</h2><ol><li>空格预览文件出现下列提示,点击 取消</li></ol><center><img src="//image.joylau.cn/blog/qlPlugin-not-work.png" alt="qlPlugin-not-work"></center><ol start="2"><li>转到系统设置里</li></ol><center><img src="//image.joylau.cn/blog/qlPlugin-solution-1.png" alt="qlPlugin-solution-1"></center><p>点击 “Allow Anyway”</p><ol start="3"><li>使用下列命令打开刚才需要预览的文件</li></ol><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qlmanage -p /path/to/any/file.js</span><br></pre></td></tr></table></figure><ol start="4"><li>此时弹出提示,点击 “open”</li></ol><center><img src="//image.joylau.cn/blog/qlPlugin-solution-2.png" alt="qlPlugin-solution-2"></center><ol start="5"><li>然后就可以预览该后缀名的所有文件了</li></ol><center><img src="//image.joylau.cn/blog/qlPlugin-solution-3.png" alt="qlPlugin-solution-3"></center><ol start="6"><li>如果需要预览其他类型的文件,则将上述步骤重新操作一遍, 换个后缀名即可</li></ol><h3 id="最后推荐"><a href="#最后推荐" class="headerlink" title="最后推荐"></a>最后推荐</h3><p>推荐下自己使用的预览插件</p><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask reinstall qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo</span><br></pre></td></tr></table></figure><p>需要注意的是 <code>qlcolorcode</code> 需要 <code>highlight</code> 库来显示高亮效果, 需要安装:  <code>brew install highlight</code></p>]]></content>
+    
+    <summary type="html">
+    
+      关于 MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法
+    
+    </summary>
+    
+      <category term="MacOS篇" scheme="http://blog.joylau.cn/categories/MacOS%E7%AF%87/"/>
+    
+    
+      <category term="MacOS" scheme="http://blog.joylau.cn/tags/MacOS/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用</title>
@@ -415,54 +461,6 @@
       <category term="react" scheme="http://blog.joylau.cn/tags/react/"/>
     
       <category term="webpack" scheme="http://blog.joylau.cn/tags/webpack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Electron --- Create-React-App + Antd + Electron 的搭建</title>
-    <link href="http://blog.joylau.cn/2019/09/10/Electron-Create-React-App/"/>
-    <id>http://blog.joylau.cn/2019/09/10/Electron-Create-React-App/</id>
-    <published>2019-09-10T08:41:30.000Z</published>
-    <updated>2019-09-12T16:01:05.650Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="创建-create-react-app-antd-项目"><a href="#创建-create-react-app-antd-项目" class="headerlink" title="创建 create-react-app-antd 项目"></a>创建 create-react-app-antd 项目</h3><ol><li>git clone <a href="https://github.com/ant-design/create-react-app-antd" target="_blank" rel="noopener">https://github.com/ant-design/create-react-app-antd</a></li><li>npm install</li><li>将 webpack 所有内建的配置暴露出来, <code>npm run eject</code>, 如果发现错误,看下 package.json 里 eject 的脚本是不是为 <code>react-scripts eject</code></li><li>修改 config-overrides.js</li></ol><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">override</span>(<span class="params">config, env</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><ol start="5"><li><p>修改 webpack.config.js 里的 <code>module.rules.oneOf</code> 支持 css 和 less, 添加</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.(css|less)$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">    <span class="built_in">require</span>.resolve(<span class="string">'style-loader'</span>),</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="built_in">require</span>.resolve(<span class="string">'css-loader'</span>),</span><br><span class="line">      options: &#123;</span><br><span class="line">        importLoaders: <span class="number">1</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="built_in">require</span>.resolve(<span class="string">'postcss-loader'</span>),</span><br><span class="line">      options: &#123;</span><br><span class="line">        <span class="comment">// Necessary for external CSS imports to work</span></span><br><span class="line">        <span class="comment">// https://github.com/facebookincubator/create-react-app/issues/2677</span></span><br><span class="line">        ident: <span class="string">'postcss'</span>,</span><br><span class="line">        plugins: <span class="function"><span class="params">()</span> =&gt;</span> [</span><br><span class="line">          <span class="built_in">require</span>(<span class="string">'postcss-flexbugs-fixes'</span>),</span><br><span class="line">          autoprefixer(&#123;</span><br><span class="line">            browsers: [</span><br><span class="line">              <span class="string">'&gt;1%'</span>,</span><br><span class="line">              <span class="string">'last 4 versions'</span>,</span><br><span class="line">              <span class="string">'Firefox ESR'</span>,</span><br><span class="line">              <span class="string">'not ie &lt; 9'</span>, <span class="comment">// React doesn't support IE8 anyway</span></span><br><span class="line">            ],</span><br><span class="line">            flexbox: <span class="string">'no-2009'</span>,</span><br><span class="line">          &#125;),</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="built_in">require</span>.resolve(<span class="string">'less-loader'</span>),</span><br><span class="line">      options: &#123; <span class="attr">javascriptEnabled</span>: <span class="literal">true</span> &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>修改 start.js 注释掉下面代码关闭项目启动自动打开浏览器</p></li></ol><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// openBrowser(urls.localUrlForBrowser);</span></span><br></pre></td></tr></table></figure><ol start="7"><li><p>package.json 添加 <code>&quot;homepage&quot;: &quot;.&quot;</code> ,防止打包后的静态文件 index.html 引入 css 和 js 的路径错误</p></li><li><p>App.less 修改为 <code>@import &#39;~antd/dist/antd.less&#39;;</code></p></li></ol><h3 id="添加-electron"><a href="#添加-electron" class="headerlink" title="添加 electron"></a>添加 electron</h3><ol><li>package.json 添加 <code>&quot;main&quot;: &quot;main.js&quot;,</code> 和 electron 依赖</li></ol><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"main"</span>: <span class="string">"main.js"</span>,</span><br><span class="line">    <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">        <span class="attr">"electron"</span>: <span class="string">"^6.0.7"</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><ol start="2"><li>创建 main.js,添加以下代码</li></ol><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;app, BrowserWindow, Menu&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> win;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> windowConfig = &#123;</span><br><span class="line">    width: <span class="number">800</span>,</span><br><span class="line">    height: <span class="number">600</span>,</span><br><span class="line">    title: <span class="string">"Joy Security"</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> menuTemplate = [&#123;</span><br><span class="line">    label: <span class="string">'Joy Security'</span>,</span><br><span class="line">    submenu: [&#123;</span><br><span class="line">        label: <span class="string">'退出'</span>,</span><br><span class="line">        role: <span class="string">'quit'</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        label: <span class="string">`关于 <span class="subst">$&#123;windowConfig.title&#125;</span>`</span>,</span><br><span class="line">        role: <span class="string">'about'</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.on(<span class="string">'ready'</span>, createWindow);</span><br><span class="line"></span><br><span class="line">app.on(<span class="string">'window-all-closed'</span>, () =&gt; &#123;</span><br><span class="line">    app.quit();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.on(<span class="string">'activate'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (win == <span class="literal">null</span>) &#123;</span><br><span class="line">        createWindow();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createWindow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 隐藏菜单栏,兼容 MAC</span></span><br><span class="line">    Menu.setApplicationMenu(Menu.buildFromTemplate([]));</span><br><span class="line"></span><br><span class="line">    win = <span class="keyword">new</span> BrowserWindow(windowConfig);</span><br><span class="line"></span><br><span class="line">    win.loadURL(<span class="string">'http://localhost:3000'</span>);</span><br><span class="line"></span><br><span class="line">    win.on(<span class="string">'close'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="comment">//回收BrowserWindow对象</span></span><br><span class="line">        win = <span class="literal">null</span>;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    win.on(<span class="string">'resize'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="comment">// win.reload();</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="3"><li>package.json 更改脚本</li></ol><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"react-start"</span>: <span class="string">"node scripts/start.js"</span>,</span><br><span class="line">    <span class="attr">"eletron-start"</span>: <span class="string">"electron ."</span>,</span><br><span class="line">    <span class="attr">"react-build"</span>: <span class="string">"node scripts/build.js"</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="4"><li>启动时先 react-start 再 eletron-start 即可看到效果</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      Create-React-App + Antd + Electron 项目的搭建
-    
-    </summary>
-    
-      <category term="Electron篇" scheme="http://blog.joylau.cn/categories/Electron%E7%AF%87/"/>
-    
-    
-      <category term="Electron" scheme="http://blog.joylau.cn/tags/Electron/"/>
-    
-      <category term="React" scheme="http://blog.joylau.cn/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>群晖系列 --- 添加私有仓库无法下载镜像问题的解决</title>
-    <link href="http://blog.joylau.cn/2019/09/09/Synology-Docker-Insecure/"/>
-    <id>http://blog.joylau.cn/2019/09/09/Synology-Docker-Insecure/</id>
-    <published>2019-09-09T04:45:26.000Z</published>
-    <updated>2019-09-12T16:01:05.650Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在群晖的 Docker 组件里添加了个人的私有仓库,发现却无法下载镜像….</p><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>在 Docker 组件里添加新的仓库,并设置为使用仓库,发现在仓库里下载镜像总是失败,状态栏提示查看日志,可是在日志里总看不到东西</p><p>想了想,可能是新添加的 docker 私服是 http 的服务,而不是 https</p><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ol><li>于是我使用 GateOne 组件进入 shell </li><li>使用命令 docker pull xxx:xxx, 发现报错 <code>Get https://172.18.18.90:5000/v2/: http: server gave HTTP response to HTTPS client</code> , 果然是这个问题</li><li>于是找到 Docker 组件的配置文件目录,在 <code>/var/packages/Docker/etc</code> 目录下,添加配置文件 daemon.json </li></ol><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">"insecure-registries"</span>: [<span class="string">"domain:5000"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="4"><li>重启 Docker 组件, 发现不起作用,在命令行下 pull 依然报错,可想配置文件错了</li><li>转眼看到一个可疑的配置文件 <code>dockerd.json</code>, 里面已经有一些配置了,于是就把配置写到这个里面</li><li>再重启,问题解决.可见群晖对于 docker 是做了一些改变的.</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      在群晖的 Docker 组件里添加了个人的私有仓库,发现却无法下载镜像....
-    
-    </summary>
-    
-      <category term="群晖篇" scheme="http://blog.joylau.cn/categories/%E7%BE%A4%E6%99%96%E7%AF%87/"/>
-    
-    
-      <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
-    
-      <category term="群晖" scheme="http://blog.joylau.cn/tags/%E7%BE%A4%E6%99%96/"/>
     
   </entry>
   
