@@ -137,6 +137,57 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Git 知识点小记]]></title>
+      <url>http://blog.joylau.cn/2020/02/18/Git-Knowledges/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="文件回滚"><a href="#文件回滚" class="headerlink" title="文件回滚"></a>文件回滚</h2><ol>
+<li>工作区尚未暂存的文件: git checkout – 文件名</li>
+<li>已添加到暂存区: git reset HEAD 文件名 &amp;&amp; git checkout – 文件名</li>
+<li>已提交到本地库, 想要撤销提交,并恢复到之前的文件内容: git reset –hard HEAD^</li>
+</ol>
+<p>其中:<br>git reset 有三种参数:</p>
+<ul>
+<li><p>Soft：这个模式仅仅撤销 commit 记录而已，不影响本地的任何文件，即本地修改的文件内容还会存在,也不影响（index）缓存区的任何文件。</p>
+</li>
+<li><p>Hard：不仅撤销 commit 记录，还将本地的文件指向 commit 前的版本，同时 index 也会指向 commit 前的版本。</p>
+</li>
+<li><p>Mixed：回滚 index ，其余的保持不变。</p>
+</li>
+</ul>
+<p>另外 HEAD 后面加上 <code>~1</code> 代表回滚一次 commit 记录, <code>HEAD^</code> 代表全部 commit 记录</p>
+<h2 id="git-fetch-和-git-pull"><a href="#git-fetch-和-git-pull" class="headerlink" title="git fetch 和 git pull"></a>git fetch 和 git pull</h2><ol>
+<li>git fetch : 将本地仓库指向的 remote 提交记录更新为和远端一致,即最新,其他的不做任何改变</li>
+<li>git pull : 将本地仓库和将本地仓库指向的 remote 都更新为最新, 相当于 fetch + merge</li>
+</ol>
+<p>参看: <a href="https://blog.csdn.net/qq_37420939/article/details/89736567" target="_blank" rel="noopener">https://blog.csdn.net/qq_37420939/article/details/89736567</a></p>
+<h2 id="git-merge-和-git-rebase"><a href="#git-merge-和-git-rebase" class="headerlink" title="git merge 和 git rebase"></a>git merge 和 git rebase</h2><p>merge 和 rebase 都是 git pull 时的策略</p>
+<p>git rebase 有以下几种使用场景:</p>
+<ol>
+<li>合并本地的多次提交记录</li>
+</ol>
+<p>合并最近的 4 次提交纪录</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git rebase -i HEAD~4</span><br></pre></td></tr></table></figure>
+<p>在 idea 中可以在 Version Control 中选择最早时间的提交记录, 然后选择 <code>Interactively Rebase from Here</code><br>然后除了第一个为pick外，其他选择squash，点击start rebasing，接着输入提交信息就可以把多次commit合并为一次了</p>
+<ol start="2">
+<li>分支合并,可以把本地未push的分叉提交历史整理成直线</li>
+</ol>]]></content>
+      
+        <categories>
+            
+            <category> Git篇 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Git </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[React WebSocket 的一些配置]]></title>
       <url>http://blog.joylau.cn/2020/01/15/React-WebSocket/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -11687,7 +11738,7 @@
       <title><![CDATA[Linux 定时删除 10 天前的日志文件]]></title>
       <url>http://blog.joylau.cn/2018/12/13/Linux-Cron/</url>
       <content type="html"><![CDATA[<a id="more"></a>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们的程序在 Linux 上运行会产生大量日志文件,这些日志文件如果不定时清理的话会很快将磁盘沾满</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们的程序在 Linux 上运行会产生大量日志文件,这些日志文件如果不定时清理的话会很快将磁盘占满</p>
 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For details see man 4 crontabs</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Example of job definition:</span></span><br><span class="line"><span class="comment"># .---------------- minute (0 - 59)</span></span><br><span class="line"><span class="comment"># |  .------------- hour (0 - 23)</span></span><br><span class="line"><span class="comment"># |  |  .---------- day of month (1 - 31)</span></span><br><span class="line"><span class="comment"># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span></span><br><span class="line"><span class="comment"># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span></span><br><span class="line"><span class="comment"># |  |  |  |  |</span></span><br><span class="line"><span class="comment"># *  *  *  *  * user-name  command to be executed</span></span><br></pre></td></tr></table></figure>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="配置一个定时清理的任务"><a href="#配置一个定时清理的任务" class="headerlink" title="配置一个定时清理的任务"></a>配置一个定时清理的任务</h3><ol>
 <li><code>crontab -e</code> , 添加一个定时任务, 或者 <code>vim /etc/crontab</code> 添加一条记录</li>
@@ -11720,7 +11771,19 @@
 <li>如果时上有值，分钟上必须有值</li>
 <li>日和周不要同时使用，会冲突</li>
 <li><code>&gt;&gt;</code> 与 <code>&gt;/dev/null 2&gt;&amp;1</code> 不要同时存在</li>
-</ol>]]></content>
+</ol>
+<h3 id="日志位置"><a href="#日志位置" class="headerlink" title="日志位置"></a>日志位置</h3><p>日志位置位于 <strong>/var/log/cron.log</strong>,如果没有看到日志,可能由于没有开启 cron 日志记录,开启方法: </p>
+<p><code>vim /etc/rsyslog.d/50-default.conf</code></p>
+<p>/var/log/cron.log相关行，将前面注释符#去掉</p>
+<p>重启 rsyslog</p>
+<p><code>service rsyslog  restart</code></p>
+<p>或者查看系统日志, 使用命令:</p>
+<p><code>grep cron /var/log/syslog</code></p>
+<p>能看到和 cron 相关的日志信息</p>
+<h3 id="任务脚本中变量不生效"><a href="#任务脚本中变量不生效" class="headerlink" title="任务脚本中变量不生效"></a>任务脚本中变量不生效</h3><p>在脚本里除了一些自动设置的全局变量,可能有些变量没有生效, 当手动执行脚本OK，但是crontab死活不执行时,在脚本里使用下面的方式</p>
+<p>1）脚本中涉及文件路径时写全局路径；<br>2）脚本执行要用到java或其他环境变量时，通过source命令引入环境变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+<p>3) <em>/1 </em> <em> </em> * . /etc/profile;/bin/sh /path/run.sh</p>]]></content>
       
         <categories>
             
