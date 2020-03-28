@@ -46,14 +46,16 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2020/03/18/MacOS-Quick-Look/</loc>
+    <loc>http://blog.joylau.cn/2020/03/18/MacOS-Homebrew-Question/</loc>
     <lastmod>2020-03-18T16:01:06.061Z</lastmod>
     <data>
         <display>
-        <title>MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法</title>
-        <pubTime>2020-03-18T01:55:40.000Z</pubTime>
+        <title>MacOS HomeBrew 更新遇到的问题解决</title>
+        <pubTime>2020-03-18T04:08:41.000Z</pubTime>
         
         <tag>MacOS</tag>
+         
+        <tag>brew</tag>
          
          
            
@@ -66,16 +68,14 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2020/03/18/MacOS-Homebrew-Question/</loc>
+    <loc>http://blog.joylau.cn/2020/03/18/MacOS-Quick-Look/</loc>
     <lastmod>2020-03-18T16:01:06.061Z</lastmod>
     <data>
         <display>
-        <title>MacOS HomeBrew 更新遇到的问题解决</title>
-        <pubTime>2020-03-18T04:08:41.000Z</pubTime>
+        <title>MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法</title>
+        <pubTime>2020-03-18T01:55:40.000Z</pubTime>
         
         <tag>MacOS</tag>
-         
-        <tag>brew</tag>
          
          
            
@@ -418,12 +418,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2019/09/14/Electron-Electron-Builder/</loc>
+    <loc>http://blog.joylau.cn/2019/09/16/Electron-AutoUpdater/</loc>
     <lastmod>2019-09-24T16:01:05.640Z</lastmod>
     <data>
         <display>
-        <title>Electron --- Electron-Builder 打包的各种配置</title>
-        <pubTime>2019-09-14T01:00:12.000Z</pubTime>
+        <title>Electron --- 关于自动更新的一系列折腾</title>
+        <pubTime>2019-09-16T01:00:12.000Z</pubTime>
         
         <tag>Electron</tag>
          
@@ -438,12 +438,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2019/09/16/Electron-AutoUpdater/</loc>
+    <loc>http://blog.joylau.cn/2019/09/14/Electron-Electron-Builder/</loc>
     <lastmod>2019-09-24T16:01:05.640Z</lastmod>
     <data>
         <display>
-        <title>Electron --- 关于自动更新的一系列折腾</title>
-        <pubTime>2019-09-16T01:00:12.000Z</pubTime>
+        <title>Electron --- Electron-Builder 打包的各种配置</title>
+        <pubTime>2019-09-14T01:00:12.000Z</pubTime>
         
         <tag>Electron</tag>
          
@@ -926,26 +926,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2019/05/22/Daily-Reform-Cable/</loc>
-    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
-    <data>
-        <display>
-        <title>日常折腾 --- 家里网线改造记录</title>
-        <pubTime>2019-05-22T03:43:26.000Z</pubTime>
-        
-        <tag>日常折腾</tag>
-         
-         
-           
-             
-              <breadCrumb title="日常折腾篇" url="http://blog.joylau.cn/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/06/16/Console-Better/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
@@ -959,6 +939,26 @@
            
              
               <breadCrumb title="其他篇" url="http://blog.joylau.cn/categories/%E5%85%B6%E4%BB%96%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2019/05/22/Daily-Reform-Cable/</loc>
+    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
+    <data>
+        <display>
+        <title>日常折腾 --- 家里网线改造记录</title>
+        <pubTime>2019-05-22T03:43:26.000Z</pubTime>
+        
+        <tag>日常折腾</tag>
+         
+         
+           
+             
+              <breadCrumb title="日常折腾篇" url="http://blog.joylau.cn/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE%E7%AF%87/"/>
           
         </display>
     </data>
@@ -1052,48 +1052,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/02/23/Linux-MountDisk/</loc>
-    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
-    <data>
-        <display>
-        <title>Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</title>
-        <pubTime>2017-02-23T04:01:25.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-        <tag>磁盘挂载</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux篇" url="http://blog.joylau.cn/categories/Linux%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.joylau.cn/2018/05/15/Lombok/</loc>
-    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
-    <data>
-        <display>
-        <title>Lombok 注解小记</title>
-        <pubTime>2018-05-15T02:24:24.000Z</pubTime>
-        
-        <tag>Lombok</tag>
-         
-         
-           
-             
-              <breadCrumb title="工具类篇" url="http://blog.joylau.cn/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/02/23/Linux-BuildingEnvironment/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
@@ -1112,6 +1070,28 @@
         <tag>MySQL</tag>
          
         <tag>Redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux篇" url="http://blog.joylau.cn/categories/Linux%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/02/23/Linux-MountDisk/</loc>
+    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
+    <data>
+        <display>
+        <title>Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</title>
+        <pubTime>2017-02-23T04:01:25.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+        <tag>磁盘挂载</tag>
          
          
            
@@ -1168,6 +1148,48 @@
 
     
   <url>
+    <loc>http://blog.joylau.cn/2018/05/15/Lombok/</loc>
+    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
+    <data>
+        <display>
+        <title>Lombok 注解小记</title>
+        <pubTime>2018-05-15T02:24:24.000Z</pubTime>
+        
+        <tag>Lombok</tag>
+         
+         
+           
+             
+              <breadCrumb title="工具类篇" url="http://blog.joylau.cn/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/03/17/Maven-Release-Component/</loc>
+    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
+    <data>
+        <display>
+        <title>Maven --- 发布自己的构件到中央仓库</title>
+        <pubTime>2017-03-17T03:43:01.000Z</pubTime>
+        
+        <tag>Maven</tag>
+         
+        <tag>GPG</tag>
+         
+         
+           
+             
+              <breadCrumb title="Maven篇" url="http://blog.joylau.cn/categories/Maven%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.joylau.cn/2017/10/16/Maven-ResourceCompressor/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
@@ -1198,28 +1220,6 @@
         <tag>SpringBoot</tag>
          
         <tag>Maven</tag>
-         
-         
-           
-             
-              <breadCrumb title="Maven篇" url="http://blog.joylau.cn/categories/Maven%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.joylau.cn/2017/03/17/Maven-Release-Component/</loc>
-    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
-    <data>
-        <display>
-        <title>Maven --- 发布自己的构件到中央仓库</title>
-        <pubTime>2017-03-17T03:43:01.000Z</pubTime>
-        
-        <tag>Maven</tag>
-         
-        <tag>GPG</tag>
          
          
            
@@ -1274,12 +1274,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2019/05/10/OpenCV-Baidu-Traffic-3/</loc>
+    <loc>http://blog.joylau.cn/2019/05/15/OpenCV-Baidu-Traffic-4/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
         <display>
-        <title>OpenCV --- 基于 OpenCV 的百度路况研究记录 (三)</title>
-        <pubTime>2019-05-10T02:06:41.000Z</pubTime>
+        <title>OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)</title>
+        <pubTime>2019-05-15T02:28:53.000Z</pubTime>
         
         <tag>OpenCV</tag>
          
@@ -1314,12 +1314,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2019/05/15/OpenCV-Baidu-Traffic-4/</loc>
+    <loc>http://blog.joylau.cn/2019/05/10/OpenCV-Baidu-Traffic-3/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
         <display>
-        <title>OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)</title>
-        <pubTime>2019-05-15T02:28:53.000Z</pubTime>
+        <title>OpenCV --- 基于 OpenCV 的百度路况研究记录 (三)</title>
+        <pubTime>2019-05-10T02:06:41.000Z</pubTime>
         
         <tag>OpenCV</tag>
          
@@ -1460,28 +1460,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/07/29/SpringBoot-JoyMedia-Node/</loc>
-    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
-    <data>
-        <display>
-        <title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</title>
-        <pubTime>2017-07-29T02:09:04.000Z</pubTime>
-        
-        <tag>SpringBoot</tag>
-         
-        <tag>Node.js</tag>
-         
-         
-           
-             
-              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/08/29/SpringBoot-JoyMedia-NoReferer/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
@@ -1536,6 +1514,28 @@
         <tag>SpringBoot</tag>
          
         <tag>Spring</tag>
+         
+         
+           
+             
+              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/07/29/SpringBoot-JoyMedia-Node/</loc>
+    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
+    <data>
+        <display>
+        <title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</title>
+        <pubTime>2017-07-29T02:09:04.000Z</pubTime>
+        
+        <tag>SpringBoot</tag>
+         
+        <tag>Node.js</tag>
          
          
            
@@ -2834,26 +2834,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/11/07/Node-Install-Error/</loc>
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    <data>
-        <display>
-        <title>npm install 居然出错了</title>
-        <pubTime>2017-11-07T02:55:01.000Z</pubTime>
-        
-        <tag>Nodejs</tag>
-         
-         
-           
-             
-              <breadCrumb title="Node篇" url="http://blog.joylau.cn/categories/Node%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/04/06/MyBatis-Joylau-MyBatis/</loc>
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     <data>
@@ -2867,6 +2847,26 @@
            
              
               <breadCrumb title="MyBatis篇" url="http://blog.joylau.cn/categories/MyBatis%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/11/07/Node-Install-Error/</loc>
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    <data>
+        <display>
+        <title>npm install 居然出错了</title>
+        <pubTime>2017-11-07T02:55:01.000Z</pubTime>
+        
+        <tag>Nodejs</tag>
+         
+         
+           
+             
+              <breadCrumb title="Node篇" url="http://blog.joylau.cn/categories/Node%E7%AF%87/"/>
           
         </display>
     </data>
@@ -2914,26 +2914,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/06/05/Skill-Tree-Of-Java/</loc>
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    <data>
-        <display>
-        <title>收集整理一些JAVA学习的技能树</title>
-        <pubTime>2017-06-05T01:12:13.000Z</pubTime>
-        
-        <tag>技能</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他篇" url="http://blog.joylau.cn/categories/%E5%85%B6%E4%BB%96%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/02/20/SSL/</loc>
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     <data>
@@ -2970,6 +2950,26 @@
         <pubTime>2017-06-02T07:34:33.000Z</pubTime>
         
         <tag>算法</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他篇" url="http://blog.joylau.cn/categories/%E5%85%B6%E4%BB%96%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/06/05/Skill-Tree-Of-Java/</loc>
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    <data>
+        <display>
+        <title>收集整理一些JAVA学习的技能树</title>
+        <pubTime>2017-06-05T01:12:13.000Z</pubTime>
+        
+        <tag>技能</tag>
          
          
            
@@ -3210,28 +3210,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/10/30/SpringBoot-ReadJSONFile/</loc>
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    <data>
-        <display>
-        <title>SpringBoot 读取 JSON 文件并转化为 JSON 对象</title>
-        <pubTime>2017-10-30T03:04:13.000Z</pubTime>
-        
-        <tag>SpringBoot</tag>
-         
-        <tag>JSON</tag>
-         
-         
-           
-             
-              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/06/12/SpringBoot-RequestBody/</loc>
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     <data>
@@ -3246,6 +3224,28 @@
         <tag>Spring</tag>
          
         <tag>SpringMVC</tag>
+         
+         
+           
+             
+              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/10/30/SpringBoot-ReadJSONFile/</loc>
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    <data>
+        <display>
+        <title>SpringBoot 读取 JSON 文件并转化为 JSON 对象</title>
+        <pubTime>2017-10-30T03:04:13.000Z</pubTime>
+        
+        <tag>SpringBoot</tag>
+         
+        <tag>JSON</tag>
          
          
            
@@ -3414,6 +3414,48 @@
 
     
   <url>
+    <loc>http://blog.joylau.cn/2017/11/15/FastJson-JSONPath/</loc>
+    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
+    <data>
+        <display>
+        <title>FastJSON 还有这样的用法 涨姿势了</title>
+        <pubTime>2017-11-15T01:14:19.000Z</pubTime>
+        
+        <tag>JSON</tag>
+         
+         
+           
+             
+              <breadCrumb title="工具类篇" url="http://blog.joylau.cn/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2018/05/08/Filebeat-Nginx/</loc>
+    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
+    <data>
+        <display>
+        <title>Filebeat 实时收集 Nginx 日志</title>
+        <pubTime>2018-05-08T03:08:56.000Z</pubTime>
+        
+        <tag>Filebeat</tag>
+         
+        <tag>Nginx</tag>
+         
+         
+           
+             
+              <breadCrumb title="大数据篇" url="http://blog.joylau.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.joylau.cn/2017/07/03/Git-Multi-Repo-Push/</loc>
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     <data>
@@ -3436,19 +3478,19 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/11/15/FastJson-JSONPath/</loc>
+    <loc>http://blog.joylau.cn/2017/10/25/Hadoop-FristDay/</loc>
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     <data>
         <display>
-        <title>FastJSON 还有这样的用法 涨姿势了</title>
-        <pubTime>2017-11-15T01:14:19.000Z</pubTime>
+        <title>Hadoop 的第一天</title>
+        <pubTime>2017-10-25T00:52:55.000Z</pubTime>
         
-        <tag>JSON</tag>
+        <tag>Hadoop</tag>
          
          
            
              
-              <breadCrumb title="工具类篇" url="http://blog.joylau.cn/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB%E7%AF%87/"/>
+              <breadCrumb title="大数据篇" url="http://blog.joylau.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/"/>
           
         </display>
     </data>
@@ -3456,12 +3498,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/10/25/Hadoop-FristDay/</loc>
+    <loc>http://blog.joylau.cn/2017/11/22/Hadoop-Integrate-Build/</loc>
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     <data>
         <display>
-        <title>Hadoop 的第一天</title>
-        <pubTime>2017-10-25T00:52:55.000Z</pubTime>
+        <title>大数据之路 Hadoop 环境搭建</title>
+        <pubTime>2017-11-22T02:36:07.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -3522,41 +3564,19 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2018/05/08/Filebeat-Nginx/</loc>
+    <loc>http://blog.joylau.cn/2017/11/24/JavaScript-Array-Method/</loc>
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     <data>
         <display>
-        <title>Filebeat 实时收集 Nginx 日志</title>
-        <pubTime>2018-05-08T03:08:56.000Z</pubTime>
+        <title>JavaScript 数组的一些常用的方法记录</title>
+        <pubTime>2017-11-24T01:00:28.000Z</pubTime>
         
-        <tag>Filebeat</tag>
-         
-        <tag>Nginx</tag>
+        <tag>JavaScript</tag>
          
          
            
              
-              <breadCrumb title="大数据篇" url="http://blog.joylau.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.joylau.cn/2017/11/22/Hadoop-Integrate-Build/</loc>
-    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
-    <data>
-        <display>
-        <title>大数据之路 Hadoop 环境搭建</title>
-        <pubTime>2017-11-22T02:36:07.000Z</pubTime>
-        
-        <tag>Hadoop</tag>
-         
-         
-           
-             
-              <breadCrumb title="大数据篇" url="http://blog.joylau.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/"/>
+              <breadCrumb title="JavaScript篇" url="http://blog.joylau.cn/categories/JavaScript%E7%AF%87/"/>
           
         </display>
     </data>
@@ -3590,26 +3610,6 @@
         <display>
         <title>JS数组去重最简单方法</title>
         <pubTime>2017-03-14T06:22:51.000Z</pubTime>
-        
-        <tag>JavaScript</tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript篇" url="http://blog.joylau.cn/categories/JavaScript%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.joylau.cn/2017/11/24/JavaScript-Array-Method/</loc>
-    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
-    <data>
-        <display>
-        <title>JavaScript 数组的一些常用的方法记录</title>
-        <pubTime>2017-11-24T01:00:28.000Z</pubTime>
         
         <tag>JavaScript</tag>
          
