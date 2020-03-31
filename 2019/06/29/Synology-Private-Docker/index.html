@@ -23,7 +23,7 @@
 <meta property="og:description" content="之前写过基于 docker compose 使用 Harbor 搭建 Docker 私有仓库并管理,但是群晖里只有 docker 的管理,没有 docker compose 的直接支持">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://image.joylau.cn/blog/Synology-Private-Docker.png">
-<meta property="og:updated_time" content="2019-07-05T16:01:06.329Z">
+<meta property="og:updated_time" content="2020-03-31T16:01:09.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="群晖系列 --- 使用群晖搭建 Docker 私有仓库并管理">
 <meta name="twitter:description" content="之前写过基于 docker compose 使用 Harbor 搭建 Docker 私有仓库并管理,但是群晖里只有 docker 的管理,没有 docker compose 的直接支持">
@@ -358,6 +358,23 @@
 <p><img src="http://image.joylau.cn/blog/Synology-Private-Docker.png" alt="Synology-Private-Docker"></p>
 <p>REGISTRY_STORAGE_DELETE_ENABLED:true<br>REGISTRY_HTTP_HEADERS_Access-Control-Allow-Headers:[‘Origin,Accept,Content-Type,Authorization’]<br>REGISTRY_HTTP_HEADERS_Access-Control-Allow-Methods:[‘GET,POST,PUT,DELETE’]<br>REGISTRY_HTTP_HEADERS_Access-Control-Allow-Origin:[‘*’]<br>REGISTRY_HTTP_HEADERS_Access-Control-Expose-Headers:[‘Docker-Content-Digest’]  </p>
 <h3 id="后续配置"><a href="#后续配置" class="headerlink" title="后续配置"></a>后续配置</h3><p>路由器开启端口映射即可</p>
+<h3 id="镜像的删除"><a href="#镜像的删除" class="headerlink" title="镜像的删除"></a>镜像的删除</h3><p>首先要说的是,这里有个坑, 官方提供的删除镜像仓库中镜像的接口，仅仅是把 manifest 删除了，真正的镜像文件还存在！官方并没有提供删除镜像层的接口！这也就是说，当我们调用删除镜像的接口之后，仅仅是查看镜像的列表时看不到原镜像了，然而原有镜像仍然在磁盘中，占用着宝贵的文件存储空间</p>
+<p>这里使用官方提供的 GC 工具来清除无用文件</p>
+<h3 id="删除方式-1"><a href="#删除方式-1" class="headerlink" title="删除方式 1"></a>删除方式 1</h3><ol>
+<li>在 web 界面上删除,或者调用 api 删除:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">获取待删镜像的digest</span><br><span class="line"></span><br><span class="line">获取镜像digest的API为：</span><br><span class="line"></span><br><span class="line">GET /v2/&lt;tag&gt;/manifests/&lt;version&gt;</span><br><span class="line"></span><br><span class="line">例如: /v2/joy/blog.joylau.cn/manifests/1.0</span><br><span class="line"></span><br><span class="line">其中，name是仓库名，reference是标签，此时需要注意，调用时需要加上header内容：</span><br><span class="line"></span><br><span class="line">Accept： application/vnd.docker.distribution.manifest.v2+json</span><br><span class="line"></span><br><span class="line">其中Docker-Content-Digest的值就是镜像的digest</span><br><span class="line"></span><br><span class="line">3、调用官方的HTTP API V2删除镜像</span><br><span class="line"></span><br><span class="line">删除镜像的API为：</span><br><span class="line"></span><br><span class="line">DELETE /v2/&lt;name&gt;/manifests/&lt;sha256&gt;</span><br><span class="line"></span><br><span class="line">例如: /v2/joy/blog.joylau.cn/manifests/sha256:6c2daa1642b94dabdfaa32a9d3943cb92036c55117961fa9fcc4cc29348e5d39</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">其中，name是仓库名称，reference是包含“sha256：”的digest。</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>进入容器里调用GC清理镜像文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/registry garbage-collect /etc/docker/registry/config.yml</span><br></pre></td></tr></table></figure>
+<p>注意: gc不是事务操作，当gc过程中刚好有push操作时，则可能会误删数据，建议设置read-only模式之后再进行gc，然后再改回来</p>
+<ol start="3">
+<li>重启 docker registry<br>注意，如果不重启会导致push相同镜像时产生layer already exists错误。</li>
+</ol>
+<h3 id="删除方式-2"><a href="#删除方式-2" class="headerlink" title="删除方式 2"></a>删除方式 2</h3><p>使用第三方开源工具: <a href="https://github.com/burnettk/delete-docker-registry-image" target="_blank" rel="noopener">https://github.com/burnettk/delete-docker-registry-image</a></p>
+<p>该工具也提供了dry-run的方式，只输出待删除的信息不执行删除操作。在命令后加上——dry-run即可</p>
+<p>跟gc方式一样，删除镜像之后要重启docker registry，不然还是会出现相同镜像push不成功的问题。</p>
       
     </div>
     
@@ -367,7 +384,7 @@
         <p><span>本文标题:</span><a href="/2019/06/29/Synology-Private-Docker/">群晖系列 --- 使用群晖搭建 Docker 私有仓库并管理</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
         <p><span>发布时间:</span>2019-06-29, 10:51:45</p>
-        <p><span>最后更新:</span>2019-07-06, 00:01:06</p>
+        <p><span>最后更新:</span>2020-04-01, 00:01:09</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/06/29/Synology-Private-Docker/" title="群晖系列 --- 使用群晖搭建 Docker 私有仓库并管理">http://blog.joylau.cn/2019/06/29/Synology-Private-Docker/</a>
             <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2019/06/29/Synology-Private-Docker/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -401,7 +418,7 @@
 <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法"><span class="toc-number">2.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#registry-配置"><span class="toc-number">3.</span> <span class="toc-text">registry 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后续配置"><span class="toc-number">4.</span> <span class="toc-text">后续配置</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法"><span class="toc-number">2.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#registry-配置"><span class="toc-number">3.</span> <span class="toc-text">registry 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后续配置"><span class="toc-number">4.</span> <span class="toc-text">后续配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#镜像的删除"><span class="toc-number">5.</span> <span class="toc-text">镜像的删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除方式-1"><span class="toc-number">6.</span> <span class="toc-text">删除方式 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除方式-2"><span class="toc-number">7.</span> <span class="toc-text">删除方式 2</span></a></li></ol>
         
     </div>
     <style>

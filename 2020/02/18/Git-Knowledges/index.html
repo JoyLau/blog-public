@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
 <meta property="og:description" content="Git 知识点小记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-20T16:01:05.573Z">
+<meta property="og:updated_time" content="2020-03-31T16:01:09.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 知识点小记">
 <meta name="twitter:description" content="Git 知识点小记">
@@ -349,12 +349,9 @@
 </ol>
 <p>其中:<br>git reset 有三种参数:</p>
 <ul>
-<li><p>Soft：这个模式仅仅撤销 commit 记录而已，不影响本地的任何文件，即本地修改的文件内容还会存在,也不影响（index）缓存区的任何文件。</p>
-</li>
-<li><p>Hard：不仅撤销 commit 记录，还将本地的文件指向 commit 前的版本，同时 index 也会指向 commit 前的版本。</p>
-</li>
-<li><p>Mixed：回滚 index ，其余的保持不变。</p>
-</li>
+<li>Soft：这个模式仅仅撤销 commit 记录而已，不影响本地的任何文件，即本地修改的文件内容还会存在,也不影响（index）缓存区的任何文件。</li>
+<li>Hard：不仅撤销 commit 记录，还将本地的文件指向 commit 前的版本，同时 index 也会指向 commit 前的版本。</li>
+<li>Mixed：回滚 index ，其余的保持不变。</li>
 </ul>
 <p>另外 HEAD 后面加上 <code>~1</code> 代表回滚一次 commit 记录, <code>HEAD^</code> 代表全部 commit 记录</p>
 <h2 id="git-fetch-和-git-pull"><a href="#git-fetch-和-git-pull" class="headerlink" title="git fetch 和 git pull"></a>git fetch 和 git pull</h2><ol>
@@ -368,7 +365,7 @@
 <li>合并本地的多次提交记录</li>
 </ol>
 <p>合并最近的 4 次提交纪录</p>
-<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git rebase -i HEAD~4</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git rebase -i HEAD~4</span><br></pre></td></tr></table></figure>
 <p>在 idea 中可以在 Version Control 中选择最早时间的提交记录, 然后选择 <code>Interactively Rebase from Here</code><br>然后除了第一个为pick外，其他选择squash，点击start rebasing，接着输入提交信息就可以把多次commit合并为一次了</p>
 <ol start="2">
 <li>分支合并,可以把本地未push的分叉提交历史整理成直线</li>
@@ -382,7 +379,7 @@
         <p><span>本文标题:</span><a href="/2020/02/18/Git-Knowledges/">Git 知识点小记</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
         <p><span>发布时间:</span>2020-02-18, 15:20:35</p>
-        <p><span>最后更新:</span>2020-03-21, 00:01:05</p>
+        <p><span>最后更新:</span>2020-04-01, 00:01:09</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/02/18/Git-Knowledges/" title="Git 知识点小记">http://blog.joylau.cn/2020/02/18/Git-Knowledges/</a>
             <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2020/02/18/Git-Knowledges/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
