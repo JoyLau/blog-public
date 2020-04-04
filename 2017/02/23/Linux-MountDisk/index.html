@@ -11,7 +11,16 @@
 <meta name="keywords" content="JoyLau,joylau,JoyLau  blog,刘法,刘法的博客,刘法的技术与思考,Java,JavaWeb,Web程序员,Web开发,JavaWeb开发,个人博客">
 <meta name="format-detection" content="telephone=no">
 <meta name="author" content="JoyLau">
-
+<style> 
+    html { 
+        -webkit-filter: grayscale(100%); 
+        -moz-filter: grayscale(100%); 
+        -ms-filter: grayscale(100%); 
+        -o-filter: grayscale(100%); 
+        filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);  
+        _filter:none; 
+    } 
+</style> 
 
 
 <meta name="description" content="我们通常在阿里云上购买实例时通常都会选择再购买一块或多块数据盘。 在登录实例后，这些数据盘并不能直接使用，系统需要先格式化数据盘，然后挂载数据盘。">
@@ -113,7 +122,8 @@
     <script src="//image.joylau.cn/blog/lettering.js"></script>
     <script src="//image.joylau.cn/blog/textillate.js"></script>
 
-</head></html>
+</head>
+</html>
 <body>
   <div id="container">
     <div class="left-col">
@@ -592,12 +602,12 @@
             if (iPad > -1 || $(".left-col").css("display") === "none") {
                 var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
                 var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+                // $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
             }
             else {
                 var backgroundnum = 10;
                 var backgroundimg = "url(//image.joylau.cn/blog/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+                // $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
             }
         })
     </script>

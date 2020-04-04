@@ -11,7 +11,16 @@
 <meta name="keywords" content="JoyLau,joylau,JoyLau  blog,刘法,刘法的博客,刘法的技术与思考,Java,JavaWeb,Web程序员,Web开发,JavaWeb开发,个人博客">
 <meta name="format-detection" content="telephone=no">
 <meta name="author" content="JoyLau">
-
+<style> 
+    html { 
+        -webkit-filter: grayscale(100%); 
+        -moz-filter: grayscale(100%); 
+        -ms-filter: grayscale(100%); 
+        -o-filter: grayscale(100%); 
+        filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);  
+        _filter:none; 
+    } 
+</style> 
 
      
         <meta name="baidu-site-verification" content="YKshmF02SZ">
@@ -111,7 +120,8 @@
     <script src="//image.joylau.cn/blog/lettering.js"></script>
     <script src="//image.joylau.cn/blog/textillate.js"></script>
 
-</head></html>
+</head>
+</html>
 <body>
   <div id="container">
     <div class="left-col">
@@ -310,11 +320,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于">
 </nav>
-      <div class="body-wrap"><article id="post-Electron-AutoUpdater" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Electron-URL-Scheme" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/09/16/Electron-AutoUpdater/" class="article-date">
-      <time datetime="2019-09-16T01:00:12.000Z" itemprop="datePublished">2019-09-16</time>
+      <a href="/2019/09/12/Electron-URL-Scheme/" class="article-date">
+      <time datetime="2019-09-12T03:21:12.000Z" itemprop="datePublished">2019-09-12</time>
 </a>
     </div>
   
@@ -330,7 +340,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title article-tlt-a" href="/2019/09/16/Electron-AutoUpdater/">Electron --- 关于自动更新的一系列折腾</a>
+      <a class="article-title article-tlt-a" href="/2019/09/12/Electron-URL-Scheme/">Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用</a>
     </h1>
       </header>
       
@@ -340,7 +350,7 @@
            
 
           
-              <div class="article-description-tlt">关于 Electron 自动更新的一系列折腾</div>
+              <div class="article-description-tlt">Electron Scheme 协议的使用</div>
           
       
     </div>
@@ -355,7 +365,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/09/16/Electron-AutoUpdater/#more">阅读全文 >></a>
+          <a href="/2019/09/12/Electron-URL-Scheme/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -420,11 +430,11 @@
   
 </article>
   
-    <article id="post-Electron-URL-Scheme" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Electron-AutoUpdater" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/09/12/Electron-URL-Scheme/" class="article-date">
-      <time datetime="2019-09-12T03:21:12.000Z" itemprop="datePublished">2019-09-12</time>
+      <a href="/2019/09/16/Electron-AutoUpdater/" class="article-date">
+      <time datetime="2019-09-16T01:00:12.000Z" itemprop="datePublished">2019-09-16</time>
 </a>
     </div>
   
@@ -440,7 +450,7 @@
                 
             </div>
         <h1 itemprop="name">
-      <a class="article-title article-tlt-a" href="/2019/09/12/Electron-URL-Scheme/">Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用</a>
+      <a class="article-title article-tlt-a" href="/2019/09/16/Electron-AutoUpdater/">Electron --- 关于自动更新的一系列折腾</a>
     </h1>
       </header>
       
@@ -450,7 +460,7 @@
            
 
           
-              <div class="article-description-tlt">Electron Scheme 协议的使用</div>
+              <div class="article-description-tlt">关于 Electron 自动更新的一系列折腾</div>
           
       
     </div>
@@ -465,7 +475,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/09/12/Electron-URL-Scheme/#more">阅读全文 >></a>
+          <a href="/2019/09/16/Electron-AutoUpdater/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -748,12 +758,12 @@
             if (iPad > -1 || $(".left-col").css("display") === "none") {
                 var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
                 var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+                // $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
             }
             else {
                 var backgroundnum = 10;
                 var backgroundimg = "url(//image.joylau.cn/blog/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+                // $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
             }
         })
     </script>

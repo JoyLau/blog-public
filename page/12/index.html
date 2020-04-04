@@ -11,7 +11,16 @@
 <meta name="keywords" content="JoyLau,joylau,JoyLau  blog,刘法,刘法的博客,刘法的技术与思考,Java,JavaWeb,Web程序员,Web开发,JavaWeb开发,个人博客">
 <meta name="format-detection" content="telephone=no">
 <meta name="author" content="JoyLau">
-
+<style> 
+    html { 
+        -webkit-filter: grayscale(100%); 
+        -moz-filter: grayscale(100%); 
+        -ms-filter: grayscale(100%); 
+        -o-filter: grayscale(100%); 
+        filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);  
+        _filter:none; 
+    } 
+</style> 
 
      
         <meta name="baidu-site-verification" content="YKshmF02SZ">
@@ -111,7 +120,8 @@
     <script src="//image.joylau.cn/blog/lettering.js"></script>
     <script src="//image.joylau.cn/blog/textillate.js"></script>
 
-</head></html>
+</head>
+</html>
 <body>
   <div id="container">
     <div class="left-col">
@@ -310,7 +320,62 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于">
 </nav>
-      <div class="body-wrap"><article id="post-Redis-Benchmark" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-OpenCV-Knowledge-Points" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/17/OpenCV-Knowledge-Points/" class="article-date">
+      <time datetime="2019-05-17T02:50:34.000Z" itemprop="datePublished">2019-05-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+           <div id="jl_custom">
+                
+
+                
+            </div>
+        <h1 itemprop="name">
+      <a class="article-title article-tlt-a" href="/2019/05/17/OpenCV-Knowledge-Points/">OpenCV --- 知识点速记</a>
+    </h1>
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+           
+
+          
+              <div class="article-description-tlt">OpenCV 知识点速记</div>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+
+      <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/OpenCV篇/">OpenCV篇</a>
+    </div>
+      <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/">OpenCV</a></li></ul>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/05/17/OpenCV-Knowledge-Points/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+  
+    <article id="post-Redis-Benchmark" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2017/04/01/Redis-Benchmark/" class="article-date">
@@ -415,63 +480,6 @@
       
         <p class="article-more-link">
           <a href="/2017/04/27/Redis-Master-Slave/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-  
-    <article id="post-MySQL-Emoji" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/03/21/MySQL-Emoji/" class="article-date">
-      <time datetime="2017-03-21T00:35:04.000Z" itemprop="datePublished">2017-03-21</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-           <div id="jl_custom">
-                
-
-                
-            </div>
-        <h1 itemprop="name">
-      <a class="article-title article-tlt-a" href="/2017/03/21/MySQL-Emoji/">为网站添加emoji表情支持</a>
-    </h1>
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-           
-               <div><center><img src="//image.joylau.cn/blog/emoji.jpg" alt="emoji"></center></div>
-           
-
-          
-              <div class="article-description-tlt">普通的文字在平常聊天已经是远远不能满足人们的正常需求了，emoji小表情的流行貌似更能表达人们之间用文字无法传达的情感</div>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-
-      <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/MySQL篇/">MySQL篇</a>
-    </div>
-      <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/emoji/">emoji</a></li></ul>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2017/03/21/MySQL-Emoji/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -760,12 +768,12 @@
             if (iPad > -1 || $(".left-col").css("display") === "none") {
                 var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
                 var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+                // $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
             }
             else {
                 var backgroundnum = 10;
                 var backgroundimg = "url(//image.joylau.cn/blog/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+                // $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
             }
         })
     </script>
