@@ -21,7 +21,7 @@
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
 <meta property="og:description" content="以前博客多多少少写个一些常用工具的代理设置,这里做一个汇总,以后有更多工具使用代理直接在此处记录了">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-29T02:10:46.564Z">
+<meta property="og:updated_time" content="2020-04-29T02:36:27.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="各种代理设置汇总记录">
 <meta name="twitter:description" content="以前博客多多少少写个一些常用工具的代理设置,这里做一个汇总,以后有更多工具使用代理直接在此处记录了">
@@ -343,7 +343,7 @@
         <a id="more"></a>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>以前博客多多少少写个一些常用工具的代理设置,这里做一个汇总, 以后有更多工具使用代理直接在此处记录了</p>
 <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>如果代理有用户名密码的话, 使用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://username:password@127.0.0.1:1087</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://username:password@127.0.0.1:1087</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">sockts5://username:password@127.0.0.1:1087</span><br></pre></td></tr></table></figure>
 <h3 id="Mac-终端代理设置"><a href="#Mac-终端代理设置" class="headerlink" title="Mac 终端代理设置"></a>Mac 终端代理设置</h3><p><code>export HTTP_PROXY=http://127.0.0.1:1087</code></p>
 <p><code>export SOCKS5_PROXY=socks5://127.0.0.1:1086</code></p>
 <p><code>export ALL_PROXY=socks5://127.0.0.1:1086</code></p>
@@ -366,8 +366,12 @@
 <p><code>systemctl deamon-reload</code><br><code>systemctl restart docker</code></p>
 <h3 id="npm-使用代理"><a href="#npm-使用代理" class="headerlink" title="npm 使用代理"></a>npm 使用代理</h3><p>npm 支持 http 代理，但是不支持 socks 代理</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> proxy <span class="string">"http://localhost:1087"</span></span><br><span class="line">npm config <span class="built_in">set</span> https-proxy <span class="string">"http://localhost:1087"</span></span><br></pre></td></tr></table></figure>
+<p>该设置方式是永久的，全局的，想要取消的话，使用</p>
 <p>删除代理</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config delete proxy</span><br><span class="line">npm config delete https-proxy</span><br></pre></td></tr></table></figure>
+<h3 id="apt-get-使用代理"><a href="#apt-get-使用代理" class="headerlink" title="apt-get 使用代理"></a>apt-get 使用代理</h3><p>使用参数 <code>-o Acquire</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -o Acquire::http::proxy=<span class="string">"http://host:port"</span> update/install ...</span><br></pre></td></tr></table></figure>
+<p>该代理是一次性的，关闭 shell 即失效</p>
       
     </div>
     
@@ -377,7 +381,7 @@
         <p><span>本文标题:</span><a href="/2020/04/01/Daily-Various-Proxy-Setting/">各种代理设置汇总记录</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
         <p><span>发布时间:</span>2020-04-01, 21:58:25</p>
-        <p><span>最后更新:</span>2020-04-29, 10:10:46</p>
+        <p><span>最后更新:</span>2020-04-29, 10:36:27</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2020/04/01/Daily-Various-Proxy-Setting/" title="各种代理设置汇总记录">http://blog.joylau.cn/2020/04/01/Daily-Various-Proxy-Setting/</a>
             <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2020/04/01/Daily-Various-Proxy-Setting/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -411,7 +415,7 @@
 <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac-终端代理设置"><span class="toc-number">3.</span> <span class="toc-text">Mac 终端代理设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HomeBrew-代理设置"><span class="toc-number">4.</span> <span class="toc-text">HomeBrew 代理设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-代理配置"><span class="toc-number">5.</span> <span class="toc-text">Git 代理配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-终端代理"><span class="toc-number">6.</span> <span class="toc-text">Linux 终端代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu-桌面版使用全局代理"><span class="toc-number">7.</span> <span class="toc-text">Ubuntu 桌面版使用全局代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gradle-配置代理"><span class="toc-number">8.</span> <span class="toc-text">Gradle 配置代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-配置代理"><span class="toc-number">9.</span> <span class="toc-text">Docker 配置代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-使用代理"><span class="toc-number">10.</span> <span class="toc-text">npm 使用代理</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac-终端代理设置"><span class="toc-number">3.</span> <span class="toc-text">Mac 终端代理设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HomeBrew-代理设置"><span class="toc-number">4.</span> <span class="toc-text">HomeBrew 代理设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-代理配置"><span class="toc-number">5.</span> <span class="toc-text">Git 代理配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-终端代理"><span class="toc-number">6.</span> <span class="toc-text">Linux 终端代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu-桌面版使用全局代理"><span class="toc-number">7.</span> <span class="toc-text">Ubuntu 桌面版使用全局代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gradle-配置代理"><span class="toc-number">8.</span> <span class="toc-text">Gradle 配置代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-配置代理"><span class="toc-number">9.</span> <span class="toc-text">Docker 配置代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-使用代理"><span class="toc-number">10.</span> <span class="toc-text">npm 使用代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-get-使用代理"><span class="toc-number">11.</span> <span class="toc-text">apt-get 使用代理</span></a></li></ol>
         
     </div>
     <style>

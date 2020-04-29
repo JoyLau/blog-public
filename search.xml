@@ -809,7 +809,7 @@
       <content type="html"><![CDATA[<a id="more"></a>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>以前博客多多少少写个一些常用工具的代理设置,这里做一个汇总, 以后有更多工具使用代理直接在此处记录了</p>
 <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>如果代理有用户名密码的话, 使用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://username:password@127.0.0.1:1087</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://username:password@127.0.0.1:1087</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">sockts5://username:password@127.0.0.1:1087</span><br></pre></td></tr></table></figure>
 <h3 id="Mac-终端代理设置"><a href="#Mac-终端代理设置" class="headerlink" title="Mac 终端代理设置"></a>Mac 终端代理设置</h3><p><code>export HTTP_PROXY=http://127.0.0.1:1087</code></p>
 <p><code>export SOCKS5_PROXY=socks5://127.0.0.1:1086</code></p>
 <p><code>export ALL_PROXY=socks5://127.0.0.1:1086</code></p>
@@ -832,8 +832,12 @@
 <p><code>systemctl deamon-reload</code><br><code>systemctl restart docker</code></p>
 <h3 id="npm-使用代理"><a href="#npm-使用代理" class="headerlink" title="npm 使用代理"></a>npm 使用代理</h3><p>npm 支持 http 代理，但是不支持 socks 代理</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> proxy <span class="string">"http://localhost:1087"</span></span><br><span class="line">npm config <span class="built_in">set</span> https-proxy <span class="string">"http://localhost:1087"</span></span><br></pre></td></tr></table></figure>
+<p>该设置方式是永久的，全局的，想要取消的话，使用</p>
 <p>删除代理</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config delete proxy</span><br><span class="line">npm config delete https-proxy</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config delete proxy</span><br><span class="line">npm config delete https-proxy</span><br></pre></td></tr></table></figure>
+<h3 id="apt-get-使用代理"><a href="#apt-get-使用代理" class="headerlink" title="apt-get 使用代理"></a>apt-get 使用代理</h3><p>使用参数 <code>-o Acquire</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -o Acquire::http::proxy=<span class="string">"http://host:port"</span> update/install ...</span><br></pre></td></tr></table></figure>
+<p>该代理是一次性的，关闭 shell 即失效</p>]]></content>
       
         <categories>
             
@@ -13078,6 +13082,10 @@
 <li><code>--daemon</code> 参数以守护进程运行</li>
 <li>或者写个 service 文件以守护进程并且开机启动运行</li>
 </ol>
+<h4 id="GUI-客户端-2020-04-29更新"><a href="#GUI-客户端-2020-04-29更新" class="headerlink" title="GUI 客户端 [2020-04-29更新]"></a>GUI 客户端 [2020-04-29更新]</h4><p>可以使用开源客户端工具： <a href="https://client.pritunl.com/#features" target="_blank" rel="noopener">pritunl-client-electron</a><br>安装方法：<br>Ubuntu 16.04:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo tee /etc/apt/sources.list.d/pritunl.list &lt;&lt; EOF</span><br><span class="line">deb http://repo.pritunl.com/stable/apt xenial main</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv 7568D9BB55FF9E5287D586017AE645C0CF8E292A</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install pritunl-client-electron</span><br></pre></td></tr></table></figure>
+<p>注意 apt 安装需要科学上网来设置代理</p>
+<p>或者从 GitHub 上下载软件包： <a href="https://github.com/pritunl/pritunl-client-electron/releases" target="_blank" rel="noopener">https://github.com/pritunl/pritunl-client-electron/releases</a></p>
 <h3 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h3><ol>
 <li>安装 Tunnelblick，地址：<a href="https://tunnelblick.net/" target="_blank" rel="noopener">https://tunnelblick.net/</a></li>
 <li>导入 ovpn文件</li>
