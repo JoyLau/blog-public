@@ -210,6 +210,26 @@
 
     
   <url>
+    <loc>http://blog.joylau.cn/2020/05/01/Clash-Config/</loc>
+    <lastmod>2020-04-29T02:10:46.564Z</lastmod>
+    <data>
+        <display>
+        <title>Clash 基本配置记录</title>
+        <pubTime>2020-05-01T07:14:20.000Z</pubTime>
+        
+        <tag>Clash</tag>
+         
+         
+           
+             
+              <breadCrumb title="Clash" url="http://blog.joylau.cn/categories/Clash/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.joylau.cn/2020/04/28/Clash-Mac-Language/</loc>
     <lastmod>2020-04-29T02:10:46.564Z</lastmod>
     <data>
@@ -230,36 +250,14 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2020/05/02/Clash-Docker/</loc>
+    <loc>http://blog.joylau.cn/2020/04/14/Daily-KVR-NewifiD2-JiKe/</loc>
     <lastmod>2020-04-29T02:10:46.564Z</lastmod>
     <data>
         <display>
-        <title>Docker 安装 Clash 并对外提供代理服务</title>
-        <pubTime>2020-05-02T03:00:31.000Z</pubTime>
+        <title>日常折腾之 KVR 漫游(二) --- 利用新路由 3 (Newifi D2) 组 KVR Wi-Fi 漫游</title>
+        <pubTime>2020-04-14T04:59:56.000Z</pubTime>
         
-        <tag>Clash</tag>
-         
-        <tag>Docker</tag>
-         
-         
-           
-             
-              <breadCrumb title="Clash" url="http://blog.joylau.cn/categories/Clash/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.joylau.cn/2020/04/23/Daily-Pixel-Clock/</loc>
-    <lastmod>2020-04-29T02:10:46.564Z</lastmod>
-    <data>
-        <display>
-        <title>日常折腾 --- 自制像素时钟, 不输 LaMeetric Time</title>
-        <pubTime>2020-04-23T06:30:43.000Z</pubTime>
-        
-        <tag>日常折腾</tag>
+        <tag>KVR</tag>
          
          
            
@@ -272,14 +270,16 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2020/05/01/Clash-Config/</loc>
+    <loc>http://blog.joylau.cn/2020/05/02/Clash-Docker/</loc>
     <lastmod>2020-04-29T02:10:46.564Z</lastmod>
     <data>
         <display>
-        <title>Clash 基本配置记录</title>
-        <pubTime>2020-05-01T07:14:20.000Z</pubTime>
+        <title>Docker 安装 Clash 并对外提供代理服务</title>
+        <pubTime>2020-05-02T03:00:31.000Z</pubTime>
         
         <tag>Clash</tag>
+         
+        <tag>Docker</tag>
          
          
            
@@ -312,6 +312,26 @@
 
     
   <url>
+    <loc>http://blog.joylau.cn/2020/04/23/Daily-Pixel-Clock/</loc>
+    <lastmod>2020-04-29T02:10:46.564Z</lastmod>
+    <data>
+        <display>
+        <title>日常折腾 --- 自制像素时钟, 不输 LaMeetric Time</title>
+        <pubTime>2020-04-23T06:30:43.000Z</pubTime>
+        
+        <tag>日常折腾</tag>
+         
+         
+           
+             
+              <breadCrumb title="日常折腾篇" url="http://blog.joylau.cn/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.joylau.cn/2020/04/21/Daily-iPhone7-Replace-Battery/</loc>
     <lastmod>2020-04-29T02:10:46.564Z</lastmod>
     <data>
@@ -330,32 +350,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2020/04/14/Daily-KVR-NewifiD2-JiKe/</loc>
+    <loc>http://blog.joylau.cn/2020/04/22/Docker-ENTRYPOINT-CMD/</loc>
     <lastmod>2020-04-29T02:10:46.564Z</lastmod>
     <data>
         <display>
-        <title>日常折腾之 KVR 漫游(二) --- 利用新路由 3 (Newifi D2) 组 KVR Wi-Fi 漫游</title>
-        <pubTime>2020-04-14T04:59:56.000Z</pubTime>
-        
-        <tag>KVR</tag>
-         
-         
-           
-             
-              <breadCrumb title="日常折腾篇" url="http://blog.joylau.cn/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.joylau.cn/2017/03/22/Docker-Command/</loc>
-    <lastmod>2020-04-29T02:10:46.564Z</lastmod>
-    <data>
-        <display>
-        <title>Docker常用命令备忘</title>
-        <pubTime>2017-03-22T04:33:48.000Z</pubTime>
+        <title>Docker ENTRYPOINT 和 CMD 组合使用</title>
+        <pubTime>2020-04-22T05:55:53.000Z</pubTime>
         
         <tag>Docker</tag>
          
@@ -370,12 +370,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2020/04/22/Docker-ENTRYPOINT-CMD/</loc>
+    <loc>http://blog.joylau.cn/2017/03/22/Docker-Command/</loc>
     <lastmod>2020-04-29T02:10:46.564Z</lastmod>
     <data>
         <display>
-        <title>Docker ENTRYPOINT 和 CMD 组合使用</title>
-        <pubTime>2020-04-22T05:55:53.000Z</pubTime>
+        <title>Docker常用命令备忘</title>
+        <pubTime>2017-03-22T04:33:48.000Z</pubTime>
         
         <tag>Docker</tag>
          
@@ -432,12 +432,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2020/04/12/Docker-LibreOffice-Online/</loc>
+    <loc>http://blog.joylau.cn/2020/04/12/Docker-Jib/</loc>
     <lastmod>2020-04-29T02:10:46.564Z</lastmod>
     <data>
         <display>
-        <title>Docker LibreOffice Online Requesting address is denied&#58; &#58;&#58; ffff&#58;172.xx.xx.xx 错误解决记录</title>
-        <pubTime>2020-04-12T04:37:17.000Z</pubTime>
+        <title>Docker Jib 插件使用问题记录</title>
+        <pubTime>2020-04-12T04:52:31.000Z</pubTime>
         
         <tag>Docker</tag>
          
@@ -452,12 +452,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2020/04/12/Docker-Jib/</loc>
+    <loc>http://blog.joylau.cn/2020/04/12/Docker-LibreOffice-Online/</loc>
     <lastmod>2020-04-29T02:10:46.564Z</lastmod>
     <data>
         <display>
-        <title>Docker Jib 插件使用问题记录</title>
-        <pubTime>2020-04-12T04:52:31.000Z</pubTime>
+        <title>Docker LibreOffice Online Requesting address is denied&#58; &#58;&#58; ffff&#58;172.xx.xx.xx 错误解决记录</title>
+        <pubTime>2020-04-12T04:37:17.000Z</pubTime>
         
         <tag>Docker</tag>
          
@@ -884,12 +884,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2019/09/12/Electron-URL-Scheme/</loc>
+    <loc>http://blog.joylau.cn/2019/09/16/Electron-AutoUpdater/</loc>
     <lastmod>2019-09-24T16:01:05.640Z</lastmod>
     <data>
         <display>
-        <title>Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用</title>
-        <pubTime>2019-09-12T03:21:12.000Z</pubTime>
+        <title>Electron --- 关于自动更新的一系列折腾</title>
+        <pubTime>2019-09-16T01:00:12.000Z</pubTime>
         
         <tag>Electron</tag>
          
@@ -904,12 +904,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2019/09/16/Electron-AutoUpdater/</loc>
+    <loc>http://blog.joylau.cn/2019/09/12/Electron-URL-Scheme/</loc>
     <lastmod>2019-09-24T16:01:05.640Z</lastmod>
     <data>
         <display>
-        <title>Electron --- 关于自动更新的一系列折腾</title>
-        <pubTime>2019-09-16T01:00:12.000Z</pubTime>
+        <title>Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用</title>
+        <pubTime>2019-09-12T03:21:12.000Z</pubTime>
         
         <tag>Electron</tag>
          
@@ -1332,26 +1332,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/06/09/College-Entrance-Examination-of-2017-for-Progarmmer/</loc>
-    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
-    <data>
-        <display>
-        <title>2017年程序员高考试卷</title>
-        <pubTime>2017-06-09T12:58:03.000Z</pubTime>
-        
-        <tag>程序员</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他篇" url="http://blog.joylau.cn/categories/%E5%85%B6%E4%BB%96%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2019/05/22/Daily-Reform-Cable/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
@@ -1365,6 +1345,26 @@
            
              
               <breadCrumb title="日常折腾篇" url="http://blog.joylau.cn/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/06/09/College-Entrance-Examination-of-2017-for-Progarmmer/</loc>
+    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
+    <data>
+        <display>
+        <title>2017年程序员高考试卷</title>
+        <pubTime>2017-06-09T12:58:03.000Z</pubTime>
+        
+        <tag>程序员</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他篇" url="http://blog.joylau.cn/categories/%E5%85%B6%E4%BB%96%E7%AF%87/"/>
           
         </display>
     </data>
@@ -1458,28 +1458,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/02/23/Linux-MountDisk/</loc>
-    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
-    <data>
-        <display>
-        <title>Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</title>
-        <pubTime>2017-02-23T04:01:25.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-        <tag>磁盘挂载</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux篇" url="http://blog.joylau.cn/categories/Linux%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/02/23/Linux-BuildingEnvironment/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
@@ -1498,6 +1476,28 @@
         <tag>MySQL</tag>
          
         <tag>Redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux篇" url="http://blog.joylau.cn/categories/Linux%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/02/23/Linux-MountDisk/</loc>
+    <lastmod>2019-05-22T16:01:04.372Z</lastmod>
+    <data>
+        <display>
+        <title>Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</title>
+        <pubTime>2017-02-23T04:01:25.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+        <tag>磁盘挂载</tag>
          
          
            
@@ -1760,12 +1760,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/04/01/Redis-Benchmark/</loc>
+    <loc>http://blog.joylau.cn/2017/04/27/Redis-Master-Slave/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
         <display>
-        <title>Redis有多快??? --- 基准性能测试</title>
-        <pubTime>2017-04-01T05:42:38.000Z</pubTime>
+        <title>Redis主从复制 --- 实现读写分离</title>
+        <pubTime>2017-04-27T05:27:05.000Z</pubTime>
         
         <tag>redis</tag>
          
@@ -1780,12 +1780,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/04/27/Redis-Master-Slave/</loc>
+    <loc>http://blog.joylau.cn/2017/04/01/Redis-Benchmark/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
         <display>
-        <title>Redis主从复制 --- 实现读写分离</title>
-        <pubTime>2017-04-27T05:27:05.000Z</pubTime>
+        <title>Redis有多快??? --- 基准性能测试</title>
+        <pubTime>2017-04-01T05:42:38.000Z</pubTime>
         
         <tag>redis</tag>
          
@@ -1866,12 +1866,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/08/29/SpringBoot-JoyMedia-NoReferer/</loc>
+    <loc>http://blog.joylau.cn/2017/07/29/SpringBoot-JoyMedia-Node/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
         <display>
-        <title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）</title>
-        <pubTime>2017-08-29T03:13:24.000Z</pubTime>
+        <title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</title>
+        <pubTime>2017-07-29T02:09:04.000Z</pubTime>
         
         <tag>SpringBoot</tag>
          
@@ -1910,12 +1910,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/07/29/SpringBoot-JoyMedia-Node/</loc>
+    <loc>http://blog.joylau.cn/2017/08/29/SpringBoot-JoyMedia-NoReferer/</loc>
     <lastmod>2019-05-22T16:01:04.372Z</lastmod>
     <data>
         <display>
-        <title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</title>
-        <pubTime>2017-07-29T02:09:04.000Z</pubTime>
+        <title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）</title>
+        <pubTime>2017-08-29T03:13:24.000Z</pubTime>
         
         <tag>SpringBoot</tag>
          
@@ -2946,12 +2946,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/10/25/Elasticsearch-Config/</loc>
+    <loc>http://blog.joylau.cn/2018/06/12/Elasticsearch-Ik/</loc>
     <lastmod>2018-06-25T08:53:48.429Z</lastmod>
     <data>
         <display>
-        <title>Elasticsearch 配置说明 && 遇坑记录</title>
-        <pubTime>2017-10-25T06:49:54.000Z</pubTime>
+        <title>Elasticsearch 分词插件的使用及 demo</title>
+        <pubTime>2018-06-12T02:53:54.000Z</pubTime>
         
         <tag>Elasticsearch</tag>
          
@@ -2966,12 +2966,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2018/06/12/Elasticsearch-Ik/</loc>
+    <loc>http://blog.joylau.cn/2017/10/25/Elasticsearch-Config/</loc>
     <lastmod>2018-06-25T08:53:48.429Z</lastmod>
     <data>
         <display>
-        <title>Elasticsearch 分词插件的使用及 demo</title>
-        <pubTime>2018-06-12T02:53:54.000Z</pubTime>
+        <title>Elasticsearch 配置说明 && 遇坑记录</title>
+        <pubTime>2017-10-25T06:49:54.000Z</pubTime>
         
         <tag>Elasticsearch</tag>
          
@@ -3178,19 +3178,19 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2018/02/27/MyBatis-Example/</loc>
+    <loc>http://blog.joylau.cn/2017/10/20/Open-Source-License/</loc>
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     <data>
         <display>
-        <title>关于通用 Mapper Example 使用记录</title>
-        <pubTime>2018-02-27T02:29:11.000Z</pubTime>
+        <title>开源许可证</title>
+        <pubTime>2017-10-20T01:02:28.000Z</pubTime>
         
-        <tag>mybatis</tag>
+        <tag>license</tag>
          
          
            
              
-              <breadCrumb title="MyBatis篇" url="http://blog.joylau.cn/categories/MyBatis%E7%AF%87/"/>
+              <breadCrumb title="开源篇" url="http://blog.joylau.cn/categories/%E5%BC%80%E6%BA%90%E7%AF%87/"/>
           
         </display>
     </data>
@@ -3218,19 +3218,19 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/10/20/Open-Source-License/</loc>
+    <loc>http://blog.joylau.cn/2018/02/27/MyBatis-Example/</loc>
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     <data>
         <display>
-        <title>开源许可证</title>
-        <pubTime>2017-10-20T01:02:28.000Z</pubTime>
+        <title>关于通用 Mapper Example 使用记录</title>
+        <pubTime>2018-02-27T02:29:11.000Z</pubTime>
         
-        <tag>license</tag>
+        <tag>mybatis</tag>
          
          
            
              
-              <breadCrumb title="开源篇" url="http://blog.joylau.cn/categories/%E5%BC%80%E6%BA%90%E7%AF%87/"/>
+              <breadCrumb title="MyBatis篇" url="http://blog.joylau.cn/categories/MyBatis%E7%AF%87/"/>
           
         </display>
     </data>
@@ -3306,26 +3306,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/06/02/SolveBrainAndPuzzles/</loc>
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    <data>
-        <display>
-        <title>解决一道智力题</title>
-        <pubTime>2017-06-02T07:34:33.000Z</pubTime>
-        
-        <tag>算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他篇" url="http://blog.joylau.cn/categories/%E5%85%B6%E4%BB%96%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/11/23/Spark-Integrate-Build/</loc>
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     <data>
@@ -3339,6 +3319,26 @@
            
              
               <breadCrumb title="大数据篇" url="http://blog.joylau.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/06/02/SolveBrainAndPuzzles/</loc>
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    <data>
+        <display>
+        <title>解决一道智力题</title>
+        <pubTime>2017-06-02T07:34:33.000Z</pubTime>
+        
+        <tag>算法</tag>
+         
+         
+           
+             
+              <breadCrumb title="其他篇" url="http://blog.joylau.cn/categories/%E5%85%B6%E4%BB%96%E7%AF%87/"/>
           
         </display>
     </data>
@@ -3576,28 +3576,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/03/14/SpringBoot-Research/</loc>
-    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
-    <data>
-        <display>
-        <title>重剑无锋,大巧不工 SpringBoot --- 探索篇</title>
-        <pubTime>2017-03-14T03:21:20.000Z</pubTime>
-        
-        <tag>SpringBoot</tag>
-         
-        <tag>Spring</tag>
-         
-         
-           
-             
-              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2017/06/12/SpringBoot-RequestBody/</loc>
     <lastmod>2018-06-07T05:27:36.220Z</lastmod>
     <data>
@@ -3612,6 +3590,28 @@
         <tag>Spring</tag>
          
         <tag>SpringMVC</tag>
+         
+         
+           
+             
+              <breadCrumb title="SpringBoot篇" url="http://blog.joylau.cn/categories/SpringBoot%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.joylau.cn/2017/03/14/SpringBoot-Research/</loc>
+    <lastmod>2018-06-07T05:27:36.220Z</lastmod>
+    <data>
+        <display>
+        <title>重剑无锋,大巧不工 SpringBoot --- 探索篇</title>
+        <pubTime>2017-03-14T03:21:20.000Z</pubTime>
+        
+        <tag>SpringBoot</tag>
+         
+        <tag>Spring</tag>
          
          
            
@@ -3800,26 +3800,6 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/10/25/Hadoop-FristDay/</loc>
-    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
-    <data>
-        <display>
-        <title>Hadoop 的第一天</title>
-        <pubTime>2017-10-25T00:52:55.000Z</pubTime>
-        
-        <tag>Hadoop</tag>
-         
-         
-           
-             
-              <breadCrumb title="大数据篇" url="http://blog.joylau.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.joylau.cn/2018/05/08/Filebeat-Nginx/</loc>
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     <data>
@@ -3842,12 +3822,12 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/11/17/Hadoop-Study-Way/</loc>
+    <loc>http://blog.joylau.cn/2017/10/25/Hadoop-FristDay/</loc>
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     <data>
         <display>
-        <title>大数据之路 Hadoop 的学习流程</title>
-        <pubTime>2017-11-17T09:01:20.000Z</pubTime>
+        <title>Hadoop 的第一天</title>
+        <pubTime>2017-10-25T00:52:55.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -3888,6 +3868,26 @@
 
     
   <url>
+    <loc>http://blog.joylau.cn/2017/11/17/Hadoop-Study-Way/</loc>
+    <lastmod>2018-06-07T05:27:36.216Z</lastmod>
+    <data>
+        <display>
+        <title>大数据之路 Hadoop 的学习流程</title>
+        <pubTime>2017-11-17T09:01:20.000Z</pubTime>
+        
+        <tag>Hadoop</tag>
+         
+         
+           
+             
+              <breadCrumb title="大数据篇" url="http://blog.joylau.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.joylau.cn/2017/11/22/Hadoop-Integrate-Build/</loc>
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     <data>
@@ -3908,19 +3908,19 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/09/26/Java-Scala/</loc>
+    <loc>http://blog.joylau.cn/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/</loc>
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     <data>
         <display>
-        <title>Java 代码中使用 Scala</title>
-        <pubTime>2017-09-26T03:46:26.000Z</pubTime>
+        <title>JS数组去重最简单方法</title>
+        <pubTime>2017-03-14T06:22:51.000Z</pubTime>
         
-        <tag>Scala</tag>
+        <tag>JavaScript</tag>
          
          
            
              
-              <breadCrumb title="Scala篇" url="http://blog.joylau.cn/categories/Scala%E7%AF%87/"/>
+              <breadCrumb title="JavaScript篇" url="http://blog.joylau.cn/categories/JavaScript%E7%AF%87/"/>
           
         </display>
     </data>
@@ -3948,19 +3948,19 @@
 
     
   <url>
-    <loc>http://blog.joylau.cn/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/</loc>
+    <loc>http://blog.joylau.cn/2017/09/26/Java-Scala/</loc>
     <lastmod>2018-06-07T05:27:36.216Z</lastmod>
     <data>
         <display>
-        <title>JS数组去重最简单方法</title>
-        <pubTime>2017-03-14T06:22:51.000Z</pubTime>
+        <title>Java 代码中使用 Scala</title>
+        <pubTime>2017-09-26T03:46:26.000Z</pubTime>
         
-        <tag>JavaScript</tag>
+        <tag>Scala</tag>
          
          
            
              
-              <breadCrumb title="JavaScript篇" url="http://blog.joylau.cn/categories/JavaScript%E7%AF%87/"/>
+              <breadCrumb title="Scala篇" url="http://blog.joylau.cn/categories/Scala%E7%AF%87/"/>
           
         </display>
     </data>
