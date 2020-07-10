@@ -4,6 +4,106 @@
   
     
     <entry>
+      <title>IntelliJ 软件代理报错：You have JVM property https.proxyHost set..</title>
+      <link href="/2020/07/20/IntelliJIDEA-Proxy/"/>
+      <url>/2020/07/20/IntelliJIDEA-Proxy/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h3 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h3><pre><code class="shell">    You have JVM property https.proxyHost set to &#39;...&#39;.    This may lead to incorrect behaviour. Proxy should be set in Settings | Proxy</code></pre><p>这是由于本地开启了科学上网代理服务造成的</p><h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>select Help -&gt; Edit Custom VM Options add below:</p><p>-Dhttp.proxyHost<br>-Dhttp.proxyPort<br>-Dhttps.proxyHost<br>-Dhttps.proxyPort<br>-DsocksProxyHost<br>-DsocksProxyPort</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IntelliJ IDEA篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IntelliJ IDEA </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>async 在箭头函数上的使用方式</title>
+      <link href="/2020/07/10/JavaScript-Async/"/>
+      <url>/2020/07/10/JavaScript-Async/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><pre><code class="js">    fun = async () =&gt; {       await .....    }</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> JavaScript篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java 多文件边压缩边下载</title>
+      <link href="/2020/07/01/Java-Multi-Files-Compress-Downloading/"/>
+      <url>/2020/07/01/Java-Multi-Files-Compress-Downloading/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><p>有时我们希望在后台实时生成文件并下载到客户端</p><pre><code class="java">    @GetMapping(value = &quot;download&quot;)    public void download(HttpServletResponse response) {       try(OutputStream outputStream = response.getOutputStream();          ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream, StandardCharsets.UTF_8)       ) {          response.setContentType(&quot;application/octet-stream&quot;);          response.setHeader(&quot;Content-Disposition&quot;, &quot;attachment; filename=&quot; + new String(&quot;压缩文件.zip&quot;.getBytes(&quot;UTF-8&quot;), &quot;ISO-8859-1&quot;));          File[] files = new File(&quot;&quot;).listFiles();          for (File file : files) {             // 单个文件压缩             compress(zipOutputStream, new FileInputStream(file), file.getName());          }          zipOutputStream.flush();       } catch (IOException e) {       }    }    /**     * 单个文件压缩     *     * @param zipOutputStream     * @param inputStream     * @param fileName     * @throws IOException     */    private static void compress(ZipOutputStream zipOutputStream, InputStream inputStream, String fileName) throws IOException {        if (inputStream == null) return;        zipOutputStream.putNextEntry(new ZipEntry(fileName));        int bytesRead;        byte[] buffer = new byte[FileUtil.BUFFER_SIZE];        while ((bytesRead = inputStream.read(buffer)) != -1) {            zipOutputStream.write(buffer, 0, bytesRead);        }        zipOutputStream.closeEntry();        inputStream.close();    }</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Electron ---- Better-Sqlite3 使用问题</title>
+      <link href="/2020/06/10/Electron-Better-Sqlite3/"/>
+      <url>/2020/06/10/Electron-Better-Sqlite3/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><pre><code class="bash">     The module &#39;/node_modules/better-sqlite3/build/better_sqlite3.node&#39;    was compiled against a different Node.js version using    NODE_MODULE_VERSION 57. This version of Node.js requires    NODE_MODULE_VERSION 64. Please try re-compiling or re-installing    the module (for instance, using `npm rebuild` or `npm install`).</code></pre><h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p><code>npm install --save-dev electron-rebuild</code><br>使用electron-rebuild进行重新编译:</p><p><code>node_modules/.bin/electron-rebuild -f -w better-sqlite3</code></p><p>如果没有编译成功, 则查看是否安装了, node-gyp<br>因为在 electron-rebuild 项目的 README 里,<br>看到这句话: </p><pre><code class="bash">    If you have a good node-gyp config but you see an error about a missing element on Windows like `Could not load the Visual C++ component &quot;VCBuild.exe&quot;`, try to launch electron-rebuild in an npm script:</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Electron篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Electron </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>OpenVPN 配置文件说明</title>
       <link href="/2020/05/28/OpenVPN-Config/"/>
       <url>/2020/05/28/OpenVPN-Config/</url>
@@ -3286,11 +3386,11 @@
     
     
     <entry>
-      <title>JavaScript 数组的一些常用的方法记录</title>
+      <title>JavaScript 数组的一些常用的方法整理</title>
       <link href="/2017/11/24/JavaScript-Array-Method/"/>
       <url>/2017/11/24/JavaScript-Array-Method/</url>
       
-        <content type="html"><![CDATA[<a id="more"></a><h3 id="push-添加最后一项"><a href="#push-添加最后一项" class="headerlink" title="push 添加最后一项"></a>push 添加最后一项</h3><p>在数组末尾添加一项，并返回数组的长度, 可以添加任意类型的值作为数组的一项。</p><pre><code class="javascript">    var arr = [1,2];    arr.push(6)     // arr: [1,2,6]    arr.push(&#39;aa&#39;)  // arr: [1,2,6,&quot;aa&quot;]    arr.push(undefined)  // arr: [1,2,6,&quot;aa&quot;,undefined]    arr.push({a: &quot;A&quot;, b: &quot;B&quot;})  // [1,2,6,&quot;aa&quot;,undefined,{a: &quot;A&quot;, b: &quot;B&quot;}]</code></pre><h3 id="unshift-在最前面添加一项"><a href="#unshift-在最前面添加一项" class="headerlink" title="unshift 在最前面添加一项"></a>unshift 在最前面添加一项</h3><pre><code class="javascript">    var arr = [1,2];    arr.unshift(9)      // [9, 1, 2]    arr.unshift(&#39;aa&#39;)   // [&#39;aa&#39;,9, 1, 2]</code></pre><h3 id="pop-删除最后一项"><a href="#pop-删除最后一项" class="headerlink" title="pop 删除最后一项"></a>pop 删除最后一项</h3><p>删除最后一项,并返回删除元素的值；如果数组为空则返回undefine。对数组本身操作</p><pre><code class="javascript">    var arr = [1,2,3,4,5];    arr.pop()       // arr: [1, 2, 3, 4]    arr.pop()       // arr: [1, 2, 3]</code></pre><h3 id="shift-删除最前面一项"><a href="#shift-删除最前面一项" class="headerlink" title="shift 删除最前面一项"></a>shift 删除最前面一项</h3><pre><code class="javascript">    var arr = [1,2,3,4,5];    arr.shift()     // [2, 3, 4, 5]    arr.shift()     // [3, 4, 5]</code></pre><h3 id="slice截取-切片-数组-得到截取的数组"><a href="#slice截取-切片-数组-得到截取的数组" class="headerlink" title="slice截取(切片)数组 得到截取的数组"></a>slice截取(切片)数组 得到截取的数组</h3><p>不改变原始数组，得到新的数组</p><p>slice(start,end)</p><pre><code class="javascript">    var arr = [1,2,3,4,5];    var a = arr.slice(1)        // a: [2,3,4,5]    var a = arr.slice(1,3)      // a: [2,3]    var a = arr.slice(3,4)      // a: [5]</code></pre><h3 id="splice剪接数组"><a href="#splice剪接数组" class="headerlink" title="splice剪接数组"></a>splice剪接数组</h3><p>改变原数组，可以实现shift前删除，pop后删除,unshift前增加,同push后增加一样的效果。索引从0开始</p><p>splice(index,howmany,item1,…..,itemX)</p><pre><code class="javascript">    var arr = [1,2,3,4,5];    push: arr.splice(arr.length, 0, 6)  //  [1, 2, 3, 4, 5, 6]    unshift: arr.splice(0, 0, 6)        // [6, 1, 2, 3, 4, 5]    pop: arr.splice(arr.length-1, 1)    // [1, 2, 3, 4]    shift: arr.splice(0, 1)             // [2, 3, 4, 5]    arr.splice(1)   // [1]    arr.splice(1, 2)    // [1, 4, 5]    arr.splice(1, 0, &#39;A&#39;)   // [1, &quot;A&quot;,2,3, 4, 5]    arr.splice(1, 2, &#39;A&#39;, &#39;B&#39;)   // [1, &quot;A&quot;, &quot;B&quot;, 4, 5]</code></pre><h3 id="concat-数组合并"><a href="#concat-数组合并" class="headerlink" title="concat 数组合并"></a>concat 数组合并</h3><p>合并后得到新数组，原始数组不改变</p><pre><code class="javascript">    var arr1 = [1,2];    var arr2 = [3,4,5];    var arr = arr1.concat(arr2)     // [1,2,3,4,5]</code></pre><h3 id="indexOf-数组元素索引"><a href="#indexOf-数组元素索引" class="headerlink" title="indexOf 数组元素索引"></a>indexOf 数组元素索引</h3><p>并返回元素索引，不存在返回-1,索引从0开始</p><pre><code class="javascript">    var arr = [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;];     arr.indexOf(&#39;a&#39;);       //0    arr.indexOf(a);         //-1    arr.indexOf(&#39;f&#39;);       //-1    arr.indexOf(&#39;e&#39;);       //4</code></pre><h3 id="join-数组转字符串"><a href="#join-数组转字符串" class="headerlink" title="join 数组转字符串"></a>join 数组转字符串</h3><pre><code class="javascript">    var a, b;    a = [0, 1, 2, 3, 4];    b = a.join(&quot;-&quot;);    // 0-1-2-3-4</code></pre><h3 id="reverse-数组翻转"><a href="#reverse-数组翻转" class="headerlink" title="reverse 数组翻转"></a>reverse 数组翻转</h3><p>并返回翻转后的原数组，原数组翻转了</p><pre><code class="javascript">    var a = [1,2,3,4,5];     a.reverse()//a：[5, 4, 3, 2, 1] 返回[5, 4, 3, 2, 1]</code></pre><h3 id="数组里面的对象去重复"><a href="#数组里面的对象去重复" class="headerlink" title="数组里面的对象去重复"></a>数组里面的对象去重复</h3><pre><code class="javascript">    unique(arr){            let hash = {};            arr = arr.reduce(function(item, next) {                if (!hash[next.name]) {                    item.push(next);                    hash[next.name] = true;                }                return item            }, []);            return arr;        }</code></pre><p>发现一个比较好的js组件，地址： <a href="https://lodash.com/docs/" target="_blank" rel="noopener">https://lodash.com/docs/</a>  里面有很多关于对数组的操作</p>]]></content>
+        <content type="html"><![CDATA[<a id="more"></a><h3 id="push-添加最后一项"><a href="#push-添加最后一项" class="headerlink" title="push 添加最后一项"></a>push 添加最后一项</h3><p>在数组末尾添加一项，并返回数组的长度, 可以添加任意类型的值作为数组的一项。</p><pre><code class="javascript">    var arr = [1,2];    arr.push(6)     // arr: [1,2,6]    arr.push(&#39;aa&#39;)  // arr: [1,2,6,&quot;aa&quot;]    arr.push(undefined)  // arr: [1,2,6,&quot;aa&quot;,undefined]    arr.push({a: &quot;A&quot;, b: &quot;B&quot;})  // [1,2,6,&quot;aa&quot;,undefined,{a: &quot;A&quot;, b: &quot;B&quot;}]</code></pre><h3 id="unshift-在最前面添加一项"><a href="#unshift-在最前面添加一项" class="headerlink" title="unshift 在最前面添加一项"></a>unshift 在最前面添加一项</h3><pre><code class="javascript">    var arr = [1,2];    arr.unshift(9)      // [9, 1, 2]    arr.unshift(&#39;aa&#39;)   // [&#39;aa&#39;,9, 1, 2]</code></pre><h3 id="pop-删除最后一项"><a href="#pop-删除最后一项" class="headerlink" title="pop 删除最后一项"></a>pop 删除最后一项</h3><p>删除最后一项,并返回删除元素的值；如果数组为空则返回undefine。对数组本身操作</p><pre><code class="javascript">    var arr = [1,2,3,4,5];    arr.pop()       // arr: [1, 2, 3, 4]    arr.pop()       // arr: [1, 2, 3]</code></pre><h3 id="shift-删除最前面一项"><a href="#shift-删除最前面一项" class="headerlink" title="shift 删除最前面一项"></a>shift 删除最前面一项</h3><pre><code class="javascript">    var arr = [1,2,3,4,5];    arr.shift()     // [2, 3, 4, 5]    arr.shift()     // [3, 4, 5]</code></pre><h3 id="slice截取-切片-数组-得到截取的数组"><a href="#slice截取-切片-数组-得到截取的数组" class="headerlink" title="slice截取(切片)数组 得到截取的数组"></a>slice截取(切片)数组 得到截取的数组</h3><p>不改变原始数组，得到新的数组</p><p>slice(start,end)</p><pre><code class="javascript">    var arr = [1,2,3,4,5];    var a = arr.slice(1)        // a: [2,3,4,5]    var a = arr.slice(1,3)      // a: [2,3]    var a = arr.slice(3,4)      // a: [5]</code></pre><h3 id="splice剪接数组"><a href="#splice剪接数组" class="headerlink" title="splice剪接数组"></a>splice剪接数组</h3><p>改变原数组，可以实现shift前删除，pop后删除,unshift前增加,同push后增加一样的效果。索引从0开始</p><p>splice(index,howmany,item1,…..,itemX)</p><pre><code class="javascript">    var arr = [1,2,3,4,5];    push: arr.splice(arr.length, 0, 6)  //  [1, 2, 3, 4, 5, 6]    unshift: arr.splice(0, 0, 6)        // [6, 1, 2, 3, 4, 5]    pop: arr.splice(arr.length-1, 1)    // [1, 2, 3, 4]    shift: arr.splice(0, 1)             // [2, 3, 4, 5]    arr.splice(1)   // [1]    arr.splice(1, 2)    // [1, 4, 5]    arr.splice(1, 0, &#39;A&#39;)   // [1, &quot;A&quot;,2,3, 4, 5]    arr.splice(1, 2, &#39;A&#39;, &#39;B&#39;)   // [1, &quot;A&quot;, &quot;B&quot;, 4, 5]</code></pre><h3 id="concat-数组合并"><a href="#concat-数组合并" class="headerlink" title="concat 数组合并"></a>concat 数组合并</h3><p>合并后得到新数组，原始数组不改变</p><pre><code class="javascript">    var arr1 = [1,2];    var arr2 = [3,4,5];    var arr = arr1.concat(arr2)     // [1,2,3,4,5]</code></pre><h3 id="indexOf-数组元素索引"><a href="#indexOf-数组元素索引" class="headerlink" title="indexOf 数组元素索引"></a>indexOf 数组元素索引</h3><p>并返回元素索引，不存在返回-1,索引从0开始</p><pre><code class="javascript">    var arr = [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;];     arr.indexOf(&#39;a&#39;);       //0    arr.indexOf(a);         //-1    arr.indexOf(&#39;f&#39;);       //-1    arr.indexOf(&#39;e&#39;);       //4</code></pre><h3 id="join-数组转字符串"><a href="#join-数组转字符串" class="headerlink" title="join 数组转字符串"></a>join 数组转字符串</h3><pre><code class="javascript">    var a, b;    a = [0, 1, 2, 3, 4];    b = a.join(&quot;-&quot;);    // 0-1-2-3-4</code></pre><h3 id="reverse-数组翻转"><a href="#reverse-数组翻转" class="headerlink" title="reverse 数组翻转"></a>reverse 数组翻转</h3><p>并返回翻转后的原数组，原数组翻转了</p><pre><code class="javascript">    var a = [1,2,3,4,5];     a.reverse()//a：[5, 4, 3, 2, 1] 返回[5, 4, 3, 2, 1]</code></pre><h3 id="数组里面的对象去重复"><a href="#数组里面的对象去重复" class="headerlink" title="数组里面的对象去重复"></a>数组里面的对象去重复</h3><pre><code class="javascript">    unique(arr){            let hash = {};            arr = arr.reduce(function(item, next) {                if (!hash[next.name]) {                    item.push(next);                    hash[next.name] = true;                }                return item            }, []);            return arr;        }</code></pre><h3 id="arr-forEach-callback"><a href="#arr-forEach-callback" class="headerlink" title="arr.forEach(callback)"></a>arr.forEach(callback)</h3><p>遍历数组,无return<br>callback的参数：<br>value –当前索引的值<br>index –索引<br>array –原数组</p><h3 id="arr-map-callback"><a href="#arr-map-callback" class="headerlink" title="arr.map(callback)"></a>arr.map(callback)</h3><p>映射数组(遍历数组),有return 返回一个新数组<br>callback的参数：<br>value –当前索引的值<br>index –索引<br>array –原数组</p><p>注意: arr.forEach()和arr.map()的区别 </p><ol><li>arr.forEach()是和for循环一样，是代替for。arr.map()是修改数组其中的数据，并返回新的数据。</li><li>arr.forEach() 没有return  arr.map() 有return</li></ol><h3 id="arr-filter-callback"><a href="#arr-filter-callback" class="headerlink" title="arr.filter(callback)"></a>arr.filter(callback)</h3><p>过滤数组，返回一个满足要求的数组</p><h3 id="arr-every-callback"><a href="#arr-every-callback" class="headerlink" title="arr.every(callback)"></a>arr.every(callback)</h3><p>依据判断条件，数组的元素是否全满足，若满足则返回ture</p><pre><code class="js">    let arr = [1,2,3,4,5]    let arr1 = arr.every( (i, v) =&gt; i &lt; 3)    console.log(arr1)    // false    let arr2 = arr.every( (i, v) =&gt; i &lt; 10)    console.log(arr2)    // true</code></pre><h3 id="arr-some"><a href="#arr-some" class="headerlink" title="arr.some()"></a>arr.some()</h3><p>依据判断条件，数组的元素是否有一个满足，若有一个满足则返回ture</p><pre><code class="js">    let arr = [1,2,3,4,5]    let arr1 = arr.some( (i, v) =&gt; i &lt; 3)    console.log(arr1)    // true    let arr2 = arr.some( (i, v) =&gt; i &gt; 10)    console.log(arr2)    // false</code></pre><h3 id="arr-reduce-callback-initialValue"><a href="#arr-reduce-callback-initialValue" class="headerlink" title="arr.reduce(callback, initialValue)"></a>arr.reduce(callback, initialValue)</h3><p>迭代数组的所有项，累加器，数组中的每个值（从左到右）合并，最终计算为一个值</p><p>参数： </p><ol><li><p>callback:<br>previousValue 必选 –上一次调用回调返回的值，或者是提供的初始值（initialValue）<br>currentValue 必选 –数组中当前被处理的数组项<br>index 可选 –当前数组项在数组中的索引值<br>array 可选 –原数组</p></li><li><p>initialValue: 可选 –初始值<br>实行方法：回调函数第一次执行时，preValue 和 curValue 可以是一个值，如果 initialValue 在调用 reduce() 时被提供，那么第一个 preValue 等于 initialValue ，并且curValue 等于数组中的第一个值；如果initialValue 未被提供，那么preValue 等于数组中的第一个值.</p></li></ol><pre><code class="js">    let arr = [0,1,2,3,4]    let arr1 = arr.reduce((preValue, curValue) =&gt;         preValue + curValue    )    console.log(arr1)    // 10</code></pre><h3 id="arr-find-callback"><a href="#arr-find-callback" class="headerlink" title="arr.find(callback)"></a>arr.find(callback)</h3><p>find的参数为回调函数，回调函数可以接收3个参数，值x、所以i、数组arr，回调函数默认返回值x。</p><pre><code class="js">    let arr=[1,2,234,&#39;sdf&#39;,-2];    arr.find(function(x){        return x&lt;=2;    })//结果：1，返回第一个符合条件的x值    arr.find(function(x,i,arr){        if(x&lt;2){console.log(x,i,arr)}    })//结果：1 0 [1, 2, 234, &quot;sdf&quot;, -2]，-2 4 [1, 2, 234, &quot;sdf&quot;, -2]</code></pre><h3 id="arr-findIndex-callback"><a href="#arr-findIndex-callback" class="headerlink" title="arr.findIndex(callback)"></a>arr.findIndex(callback)</h3><p>findIndex和find差不多，不过默认返回的是索引。</p><h3 id="arr-includes"><a href="#arr-includes" class="headerlink" title="arr.includes()"></a>arr.includes()</h3><p>includes函数与string的includes一样，接收2参数，查询的项以及查询起始位置。</p><pre><code class="js">    let arr=[1,2,234,&#39;sdf&#39;,-2];    arr.includes(2);// 结果true，返回布尔值    arr.includes(20);// 结果：false，返回布尔值    arr.includes(2,3)//结果：false，返回布尔值</code></pre><h3 id="arr-keys"><a href="#arr-keys" class="headerlink" title="arr.keys()"></a>arr.keys()</h3><p>keys，对数组索引的遍历</p><pre><code class="js">    let arr=[1,2,234,&#39;sdf&#39;,-2];    for(let a of arr.keys()){        console.log(a)    }//结果：0,1,2,3,4  遍历了数组arr的索引</code></pre><h3 id="arr-values"><a href="#arr-values" class="headerlink" title="arr.values()"></a>arr.values()</h3><p>values, 对数组项的遍历</p><pre><code class="js">    let arr=[1,2,234,&#39;sdf&#39;,-2];    for(let a of arr.values()){        console.log(a)    }//结果：1,2,234,sdf,-2 遍历了数组arr的值</code></pre><h3 id="arr-entries"><a href="#arr-entries" class="headerlink" title="arr.entries()"></a>arr.entries()</h3><p>entries，对数组键值对的遍历。</p><pre><code class="js">    let arr=[&#39;w&#39;,&#39;b&#39;];    for(let a of arr.entries()){        console.log(a)    }//结果：[0,w],[1,b]    for(let [i,v] of arr.entries()){        console.log(i,v)    }//结果：0 w,1 b</code></pre><h3 id="arr-fill"><a href="#arr-fill" class="headerlink" title="arr.fill()"></a>arr.fill()</h3><p>fill方法改变原数组，当第三个参数大于数组长度时候，以最后一位为结束位置。</p><pre><code class="js">    let arr=[&#39;w&#39;,&#39;b&#39;];    arr.fill(&#39;i&#39;)//结果：[&#39;i&#39;,&#39;i&#39;]，改变原数组    arr.fill(&#39;o&#39;,1)//结果：[&#39;i&#39;,&#39;o&#39;]改变原数组,第二个参数表示填充起始位置    new Array(3).fill(&#39;k&#39;).fill(&#39;r&#39;,1,2)//结果：[&#39;k&#39;,&#39;r&#39;,&#39;k&#39;]，第三个数组表示填充的结束位置</code></pre><h3 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of()"></a>Array.of()</h3><p>Array.of()方法永远返回一个数组，参数不分类型，只分数量，数量为0返回空数组。</p><pre><code class="js">    Array.of(&#39;w&#39;,&#39;i&#39;,&#39;r&#39;)//[&quot;w&quot;, &quot;i&quot;, &quot;r&quot;]返回数组    Array.of([&#39;w&#39;,&#39;o&#39;])//[[&#39;w&#39;,&#39;o&#39;]]返回嵌套数组    Array.of(undefined)//[undefined]依然返回数组    Array.of()//[]返回一个空数组</code></pre><h3 id="arr-copyWithin"><a href="#arr-copyWithin" class="headerlink" title="arr.copyWithin"></a>arr.copyWithin</h3><p>copyWithin方法接收三个参数，被替换数据的开始处、替换块的开始处、替换块的结束处(不包括);copyWithin(s,m,n).</p><pre><code class="js">    [&quot;w&quot;, &quot;i&quot;, &quot;r&quot;].copyWithin(0)//此时数组不变    [&quot;w&quot;, &quot;i&quot;, &quot;r&quot;].copyWithin(1)//[&quot;w&quot;, &quot;w&quot;, &quot;i&quot;],数组从位置1开始被原数组覆盖，只有1之前的项0保持不变    [&quot;w&quot;, &quot;i&quot;, &quot;r&quot;,&quot;b&quot;].copyWithin(1,2)//[&quot;w&quot;, &quot;r&quot;, &quot;b&quot;, &quot;b&quot;],索引2到最后的r,b两项分别替换到原数组1开始的各项，当数量不够，变终止    [&quot;w&quot;, &quot;i&quot;, &quot;r&quot;,&#39;b&#39;].copyWithin(1,2,3)//[&quot;w&quot;, &quot;r&quot;, &quot;r&quot;, &quot;b&quot;]，强第1项的i替换为第2项的r</code></pre><h3 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a>Array.from()</h3><p>Array.from可以把带有lenght属性类似数组的对象转换为数组，也可以把字符串等可以遍历的对象转换为数组，它接收2个参数，转换对象与回调函数</p><pre><code class="js">    Array.from({&#39;0&#39;:&#39;w&#39;,&#39;1&#39;:&#39;b&#39;,length:2})//[&quot;w&quot;, &quot;b&quot;],返回数组的长度取决于对象中的length，故此项必须有！    Array.from({&#39;0&#39;:&#39;w&#39;,&#39;1&#39;:&#39;b&#39;,length:4})//[&quot;w&quot;, &quot;b&quot;, undefined, undefined],数组后2项没有属性去赋值，故undefined    Array.from({&#39;0&#39;:&#39;w&#39;,&#39;1&#39;:&#39;b&#39;,length:1})//[&quot;w&quot;],length小于key的数目，按序添加数组    //////////////////////////////    let divs=document.getElementsByTagName(&#39;div&#39;);    Array.from(divs)//返回div元素数组    Array.from(&#39;wbiokr&#39;)//[&quot;w&quot;, &quot;b&quot;, &quot;i&quot;, &quot;o&quot;, &quot;k&quot;, &quot;r&quot;]    Array.from([1,2,3],function(x){            return x+1})//[2, 3, 4],第二个参数为回调函数</code></pre><h3 id="arr-sort-callback"><a href="#arr-sort-callback" class="headerlink" title="arr.sort(callback)"></a>arr.sort(callback)</h3><p>如果方法没有使用参数，那么将按照字母顺序对数组元素进行排序</p><pre><code class="js">    var arr = [        {name:&#39;zopp&#39;,age:0},        {name:&#39;gpp&#39;,age:18},        {name:&#39;yjj&#39;,age:8}    ];    var compare = age =&gt; {       return (a,b) =&gt; {           return a[age] - b[age];       }    }    arr.sort(compare(age))</code></pre><h3 id="arr-indexOf"><a href="#arr-indexOf" class="headerlink" title="arr.indexOf()"></a>arr.indexOf()</h3><p>从前往后遍历，返回item在数组中的索引位，如果没有返回-1；通常用来判断数组中有没有某个元素。可以接收两个参数，第一个参数是要查找的项，第二个参数是查找起点位置的索引</p><h3 id="arr-lastIndexOf"><a href="#arr-lastIndexOf" class="headerlink" title="arr.lastIndexOf()"></a>arr.lastIndexOf()</h3><p>与indexOf一样，区别是从后往前找。</p><h3 id="arr-flat"><a href="#arr-flat" class="headerlink" title="arr.flat()"></a>arr.flat()</h3><p>数组的成员有时还是数组，Array.prototype.flat()用于将嵌套的数组“拉平”，变成一维数组。该方法返回一个新数组，对原数据没有影响<br>flat()默认只会“拉平”一层，如果想要“拉平”多层的嵌套数组，可以将flat()方法的参数写成一个整数，表示想要拉平的层数，默认为1</p><pre><code class="js">    [1, 2, [3, 4]].flat()    // [1, 2, 3, 4]    [1, 2, [3, [4, 5]]].flat()    // [1, 2, 3, [4, 5]]    [1, 2, [3, [4, 5]]].flat(2)    // [1, 2, 3, 4, 5]</code></pre><h3 id="arr-flatMap"><a href="#arr-flatMap" class="headerlink" title="arr.flatMap()"></a>arr.flatMap()</h3><p>flatMap()方法对原数组的每个成员执行一个函数，相当于执行Array.prototype.map(),然后对返回值组成的数组执行flat()方法。该方法返回一个新数组，不改变原数组。</p><pre><code class="js">    // 相当于 [[2, 4], [3, 6], [4, 8]].flat()    [2, 3, 4].flatMap((x) =&gt; [x, x * 2])    // [2, 4, 3, 6, 4, 8]</code></pre><p>发现一个比较好的js组件，地址： <a href="https://www.lodashjs.com/" target="_blank" rel="noopener">https://www.lodashjs.com/</a>  里面有很多关于对数组的操作</p>]]></content>
       
       
       <categories>

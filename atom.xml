@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2020-07-10T00:43:19.437Z</updated>
+  <updated>2020-07-10T02:57:18.483Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,98 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IntelliJ 软件代理报错：You have JVM property https.proxyHost set..</title>
+    <link href="http://blog.joylau.cn/2020/07/20/IntelliJIDEA-Proxy/"/>
+    <id>http://blog.joylau.cn/2020/07/20/IntelliJIDEA-Proxy/</id>
+    <published>2020-07-20T01:37:26.000Z</published>
+    <updated>2020-07-10T02:57:18.483Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h3><pre><code class="shell">    You have JVM property https.proxyHost set to &#39;...&#39;.    This may lead to incorrect behaviour. Proxy should be set in Settings | Proxy</code></pre><p>这是由于本地开启了科学上网代理服务造成的</p><h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>select Help -&gt; Edit Custom VM Options add below:</p><p>-Dhttp.proxyHost<br>-Dhttp.proxyPort<br>-Dhttps.proxyHost<br>-Dhttps.proxyPort<br>-DsocksProxyHost<br>-DsocksProxyPort</p>]]></content>
+    
+    <summary type="html">
+    
+      IntelliJ 软件代理报错：You have JVM property https.proxyHost set..
+    
+    </summary>
+    
+    
+      <category term="IntelliJ IDEA篇" scheme="http://blog.joylau.cn/categories/IntelliJ-IDEA%E7%AF%87/"/>
+    
+    
+      <category term="IntelliJ IDEA" scheme="http://blog.joylau.cn/tags/IntelliJ-IDEA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>async 在箭头函数上的使用方式</title>
+    <link href="http://blog.joylau.cn/2020/07/10/JavaScript-Async/"/>
+    <id>http://blog.joylau.cn/2020/07/10/JavaScript-Async/</id>
+    <published>2020-07-10T02:57:18.483Z</published>
+    <updated>2020-07-10T02:57:18.483Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><pre><code class="js">    fun = async () =&gt; {       await .....    }</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      async 在箭头函数上的使用方式
+    
+    </summary>
+    
+    
+      <category term="JavaScript篇" scheme="http://blog.joylau.cn/categories/JavaScript%E7%AF%87/"/>
+    
+    
+      <category term="JavaScript" scheme="http://blog.joylau.cn/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 多文件边压缩边下载</title>
+    <link href="http://blog.joylau.cn/2020/07/01/Java-Multi-Files-Compress-Downloading/"/>
+    <id>http://blog.joylau.cn/2020/07/01/Java-Multi-Files-Compress-Downloading/</id>
+    <published>2020-07-01T01:42:35.000Z</published>
+    <updated>2020-07-10T02:57:18.483Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><p>有时我们希望在后台实时生成文件并下载到客户端</p><pre><code class="java">    @GetMapping(value = &quot;download&quot;)    public void download(HttpServletResponse response) {       try(OutputStream outputStream = response.getOutputStream();          ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream, StandardCharsets.UTF_8)       ) {          response.setContentType(&quot;application/octet-stream&quot;);          response.setHeader(&quot;Content-Disposition&quot;, &quot;attachment; filename=&quot; + new String(&quot;压缩文件.zip&quot;.getBytes(&quot;UTF-8&quot;), &quot;ISO-8859-1&quot;));          File[] files = new File(&quot;&quot;).listFiles();          for (File file : files) {             // 单个文件压缩             compress(zipOutputStream, new FileInputStream(file), file.getName());          }          zipOutputStream.flush();       } catch (IOException e) {       }    }    /**     * 单个文件压缩     *     * @param zipOutputStream     * @param inputStream     * @param fileName     * @throws IOException     */    private static void compress(ZipOutputStream zipOutputStream, InputStream inputStream, String fileName) throws IOException {        if (inputStream == null) return;        zipOutputStream.putNextEntry(new ZipEntry(fileName));        int bytesRead;        byte[] buffer = new byte[FileUtil.BUFFER_SIZE];        while ((bytesRead = inputStream.read(buffer)) != -1) {            zipOutputStream.write(buffer, 0, bytesRead);        }        zipOutputStream.closeEntry();        inputStream.close();    }</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      Java 多文件边压缩边下载
+    
+    </summary>
+    
+    
+      <category term="Java篇" scheme="http://blog.joylau.cn/categories/Java%E7%AF%87/"/>
+    
+    
+      <category term="Java" scheme="http://blog.joylau.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Electron ---- Better-Sqlite3 使用问题</title>
+    <link href="http://blog.joylau.cn/2020/06/10/Electron-Better-Sqlite3/"/>
+    <id>http://blog.joylau.cn/2020/06/10/Electron-Better-Sqlite3/</id>
+    <published>2020-06-10T01:33:34.000Z</published>
+    <updated>2020-07-10T02:57:18.483Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><pre><code class="bash">     The module &#39;/node_modules/better-sqlite3/build/better_sqlite3.node&#39;    was compiled against a different Node.js version using    NODE_MODULE_VERSION 57. This version of Node.js requires    NODE_MODULE_VERSION 64. Please try re-compiling or re-installing    the module (for instance, using `npm rebuild` or `npm install`).</code></pre><h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p><code>npm install --save-dev electron-rebuild</code><br>使用electron-rebuild进行重新编译:</p><p><code>node_modules/.bin/electron-rebuild -f -w better-sqlite3</code></p><p>如果没有编译成功, 则查看是否安装了, node-gyp<br>因为在 electron-rebuild 项目的 README 里,<br>看到这句话: </p><pre><code class="bash">    If you have a good node-gyp config but you see an error about a missing element on Windows like `Could not load the Visual C++ component &quot;VCBuild.exe&quot;`, try to launch electron-rebuild in an npm script:</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      Electron 使用 Better-Sqlite3 报错的问题记录
+    
+    </summary>
+    
+    
+      <category term="Electron篇" scheme="http://blog.joylau.cn/categories/Electron%E7%AF%87/"/>
+    
+    
+      <category term="Electron" scheme="http://blog.joylau.cn/tags/Electron/"/>
+    
+  </entry>
   
   <entry>
     <title>OpenVPN 配置文件说明</title>
@@ -385,100 +477,6 @@
     
     
       <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker LibreOffice Online Requesting address is denied&amp;#58; &amp;#58;&amp;#58; ffff&amp;#58;172.xx.xx.xx 错误解决记录</title>
-    <link href="http://blog.joylau.cn/2020/04/12/Docker-LibreOffice-Online/"/>
-    <id>http://blog.joylau.cn/2020/04/12/Docker-LibreOffice-Online/</id>
-    <published>2020-04-12T04:37:17.000Z</published>
-    <updated>2020-07-10T00:43:19.432Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>这是容器内使用 ipv6 造成的<br>解决方式:<br>添加参数</p><pre><code class="text">    - e &#39;extra_params=--o:ssl.enable=false --o:net.post_allow.host[0]=.\{1,99\}&#39;</code></pre><p>使用正则匹配所有 ip , 注意使用单引号, 否则反斜杠需要转义</p>]]></content>
-    
-    <summary type="html">
-    
-      Docker LibreOffice Online Requesting address is denied&amp;#58; &amp;#58;&amp;#58;ffff&amp;#58;172.xx.xx.xx 错误解决记录
-    
-    </summary>
-    
-    
-      <category term="Docker篇" scheme="http://blog.joylau.cn/categories/Docker%E7%AF%87/"/>
-    
-    
-      <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>各种代理设置汇总记录</title>
-    <link href="http://blog.joylau.cn/2020/04/01/Daily-Various-Proxy-Setting/"/>
-    <id>http://blog.joylau.cn/2020/04/01/Daily-Various-Proxy-Setting/</id>
-    <published>2020-04-01T13:58:25.000Z</published>
-    <updated>2020-07-10T00:43:19.432Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>以前博客多多少少写个一些常用工具的代理设置,这里做一个汇总, 以后有更多工具使用代理直接在此处记录了</p><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>如果代理有用户名密码的话, 使用</p><pre><code class="bash">    http://username:password@127.0.0.1:1087    # 或者    sockts5://username:password@127.0.0.1:1087</code></pre><h3 id="Mac-终端代理设置"><a href="#Mac-终端代理设置" class="headerlink" title="Mac 终端代理设置"></a>Mac 终端代理设置</h3><p><code>export HTTP_PROXY=http://127.0.0.1:1087</code></p><p><code>export SOCKS5_PROXY=socks5://127.0.0.1:1086</code></p><p><code>export ALL_PROXY=socks5://127.0.0.1:1086</code></p><p>我一般直接使用最后一种方式,简单粗暴</p><h3 id="HomeBrew-代理设置"><a href="#HomeBrew-代理设置" class="headerlink" title="HomeBrew 代理设置"></a>HomeBrew 代理设置</h3><p>同上, 因为 brew 走的 curl,代理设置通用</p><h3 id="Git-代理配置"><a href="#Git-代理配置" class="headerlink" title="Git 代理配置"></a>Git 代理配置</h3><p>需要全局 git 都走代理</p><p><code>git config --global http.proxy &#39;socks5://127.0.0.1:1080&#39;</code><br><code>git config --global https.proxy &#39;socks5://127.0.0.1:1080&#39;</code></p><p>取消</p><p><code>git config --global --unset http.proxy</code><br><code>git config --global --unset https.proxy</code></p><p>但是有时候我们并不需要所有的 git 仓库都走代理,可以去掉上述的命令中的 –global,然后到你需要走代理的那个 git 仓库下执行命令,或者添加配置:</p><p>单独配置 git 走代理<br>在 .git =&gt; config 文件中加入配置</p><pre><code class="bash">    [https]        proxy = socks5://127.0.0.1:1080    [http]        proxy = socks5://127.0.0.1:1080</code></pre><h3 id="Linux-终端代理"><a href="#Linux-终端代理" class="headerlink" title="Linux 终端代理"></a>Linux 终端代理</h3><p>同 <strong>Mac 终端代理设置</strong></p><h3 id="Ubuntu-桌面版使用全局代理"><a href="#Ubuntu-桌面版使用全局代理" class="headerlink" title="Ubuntu 桌面版使用全局代理"></a>Ubuntu 桌面版使用全局代理</h3><p>以前我使用的是: <a href="http://blog.joylau.cn/2018/08/08/Git-Proxy-And-Ubuntu-Global-Proxy/">http://blog.joylau.cn/2018/08/08/Git-Proxy-And-Ubuntu-Global-Proxy/</a><br>现在我使用的是: Clash</p><h3 id="Gradle-配置代理"><a href="#Gradle-配置代理" class="headerlink" title="Gradle 配置代理"></a>Gradle 配置代理</h3><p>配置 gradle.properties</p><pre><code class="properties">    ## http    systemProp.http.proxyHost=www.somehost.org    systemProp.http.proxyPort=8080    systemProp.http.proxyUser=userid    systemProp.http.proxyPassword=password    systemProp.http.nonProxyHosts=*.nonproxyrepos.com|localhost    ## https    systemProp.https.proxyHost=www.somehost.org    systemProp.https.proxyPort=8080    systemProp.https.proxyUser=userid    systemProp.https.proxyPassword=password    systemProp.https.nonProxyHosts=*.nonproxyrepos.com|localhost</code></pre><h3 id="Docker-配置代理"><a href="#Docker-配置代理" class="headerlink" title="Docker 配置代理"></a>Docker 配置代理</h3><p>在命令行使用 export HTTP_PROXY=xxxx:xx , 命令行里绝大部分命令都可以使用此代理联网,但是安装的 docker 不行,无法 pull 下来镜像文件,想要 pull 使用代理的话,需要添加代理的变量<br>vim /usr/lib/systemd/system/docker.service<br>添加</p><p><code>Environment=HTTP_PROXY=http://xxxx:xxx</code><br><code>Environment=HTTPS_PROXY=http://xxxx:xxx</code></p><p>保存</p><p><code>systemctl deamon-reload</code><br><code>systemctl restart docker</code></p><h3 id="npm-使用代理"><a href="#npm-使用代理" class="headerlink" title="npm 使用代理"></a>npm 使用代理</h3><p>npm 支持 http 代理，但是不支持 socks 代理</p><pre><code class="bash">    npm config set proxy &quot;http://localhost:1087&quot;    npm config set https-proxy &quot;http://localhost:1087&quot;</code></pre><p>该设置方式是永久的，全局的，想要取消的话，使用</p><p>删除代理</p><pre><code class="bash">    npm config delete proxy    npm config delete https-proxy</code></pre><h3 id="apt-get-使用代理"><a href="#apt-get-使用代理" class="headerlink" title="apt-get 使用代理"></a>apt-get 使用代理</h3><p>使用参数 <code>-o Acquire</code></p><pre><code class="bash">    sudo apt-get -o Acquire::http::proxy=&quot;http://host:port&quot; update/install ...</code></pre><p>该代理是一次性的，关闭 shell 即失效</p>]]></content>
-    
-    <summary type="html">
-    
-      以前博客多多少少写个一些常用工具的代理设置,这里做一个汇总,以后有更多工具使用代理直接在此处记录了
-    
-    </summary>
-    
-    
-      <category term="日常折腾篇" scheme="http://blog.joylau.cn/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE%E7%AF%87/"/>
-    
-    
-      <category term="Proxy" scheme="http://blog.joylau.cn/tags/Proxy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>真·Docker 自动部署个人博客</title>
-    <link href="http://blog.joylau.cn/2020/03/18/Docker-Auto-Publish-Blog/"/>
-    <id>http://blog.joylau.cn/2020/03/18/Docker-Auto-Publish-Blog/</id>
-    <published>2020-03-18T08:41:53.000Z</published>
-    <updated>2020-07-10T00:43:19.432Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="何为-真"><a href="#何为-真" class="headerlink" title="何为 真"></a>何为 <code>真</code></h3><p>以前我都是服务器上执行定时任务,在凌晨的时候 pull 博客仓库在 hexo 编译, 在上传到 github 静态资源库, 在 pull 静态资源库到 nginx 目录下,这样实现个人博客的发布</p><p>真: 放弃定时任务, 采用 github 的钩子, 在博客仓库有 push 行为时,立马执行上述操作, 以前直接在服务器上写的脚本来执行,这次决定将这些操作打包成一个 docker 镜像, 随时随地可部署</p><p>避免了部署还需要配置定时任务和写一批脚本的问题.</p><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol><li>以 Ubuntu 18.04 为基础镜像,进行镜像的制作</li><li>docker run -it -name blog-auto-publish ubuntu:18.04 /bin/bash</li><li>apt update</li><li>apt install git</li><li>apt install vim</li><li>rm -rf /etc/apt/sources.list</li><li>vim /etc/apt/sources.list</li></ol><pre><code class="shell">    deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse    deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse    deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse    deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse    deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse    deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</code></pre><ol start="8"><li>apt update</li><li>apt install curl</li><li>curl -sL <a href="https://deb.nodesource.com/setup_13.x" target="_blank" rel="noopener">https://deb.nodesource.com/setup_13.x</a> | bash </li><li>apt-get install -y nodejs</li><li>npm install hexo -g</li><li>apt install nginx</li><li>apt install fcgiwrap</li></ol><h3 id="新建目录"><a href="#新建目录" class="headerlink" title="新建目录"></a>新建目录</h3><p>mkdir /my-blog<br>mkdir -p /my-blog/bash<br>mkdir -p /my-blog/logs</p><h3 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h3><p>git clone <a href="https://github.com/JoyLau/blog.git" target="_blank" rel="noopener">https://github.com/JoyLau/blog.git</a></p><p>cd blog</p><p>npm install</p><h3 id="建立命令"><a href="#建立命令" class="headerlink" title="建立命令"></a>建立命令</h3><p>vim /my-blog/bash/init.sh</p><p>vim init.sh</p><pre><code class="bash">    #!/usr/bin/env bash    chown -R www-data:www-data /my-blog/* &amp;&amp; service fcgiwrap start &amp;&amp; service nginx start &amp;&amp; tail -f -n 500 /my-blog/logs/publish.log</code></pre><p>vim /my-blog/bash/pull-deploy.sh</p><pre><code class="bash">    #! /usr/bin/env bash    cd /my-blog/blog &amp;&amp; \    ## git checkout -- _config.yml &amp;&amp; \    git pull &amp;&amp; \    echo `pwd` &amp;&amp; \    ## update config    ## sed -i &quot;s/https:\/\/name:password@github.com\/JoyLau\/blog-public.git/https:\/\/$GITHUB_REPO_USERNAME:$GITHUB_REPO_PASSWORD@github.com\/$GITHUB_REPO_USERNAME\/$GITHUB_REPO_NAME.git/g&quot; _config.yml &amp;&amp; \    ## hexo clean &amp;&amp; \    hexo g    ## hexo d</code></pre><p>vim /my-blog/bash/publish.sh</p><pre><code class="bash">    #!/bin/bash    echo &quot;Content-Type:text/html&quot;    echo &quot;&quot;    echo &quot;ok&quot;    /my-blog/bash/pull-deploy.sh&gt;/my-blog/logs/publish.log</code></pre><p>注意: 前 2 行是必须的.这样发出请求会有返回</p><h3 id="配置-nginx"><a href="#配置-nginx" class="headerlink" title="配置 nginx"></a>配置 nginx</h3><p>vim /etc/nginx/sites-available/default </p><pre><code class="nginx">    server {        listen 80 default_server;        listen [::]:80 default_server;        index index.html index.htm index.nginx-debian.html;        server_name _;        location / {                # First attempt to serve request as file, then                # as directory, then fall back to displaying a 404.                try_files $uri $uri/ =404;        }    }    server {            listen 8080 default_server;            listen [::]:8080 default_server;            root /my-blog/bash;            server_name _;            location ~ ^/.*\.sh  {              gzip off;              fastcgi_pass  unix:/var/run/fcgiwrap.socket;              include fastcgi_params;              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;            }    }</code></pre><p>nginx -t 检查错误</p><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol><li>fcgiwrap 不能以 root 组或者 root 用户运行, 这点在配置文件 /etc/init.d/fcgiwrap 可以配置,默认为 www-data, 因此 nginx 的用户也设置为 www-data,同时设置 /my-blog 目录下所属者为 www-data</li></ol><h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><pre><code class="text">    FROM nas.joylau.cn:5007/joy/blog.joylau.cn:1.0    LABEL maintainer=&quot;blog.joylau.cn&quot;    ENV GITHUB_REPO_USERNAME &quot;&quot;    ENV GITHUB_REPO_PASSWORD &quot;&quot;    ENV GITHUB_REPO_NAME &quot;&quot;    ENV REPO_INFO &quot;&quot;    EXPOSE 80    EXPOSE 8080    CMD [&quot;sh&quot;, &quot;/my-blog/bash/init.sh&quot;]</code></pre><p>打包镜像:<br>docker build -t nas.joylau.cn:5007/joy/blog.joylau.cn:1.0 .</p><p>打包后镜像大小为: 294 MB</p><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>docker run -p 8081:80 -p 8082:8080 -d –name blog.joylau.cn nas.joylau.cn:5007/joy/blog.joylau.cn:1.0</p><h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><ol><li>80 端口提供的服务为 blog 页面</li><li>8080 端口提供的服务为执行 shell 命令</li><li>提供 webhook 为 <a href="http://host:port/publish.sh">http://host:port/publish.sh</a> ,通过请求这个请求来更新博客</li><li>查看日志文件有 /my-blog/logs/publish.log 和 nginx 的日志文件 /var/log/nginx/error.log</li></ol><h3 id="后续优化备忘"><a href="#后续优化备忘" class="headerlink" title="后续优化备忘"></a>后续优化备忘</h3><ol><li>删除原来的 /var/log/nginx/error.log 日志里的错误信息，现有的错误信息是是测试使用产生的</li><li>在镜像里就执行一遍 chown -R www-data:www-data /my-blog/* , 否则的话容器刚启动的时候会很慢， 可以不执行 hexo g ,使用 hexo g –watch 实时监听文件变化，也不需要 nginx 了，直接使用 hexo-server ,开启 –debug 参数打印详细日志信息 </li><li>考虑将 publish.sh 的最后一行命令不等待执行完就返回，现在的情况是部署到配置较低的机器上执行很慢，会导致请求超时，虽然不影响执行结果</li><li>配置好容器内的时区，使得日志的时间戳更明显</li></ol><h3 id="优化更新记录-2020-04-01"><a href="#优化更新记录-2020-04-01" class="headerlink" title="优化更新记录 [2020-04-01]"></a>优化更新记录 [2020-04-01]</h3><ol><li>设置时区:</li></ol><pre><code class="bash">    apt-get install tzdata    然后依次选择 6 , 70 即可    使用 dpkg-reconfigure tzdata 来重写选择</code></pre><ol start="2"><li>清空 nginx 日志文件</li></ol><pre><code class="bash">    echo &quot;&quot; &gt; /var/log/nginx/error.log     echo &quot;&quot; &gt; /var/log/nginx/access.log </code></pre><ol start="3"><li>webhooks 不等待执行完就返回<br>vim /my-blog/bash/publish.sh</li></ol><pre><code class="bash">    #!/bin/bash    echo &quot;Content-Type:text/html&quot;    echo &quot;&quot;    echo &quot;ok&quot;    /my-blog/bash/pull-deploy.sh&gt;/my-blog/logs/publish.log 2&gt;&amp;1 &amp;</code></pre><ol start="4"><li>实时监听文件变化<br>vim /my-bog/bash/init.sh</li></ol><pre><code class="bash">    #!/usr/bin/env bash    service fcgiwrap start    service nginx start    cd /my-blog/blog/ &amp;&amp; nohup hexo g --watch &gt;/my-blog/logs/hexo-generate.log 2&gt;&amp;1 &amp;    tail -f -n 500 /my-blog/logs/publish.log /my-blog/logs/hexo-generate.log /var/log/nginx/error.log /var/log/nginx/access.log </code></pre><ol start="5"><li>不使用 dockerfile 来构建,直接使用 docker commit</li></ol><pre><code class="bash">    docker commit -c &#39;CMD [&quot;sh&quot;, &quot;/my-blog/bash/init.sh&quot;]&#39; -c &quot;EXPOSE 80&quot; -c &quot;EXPOSE 8080&quot; -a &quot;JoyLau&quot; -m &quot;JoyLau&#39;s Blog Docker Image&quot;  blog nas.joylau.cn:5007/joy/blog.joylau.cn:2.1</code></pre><h3 id="优化更新记录-2020-04-02"><a href="#优化更新记录-2020-04-02" class="headerlink" title="优化更新记录 [2020-04-02]"></a>优化更新记录 [2020-04-02]</h3><p>更新脚本:</p><ol><li>init.sh</li></ol><pre><code class="bash">    #!/usr/bin/env bash    echo &quot;Hello! log file in /my-blog/logs/publish.log&quot;    service fcgiwrap start    service nginx start    su - www-data -c &quot;cd /my-blog/blog/ &amp;&amp; git pull&quot;    cd /my-blog/blog/    hexo g --watch | tee -a /my-blog/logs/publish.log</code></pre><ol start="2"><li>publish.sh</li></ol><pre><code class="bash">    #!/bin/bash    echo &quot;Content-Type:text/html&quot;    echo &quot;&quot;    echo &quot;ok\r\n&quot;    /my-blog/bash/pull-deploy.sh | tee -a /my-blog/logs/publish.log</code></pre><ol start="3"><li>pull-deploy.sh</li></ol><pre><code class="bash">    #! /usr/bin/env bash    echo &quot;Prepare to update Blog Posts.....&quot;    cd /my-blog/blog/    git pull</code></pre><h3 id="优化更新记录-2020-04-07"><a href="#优化更新记录-2020-04-07" class="headerlink" title="优化更新记录 [2020-04-07]"></a>优化更新记录 [2020-04-07]</h3><p>新增 republish.sh</p><pre><code class="bash">    #!/usr/bin/env bash    echo &quot;prepare republish......&quot;    cd /my-blog/blog/    hexo clean &amp;&amp; hexo g</code></pre><p>修改 init.sh</p><pre><code class="bash">    #!/usr/bin/env bash    echo &quot;Hello! log file in /my-blog/logs/publish.log&quot;    service fcgiwrap start    service nginx start    su - www-data -c &quot;cd /my-blog/blog/ &amp;&amp; git pull &amp;&amp; hexo g --watch | tee -a /my-blog/logs/publish.log&quot;</code></pre><h3 id="使用-Dockerfile-构建-2020-04-21-更新"><a href="#使用-Dockerfile-构建-2020-04-21-更新" class="headerlink" title="使用 Dockerfile 构建 [2020-04-21 更新]"></a>使用 Dockerfile 构建 [2020-04-21 更新]</h3><p>在容器里各种操作是在是太黑箱了,日后极难维护,这里我编写 Dockerfile 来构建镜像</p><h4 id="Dockerfile-1"><a href="#Dockerfile-1" class="headerlink" title="Dockerfile"></a>Dockerfile</h4><pre><code class="dockerfile">    FROM node:latest    MAINTAINER joylau 2587038142.liu@gmail.com    LABEL Descripttion=&quot;This image is JoyLau&#39;s Bolg&quot;    ENV GIT_REPO=&quot;https://github.com/JoyLau/blog.git&quot;    ENV BRANCH master    EXPOSE 80 8081    ADD sources.list /etc/apt/sources.list    RUN apt-get update &amp;&amp;\        apt-get install -y gosu nginx git fcgiwrap &amp;&amp;\        npm install hexo -g &amp;&amp;\        npm install -g cnpm --registry=https://registry.npm.taobao.org    COPY nginx.default.conf /etc/nginx/sites-available/default    RUN mkdir -p /my-blog/bash /my-blog/logs    COPY *.sh /my-blog/bash/    RUN chown -R www-data:www-data /my-blog &amp;&amp;\        chmod -R 777 /var/www &amp;&amp;\        chmod +x /my-blog/bash/*.sh    ENTRYPOINT [&quot;/my-blog/bash/docker-entrypoint.sh&quot;]    CMD [&quot;/my-blog/bash/init.sh&quot;]</code></pre><h4 id="docker-entrypoint-sh"><a href="#docker-entrypoint-sh" class="headerlink" title="docker-entrypoint.sh"></a>docker-entrypoint.sh</h4><pre><code class="bash">    #!/bin/bash    set -e    if [ &quot;$1&quot; = &#39;/my-blog/bash/init.sh&#39; -a &quot;$(id -u)&quot; = &#39;0&#39; ]; then        service nginx start        service fcgiwrap start        echo &quot;☆☆☆☆☆ base service has started. ☆☆☆☆☆&quot;        exec gosu www-data &quot;$0&quot; &quot;$@&quot;    fi    exec &quot;$@&quot;</code></pre><h4 id="init-sh"><a href="#init-sh" class="headerlink" title="init.sh"></a>init.sh</h4><pre><code class="bash">    #! /bin/bash    cd /my-blog    echo &quot;☆☆☆☆☆ your git repo is [$GIT_REPO] ; branch is [$BRANCH]. ☆☆☆☆☆&quot;    git clone -b $BRANCH --progress $GIT_REPO blog    cd blog    cnpm install -d    hexo g --watch --debug | tee -a /my-blog/logs/genrate.log</code></pre><h4 id="nginx-default-conf"><a href="#nginx-default-conf" class="headerlink" title="nginx.default.conf"></a>nginx.default.conf</h4><pre><code class="config">    server {        listen 80 default_server;        listen [::]:80 default_server;        index index.html index.htm index.nginx-debian.html;        server_name _;        root /my-blog/blog/public;        location / {                # First attempt to serve request as file, then                # as directory, then fall back to displaying a 404.                try_files $uri $uri/ =404;        }    }    server {            listen 8081 default_server;            listen [::]:8080 default_server;            root /my-blog/bash;            server_name _;            location ~ ^/.*\.sh  {              gzip off;              fastcgi_pass  unix:/var/run/fcgiwrap.socket;              include fastcgi_params;              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;            }    }</code></pre><h4 id="publish-sh"><a href="#publish-sh" class="headerlink" title="publish.sh"></a>publish.sh</h4><pre><code class="bash">    #!/bin/bash    echo &quot;Content-Type:text/html&quot;    echo &quot;&quot;    echo &quot;&lt;h1&gt;ok&lt;/h1&gt;&quot;    echo &quot;&lt;h3&gt;Prepare to update Blog Posts.....&lt;/h3&gt;&quot;    cd /my-blog/blog/    git pull</code></pre><h4 id="republish-sh"><a href="#republish-sh" class="headerlink" title="republish.sh"></a>republish.sh</h4><pre><code class="bash">    #!/bin/bash    echo &quot;Content-Type:text/html&quot;    echo &quot;&quot;    echo &quot;&lt;h1&gt;ok&lt;/h1&gt;&quot;    echo &quot;&lt;h3&gt;republish blog.....&lt;/h3&gt;&quot;    cd /my-blog/blog    hexo g --force</code></pre><h4 id="sources-list"><a href="#sources-list" class="headerlink" title="sources.list"></a>sources.list</h4><pre><code class="text">    deb http://mirrors.163.com/debian/ stretch main non-free contrib    deb http://mirrors.163.com/debian/ stretch-updates main non-free contrib    deb http://mirrors.163.com/debian/ stretch-backports main non-free contrib    deb-src http://mirrors.163.com/debian/ stretch main non-free contrib    deb-src http://mirrors.163.com/debian/ stretch-updates main non-free contrib    deb-src http://mirrors.163.com/debian/ stretch-backports main non-free contrib    deb http://mirrors.163.com/debian-security/ stretch/updates main non-free contrib    deb-src http://mirrors.163.com/debian-security/ stretch/updates main non-free contrib</code></pre><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><pre><code class="bash">    docker run -d --restart always --name blog -p 8001:80 -p 8002:8081 nas.joylau.cn:5007/joy/blog.joylau.cn:3.0</code></pre><h3 id="加入代理-2020-04-28更新"><a href="#加入代理-2020-04-28更新" class="headerlink" title="加入代理 [2020-04-28更新]"></a>加入代理 [2020-04-28更新]</h3><p>遇到初始化容器很慢的情况, 原因是 git clone 很慢<br>本次在 init.sh 脚本里加入了 git 代理设置, 有代理的条件的可以设置代理<br>快速启动容器</p>]]></content>
-    
-    <summary type="html">
-    
-      Docker 自动部署个人博客
-    
-    </summary>
-    
-    
-      <category term="Docker篇" scheme="http://blog.joylau.cn/categories/Docker%E7%AF%87/"/>
-    
-    
-      <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MacOS HomeBrew 更新遇到的问题解决</title>
-    <link href="http://blog.joylau.cn/2020/03/18/MacOS-Homebrew-Question/"/>
-    <id>http://blog.joylau.cn/2020/03/18/MacOS-Homebrew-Question/</id>
-    <published>2020-03-18T04:08:41.000Z</published>
-    <updated>2020-07-10T00:43:19.436Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>brew update 遇到错误, 错误信息如下:</p><pre><code class="shell">   Updating Homebrew...   Warning: You are using macOS 10.15.   We do not provide support for this pre-release version.   You will encounter build failures with some formulae.   Please create pull requests instead of asking for help on Homebrew&#39;s GitHub,   Discourse, Twitter or IRC. You are responsible for resolving any issues you   experience, as you are running this pre-release version.</code></pre><h2 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h2><ol><li>brew doctor</li></ol><p>运行后发现源为科大的源, 于是切换回原来的官方的 brew 源</p><pre><code class="shell">   cd &quot;$(brew --repo)&quot;   git remote set-url origin https://github.com/Homebrew/brew.git</code></pre><p>有其他问题,建议按照提示一一解决掉  </p><ol start="2"><li>brew update</li></ol><p>更新成功</p><ol start="3"><li>brew config</li></ol><p>查看配置</p>]]></content>
-    
-    <summary type="html">
-    
-      MacOS HomeBrew 更新遇到的问题解决
-    
-    </summary>
-    
-    
-      <category term="MacOS篇" scheme="http://blog.joylau.cn/categories/MacOS%E7%AF%87/"/>
-    
-    
-      <category term="MacOS" scheme="http://blog.joylau.cn/tags/MacOS/"/>
-    
-      <category term="brew" scheme="http://blog.joylau.cn/tags/brew/"/>
     
   </entry>
   

@@ -150,41 +150,40 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Ubuntu篇"><b>「
-                </b>UBUNTU篇<b> 」</b></a>
+            <a href="/categories/OpenCV篇"><b>「
+                </b>OPENCV篇<b> 」</b></a>
             
-            四月 10, 2019
+            五月 05, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/04/10/Ubuntu-Remote-Desktop/" title="Ubuntu 优雅的远程桌面服务端配置" class="posttitle">Ubuntu 优雅的远程桌面服务端配置</a></h3>
+            <a href="/2019/05/05/OpenCV-Baidu-Traffic-2/" title="OpenCV --- 基于 OpenCV 的百度路况研究记录 (二)" class="posttitle">OpenCV --- 基于 OpenCV 的百度路况研究记录 (二)</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                4.9k
+                2.1k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                4 mins.
+                2 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<p>上一篇文章记录了因为远程桌面连接把 Ubuntu 的 <code>/home</code> 弄坏了<br>好一番折腾。。。。<br>其实这个远程桌面我早就想重新配置了，今天我终于受不了它了，于是我觉得仔细研究一番找到适合我自己的方式来操作</p>
-...
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>本篇就之前对于拥堵路段为曲线状且涉及多个路段时分析的结果差强人意的情况进行了算法重构</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>之前算法核心是 找出分段拥堵,并提取信息<br>之前算法的缺陷是使用霍夫变换提取瓦片中的直线时, 无法很好的控制...</p>
             
-            <span class="read-more"><a href="/2019/04/10/Ubuntu-Remote-Desktop/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/05/05/OpenCV-Baidu-Traffic-2/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +208,233 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9242825991041514);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.780998589672041);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/OpenCV篇">
+                  <b>「 </b>OPENCV篇<b> 」</b>
+                </a>
+            
+            五月 05, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/05/05/OpenCV-Baidu-Traffic-2/" title="OpenCV --- 基于 OpenCV 的百度路况研究记录 (二)" class="posttitle">OpenCV --- 基于 OpenCV 的百度路况研究记录 (二)</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2.1k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>本篇就之前对于拥堵路段为曲线状且涉及多个路段时分析的结果差强人意的情况进行了算法重构</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>之前算法核心是 找出分段拥堵,并提取信息<br>之前算法的缺陷是使用霍夫变换提取瓦片中的直线时, 无法很好的控制参数, 导致在临近的曲线情况下分析结果不正确<br>简单示意图:<br>  </p>
+<p>在二维的坐标系中, 控制直线的是参数 m(斜率) 和 b(截距)</p>
+<p>转化为极坐标系再化简后,控制直线的参数是  θ (极角) 和 r(极径)</p>
+<p>原来的思路是曲线是有很多小部分的直线段构成的,如若能够将曲线分成适合的若干线段,那么同样可以将整个曲线...</p>
+            
+            <span class="read-more"><a href="/2019/05/05/OpenCV-Baidu-Traffic-2/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.10105688273858426);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/OpenCV篇">
+                  <b>「 </b>OPENCV篇<b> 」</b>
+                </a>
+            
+            五月 01, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/05/01/OpenCV-Baidu-Traffic-1/" title="OpenCV --- 基于 OpenCV 的百度路况研究记录 (一)" class="posttitle">OpenCV --- 基于 OpenCV 的百度路况研究记录 (一)</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>城市版交通路况的分析基于高速公路路况的基础上以合肥为试点城市进行的研究课题. </p>
+<h3 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h3><p>目前该研究课题已完成:</p>
+<ol>
+<li>筛选出合肥市在百度地图 17 等级下的路况瓦片 62354 张</li>
+<li>对合肥二环路内圈的路况进行分析,目前分析出的路况开发截图</li>
+</ol>
+<p></p>
+<p>分析结果: 用蓝色的线表示,画线时未区分颜色,实际分析已区分<br></p>
+<p>目前已分析提取出的数据有:</p>
+<ol>
+<li><p>拥堵段 2 端点的经纬度(百度,WGS84坐标系)</p>
+</li>
+<li><p>拥堵段距离,精确到到 0.1 m</p>
+</li>
+<li><p>拥堵段的拥堵状态 (缓行,拥堵,严重拥堵)</p>
+</li>
+<li><p>拥堵段的 WKT 空间信息, ...</p></li></ol>
+            
+            <span class="read-more"><a href="/2019/05/01/OpenCV-Baidu-Traffic-1/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.505340859030529);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            四月 25, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/04/25/SpringBoot-Response-Ignore-Null/" title="重剑无锋,大巧不工 SpringBoot --- 序列化返回对象时忽略空或者 null 属性" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 序列化返回对象时忽略空或者 null 属性</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        429
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3><p>在类上加入注解<br><code>@JsonInclude(JsonInclude.Include.NON_EMPTY)</code></p>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p><code>Include.Include.ALWAYS</code>: 默认<br><code>Include.NON_DEFAULT</code>: 属性为默认值不序列化<br><code>Include.NON_EMPTY</code>: 属性为 空（””） 或者为 NULL 都不序列化<br><code>Include.NON_NULL</code>: 属性为NULL 不序列化</p>
+
+            
+            <span class="read-more"><a href="/2019/04/25/SpringBoot-Response-Ignore-Null/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.8707344859883608);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            四月 15, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/04/15/SpringBoot-Ajax-FormData/" title="重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.3k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h3><pre><code class="javascript">    const formData = new FormData();
+
+    fileList.forEach(file =&gt; {
+        formData.append(&#39;file&#39;, file.originFileObj);
+    });
+
+
+    // 每个表单是否填写完成
+    let params = [];
+
+    .....
+
+
+    let data = {};
+    data.filePath = &quot;&quot;;
+    data.markers = params;
+    formData.append(&quot...</code></pre>
+            
+            <span class="read-more"><a href="/2019/04/15/SpringBoot-Ajax-FormData/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.8359751150495127);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -250,220 +475,6 @@
 <p>可这样的连接方式有个很不好的方面，就是这种方式是多用户的，想回家继续没干完...</p>
             
             <span class="read-more"><a href="/2019/04/10/Ubuntu-Remote-Desktop/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.34577314552405203);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Linux篇">
-                  <b>「 </b>LINUX篇<b> 」</b>
-                </a>
-            
-            四月 10, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/04/10/Linux-Fix-DiskError/" title="记录一次 Ubuntu 因磁盘问题导致开机进入紧急模式的情况" class="posttitle">记录一次 Ubuntu 因磁盘问题导致开机进入紧急模式的情况</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        4.5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        4 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p>在家里使用 vnc 协议远程连接公司的 Ubuntu 电脑<br>导致桌面卡死<br>期间还遇到了 搜狗输入法崩溃，提示我删除用户目录下的一个文件然后重启<br>鼠标可以动<br>界面上的任何东西都无法点击<br>没再操作<br>等第二天到公司解决</p>
-<p>这样的情况遇到很多了<br>ctrl + alt + f1</p>
-<pre><code class="bash">    ps -t tty7
-
-    PID TTY          TIME CMD
-    1758 tty7     00:00:55 Xorg
-
-    kill -9 1758
-</code></pre>
-<p>之后桌面上的应用都会被关闭，回到登录界面</p>
-<p>之后我想着电脑很久没关机了，想重启一下，顺便去倒杯水<br>回来之后发现系统...</p>
-            
-            <span class="read-more"><a href="/2019/04/10/Linux-Fix-DiskError/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9664378480256126);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            四月 08, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/04/08/Docker-Start-Error/" title="Docker 启动报错： Error starting daemon： Error initializing network controller： list bridge addresses failed： no available network" class="posttitle">Docker 启动报错： Error starting daemon： Error initializing network controller： list bridge addresses failed： no available network</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        6.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        6 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>Docker 启动报错： Error starting daemon: Error initializing network controller: list bridge addresses failed: no available network</p>
-<p>查看错误日志： <code>journalctl -xe | grep docker</code></p>
-<pre><code class="bash">    [root@lenovo docker]# journalctl -xe | grep docker
-    -- Subject: Unit docker.socket has...</code></pre>
-            
-            <span class="read-more"><a href="/2019/04/08/Docker-Start-Error/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7875675440059184);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/OpenCV篇">
-                  <b>「 </b>OPENCV篇<b> 」</b>
-                </a>
-            
-            四月 03, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/04/03/OpenCV-ByteImage/" title="OpenCV 读取数据流图片" class="posttitle">OpenCV 读取数据流图片</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        8.9k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        8 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>OpenCV 提供的 API 是直接根据路径读取图片的, 在实际生产环境中,可能大部分情况下都是直接读取网络图片</p>
-<p>在内存就完成图片和 opencv 的 Mat 对象的转换</p>
-<p>那么该如何读取 byte[] 的图片呢?</p>
-<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><p>openCV 提供的 API</p>
-<pre><code class="java">    Mat src = Imgcodecs.imread(&quot;/static/img/17.png&quot;);</code></pre>
-<p>很简单的就转化为 Mat 对象</p>
-<p>而 该方法后面还有一个参数, flags, 该参数可选项有:</p>
-<ul>
-<li><strong>IMREAD_UNCHANGED...</strong></li></ul>
-            
-            <span class="read-more"><a href="/2019/04/03/OpenCV-ByteImage/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3157636440073748);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/OpenCV篇">
-                  <b>「 </b>OPENCV篇<b> 」</b>
-                </a>
-            
-            三月 28, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/03/28/OpenCV-Basic/" title="OpenCV 基础知识与概念" class="posttitle">OpenCV 基础知识与概念</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="数字图像"><a href="#数字图像" class="headerlink" title="数字图像"></a>数字图像</h3><p>数字图像指的是现在的图像都是以二维数字表示，每个像素的灰度值均由一个数字表示，范围为0-255(2^8)</p>
-<h3 id="二值图像"><a href="#二值图像" class="headerlink" title="二值图像"></a>二值图像</h3><p>图像中每个像素的灰度值仅可取0或1，即不是取黑，就是取白，二值图像可理解为黑白图像</p>
-<h3 id="灰度图像"><a href="#灰度图像" class="headerlink" title="灰度图像"></a>灰度图像</h3><p>图像中每个像素可以由0-255的灰度值表示，具体表现为从全黑到全白中间有255个介于中间的灰色值可以取</p>
-<h3 id="彩色图像"><a href="#彩色图像" class="headerlink" title="彩色图像"></a>彩色图像</h3><p>每幅图像是由三幅灰度图像组合而成，依次表示红绿蓝三通道的灰度值，即我们熟知的RGB，此时彩色图像要视为三维的 <code>[height，width, 3]</code></p>
-<h3 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h3><p>OpenCV 中，图像...</p>
-            
-            <span class="read-more"><a href="/2019/03/28/OpenCV-Basic/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

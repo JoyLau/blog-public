@@ -153,16 +153,16 @@
             <a href="/categories/Java篇"><b>「
                 </b>JAVA篇<b> 」</b></a>
             
-            八月 23, 2019
+            七月 01, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/08/23/Java-Future/" title="Java 开启子线程执行其他操作，并获取结果" class="posttitle">Java 开启子线程执行其他操作，并获取结果</a></h3>
+            <a href="/2020/07/01/Java-Multi-Files-Compress-Downloading/" title="Java 多文件边压缩边下载" class="posttitle">Java 多文件边压缩边下载</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                475
+                1.6k
             </span>
             
             
@@ -180,11 +180,11 @@
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<p>示例代码，10后抛出超时错误，并且取消子线程任务的执行</p>
-<pre><code class="java">    ExecutorService executorService = Executors.newSingleThreadExecutor();...</code></pre>
+<p>有时我们希望在后台实时生成文件并下载到客户端</p>
+<pre><code class="java">    @GetMapping(value = &quot;download&quot;)
+    public void download(HttpServletResponse...</code></pre>
             
-            <span class="read-more"><a href="/2019/08/23/Java-Future/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/07/01/Java-Multi-Files-Compress-Downloading/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +209,65 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5579777877911394);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4360573090517528);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Java篇">
+                  <b>「 </b>JAVA篇<b> 」</b>
+                </a>
+            
+            八月 23, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/08/23/Java-Future/" title="Java 开启子线程执行其他操作，并获取结果" class="posttitle">Java 开启子线程执行其他操作，并获取结果</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        475
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>示例代码，10后抛出超时错误，并且取消子线程任务的执行</p>
+<pre><code class="java">    ExecutorService executorService = Executors.newSingleThreadExecutor();
+    Future&lt;String&gt; future = executorService.submit(() -&gt; {
+                ....
+            }
+    );
+
+    try {
+        return future.get(10, TimeUnit.SECONDS);
+    } catch (Exception e) {
+        future...</code></pre>
+            
+            <span class="read-more"><a href="/2019/08/23/Java-Future/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.940714003918566);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">

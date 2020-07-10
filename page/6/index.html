@@ -150,42 +150,39 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/大数据篇"><b>「
-                </b>大数据篇<b> 」</b></a>
+            <a href="/categories/Docker篇"><b>「
+                </b>DOCKER篇<b> 」</b></a>
             
-            十二月 23, 2019
+            三月 12, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/12/23/Elasticsearch-Multi-NestedQuery/" title="Elasticsearch Nested 类型动态数据的组合查询" class="posttitle">Elasticsearch Nested 类型动态数据的组合查询</a></h3>
+            <a href="/2020/03/12/Docker-Java-OOM/" title="Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用" class="posttitle">Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                3.7k
+                1.7k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                3 mins.
+                2 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>Nested 类型的数据不多说了,<br>先看 mapping:</p>
-<pre><code class="json">    &quot;metaArray&quot;: {
-        &quot;type&quot;: &quot;nested&quot;,
-        &quot...</code></pre>
+<p>在一次生产环境部署 elasticsearch 节点时 docker 容器设置了 –restart always,<br>此时 elasticsearch 的一个节点发生了 java.lang.OutOfMemoryError...</p>
             
-            <span class="read-more"><a href="/2019/12/23/Elasticsearch-Multi-NestedQuery/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/03/12/Docker-Java-OOM/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +207,215 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.0287664759918409);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.44435569366528593);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            三月 12, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/03/12/Docker-Java-OOM/" title="Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用" class="posttitle">Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.7k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>在一次生产环境部署 elasticsearch 节点时 docker 容器设置了 –restart always,<br>此时 elasticsearch 的一个节点发生了 java.lang.OutOfMemoryError: Java heap space<br>容器并没有重启</p>
+<p>elasticsearch 已经设置了 -Xms -Xmx</p>
+<p>JVM堆内存超出xmx限制，并抛java.lang.OutOfMemoryError: Java heap space异常。堆内存爆了之后，JVM和java进程会继续运行...</p>
+            
+            <span class="read-more"><a href="/2020/03/12/Docker-Java-OOM/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.3677348016149433);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Git篇">
+                  <b>「 </b>GIT篇<b> 」</b>
+                </a>
+            
+            二月 18, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/02/18/Git-Knowledges/" title="Git 知识点小记" class="posttitle">Git 知识点小记</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.6k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<ol>
+<li>工作区尚未暂存的文件: git checkout – 文件名</li>
+<li>已添加到暂存区: git reset HEAD 文件名 &amp;&amp; git checkout – 文件名</li>
+<li>已提交到本地库, 想要撤销提交,并恢复到之前的文件内容: git reset –hard HEAD^</li>
+</ol>
+<p>其中:<br>git reset 有三种参数:</p>
+<ul>
+<li>Soft：这个模式仅仅撤销 commit 记录而已，不影响本地的任何文件，即本地修改的文件内容还会存在,也不影响（index）缓存区的任何文件。</li>
+<li>Hard：不仅撤销 commit...</li></ul>
+            
+            <span class="read-more"><a href="/2020/02/18/Git-Knowledges/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.6209017862891653);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/React篇">
+                  <b>「 </b>REACT篇<b> 」</b>
+                </a>
+            
+            一月 15, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/01/15/React-WebSocket/" title="React WebSocket 的一些配置" class="posttitle">React WebSocket 的一些配置</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        4.4k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        4 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="spring-boot-后台的配置"><a href="#spring-boot-后台的配置" class="headerlink" title="spring boot 后台的配置"></a>spring boot 后台的配置</h3><p>这里记录一些坑<br>使用 gradle 配置, 其中移除了 Tomcat , 使用的是 Undertow<br>先引入依赖</p>
+<p><code>implementation (&#39;org.springframework.boot:spring-boot-starter-websocket&#39;)</code></p>
+<p>提示报错 web 容器没有实现 JSR356<br>undertow 肯定是实现了 JSR356, 在 undertow-websockets-jsr 这个依赖里<br>判断肯定是由于移除 Tomcat 的...</p>
+            
+            <span class="read-more"><a href="/2020/01/15/React-WebSocket/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.058659888724836406);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/React篇">
+                  <b>「 </b>REACT篇<b> 」</b>
+                </a>
+            
+            十二月 26, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/12/26/React-App-Rewired/" title="React-App-Rewired 的一些配置" class="posttitle">React-App-Rewired 的一些配置</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2.6k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="添加多页面配置"><a href="#添加多页面配置" class="headerlink" title="添加多页面配置"></a>添加多页面配置</h3><p>之前写过一篇 npm eject 之后的多页面配置,可以往前翻阅 , 现在不想 eject, 该怎么配置多页面?</p>
+<ol>
+<li><p>npm install react-app-rewire-multiple-entry –save-dev</p>
+</li>
+<li><p>在 config-overrides.js 中添加配置<br>现在 public 里复制一个 html 页面, 在 src 目录下再新增一个目录,里面的文件拷贝 index 的稍微改动下,<br>大致目录如下:</p>
+</li>
+</ol>
+<p>-serviceWorker.js<br>-metadata.js...</p>
+            
+            <span class="read-more"><a href="/2019/12/26/React-App-Rewired/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.834912570330989);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -256,209 +461,6 @@
               &quot...</code></pre>
             
             <span class="read-more"><a href="/2019/12/23/Elasticsearch-Multi-NestedQuery/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6435435957728075);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/IntelliJ IDEA篇">
-                  <b>「 </b>INTELLIJ IDEA篇<b> 」</b>
-                </a>
-            
-            十一月 29, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/11/29/IntelliJIDEA-JetBrains-License/" title="开源项目申请 JetBrains 家族系列软件的 License" class="posttitle">开源项目申请 JetBrains 家族系列软件的 License</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.1k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/IntelliJ-IDEA/" rel="tag">IntelliJ IDEA</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>之前一直用我弟弟的学生证申请的 license,可惜今年毕业了,无法在续费申请了<br>早期已经听说 JetBrains 可以使用自己的开源项目进行申请免费的 license<br>正好使用我的这个博客来申请一波</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
-<li>前往 JetBrains 官方提供的申请链接 (<a href="https://www.jetbrains.com/shop/eform/opensource?product=ALL" target="_blank" rel="noopener">https://www.jetbrains.com/shop/eform/opensource?product=ALL</a>)</li>
-<li>填写资料,其中注意,需要在项目的根目录下创建 License 文件,类型没有差别,我使用的是 MIT LICENSE,还...</li></ol>
-            
-            <span class="read-more"><a href="/2019/11/29/IntelliJIDEA-JetBrains-License/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.23951704739525614);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringBoot篇">
-                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
-                </a>
-            
-            十一月 20, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/11/20/SpringBoot-Spel/" title="Spring EL 表达式 ${} 和" class="posttitle">Spring EL 表达式 ${} 和</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        4.1k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        4 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>个人理解:<br><code>${}</code> : 用于加载外部文件中指定key的值<br><code>#{}</code> : 功能更强大的SpEl表达式，将内容赋值给属性<br><code>#{…}</code> 和 <code>${…}</code> 可以混合使用，但是必须<code>#{}</code>外面，${}在里面,#{ ‘${}’ } ，注意单引号，注意不能反过来</p>
-<h3 id="功能"><a href="#功能" class="headerlink" title="#{} 功能"></a><strong>#{}</strong> 功能</h3><ol>
-<li>直接量表达式: “#{‘Hello World’}”</li>
-<li>使用java代码new/instance of: 此方法只能是java.lang 下的类才可以省略包名 #{“new Spring(‘Hello World’)”}</li>
-<li>使用T(Type): 使用...</li></ol>
-            
-            <span class="read-more"><a href="/2019/11/20/SpringBoot-Spel/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2822996162198985);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            十一月 19, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/11/19/Docker-Logs/" title="Docker 日志信息" class="posttitle">Docker 日志信息</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.3k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>docker 容器启动, 通过 docker logs -f container 可以实时查看日志</p>
-<p>但是控制台输出的日志太多,会怎么样,容器里控制台输出的日志在宿主机什么位置?</p>
-<p>有时容器输出太多,运行时间长了后,会把磁盘撑满…</p>
-<p>docker 里容器的日志都属于标准输出（stdout）<br>每个 container 都是一个特殊的进程，由 docker daemon 创建并启动,docker daemon 来守护和管理</p>
-<p>docker daemon 有一个默认的日志驱动程序，默认为json-file<br>json...</p>
-            
-            <span class="read-more"><a href="/2019/11/19/Docker-Logs/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8501586526252918);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Gradle篇">
-                  <b>「 </b>GRADLE篇<b> 」</b>
-                </a>
-            
-            十一月 13, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/11/13/Gradle-Offline-Mode/" title="gradle No cached version available for offline mode" class="posttitle">gradle No cached version available for offline mode</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        243
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>在 idea 以前的版本里,在 Preferences | Build, Execution, Deployment | Gradle 去掉勾选 Offline work 即可</p>
-<p>但是在最新版 2019.2 里,需要点击 gradle 面板里最上面一排小扳手左边一个图标,取消离线模式 </p>
-
-            
-            <span class="read-more"><a href="/2019/11/13/Gradle-Offline-Mode/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
