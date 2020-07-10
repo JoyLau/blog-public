@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-<!--[if lt IE 9]>
+<head>
+
+    <!--[if lt IE 9]>
         <style>body {display: none; background: none !important} </style>
         <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
     <![endif]-->
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="keywords" content="JoyLau,joylau,JoyLau  blog,刘法,刘法的博客,刘法的技术与思考,Java,JavaWeb,Web程序员,Web开发,JavaWeb开发,个人博客">
-<meta name="format-detection" content="telephone=no">
-<meta name="author" content="JoyLau">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="keywords" content="JoyLau,joylau,JoyLau  blog,刘法,刘法的博客,刘法的技术与思考,Java,JavaWeb,Web程序员,Web开发,JavaWeb开发,个人博客" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="JoyLau" />
 
 
 <meta name="description" content="解决 Docker 容器挂载宿主机上的目录时出现 Permission denied 的错误">
-<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker 容器挂载宿主机上的目录时出现 Permission denied">
 <meta property="og:url" content="http://blog.joylau.cn/2019/03/21/Docker-MountVolumes/index.html">
 <meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
 <meta property="og:description" content="解决 Docker 容器挂载宿主机上的目录时出现 Permission denied 的错误">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-21T10:17:43.109Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-03-21T08:27:48.000Z">
+<meta property="article:modified_time" content="2019-03-21T10:17:43.109Z">
+<meta property="article:author" content="JoyLau">
+<meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 容器挂载宿主机上的目录时出现 Permission denied">
-<meta name="twitter:description" content="解决 Docker 容器挂载宿主机上的目录时出现 Permission denied 的错误">
 
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
 
     <link rel="alternate" href="/atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml">
@@ -49,7 +51,9 @@
     <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
 
 
+
 <link rel="stylesheet" href="/css/style.css">
+
 
 
 
@@ -105,7 +109,7 @@
     <script src="//image.joylau.cn/blog/lettering.js"></script>
     <script src="//image.joylau.cn/blog/textillate.js"></script>
 
-</head></html>
+<meta name="generator" content="Hexo 4.2.0"></head>
 <body>
   <div id="container">
     <div class="left-col">
@@ -125,11 +129,11 @@
 
         
             <form id="search-form">
-            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
             <i class="fa fa-times" onclick="resetSearch()"></i>
             </form>
             <div id="local-search-result"></div>
-            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
         
 
 
@@ -196,13 +200,13 @@
                             
                                 <a class="fa Email" href="mailto:2587038142@qq.com" title="Email"></a>
                             
-                                <a class="fa 知乎" href="https://www.zhihu.com/" title="知乎"></a>
+                                <a class="fa 知乎" href="https://www.zhihu.com/" target="_blank" rel="noopener" title="知乎"></a>
                             
-                                <a class="fa GitHub" href="https://github.com/JoyLau" title="GitHub"></a>
+                                <a class="fa GitHub" href="https://github.com/JoyLau" target="_blank" rel="noopener" title="GitHub"></a>
                             
-                                <a class="fa Facebook" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
+                                <a class="fa Facebook" href="https://www.facebook.com/profile.php?id=100007776496425" target="_blank" rel="noopener" title="Facebook"></a>
                             
-                                <a class="fa 网易云音乐" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
+                                <a class="fa 网易云音乐" href="http://music.163.com/#/user/home?id=246512565" target="_blank" rel="noopener" title="网易云音乐"></a>
                             
                                 <a class="fa QQ" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
                             
@@ -215,7 +219,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/">CMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ClashX/">ClashX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cron/">Cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker-Swarm/">Docker Swarm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker-Compose/">Docker-Compose</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Druid/">Druid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Electron/">Electron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka/">Eureka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Filebeat/">Filebeat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPG/">GPG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GZIP/">GZIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/InnoSetup/">InnoSetup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntelliJ-IDEA/">IntelliJ IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/">JSON</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/">Jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVR/">KVR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LibreOffice/">LibreOffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logstash/">Logstash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lombok/">Lombok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MATE-Desktop/">MATE Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacBookPro/">MacBookPro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mapper/">Mapper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/">OpenCV</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenOffice/">OpenOffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenVPN/">OpenVPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PageHelper/">PageHelper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugins/">Plugins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PowerDesigner/">PowerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/">Proxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/">RabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSL/">SSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBatch/">SpringBatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringSecurity/">SpringSecurity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger2/">Swagger2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tunnelblick/">Tunnelblick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YUM/">YUM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroC-Ice/">ZeroC Ice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew/">brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/emoji/">emoji</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/license/">license</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mariaDB/">mariaDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openoffice/">openoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ownCloud/">ownCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技能/">技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常折腾/">日常折腾</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/磁盘挂载/">磁盘挂载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/群晖/">群晖</a></li></ul>
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/" rel="tag">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/" rel="tag">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/" rel="tag">CMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ClashX/" rel="tag">ClashX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cron/" rel="tag">Cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker-Swarm/" rel="tag">Docker Swarm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker-Compose/" rel="tag">Docker-Compose</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Druid/" rel="tag">Druid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Electron/" rel="tag">Electron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka/" rel="tag">Eureka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Filebeat/" rel="tag">Filebeat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPG/" rel="tag">GPG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GZIP/" rel="tag">GZIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/" rel="tag">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/InnoSetup/" rel="tag">InnoSetup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntelliJ-IDEA/" rel="tag">IntelliJ IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/" rel="tag">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/" rel="tag">JSON</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/" rel="tag">Jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVR/" rel="tag">KVR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/" rel="tag">Kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LibreOffice/" rel="tag">LibreOffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logstash/" rel="tag">Logstash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lombok/" rel="tag">Lombok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MATE-Desktop/" rel="tag">MATE Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacBookPro/" rel="tag">MacBookPro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mapper/" rel="tag">Mapper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenOffice/" rel="tag">OpenOffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenVPN/" rel="tag">OpenVPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PageHelper/" rel="tag">PageHelper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugins/" rel="tag">Plugins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PowerDesigner/" rel="tag">PowerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSL/" rel="tag">SSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/" rel="tag">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/" rel="tag">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBatch/" rel="tag">SpringBatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringSecurity/" rel="tag">SpringSecurity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger2/" rel="tag">Swagger2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/" rel="tag">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tunnelblick/" rel="tag">Tunnelblick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/" rel="tag">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YUM/" rel="tag">YUM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroC-Ice/" rel="tag">ZeroC Ice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew/" rel="tag">brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/emoji/" rel="tag">emoji</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/license/" rel="tag">license</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mariaDB/" rel="tag">mariaDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openoffice/" rel="tag">openoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ownCloud/" rel="tag">ownCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E8%83%BD/" rel="tag">技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/" rel="tag">日常折腾</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/" rel="tag">磁盘挂载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BE%A4%E6%99%96/" rel="tag">群晖</a></li></ul>
                     </div>
                 </section>
                 
@@ -224,15 +228,15 @@
                 <section class="switch-part switch-part3">
                     <div id="js-friends">
                     
-                      <a class="main-nav-link switch-friends-link" href="http://www.joylau.cn/">JoyLau</a>
+                      <a class="main-nav-link switch-friends-link" href="http://www.joylau.cn/" target="_blank" rel="noopener">JoyLau</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://life.joylau.cn/">JoyLau’life</a>
+                      <a class="main-nav-link switch-friends-link" href="http://life.joylau.cn/" target="_blank" rel="noopener">JoyLau’life</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://media.joylau.cn/">JoyMedia</a>
+                      <a class="main-nav-link switch-friends-link" href="http://media.joylau.cn/" target="_blank" rel="noopener">JoyMedia</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://blog.wfyvv.com/">wfyvv</a>
+                      <a class="main-nav-link switch-friends-link" href="http://blog.wfyvv.com/" target="_blank" rel="noopener">wfyvv</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://chaxiaoniu.oschina.io/">CherryChang</a>
+                      <a class="main-nav-link switch-friends-link" href="http://chaxiaoniu.oschina.io/" target="_blank" rel="noopener">CherryChang</a>
                     
                     </div>
                 </section>
@@ -302,7 +306,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于">
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于"/>
 </nav>
       <div class="body-wrap"><article id="post-Docker-MountVolumes" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -310,11 +314,13 @@
       <a href="/2019/03/21/Docker-MountVolumes/" class="article-date">
       <time datetime="2019-03-21T08:27:48.000Z" itemprop="datePublished">2019-03-21</time>
 </a>
+
+
     </div>
   
   <div class="article-inner">
     
-      <input type="hidden" class="isFancy">
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -323,16 +329,25 @@
 
                 
             </div>
-        <h1 class="article-title article-tlt-h" itemprop="name">Docker 容器挂载宿主机上的目录时出现 Permission denied</h1>
+        
+  
+    <h1 class="article-title article-tlt-h" itemprop="name">Docker 容器挂载宿主机上的目录时出现 Permission denied</h1>
+  
+
       </header>
       
       <div class="article-info article-info-post">
-        <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Docker篇/">Docker篇</a>
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Docker%E7%AF%87/">Docker篇</a>
     </div>
-        <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
     </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -341,6 +356,7 @@
       
           
         <a id="more"></a>
+
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>启动 docker 容器时挂载容器以前存在的数据文件时出现了 Permission denied 的错误</p>
 <h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ol>
 <li>首先以为是挂载的文件夹有读写数据的权限问题 <code>chmod -R 777 xxxx</code> , 没有解决，依然报错</li>
@@ -357,6 +373,8 @@
 </ol>
 <h3 id="mysql-和-mariaDB-的问题"><a href="#mysql-和-mariaDB-的问题" class="headerlink" title="mysql 和 mariaDB 的问题"></a>mysql 和 mariaDB 的问题</h3><p>这样的情况也发生在 mysql 和 mariaDB 上<br>按照上述的方法似乎没有奏效，确切的说奏效一半<br>因为 <code>/var/lib/mysql</code> 目录中文件夹可以看到，文件却没有权限看到<br>类似这样</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">190321 06:02:13 mysqld_safe Logging to '/var/lib/mysql/d240623581db.err'.</span><br><span class="line">190321 06:02:13 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql</span><br><span class="line">chown: /var/lib/mysql/60689c28e4a1.err: Permission denied</span><br><span class="line">chown: /var/lib/mysql/60689c28e4a1.pid: Permission denied</span><br><span class="line">chown: /var/lib/mysql/aria_log.00000001: Permission denied</span><br><span class="line">chown: /var/lib/mysql/aria_log_control: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_buffer_pool: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ibdata1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_logfile0: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_logfile1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ibtmp1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/multi-master.info: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000001: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000002: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000003: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000004: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000005: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000006: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000007: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000008: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000009: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.index: Permission denied</span><br><span class="line">chown: /var/lib/mysql/owncloud: Permission denied</span><br><span class="line">chown: /var/lib/mysql/performance_schema: Permission denied</span><br><span class="line">chown: /var/lib/mysql: Permission denied</span><br><span class="line">chown: /var/lib/mysql: Permission denied</span><br><span class="line">190321 06:02:14 mysqld_safe Logging to '/var/lib/mysql/d240623581db.err'.</span><br><span class="line">190321 06:02:14 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql</span><br><span class="line">chown: /var/lib/mysql/60689c28e4a1.err: Permission denied</span><br><span class="line">chown: /var/lib/mysql/60689c28e4a1.pid: Permission denied</span><br><span class="line">chown: /var/lib/mysql/aria_log.00000001: Permission denied</span><br><span class="line">chown: /var/lib/mysql/aria_log_control: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_buffer_pool: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ibdata1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_logfile0: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ib_logfile1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/ibtmp1: Permission denied</span><br><span class="line">chown: /var/lib/mysql/multi-master.info: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000001: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000002: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000003: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000004: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000005: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000006: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000007: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000008: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.000009: Permission denied</span><br><span class="line">chown: /var/lib/mysql/mysql-bin.index: Permission denied</span><br><span class="line">chown: /var/lib/mysql/owncloud: Permission denied</span><br><span class="line">chown: /var/lib/mysql/performance_schema: Permission denied</span><br><span class="line">chown: /var/lib/mysql: Permission denied</span><br><span class="line">chown: /var/lib/mysql: Permission denied</span><br></pre></td></tr></table></figure>
+
+
 <p>原因分析是：<br>SELinux 造成的<br>有以下 4 中解决方法：</p>
 <ol>
 <li><code>setenforce 0</code> : 临时关闭 </li>
@@ -364,11 +382,13 @@
 <li>在docker run 中加入 <code>--privileged=true</code> 给容器加上特定权限</li>
 <li>修改 SELinux 规则 <code>chcon -t mysqld_db_t  -R /opt/docker/mysql/data</code></li>
 </ol>
+
       
     </div>
     
   </div>
   
+    
     <div class="copyright">
         <p><span>本文标题:</span><a href="/2019/03/21/Docker-MountVolumes/">Docker 容器挂载宿主机上的目录时出现 Permission denied</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
@@ -380,7 +400,7 @@
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"CC BY-NC-SA 4.0"</a> 转载请保留原文链接及作者。
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> 转载请保留原文链接及作者。
         </p>
     </div>
 
@@ -402,9 +422,11 @@
             </div>
         
     </nav>
+
   
 </article>
-<div id="toc" class="toc-article">
+
+    <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
             <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题"><span class="toc-number">1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决"><span class="toc-number">2.</span> <span class="toc-text">解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql-和-mariaDB-的问题"><span class="toc-number">3.</span> <span class="toc-text">mysql 和 mariaDB 的问题</span></a></li></ol>
@@ -421,14 +443,16 @@
         }
     </style>
 
-    <input type="button" id="tocButton" value="隐藏" title="点击按钮隐藏或者显示文章目录">
+    <input type="button" id="tocButton" value="隐藏"  title="点击按钮隐藏或者显示文章目录">
 
     <script>
         yiliaConfig.toc = ["隐藏", "显示", !!"false"];
     </script>
 
 
-    <div class="share">
+
+    
+<div class="share">
     
         <div class="bdsharebuttonbox">
             <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
@@ -437,7 +461,7 @@
             <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
             <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
             <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
         <script>
             window._bd_share_config={
@@ -450,10 +474,16 @@
 
 
 
+
+
+
+
     
 
 
-<div class="scroll" id="post-nav-button">
+
+
+    <div class="scroll" id="post-nav-button">
         
             <a href="/2019/03/28/OpenCV-Basic/" title="上一篇: OpenCV 基础知识与概念">
                 <i class="fa fa-angle-left"></i>
@@ -472,9 +502,12 @@
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/05/03/VSCode-Win10-IconStyle/">VSCode 图标在 Windows 10 系统开始菜单里的背景色为黑色问题的解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/02/Clash-Docker/">Docker 安装 Clash 并对外提供代理服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/01/Clash-Config/">Clash 基本配置记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/29/SpringBoot-Elasticsearch-RestHighLevelClient/">重剑无锋,大巧不工 SpringBoot --- 使用 rest-high-level-client 连接 Elasticsearch</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/28/Clash-Mac-Language/">ClashX 在英文 Mac 系统中切换界面语言</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/27/Tools-PowerDesigner/">PowerDesigner 数据库逆向生成物理模型并显示 Comment 注释</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/23/Daily-Pixel-Clock/">日常折腾 --- 自制像素时钟, 不输 LaMeetric Time</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/22/Docker-ENTRYPOINT-CMD/">Docker ENTRYPOINT 和 CMD 组合使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/21/Daily-iPhone7-Replace-Battery/">日常折腾 --- iPhone 7 更换电池,缝缝补补又三年</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/18/SpringBoot-FileBeat/">重剑无锋,大巧不工 SpringBoot --- Filebeat 实时收集 SpringBoot 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/15/MacOS-Tunnelblick/">Tunnelblick The tmp system folder (/tmp) is not secure. 问题解决记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/14/Daily-KVR-NewifiD2-JiKe/">日常折腾之 KVR 漫游(二) --- 利用新路由 3 (Newifi D2) 组 KVR Wi-Fi 漫游</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/13/Daily-KVR-NewifiD2-Breed/">日常折腾之 KVR 漫游(一) --- 新路由 3 (Newifi D2) 刷入 Breed (刷不死)固件</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/12/Docker-Jib/">Docker Jib 插件使用问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/12/Docker-LibreOffice-Online/">Docker LibreOffice Online Requesting address is denied&#58; &#58;&#58; ffff&#58;172.xx.xx.xx 错误解决记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/01/Daily-Various-Proxy-Setting/">各种代理设置汇总记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/Docker-Auto-Publish-Blog/">真·Docker 自动部署个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/MacOS-Homebrew-Question/">MacOS HomeBrew 更新遇到的问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/MacOS-Quick-Look/">MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/12/Docker-Java-OOM/">Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/02/18/Git-Knowledges/">Git 知识点小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/15/React-WebSocket/">React WebSocket 的一些配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/26/React-App-Rewired/">React-App-Rewired 的一些配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/23/Elasticsearch-Multi-NestedQuery/">Elasticsearch Nested 类型动态数据的组合查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/29/IntelliJIDEA-JetBrains-License/">开源项目申请 JetBrains 家族系列软件的 License</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/20/SpringBoot-Spel/">Spring EL 表达式 ${} 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/19/Docker-Logs/">Docker 日志信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/13/Gradle-Offline-Mode/">gradle No cached version available for offline mode</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/27/PM2-Cluster-ES6/">PM2 集群模式使用 ES6 语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/26/Node-Use-ES6/">NodeJs 使用 ES6 语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/28/Gradle-Update-5-Questions/">Gradle 升级到 5.x+ 之后遇到的问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/23/Docker-Mariadb-InitDB/">Docker --- Maridb 容器启动时初始化数据库</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/16/Electron-AutoUpdater/">Electron --- 关于自动更新的一系列折腾</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/14/Electron-Electron-Builder/">Electron --- Electron-Builder 打包的各种配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/13/Electron-Icon-Icns/">Electron --- Windows 和 MacOS 套娃图标的制作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/12/Electron-URL-Scheme/">Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/11/Electron-Questions/">Electron --- 知识点小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/10/React-Create-React-App/">Create-React-App 的一些配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/10/Electron-Create-React-App/">Electron --- Create-React-App + Antd + Electron 的搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/09/Synology-Docker-Insecure/">群晖系列 --- 添加私有仓库无法下载镜像问题的解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/04/InnoSetup-Experience/">InnoSetup --- 使用心得记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/03/Git-RememberMe/">git pull 和 git push 记住用户名密码</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/23/Java-Future/">Java 开启子线程执行其他操作，并获取结果</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/19/SpringBoot-SpringSecurity-Anonymous/">Spring Security 禁用匿名用户（anonymous().disable()）后无限重定向到登录页的问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/26/Daily-Somix-E95X/">日常折腾 --- 硕美科 E95x 耳机复活记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/15/Ubuntu-Force-Resolution/">Ubuntu 强制设置分辨率</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/OpenCV-Baidu-Traffic-5/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/Gradle-Proxy/">Gradle 配置代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/Synology-Private-Docker/">群晖系列 --- 使用群晖搭建 Docker 私有仓库并管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/11/Daily-Multi-PPPoE/">基于 iKuai 软路由系统的单线多拨和多线多拨</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/30/Synology-DouBan-Scraper/">群晖系列 --- 使用豆瓣的削刮器来检索视频的元数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29/Synology-Semi-Activation/">群晖系列 --- 如何半洗白操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29/Synology-Recover-Data/">群晖系列 --- 如何恢复群晖系统数据盘的数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/27/Daily-NAS/">日常折腾 --- 蜗牛星际安装黑群晖</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22/Daily-Soft-Router/">日常折腾 --- 软路由攒机记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22/Daily-Reform-Cable/">日常折腾 --- 家里网线改造记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/17/OpenCV-Knowledge-Points/">OpenCV --- 知识点速记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/OpenCV-Baidu-Traffic-4/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/10/OpenCV-Baidu-Traffic-3/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (三)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/05/OpenCV-Baidu-Traffic-2/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/01/OpenCV-Baidu-Traffic-1/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/25/SpringBoot-Response-Ignore-Null/">重剑无锋,大巧不工 SpringBoot --- 序列化返回对象时忽略空或者 null 属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/SpringBoot-Ajax-FormData/">重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/Ubuntu-Remote-Desktop/">Ubuntu 优雅的远程桌面服务端配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/Linux-Fix-DiskError/">记录一次 Ubuntu 因磁盘问题导致开机进入紧急模式的情况</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/08/Docker-Start-Error/">Docker 启动报错： Error starting daemon： Error initializing network controller： list bridge addresses failed： no available network</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/OpenCV-ByteImage/">OpenCV 读取数据流图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/OpenCV-Basic/">OpenCV 基础知识与概念</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/Docker-MountVolumes/">Docker 容器挂载宿主机上的目录时出现 Permission denied</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/20/IntelliJIDEA-Support-@-Alias/">IntelliJ IDEA (WebStorm) 识别 @ 作为别名进行导包</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/OpenCV-Build/">CentOS , Ubuntu 和 Mac OS 上编译安装 OpenCV4 及 SpringBoot 的结合使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/Docker-Swarm-Choice-Node/">Docker-Swarm 自定义服务部署的节点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/18/Docker-Swarm-Cluster/">Docker-Swarm 集群搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/26/SpringBoot-Validated/">Validated 注解的 groups 使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/25/Docker-RemoveDeadContainer/">Docker 删除 状态为Dead 的容器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/24/Elasticsearch-Analyzer/">Elasticsearch analyzer 和 search_analyzer 的使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/23/Docker-Elasticsearch/">Docker elasticsearch 集群搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/16/SpringBoot-Elasticsearch-HealthCheck/">重剑无锋,大巧不工 SpringBoot --- Elasticsearch health check failed</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/14/Gradle-Elastic-Job-Dependency/">Gradle 构建 elastic-job 项目的奇怪依赖问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/24/JDK8-Stream-Use/">关于Jdk 8 Stream 的使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/19/Docker-Exec-Failed/">Docker exec failed docker 无法进入容器问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/19/Docker-Compose-StartOrder/">Docker-Compose 中多容器启动顺序问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/18/SpringCloud-Docker/">SpringCloud --- Docker 部署问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/14/MacOS-Route/">MacOS 上路由表的操作记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/13/Linux-Cron/">Linux 定时删除 10 天前的日志文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/13/Docker-Questions/">Docker 问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/08/Linux-Private-Yum/">Yum 私服搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/04/Jquery-Post/">$.post() 和 $.ajax() 的问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/24/SpringBoot-ThreadPoolTaskExecutor/">重剑无锋,大巧不工 SpringBoot --- 理解 ThreadPoolTaskExecutor</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/21/Docker-OpenVPN/">Docker OpenVPN 服务搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/Docker-PrivateRepo/">Docker 私服搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/26/Docker-ownCloud/">记录 -- Docker 三种方式部署 ownCloud</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/Elasticsearch-AutoComplete/">Elasticsearch 关键字自动补全的实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/Elasticsearch-SearchAll/">Elasticsearch 查询全部数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/Jquery-Load-Plugins/">$(...).autocomplete is not a function 问题的解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/">Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/03/BroadbandSpeedConversion/">宽带速率转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/30/Spring-NamedParameterJdbcTemplate/">NamedParameterJdbcTemplate 使用具名参数记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/29/OracleNubmer-JdbcType/">Oracle 里 number 类型对应 JdbcType bean 类型记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/19/Linux-Cancel-DenyHosts/">DenyHosts 清除黑名单 IP 地址</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/Ubuntu-Fonts-Monaco/">Ubuntu 最佳编程字体 Monaco 的优化显示</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/12/Docker-AliAccelerator/">Docker 使用阿里云个人专属加速器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/05/Docker-Manager-NonRoot/">以非 root 用户身份管理 Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/02/OfficeSuiteStudy/">office 套件的一系列研究记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/28/Ubuntu-SystemConfig/">Ubuntu 自用配置记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/IntelliJIDEA-MyConfigs/">IntelliJ IDEA 自用配置记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Linux-OpenOffice/">Linux 安装 OpenOffice 服务小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/21/Elasticsearch-ingest-attachment/">Elasticsearch 文档文本内容搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/20/React-DebugWithIDEA/">React 项目使用 IDEA 进行调试</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/14/MacOS-ChangeMacAddr/">MacOS 修改 mac 地址</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/Elasticsearch-Ik/">Elasticsearch 分词插件的使用及 demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/23/MyBatis-DateFormat/">Mybatis 前后台时间传参格式化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/21/Elasticsearch-Security/">Elasticsearch 集群安全控制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/18/Linux-Systemctl/">Linux菜鸟到熟悉 --- systemctl 托管自定义程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/17/Linux-NoteBookPC/">Linux菜鸟到熟悉 --- 闲置笔记本安装 Centos</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/15/Lombok/">Lombok 注解小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/08/Filebeat-Nginx/">Filebeat 实时收集 Nginx 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/08/Logstash-Nginx/">Logstash 实时收集 Nginx 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/07/Elasticsearch-ELK/">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/07/Elasticsearch-Cluster/">Elasticsearch 集群搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/MacOS-CleanMac/">MacOS 垃圾清理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/">SpringSecurity Session并发过期后会重定向到 /login (入口点问题)问题的解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/SpringBoot-SpringSecurity/">重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/27/MyBatis-Example/">关于通用 Mapper Example 使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/12/SpringBoot-Assembly-Package/">重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/29/SpringBoot-Druid-MyBatis-Mapper-PageHelper/">重剑无锋,大巧不工 SpringBoot --- 最新版 SpringBoot 整合 Druid,MyBatis,通用 Mapper,PageHelper的脚手架</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/24/JavaScript-Array-Method/">JavaScript 数组的一些常用的方法记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/23/Spark-Integrate-Build/">大数据之路 Spark 环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/22/Hadoop-Integrate-Build/">大数据之路 Hadoop 环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/17/Hadoop-Study-Way/">大数据之路 Hadoop 的学习流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/16/SpringBoot-Elasticsearch-Complex/">重剑无锋,大巧不工 SpringBoot --- 使用 Elasticsearch 进行更复杂的查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/15/FastJson-JSONPath/">FastJSON 还有这样的用法 涨姿势了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/Node-Install-Error/">npm install 居然出错了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/02/SpringBoot-Kafka/">SpringBoot 整合 Kafka 踩坑记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/01/SpringBoot-IDEA-DevTools/">IDEA 中 SpringBoot 项目热部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/SpringBoot-ReadJSONFile/">SpringBoot 读取 JSON 文件并转化为 JSON 对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/26/SpringBoot-Oracle/">SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Elasticsearch-Config/">Elasticsearch 配置说明 && 遇坑记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Hadoop-FristDay/">Hadoop 的第一天</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/SpringBoot-Elasticsearch/">重剑无锋,大巧不工 SpringBoot --- 整合使用 Elasticsearch</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/Open-Source-License/">开源许可证</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/16/Maven-ResourceCompressor/">Maven --- 一款打包压缩 js css html 的Maven插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/13/CSS3-Image-Scale/">当鼠标移入图片上慢慢放大的效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/26/Java-Scala/">Java 代码中使用 Scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/SpringBoot-CaffeineCache/">重剑无锋,大巧不工 SpringBoot --- 推荐使用CaffeineCache</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/11/JoyGame/">JoyGame --- 一个情怀游戏平台</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/Maven-MakeWinServiceForJar/">Maven --- 将 SpringBoot 项目做成Windows服务(Windows Service)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/20/SpringBoot-JoyMedia-MV/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/SpringBoot-JoyMedia-Search/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/SpringBoot-JoyMedia-Node/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/SpringBoot-JoyMedia/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 分析篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/18/SpringBoot-MongoDB/">重剑无锋,大巧不工 SpringBoot --- 整合使用MongoDB</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/ZeroC-Ice/">ZeroC Ice --- 高性能RPC技术王者</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/03/Git-Multi-Repo-Push/">记录一次Git多仓库提交</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/MacOS-Dev-App/">MacOS常用开发使用APP</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/24/MacBookPro-Unboxing/">MacBook Pro 2017 --- 不行！我要开箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/SpringBoot-RESTfulAPI/">重剑无锋,大巧不工 SpringBoot --- RESTful API</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/SpringBoot-RabbitMQ/">重剑无锋,大巧不工 SpringBoot --- 整合RabbitMQ</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/Console-Better/">让你的Windows控制台窗口更优美</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/13/SpringBoot-ConfigurationProperties/">重剑无锋,大巧不工 SpringBoot --- 属性注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-Question-Tips/">重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-RequestBody/">重剑无锋,大巧不工 SpringBoot --- @RequestBody JSON参数处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/09/College-Entrance-Examination-of-2017-for-Progarmmer/">2017年程序员高考试卷</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/05/Skill-Tree-Of-Java/">收集整理一些JAVA学习的技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/02/SolveBrainAndPuzzles/">解决一道智力题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/28/IntelliJIDEA-Plugins/">IntelliJ IDEA 插件开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/27/Redis-Master-Slave/">Redis主从复制 --- 实现读写分离</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/24/SpringCloud-Building/">SpringCloud --- 构建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/06/MyBatis-Joylau-MyBatis/">JoyLau-MyBatis 使用说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/01/Redis-Benchmark/">Redis有多快??? --- 基准性能测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/22/Docker-Command/">Docker常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/SpringBoot-SpringBatch/">重剑无锋,大巧不工 SpringBoot --- 批处理SpringBatch</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/MySQL-Emoji/">为网站添加emoji表情支持</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/17/Maven-Release-Component/">Maven --- 发布自己的构件到中央仓库</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/Programmer-Boast/">程序员，那些年吹过的牛逼，最后都自己加班了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/">JS数组去重最简单方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Integrate/">重剑无锋,大巧不工 SpringBoot --- 环境集成</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Research/">重剑无锋,大巧不工 SpringBoot --- 探索篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/SpringBoot-Basic/">重剑无锋,大巧不工 SpringBoot --- 基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-GUI/">Linux菜鸟到熟悉 --- 视图界面</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-Command/">Linux菜鸟到熟悉 --- 常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-BuildingEnvironment/">Linux菜鸟到熟悉 --- 生产环境的搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-MountDisk/">Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/Thymeleaf/">重新拾起我曾抛弃的Thymeleaf</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/SSL/">SSL证书部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/TomcatMulti-Root/">Tomcat服务器添加多个Root项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/HelloWorld/">Hello World</a></li></ul>
 
 
+
+
     <script>
         
-    </script></div>
+    </script>
+</div>
       <footer id="footer">
     <div class="outer">
         <div id="footer-info">
@@ -489,7 +522,7 @@
         
             <div class="visit">
                 
-                    <span id="busuanzi_container_site_pv" style="display:none">
+                    <span id="busuanzi_container_site_pv" style='display:none'>
                         <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -498,8 +531,8 @@
                     <span>| </span>
                 
                 
-                    <span id="busuanzi_container_page_pv" style="display:none">
-                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -559,9 +592,12 @@
         }
     });
 </script>
+
     </div>
-    <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-<script>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
         $(document).ready(function() {
             var iPad = window.navigator.userAgent.indexOf('iPad');
             if (iPad > -1 || $(".left-col").css("display") === "none") {
@@ -579,9 +615,12 @@
 
 
 
+
+
+
 <div class="scroll" id="scroll">
     <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#comments" onclick="javascript:;" title="查看评论"><i class="fa fa-comments-o"></i></a>
     <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
@@ -610,3 +649,4 @@
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   </div>
 </body>
+</html>
