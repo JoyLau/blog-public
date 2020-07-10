@@ -1,0 +1,719 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JoyLau&#39;s Blog | JoyLau - 刘法的技术学习与思考</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div class="nav">
+    <ul id="menu-menu" class="menu">
+        
+        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="http://blog.joylau.cn/" title="HOME" external="false">HOME</a>
+        </li>
+        
+        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/whoami/" title="ABOUT" external="false">ABOUT</a>
+        </li>
+        
+        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/categories/" title="CATEGORIES" external="false">CATEGORIES</a>
+        </li>
+        
+        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/tags/" title="TAGS" external="false">TAGS</a>
+        </li>
+        
+        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/archives/" title="ARCHIVES" external="false">ARCHIVES</a>
+        </li>
+        
+    </ul>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020 JoyLau.
+        Powered by Hexo
+        Theme Obsidian
+    </p>
+</div>
+
+<div id="container">
+    
+<div class="search-box">
+    <form class="site-search-form">
+        <span class="iconfont icon-search"></span>
+        <input type="text" id="local-search-input" class="st-search-input" />
+        <div class="iconfont icon-cross search-box-close"></div>
+    </form>
+    <div class="search-scrollable">
+        <div id="local-search-result" class="local-search-result-cls" data-initialise="首次搜索，正在载入索引文件，请稍后……"
+            data-start="输入关键词搜索。" data-empty="没有找到内容，请尝试更换检索词。">
+            <span>输入关键词搜索。</span>
+        </div>
+    </div>
+</div>
+<div id="header">
+    <div>
+        <div class="logo animated fadeInDown">
+            <img src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" style="border-radius:50%">
+            <a class="image-logo" href="/">JoyLau</a>
+
+        </div>
+        <ul id="menu-menu" class="menu text-menu">
+            
+            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+                <a href="http://blog.joylau.cn/" title="HOME" external="false" class="menu-link">HOME</a>
+            </li>
+            
+            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+                <a href="/whoami/" title="ABOUT" external="false" class="menu-link">ABOUT</a>
+            </li>
+            
+            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+                <a href="/categories/" title="CATEGORIES" external="false" class="menu-link">CATEGORIES</a>
+            </li>
+            
+            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+                <a href="/tags/" title="TAGS" external="false" class="menu-link">TAGS</a>
+            </li>
+            
+            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
+                <a href="/archives/" title="ARCHIVES" external="false" class="menu-link">ARCHIVES</a>
+            </li>
+            
+            
+            <li class="animated fadeInDown search-bar iconfont icon-search"></li>
+            
+        </ul>
+        <div class="iconfont icon-menu switchmenu gradient-text animated fadeInDown"></div>
+    </div>
+</div>
+<div id="screen">
+    <div id="mark">
+        <div class="cover animated fadeIn" style="
+            animation-delay: 900ms;
+            animation-duration: 2.8s;
+            background-image:
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
+                url(/img/cover.jpg);">
+        </div>
+    </div>
+    
+    <div id="post0" class="else">
+        <p class="animated fadeInDown">
+            
+            <a href="/categories/React篇"><b>「
+                </b>REACT篇<b> 」</b></a>
+            
+            六月 19, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown">
+            <a href="/2018/06/19/React-DebugWithIDEA/" title="React 项目使用 IDEA 进行调试" class="posttitle">React 项目使用 IDEA 进行调试</a></h3>
+        
+        <p class="post-count animated fadeInDown">
+            
+            <span>
+                <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                1k
+            </span>
+            
+            
+            <span>
+                <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                1 mins.
+            </span>
+            
+            
+        </p>
+        
+        
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
+        
+        <div class="md-content animated fadeIn">
+            
+            <a id="more"></a>
+
+<ol>
+<li><p>You would need to have WebStorm and JetBrains IDE Support Chrome extension installed.<br> 需要安装 JetBrains...</p></li></ol>
+            
+            <span class="read-more"><a href="/2018/06/19/React-DebugWithIDEA/" title="查看全文" class="posttitle">查看全文</a>
+                <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+    
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="typed-text"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div id="primary">
+        
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.6821222700063017);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/React篇">
+                  <b>「 </b>REACT篇<b> 」</b>
+                </a>
+            
+            六月 19, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/06/19/React-DebugWithIDEA/" title="React 项目使用 IDEA 进行调试" class="posttitle">React 项目使用 IDEA 进行调试</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<ol>
+<li><p>You would need to have WebStorm and JetBrains IDE Support Chrome extension installed.<br> 需要安装 JetBrains IDE Support 的 chrome 插件</p>
+</li>
+<li><p>In the WebStorm menu Run select Edit Configurations…. Then click + and select JavaScript Debug. Paste <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000...</a></p></li></ol>
+            
+            <span class="read-more"><a href="/2018/06/19/React-DebugWithIDEA/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.17662648100393397);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/MacOS篇">
+                  <b>「 </b>MACOS篇<b> 」</b>
+                </a>
+            
+            六月 14, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/06/14/MacOS-ChangeMacAddr/" title="MacOS 修改 mac 地址" class="posttitle">MacOS 修改 mac 地址</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        746
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>公司的网络接入是需要 ip 地址和 mac 地址绑定在一起的，笔记接入的 WiFi 没绑定就无法上网，公司那么多电脑不用，就使用他们已经绑定好的 静态 IP 地址和 mac 地址来上网</p>
+<ol>
+<li>随机生成一个全新的MAC网卡地址</li>
+</ol>
+<pre><code class="shell">    openssl rand -hex 6 | sed &#39;s/\(..\)/\1:/g; s/.$//&#39;</code></pre>
+<ol start="2">
+<li>断开airport无线网卡连接</li>
+</ol>
+<pre><code class="shell">    sudo /System/Library/PrivateFrameworks/Apple80211.framework...</code></pre>
+            
+            <span class="read-more"><a href="/2018/06/14/MacOS-ChangeMacAddr/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.14230247203768887);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/大数据篇">
+                  <b>「 </b>大数据篇<b> 」</b>
+                </a>
+            
+            六月 12, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/06/12/Elasticsearch-Ik/" title="Elasticsearch 分词插件的使用及 demo" class="posttitle">Elasticsearch 分词插件的使用及 demo</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        227
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p></p>
+<p><a href="https://github.com/JoyLau/es-doc-node" target="_blank" rel="noopener">https://github.com/JoyLau/es-doc-node</a></p>
+
+            
+            <span class="read-more"><a href="/2018/06/12/Elasticsearch-Ik/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.2574391703765846);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/MyBatis篇">
+                  <b>「 </b>MYBATIS篇<b> 」</b>
+                </a>
+            
+            五月 23, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/05/23/MyBatis-DateFormat/" title="Mybatis 前后台时间传参格式化" class="posttitle">Mybatis 前后台时间传参格式化</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        650
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>好久不用 mybatis 了,今天突然遇到了一个时间参数的格式化问题…..<br>mysql 后台取出的时间格式的字段，传到前台变成了时间戳<br>一下就想到有一个注解进行格式化<br>可是半天想不到那个注解怎么写的了，于是一顿查</p>
+<p>以前经常使用的注解，现在都忘了，得记下来</p>
+<ol>
+<li>@JsonFormat(pattern=”yyyy-MM-dd HH:mm:ss”,timezone=”GMT+8”) ： 后台 Date 类型转时间字符串，注意时区 （后台 -&gt; 前台）</li>
+<li>@DateTimeFormat(pattern=”...</li></ol>
+            
+            <span class="read-more"><a href="/2018/05/23/MyBatis-DateFormat/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(//image.joylau.cn/blog/elasticsearch-secu.jpg?0.7379338561503255);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/大数据篇">
+                  <b>「 </b>大数据篇<b> 」</b>
+                </a>
+            
+            五月 21, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/05/21/Elasticsearch-Security/" title="Elasticsearch 集群安全控制" class="posttitle">Elasticsearch 集群安全控制</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        5.4k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        5 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>一般我们搭建起来的 es 集群都可以通过默认的 9200 端口来进行 API 访问,这在局域网上没有什么大问题，如果说搭建的环境在公网上，这将埋下巨大的隐患，因为任何人都可以操作 API 来进行增删改查，这是多么的恐怖！！</p>
+<ol>
+<li>集群环境： elasticsearch 5.3.0；centos 7.2</li>
+<li>集群公网环境</li>
+</ol>
+<p>elasticsearch 集群搭建完成后，通过制定的端口都可以访问，但是实际情况中，我们并不想这样。我们可能想只有固定的ip地址才能访问，或者需要用户名、密码才能访问<br>对于如何控制 ...</p>
+            
+            <span class="read-more"><a href="/2018/05/21/Elasticsearch-Security/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+    </div>
+    
+    <div id="pager"><a href="/page/24/" class="more" data-loading="加载中..." data-load-more="加载更多">加载更多</a></div>
+    
+</div>
+<div id="preview"></div>
+
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

@@ -1,0 +1,697 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Maven --- 发布自己的构件到中央仓库 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+
+说明
+个人感觉第一次发布的步骤非常复杂，我在第一次操作的时候来来回回发布了7,8个版本，最后都是校验失败，导致构件不能关闭（因为我遇到了个大坑）
+第一次发布成功之后后面的更新和添加新的构件都相,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">Maven --- 发布自己的构件到中央仓库</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(//image.joylau.cn/blog/sonatype.png?0.47467683292067653) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/Maven篇"><b>「
+                    </b>MAVEN篇<b> 」</b></a>
+                
+                三月 17, 2017
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2017/03/17/Maven-Release-Component/" title="Maven --- 发布自己的构件到中央仓库" class="">Maven --- 发布自己的构件到中央仓库</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    13k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    12 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/GPG/" rel="tag">GPG</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Maven/" rel="tag">Maven</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<p><img src="//image.joylau.cn/blog/sonatype.png" alt="Sonatype"></p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>个人感觉第一次发布的步骤非常复杂，我在第一次操作的时候来来回回发布了7,8个版本，最后都是校验失败，导致构件不能关闭（因为我遇到了个大坑）</li>
+<li>第一次发布成功之后后面的更新和添加新的构件都相对来说要容易一些（groupid不变的情况下）</li>
+</ul>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="账户注册"><a href="#账户注册" class="headerlink" title="账户注册"></a>账户注册</h3><ul>
+<li>注册地址 ： <a href="https://issues.sonatype.org/secure/Signup!default.jspa" target="_blank" rel="noopener">https://issues.sonatype.org/secure/Signup!default.jspa</a>  ,这一步需要注意的是记住用户名和密码，后面配置文件会用到<br><img src="//image.joylau.cn/blog/sonatype-register.png" alt="注册"></li>
+</ul>
+<h3 id="创建并提交工单"><a href="#创建并提交工单" class="headerlink" title="创建并提交工单"></a>创建并提交工单</h3><p><img src="//image.joylau.cn/blog/sonatype_issue.PNG" alt="创建工单"></p>
+<ul>
+<li>Project和issue Type的填写如上图所示，不能填写错了</li>
+<li>创建完成之后就等待网站工作人员的审核就可以了，不知道为什么，我等待的时间非常短，2分钟都不到，工作人员就回复我了，可能是我的运气比较好吧，但是上个星期买房摇号我却没摇到<img src="////image.joylau.cn/aodamiao/18.gif" alt="伤心欲绝"></li>
+<li>当issue 的 state 变为 <code>RESOLVED</code>时就可继续操作了，同时下面的活动区会给你发消息<br><img src="//image.joylau.cn/blog/issue-activity.png" alt="Comment"></li>
+</ul>
+<h3 id="gpg生成密钥对"><a href="#gpg生成密钥对" class="headerlink" title="gpg生成密钥对"></a>gpg生成密钥对</h3><ul>
+<li><p>下载安装：<a href="https://www.gpg4win.org/download.html" target="_blank" rel="noopener">https://www.gpg4win.org/download.html</a><br><strong><em>安装时注意的是，只安装主体组件和加密解密窗口的组件就可以了，其他的不需要<del>~</del></em></strong></p>
+</li>
+<li><p>查看是否安装成功:<code>gpg --version</code><br><img src="//image.joylau.cn/blog/gpg-version.png" alt="version"></p>
+</li>
+<li><p>生成密钥对:<code>gpg --gen-key</code><br><img src="//image.joylau.cn/blog/gpg-2.png" alt="gpg --gen-key"><br><img src="//image.joylau.cn/blog/gpg-2.png" alt="gpg --gen-key"></p>
+</li>
+<li><p>之后往下，会让你输入用户名和邮箱，还有一个Passphase，相当于密钥库密码，不要忘记。</p>
+</li>
+<li><p>查看公钥:<code>gpg --list-keys</code></p>
+</li>
+<li><p>将公钥发布到 PGP 密钥服务器</p>
+<pre><code class="bash">  gpg --keyserver hkp://pool.sks-keyservers.net --send-keys C990D076
+  //可能由于网络问题，有点慢，多重试几次
+
+  //查看发布是否成功
+  gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys C990D076 </code></pre>
+</li>
+</ul>
+<h3 id="配置setting-xml文件和pom-xml文件"><a href="#配置setting-xml文件和pom-xml文件" class="headerlink" title="配置setting.xml文件和pom.xml文件"></a>配置setting.xml文件和pom.xml文件</h3><ul>
+<li><p>setting.xml文件</p>
+<pre><code class="xml">      &lt;servers&gt;
+          &lt;server&gt;
+            //记住id，需要和pom文件里的id一致
+            &lt;id&gt;oss&lt;/id&gt;
+            &lt;username&gt;username&lt;/username&gt;
+            &lt;password&gt;password&lt;/password&gt;
+          &lt;/server&gt;
+        &lt;/servers&gt;</code></pre>
+</li>
+<li><p>pom.xml文件</p>
+<pre><code class="xml">      &lt;!--
+        ~ The MIT License (MIT)
+        ~
+        ~ Copyright (c) 2017 2587038142@qq.com
+        ~
+        ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+        ~ of this software and associated documentation files (the &quot;Software&quot;), to deal
+        ~ in the Software without restriction, including without limitation the rights
+        ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        ~ copies of the Software, and to permit persons to whom the Software is
+        ~ furnished to do so, subject to the following conditions:
+        ~
+        ~ The above copyright notice and this permission notice shall be included in
+        ~ all copies or substantial portions of the Software.
+        ~
+        ~ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+        ~ THE SOFTWARE.
+        --&gt;
+
+      &lt;project xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+               xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+          &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+          &lt;groupId&gt;cn.joylau.code&lt;/groupId&gt;
+          &lt;artifactId&gt;joylau-echarts&lt;/artifactId&gt;
+          &lt;version&gt;1.0&lt;/version&gt;
+          &lt;packaging&gt;jar&lt;/packaging&gt;
+
+          &lt;name&gt;joylau-echarts&lt;/name&gt;
+          &lt;description&gt;Configure the most attribute for ECharts3.0+ by Gson&lt;/description&gt;
+          &lt;url&gt;http://code.joylau.cn&lt;/url&gt;
+
+          &lt;parent&gt;
+              &lt;groupId&gt;org.sonatype.oss&lt;/groupId&gt;
+              &lt;artifactId&gt;oss-parent&lt;/artifactId&gt;
+              &lt;version&gt;7&lt;/version&gt;
+          &lt;/parent&gt;
+
+          &lt;licenses&gt;
+              &lt;license&gt;
+                  &lt;name&gt;The Apache Software License, Version 2.0&lt;/name&gt;
+                  &lt;url&gt;http://www.apache.org/licenses/LICENSE-2.0.txt&lt;/url&gt;
+              &lt;/license&gt;
+          &lt;/licenses&gt;
+
+          &lt;developers&gt;
+              &lt;developer&gt;
+                  &lt;name&gt;JoyLau&lt;/name&gt;
+                  &lt;email&gt;2587038142@qq.com&lt;/email&gt;
+                  &lt;url&gt;http://joylau.cn&lt;/url&gt;
+              &lt;/developer&gt;
+          &lt;/developers&gt;
+
+          &lt;scm&gt;
+              &lt;connection&gt;scm:git:git@github.com:JoyLau/joylau-echarts.git&lt;/connection&gt;
+              &lt;developerConnection&gt;scm:git:git@github.com:JoyLau/joylau-echarts.git&lt;/developerConnection&gt;
+              &lt;url&gt;git@github.com:JoyLau/joylau-echarts&lt;/url&gt;
+          &lt;/scm&gt;
+          &lt;properties&gt;
+              &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+          &lt;/properties&gt;
+
+          &lt;dependencies&gt;
+              &lt;dependency&gt;
+                  &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
+                  &lt;artifactId&gt;gson&lt;/artifactId&gt;
+                  &lt;version&gt;2.5&lt;/version&gt;
+                  &lt;scope&gt;compile&lt;/scope&gt;
+                  &lt;optional&gt;true&lt;/optional&gt;
+              &lt;/dependency&gt;
+          &lt;/dependencies&gt;
+
+          &lt;build&gt;
+              &lt;testResources&gt;
+                  &lt;testResource&gt;
+                      &lt;directory&gt;src/test/resources&lt;/directory&gt;
+                  &lt;/testResource&gt;
+                  &lt;testResource&gt;
+                      &lt;directory&gt;src/test/java&lt;/directory&gt;
+                  &lt;/testResource&gt;
+              &lt;/testResources&gt;
+          &lt;/build&gt;
+
+          &lt;profiles&gt;
+              &lt;profile&gt;
+                  &lt;id&gt;release&lt;/id&gt;
+                  &lt;build&gt;
+                      &lt;plugins&gt;
+                          &lt;!--Compiler--&gt;
+                          &lt;plugin&gt;
+                              &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                              &lt;configuration&gt;
+                                  &lt;source&gt;1.7&lt;/source&gt;
+                                  &lt;target&gt;1.7&lt;/target&gt;
+                              &lt;/configuration&gt;
+                          &lt;/plugin&gt;
+                          &lt;!-- Source --&gt;
+                          &lt;plugin&gt;
+                              &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                              &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt;
+                              &lt;version&gt;2.2.1&lt;/version&gt;
+                              &lt;executions&gt;
+                                  &lt;execution&gt;
+                                      &lt;phase&gt;package&lt;/phase&gt;
+                                      &lt;goals&gt;
+                                          &lt;goal&gt;jar-no-fork&lt;/goal&gt;
+                                      &lt;/goals&gt;
+                                  &lt;/execution&gt;
+                              &lt;/executions&gt;
+                          &lt;/plugin&gt;
+                          &lt;!-- Javadoc --&gt;
+                          &lt;plugin&gt;
+                              &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                              &lt;artifactId&gt;maven-javadoc-plugin&lt;/artifactId&gt;
+                              &lt;version&gt;2.9.1&lt;/version&gt;
+                              &lt;executions&gt;
+                                  &lt;execution&gt;
+                                      &lt;phase&gt;package&lt;/phase&gt;
+                                      &lt;goals&gt;
+                                          &lt;goal&gt;jar&lt;/goal&gt;
+                                      &lt;/goals&gt;
+                                  &lt;/execution&gt;
+                              &lt;/executions&gt;
+                          &lt;/plugin&gt;
+                          &lt;!-- GPG --&gt;
+                          &lt;plugin&gt;
+                              &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                              &lt;artifactId&gt;maven-gpg-plugin&lt;/artifactId&gt;
+                              &lt;version&gt;1.6&lt;/version&gt;
+                              &lt;executions&gt;
+                                  &lt;execution&gt;
+                                      &lt;phase&gt;verify&lt;/phase&gt;
+                                      &lt;goals&gt;
+                                          &lt;goal&gt;sign&lt;/goal&gt;
+                                      &lt;/goals&gt;
+                                  &lt;/execution&gt;
+                              &lt;/executions&gt;
+                          &lt;/plugin&gt;
+                      &lt;/plugins&gt;
+                  &lt;/build&gt;
+                  &lt;distributionManagement&gt;
+                      &lt;snapshotRepository&gt;
+                          &lt;id&gt;oss&lt;/id&gt;
+                          &lt;url&gt;https://oss.sonatype.org/content/repositories/snapshots/&lt;/url&gt;
+                      &lt;/snapshotRepository&gt;
+                      &lt;repository&gt;
+                          &lt;id&gt;oss&lt;/id&gt;
+                          &lt;url&gt;https://oss.sonatype.org/service/local/staging/deploy/maven2/&lt;/url&gt;
+                      &lt;/repository&gt;
+                  &lt;/distributionManagement&gt;
+              &lt;/profile&gt;
+          &lt;/profiles&gt;
+      &lt;/project&gt;</code></pre>
+</li>
+</ul>
+<h3 id="上传构件到-OSS-中"><a href="#上传构件到-OSS-中" class="headerlink" title="上传构件到 OSS 中"></a>上传构件到 OSS 中</h3><pre><code class="xml">    mvn clean deploy -P release
+    &lt;--! jdk1.8后再生成javadoc时语法较为严格，这时去除javadoc即可 !--&gt;
+    mvn clean deploy -P release -Dmaven.javadoc.skip=true</code></pre>
+<p>在上传之前会自动弹出一个对话框，需要输入上面提到的 Passphase，它就是刚才设置的 GPG 密钥库的密码。<br>随后会看到大量的 upload 信息，因为在国内网络的缘故，时间有点久，耐心等待吧。</p>
+<h3 id="在-OSS-中发布构件"><a href="#在-OSS-中发布构件" class="headerlink" title="在 OSS 中发布构件"></a>在 OSS 中发布构件</h3><ul>
+<li>在 OSS 中，使用自己的 Sonatype 账号登录后，可在 Staging Repositories 中查看刚才已上传的构件，这些构件目前是放在 Staging 仓库中，可进行模糊查询，快速定位到自己的构件。</li>
+<li>此时，该构件的状态为 Open，需要勾选它，然后点击 Close 按钮。系统会自动验证该构件是否满足指定要求，当验证完毕后，状态会变为 Closed。<br><img src="//static.dexcoder.com/images/201501/VvtDdbqdERgRv1qn.png" alt="1"></li>
+<li>最后，点击 Release 按钮来发布该构件，这一步没有截图，将就看吧知道就行：<br><img src="//static.dexcoder.com/images/201501/2gPUnClPeYP1Vjbb.png" alt="2"></li>
+</ul>
+<h3 id="等待构件审批通过"><a href="#等待构件审批通过" class="headerlink" title="等待构件审批通过"></a>等待构件审批通过</h3><p>这个，又只能等待了，当然他们晚上上班，还是第二天看。当审批通过后，将会收到邮件通知。</p>
+<h3 id="从中央仓库中搜索构件"><a href="#从中央仓库中搜索构件" class="headerlink" title="从中央仓库中搜索构件"></a>从中央仓库中搜索构件</h3><p>这时，就可以在maven的中央仓库中搜索到自己发布的构件了，以后可以直接在pom.xml中使用了！</p>
+<p>中央仓库搜索网站：<a href="http://search.maven.org/" target="_blank" rel="noopener">http://search.maven.org/</a></p>
+<p>第一次成功发布之后，以后就不用这么麻烦了，可以直接使用Group Id发布任何的构件，当然前提是Group Id没有变。</p>
+<p>以后的发布流程：</p>
+<p>a）构件完成后直接使用maven在命令行上传构建；</p>
+<p>b）在<a href="https://oss.sonatype.org/" target="_blank" rel="noopener">https://oss.sonatype.org/</a> close并release构件；</p>
+<p>c)等待同步好（大约2小时多）之后，就可以使用了</p>
+<h2 id="遇坑记录"><a href="#遇坑记录" class="headerlink" title="遇坑记录"></a>遇坑记录</h2><ul>
+<li>安装GPG时候，没有安装弹框组件，导致gpg密码框弹不出来</li>
+<li>一开始所有的命令行都在git下操作，每次部署的时候都是提示没有私钥错误，后来发现git生成的gpg密钥对在user更目录下，切换到CMD操作，是生成在AppData下。经查看有私钥，问题解决</li>
+</ul>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ul>
+<li>前一部分为自己实践所写</li>
+<li>后面上传构件，发布版本参考：<a href="http://blog.csdn.net/hj7jay/article/details/51130398" target="_blank" rel="noopener">http://blog.csdn.net/hj7jay/article/details/51130398</a></li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-number">2.</span> <span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#账户注册"><span class="toc-number">2.1.</span> <span class="toc-text">账户注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建并提交工单"><span class="toc-number">2.2.</span> <span class="toc-text">创建并提交工单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gpg生成密钥对"><span class="toc-number">2.3.</span> <span class="toc-text">gpg生成密钥对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置setting-xml文件和pom-xml文件"><span class="toc-number">2.4.</span> <span class="toc-text">配置setting.xml文件和pom.xml文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上传构件到-OSS-中"><span class="toc-number">2.5.</span> <span class="toc-text">上传构件到 OSS 中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在-OSS-中发布构件"><span class="toc-number">2.6.</span> <span class="toc-text">在 OSS 中发布构件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#等待构件审批通过"><span class="toc-number">2.7.</span> <span class="toc-text">等待构件审批通过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从中央仓库中搜索构件"><span class="toc-number">2.8.</span> <span class="toc-text">从中央仓库中搜索构件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#遇坑记录"><span class="toc-number">3.</span> <span class="toc-text">遇坑记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用"><span class="toc-number">4.</span> <span class="toc-text">引用</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

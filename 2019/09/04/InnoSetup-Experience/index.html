@@ -1,0 +1,598 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>InnoSetup --- 使用心得记录 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+添加环境变量【Registry】   [Registry]
+   Root: HKCR; Subkey: &amp;quot;JOY-SECURITY&amp;quot;; ValueType: string; ,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">InnoSetup --- 使用心得记录</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.5791275856246869) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/InnoSetup篇"><b>「
+                    </b>INNOSETUP篇<b> 」</b></a>
+                
+                九月 04, 2019
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2019/09/04/InnoSetup-Experience/" title="InnoSetup --- 使用心得记录" class="">InnoSetup --- 使用心得记录</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    11k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    10 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/InnoSetup/" rel="tag">InnoSetup</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+<h2 id="添加环境变量【Registry】"><a href="#添加环境变量【Registry】" class="headerlink" title="添加环境变量【Registry】"></a>添加环境变量【Registry】</h2><pre><code class="text">   [Registry]
+   Root: HKCR; Subkey: &quot;JOY-SECURITY&quot;; ValueType: string; ValueData: &quot;URL:JOY-SECURITY Protocol Handler&quot;; Flags: uninsdeletekey</code></pre>
+<h3 id="Root-必需的"><a href="#Root-必需的" class="headerlink" title="Root  (必需的)"></a>Root  (必需的)</h3><p>根键。必须是下列值中的一个:</p>
+<p>HKCR  (HKEY_CLASSES_ROOT)<br>HKCU  (HKEY_CURRENT_USER)<br>HKLM  (HKEY_LOCAL_MACHINE)<br>HKU  (HKEY_USERS)<br>HKCC  (HKEY_CURRENT_CONFIG) </p>
+<h3 id="Subkey-必需的"><a href="#Subkey-必需的" class="headerlink" title="Subkey  (必需的)"></a>Subkey  (必需的)</h3><p>子键名，可以包含常量。</p>
+<h3 id="ValueType"><a href="#ValueType" class="headerlink" title="ValueType"></a>ValueType</h3><p>值的数据类型。必须是下面中的一个:</p>
+<p>none<br>string<br>expandsz<br>multisz<br>dword<br>qword<br>binary </p>
+<p>如果指定了 none (默认设置)，安装程序将创建一个没有键值的键，在这种情况下，ValueData 参数将被忽略。<br>如果指定了 string，安装程序将创建一个字符串 (REG_SZ) 值。<br>如果指定了 expandsz，安装程序将创建一个扩展字符串 (REG_EXPAND_SZ) 值。<br>如果指定了 multisz，安装程序将创建一个多行文本 (REG_MULTI_SZ) 值。<br>如果指定了 dword，安装程序将创建一个32位整数 (REG_DWORD) 值。<br>如果指定了 qdword，安装程序将创建一个64位整数 (REG_QDWORD) 值。<br>如果指定了 binary，安装程序将创建一个二进制 (REG_BINARY) 值。</p>
+<h3 id="Flags"><a href="#Flags" class="headerlink" title="Flags"></a>Flags</h3><p>这个参数是额外选项设置。多个选项可以使用空格隔开。支持下面的选项:</p>
+<p>createvalueifdoesntexist<br>当指定了这个标记，安装程序只在如果没有相同名字的值存在时创建值。如果值类型是 none，或如果你指定了 deletevalue 标记，这个标记无效。</p>
+<p>deletekey<br>当指定了这个标记，安装程序在如果条目存在的情况下，先将尝试删除它，包括其中的所有值和子键。如果 ValueType 不是 none，那么它将创建一个新的键和值。</p>
+<p>要防止意外，如果 Subkey 是空白的或只包含反斜框符号，安装时这个标记被忽略。</p>
+<p>deletevalue<br>当指定了这个标记，安装程序在如果值存在的情况下，先将尝试删除值，如果 ValueType 是 none，那么在键不存在的情况下，它将创建键以及新值。</p>
+<p>dontcreatekey<br>当指定了这个标记，如果键已经在用户系统中不存在，安装程序将不尝试创建键或值。如果键不存在，不显示错误消息。</p>
+<p>一般来说，这个键与 uninsdeletekey 标记组合使用，在卸载时删除键，但安装时不创建键。</p>
+<p>noerror<br>如果安装程序因任何原因创建键或值失败，不显示错误消息。</p>
+<p>preservestringtype<br>这只在当 ValueType 参数是 string 或 expandsz 时适用。当指定这个标记，并且值不存在或现有的值不是 string 类型 (REG_SZ 或 REG_EXPAND_SZ)，它将用 ValueType 指定的类型创建。如果值存在，并且是 string 类型，它将用先存在值的相同值类型替换。</p>
+<p>uninsclearvalue<br>当卸载程序时，设置值数据为空字符 (类型 REG_SZ)。这个标记不能与 uninsdeletekey 标记组合使用。</p>
+<p>uninsdeletekey<br>当卸载程序时，删除整个键，包含其中的所有值和子键。这对于 Windows 自身使用的键明显不是一个好方法。你只能用于你的应用程序特有的键中。</p>
+<p>为防止意外，安装期间如果 Subkey 空白或只包含反斜框符号，这个标记被忽略。</p>
+<p>uninsdeletekeyifempty<br>当程序卸载时，如果这个键的内部没有值或子键，则删除这个键。这个标记可以与 uninsdeletevalue 组合使用</p>
+<p>为防止意外，安装期间如果 Subkey 空白或只包含反斜框符号，这个标记被忽略。</p>
+<p>uninsdeletevalue<br>当程序卸载时删除该值。这个标记不能与 uninsdeletekeyifempty 组合使用</p>
+<p>注意: 在早于 1.1 的 Inno Setup 版本中，你可以使用这个标记连同数据类型 none，那么它的功能与“如果空则删除键”标记一样。这个方法已经不支持了。你必须使用 uninsdeletekeyifempty 标记实现。</p>
+<h2 id="添加环境变量【Code】"><a href="#添加环境变量【Code】" class="headerlink" title="添加环境变量【Code】"></a>添加环境变量【Code】</h2><pre><code class="pascal">    //添加环境变量
+    procedure CurStepChanged(CurStep: TSetupStep);
+    var
+    oldpath:    String;
+    newpath:    String;
+    ErrorCode: Integer;
+    begin
+    if CurStep = ssPostInstall then
+    begin
+       RegQueryStringValue(HKEY_LOCAL_MACHINE, &#39;SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#39;, &#39;Path&#39;, oldPath);
+       newPath := oldPath + &#39;;%JAVA_HOME%\bin\;&#39;;
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, &#39;SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#39;, &#39;PATH&#39;, newPath);
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, &#39;SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#39;, &#39;JAVA_HOME&#39;, ExpandConstant(&#39;{app}\java\jdk1.8.0_45&#39;));
+    end;
+    end; </code></pre>
+<p>添加环境变量后记得在 setup 中配置 <code>ChangesEnvironment=yes</code> 通知其他应用程序从注册表重新获取环境变量</p>
+<h2 id="删除环境变量【Code】"><a href="#删除环境变量【Code】" class="headerlink" title="删除环境变量【Code】"></a>删除环境变量【Code】</h2><pre><code class="pascal">    procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+    var
+    oldpath:    String;
+    newpath:    String;
+    begin
+    if CurUninstallStep = usDone then
+       RegDeleteValue(HKEY_LOCAL_MACHINE, &#39;SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#39;, &#39;JAVA_HOME&#39;);
+       RegQueryStringValue(HKEY_LOCAL_MACHINE, &#39;SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#39;, &#39;Path&#39;, oldPath);
+       StringChangeEx(oldPath, &#39;;%JAVA_HOME%\bin\;&#39;, &#39;&#39;, True);
+       newPath := oldPath;
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, &#39;SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#39;, &#39;PATH&#39;, newPath);
+    end;</code></pre>
+<h2 id="安装完成后执行脚本"><a href="#安装完成后执行脚本" class="headerlink" title="安装完成后执行脚本"></a>安装完成后执行脚本</h2><pre><code class="text">    [Run]
+    Filename: &quot;{app}\service-install.bat&quot;; Description: &quot;{cm:LaunchProgram,{#StringChange(&#39;SERVICE_INSTALL&#39;, &#39;&amp;&#39;, &#39;&amp;&amp;&#39;)}}&quot;; Flags: shellexec postinstall waituntilterminated runascurrentuser</code></pre>
+<h3 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h3><p>程序的可选命令行参数，可以包含常量。</p>
+<h3 id="Flags-1"><a href="#Flags-1" class="headerlink" title="Flags"></a>Flags</h3><p>这个参数是额外选项设置。多个选项可以使用空格隔开。支持下面的选项:</p>
+<p>32bit<br>Causes the {sys} constant to map to the 32-bit System directory when used in the Filename and WorkingDir parameters. This is the default behavior in a 32-bit mode install。</p>
+<p>这个标记不能与 shellexec 组合使用。</p>
+<p>64bit<br>Causes the {sys} constant to map to the 64-bit System directory when used in the Filename and WorkingDir parameters. This is the default behavior in a 64-bit mode install。</p>
+<p>This flag can only be used when Setup is running on 64-bit Windows, otherwise an error will occur. On an installation supporting both 32- and 64-bit architectures, it is possible to avoid the error by adding a Check: IsWin64 parameter, which will cause the entry to be silently skipped when running on 32-bit Windows。</p>
+<p>这个标记不能与 shellexec 组合使用。</p>
+<p>hidewizard<br>如果指定了这个标记，向导将在程序运行期间隐藏。</p>
+<p>nowait<br>如果指定了这个标记，它将在处理下一个 [Run] 条目前或完成安装前不等待进程执行完成。不能与 waituntilidle 或 waituntilterminated 组合使用。</p>
+<p>postinstall<br>仅在 [Run] 段有效。告诉安装程序在安装完成向导页创建一个选择框，用户可以选中或不选中这个选择框从而决定是否处理这个条目。以前这个标记调用 showcheckbox。</p>
+<p>如果安装程序已经重新启动了用户的电脑 (安装了一个带 restartreplace 标记的文件或如果 [Setup] 段的 AlwaysRestart 指令是 yes 引起的)，选择框没有机会出现，因此这些条目不会被处理。</p>
+<p>[Files] 段条目中的 isreadme 标记现在已被废弃。如果编译器带 isreadme 标记的条目，它将从 [Files] 段条目中忽略这个标记，并在 [Run] 段条目列表的开头插入一个生成的 [Run] 条目。这相生成的 [Run] 段条目运行自述文件，并带有 shellexec，skipifdoesntexist，postinstall 和 skipifsilent 标记。</p>
+<p>runascurrentuser<br>如果指定了这个标记，the spawned process will inherit Setup/Uninstall’s user credentials (typically, full administrative privileges)。</p>
+<p>This is the default behavior when the postinstall flag is not used。</p>
+<p>这个标记不能与 runasoriginaluser 组合使用。</p>
+<p>runasoriginaluser<br>仅在 [Run] 段有效。If this flag is specified and the system is running Windows Vista or later, the spawned process will execute with the (normally non-elevated) credentials of the user that started Setup initially (i.e., the “pre-UAC dialog” credentials)。</p>
+<p>This is the default behavior when the postinstall flag is used。</p>
+<p>If a user launches Setup by right-clicking its EXE file and selecting “Run as administrator”, then this flag, unfortunately, will have no effect, because Setup has no opportunity to run any code with the original user credentials. The same is true if Setup is launched from an already-elevated process. Note, however, that this is not an Inno Setup-specific limitation; Windows Installer-based installers cannot return to the original user credentials either in such cases。</p>
+<p>这个标记不能与 runascurrentuser 组合使用。</p>
+<p>runhidden<br>如果指定了这个标记，它将在隐藏窗口中运行程序。请在执行一个要提示用户输入的程序中不要使用这个标记。</p>
+<p>runmaximized<br>如果指定了这个标记，将在最大化窗口运行程序或文档。</p>
+<p>runminimized<br>如果指定了这个标记，将在最小化窗口运行程序或文档。</p>
+<p>shellexec<br>如果 Filename 不是一个直接可执行文件 (.exe 或 .com 文件)，这个标记是必需的。当设置这个标记时，Filename 可以是一个文件夹或任何已注册的文件类型 – 包括 .hlp，.doc 等。该文件将用用户系统中与这个文件类型关联的应用程序打开，与在资源管理器双击文件的方法是相同的。</p>
+<p>按默认，当使用 shellexec 标记时，将不等待，直到生成的进程终止。<br>如果你需要，你必须添加标记 waituntilterminated。注意，如果新进程未生成，它不能执行也将不等待 – 例如，文件指定指定为一个文件夹。</p>
+<p>skipifdoesntexist<br>如果这个标记在 [Run] 段中指定，如果 Filename 不存在，安装程序不显示错误消息。</p>
+<p>如果这个标记在 [UninstallRun] 段中指定，如果 Filename 不存在，卸载程序不显示“一些元素不能删除”的警告。</p>
+<p>在使用这个标记时， Filename 必须是一个绝对路径。</p>
+<p>skipifnotsilent<br>仅在 [Run] 段有效。告诉安装程序如果安装程序未在后台运行则跳过这个条目。</p>
+<p>skipifsilent<br>仅在 [Run] 段有效。告诉安装程序如果安装程序在后台运行则跳过这个条目。</p>
+<p>unchecked<br>仅在 [Run] 段有效。告诉安装程序初始为不选中选择框。如果用户希望处理这个条目，可以通过选取选择框执行。如果 postinstall 标记未同时指定，这个标记被忽略。</p>
+<p>waituntilidle<br>如果指定了这个标记，它将在未输入期间等待，直到进程等待用户输入，而不是等待进程终止。(调用 WaitForInputIdle Win32 函数。) 不能与 nowait 或 waituntilterminated 组合使用。</p>
+<p>waituntilterminated<br>如果指定这个标记，将等待到进程完全终止。注意这是一个默认动作 (也就是你不需要指定这个标记)，除非你使用了 shellexec 标记，在这种情况下，如果你要等待，需要指定这个标记。不能与 nowait 或 waituntilidle 组合使用。</p>
+<h2 id="安装前卸载旧版本"><a href="#安装前卸载旧版本" class="headerlink" title="安装前卸载旧版本"></a>安装前卸载旧版本</h2><pre><code class="pascal">    function InitializeSetup(): boolean;
+    var
+    bRes: Boolean;
+    ResultStr: String;
+    ResultCode: Integer;
+    begin
+    if RegQueryStringValue(HKLM, &#39;SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{4AA89D60-9EB2-4A69-B73E-67E3AC22CF8E}_is1&#39;, &#39;UninstallString&#39;, ResultStr) then
+      begin
+        MsgBox(&#39;检测到系统之前安装过本程序,即将卸载低版本！&#39;, mbInformation, MB_OK);
+        ResultStr := RemoveQuotes(ResultStr);
+        bRes := Exec(ResultStr, &#39;/silent&#39;, &#39;&#39;, SW_HIDE, ewWaitUntilTerminated, ResultCode);
+        if bRes and (ResultCode = 0) then begin
+          result := true;
+          Exit;
+        end else
+          MsgBox(&#39;卸载低版本失败！&#39;, mbInformation, MB_OK);
+          result:= false;
+          Exit;
+      end;
+      result := true;
+    end;</code></pre>
+<h2 id="检测服务是否存在并删除"><a href="#检测服务是否存在并删除" class="headerlink" title="检测服务是否存在并删除"></a>检测服务是否存在并删除</h2><pre><code class="pascal">    function DeleteService(strExeName: String): Boolean;
+    var
+    ErrorCode: Integer;
+    bRes: Boolean;
+    strCmdFind: String;
+    strCmdDelete: String;
+    begin
+      strCmdFind := Format(&#39;/c sc query &quot;%s&quot;&#39;, [strExeName]);
+      strCmdDelete := Format(&#39;/c sc stop &quot;%s&quot; &amp; sc delete &quot;%s&quot;&#39;, [strExeName, strExeName]);
+      bRes := ShellExec(&#39;open&#39;, ExpandConstant(&#39;{cmd}&#39;), strCmdFind, &#39;&#39;, SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+      if bRes and (ErrorCode = 0) then begin
+          if MsgBox(&#39;检测到 &#39; + strExeName + &#39; 服务存在，需要删除，是否继续？&#39;, mbConfirmation, MB_YESNO) = IDYES then begin
+              bRes := ShellExec(&#39;open&#39;, ExpandConstant(&#39;{cmd}&#39;), strCmdDelete, &#39;&#39;, SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+              if bRes and (ErrorCode = 0) then begin
+                 MsgBox(&#39;服务 &#39;+strExeName+&#39; 删除成功！&#39;, mbInformation, MB_OK);
+                 result := true;
+                 Exit;
+              end else
+                 MsgBox(&#39;删除失败，请手动删除服务 &#39; + strExeName, mbError, MB_OK);
+                 result := false;
+                 Exit;
+          end else
+          result := false;
+          Exit;
+      end;
+      MsgBox(&#39;服务 &#39;+strExeName+&#39; 不存在！&#39;, mbInformation, MB_OK);
+      result := true;
+    end;</code></pre>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#添加环境变量【Registry】"><span class="toc-number">1.</span> <span class="toc-text">添加环境变量【Registry】</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Root-必需的"><span class="toc-number">1.1.</span> <span class="toc-text">Root  (必需的)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Subkey-必需的"><span class="toc-number">1.2.</span> <span class="toc-text">Subkey  (必需的)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ValueType"><span class="toc-number">1.3.</span> <span class="toc-text">ValueType</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flags"><span class="toc-number">1.4.</span> <span class="toc-text">Flags</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加环境变量【Code】"><span class="toc-number">2.</span> <span class="toc-text">添加环境变量【Code】</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除环境变量【Code】"><span class="toc-number">3.</span> <span class="toc-text">删除环境变量【Code】</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装完成后执行脚本"><span class="toc-number">4.</span> <span class="toc-text">安装完成后执行脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Parameters"><span class="toc-number">4.1.</span> <span class="toc-text">Parameters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flags-1"><span class="toc-number">4.2.</span> <span class="toc-text">Flags</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装前卸载旧版本"><span class="toc-number">5.</span> <span class="toc-text">安装前卸载旧版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检测服务是否存在并删除"><span class="toc-number">6.</span> <span class="toc-text">检测服务是否存在并删除</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

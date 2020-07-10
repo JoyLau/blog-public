@@ -1,0 +1,557 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>宽带速率转换 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+背景昨天和别人吃饭谈起了家里宽带的问题，办了多少兆的宽带，网速能有多少等云云，对方是个小白，和他说了半天，但是有些深层次的原理我也弄不清楚，后来我上网科普了一下，现在整理如下
+什么是宽带速率？宽,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">宽带速率转换</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.8687798146682792) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/其他篇"><b>「
+                    </b>其他篇<b> 」</b></a>
+                
+                八月 03, 2018
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2018/08/03/BroadbandSpeedConversion/" title="宽带速率转换" class="">宽带速率转换</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    2.6k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    2 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%8A%80%E8%83%BD/" rel="tag">技能</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>昨天和别人吃饭谈起了家里宽带的问题，办了多少兆的宽带，网速能有多少等云云，对方是个小白，和他说了半天，但是有些深层次的原理我也弄不清楚，后来我上网科普了一下，现在整理如下</p>
+<h3 id="什么是宽带速率？"><a href="#什么是宽带速率？" class="headerlink" title="什么是宽带速率？"></a>什么是宽带速率？</h3><p>宽带速率是指技术上所能达到的理论最高信息传送比特率，一般是上传和下载的速度，速率越高，上传和下载的越快。用户申请的宽带业务速率指技术上所能达到的最大理论速率值。但用户上网时还受到用户电脑软硬件的配置、所浏览网站的地址、终端网站带宽等情况的影响。因此，用户上网时的速率通常低于理论速率值。</p>
+<p>理论上，2M，即2Mb/s，宽带理论速率是 256KB/S。实际速率大约为103–200KB/S。（其原因是受用户计算机性能、网络设备质量、资源使用情况、网络高峰期、网站服务能力、线路衰耗、信号衰减等多因素的影响而造成的）。4M，即4Mb/s宽带理论速率是 512KB/S 实际速率大约为200—440KB/S。</p>
+<h3 id="计算方法"><a href="#计算方法" class="headerlink" title="计算方法"></a>计算方法</h3><p>在计算机科学中，bit是表示信息的最小单位，叫做二进制位；一般用0和1表示。Byte叫做字节，由8个位（8bit）组成一个字节(1Byte)，用于表示计算机中的一个字符。bit与Byte之间可以进行换算，其换算关系为：1Byte=8bit（或简写为：1B=8b）；在实际应用中一般用简称，即1bit简写为1b(注意是小写英文字母b)，1Byte简写为1B（注意是大写英文字母B）。</p>
+<p>在计算机网络或者是网络运营商中，一般，宽带速率的单位用bps(或b/s)表示；bps表示比特每秒即表示每秒钟传输多少位信息，是bit per second的缩写。在实际所说的1M带宽的意思是1Mbps（是兆比特每秒Mbps不是兆字节每秒MBps）。</p>
+<p>换算公式：<code>1B=8b 1B/s=8b/s(或1Bps=8bps)</code></p>
+<p>规范提示：实际书写规范中B应表示Byte(字节)，b应表示bit(比特)，但在平时的实际书写中有的把bit和Byte都混写为b ，如把Mb/s和MB/s都混写为Mb/s，导致人们在实际计算中因单位的混淆而出错。</p>
+<p>实例： 在我们实际上网应用中，下载软件时常常看到诸如下载速度显示为128KBps（KB/s），103KB/s等等宽带速率大小字样，因为ISP提供的线路带宽使用的单位是比特，而一般下载软件显示的是字节（1字节=8比特），所以要通过换算，才能得实际值。然而我们可以按照换算公式换算一下：</p>
+<p><code>1Mb/s = 1024Kb/s = 128×8(Kb/s) = 128KB/s</code></p>
+<p><code>即 1Mb/s = 128KB/s</code></p>
+<h3 id="宽带速率对照表"><a href="#宽带速率对照表" class="headerlink" title="宽带速率对照表"></a>宽带速率对照表</h3><table>
+<thead>
+<tr>
+<th>常见宽带</th>
+<th>理论最高速率（Mbps）</th>
+<th>理论最高速率（KB/S）</th>
+<th>常见下载速率（供参考）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1M</td>
+<td>1 Mbps</td>
+<td>128 KB/S</td>
+<td>77~128 KB/S</td>
+</tr>
+<tr>
+<td>2M</td>
+<td>2 Mbps</td>
+<td>256 KB/S</td>
+<td>154~256 KB/S</td>
+</tr>
+<tr>
+<td>3M</td>
+<td>3 Mbps</td>
+<td>384 KB/S</td>
+<td>231~384 KB/S</td>
+</tr>
+<tr>
+<td>4M</td>
+<td>4 Mbps</td>
+<td>512 KB/S</td>
+<td>307~512 KB/S</td>
+</tr>
+<tr>
+<td>6M</td>
+<td>6 Mbps</td>
+<td>620 KB/S</td>
+<td>462~620 KB/S</td>
+</tr>
+<tr>
+<td>8M</td>
+<td>8 Mbps</td>
+<td>1024 KB/S</td>
+<td>614~1024 KB/S</td>
+</tr>
+<tr>
+<td>10M</td>
+<td>10 Mbps</td>
+<td>1280 KB/S</td>
+<td>768~1280 KB/S</td>
+</tr>
+<tr>
+<td>12M</td>
+<td>12 Mbps</td>
+<td>1536 KB/S</td>
+<td>922~1536 KB/S</td>
+</tr>
+<tr>
+<td>20M</td>
+<td>20 Mbps</td>
+<td>2560 KB/S</td>
+<td>1536~2560 KB/S</td>
+</tr>
+<tr>
+<td>30M</td>
+<td>30 Mbps</td>
+<td>3840 KB/S</td>
+<td>2560~3840 KB/S</td>
+</tr>
+<tr>
+<td>50M</td>
+<td>50 Mbps</td>
+<td>6400 KB/S</td>
+<td>3840~6400 KB/S</td>
+</tr>
+<tr>
+<td>100M</td>
+<td>100 Mbps</td>
+<td>12800 KB/S</td>
+<td>7680~12800 KB/S</td>
+</tr>
+</tbody></table>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是宽带速率？"><span class="toc-number">2.</span> <span class="toc-text">什么是宽带速率？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算方法"><span class="toc-number">3.</span> <span class="toc-text">计算方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#宽带速率对照表"><span class="toc-number">4.</span> <span class="toc-text">宽带速率对照表</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

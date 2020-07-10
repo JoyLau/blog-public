@@ -1,0 +1,635 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>重剑无锋,大巧不工 SpringBoot --- Elasticsearch health check failed - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+版本环境
+spring boot : 2.1.2.RELEASE
+spring-data-elasticsearch :3.1.4.RELEASE
+elasticsearch: 6.4.3
+
+问,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">重剑无锋,大巧不工 SpringBoot --- Elasticsearch health check failed</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.3181141091818185) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/SpringBoot篇"><b>「
+                    </b>SPRINGBOOT篇<b> 」</b></a>
+                
+                一月 16, 2019
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2019/01/16/SpringBoot-Elasticsearch-HealthCheck/" title="重剑无锋,大巧不工 SpringBoot --- Elasticsearch health check failed" class="">重剑无锋,大巧不工 SpringBoot --- Elasticsearch health check failed</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    12k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    11 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<h3 id="版本环境"><a href="#版本环境" class="headerlink" title="版本环境"></a>版本环境</h3><ol>
+<li>spring boot : 2.1.2.RELEASE</li>
+<li>spring-data-elasticsearch :3.1.4.RELEASE</li>
+<li>elasticsearch: 6.4.3</li>
+</ol>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>使用 spring data elasticsearch 来连接使用 elasticsearch, 配置如下:</p>
+<pre><code class="yaml">    spring:
+      data:
+        elasticsearch:
+          cluster-name: docker-cluster
+          cluster-nodes: 192.168.10.68:9300</code></pre>
+<p>已经确认 elasticsearch 的 9300 和 9200 端口无任何问题,均可进行连接</p>
+<p>可是在启动项目是报出如下错误:</p>
+<pre><code class="bash">    2019-01-16 17:17:35.376  INFO 36410 --- [           main] o.elasticsearch.plugins.PluginsService   : no modules loaded
+    2019-01-16 17:17:35.378  INFO 36410 --- [           main] o.elasticsearch.plugins.PluginsService   : loaded plugin [org.elasticsearch.index.reindex.ReindexPlugin]
+    2019-01-16 17:17:35.378  INFO 36410 --- [           main] o.elasticsearch.plugins.PluginsService   : loaded plugin [org.elasticsearch.join.ParentJoinPlugin]
+    2019-01-16 17:17:35.378  INFO 36410 --- [           main] o.elasticsearch.plugins.PluginsService   : loaded plugin [org.elasticsearch.percolator.PercolatorPlugin]
+    2019-01-16 17:17:35.378  INFO 36410 --- [           main] o.elasticsearch.plugins.PluginsService   : loaded plugin [org.elasticsearch.script.mustache.MustachePlugin]
+    2019-01-16 17:17:35.378  INFO 36410 --- [           main] o.elasticsearch.plugins.PluginsService   : loaded plugin [org.elasticsearch.transport.Netty4Plugin]
+    2019-01-16 17:17:36.045  INFO 36410 --- [           main] o.s.d.e.c.TransportClientFactoryBean     : Adding transport node : 192.168.10.68:9300
+    2019-01-16 17:17:36.740  INFO 36410 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService &#39;applicationTaskExecutor&#39;
+    2019-01-16 17:17:36.987  INFO 36410 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path &#39;/actuator&#39;
+    2019-01-16 17:17:37.041  INFO 36410 --- [           main] org.xnio                                 : XNIO version 3.3.8.Final
+    2019-01-16 17:17:37.049  INFO 36410 --- [           main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
+    2019-01-16 17:17:37.091  INFO 36410 --- [           main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 8080 (http) with context path &#39;&#39;
+    2019-01-16 17:17:37.094  INFO 36410 --- [           main] cn.joylau.code.EsDocOfficeApplication    : Started EsDocOfficeApplication in 3.517 seconds (JVM running for 4.124)
+    2019-01-16 17:17:37.641  INFO 36410 --- [on(4)-127.0.0.1] io.undertow.servlet                      : Initializing Spring DispatcherServlet &#39;dispatcherServlet&#39;
+    2019-01-16 17:17:37.641  INFO 36410 --- [on(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet &#39;dispatcherServlet&#39;
+    2019-01-16 17:17:37.660  INFO 36410 --- [on(4)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 19 ms
+    2019-01-16 17:17:37.704  WARN 36410 --- [on(5)-127.0.0.1] s.b.a.e.ElasticsearchRestHealthIndicator : Elasticsearch health check failed
+
+    java.net.ConnectException: Connection refused
+        at org.elasticsearch.client.RestClient$SyncResponseListener.get(RestClient.java:943) ~[elasticsearch-rest-client-6.4.3.jar:6.4.3]
+        at org.elasticsearch.client.RestClient.performRequest(RestClient.java:227) ~[elasticsearch-rest-client-6.4.3.jar:6.4.3]
+        at org.springframework.boot.actuate.elasticsearch.ElasticsearchRestHealthIndicator.doHealthCheck(ElasticsearchRestHealthIndicator.java:61) ~[spring-boot-actuator-2.1.2.RELEASE.jar:2.1.2.RELEASE]
+        at org.springframework.boot.actuate.health.AbstractHealthIndicator.health(AbstractHealthIndicator.java:84) ~[spring-boot-actuator-2.1.2.RELEASE.jar:2.1.2.RELEASE]
+        at org.springframework.boot.actuate.health.CompositeHealthIndicator.health(CompositeHealthIndicator.java:98) [spring-boot-actuator-2.1.2.RELEASE.jar:2.1.2.RELEASE]
+        at org.springframework.boot.actuate.health.HealthEndpoint.health(HealthEndpoint.java:50) [spring-boot-actuator-2.1.2.RELEASE.jar:2.1.2.RELEASE]
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_131]
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_131]
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_131]
+        at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_131]
+        at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:246) [spring-core-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+        at org.springframework.boot.actuate.endpoint.invoke.reflect.ReflectiveOperationInvoker.invoke(ReflectiveOperationInvoker.java:76) [spring-boot-actuator-2.1.2.RELEASE.jar:2.1.2.RELEASE]
+        at org.springframework.boot.actuate.endpoint.annotation.AbstractDiscoveredOperation.invoke(AbstractDiscoveredOperation.java:61) [spring-boot-actuator-2.1.2.RELEASE.jar:2.1.2.RELEASE]
+        at org.springframework.boot.actuate.endpoint.jmx.EndpointMBean.invoke(EndpointMBean.java:126) [spring-boot-actuator-2.1.2.RELEASE.jar:2.1.2.RELEASE]
+        at org.springframework.boot.actuate.endpoint.jmx.EndpointMBean.invoke(EndpointMBean.java:99) [spring-boot-actuator-2.1.2.RELEASE.jar:2.1.2.RELEASE]
+        at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819) [na:1.8.0_131]
+        at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:801) [na:1.8.0_131]
+        at javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1468) [na:1.8.0_131]
+        at javax.management.remote.rmi.RMIConnectionImpl.access$300(RMIConnectionImpl.java:76) [na:1.8.0_131]
+        at javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1309) [na:1.8.0_131]
+        at javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1401) [na:1.8.0_131]
+        at javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829) [na:1.8.0_131]
+        at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source) ~[na:na]
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_131]
+        at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_131]
+        at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:346) [na:1.8.0_131]
+        at sun.rmi.transport.Transport$1.run(Transport.java:200) [na:1.8.0_131]
+        at sun.rmi.transport.Transport$1.run(Transport.java:197) [na:1.8.0_131]
+        at java.security.AccessController.doPrivileged(Native Method) [na:1.8.0_131]
+        at sun.rmi.transport.Transport.serviceCall(Transport.java:196) [na:1.8.0_131]
+        at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:568) [na:1.8.0_131]
+        at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:826) [na:1.8.0_131]
+        at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:683) [na:1.8.0_131]
+        at java.security.AccessController.doPrivileged(Native Method) [na:1.8.0_131]
+        at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:682) [na:1.8.0_131]
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) ~[na:1.8.0_131]
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) ~[na:1.8.0_131]
+        at java.lang.Thread.run(Thread.java:748) ~[na:1.8.0_131]
+    Caused by: java.net.ConnectException: Connection refused
+        at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[na:1.8.0_131]
+        at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717) ~[na:1.8.0_131]
+        at org.apache.http.impl.nio.reactor.DefaultConnectingIOReactor.processEvent(DefaultConnectingIOReactor.java:171) ~[httpcore-nio-4.4.10.jar:4.4.10]
+        at org.apache.http.impl.nio.reactor.DefaultConnectingIOReactor.processEvents(DefaultConnectingIOReactor.java:145) ~[httpcore-nio-4.4.10.jar:4.4.10]
+        at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:348) ~[httpcore-nio-4.4.10.jar:4.4.10]
+        at org.apache.http.impl.nio.conn.PoolingNHttpClientConnectionManager.execute(PoolingNHttpClientConnectionManager.java:221) ~[httpasyncclient-4.1.4.jar:4.1.4]
+        at org.apache.http.impl.nio.client.CloseableHttpAsyncClientBase$1.run(CloseableHttpAsyncClientBase.java:64) ~[httpasyncclient-4.1.4.jar:4.1.4]
+        ... 1 common frames omitted
+
+</code></pre>
+<p>连接被拒绝???</p>
+<p>发现无法进行 elasticsearch 的健康检查,于是想到我使用了 actuator 进行端点健康监控</p>
+<p>经过调试发现如下代码为返回数据:<br>ElasticsearchRestHealthIndicator 类中</p>
+<pre><code class="java">        @Override
+        protected void doHealthCheck(Health.Builder builder) throws Exception {
+            Response response = this.client
+                    .performRequest(new Request(&quot;GET&quot;, &quot;/_cluster/health/&quot;));
+            StatusLine statusLine = response.getStatusLine();
+            if (statusLine.getStatusCode() != HttpStatus.SC_OK) {
+                builder.down();
+                builder.withDetail(&quot;statusCode&quot;, statusLine.getStatusCode());
+                builder.withDetail(&quot;reasonPhrase&quot;, statusLine.getReasonPhrase());
+                return;
+            }
+            try (InputStream inputStream = response.getEntity().getContent()) {
+                doHealthCheck(builder,
+                        StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8));
+            }
+        }</code></pre>
+<p><code>new Request(&quot;GET&quot;, &quot;/_cluster/health/&quot;)</code> 正是 elasticsearch 健康的请求,但是没有看到 host 和 port</p>
+<p>于是用抓包工具发现其请求的是 <code>127.0.0.1:9200</code></p>
+<p>那这肯定是 springboot 的默认配置了</p>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><p>查看 <code>spring-boot-autoconfigure-2.1.2.RELEASE.jar</code><br>找到 elasticsearch 的配置 <code>org.springframework.boot.autoconfigure.elasticsearch</code><br>在找到类 <code>RestClientProperties</code><br>看到如下源码:</p>
+<pre><code class="java">    @ConfigurationProperties(prefix = &quot;spring.elasticsearch.rest&quot;)
+    public class RestClientProperties {
+
+        /**
+         * Comma-separated list of the Elasticsearch instances to use.
+         */
+        private List&lt;String&gt; uris = new ArrayList&lt;&gt;(
+                Collections.singletonList(&quot;http://localhost:9200&quot;));
+
+        /**
+         * Credentials username.
+         */
+        private String username;
+
+        /**
+         * Credentials password.
+         */
+        private String password;
+
+        public List&lt;String&gt; getUris() {
+            return this.uris;
+        }
+
+        public void setUris(List&lt;String&gt; uris) {
+            this.uris = uris;
+        }
+
+        public String getUsername() {
+            return this.username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getPassword() {
+            return this.password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+    }</code></pre>
+<p><code>Collections.singletonList(&quot;http://localhost:9200&quot;));</code> 没错了,这就是错误的起因</p>
+<p>顺藤摸瓜, 根据 <code>spring.elasticsearch.rest</code> 的配置,配置好 <code>uris</code> 即可</p>
+<p>于是进行如下配置:</p>
+<pre><code class="yaml">    spring:
+      data:
+        elasticsearch:
+          cluster-name: docker-cluster
+          cluster-nodes: 192.168.10.68:9300
+      elasticsearch:
+        rest:
+          uris: [&quot;http://192.168.10.68:9200&quot;]</code></pre>
+<p>集群中的多个节点就写多个</p>
+<p>启动,没有出现错误</p>
+<p>还有一种方式也可以解决,但是并不是一种好的解决方式,那就是关闭 actuator 对 elasticsearch 的健康检查</p>
+<pre><code class="yaml">    management:
+      health:
+        elasticsearch:
+          enabled: false</code></pre>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#版本环境"><span class="toc-number">1.</span> <span class="toc-text">版本环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题描述"><span class="toc-number">2.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题解决"><span class="toc-number">3.</span> <span class="toc-text">问题解决</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

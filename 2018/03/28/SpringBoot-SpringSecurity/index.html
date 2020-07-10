@@ -1,0 +1,911 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+引入依赖    &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+      ,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.19155113043191663) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/SpringSecurity篇"><b>「
+                    </b>SPRINGSECURITY篇<b> 」</b></a>
+                
+                三月 28, 2018
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2018/03/28/SpringBoot-SpringSecurity/" title="重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity" class="">重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    17k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    15 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringSecurity/" rel="tag">SpringSecurity</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><pre><code class="xml">    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-security-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;</code></pre>
+<h2 id="SpringSecurity-配置类"><a href="#SpringSecurity-配置类" class="headerlink" title="SpringSecurity 配置类"></a>SpringSecurity 配置类</h2><pre><code class="java">    @EqualsAndHashCode(callSuper = true)
+    @Data
+    @Configuration
+    @EnableWebSecurity
+    @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+    @ConfigurationProperties(prefix = &quot;spring.security.ignore&quot;)
+    public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+        private List&lt;String[]&gt; marchers;
+
+        @Bean
+        public UserService userService(){
+            return new UserService();
+        }
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http
+                    .anonymous().disable()
+                    .csrf().disable()
+                    .authorizeRequests()
+    //                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll() //解决PreFlight请求问题
+                    .anyRequest().authenticated()//其他请求必须授权后访问
+                    .and()
+                    .formLogin()
+    //                .loginPage(&quot;/login&quot;)
+                    .loginProcessingUrl(&quot;/login&quot;)
+                    .successHandler(authenticationSuccessHandler())
+                    .failureHandler(authenticationFailureHandler())
+                    .permitAll()//登录请求可以直接访问
+                    .and()
+                    .logout()
+                    .invalidateHttpSession(true)
+                    .deleteCookies(&quot;JSESSIONID&quot;)
+                    .logoutSuccessHandler(new LogoutSuccess())
+                    .permitAll()//注销请求可直接访问
+                    .and()
+                    .sessionManagement()
+                    .invalidSessionStrategy(new InvalidSessionStrategyImpl())
+                    .maximumSessions(-1).expiredSessionStrategy(expiredSessionStrategy())//配置并发登录，-1表示不限制
+                    .sessionRegistry(sessionRegistry())
+                    .and()
+                    .and()
+                    .exceptionHandling()
+                    .authenticationEntryPoint(new UnauthenticatedEntryPoint())
+                    .accessDeniedHandler(new AuthorizationFailure())
+                    .and()
+                    .addFilterBefore(new AuthorizationFilter(new AuthorizationMetadataSource(), new
+                    AuthorizationAccessDecisionManager()), FilterSecurityInterceptor.class);
+
+        }
+
+        @Override
+        public void configure(AuthenticationManagerBuilder auth) {
+            auth.authenticationProvider(authenticationProvider());
+        }
+
+        @Bean
+        public SessionRegistry sessionRegistry(){
+            return new SessionRegistryImpl();
+        }
+
+        @Bean
+        public ExpiredSessionStrategyImpl expiredSessionStrategy(){
+            return new ExpiredSessionStrategyImpl();
+        }
+
+        @Bean
+        public BCryptPasswordEncoder passwordEncoder() {
+            return SecurityUtils.getPasswordEncoder();
+        }
+
+        @Override
+        public void configure(WebSecurity web) {
+            for (String[] marcher : marchers) {
+                web.ignoring().antMatchers(marcher);
+            }
+        }
+
+        @Bean
+        public DaoAuthenticationProvider authenticationProvider() {
+            DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+            /*不将UserNotFoundExceptions转换为BadCredentialsException*/
+            provider.setHideUserNotFoundExceptions(false);
+            provider.setUserDetailsService(userService());
+            provider.setPasswordEncoder(passwordEncoder());
+            return provider;
+        }
+
+        @Bean
+        public AuthenticationSuccess authenticationSuccessHandler(){
+            return new AuthenticationSuccess();
+        }
+
+        @Bean
+        public AuthenticationFailureHandler authenticationFailureHandler(){
+            return new AuthenticationFailure();
+        }
+    }
+</code></pre>
+<h2 id="自定义-userService"><a href="#自定义-userService" class="headerlink" title="自定义 userService"></a>自定义 userService</h2><pre><code class="java">    public class UserService implements UserDetailsService {
+        @Autowired
+        private WebSecurityConfig securityConfig;
+
+        @Autowired
+        private SysUserMapper userMapper;
+
+        @Override
+        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+            if (StringUtils.isEmpty(username)) {
+                throw new UsernameNotFoundException(&quot;用户名不能为空!&quot;);
+            }
+            SysUser user = new SysUser();
+            user.setLoginName(username);
+            SysUser queryUser = userMapper.selectOne(user);
+            if (null == queryUser) {
+                throw new UsernameNotFoundException(&quot;用户  &quot; + username + &quot; 不存在!&quot;);
+            }
+            if (!queryUser.getPermissionIpList().contains(&quot;0.0.0.0&quot;) &amp;&amp; !queryUser.getPermissionIpList().contains
+                    (SecurityUtils.getRemoteAddress())) {
+                throw new InvalidIpAddrException(&quot;登录 IP 地址不合法&quot;);
+            }
+
+            return new SecurityUser(queryUser);
+        }
+
+        /**
+         * 重新授权
+         */
+        public void reAuthorization(){
+            SecurityUser user = SecurityUtils.currentUser();
+            assert user != null;
+            String username = user.getUsername();
+            user.setRoles(userMapper.findRolesByName(username));
+            user.setMenus(userMapper.findMenusByName(username));
+            user.setFunctions(userMapper.findFunctionsByName(username));
+
+            List&lt;GrantedAuthority&gt; authorities = new ArrayList&lt;&gt;();
+            for (Function function : user.getFunctions()) {
+                for (String url : function.getFunctionUrl().split(&quot;,&quot;)) {
+                    authorities.add(new SimpleGrantedAuthority(url));
+                }
+            }
+            user.setAuthorities(authorities.stream().distinct().collect(Collectors.toList()));
+            // 得到当前的认证信息
+            Authentication auth = SecurityUtils.getAuthentication();
+            // 生成新的认证信息
+            Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), authorities);
+            // 重置认证信息
+            SecurityContextHolder.getContext().setAuthentication(newAuth);
+
+        }
+
+
+        /**
+         * 根据用户名 将该用户登录的所有账户踢下线
+         * @param userNames userNames
+         */
+        public void kickOutUser(String... userNames) {
+            SessionRegistry sessionRegistry = securityConfig.sessionRegistry();
+            for (Object o : sessionRegistry.getAllPrincipals()) {
+                SecurityUser user = (SecurityUser) o;
+                for (String username : userNames) {
+                    if (user.getLoginName().equals(username)) {
+                        for (SessionInformation sessionInformation : sessionRegistry.getAllSessions(user, false)) {
+                            sessionInformation.expireNow();
+                        }
+                    }
+                }
+            }
+        }
+    }</code></pre>
+<h2 id="用户实体类-SecurityUser"><a href="#用户实体类-SecurityUser" class="headerlink" title="用户实体类 SecurityUser"></a>用户实体类 SecurityUser</h2><pre><code class="java">    @Data
+    public class SecurityUser extends SysUser implements UserDetails{
+
+        /*角色*/
+        private List&lt;SysRole&gt; roles;
+
+        /*菜单*/
+        private List&lt;Menu&gt; menus;
+
+        /*功能权限*/
+        private List&lt;Function&gt; functions;
+
+        private Collection&lt;? extends GrantedAuthority&gt; authorities;
+
+        SecurityUser(SysUser user) {
+            this.setUserId(user.getUserId());
+            this.setGlbm(user.getGlbm());
+            this.setXh(user.getXh());
+            this.setLoginName(user.getLoginName());
+            this.setLoginPassword(user.getLoginPassword());
+            this.setPermissionIpList(user.getPermissionIpList());
+            this.setLatestLoginTime(user.getLatestLoginTime());
+            this.setTotalLoginCounts(user.getTotalLoginCounts());
+            this.setName(user.getName());
+            this.setCreateTime(user.getCreateTime());
+            this.setUpdateTime(user.getUpdateTime());
+        }
+
+
+        @Override
+        public Collection&lt;? extends GrantedAuthority&gt; getAuthorities() {
+            return authorities;
+        }
+
+        @Override
+        public boolean isAccountNonExpired() {
+            return true;
+        }
+
+        @Override
+        public boolean isAccountNonLocked() {
+            return true;
+        }
+
+        @Override
+        public boolean isCredentialsNonExpired() {
+            return true;
+        }
+
+        @Override
+        public boolean isEnabled() {
+            return true;
+        }
+
+        @Override
+        public String getPassword() {
+            return super.getLoginPassword();
+        }
+
+        @Override
+        public String getUsername() {
+            return super.getLoginName();
+        }
+
+        @Override
+        public int hashCode() {
+            return this.getLoginName().hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return obj instanceof SecurityUser &amp;&amp; ((SecurityUser) obj).getLoginName().equals(this.getLoginName());
+        }
+    }</code></pre>
+<h2 id="授权Filter"><a href="#授权Filter" class="headerlink" title="授权Filter"></a>授权Filter</h2><pre><code class="java">    public class AuthorizationFilter extends AbstractSecurityInterceptor implements Filter {
+
+        private AuthorizationMetadataSource metadataSource;
+
+        public AuthorizationFilter(AuthorizationMetadataSource metadataSource, AuthorizationAccessDecisionManager
+                accessDecisionManager) {
+            this.metadataSource = metadataSource;
+            this.setAccessDecisionManager(accessDecisionManager);
+        }
+
+        @Override
+        public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+                throws IOException, ServletException {
+            FilterInvocation fi = new FilterInvocation(servletRequest, servletResponse, filterChain);
+            invoke(fi);
+        }
+
+        private void invoke(FilterInvocation fi) throws IOException, ServletException {
+            InterceptorStatusToken token = super.beforeInvocation(fi);
+            try {
+                fi.getChain().doFilter(fi.getRequest(), fi.getResponse());
+            } finally {
+                super.afterInvocation(token, null);
+            }
+        }
+
+
+        @Override
+        public Class&lt;?&gt; getSecureObjectClass() {
+            return FilterInvocation.class;
+        }
+
+        @Override
+        public SecurityMetadataSource obtainSecurityMetadataSource() {
+            return metadataSource;
+        }
+
+        @Override
+        public void destroy() {
+        }
+
+        @Override
+        public void init(FilterConfig filterConfig) {
+        }
+    }</code></pre>
+<h2 id="授权访问决策器"><a href="#授权访问决策器" class="headerlink" title="授权访问决策器"></a>授权访问决策器</h2><pre><code class="java">    public class AuthorizationAccessDecisionManager implements AccessDecisionManager {
+
+        /**
+         * 认证用户是否具有权限访问该url地址
+         */
+        @Override
+        public void decide(Authentication authentication, Object object, Collection&lt;ConfigAttribute&gt; configAttributes)
+                throws AccessDeniedException, InsufficientAuthenticationException {
+            HttpServletRequest request = ((FilterInvocation) object).getRequest();
+            String url = ((FilterInvocation) object).getRequestUrl();
+            for (GrantedAuthority grantedAuthority : authentication.getAuthorities()) {
+                SimpleGrantedAuthority authority = (SimpleGrantedAuthority) grantedAuthority;
+                if (matches(authority.getAuthority(), request)) {
+                    return;
+                }
+            }
+            throw new AccessDeniedException(&quot;uri: &quot; + url + &quot;,无权限访问！&quot;);
+        }
+
+        /**
+         * 当前AccessDecisionManager是否支持对应的ConfigAttribute
+         */
+        @Override
+        public boolean supports(ConfigAttribute attribute) {
+            return true;
+        }
+
+        /**
+         * 当前AccessDecisionManager是否支持对应的受保护对象类型
+         */
+        @Override
+        public boolean supports(Class&lt;?&gt; clazz) {
+            return true;
+        }
+
+        private boolean matches(String url, HttpServletRequest request) {
+            AntPathRequestMatcher matcher = new AntPathRequestMatcher(url);
+            return matcher.matches(request);
+        }
+    }</code></pre>
+<h2 id="授权元数据"><a href="#授权元数据" class="headerlink" title="授权元数据"></a>授权元数据</h2><pre><code class="java">    public class AuthorizationMetadataSource implements FilterInvocationSecurityMetadataSource {
+
+        /**
+         * 加载 请求的url资源所需的权限
+         * @param object object
+         * @return Collection
+         * @throws IllegalArgumentException Exception
+         */
+        @Override
+        public Collection&lt;ConfigAttribute&gt; getAttributes(Object object) throws IllegalArgumentException {
+            String url = ((FilterInvocation) object).getRequestUrl();
+            Collection&lt;ConfigAttribute&gt; configAttributes = new ArrayList&lt;&gt;();
+            configAttributes.add(new SecurityConfig(url));
+            return configAttributes;
+        }
+
+        /**
+         * 会在启动时加载所有 ConfigAttribute 集合
+         * @return Collection
+         */
+        @Override
+        public Collection&lt;ConfigAttribute&gt; getAllConfigAttributes() {
+            return null;
+        }
+
+        @Override
+        public boolean supports(Class&lt;?&gt; clazz) {
+            return true;
+        }
+    }</code></pre>
+<h2 id="封装一些-Security-工具类"><a href="#封装一些-Security-工具类" class="headerlink" title="封装一些 Security 工具类"></a>封装一些 Security 工具类</h2><pre><code class="java">    public class SecurityUtils {
+
+        public static Authentication getAuthentication(){
+            return SecurityContextHolder.getContext().getAuthentication();
+        }
+
+        /**
+         * 用户是否登录
+         * @return boolean
+         */
+        public static boolean isAuthenticated(){
+            return getAuthentication() != null || !(getAuthentication() instanceof AnonymousAuthenticationToken);
+        }
+
+        /**
+         * 获取当前用户
+         * @return user
+         */
+        public static SecurityUser currentUser(){
+            if (isAuthenticated()) {
+                return (SecurityUser) getAuthentication().getPrincipal();
+            }
+            return null;
+        }
+
+        /**
+         * 获取 webAuthenticationDetails
+         */
+        private static WebAuthenticationDetails webAuthenticationDetails(){
+            return (WebAuthenticationDetails)getAuthentication().getDetails();
+        }
+
+        /**
+         * 获取session id
+         */
+        public static String getSessionId(){
+            return webAuthenticationDetails().getSessionId();
+        }
+
+        /**
+         * 获取远程访问地址
+         */
+        public static String getRemoteAddress(){
+            return webAuthenticationDetails().getRemoteAddress();
+        }
+
+        /**
+         * 获取密码编译器
+         * @return BCryptPasswordEncoder
+         */
+        public static BCryptPasswordEncoder getPasswordEncoder(){
+            return new BCryptPasswordEncoder(4);
+        }
+
+        /**
+         * 根据明文加密 返回密文
+         * @param rawPassword 明文
+         * @return 密文
+         */
+        public static String createPassword(String rawPassword){
+            return getPasswordEncoder().encode(rawPassword.trim());
+        }
+
+        /**
+         * 传入明文和密文 检查是否匹配
+         * @param rawPassword 明文
+         * @param encodedPassword 密文
+         * @return boolean
+         */
+        public static boolean isMatching(String rawPassword,String encodedPassword){
+            return getPasswordEncoder().matches(rawPassword,encodedPassword);
+        }
+
+    }</code></pre>
+<p>主要的实现类都列举在内了，还有一些成功和失败的处理类，再次没有列举出来<br>因为该项目为构建纯restful风格的后台项目，这些成功或失败的处理类基本都是返回的http状态码</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引入依赖"><span class="toc-number">1.</span> <span class="toc-text">引入依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringSecurity-配置类"><span class="toc-number">2.</span> <span class="toc-text">SpringSecurity 配置类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义-userService"><span class="toc-number">3.</span> <span class="toc-text">自定义 userService</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户实体类-SecurityUser"><span class="toc-number">4.</span> <span class="toc-text">用户实体类 SecurityUser</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#授权Filter"><span class="toc-number">5.</span> <span class="toc-text">授权Filter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#授权访问决策器"><span class="toc-number">6.</span> <span class="toc-text">授权访问决策器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#授权元数据"><span class="toc-number">7.</span> <span class="toc-text">授权元数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#封装一些-Security-工具类"><span class="toc-number">8.</span> <span class="toc-text">封装一些 Security 工具类</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

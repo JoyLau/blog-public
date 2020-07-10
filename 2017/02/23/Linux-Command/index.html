@@ -1,0 +1,701 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Linux菜鸟到熟悉 --- 常用命令备忘 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+``` bash
+    ////////////////////////////////////////////////////////////////////
+    //         ,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">Linux菜鸟到熟悉 --- 常用命令备忘</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.6538105271817902) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/Linux篇"><b>「
+                    </b>LINUX篇<b> 」</b></a>
+                
+                二月 23, 2017
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2017/02/23/Linux-Command/" title="Linux菜鸟到熟悉 --- 常用命令备忘" class="">Linux菜鸟到熟悉 --- 常用命令备忘</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    14k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    12 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/CMD/" rel="tag">CMD</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<pre><code>``` bash
+    ////////////////////////////////////////////////////////////////////
+    //                          _ooOoo_                               //
+    //                         o8888888o                              //
+    //                         88&quot; . &quot;88                              //
+    //                         (| ^_^ |)                              //
+    //                         O\  =  /O                              //
+    //                      ____/`---&#39;\____                           //
+    //                    .&#39;  \\|     |//  `.                         //
+    //                   /  \\|||  :  |||//  \                        //
+    //                  /  _||||| -:- |||||-  \                       //
+    //                  |   | \\\  -  /// |   |                       //
+    //                  | \_|  &#39;&#39;\---/&#39;&#39;  |   |                       //
+    //                  \  .-\__  `-`  ___/-. /                       //
+    //                ___`. .&#39;  /--.--\  `. . ___                     //
+    //              .&quot;&quot; &#39;&lt;  `.___\_&lt;|&gt;_/___.&#39;  &gt;&#39;&quot;&quot;.                  //
+    //            | | :  `- \`.;`\ _ /`;.`/ - ` : | |                 //
+    //            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //
+    //      ========`-.____`-.___\_____/___.-`____.-&#39;========         //
+    //                           `=---=&#39;                              //
+    //      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //
+    //                    佛祖保佑       永无BUG                        //
+    ////////////////////////////////////////////////////////////////////
+```</code></pre><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>有一些命令是centos7特有的，在低版本的可能无法使用</li>
+</ul>
+<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><ul>
+<li>查看防火墙状态：  <code>systemctl status firewalld</code></li>
+<li>开启防火墙 ：  <code>systemctl start  firewalld</code></li>
+<li>停止防火墙：  <code>systemctl disable firewalld</code></li>
+<li>重启防火墙：  <code>systemctl restart firewalld.service</code></li>
+<li>开启80端口：  <code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code></li>
+<li>禁用防火墙：  <code>systemctl stop firewalld</code></li>
+<li>查看防火墙开放的端口号：  <code>firewall-cmd --list-ports</code></li>
+</ul>
+<h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><ul>
+<li>查看tomcat运行状态：<code>ps -ef |grep tomcat</code></li>
+<li>看到tomcat的pid之后：<code>kill -9 pid</code> 可以强制杀死tomcat的进程</li>
+</ul>
+<h3 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h3><ul>
+<li>查看cpu及内存使用情况：<code>top</code>(停止刷新 <code>-q</code>)</li>
+<li>查看内存使用情况 ：<code>free</code></li>
+</ul>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><ul>
+<li>删除文件里机器子文件夹的内容：<code>rm -rf /var/lib/mysql</code></li>
+<li>查找某个文件所在目录：<code>find / -name filename</code></li>
+</ul>
+<h3 id="压缩与解压缩"><a href="#压缩与解压缩" class="headerlink" title="压缩与解压缩"></a>压缩与解压缩</h3><ul>
+<li>解压zip压缩文件：<code>unzip file.zip</code>，相反的，压缩文件 zip file （需安装<code>yum install unzip zip</code>,），解压到指定目录可加参数-d,如：<code>unzip file.zip -d /root/</code></li>
+<li>将 test.txt 文件压缩为 test.zip，<code>zip test.zip test.txt</code>,当然也可以指定压缩包的目录，例如 /root/test.zip ,后面的test.txt也可以换成文件夹</li>
+<li>linux下是不支持直接解压rar压缩文件，建议将要传输的文件压缩成zip文件</li>
+<li><code>yum install p7zip</code> 安装7z解压，支持更多压缩格式（卸载<code>yum remove p7zip</code>）</li>
+</ul>
+<h3 id="快速删除文件夹-文件"><a href="#快速删除文件夹-文件" class="headerlink" title="快速删除文件夹/文件"></a>快速删除文件夹/文件</h3><ul>
+<li>有时我们的文件夹里有很多文件，默认的删除方式是递归删除，文件夹深了及文件多了，删除会非常的慢，这时候：</li>
+<li>先建立一个空目录<br><code>mkdir /data/blank</code></li>
+<li>用rsync删除目标目录<br><code>rsync–delete-before -d /data/blank/ /var/spool/clientmqueue/</code></li>
+<li>同样的对于大文件：创建空文件<br><code>touch /data/blank.txt</code></li>
+<li>用rsync清空文件<br><code>rsync-a –delete-before –progress –stats /root/blank.txt /root/nohup.out</code></li>
+</ul>
+<h3 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h3><ul>
+<li>查看6379端口是否占用：<code>netstat -tunpl | grep 6379</code> (注意，redis服务需要 root 权限才能查看，不然只能检查到6379被某个进程占用，但是看不到进程名称。)</li>
+</ul>
+<h3 id="主机"><a href="#主机" class="headerlink" title="主机"></a>主机</h3><ul>
+<li>修改主机名：<code>hostnamectl set-hostname 新主机名</code></li>
+</ul>
+<h3 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h3><ul>
+<li>列出所有可更新的软件清单命令：<code>yum check-update</code></li>
+<li>更新所有软件命令：<code>yum update</code></li>
+<li>仅安装指定的软件命令：<code>yum install &lt;package_name&gt;</code></li>
+<li>仅更新指定的软件命令：<code>yum update &lt;package_name&gt;</code></li>
+<li>列出所有可安裝的软件清单命令：<code>yum list</code></li>
+<li>删除软件包命令：<code>yum remove &lt;package_name&gt;</code></li>
+<li>查找软件包 命令：<code>yum search &lt;keyword&gt;</code></li>
+<li>清除缓存命令:   </li>
+<li><code>yum clean packages</code>: 清除缓存目录下的软件包</li>
+<li><code>yum clean headers</code>: 清除缓存目录下的 headers</li>
+<li><code>yum clean oldheaders</code>: 清除缓存目录下旧的 headers</li>
+</ul>
+<h3 id="systemctl"><a href="#systemctl" class="headerlink" title="systemctl"></a>systemctl</h3><ul>
+<li><code>systemctl restart nginx</code> : 重启nginx</li>
+<li><code>systemctl start nginx</code> : 开启nginx</li>
+<li><code>systemctl stop nginx</code> : 关闭nginx</li>
+<li><code>systemctl enable nginx</code> : nginx开机启动</li>
+<li><code>systemctl disable nginx</code> : 禁用nginx开机启动</li>
+<li><code>systemctl status nginx</code> : 查看nginx服务信息</li>
+<li><code>systemctl is-enabled nginx</code> ： 查看服务是否开机启动</li>
+<li><code>systemctl list-unit-files|grep enabled</code> ： 查看已启动的服务列表</li>
+<li><code>systemctl --failed</code> ： 查看启动失败的服务列表</li>
+<li><code>systemctl daemon-reload</code> ： 重新加载service文件</li>
+<li><code>systemctl reboot</code> : 重启</li>
+<li><code>systemctl poweroff</code> : 关机</li>
+</ul>
+<h3 id="压缩解压命令"><a href="#压缩解压命令" class="headerlink" title="压缩解压命令"></a>压缩解压命令</h3><h4 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h4><ul>
+<li>tar –cvf jpg.tar *.jpg //将目录里所有jpg文件打包成tar.jpg</li>
+<li>tar –czf jpg.tar.gz *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</li>
+<li>tar –cjf jpg.tar.bz2 *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</li>
+<li>tar –cZf jpg.tar.Z *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</li>
+<li>rar a jpg.rar *.jpg //rar格式的压缩，需要先下载rar for linux</li>
+<li>zip jpg.zip *.jpg //zip格式的压缩，需要先下载zip for linux</li>
+</ul>
+<h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><ul>
+<li>tar –xvf file.tar //解压 tar包</li>
+<li>tar -xzvf file.tar.gz //解压tar.gz</li>
+<li>tar -xjvf file.tar.bz2   //解压 tar.bz2</li>
+<li>tar –xZvf file.tar.Z   //解压tar.Z</li>
+<li>unrar e file.rar //解压rar</li>
+<li>unzip file.zip //解压zip</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>.tar 用 tar –xvf 解压</li>
+<li>.gz 用 gzip -d或者gunzip 解压</li>
+<li>.tar.gz和*.tgz 用 tar –xzf 解压</li>
+<li>.bz2 用 bzip2 -d或者用bunzip2 解压</li>
+<li>.tar.bz2用tar –xjf 解压</li>
+<li>.Z 用 uncompress 解压</li>
+<li>.tar.Z 用tar –xZf 解压</li>
+<li>.rar 用 unrar e解压</li>
+<li>.zip 用 unzip 解压</li>
+</ul>
+<h3 id="yum更换为阿里源"><a href="#yum更换为阿里源" class="headerlink" title="yum更换为阿里源"></a>yum更换为阿里源</h3><ul>
+<li><p>备份 ：mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</p>
+</li>
+<li><p>下载新的CentOS-Base.repo 到/etc/yum.repos.d/</p>
+</li>
+</ul>
+<pre><code class="shell">    ## CentOS 5 ：
+
+    wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo
+
+    ## 或者
+
+    curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo
+
+    ## CentOS 6 ： 
+
+    wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+
+    ## 或者
+
+    curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+
+    ## CentOS 7 ： 
+
+    wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+
+    ## 或者
+
+    curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</code></pre>
+<ul>
+<li>之后运行 yum makecache 生成缓存</li>
+</ul>
+<h2 id="创建用户，权限，密码等"><a href="#创建用户，权限，密码等" class="headerlink" title="创建用户，权限，密码等"></a>创建用户，权限，密码等</h2><ul>
+<li>adduser es -s /bin/bash  : 创建用户为 es ,shell指定为bash</li>
+<li>passwd es 更改 es 用户的密码</li>
+<li>chown -R es:es /project/elasticsearch-5.6.3 循环遍历更改 /project/elasticsearch-5.6.3 目录下的文件拥有者及用户组</li>
+<li>su - es : 切换成es用户重新登录系统</li>
+<li>su es : 表示与 es 建立一个连接，通过 es 来执行命令</li>
+</ul>
+<p>注： 以上命令在安装 elasticsearch 时都会用的到</p>
+<h2 id="2018-06-22-更新"><a href="#2018-06-22-更新" class="headerlink" title="2018-06-22 更新"></a>2018-06-22 更新</h2><ol>
+<li><p>vim 永久显示行号 vim /etc/vimrc 添加 <code>set nu</code> 或者 <code>set number</code></p>
+</li>
+<li><p>最小化安装 centos 是没有 tab 键补全提示的， 需要安装 <code>yum install bash-completion</code></p>
+</li>
+<li><p>tab 补全提示不区分大小写 ： vim /etc/inputrc 添加 <code>set completion-ignore-case on</code></p>
+</li>
+</ol>
+<p>注： 以上 增加配置是全局的，只对当前用户的话，可以在当前目录下新建相应的文件，再添加配置，例如： ~/.inputrc</p>
+<h2 id="2018-9-12-更新"><a href="#2018-9-12-更新" class="headerlink" title="2018-9-12 更新"></a>2018-9-12 更新</h2><ol>
+<li>killall -9 nginx : 批量结束指定进程，比如不小心运行了 nginx，会产生1个master和n个work进程，这时候一个个结束不实际，killall就是最好的方式</li>
+<li>有时候我们安装 rpm 安装包会出现某些依赖库找不到，比如<br> <code>libSM.so.6: cannot open shared object file: No such file or directory</code><br> 这时候我们使用 <code>yum provides libSM.so.6</code> 来寻找包含的动态库</li>
+</ol>
+<pre><code class="shell">    Loaded plugins: fastestmirror
+    Loading mirror speeds from cached hostfile
+    gperftools-libs-2.6.1-1.el7.i686 : Libraries provided by gperftools
+    Repo        : Private-Base
+    Matched from:
+    Provides    : libprofiler.so.0
+</code></pre>
+<p>找到后安装即可 <code>yum install gperftools-libs</code></p>
+<h2 id="2018-12-20-更新"><a href="#2018-12-20-更新" class="headerlink" title="2018-12-20 更新"></a>2018-12-20 更新</h2><ol>
+<li><code>/dev/null 2&gt;&amp;1</code> 解释<br> <code>&gt;</code> 覆盖原来的内容<br> <code>&gt;&gt;</code> 在原来的内容上追加新的内容<br> 0是标准输入    <code>使用&lt;或&lt;&lt;</code><br> 1是标准输出   <code>使用&gt;或&gt;&gt;</code><br> 2是标准错误输出  <code>使用2&gt;或2&gt;&gt;</code><br> <code>&gt;/dev/null 2&gt;&amp;1</code>  即错误输出与标准输出全部重定向到空,可以写成 <code>1&gt;/dev/null 2&gt;/dev/null</code><br> 标准输入0和标准输出1可以省略。（当其出现重定向符号左侧时)<br> 文件描述符在重定向符号左侧时直接写即可，在右侧时前面加&amp;<br> 文件描述符与重定向符号之间不能有空格</li>
+</ol>
+<h2 id="2019-01-23-更新"><a href="#2019-01-23-更新" class="headerlink" title="2019-01-23 更新"></a>2019-01-23 更新</h2><ol start="0">
+<li>在命令后加个<code>&amp;</code> 代表该命令在后台运行, shell 的控制台会立即释放,但是和守护进程又不一样, shell 断开会终止运行</li>
+<li><code>command &gt; file.log 2&gt;&amp;1</code> 等价于 <code>command 2&gt;file.log 1&gt;&amp;2</code> 前一个指的是标准错误重定向到标准输出,标准输出在重定向到文件 file.log 中, 其中 1 省略了;后一个指的是标准输出重定向到标准错误,标准错误又重定向到文件 file.log, 其中2 不能省略</li>
+<li>shell 脚本中无法报命令不存在的错误: 在 shell 脚本第一行使用 <code>#!/usr/bin/env bash</code> 或者 <code>#!/usr/bin/bash</code> 或者 <code>#!/bin/bash</code></li>
+<li>如果运行还是命令不存在的话: 创建一个软连接 <code>ln -s command /usr/bin/command</code>, 参数 -s 创建了个符号链接,相当于快捷方式,不加参数 -s 就是创建硬链接,相当于文件拷贝</li>
+</ol>
+<h2 id="2019-03-07-更新"><a href="#2019-03-07-更新" class="headerlink" title="2019-03-07 更新"></a>2019-03-07 更新</h2><p>没有联网的机器做时间服务器,写了个接口获取网络的时间,然后服务器使用 crontab 定时设置时间<br>java:</p>
+<pre><code class="java">    /**
+     * 同步时间
+     */
+    @GetMapping(&quot;traffic/syncDateTime&quot;)
+    public String syncDateTime() {
+        String taobaoTime = &quot;http://api.m.taobao.com/rest/api.do?api=mtop.common.getTimestamp&quot;;
+        String suningTime = &quot;http://quan.suning.com/getSysTime.do&quot;;
+        JSONObject jsonObject;
+        jsonObject = getDateTime(taobaoTime);
+        if (null != jsonObject &amp;&amp; jsonObject.containsKey(&quot;data&quot;)) {
+            String time = jsonObject.getJSONObject(&quot;data&quot;).getString(&quot;t&quot;);
+            return LocalDateTime.ofEpochSecond(Long.parseLong(time) / 1000, 0, ZoneOffset.ofHours(8))
+                    .format(DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm:ss&quot;));
+        }
+        jsonObject = getDateTime(suningTime);
+        if (null != jsonObject &amp;&amp; jsonObject.containsKey(&quot;sysTime2&quot;)) {
+            return jsonObject.getString(&quot;sysTime2&quot;);
+        }
+        return null;
+
+    }
+
+    private JSONObject getDateTime(String url){
+        return restTemplate.getForObject(url,JSONObject.class);
+    }</code></pre>
+<p>shell:</p>
+<pre><code class="bash">    #!/usr/bin/env bash
+    time=$(curl -G -s http://34.0.7.227:9338/traffic/syncDateTime)
+    if [ ! -n &quot;$time&quot; ]; then
+      echo &quot;time is null....&quot;  
+    else
+      date -s &quot;${time}&quot;
+      hwclock -w
+    fi</code></pre>
+<h2 id="2019-03-15-更新"><a href="#2019-03-15-更新" class="headerlink" title="2019-03-15 更新"></a>2019-03-15 更新</h2><ol>
+<li>shell 修改文件固定行的内容</li>
+</ol>
+<pre><code class="bash">    sed -i &quot;108c &#39;update content&#39;&quot; filename</code></pre>
+<h2 id="2019-03-18-更新"><a href="#2019-03-18-更新" class="headerlink" title="2019-03-18 更新"></a>2019-03-18 更新</h2><h4 id="删除-Ubuntu-多余内核"><a href="#删除-Ubuntu-多余内核" class="headerlink" title="删除 Ubuntu 多余内核"></a>删除 Ubuntu 多余内核</h4><ol>
+<li><code>dpkg --get-selections|grep linux</code> : 查看全部安装的内核</li>
+<li>确定当前使用的内核,一般为版本号最新的内核,删除旧内核: <code>sudo apt remove linux-headers-4.15.0-43    linux-headers-4.15.0-43-generic linux-image-4.15.0-43-generic linux-modules-4.15.0-43-generic linux-modules-extra-4.15.0-43-generic</code></li>
+<li>再次输入第一步的命令查看现在的内核信息,现在会看到刚才删除的内核会出现 <code>deinstall</code> 的状态</li>
+<li>删除 <code>deinstall</code> 状态的内核: <code>sudo dpkg -P xxxxxx</code></li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#防火墙"><span class="toc-number">2.</span> <span class="toc-text">防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tomcat"><span class="toc-number">3.</span> <span class="toc-text">Tomcat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统信息"><span class="toc-number">4.</span> <span class="toc-text">系统信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件操作"><span class="toc-number">5.</span> <span class="toc-text">文件操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩与解压缩"><span class="toc-number">6.</span> <span class="toc-text">压缩与解压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快速删除文件夹-文件"><span class="toc-number">7.</span> <span class="toc-text">快速删除文件夹&#x2F;文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#端口"><span class="toc-number">8.</span> <span class="toc-text">端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主机"><span class="toc-number">9.</span> <span class="toc-text">主机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yum"><span class="toc-number">10.</span> <span class="toc-text">yum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#systemctl"><span class="toc-number">11.</span> <span class="toc-text">systemctl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩解压命令"><span class="toc-number">12.</span> <span class="toc-text">压缩解压命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yum更换为阿里源"><span class="toc-number">13.</span> <span class="toc-text">yum更换为阿里源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建用户，权限，密码等"><span class="toc-number"></span> <span class="toc-text">创建用户，权限，密码等</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2018-06-22-更新"><span class="toc-number"></span> <span class="toc-text">2018-06-22 更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2018-9-12-更新"><span class="toc-number"></span> <span class="toc-text">2018-9-12 更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2018-12-20-更新"><span class="toc-number"></span> <span class="toc-text">2018-12-20 更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-01-23-更新"><span class="toc-number"></span> <span class="toc-text">2019-01-23 更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-03-07-更新"><span class="toc-number"></span> <span class="toc-text">2019-03-07 更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-03-15-更新"><span class="toc-number"></span> <span class="toc-text">2019-03-15 更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-03-18-更新"><span class="toc-number"></span> <span class="toc-text">2019-03-18 更新</span></a>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

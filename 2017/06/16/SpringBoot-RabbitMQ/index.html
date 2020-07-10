@@ -1,0 +1,646 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>重剑无锋,大巧不工 SpringBoot --- 整合RabbitMQ - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+前言本文说明
+使用之前rabbitMQ的介绍我就不说了，我认为你已经了解了
+rabbitMQ和activeMQ的对比区别我也不说了，我认为你已经查过资料了
+rabbitMQ的安装，我也不说了，我,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">重剑无锋,大巧不工 SpringBoot --- 整合RabbitMQ</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(//image.joylau.cn/blog/spring-boot-rabbitMQ.png?0.5265267008581327) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/SpringBoot篇"><b>「
+                    </b>SPRINGBOOT篇<b> 」</b></a>
+                
+                六月 16, 2017
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2017/06/16/SpringBoot-RabbitMQ/" title="重剑无锋,大巧不工 SpringBoot --- 整合RabbitMQ" class="">重剑无锋,大巧不工 SpringBoot --- 整合RabbitMQ</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    9.3k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    8 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="本文说明"><a href="#本文说明" class="headerlink" title="本文说明"></a>本文说明</h3><ul>
+<li>使用之前<code>rabbitMQ</code>的介绍我就不说了，我认为你已经了解了</li>
+<li><code>rabbitMQ</code>和<code>activeMQ</code>的对比区别我也不说了，我认为你已经查过资料了</li>
+<li><code>rabbitMQ</code>的安装，我也不说了，我认为你下载的时候已经看到了官网的安装说明，给一个Windows安装的链接：<a href="http://www.rabbitmq.com/install-windows.html" target="_blank" rel="noopener">http://www.rabbitmq.com/install-windows.html</a></li>
+<li><code>rabbitMQ</code>web插件的启用，我也不说，我认为你已经会了</li>
+<li>那我们开始吧</li>
+</ul>
+<h2 id="入门使用"><a href="#入门使用" class="headerlink" title="入门使用"></a>入门使用</h2><h3 id="在使用之前先看一下rabbitMQ-client的使用"><a href="#在使用之前先看一下rabbitMQ-client的使用" class="headerlink" title="在使用之前先看一下rabbitMQ-client的使用"></a>在使用之前先看一下rabbitMQ-client的使用</h3><p>先引入依赖：</p>
+<pre><code class="xml">    &lt;dependency&gt;
+        &lt;groupId&gt;com.rabbitmq&lt;/groupId&gt;
+        &lt;artifactId&gt;amqp-client&lt;/artifactId&gt;
+        &lt;version&gt;3.6.0&lt;/version&gt;
+    &lt;/dependency&gt;</code></pre>
+<p>在看代码：</p>
+<pre><code class="java">    public void product() throws IOException, TimeoutException {
+            // 创建连接工厂
+            ConnectionFactory factory = new ConnectionFactory();
+            //设置RabbitMQ地址
+            factory.setHost(&quot;localhost&quot;);
+            factory.setPort(5672);
+            factory.setUsername(&quot;guest&quot;);
+            factory.setPassword(&quot;guest&quot;);
+            //创建一个新的连接
+            Connection connection = factory.newConnection();
+            //创建一个频道
+            Channel channel = connection.createChannel();
+            //声明一个队列 -- 在RabbitMQ中，队列声明是幂等性的（一个幂等操作的特点是其任意多次执行所产生的影响均与一次执行的影响相同），也就是说，如果不存在，就创建，如果存在，不会对已经存在的队列产生任何影响。
+            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            String message = &quot;Hello World!&quot;;
+            //发送消息到队列中
+            channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, message.getBytes(&quot;UTF-8&quot;));
+            System.out.println(&quot;P [x] Sent &#39;&quot; + message + &quot;&#39;&quot;);
+            //关闭频道和连接
+            channel.close();
+            connection.close();
+        }
+
+
+        public void consumer() throws IOException, TimeoutException {
+            // 创建连接工厂
+            ConnectionFactory factory = new ConnectionFactory();
+            //设置RabbitMQ地址
+            factory.setHost(&quot;localhost&quot;);
+            factory.setPort(5672);
+            factory.setUsername(&quot;guest&quot;);
+            factory.setPassword(&quot;guest&quot;);
+            //创建一个新的连接
+            Connection connection = factory.newConnection();
+            //创建一个频道
+            Channel channel = connection.createChannel();
+            //声明要关注的队列 -- 在RabbitMQ中，队列声明是幂等性的（一个幂等操作的特点是其任意多次执行所产生的影响均与一次执行的影响相同），也就是说，如果不存在，就创建，如果存在，不会对已经存在的队列产生任何影响。
+            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            System.out.println(&quot;C [*] Waiting for messages. To exit press CTRL+C&quot;);
+            //DefaultConsumer类实现了Consumer接口，通过传入一个频道，告诉服务器我们需要那个频道的消息，如果频道中有消息，就会执行回调函数handleDelivery
+            Consumer consumer = new DefaultConsumer(channel) {
+                @Override
+                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+                    String message = new String(body, &quot;UTF-8&quot;);
+                    System.out.println(&quot;C [x] Received &#39;&quot; + message + &quot;&#39;&quot;);
+                }
+            };
+            //自动回复队列应答 -- RabbitMQ中的消息确认机制
+            channel.basicConsume(QUEUE_NAME, true, consumer);
+        }</code></pre>
+<p>代码的注释很详细</p>
+<h2 id="SpringBoot中的使用"><a href="#SpringBoot中的使用" class="headerlink" title="SpringBoot中的使用"></a>SpringBoot中的使用</h2><h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><pre><code class="xml">    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-amqp&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;</code></pre>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><pre><code class="yml">    spring:
+      rabbitmq:
+        host: localhost
+        port: 5672
+        username: guest
+        password: guest
+      output:
+        ansi:
+          enabled: always</code></pre>
+<h3 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h3><pre><code class="java">    @Component
+    public class Product {
+        @Autowired
+        private AmqpTemplate rabbitTemplate;
+
+        public void send() {
+            String context = &quot;hello &quot; + new Date();
+            System.out.println(&quot;生产者发送信息 : &quot; + context);
+
+            new Queue(&quot;hello&quot;);
+            this.rabbitTemplate.convertAndSend(&quot;hello&quot;, context);
+        }
+    }</code></pre>
+<p>创建消息生产者Product。通过注入AmqpTemplate接口的实例来实现消息的发送，AmqpTemplate接口定义了一套针对AMQP协议的基础操作。在Spring Boot中会根据配置来注入其具体实现。在该生产者，我们会产生一个字符串，并发送到名为hello的队列中</p>
+<h3 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h3><pre><code class="java">    @Component
+    @RabbitListener(queues = &quot;hello&quot;)
+    public class Consumer {
+        @RabbitHandler
+        public void process(String hello) {
+            System.out.println(&quot;消费者接受信息 : &quot; + hello);
+        }
+    }</code></pre>
+<p>创建消息消费者Consumer。通过@RabbitListener注解定义该类对hello队列的监听，并用@RabbitHandler注解来指定对消息的处理方法。所以，该消费者实现了对hello队列的消费，消费操作为输出消息的字符串内容。</p>
+<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><pre><code class="java">    @RunWith(SpringRunner.class)
+    @SpringBootTest
+    public class JoylauSpringBootRabbitmqApplicationTests {
+
+        @Autowired
+        private Product product;
+
+        @Test
+        public void test() throws Exception {
+            product.send();
+        }
+
+    }</code></pre>
+<h3 id="再来一张图"><a href="#再来一张图" class="headerlink" title="再来一张图"></a>再来一张图</h3><p><img src="//image.joylau.cn/blog/spring-boot-rabbitmq-test.png" alt="示例截图"></p>
+<h2 id="exchange-多个消费者"><a href="#exchange-多个消费者" class="headerlink" title="exchange 多个消费者"></a>exchange 多个消费者</h2><p>当Exchange和RoutingKey相同、queue不同时，所有消费者都能消费同样的信息<br>Exchange和RoutingKey、queue都相同时，消费者中只有一个能消费信息，其他消费者都不能消费该信息。</p>
+<p>下面示例的队列名称可以随意写个,启动时 @RabbitListener 的 bindings 会自动使用 key 绑定队列到exchange</p>
+<pre><code class="java">    @RabbitHandler
+    @RabbitListener(
+            bindings = @QueueBinding(
+                    value = @Queue(value = &quot;${spring.application.name}&quot;),
+                    exchange = @Exchange(value = &quot;${spring.rabbitmq.template.exchange}&quot;),
+                    key = &quot;${spring.rabbitmq.template.routing-key}&quot;)
+    )
+    public void listenerTrafficMessage(Message message){
+        System.out.println(message.getClass().getName());
+    }</code></pre>
+<h2 id="消息返回队列"><a href="#消息返回队列" class="headerlink" title="消息返回队列"></a>消息返回队列</h2><p>需要处理完消息后在将消息返回队列的话需要配置 spring.rabbitmq.listener.simple.acknowledge-mode: manual<br>之后注解@RabbitListener 到方法上<br>Channel channel 进行返回</p>
+<pre><code class="java">    @RabbitHandler
+    @RabbitListener(
+            bindings = @QueueBinding(
+                    value = @Queue(value = &quot;${spring.application.name}&quot;),
+                    exchange = @Exchange(value = &quot;${spring.rabbitmq.template.exchange}&quot;),
+                    key = &quot;${spring.rabbitmq.template.routing-key}&quot;)
+    )
+    public void listenerTrafficMessage(Message message, Channel channel){
+
+        System.out.println(message.getClass().getName());
+
+        try {
+            channel.basicNack(message.getMessageProperties().getDeliveryTag(),false,true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }</code></pre>
+<pre><code class="yaml">    spring:
+      rabbitmq:
+        host: 192.168.10.224
+        port: 35672
+        username: guest
+        password: guest
+        virtual-host: /
+        listener:
+          simple:
+            acknowledge-mode: manual #设置消费端手动 ack
+            concurrency: 1 #消费者最小数量
+            max-concurrency: 1 #消费者最大数量
+            prefetch: 1 #在单个请求中处理的消息个数，他应该大于等于事务数量(unack的最大数量)
+        template:
+          exchange: SURVEY_CENTER
+          routing-key: trafficCongestionSituationBD</code></pre>
+<p>在属性配置文件里面开启了ACK确认 所以如果代码没有执行ACK确认 你在RabbitMQ的后台会看到消息会一直留在队列里面未消费掉 只要程序一启动开始接受该队列消息的时候 又会收到</p>
+<pre><code class="java">    // 告诉服务器收到这条消息 已经被我消费了 可以在队列删掉 这样以后就不会再发了
+    // 否则消息服务器以为这条消息没处理掉 后续还会在发，true确认所有消费者获得的消息
+    channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);</code></pre>
+<p>丢弃消息</p>
+<pre><code class="java">    //最后一个参数是：是否重回队列
+    channel.basicNack(message.getMessageProperties().getDeliveryTag(), false,false);
+    //拒绝消息
+    //channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
+    //消息被丢失
+    //channel.basicReject(message.getMessageProperties().getDeliveryTag(), false);
+    //消息被重新发送
+    //channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
+    //多条消息被重新发送
+    //channel.basicNack(message.getMessageProperties().getDeliveryTag(), true, true);</code></pre>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#本文说明"><span class="toc-number">1.1.</span> <span class="toc-text">本文说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#入门使用"><span class="toc-number">2.</span> <span class="toc-text">入门使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在使用之前先看一下rabbitMQ-client的使用"><span class="toc-number">2.1.</span> <span class="toc-text">在使用之前先看一下rabbitMQ-client的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot中的使用"><span class="toc-number">3.</span> <span class="toc-text">SpringBoot中的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入依赖"><span class="toc-number">3.1.</span> <span class="toc-text">引入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件"><span class="toc-number">3.2.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生产者"><span class="toc-number">3.3.</span> <span class="toc-text">生产者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消费者"><span class="toc-number">3.4.</span> <span class="toc-text">消费者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试类"><span class="toc-number">3.5.</span> <span class="toc-text">测试类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#再来一张图"><span class="toc-number">3.6.</span> <span class="toc-text">再来一张图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exchange-多个消费者"><span class="toc-number">4.</span> <span class="toc-text">exchange 多个消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#消息返回队列"><span class="toc-number">5.</span> <span class="toc-text">消息返回队列</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

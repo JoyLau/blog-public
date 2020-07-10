@@ -1,0 +1,567 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+说明
+Elasticsearch， Logstash，Kibana 版本都是5.3.0
+SpringBoot 集成 ELK，实际上指的就是 SpringBoot 与 Logstash 的整合
+E,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.41676469633270674) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/大数据篇"><b>「
+                    </b>大数据篇<b> 」</b></a>
+                
+                五月 07, 2018
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2018/05/07/Elasticsearch-ELK/" title="ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台" class="">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    5.3k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    5 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ol>
+<li>Elasticsearch， Logstash，Kibana 版本都是5.3.0</li>
+<li>SpringBoot 集成 ELK，实际上指的就是 SpringBoot 与 Logstash 的整合</li>
+<li>Elasticsearch 负责数据的存储，Logstash 负责数据的接受和数据的发送，相当于一个中转站，Kibana 负责数据的展示，查询</li>
+<li>SpringBoot 项目是我们产生日志并且需要存储和分析的项目</li>
+<li>SpringBoot 我还是使用的默认的 logback 日志系统，当然也可以采用 log4j,不过我还是比较喜欢 logback，性能好，配置少，有颜色</li>
+</ol>
+<h2 id="Elasticsearch-集群搭建"><a href="#Elasticsearch-集群搭建" class="headerlink" title="Elasticsearch 集群搭建"></a>Elasticsearch 集群搭建</h2><p>略</p>
+<h2 id="Logstash-安装"><a href="#Logstash-安装" class="headerlink" title="Logstash 安装"></a>Logstash 安装</h2><ol>
+<li>官网下载 Logstash</li>
+<li>解压</li>
+<li>添加配置文件 log.config</li>
+</ol>
+<pre><code class="bash">    input {
+        tcp {
+            host =&gt; &quot;192.168.10.78&quot;
+            type =&gt; &quot;dev&quot;
+            tags =&gt; [&quot;spring-boot&quot;]
+            port =&gt; 4560
+            codec =&gt; json_lines
+        }
+
+        tcp {
+            host =&gt; &quot;192.168.10.78&quot;
+            type =&gt; &quot;server&quot;
+            tags =&gt; [&quot;spring-boot&quot;]
+            port =&gt; 4561
+            codec =&gt; json_lines
+        }
+
+            tcp {
+            host =&gt; &quot;192.168.10.78&quot;
+            type =&gt; &quot;work_dev&quot;
+            tags =&gt; [&quot;boot&quot;]
+            port =&gt; 4568
+            codec =&gt; json_lines
+        }
+    }
+
+    filter {
+
+    }
+
+    output {
+            if[type] == &quot;work_dev&quot; {
+                    elasticsearch {
+                            hosts =&gt; [&quot;ip:9268&quot;]
+                            index =&gt; &quot;logstash_%{type}_%{+YYYY-MM}&quot;
+                    }
+            } else {
+                    elasticsearch {
+                            hosts =&gt; [&quot;http://192.168.10.232:9211&quot;]
+                            index =&gt; &quot;logstash_%{type}_%{+YYYY-MM}&quot;
+                    }
+            }
+     }
+</code></pre>
+<p>总的来说，配置文件里由 input，filter，output，这里我没有特别复杂的需求，filter就没有配置<br>我这里有三个input，但是都是 tcp 类型的<br>意思配置了三个input,分别监听192.168.10.78（就是安装logstash的机器）的4560，4561，和4568端口，有数据发送过来的话就进行output处理<br>这里我配置了3个type,这个type也就是elasticsearch里索引的type，并且该type可作为参数在output里判断进行不同的处理<br>codec 是的对日志数据进行处理的插件，这里是 json_lines<br>所以需要安装插件</p>
+<pre><code class="bash">    sh bin/logstash-plugin install logstash-codec-json_lines</code></pre>
+<p>elasticsearch:hosts es的http地址和端口<br>index 是创建的索引名<br>如果要配置索引模板的话，可以添加以下配置<br>    manage_template =&gt; true<br>    template_name =&gt; “template_name”<br>    template_overwrite =&gt; true<br>    template =&gt; “/usr/local/path.json”</p>
+<p>配置好了，我们检验下配置文件是否正确</p>
+<pre><code class="bash">    sh /app/logstash-5.3.0/bin/logstash -f /app/logstash-5.3.0/config/log.config -t</code></pre>
+<p>没有问题的话就可启动了,后台启动的就用 nohup</p>
+<pre><code class="bash">    sh /app/logstash-5.3.0/bin/logstash -f /app/logstash-5.3.0/config/log.config</code></pre>
+<p>启动成功的话，9600端口可以获取到 logstash 的相关信息</p>
+<h2 id="SpringBoot-集成-Logstash"><a href="#SpringBoot-集成-Logstash" class="headerlink" title="SpringBoot 集成 Logstash"></a>SpringBoot 集成 Logstash</h2><ol>
+<li>添加依赖：</li>
+</ol>
+<pre><code class="xml">    &lt;dependency&gt;
+        &lt;groupId&gt;net.logstash.logback&lt;/groupId&gt;
+        &lt;artifactId&gt;logstash-logback-encoder&lt;/artifactId&gt;
+        &lt;version&gt;5.1&lt;/version&gt;
+    &lt;/dependency&gt;</code></pre>
+<ol start="2">
+<li>添加配置 logstash 文件<br>在 resources 下直接添加 logback.xml 文件即可</li>
+</ol>
+<pre><code class="xml">    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    &lt;!DOCTYPE configuration&gt;
+    &lt;configuration&gt;
+        &lt;appender name=&quot;LOGSTASH&quot; class=&quot;net.logstash.logback.appender.LogstashTcpSocketAppender&quot;&gt;
+            &lt;destination&gt;ip:4568&lt;/destination&gt;
+            &lt;encoder charset=&quot;UTF-8&quot; class=&quot;net.logstash.logback.encoder.LogstashEncoder&quot; /&gt;
+        &lt;/appender&gt;
+        &lt;include resource=&quot;org/springframework/boot/logging/logback/base.xml&quot;/&gt;
+        &lt;root level=&quot;INFO&quot;&gt;
+            &lt;appender-ref ref=&quot;LOGSTASH&quot; /&gt;
+        &lt;/root&gt;
+
+    &lt;/configuration&gt;</code></pre>
+<p>这里我是使用的是 SpringBoot 自带的 logback 日志<br>SpringBoot 默认会读取 resources 目录下的 logback.xml 作为配置文件，别问我怎么知道的（我特地查看了源码：org.springframework.boot.logging.logback.LogbackLoggingSystem，”logback-test.groovy”, “logback-test.xml”, “logback.groovy”, “logback.xml”这些文件检测到都会读取其中的配置的）<br>配置文件里我只配置了 一个Appender，就是net.logstash.logback.appender.LogstashTcpSocketAppender，用来输出日志到logstash的，并且级别是 INFO<br>destination 指的就是 logstash 的地址<br>encoder 就配置LogstashEncoder不要变<br>再把 SpringBoot默认的配置引入base.xml</p>
+<p>好了，SpringBoot 集成 Logstash 完毕</p>
+<p>注 ：后来我想用 javaConfig 去配置 SpringBoot和Logstash，不过没有成功，哪位大佬看到这个信息，可以给我留言下怎么配置<br>xml,也很方便，打包部署后可以作为配置文件修改</p>
+<p>那么，这个时候启动项目，elasticsearch里面就会看到有新的索引数据了</p>
+<h2 id="Kibana-安装"><a href="#Kibana-安装" class="headerlink" title="Kibana 安装"></a>Kibana 安装</h2><ol>
+<li>其实 Kibana 非必须安装，只是用来统计数据和查询数据的，用来提供一个可视化的界面</li>
+<li>下载 Kibana</li>
+<li>修改配置文件 kibana.yml<br> server.port: 5668<br> server.host: “0.0.0.0”<br> elasticsearch.url: “<a href="http://localhost:9268&quot;">http://localhost:9268&quot;</a></li>
+<li>后台启动</li>
+<li>访问kibana的地址即可</li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Elasticsearch-集群搭建"><span class="toc-number">2.</span> <span class="toc-text">Elasticsearch 集群搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logstash-安装"><span class="toc-number">3.</span> <span class="toc-text">Logstash 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot-集成-Logstash"><span class="toc-number">4.</span> <span class="toc-text">SpringBoot 集成 Logstash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kibana-安装"><span class="toc-number">5.</span> <span class="toc-text">Kibana 安装</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

@@ -1,0 +1,4713 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>重剑无锋,大巧不工 SpringBoot --- Filebeat 实时收集 SpringBoot 日志 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+说明
+Filebeat 版本为 6.4.3
+
+logback 配置    logging:
+      config: classpath:logback-config.xml
+    &amp;lt;,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">重剑无锋,大巧不工 SpringBoot --- Filebeat 实时收集 SpringBoot 日志</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.8460491982239118) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/SpringBoot"><b>「
+                    </b>SPRINGBOOT<b> 」</b></a>
+                
+                四月 18, 2020
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2020/04/18/SpringBoot-FileBeat/" title="重剑无锋,大巧不工 SpringBoot --- Filebeat 实时收集 SpringBoot 日志" class="">重剑无锋,大巧不工 SpringBoot --- Filebeat 实时收集 SpringBoot 日志</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    175k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    2:39
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Filebeat/" rel="tag">Filebeat</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ol>
+<li>Filebeat 版本为 6.4.3</li>
+</ol>
+<h3 id="logback-配置"><a href="#logback-配置" class="headerlink" title="logback 配置"></a>logback 配置</h3><pre><code class="yaml">    logging:
+      config: classpath:logback-config.xml</code></pre>
+<pre><code class="xml">    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+      &lt;configuration scan=&quot;true&quot;&gt;
+          &lt;appender name=&quot;CONSOLE&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt;
+              &lt;encoder class=&quot;ch.qos.logback.classic.encoder.PatternLayoutEncoder&quot;&gt;
+                  &lt;pattern&gt;%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%exception}
+                  &lt;/pattern&gt;
+              &lt;/encoder&gt;
+          &lt;/appender&gt;
+
+          &lt;appender name=&quot;CONSOLE-FILE&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;
+              &lt;file&gt;
+                  /Users/joylau/docker-data/logs/es-doc-office-service/es-doc-office-service-console.log
+              &lt;/file&gt;
+              &lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;&gt;
+                  &lt;fileNamePattern&gt;
+                      /Users/joylau/docker-data/logs/es-doc-office-service/es-doc-office-service-console-%d{yyyy-MM-dd}.log.gz
+                  &lt;/fileNamePattern&gt;
+                  &lt;!--最大保留时间为 7 天--&gt;
+                  &lt;maxHistory&gt;7&lt;/maxHistory&gt;
+              &lt;/rollingPolicy&gt;
+              &lt;encoder class=&quot;ch.qos.logback.classic.encoder.PatternLayoutEncoder&quot;&gt;
+                  &lt;pattern&gt;%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%exception}
+                  &lt;/pattern&gt;
+              &lt;/encoder&gt;
+          &lt;/appender&gt;
+
+          &lt;appender name=&quot;JSON-FILE&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;
+              &lt;file&gt;
+                  /Users/joylau/docker-data/logs/es-doc-office-service/es-doc-office-service-json.log
+              &lt;/file&gt;
+              &lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;&gt;
+                  &lt;fileNamePattern&gt;
+                      /Users/joylau/docker-data/logs/es-doc-office-service/es-doc-office-service-json-%d{yyyy-MM-dd}.log.gz
+                  &lt;/fileNamePattern&gt;
+                  &lt;maxHistory&gt;7&lt;/maxHistory&gt;
+              &lt;/rollingPolicy&gt;
+              &lt;encoder class=&quot;net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder&quot;&gt;
+                  &lt;!--            json 日志美化--&gt;
+                  &lt;!--            &lt;jsonGeneratorDecorator class=&quot;net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator&quot;/&gt;--&gt;
+                  &lt;jsonGeneratorDecorator class=&quot;net.logstash.logback.decorate.FeatureJsonGeneratorDecorator&quot;/&gt;
+                  &lt;providers&gt;
+                      &lt;pattern&gt;
+                          &lt;pattern&gt;
+                              {
+                              &quot;date&quot;: &quot;%date{yyyy-MM-dd HH:mm:ss}&quot;,
+                              &quot;level&quot;: &quot;%level&quot;,
+                              &quot;thread&quot;: &quot;%thread&quot;,
+                              &quot;class&quot;: &quot;%logger{500}&quot;,
+                              &quot;msg&quot;: &quot;%msg&quot;,
+                              &quot;stack_trace&quot;: &quot;%exception{2000}&quot;
+                              }
+                          &lt;/pattern&gt;
+                      &lt;/pattern&gt;
+                  &lt;/providers&gt;
+              &lt;/encoder&gt;
+          &lt;/appender&gt;
+
+          &lt;root level=&quot;INFO&quot;&gt;
+              &lt;appender-ref ref=&quot;CONSOLE&quot;/&gt;
+              &lt;appender-ref ref=&quot;CONSOLE-FILE&quot;/&gt;
+              &lt;appender-ref ref=&quot;JSON-FILE&quot;/&gt;
+          &lt;/root&gt;
+
+          &lt;!--打印 mysql 日志--&gt;
+          &lt;logger name=&quot;cn.joylau.code.mapper&quot; level=&quot;DEBUG&quot;&gt;
+              &lt;appender-ref ref=&quot;CONSOLE&quot;/&gt;
+              &lt;appender-ref ref=&quot;CONSOLE-FILE&quot;/&gt;
+              &lt;appender-ref ref=&quot;JSON-FILE&quot;/&gt;
+          &lt;/logger&gt;
+
+      &lt;/configuration&gt;</code></pre>
+<p>我这里记录了 2 份文件日志是因为我想在日志端点监控中(/actuator/logfile)直接访问控制台日志<br>需要配置 </p>
+<pre><code class="yaml">    logging:
+      file: /path/es-doc-office-service-console.log</code></pre>
+<p>这里简单记录下 logback 配置文件:</p>
+<p>logback的主要组成部分</p>
+<ul>
+<li>appender，是用来定义一个写日志记录的组件，常用的appender类有ConsoleAppender和RollingFileAppender，前者个是用来在控制台上打印日志，后者是将日志输出到文件中。</li>
+<li>layout，是指定日志的布局方式，这个基本都不会去特殊的指定，可以忽略，知道有这个东西即可。</li>
+<li>encoder，负责把事件转换成字节数组并把字节数组写到合适的输出流。encoder可以指定属性值class，这里对应的类只有一个PatternLayoutEncoder，也是默认值，可以不去指定。</li>
+<li>filter，过滤器分为三种，logback-classic提供的是两种，分别是常规的过滤器和Turbo过滤器。常用的过滤器就是按照日志级别来控制，将不同级别的日志输出到不同文件中，便于查看日志。如：错误日志输出到xxx-error.log，info日志输出到xxx-info.log中。</li>
+<li>rollingPolicy，用来设置日志的滚动策略，当达到条件后会自动将条件前的日志生成一个备份日志文件，条件后的日志输出到最新的日志文件中。常用的是按照时间来滚动（使用的类TimeBaseRollingPolicy）,还有一种就是基于索引来实现（使用的类FixedWindowRollingPolicy）。rolling policies有 TimeBasedRollingPolicy，SizeAndTimeBasedRollingPolicy,FixedWindowRollingPolicy三种策略</li>
+<li>triggeringPolicy，日志触发器策略，常用的是日志的大小的控制，当日志达到对应的大小的时候，就会触发。生成新的日志文件。日志大小的控制配合rollingPlicy使用的时候，不同的rollingPolicy会有所不同。</li>
+</ul>
+<h3 id="springboot-日志输出格式"><a href="#springboot-日志输出格式" class="headerlink" title="springboot 日志输出格式"></a>springboot 日志输出格式</h3><pre><code class="json">    {&quot;date&quot;:&quot;2020-04-18 09:18:56&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;thread&quot;:&quot;main&quot;,&quot;class&quot;:&quot;cn.joylau.code.EsDocOfficeApplication&quot;,&quot;msg&quot;:&quot;Starting EsDocOfficeApplication on JoyLaudeMacBook-Pro.local with PID 21663 (/Users/joylau/dev/idea-project/dev-app/es-doc-office/es-doc-office-service/build/classes/java/main started by joylau in /Users/joylau/dev/idea-project/es-doc-office)&quot;,&quot;stack_trace&quot;:&quot;&quot;}
+    {&quot;date&quot;:&quot;2020-04-18 09:18:56&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;thread&quot;:&quot;main&quot;,&quot;class&quot;:&quot;cn.joylau.code.EsDocOfficeApplication&quot;,&quot;msg&quot;:&quot;The following profiles are active: db,dev&quot;,&quot;stack_trace&quot;:&quot;&quot;}
+    {&quot;date&quot;:&quot;2020-04-18 09:18:58&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;thread&quot;:&quot;main&quot;,&quot;class&quot;:&quot;org.springframework.data.repository.config.RepositoryConfigurationDelegate&quot;,&quot;msg&quot;:&quot;Bootstrapping Spring Data repositories in DEFAULT mode.&quot;,&quot;stack_trace&quot;:&quot;&quot;}
+    {&quot;date&quot;:&quot;2020-04-18 09:18:58&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;thread&quot;:&quot;main&quot;,&quot;class&quot;:&quot;org.springframework.data.repository.config.RepositoryConfigurationDelegate&quot;,&quot;msg&quot;:&quot;Finished Spring Data repository scanning in 86ms. Found 3 repository interfaces.&quot;,&quot;stack_trace&quot;:&quot;&quot;}
+    {&quot;date&quot;:&quot;2020-04-18 09:18:58&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;thread&quot;:&quot;main&quot;,&quot;class&quot;:&quot;org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker&quot;,&quot;msg&quot;:&quot;Bean &#39;org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration&#39; of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a477e06a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)&quot;,&quot;stack_trace&quot;:&quot;&quot;}
+    {&quot;date&quot;:&quot;2020-04-18 09:18:59&quot;,&quot;level&quot;:&quot;WARN&quot;,&quot;thread&quot;:&quot;main&quot;,&quot;class&quot;:&quot;io.undertow.websockets.jsr&quot;,&quot;msg&quot;:&quot;UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used&quot;,&quot;stack_trace&quot;:&quot;&quot;}
+    {&quot;date&quot;:&quot;2020-04-18 09:18:59&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;thread&quot;:&quot;main&quot;,&quot;class&quot;:&quot;io.undertow.servlet&quot;,&quot;msg&quot;:&quot;Initializing Spring embedded WebApplicationContext&quot;,&quot;stack_trace&quot;:&quot;&quot;}
+    {&quot;date&quot;:&quot;2020-04-18 09:18:59&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;thread&quot;:&quot;main&quot;,&quot;class&quot;:&quot;org.springframework.web.context.ContextLoader&quot;,&quot;msg&quot;:&quot;Root WebApplicationContext: initialization completed in 2231 ms&quot;,&quot;stack_trace&quot;:&quot;&quot;}
+    {&quot;date&quot;:&quot;2020-04-18 09:18:59&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;thread&quot;:&quot;main&quot;,&quot;class&quot;:&quot;com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure&quot;,&quot;msg&quot;:&quot;Init DruidDataSource&quot;,&quot;stack_trace&quot;:&quot;&quot;}</code></pre>
+<h3 id="filebeat-配置"><a href="#filebeat-配置" class="headerlink" title="filebeat 配置"></a>filebeat 配置</h3><pre><code class="yaml">    #=========================== Configure logging ================================
+    logging.level: warning
+    #=========================== Filebeat prospectors =============================
+    filebeat.inputs:
+      - type: log
+        # Paths that should be crawled and fetched. Glob based paths.
+        paths:
+          - /var/log/read-log/*.log
+        json.keys_under_root: true
+        json.overwrite_keys: true
+    #-------------------------- Elasticsearch output ------------------------------
+    output.elasticsearch:
+      # Array of hosts to connect to.
+      hosts: [&quot;http://ip:9200&quot;]
+      index: &quot;service-runtime-log_%{+YYYY-MM-dd}&quot;
+      username: &quot;username&quot;
+      password: &quot;password&quot;
+
+    setup:template.enabled: true
+    setup.template.overwrite: true
+    setup.template.name: &quot;service-log-filebeat-template&quot;
+    setup.template.pattern: &quot;service-runtime-log_*&quot;
+    setup.template.json.enabled: true
+    setup.template.json.path: &quot;/usr/share/filebeat/filebeat.template.json&quot;
+    setup.template.json.name: &quot;service-log-filebeat-template&quot;</code></pre>
+<p>注意这里我使用了自定义模板 <code>filebeat.template.json</code>, 因为我需要处理一下特殊字段, 比如 date 字段需要设置为日期类型, <code>msg</code> 和 <code>stack_trace</code> 设置为 text 以供分词和全文检索,<br>默认处理使用的字段在配置文件 <code>fields.yml</code> 里,见下面附录<br>可以使用 </p>
+<pre><code class="bash">    filebeat export template &gt; /var/log/read-log/filebeat.template.json</code></pre>
+<p>导出模板,详细配置见下面的附录</p>
+<h3 id="模板配置"><a href="#模板配置" class="headerlink" title="模板配置"></a>模板配置</h3><pre><code class="json">    {
+      &quot;index_patterns&quot;: [
+        &quot;service-runtime-log_*&quot;
+      ],
+      &quot;mappings&quot;: {
+        &quot;doc&quot;: {
+          &quot;_meta&quot;: {
+            &quot;version&quot;: &quot;6.4.3&quot;
+          },
+          &quot;date_detection&quot;: false,
+          &quot;dynamic_templates&quot;: [
+            {
+              &quot;fields&quot;: {
+                &quot;mapping&quot;: {
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;match_mapping_type&quot;: &quot;string&quot;,
+                &quot;path_match&quot;: &quot;fields.*&quot;
+              }
+            },
+            {
+              &quot;docker.container.labels&quot;: {
+                &quot;mapping&quot;: {
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;match_mapping_type&quot;: &quot;string&quot;,
+                &quot;path_match&quot;: &quot;docker.container.labels.*&quot;
+              }
+            },
+            {
+              &quot;kibana.log.meta&quot;: {
+                &quot;mapping&quot;: {
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;match_mapping_type&quot;: &quot;string&quot;,
+                &quot;path_match&quot;: &quot;kibana.log.meta.*&quot;
+              }
+            },
+            {
+              &quot;strings_as_keyword&quot;: {
+                &quot;mapping&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;match_mapping_type&quot;: &quot;string&quot;
+              }
+            }
+          ],
+          &quot;properties&quot;: {
+            &quot;@timestamp&quot;: {
+              &quot;type&quot;: &quot;date&quot;
+            },
+            &quot;beat&quot;: {
+              &quot;properties&quot;: {
+                &quot;hostname&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;name&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;timezone&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;version&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                }
+              }
+            },
+            &quot;offset&quot;: {
+              &quot;type&quot;: &quot;long&quot;
+            },
+            &quot;source&quot;: {
+              &quot;ignore_above&quot;: 1024,
+              &quot;type&quot;: &quot;keyword&quot;
+            },
+            &quot;date&quot;: {
+              &quot;type&quot;: &quot;date&quot;,
+              &quot;format&quot;: &quot;yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis&quot;
+            },
+            &quot;stack_trace&quot;: {
+              &quot;type&quot;: &quot;text&quot;
+            },
+            &quot;msg&quot;: {
+              &quot;type&quot;: &quot;text&quot;
+            }
+          }
+        }
+      },
+      &quot;order&quot;: 1,
+      &quot;settings&quot;: {
+        &quot;index&quot;: {
+          &quot;mapping&quot;: {
+            &quot;total_fields&quot;: {
+              &quot;limit&quot;: 10000
+            }
+          },
+          &quot;number_of_routing_shards&quot;: 30,
+          &quot;refresh_interval&quot;: &quot;5s&quot;
+        }
+      },
+      &quot;aliases&quot;: {
+        &quot;service-runtime-log&quot;: {}
+      }
+    }
+</code></pre>
+<h3 id="docker-运行"><a href="#docker-运行" class="headerlink" title="docker 运行"></a>docker 运行</h3><pre><code class="bash">    docker run --rm --name filebeat --mount type=bind,source=&quot;$(pwd)&quot;/filebeat.yml,target=/usr/share/filebeat/filebeat.yml --mount type=bind,source=&quot;$(pwd)&quot;/filebeat.template.json,target=/usr/share/filebeat/filebeat.template.json -v /Users/joylau/docker-data/logs/es-doc-office-service:/var/log/read-log docker.elastic.co/beats/filebeat:6.4.3</code></pre>
+<h3 id="自定义-docker-容器"><a href="#自定义-docker-容器" class="headerlink" title="自定义 docker 容器"></a>自定义 docker 容器</h3><pre><code class="dockerfile">    FROM docker.elastic.co/beats/filebeat:6.4.3
+    MAINTAINER liufa &quot;2587038142.liu@gmail.com&quot;
+    LABEL Descripttion=&quot;This image use custom configuration filebeat in Docker.&quot;
+    COPY filebeat.yml /usr/share/filebeat/filebeat.yml
+    COPY filebeat.template.json /usr/share/filebeat/filebeat.template.json
+    USER root
+    RUN chown root:filebeat /usr/share/filebeat/filebeat.yml /usr/share/filebeat/filebeat.template.json
+    USER filebeat</code></pre>
+<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><pre><code class="json">    {
+      &quot;_index&quot;: &quot;service-runtime-log_2020-04-18&quot;,
+      &quot;_type&quot;: &quot;doc&quot;,
+      &quot;_id&quot;: &quot;PiQoi3EBOwES5EhZK7lp&quot;,
+      &quot;_version&quot;: 1,
+      &quot;_score&quot;: 1,
+      &quot;_source&quot;: {
+        &quot;@timestamp&quot;: &quot;2020-04-18T02:39:56.273Z&quot;,
+        &quot;thread&quot;: &quot;main&quot;,
+        &quot;source&quot;: &quot;/var/log/read-log/es-doc-office-service-2020-04-18.log&quot;,
+        &quot;offset&quot;: 2145,
+        &quot;input&quot;: {
+          &quot;type&quot;: &quot;log&quot;
+        },
+        &quot;beat&quot;: {
+          &quot;name&quot;: &quot;032aebe1f6bc&quot;,
+          &quot;hostname&quot;: &quot;032aebe1f6bc&quot;,
+          &quot;version&quot;: &quot;6.4.3&quot;
+        },
+        &quot;host&quot;: {
+          &quot;name&quot;: &quot;032aebe1f6bc&quot;
+        },
+        &quot;msg&quot;: &quot;Init DruidDataSource&quot;,
+        &quot;date&quot;: &quot;2020-04-18 09:18:59&quot;,
+        &quot;class&quot;: &quot;com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure&quot;,
+        &quot;prospector&quot;: {
+          &quot;type&quot;: &quot;log&quot;
+        },
+        &quot;stack_trace&quot;: &quot;&quot;,
+        &quot;level&quot;: &quot;INFO&quot;
+      }
+    }
+</code></pre>
+<h3 id="处理-timestamp-时区问题"><a href="#处理-timestamp-时区问题" class="headerlink" title="处理 timestamp 时区问题"></a>处理 timestamp 时区问题</h3><p>使用 filebeat 处理数据可以利用 elasticsearch 的 pipline</p>
+<p>PUT /_ingest/pipeline/process_data</p>
+<pre><code class="json">    {
+      &quot;description&quot; : &quot;process timestamp field to &quot;,
+      &quot;processors&quot; : [
+        {
+          &quot;date&quot; : {
+            &quot;field&quot; : &quot;@timestamp&quot;,
+            &quot;formats&quot; : [&quot;ISO8601&quot;],
+            &quot;target_field&quot; : &quot;@timestamp&quot;,
+            &quot;timezone&quot; : &quot;Asia/Shanghai&quot;
+          }
+        }
+      ]
+    }</code></pre>
+<h3 id="附录一-filebeat-template-all-json"><a href="#附录一-filebeat-template-all-json" class="headerlink" title="附录一(filebeat.template-all.json)"></a>附录一(filebeat.template-all.json)</h3><pre><code class="json">    {
+      &quot;index_patterns&quot;: [
+        &quot;filebeat_log_*&quot;
+      ],
+      &quot;mappings&quot;: {
+        &quot;doc&quot;: {
+          &quot;_meta&quot;: {
+            &quot;version&quot;: &quot;6.4.3&quot;
+          },
+          &quot;date_detection&quot;: false,
+          &quot;dynamic_templates&quot;: [
+            {
+              &quot;fields&quot;: {
+                &quot;mapping&quot;: {
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;match_mapping_type&quot;: &quot;string&quot;,
+                &quot;path_match&quot;: &quot;fields.*&quot;
+              }
+            },
+            {
+              &quot;docker.container.labels&quot;: {
+                &quot;mapping&quot;: {
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;match_mapping_type&quot;: &quot;string&quot;,
+                &quot;path_match&quot;: &quot;docker.container.labels.*&quot;
+              }
+            },
+            {
+              &quot;kibana.log.meta&quot;: {
+                &quot;mapping&quot;: {
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;match_mapping_type&quot;: &quot;string&quot;,
+                &quot;path_match&quot;: &quot;kibana.log.meta.*&quot;
+              }
+            },
+            {
+              &quot;strings_as_keyword&quot;: {
+                &quot;mapping&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;match_mapping_type&quot;: &quot;string&quot;
+              }
+            }
+          ],
+          &quot;properties&quot;: {
+            &quot;@timestamp&quot;: {
+              &quot;type&quot;: &quot;date&quot;
+            },
+            &quot;apache2&quot;: {
+              &quot;properties&quot;: {
+                &quot;access&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;agent&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;body_sent&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;bytes&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        }
+                      }
+                    },
+                    &quot;geoip&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;city_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;continent_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;country_iso_code&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;location&quot;: {
+                          &quot;type&quot;: &quot;geo_point&quot;
+                        },
+                        &quot;region_iso_code&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;region_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        }
+                      }
+                    },
+                    &quot;http_version&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;method&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;referrer&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;remote_ip&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;response_code&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;url&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;user_agent&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;device&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;major&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;minor&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;os&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;os_major&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;os_minor&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;os_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;patch&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        }
+                      }
+                    },
+                    &quot;user_name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                },
+                &quot;error&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;client&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;level&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;module&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;pid&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;tid&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;auditd&quot;: {
+              &quot;properties&quot;: {
+                &quot;log&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;a0&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;acct&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;geoip&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;city_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;continent_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;country_iso_code&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;location&quot;: {
+                          &quot;type&quot;: &quot;geo_point&quot;
+                        },
+                        &quot;region_iso_code&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;region_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        }
+                      }
+                    },
+                    &quot;item&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;items&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;new_auid&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;new_ses&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;old_auid&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;old_ses&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;pid&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;ppid&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;record_type&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;res&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;sequence&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;beat&quot;: {
+              &quot;properties&quot;: {
+                &quot;hostname&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;name&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;timezone&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;version&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                }
+              }
+            },
+            &quot;docker&quot;: {
+              &quot;properties&quot;: {
+                &quot;container&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;id&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;image&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;labels&quot;: {
+                      &quot;type&quot;: &quot;object&quot;
+                    },
+                    &quot;name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;elasticsearch&quot;: {
+              &quot;properties&quot;: {
+                &quot;audit&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;action&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;event_type&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;layer&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;origin_address&quot;: {
+                      &quot;type&quot;: &quot;ip&quot;
+                    },
+                    &quot;origin_type&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;principal&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;request&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;request_body&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;uri&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                },
+                &quot;deprecation&quot;: {
+                  &quot;properties&quot;: {}
+                },
+                &quot;gc&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;heap&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;size_kb&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;used_kb&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        }
+                      }
+                    },
+                    &quot;jvm_runtime_sec&quot;: {
+                      &quot;type&quot;: &quot;float&quot;
+                    },
+                    &quot;old_gen&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;size_kb&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;used_kb&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        }
+                      }
+                    },
+                    &quot;phase&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;class_unload_time_sec&quot;: {
+                          &quot;type&quot;: &quot;float&quot;
+                        },
+                        &quot;cpu_time&quot;: {
+                          &quot;properties&quot;: {
+                            &quot;real_sec&quot;: {
+                              &quot;type&quot;: &quot;float&quot;
+                            },
+                            &quot;sys_sec&quot;: {
+                              &quot;type&quot;: &quot;float&quot;
+                            },
+                            &quot;user_sec&quot;: {
+                              &quot;type&quot;: &quot;float&quot;
+                            }
+                          }
+                        },
+                        &quot;duration_sec&quot;: {
+                          &quot;type&quot;: &quot;float&quot;
+                        },
+                        &quot;name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;parallel_rescan_time_sec&quot;: {
+                          &quot;type&quot;: &quot;float&quot;
+                        },
+                        &quot;scrub_string_table_time_sec&quot;: {
+                          &quot;type&quot;: &quot;float&quot;
+                        },
+                        &quot;scrub_symbol_table_time_sec&quot;: {
+                          &quot;type&quot;: &quot;float&quot;
+                        },
+                        &quot;weak_refs_processing_time_sec&quot;: {
+                          &quot;type&quot;: &quot;float&quot;
+                        }
+                      }
+                    },
+                    &quot;stopping_threads_time_sec&quot;: {
+                      &quot;type&quot;: &quot;float&quot;
+                    },
+                    &quot;tags&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;threads_total_stop_time_sec&quot;: {
+                      &quot;type&quot;: &quot;float&quot;
+                    },
+                    &quot;young_gen&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;size_kb&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;used_kb&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        }
+                      }
+                    }
+                  }
+                },
+                &quot;index&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;id&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                },
+                &quot;node&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                },
+                &quot;server&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;component&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;gc&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;young&quot;: {
+                          &quot;properties&quot;: {
+                            &quot;one&quot;: {
+                              &quot;type&quot;: &quot;long&quot;
+                            },
+                            &quot;two&quot;: {
+                              &quot;type&quot;: &quot;long&quot;
+                            }
+                          }
+                        }
+                      }
+                    },
+                    &quot;gc_overhead&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    }
+                  }
+                },
+                &quot;shard&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;id&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                },
+                &quot;slowlog&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;extra_source&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;id&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;logger&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;routing&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;search_type&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;source_query&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;stats&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;took&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;took_millis&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;total_hits&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;total_shards&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;type&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;types&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;error&quot;: {
+              &quot;properties&quot;: {
+                &quot;code&quot;: {
+                  &quot;type&quot;: &quot;long&quot;
+                },
+                &quot;message&quot;: {
+                  &quot;norms&quot;: false,
+                  &quot;type&quot;: &quot;text&quot;
+                },
+                &quot;type&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                }
+              }
+            },
+            &quot;event&quot;: {
+              &quot;properties&quot;: {
+                &quot;created&quot;: {
+                  &quot;type&quot;: &quot;date&quot;
+                },
+                &quot;severity&quot;: {
+                  &quot;type&quot;: &quot;long&quot;
+                }
+              }
+            },
+            &quot;fields&quot;: {
+              &quot;type&quot;: &quot;object&quot;
+            },
+            &quot;fileset&quot;: {
+              &quot;properties&quot;: {
+                &quot;module&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;name&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                }
+              }
+            },
+            &quot;host&quot;: {
+              &quot;properties&quot;: {
+                &quot;architecture&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;id&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;ip&quot;: {
+                  &quot;type&quot;: &quot;ip&quot;
+                },
+                &quot;mac&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;name&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;os&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;family&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;platform&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;version&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;http&quot;: {
+              &quot;properties&quot;: {
+                &quot;request&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;method&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                },
+                &quot;response&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;content_length&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;elapsed_time&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;status_code&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;icinga&quot;: {
+              &quot;properties&quot;: {
+                &quot;debug&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;facility&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;severity&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                },
+                &quot;main&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;facility&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;severity&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                },
+                &quot;startup&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;facility&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;severity&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;iis&quot;: {
+              &quot;properties&quot;: {
+                &quot;access&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;agent&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;body_received&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;bytes&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        }
+                      }
+                    },
+                    &quot;body_sent&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;bytes&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        }
+                      }
+                    },
+                    &quot;cookie&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;geoip&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;city_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;continent_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;country_iso_code&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;location&quot;: {
+                          &quot;type&quot;: &quot;geo_point&quot;
+                        },
+                        &quot;region_iso_code&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;region_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        }
+                      }
+                    },
+                    &quot;hostname&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;http_version&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;method&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;port&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;query_string&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;referrer&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;remote_ip&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;request_time_ms&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;response_code&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;server_ip&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;server_name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;site_name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;sub_status&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;url&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;user_agent&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;device&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;major&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;minor&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;os&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;os_major&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;os_minor&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;os_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;patch&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        }
+                      }
+                    },
+                    &quot;user_name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;win32_status&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    }
+                  }
+                },
+                &quot;error&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;geoip&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;city_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;continent_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;country_iso_code&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;location&quot;: {
+                          &quot;type&quot;: &quot;geo_point&quot;
+                        },
+                        &quot;region_iso_code&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;region_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        }
+                      }
+                    },
+                    &quot;http_version&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;method&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;queue_name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;reason_phrase&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;remote_ip&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;remote_port&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;response_code&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;server_ip&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;server_port&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;url&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;input&quot;: {
+              &quot;properties&quot;: {
+                &quot;type&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                }
+              }
+            },
+            &quot;kafka&quot;: {
+              &quot;properties&quot;: {
+                &quot;log&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;class&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;component&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;level&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;timestamp&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;trace&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;class&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;full&quot;: {
+                          &quot;norms&quot;: false,
+                          &quot;type&quot;: &quot;text&quot;
+                        },
+                        &quot;message&quot;: {
+                          &quot;norms&quot;: false,
+                          &quot;type&quot;: &quot;text&quot;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            &quot;kibana&quot;: {
+              &quot;properties&quot;: {
+                &quot;log&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;meta&quot;: {
+                      &quot;type&quot;: &quot;object&quot;
+                    },
+                    &quot;state&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;tags&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;kubernetes&quot;: {
+              &quot;properties&quot;: {
+                &quot;annotations&quot;: {
+                  &quot;type&quot;: &quot;object&quot;
+                },
+                &quot;container&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;image&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                },
+                &quot;labels&quot;: {
+                  &quot;type&quot;: &quot;object&quot;
+                },
+                &quot;namespace&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;node&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                },
+                &quot;pod&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;uid&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;log&quot;: {
+              &quot;properties&quot;: {
+                &quot;level&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                }
+              }
+            },
+            &quot;logstash&quot;: {
+              &quot;properties&quot;: {
+                &quot;log&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;level&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;log_event&quot;: {
+                      &quot;type&quot;: &quot;object&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;module&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;thread&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    }
+                  }
+                },
+                &quot;slowlog&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;event&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;level&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;module&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;plugin_name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;plugin_params&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;plugin_params_object&quot;: {
+                      &quot;type&quot;: &quot;object&quot;
+                    },
+                    &quot;plugin_type&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;thread&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;took_in_millis&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;took_in_nanos&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;message&quot;: {
+              &quot;norms&quot;: false,
+              &quot;type&quot;: &quot;text&quot;
+            },
+            &quot;meta&quot;: {
+              &quot;properties&quot;: {
+                &quot;cloud&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;availability_zone&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;instance_id&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;instance_name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;machine_type&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;project_id&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;provider&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;region&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;mongodb&quot;: {
+              &quot;properties&quot;: {
+                &quot;log&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;component&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;context&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;severity&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;mysql&quot;: {
+              &quot;properties&quot;: {
+                &quot;error&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;level&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;thread_id&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;timestamp&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                },
+                &quot;slowlog&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;host&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;id&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;ip&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;lock_time&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;sec&quot;: {
+                          &quot;type&quot;: &quot;float&quot;
+                        }
+                      }
+                    },
+                    &quot;query&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;query_time&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;sec&quot;: {
+                          &quot;type&quot;: &quot;float&quot;
+                        }
+                      }
+                    },
+                    &quot;rows_examined&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;rows_sent&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;timestamp&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;user&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;nginx&quot;: {
+              &quot;properties&quot;: {
+                &quot;access&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;agent&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;body_sent&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;bytes&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        }
+                      }
+                    },
+                    &quot;geoip&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;city_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;continent_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;country_iso_code&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;location&quot;: {
+                          &quot;type&quot;: &quot;geo_point&quot;
+                        },
+                        &quot;region_iso_code&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;region_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        }
+                      }
+                    },
+                    &quot;http_version&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;method&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;referrer&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;remote_ip&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;response_code&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;url&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;user_agent&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;device&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;major&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;minor&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;os&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;os_major&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;os_minor&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;os_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;patch&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        }
+                      }
+                    },
+                    &quot;user_name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                },
+                &quot;error&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;connection_id&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;level&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;pid&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;tid&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;offset&quot;: {
+              &quot;type&quot;: &quot;long&quot;
+            },
+            &quot;osquery&quot;: {
+              &quot;properties&quot;: {
+                &quot;result&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;action&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;calendar_time&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;host_identifier&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;unix_time&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;postgresql&quot;: {
+              &quot;properties&quot;: {
+                &quot;log&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;database&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;duration&quot;: {
+                      &quot;type&quot;: &quot;float&quot;
+                    },
+                    &quot;level&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;query&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;thread_id&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;timestamp&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;timezone&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;user&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;process&quot;: {
+              &quot;properties&quot;: {
+                &quot;pid&quot;: {
+                  &quot;type&quot;: &quot;long&quot;
+                },
+                &quot;program&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                }
+              }
+            },
+            &quot;prospector&quot;: {
+              &quot;properties&quot;: {
+                &quot;type&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                }
+              }
+            },
+            &quot;read_timestamp&quot;: {
+              &quot;ignore_above&quot;: 1024,
+              &quot;type&quot;: &quot;keyword&quot;
+            },
+            &quot;redis&quot;: {
+              &quot;properties&quot;: {
+                &quot;log&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;level&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;pid&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;role&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                },
+                &quot;slowlog&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;args&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;cmd&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;duration&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;us&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        }
+                      }
+                    },
+                    &quot;id&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;key&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;service&quot;: {
+              &quot;properties&quot;: {
+                &quot;name&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                }
+              }
+            },
+            &quot;source&quot;: {
+              &quot;ignore_above&quot;: 1024,
+              &quot;type&quot;: &quot;keyword&quot;
+            },
+            &quot;stream&quot;: {
+              &quot;ignore_above&quot;: 1024,
+              &quot;type&quot;: &quot;keyword&quot;
+            },
+            &quot;syslog&quot;: {
+              &quot;properties&quot;: {
+                &quot;facility&quot;: {
+                  &quot;type&quot;: &quot;long&quot;
+                },
+                &quot;facility_label&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;priority&quot;: {
+                  &quot;type&quot;: &quot;long&quot;
+                },
+                &quot;severity_label&quot;: {
+                  &quot;ignore_above&quot;: 1024,
+                  &quot;type&quot;: &quot;keyword&quot;
+                }
+              }
+            },
+            &quot;system&quot;: {
+              &quot;properties&quot;: {
+                &quot;auth&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;groupadd&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;gid&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        }
+                      }
+                    },
+                    &quot;hostname&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;pid&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;program&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;ssh&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;dropped_ip&quot;: {
+                          &quot;type&quot;: &quot;ip&quot;
+                        },
+                        &quot;event&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;geoip&quot;: {
+                          &quot;properties&quot;: {
+                            &quot;city_name&quot;: {
+                              &quot;ignore_above&quot;: 1024,
+                              &quot;type&quot;: &quot;keyword&quot;
+                            },
+                            &quot;continent_name&quot;: {
+                              &quot;ignore_above&quot;: 1024,
+                              &quot;type&quot;: &quot;keyword&quot;
+                            },
+                            &quot;country_iso_code&quot;: {
+                              &quot;ignore_above&quot;: 1024,
+                              &quot;type&quot;: &quot;keyword&quot;
+                            },
+                            &quot;location&quot;: {
+                              &quot;type&quot;: &quot;geo_point&quot;
+                            },
+                            &quot;region_iso_code&quot;: {
+                              &quot;ignore_above&quot;: 1024,
+                              &quot;type&quot;: &quot;keyword&quot;
+                            },
+                            &quot;region_name&quot;: {
+                              &quot;ignore_above&quot;: 1024,
+                              &quot;type&quot;: &quot;keyword&quot;
+                            }
+                          }
+                        },
+                        &quot;ip&quot;: {
+                          &quot;type&quot;: &quot;ip&quot;
+                        },
+                        &quot;method&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;port&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;signature&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        }
+                      }
+                    },
+                    &quot;sudo&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;command&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;error&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;pwd&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;tty&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;user&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        }
+                      }
+                    },
+                    &quot;timestamp&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;user&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;useradd&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;gid&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;home&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;shell&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;uid&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        }
+                      }
+                    }
+                  }
+                },
+                &quot;syslog&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;hostname&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;message&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;pid&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;program&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;timestamp&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            },
+            &quot;tags&quot;: {
+              &quot;ignore_above&quot;: 1024,
+              &quot;type&quot;: &quot;keyword&quot;
+            },
+            &quot;traefik&quot;: {
+              &quot;properties&quot;: {
+                &quot;access&quot;: {
+                  &quot;properties&quot;: {
+                    &quot;agent&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;backend_url&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;body_sent&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;bytes&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        }
+                      }
+                    },
+                    &quot;frontend_name&quot;: {
+                      &quot;norms&quot;: false,
+                      &quot;type&quot;: &quot;text&quot;
+                    },
+                    &quot;geoip&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;city_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;continent_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;country_iso_code&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;location&quot;: {
+                          &quot;type&quot;: &quot;geo_point&quot;
+                        },
+                        &quot;region_iso_code&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;region_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        }
+                      }
+                    },
+                    &quot;http_version&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;method&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;referrer&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;remote_ip&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;request_count&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;response_code&quot;: {
+                      &quot;type&quot;: &quot;long&quot;
+                    },
+                    &quot;url&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    },
+                    &quot;user_agent&quot;: {
+                      &quot;properties&quot;: {
+                        &quot;device&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;major&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;minor&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;os&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;os_major&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;os_minor&quot;: {
+                          &quot;type&quot;: &quot;long&quot;
+                        },
+                        &quot;os_name&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        },
+                        &quot;patch&quot;: {
+                          &quot;ignore_above&quot;: 1024,
+                          &quot;type&quot;: &quot;keyword&quot;
+                        }
+                      }
+                    },
+                    &quot;user_name&quot;: {
+                      &quot;ignore_above&quot;: 1024,
+                      &quot;type&quot;: &quot;keyword&quot;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      &quot;order&quot;: 1,
+      &quot;settings&quot;: {
+        &quot;index&quot;: {
+          &quot;mapping&quot;: {
+            &quot;total_fields&quot;: {
+              &quot;limit&quot;: 10000
+            }
+          },
+          &quot;number_of_routing_shards&quot;: 30,
+          &quot;refresh_interval&quot;: &quot;5s&quot;
+        }
+      }
+    }
+</code></pre>
+<h3 id="附录二-fields-all-yml"><a href="#附录二-fields-all-yml" class="headerlink" title="附录二(fields-all.yml)"></a>附录二(fields-all.yml)</h3><pre><code class="yaml">    - key: log
+      title: Log file content
+      description: &gt;
+        Contains log file lines.
+      fields:
+        - name: source
+          type: keyword
+          required: true
+          description: &gt;
+            The file from which the line was read. This field contains the absolute path to the file.
+            For example: `/var/log/system.log`.
+
+        - name: offset
+          type: long
+          required: false
+          description: &gt;
+            The file offset the reported line starts at.
+
+        - name: message
+          type: text
+          ignore_above: 0
+          required: true
+          description: &gt;
+            The content of the line read from the log file.
+
+        - name: stream
+          type: keyword
+          required: false
+          description: &gt;
+            Log stream when reading container logs, can be &#39;stdout&#39; or &#39;stderr&#39;
+
+        - name: prospector.type
+          required: true
+          description: &gt;
+            The input type from which the event was generated. This field is set to the value specified
+            for the `type` option in the input section of the Filebeat config file. (DEPRECATED: see `input.type`)
+
+        - name: input.type
+          required: true
+          description: &gt;
+            The input type from which the event was generated. This field is set to the value specified
+            for the `type` option in the input section of the Filebeat config file.
+
+        - name: read_timestamp
+          description: &gt;
+            In case the ingest pipeline parses the timestamp from the log contents, it stores
+            the original `@timestamp` (representing the time when the log line was read) in this
+            field.
+
+        - name: fileset.module
+          description: &gt;
+            The Filebeat module that generated this event.
+
+        - name: fileset.name
+          description: &gt;
+            The Filebeat fileset that generated this event.
+
+        - name: syslog.facility
+          type: long
+          required: false
+          description: &gt;
+            The facility extracted from the priority.
+
+        - name: syslog.priority
+          type: long
+          required: false
+          description: &gt;
+            The priority of the syslog event.
+
+        - name: syslog.severity_label
+          type: keyword
+          required: false
+          description: &gt;
+            The human readable severity.
+
+        - name: syslog.facility_label
+          type: keyword
+          required: false
+          description: &gt;
+            The human readable facility.
+
+        - name: process.program
+          type: keyword
+          required: false
+          description: &gt;
+            The name of the program.
+
+        - name: process.pid
+          type: long
+          required: false
+          description: &gt;
+            The pid of the process.
+
+        - name: event.severity
+          type: long
+          required: false
+          description: &gt;
+            The severity of the event.
+
+        - name: service.name
+          type: keyword
+          description: &gt;
+            Service name.
+
+        - name: log.level
+          type: keyword
+          description: &gt;
+            Logging level.
+
+        - name: event.created
+          type: date
+          description: &gt;
+            event.created contains the date on which the event was created. In case of
+            log events this is when the log line was read by Filebeat. In comparison
+            @timestamp is the processed timestamp from the log line. If both are identical
+            only @timestamp should be used.
+
+        - name: http.response.status_code
+          type: long
+          description: &gt;
+            HTTP response status_code.
+          example: 404
+
+        - name: http.response.elapsed_time
+          type: long
+          description: &gt;
+            Elapsed time between request and response in milli seconds.
+
+        - name: http.response.content_length
+          type: long
+          description: &gt;
+            Content length of the HTTP response body.
+
+        - name: http.request.method
+          type: keyword
+          description: &gt;
+            Request method.
+
+    - key: beat
+      title: Beat
+      description: &gt;
+        Contains common beat fields available in all event types.
+      fields:
+
+        - name: beat.name
+          description: &gt;
+            The name of the Beat sending the log messages. If the Beat name is
+            set in the configuration file, then that value is used. If it is not
+            set, the hostname is used. To set the Beat name, use the `name`
+            option in the configuration file.
+        - name: beat.hostname
+          description: &gt;
+            The hostname as returned by the operating system on which the Beat is
+            running.
+        - name: beat.timezone
+          description: &gt;
+            The timezone as returned by the operating system on which the Beat is
+            running.
+        - name: beat.version
+          description: &gt;
+            The version of the beat that generated this event.
+
+        - name: &quot;@timestamp&quot;
+          type: date
+          required: true
+          format: date
+          example: August 26th 2016, 12:35:53.332
+          description: &gt;
+            The timestamp when the event log record was generated.
+
+        - name: tags
+          description: &gt;
+            Arbitrary tags that can be set per Beat and per transaction
+            type.
+
+        - name: fields
+          type: object
+          object_type: keyword
+          description: &gt;
+            Contains user configurable fields.
+
+        - name: error
+          type: group
+          description: &gt;
+            Error fields containing additional info in case of errors.
+          fields:
+            - name: message
+              type: text
+              description: &gt;
+                Error message.
+            - name: code
+              type: long
+              description: &gt;
+                Error code.
+            - name: type
+              type: keyword
+              description: &gt;
+                Error type.
+    - key: cloud
+      title: Cloud provider metadata
+      description: &gt;
+        Metadata from cloud providers added by the add_cloud_metadata processor.
+      fields:
+
+        - name: meta.cloud.provider
+          example: ec2
+          description: &gt;
+            Name of the cloud provider. Possible values are ec2, gce, or digitalocean.
+
+        - name: meta.cloud.instance_id
+          description: &gt;
+            Instance ID of the host machine.
+
+        - name: meta.cloud.instance_name
+          description: &gt;
+            Instance name of the host machine.
+
+        - name: meta.cloud.machine_type
+          example: t2.medium
+          description: &gt;
+            Machine type of the host machine.
+
+        - name: meta.cloud.availability_zone
+          example: us-east-1c
+          description: &gt;
+            Availability zone in which this host is running.
+
+        - name: meta.cloud.project_id
+          example: project-x
+          description: &gt;
+            Name of the project in Google Cloud.
+
+        - name: meta.cloud.region
+          description: &gt;
+            Region in which this host is running.
+    - key: docker
+      title: Docker
+      description: &gt;
+        Docker stats collected from Docker.
+      short_config: false
+      anchor: docker-processor
+      fields:
+        - name: docker
+          type: group
+          fields:
+            - name: container.id
+              type: keyword
+              description: &gt;
+                Unique container id.
+            - name: container.image
+              type: keyword
+              description: &gt;
+                Name of the image the container was built on.
+            - name: container.name
+              type: keyword
+              description: &gt;
+                Container name.
+            - name: container.labels
+              type: object
+              object_type: keyword
+              description: &gt;
+                Image labels.
+    - key: host
+      title: Host
+      description: &gt;
+        Info collected for the host machine.
+      anchor: host-processor
+      fields:
+        - name: host
+          type: group
+          fields:
+            - name: name
+              type: keyword
+              description: &gt;
+                Hostname.
+            - name: id
+              type: keyword
+              description: &gt;
+                Unique host id.
+            - name: architecture
+              type: keyword
+              description: &gt;
+                Host architecture (e.g. x86_64, arm, ppc, mips).
+            - name: os.platform
+              type: keyword
+              description: &gt;
+                OS platform (e.g. centos, ubuntu, windows).
+            - name: os.version
+              type: keyword
+              description: &gt;
+                OS version.
+            - name: os.family
+              type: keyword
+              description: &gt;
+                OS family (e.g. redhat, debian, freebsd, windows).
+            - name: ip
+              type: ip
+              description: &gt;
+                List of IP-addresses.
+            - name: mac
+              type: keyword
+              description: &gt;
+                List of hardware-addresses, usually MAC-addresses.
+
+    - key: kubernetes
+      title: Kubernetes
+      description: &gt;
+        Kubernetes metadata added by the kubernetes processor
+      short_config: false
+      anchor: kubernetes-processor
+      fields:
+        - name: kubernetes
+          type: group
+          fields:
+            - name: pod.name
+              type: keyword
+              description: &gt;
+                Kubernetes pod name
+
+            - name: pod.uid
+              type: keyword
+              description: &gt;
+                Kubernetes Pod UID
+
+            - name: namespace
+              type: keyword
+              description: &gt;
+                Kubernetes namespace
+
+            - name: node.name
+              type: keyword
+              description: &gt;
+                Kubernetes node name
+
+            - name: labels
+              type: object
+              description: &gt;
+                Kubernetes labels map
+
+            - name: annotations
+              type: object
+              description: &gt;
+                Kubernetes annotations map
+
+            - name: container.name
+              type: keyword
+              description: &gt;
+                Kubernetes container name
+
+            - name: container.image
+              type: keyword
+              description: &gt;
+                Kubernetes container image
+    - key: apache2
+      title: &quot;Apache2&quot;
+      description: &gt;
+        Apache2 Module
+      short_config: true
+      fields:
+        - name: apache2
+          type: group
+          description: &gt;
+            Apache2 fields.
+          fields:
+            - name: access
+              type: group
+              description: &gt;
+                Contains fields for the Apache2 HTTPD access logs.
+              fields:
+                - name: remote_ip
+                  type: keyword
+                  description: &gt;
+                    Client IP address.
+                - name: user_name
+                  type: keyword
+                  description: &gt;
+                    The user name used when basic authentication is used.
+                - name: method
+                  type: keyword
+                  example: GET
+                  description: &gt;
+                    The request HTTP method.
+                - name: url
+                  type: keyword
+                  description: &gt;
+                    The request HTTP URL.
+                - name: http_version
+                  type: keyword
+                  description: &gt;
+                    The HTTP version.
+                - name: response_code
+                  type: long
+                  description: &gt;
+                    The HTTP response code.
+                - name: body_sent.bytes
+                  type: long
+                  format: bytes
+                  description: &gt;
+                    The number of bytes of the server response body.
+                - name: referrer
+                  type: keyword
+                  description: &gt;
+                    The HTTP referrer.
+                - name: agent
+                  type: text
+                  description: &gt;
+                    Contains the un-parsed user agent string. Only present if the user
+                    agent Elasticsearch plugin is not available or not used.
+                - name: user_agent
+                  type: group
+                  description: &gt;
+                    Contains the parsed User agent field. Only present if the user
+                    agent Elasticsearch plugin is available and used.
+                  fields:
+                    - name: device
+                      type: keyword
+                      description: &gt;
+                        The name of the physical device.
+                    - name: major
+                      type: long
+                      description: &gt;
+                        The major version of the user agent.
+                    - name: minor
+                      type: long
+                      description: &gt;
+                        The minor version of the user agent.
+                    - name: patch
+                      type: keyword
+                      description: &gt;
+                        The patch version of the user agent.
+                    - name: name
+                      type: keyword
+                      example: Chrome
+                      description: &gt;
+                        The name of the user agent.
+                    - name: os
+                      type: keyword
+                      description: &gt;
+                        The name of the operating system.
+                    - name: os_major
+                      type: long
+                      description: &gt;
+                        The major version of the operating system.
+                    - name: os_minor
+                      type: long
+                      description: &gt;
+                        The minor version of the operating system.
+                    - name: os_name
+                      type: keyword
+                      description: &gt;
+                        The name of the operating system.
+                - name: geoip
+                  type: group
+                  description: &gt;
+                    Contains GeoIP information gathered based on the remote_ip field.
+                    Only present if the GeoIP Elasticsearch plugin is available and
+                    used.
+                  fields:
+                    - name: continent_name
+                      type: keyword
+                      description: &gt;
+                        The name of the continent.
+                    - name: country_iso_code
+                      type: keyword
+                      description: &gt;
+                        Country ISO code.
+                    - name: location
+                      type: geo_point
+                      description: &gt;
+                        The longitude and latitude.
+                    - name: region_name
+                      type: keyword
+                      description: &gt;
+                        The region name.
+                    - name: city_name
+                      type: keyword
+                      description: &gt;
+                        The city name.
+                    - name: region_iso_code
+                      type: keyword
+                      description: &gt;
+                        Region ISO code.
+            - name: error
+              type: group
+              description: &gt;
+                Fields from the Apache error logs.
+              fields:
+                - name: level
+                  type: keyword
+                  description: &gt;
+                    The severity level of the message.
+                - name: client
+                  type: keyword
+                  description: &gt;
+                    The IP address of the client that generated the error.
+                - name: message
+                  type: text
+                  description: &gt;
+                    The logged message.
+                - name: pid
+                  type: long
+                  description: &gt;
+                    The process ID.
+                - name: tid
+                  type: long
+                  description: &gt;
+                    The thread ID.
+                - name: module
+                  type: keyword
+                  description: &gt;
+                    The module producing the logged message.
+    - key: auditd
+      title: &quot;Auditd&quot;
+      description: &gt;
+        Module for parsing auditd logs.
+      short_config: true
+      fields:
+        - name: auditd
+          type: group
+          description: &gt;
+            Fields from the auditd logs.
+          fields:
+            - name: log
+              type: group
+              description: &gt;
+                Fields from the Linux audit log. Not all fields are documented here because
+                they are dynamic and vary by audit event type.
+              fields:
+                - name: record_type
+                  description: &gt;
+                    The audit event type.
+                - name: old_auid
+                  description: &gt;
+                    For login events this is the old audit ID used for the user prior to
+                    this login.
+                - name: new_auid
+                  description: &gt;
+                    For login events this is the new audit ID. The audit ID can be used to
+                    trace future events to the user even if their identity changes (like
+                    becoming root).
+                - name: old_ses
+                  description: &gt;
+                    For login events this is the old session ID used for the user prior to
+                    this login.
+                - name: new_ses
+                  description: &gt;
+                    For login events this is the new session ID. It can be used to tie a
+                    user to future events by session ID.
+                - name: sequence
+                  type: long
+                  description: &gt;
+                    The audit event sequence number.
+                - name: acct
+                  description: &gt;
+                    The user account name associated with the event.
+                - name: pid
+                  description: &gt;
+                    The ID of the process.
+                - name: ppid
+                  description: &gt;
+                    The ID of the process.
+                - name: items
+                  description: &gt;
+                    The number of items in an event.
+                - name: item
+                  description: &gt;
+                    The item field indicates which item out of the total number of items.
+                    This number is zero-based; a value of 0 means it is the first item.
+                - name: a0
+                  description: &gt;
+                    The first argument to the system call.
+                - name: res
+                  description: &gt;
+                    The result of the system call (success or failure).
+                - name: geoip
+                  type: group
+                  description: &gt;
+                    Contains GeoIP information gathered based on the `auditd.log.addr`
+                    field. Only present if the GeoIP Elasticsearch plugin is available and
+                    used.
+                  fields:
+                    - name: continent_name
+                      type: keyword
+                      description: &gt;
+                        The name of the continent.
+                    - name: city_name
+                      type: keyword
+                      description: &gt;
+                        The name of the city.
+                    - name: region_name
+                      type: keyword
+                      description: &gt;
+                        The name of the region.
+                    - name: country_iso_code
+                      type: keyword
+                      description: &gt;
+                        Country ISO code.
+                    - name: location
+                      type: geo_point
+                      description: &gt;
+                        The longitude and latitude.
+                    - name: region_iso_code
+                      type: keyword
+                      description: &gt;
+                        Region ISO code.
+    - key: elasticsearch
+      title: &quot;elasticsearch&quot;
+      description: &gt;
+        elasticsearch Module
+      fields:
+        - name: elasticsearch
+          type: group
+          description: &gt;
+          fields:
+            - name: node.name
+              description: &quot;Name of the node&quot;
+              example: &quot;vWNJsZ3&quot;
+              type: keyword
+            - name: index.name
+              description: &quot;Index name&quot;
+              example: &quot;filebeat-test-input&quot;
+              type: keyword
+            - name: index.id
+              description: &quot;Index id&quot;
+              example: &quot;aOGgDwbURfCV57AScqbCgw&quot;
+              type: keyword
+            - name: shard.id
+              description: &quot;Id of the shard&quot;
+              example: &quot;0&quot;
+              type: keyword
+            - name: audit
+              type: group
+              description: &gt;
+              fields:
+                - name: layer
+                  description: &quot;The layer from which this event originated: rest, transport or ip_filter&quot;
+                  example: &quot;rest&quot;
+                  type: keyword
+                - name: event_type
+                  description: &quot;The type of event that occurred: anonymous_access_denied, authentication_failed, access_denied, access_granted, connection_granted, connection_denied, tampered_request, run_as_granted, run_as_denied&quot;
+                  example: &quot;access_granted&quot;
+                  type: keyword
+                - name: origin_type
+                  description: &quot;Where the request originated: rest (request originated from a REST API request), transport (request was received on the transport channel), local_node (the local node issued the request)&quot;
+                  example: &quot;local_node&quot;
+                  type: keyword
+                - name: origin_address
+                  description: &quot;The IP address from which the request originated&quot;
+                  example: &quot;192.168.1.42&quot;
+                  type: ip
+                - name: principal
+                  description: &quot;The principal (username) that failed authentication&quot;
+                  example: &quot;_anonymous&quot;
+                  type: keyword
+                - name: action
+                  description: &quot;The name of the action that was executed&quot;
+                  example: &quot;cluster:monitor/main&quot;
+                  type: keyword
+                - name: uri
+                  description: &quot;The REST endpoint URI&quot;
+                  example: /_xpack/security/_authenticate
+                  type: keyword
+                - name: request
+                  description: &quot;The type of request that was executed&quot;
+                  example: &quot;ClearScrollRequest&quot;
+                  type: keyword
+                - name: request_body
+                  description: &quot;The body of the request, if enabled&quot;
+                  example: &quot;body&quot;
+                  type: text
+            - name: deprecation
+              type: group
+              description: &gt;
+              fields:
+            - name: gc
+              type: group
+              description: &gt;
+                GC fileset fields.
+              fields:
+                - name: phase
+                  type: group
+                  description: &gt;
+                    Fields specific to GC phase.
+                  fields:
+                    - name: name
+                      type: keyword
+                      description: &gt;
+                        Name of the GC collection phase.
+                    - name: duration_sec
+                      type: float
+                      description: &gt;
+                        Collection phase duration according to the Java virtual machine.
+                    - name: scrub_symbol_table_time_sec
+                      type: float
+                      description: &gt;
+                         Pause time in seconds cleaning up symbol tables.
+                    - name: scrub_string_table_time_sec
+                      type: float
+                      description: &gt;
+                        Pause time in seconds cleaning up string tables.
+                    - name: weak_refs_processing_time_sec
+                      type: float
+                      description: &gt;
+                        Time spent processing weak references in seconds.
+                    - name: parallel_rescan_time_sec
+                      type: float
+                      description: &gt;
+                        Time spent in seconds marking live objects while application is stopped.
+                    - name: class_unload_time_sec
+                      type: float
+                      description: &gt;
+                        Time spent unloading unused classes in seconds.
+                    - name: cpu_time
+                      type: group
+                      description: &gt;
+                        Process CPU time spent performing collections.
+                      fields:
+                        - name: user_sec
+                          type: float
+                          description: &gt;
+                            CPU time spent outside the kernel.
+                        - name: sys_sec
+                          type: float
+                          description: &gt;
+                            CPU time spent inside the kernel. 
+                        - name: real_sec
+                          type: float
+                          description: &gt;
+                            Total elapsed CPU time spent to complete the collection from start to finish.
+                - name: jvm_runtime_sec
+                  type: float
+                  description: &gt;
+                    The time from JVM start up in seconds, as a floating point number.
+                - name: threads_total_stop_time_sec
+                  type: float
+                  description: &gt;
+                    Garbage collection threads total stop time seconds.
+                - name: stopping_threads_time_sec
+                  type: float
+                  description: &gt;
+                    Time took to stop threads seconds.
+                - name: tags
+                  type: keyword
+                  description: &gt;
+                    GC logging tags.
+                - name: heap
+                  type: group
+                  description: &gt;
+                    Heap allocation and total size.
+                  fields:
+                    - name: size_kb
+                      type: integer
+                      description: &gt;
+                        Total heap size in kilobytes.
+                    - name: used_kb
+                      type: integer
+                      description: &gt;
+                        Used heap in kilobytes.
+                - name: old_gen
+                  type: group
+                  description: &gt;
+                    Old generation occupancy and total size.
+                  fields:
+                    - name: size_kb
+                      type: integer
+                      description: &gt;
+                        Total size of old generation in kilobytes.
+                    - name: used_kb
+                      type: integer
+                      description: &gt;
+                        Old generation occupancy in kilobytes.
+                - name: young_gen
+                  type: group
+                  description: &gt;
+                    Young generation occupancy and total size.
+                  fields:
+                    - name: size_kb
+                      type: integer
+                      description: &gt;
+                        Total size of young generation in kilobytes.
+                    - name: used_kb
+                      type: integer
+                      description: &gt;
+                        Young generation occupancy in kilobytes.
+            - name: server
+              description: &quot;Server log file&quot;
+              type: group
+              fields:
+              - name: component
+                description: &quot;Log component&quot;
+                example: &quot;o.e.c.m.MetaDataCreateIndexService&quot;
+                type: keyword
+              - name: gc
+                description: &quot;GC log&quot;
+                type: group
+                fields:
+                - name: young
+                  description: &quot;Young GC&quot;
+                  example: &quot;&quot;
+                  type: group
+                  fields:
+                  - name: one
+                    description: &quot;&quot;
+                    example: &quot;&quot;
+                    type: long
+                  - name: two
+                    description: &quot;&quot;
+                    example: &quot;&quot;
+                    type: long
+              - name: gc_overhead
+                description: &quot;&quot;
+                example: &quot;&quot;
+                type: long
+            - name: slowlog
+              description: &quot;Slowlog events from Elasticsearch&quot;
+              example: &quot;[2018-06-29T10:06:14,933][INFO ][index.search.slowlog.query] [v_VJhjV] [metricbeat-6.3.0-2018.06.26][0] took[4.5ms], took_millis[4], total_hits[19435], types[], stats[], search_type[QUERY_THEN_FETCH], total_shards[1], source[{\&quot;query\&quot;:{\&quot;match_all\&quot;:{\&quot;boost\&quot;:1.0}}}],&quot;
+              type: group
+              fields:
+              - name: logger
+                description: &quot;Logger name&quot;
+                example: &quot;index.search.slowlog.fetch&quot;
+                type: keyword
+              - name: took
+                description: &quot;Time it took to execute the query&quot;
+                example: &quot;300ms&quot;
+                type: text
+              - name: types
+                description: &quot;Types&quot;
+                example: &quot;&quot;
+                type: keyword
+              - name: stats
+                description: &quot;Statistics&quot;
+                example: &quot;&quot;
+                type: text
+              - name: search_type
+                description: &quot;Search type&quot;
+                example: &quot;QUERY_THEN_FETCH&quot;
+                type: keyword
+              - name: source_query
+                description: &quot;Slow query&quot;
+                example: &quot;{\&quot;query\&quot;:{\&quot;match_all\&quot;:{\&quot;boost\&quot;:1.0}}}&quot;
+                type: text
+              - name: extra_source
+                description: &quot;Extra source information&quot;
+                example: &quot;&quot;
+                type: text
+              - name: took_millis
+                description: &quot;Time took in milliseconds&quot;
+                example: 42
+                type: keyword
+              - name: total_hits
+                description: &quot;Total hits&quot;
+                example: 42
+                type: keyword
+              - name: total_shards
+                description: &quot;Total queried shards&quot;
+                example: 22
+                type: keyword
+              - name: routing
+                description: &quot;Routing&quot;
+                example: &quot;s01HZ2QBk9jw4gtgaFtn&quot;
+                type: keyword
+              - name: id
+                description: Id
+                example: &quot;&quot;
+                type: keyword
+              - name: type
+                description: &quot;Type&quot;
+                example: &quot;doc&quot;
+                type: keyword
+    - key: icinga
+      title: &quot;Icinga&quot;
+      description: &gt;
+        Icinga Module
+      fields:
+        - name: icinga
+          type: group
+          description: &gt;
+          fields:
+            - name: debug
+              type: group
+              description: &gt;
+                Contains fields for the Icinga debug logs.
+              fields:
+                - name: facility
+                  type: keyword
+                  description: &gt;
+                    Specifies what component of Icinga logged the message.
+                - name: severity
+                  type: keyword
+                  description: &gt;
+                    Possible values are &quot;debug&quot;, &quot;notice&quot;, &quot;information&quot;, &quot;warning&quot; or
+                    &quot;critical&quot;.
+                - name: message
+                  type: text
+                  description: &gt;
+                    The logged message.
+            - name: main
+              type: group
+              description: &gt;
+                Contains fields for the Icinga main logs.
+              fields:
+                - name: facility
+                  type: keyword
+                  description: &gt;
+                    Specifies what component of Icinga logged the message.
+                - name: severity
+                  type: keyword
+                  description: &gt;
+                    Possible values are &quot;debug&quot;, &quot;notice&quot;, &quot;information&quot;, &quot;warning&quot; or
+                    &quot;critical&quot;.
+                - name: message
+                  type: text
+                  description: &gt;
+                    The logged message.
+            - name: startup
+              type: group
+              description: &gt;
+                Contains fields for the Icinga startup logs.
+              fields:
+                - name: facility
+                  type: keyword
+                  description: &gt;
+                    Specifies what component of Icinga logged the message.
+                - name: severity
+                  type: keyword
+                  description: &gt;
+                    Possible values are &quot;debug&quot;, &quot;notice&quot;, &quot;information&quot;, &quot;warning&quot; or
+                    &quot;critical&quot;.
+                - name: message
+                  type: text
+                  description: &gt;
+                    The logged message.
+    - key: iis
+      title: &quot;IIS&quot;
+      description: &gt;
+        Module for parsing IIS log files.
+      fields:
+        - name: iis
+          type: group
+          description: &gt;
+            Fields from IIS log files.
+          fields:
+            - name: access
+              type: group
+              description: &gt;
+                Contains fields for IIS access logs.
+              fields:
+                - name: server_ip
+                  type: keyword
+                  description: &gt;
+                    The server IP address.
+                - name: method
+                  type: keyword
+                  example: GET
+                  description: &gt;
+                    The request HTTP method.
+                - name: url
+                  type: keyword
+                  description: &gt;
+                    The request HTTP URL.
+                - name: query_string
+                  type: keyword
+                  description: &gt;
+                    The request query string, if any.
+                - name: port
+                  type: long
+                  description: &gt;
+                    The request port number.
+                - name: user_name
+                  type: keyword
+                  description: &gt;
+                    The user name used when basic authentication is used.
+                - name: remote_ip
+                  type: keyword
+                  description: &gt;
+                    The client IP address.
+                - name: referrer
+                  type: keyword
+                  description: &gt;
+                    The HTTP referrer.
+                - name: response_code
+                  type: long
+                  description: &gt;
+                    The HTTP response code.
+                - name: sub_status
+                  type: long
+                  description: &gt;
+                    The HTTP substatus code.
+                - name: win32_status
+                  type: long
+                  description: &gt;
+                    The Windows status code.
+                - name: request_time_ms
+                  type: long
+                  description: &gt;
+                    The request time in milliseconds.
+                - name: site_name
+                  type: keyword
+                  description: &gt;
+                    The site name and instance number.
+                - name: server_name
+                  type: keyword
+                  description: &gt;
+                    The name of the server on which the log file entry was generated.
+                - name: http_version
+                  type: keyword
+                  description: &gt;
+                    The HTTP version.
+                - name: cookie
+                  type: keyword
+                  description: &gt;
+                    The content of the cookie sent or received, if any.
+                - name: hostname
+                  type: keyword
+                  description: &gt;
+                    The host header name, if any.
+                - name: body_sent.bytes
+                  type: long
+                  format: bytes
+                  description: &gt;
+                    The number of bytes of the server response body.
+                - name: body_received.bytes
+                  type: long
+                  format: bytes
+                  description: &gt;
+                    The number of bytes of the server request body.
+                - name: agent
+                  type: text
+                  description: &gt;
+                    Contains the un-parsed user agent string. Only present if the user
+                    agent Elasticsearch plugin is not available or not used.
+                - name: user_agent
+                  type: group
+                  description: &gt;
+                    Contains the parsed user agent field. Only present if the user
+                    agent Elasticsearch plugin is available and used.
+                  fields:
+                    - name: device
+                      type: keyword
+                      description: &gt;
+                        The name of the physical device.
+                    - name: major
+                      type: long
+                      description: &gt;
+                        The major version of the user agent.
+                    - name: minor
+                      type: long
+                      description: &gt;
+                        The minor version of the user agent.
+                    - name: patch
+                      type: keyword
+                      description: &gt;
+                        The patch version of the user agent.
+                    - name: name
+                      type: keyword
+                      example: Chrome
+                      description: &gt;
+                        The name of the user agent.
+                    - name: os
+                      type: keyword
+                      description: &gt;
+                        The name of the operating system.
+                    - name: os_major
+                      type: long
+                      description: &gt;
+                        The major version of the operating system.
+                    - name: os_minor
+                      type: long
+                      description: &gt;
+                        The minor version of the operating system.
+                    - name: os_name
+                      type: keyword
+                      description: &gt;
+                        The name of the operating system.
+                - name: geoip
+                  type: group
+                  description: &gt;
+                    Contains GeoIP information gathered based on the remote_ip field.
+                    Only present if the GeoIP Elasticsearch plugin is available and
+                    used.
+                  fields:
+                    - name: continent_name
+                      type: keyword
+                      description: &gt;
+                        The name of the continent.
+                    - name: country_iso_code
+                      type: keyword
+                      description: &gt;
+                        Country ISO code.
+                    - name: location
+                      type: geo_point
+                      description: &gt;
+                        The longitude and latitude.
+                    - name: region_name
+                      type: keyword
+                      description: &gt;
+                        The region name.
+                    - name: city_name
+                      type: keyword
+                      description: &gt;
+                        The city name.
+                    - name: region_iso_code
+                      type: keyword
+                      description: &gt;
+                        Region ISO code.
+            - name: error
+              type: group
+              description: &gt;
+                Contains fields for IIS error logs.
+              fields:
+                - name: remote_ip
+                  type: keyword
+                  description: &gt;
+                    The client IP address.
+                - name: remote_port
+                  type: long
+                  description: &gt;
+                    The client port number.
+                - name: server_ip
+                  type: keyword
+                  description: &gt;
+                    The server IP address.
+                - name: server_port
+                  type: long
+                  description: &gt;
+                    The server port number.
+                - name: http_version
+                  type: keyword
+                  description: &gt;
+                    The HTTP version.
+                - name: method
+                  type: keyword
+                  example: GET
+                  description: &gt;
+                    The request HTTP method.
+                - name: url
+                  type: keyword
+                  description: &gt;
+                    The request HTTP URL.
+                - name: response_code
+                  type: long
+                  description: &gt;
+                    The HTTP response code.
+                - name: reason_phrase
+                  type: keyword
+                  description: &gt;
+                    The HTTP reason phrase.
+                - name: queue_name
+                  type: keyword
+                  description: &gt;
+                    The IIS application pool name.
+                - name: geoip
+                  type: group
+                  description: &gt;
+                    Contains GeoIP information gathered based on the remote_ip field.
+                    Only present if the GeoIP Elasticsearch plugin is available and
+                    used.
+                  fields:
+                    - name: continent_name
+                      type: keyword
+                      description: &gt;
+                        The name of the continent.
+                    - name: country_iso_code
+                      type: keyword
+                      description: &gt;
+                        Country ISO code.
+                    - name: location
+                      type: geo_point
+                      description: &gt;
+                        The longitude and latitude.
+                    - name: region_name
+                      type: keyword
+                      description: &gt;
+                        The region name.
+                    - name: city_name
+                      type: keyword
+                      description: &gt;
+                        The city name.
+                    - name: region_iso_code
+                      type: keyword
+                      description: &gt;
+                        Region ISO code.
+    - key: kafka
+      title: &quot;Kafka&quot;
+      description: &gt;
+        Kafka module
+      fields:
+        - name: kafka
+          type: group
+          description: &gt;
+          fields:
+            - name: log
+              type: group
+              description: &gt;
+                Kafka log lines.
+              fields:
+                - name: timestamp
+                  description: &gt;
+                    The timestamp from the log line.
+                - name: level
+                  example: &quot;WARN&quot;
+                  description: &gt;
+                    The log level.
+                - name: message
+                  type: text
+                  description: &gt;
+                    The logged message.
+                - name: component
+                  type: keyword
+                  description: &gt;
+                    Component the log is coming from.
+                - name: class
+                  type: text
+                  description: &gt;
+                    Java class the log is coming from.
+                - name: trace
+                  type: group
+                  description: &gt;
+                      Trace in the log line.
+                  fields:
+                    - name: class
+                      type: keyword
+                      description: &gt;
+                        Java class the trace is coming from.
+                    - name: message
+                      type: text
+                      description: &gt;
+                          Message part of the trace.
+                    - name: full
+                      type: text
+                      description: &gt;
+                          The full trace in the log line.
+    - key: kibana
+      title: &quot;kibana&quot;
+      description: &gt;
+        kibana Module
+      fields:
+        - name: kibana
+          type: group
+          description: &gt;
+          fields:
+            - name: log
+              type: group
+              description: &gt;
+                Kafka log lines.
+              fields:
+                - name: tags
+                  type: keyword
+                  description: &gt;
+                    Kibana logging tags.
+                - name: state
+                  type: keyword
+                  description: &gt;
+                    Current state of Kibana.
+                - name: meta
+                  type: object
+                  object_type: keyword
+    - key: logstash
+      title: &quot;logstash&quot;
+      description: &gt;
+        logstash Module
+      fields:
+        - name: logstash
+          type: group
+          description: &gt;
+          fields:
+            - name: log
+              title: &quot;Logstash&quot;
+              type: group
+              description: &gt;
+                Fields from the Logstash logs.
+              fields:
+                - name: message
+                  type: text
+                  description: &gt;
+                    Contains the un-parsed log message
+                - name: level
+                  type: keyword
+                  description: &gt;
+                    The log level of the message, this correspond to Log4j levels.
+                - name: module
+                  type: keyword
+                  description: &gt;
+                    The module or class where the event originate.
+                - name: thread
+                  type: text
+                  description: &gt;
+                    Information about the running thread where the log originate.
+                - name: log_event
+                  type: object
+                  description: &gt;
+                    key and value debugging information.
+
+            - name: slowlog
+              type: group
+              description: &gt;
+                slowlog
+              fields:
+                - name: message
+                  type: text
+                  description: &gt;
+                    Contains the un-parsed log message
+                - name: level
+                  type: keyword
+                  description: &gt;
+                    The log level of the message, this correspond to Log4j levels.
+                - name: module
+                  type: keyword
+                  description: &gt;
+                    The module or class where the event originate.
+                - name: thread
+                  type: text
+                  description: &gt;
+                    Information about the running thread where the log originate.
+                - name: event
+                  type: text
+                  description: &gt;
+                    Raw dump of the original event
+                - name: plugin_name
+                  type: keyword
+                  description: &gt;
+                    Name of the plugin
+                - name: plugin_type
+                  type: keyword
+                  description: &gt;
+                    Type of the plugin: Inputs, Filters, Outputs or Codecs.
+                - name: took_in_millis
+                  type: long
+                  description: &gt;
+                    Execution time for the plugin in milliseconds.
+                - name: took_in_nanos
+                  type: long
+                  description: &gt;
+                    Execution time for the plugin in nanoseconds.
+                - name: plugin_params
+                  type: text
+                  description: &gt;
+                    String value of the plugin configuration
+                - name: plugin_params_object
+                  type: object
+                  description: &gt;
+                    key -&gt; value of the configuration used by the plugin.
+
+
+
+
+
+    - key: mongodb
+      title: &quot;mongodb&quot;
+      description: &gt;
+        Module for parsing MongoDB log files.
+      fields:
+        - name: mongodb
+          type: group
+          description: &gt;
+              Fields from MongoDB logs.
+          fields:
+            - name: log
+              type: group
+              description: &gt;
+                  Contains fields from MongoDB logs.
+              fields:
+              - name: severity
+                description: &gt;
+                    Severity level of message
+                example: I
+                type: keyword
+              - name: component
+                description: &gt;
+                    Functional categorization of message
+                example: COMMAND
+                type: keyword
+              - name: context
+                description: &gt;
+                    Context of message
+                example: initandlisten
+                type: keyword
+              - name: message
+                description: &gt;
+                    The message in the log line.
+                type: text
+    - key: mysql
+      title: &quot;MySQL&quot;
+      description: &gt;
+        Module for parsing the MySQL log files.
+      short_config: true
+      fields:
+        - name: mysql
+          type: group
+          description: &gt;
+            Fields from the MySQL log files.
+          fields:
+            - name: error
+              type: group
+              description: &gt;
+                Contains fields from the MySQL error logs.
+              fields:
+                - name: timestamp
+                  description: &gt;
+                    The timestamp from the log line.
+                - name: thread_id
+                  type: long
+                  description: &gt;
+                    As of MySQL 5.7.2, this is the thread id. For MySQL versions prior to 5.7.2, this
+                    field contains the process id.
+                - name: level
+                  example: &quot;Warning&quot;
+                  description:
+                    The log level.
+                - name: message
+                  type: text
+                  description: &gt;
+                    The logged message.
+            - name: slowlog
+              type: group
+              description: &gt;
+                Contains fields from the MySQL slow logs.
+              fields:
+                - name: user
+                  description: &gt;
+                    The MySQL user that created the query.
+                - name: host
+                  description: &gt;
+                    The host from where the user that created the query logged in.
+                - name: ip
+                  description: &gt;
+                    The IP address from where the user that created the query logged in.
+                - name: query_time.sec
+                  type: float
+                  description: &gt;
+                    The total time the query took, in seconds, as a floating point number.
+                - name: lock_time.sec
+                  type: float
+                  description: &gt;
+                    The amount of time the query waited for the lock to be available. The
+                    value is in seconds, as a floating point number.
+                - name: rows_sent
+                  type: long
+                  description: &gt;
+                    The number of rows returned by the query.
+                - name: rows_examined
+                  type: long
+                  description: &gt;
+                    The number of rows scanned by the query.
+                - name: timestamp
+                  type: long
+                  description: &gt;
+                    The unix timestamp taken from the `SET timestamp` query.
+                - name: query
+                  description: &gt;
+                    The slow query.
+                - name: id
+                  type: long
+                  description: &gt;
+                    The connection ID for the query.
+    - key: nginx
+      title: &quot;Nginx&quot;
+      description: &gt;
+        Module for parsing the Nginx log files.
+      short_config: true
+      fields:
+        - name: nginx
+          type: group
+          description: &gt;
+            Fields from the Nginx log files.
+          fields:
+            - name: access
+              type: group
+              description: &gt;
+                Contains fields for the Nginx access logs.
+              fields:
+                - name: remote_ip_list
+                  type: array
+                  description: &gt;
+                    An array of remote IP addresses. It is a list because it is common to include, besides the client
+                    IP address, IP addresses from headers like `X-Forwarded-For`. See also the `remote_ip` field.
+                - name: remote_ip
+                  type: keyword
+                  description: &gt;
+                    Client IP address. The first public IP address from the `remote_ip_list` array. If no public IP
+                    addresses are present, this field contains the first private IP address from the `remote_ip_list`
+                    array.
+                - name: user_name
+                  type: keyword
+                  description: &gt;
+                    The user name used when basic authentication is used.
+                - name: method
+                  type: keyword
+                  example: GET
+                  description: &gt;
+                    The request HTTP method.
+                - name: url
+                  type: keyword
+                  description: &gt;
+                    The request HTTP URL.
+                - name: http_version
+                  type: keyword
+                  description: &gt;
+                    The HTTP version.
+                - name: response_code
+                  type: long
+                  description: &gt;
+                    The HTTP response code.
+                - name: body_sent.bytes
+                  type: long
+                  format: bytes
+                  description: &gt;
+                    The number of bytes of the server response body.
+                - name: referrer
+                  type: keyword
+                  description: &gt;
+                    The HTTP referrer.
+                - name: agent
+                  type: text
+                  description: &gt;
+                    Contains the un-parsed user agent string. Only present if the user
+                    agent Elasticsearch plugin is not available or not used.
+                - name: user_agent
+                  type: group
+                  description: &gt;
+                    Contains the parsed User agent field. Only present if the user
+                    agent Elasticsearch plugin is available and used.
+                  fields:
+                    - name: device
+                      type: keyword
+                      description: &gt;
+                        The name of the physical device.
+                    - name: major
+                      type: long
+                      description: &gt;
+                        The major version of the user agent.
+                    - name: minor
+                      type: long
+                      description: &gt;
+                        The minor version of the user agent.
+                    - name: patch
+                      type: keyword
+                      description: &gt;
+                        The patch version of the user agent.
+                    - name: name
+                      type: keyword
+                      example: Chrome
+                      description: &gt;
+                        The name of the user agent.
+                    - name: os
+                      type: keyword
+                      description: &gt;
+                        The name of the operating system.
+                    - name: os_major
+                      type: long
+                      description: &gt;
+                        The major version of the operating system.
+                    - name: os_minor
+                      type: long
+                      description: &gt;
+                        The minor version of the operating system.
+                    - name: os_name
+                      type: keyword
+                      description: &gt;
+                        The name of the operating system.
+                - name: geoip
+                  type: group
+                  description: &gt;
+                    Contains GeoIP information gathered based on the remote_ip field.
+                    Only present if the GeoIP Elasticsearch plugin is available and
+                    used.
+                  fields:
+                    - name: continent_name
+                      type: keyword
+                      description: &gt;
+                        The name of the continent.
+                    - name: country_iso_code
+                      type: keyword
+                      description: &gt;
+                        Country ISO code.
+                    - name: location
+                      type: geo_point
+                      description: &gt;
+                        The longitude and latitude.
+                    - name: region_name
+                      type: keyword
+                      description: &gt;
+                        The region name.
+                    - name: city_name
+                      type: keyword
+                      description: &gt;
+                        The city name.
+                    - name: region_iso_code
+                      type: keyword
+                      description: &gt;
+                        Region ISO code.
+            - name: error
+              type: group
+              description: &gt;
+                Contains fields for the Nginx error logs.
+              fields:
+                - name: level
+                  type: keyword
+                  description: &gt;
+                    Error level (e.g. error, critical).
+                - name: pid
+                  type: long
+                  description: &gt;
+                    Process identifier (PID).
+                - name: tid
+                  type: long
+                  description: &gt;
+                    Thread identifier.
+                - name: connection_id
+                  type: long
+                  description: &gt;
+                    Connection identifier.
+                - name: message
+                  type: text
+                  description: &gt;
+                    The error message
+    - key: osquery
+      title: &quot;Osquery&quot;
+      description: &gt;
+        Fields exported by the `osquery` module
+      fields:
+        - name: osquery
+          type: group
+          description: &gt;
+          fields:
+            - name: result
+              type: group
+              description: &gt;
+                Common fields exported by the result metricset.
+              fields:
+                - name: name
+                  type: keyword
+                  description: &gt;
+                    The name of the query that generated this event.
+                - name: action
+                  type: keyword
+                  description: &gt;
+                    For incremental data, marks whether the entry was added
+                    or removed. It can be one of &quot;added&quot;, &quot;removed&quot;, or &quot;snapshot&quot;.
+                - name: host_identifier
+                  type: keyword
+                  description: &gt;
+                    The identifier for the host on which the osquery agent is running.
+                    Normally the hostname.
+                - name: unix_time
+                  type: long
+                  description: &gt;
+                    Unix timestamp of the event, in seconds since the epoch. Used for computing the `@timestamp` column.
+                - name: calendar_time
+                  tupe: keyword
+                  description: &gt;
+                    String representation of the collection time, as formatted by osquery.
+    - key: postgresql
+      title: &quot;PostgreSQL&quot;
+      description: &gt;
+        Module for parsing the PostgreSQL log files.
+      short_config: true
+      fields:
+        - name: postgresql
+          type: group
+          description: &gt;
+              Fields from PostgreSQL logs.
+          fields:
+            - name: log
+              type: group
+              description: &gt;
+                Fields from the PostgreSQL log files.
+              fields:
+                - name: timestamp
+                  description: &gt;
+                    The timestamp from the log line.
+                - name: timezone
+                  description: &gt;
+                    The timezone of timestamp.
+                - name: thread_id
+                  type: long
+                  description: &gt;
+                      Process id
+                - name: user
+                  example: &quot;admin&quot;
+                  description:
+                    Name of user
+                - name: database
+                  example: &quot;mydb&quot;
+                  description:
+                    Name of database
+                - name: level
+                  example: &quot;FATAL&quot;
+                  description:
+                    The log level.
+                - name: duration
+                  type: float
+                  example: &quot;30.0&quot;
+                  description:
+                    Duration of a query.
+                - name: query
+                  example: &quot;SELECT * FROM users;&quot;
+                  description:
+                    Query statement.
+                - name: message
+                  type: text
+                  description: &gt;
+                    The logged message.
+    - key: redis
+      title: &quot;Redis&quot;
+      description: &gt;
+        Redis Module
+      fields:
+        - name: redis
+          type: group
+          description: &gt;
+          fields:
+            - name: log
+              type: group
+              description: &gt;
+                Redis log files
+              fields:
+                - name: pid
+                  type: long
+                  description: &gt;
+                    The process ID of the Redis server.
+                - name: role
+                  type: keyword
+                  description: &gt;
+                    The role of the Redis instance. Can be one of `master`, `slave`, `child` (for RDF/AOF writing child),
+                    or `sentinel`.
+                - name: level
+                  type: keyword
+                  description: &gt;
+                    The log level. Can be one of `debug`, `verbose`, `notice`, or `warning`.
+                - name: message
+                  type: text
+                  description: &gt;
+                    The log message
+            - name: slowlog
+              type: group
+              description: &gt;
+                Slow logs are retrieved from Redis via a network connection.
+              fields:
+                - name: cmd
+                  type: keyword
+                  description: &gt;
+                    The command executed.
+                - name: duration.us
+                  type: long
+                  description: &gt;
+                    How long it took to execute the command in microseconds.
+                - name: id
+                  type: long
+                  description: &gt;
+                    The ID of the query.
+                - name: key
+                  type: keyword
+                  description: &gt;
+                    The key on which the command was executed.
+                - name: args
+                  type: keyword
+                  description: &gt;
+                    The arguments with which the command was called.
+    - key: system
+      title: &quot;System&quot;
+      description: &gt;
+        Module for parsing system log files.
+      short_config: true
+      fields:
+        - name: system
+          type: group
+          description: &gt;
+            Fields from the system log files.
+          fields:
+            - name: auth
+              type: group
+              description: &gt;
+                Fields from the Linux authorization logs.
+              fields:
+                - name: timestamp
+                  description: &gt;
+                    The timestamp as read from the auth message.
+                - name: hostname
+                  description: &gt;
+                    The hostname as read from the auth message.
+                - name: program
+                  description: &gt;
+                    The process name as read from the auth message.
+                - name: pid
+                  type: long
+                  description: &gt;
+                    The PID of the process that sent the auth message.
+                - name: message
+                  type: text
+                  description: &gt;
+                    The message in the log line.
+                - name: user
+                  description: &gt;
+                    The Unix user that this event refers to.
+
+                - name: ssh
+                  type: group
+                  description: &gt;
+                    Fields specific to SSH login events.
+                  fields:
+                  - name: event
+                    description: &gt;
+                      The SSH login event. Can be one of &quot;Accepted&quot;, &quot;Failed&quot;, or &quot;Invalid&quot;. &quot;Accepted&quot;
+                      means a successful login. &quot;Invalid&quot; means that the user is not configured on the
+                      system. &quot;Failed&quot; means that the SSH login attempt has failed.
+                  - name: method
+                    description: &gt;
+                      The SSH authentication method. Can be one of &quot;password&quot; or &quot;publickey&quot;.
+                  - name: ip
+                    type: ip
+                    description: &gt;
+                      The client IP from where the login attempt was made.
+                  - name: dropped_ip
+                    type: ip
+                    description: &gt;
+                      The client IP from SSH connections that are open and immediately dropped.
+                  - name: port
+                    type: long
+                    description: &gt;
+                      The client port from where the login attempt was made.
+                  - name: signature
+                    description: &gt;
+                      The signature of the client public key.
+                  - name: geoip
+                    type: group
+                    description: &gt;
+                      Contains GeoIP information gathered based on the `system.auth.ip` field.
+                      Only present if the GeoIP Elasticsearch plugin is available and
+                      used.
+                    fields:
+                      - name: continent_name
+                        type: keyword
+                        description: &gt;
+                          The name of the continent.
+                      - name: city_name
+                        type: keyword
+                        description: &gt;
+                          The name of the city.
+                      - name: region_name
+                        type: keyword
+                        description: &gt;
+                          The name of the region.
+                      - name: country_iso_code
+                        type: keyword
+                        description: &gt;
+                          Country ISO code.
+                      - name: location
+                        type: geo_point
+                        description: &gt;
+                          The longitude and latitude.
+                      - name: region_iso_code
+                        type: keyword
+                        description: &gt;
+                          Region ISO code.
+                - name: sudo
+                  type: group
+                  description: &gt;
+                    Fields specific to events created by the `sudo` command.
+                  fields:
+                  - name: error
+                    example: user NOT in sudoers
+                    description: &gt;
+                      The error message in case the sudo command failed.
+                  - name: tty
+                    description: &gt;
+                      The TTY where the sudo command is executed.
+                  - name: pwd
+                    description: &gt;
+                      The current directory where the sudo command is executed.
+                  - name: user
+                    example: root
+                    description: &gt;
+                      The target user to which the sudo command is switching.
+                  - name: command
+                    description: &gt;
+                      The command executed via sudo.
+
+                - name: useradd
+                  type: group
+                  description: &gt;
+                    Fields specific to events created by the `useradd` command.
+                  fields:
+                  - name: name
+                    description: &gt;
+                      The user name being added.
+                  - name: uid
+                    type: long
+                    description:
+                      The user ID.
+                  - name: gid
+                    type: long
+                    description:
+                      The group ID.
+                  - name: home
+                    description:
+                      The home folder for the new user.
+                  - name: shell
+                    description:
+                      The default shell for the new user.
+
+                - name: groupadd
+                  type: group
+                  description: &gt;
+                    Fields specific to events created by the `groupadd` command.
+                  fields:
+                  - name: name
+                    description: &gt;
+                      The name of the new group.
+                  - name: gid
+                    type: long
+                    description: &gt;
+                      The ID of the new group.
+            - name: syslog
+              type: group
+              description: &gt;
+                Contains fields from the syslog system logs.
+              fields:
+                - name: timestamp
+                  description: &gt;
+                    The timestamp as read from the syslog message.
+                - name: hostname
+                  description: &gt;
+                    The hostname as read from the syslog message.
+                - name: program
+                  description: &gt;
+                    The process name as read from the syslog message.
+                - name: pid
+                  description: &gt;
+                    The PID of the process that sent the syslog message.
+                - name: message
+                  type: text
+                  description: &gt;
+                    The message in the log line.
+    - key: traefik
+      title: &quot;Traefik&quot;
+      description: &gt;
+        Module for parsing the Traefik log files.
+      fields:
+        - name: traefik
+          type: group
+          description: &gt;
+            Fields from the Traefik log files.
+          fields:
+            - name: access
+              type: group
+              description: &gt;
+                Contains fields for the Traefik access logs.
+              fields:
+                - name: remote_ip
+                  type: keyword
+                  description: &gt;
+                    Client IP address.
+                - name: user_name
+                  type: keyword
+                  description: &gt;
+                    The user name used when basic authentication is used.
+                - name: method
+                  type: keyword
+                  example: GET
+                  description: &gt;
+                    The request HTTP method.
+                - name: url
+                  type: keyword
+                  description: &gt;
+                    The request HTTP URL.
+                - name: http_version
+                  type: keyword
+                  description: &gt;
+                    The HTTP version.
+                - name: response_code
+                  type: long
+                  description: &gt;
+                    The HTTP response code.
+                - name: body_sent.bytes
+                  type: long
+                  format: bytes
+                  description: &gt;
+                    The number of bytes of the server response body.
+                - name: referrer
+                  type: keyword
+                  description: &gt;
+                    The HTTP referrer.
+                - name: agent
+                  type: text
+                  description: &gt;
+                    Contains the un-parsed user agent string. Only present if the user
+                    agent Elasticsearch plugin is not available or not used.
+                - name: user_agent
+                  type: group
+                  description: &gt;
+                    Contains the parsed User agent field. Only present if the user
+                    agent Elasticsearch plugin is available and used.
+                  fields:
+                    - name: device
+                      type: keyword
+                      description: &gt;
+                        The name of the physical device.
+                    - name: major
+                      type: long
+                      description: &gt;
+                        The major version of the user agent.
+                    - name: minor
+                      type: long
+                      description: &gt;
+                        The minor version of the user agent.
+                    - name: patch
+                      type: keyword
+                      description: &gt;
+                        The patch version of the user agent.
+                    - name: name
+                      type: keyword
+                      example: Chrome
+                      description: &gt;
+                        The name of the user agent.
+                    - name: os
+                      type: keyword
+                      description: &gt;
+                        The name of the operating system.
+                    - name: os_major
+                      type: long
+                      description: &gt;
+                        The major version of the operating system.
+                    - name: os_minor
+                      type: long
+                      description: &gt;
+                        The minor version of the operating system.
+                    - name: os_name
+                      type: keyword
+                      description: &gt;
+                        The name of the operating system.
+                - name: geoip
+                  type: group
+                  description: &gt;
+                    Contains GeoIP information gathered based on the remote_ip field.
+                    Only present if the GeoIP Elasticsearch plugin is available and
+                    used.
+                  fields:
+                    - name: continent_name
+                      type: keyword
+                      description: &gt;
+                        The name of the continent.
+                    - name: country_iso_code
+                      type: keyword
+                      description: &gt;
+                        Country ISO code.
+                    - name: location
+                      type: geo_point
+                      description: &gt;
+                        The longitude and latitude.
+                    - name: region_name
+                      type: keyword
+                      description: &gt;
+                        The region name.
+                    - name: city_name
+                      type: keyword
+                      description: &gt;
+                        The city name.
+                    - name: region_iso_code
+                      type: keyword
+                      description: &gt;
+                        Region ISO code.
+                - name: request_count
+                  type: long
+                  description: &gt;
+                    The number of requests
+                - name: frontend_name
+                  type: text
+                  description: &gt;
+                    The name of the frontend used
+                - name: backend_url
+                  type: text
+                  description:
+                    The url of the backend where request is forwarded
+</code></pre>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#logback-配置"><span class="toc-number">2.</span> <span class="toc-text">logback 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#springboot-日志输出格式"><span class="toc-number">3.</span> <span class="toc-text">springboot 日志输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#filebeat-配置"><span class="toc-number">4.</span> <span class="toc-text">filebeat 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模板配置"><span class="toc-number">5.</span> <span class="toc-text">模板配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-运行"><span class="toc-number">6.</span> <span class="toc-text">docker 运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义-docker-容器"><span class="toc-number">7.</span> <span class="toc-text">自定义 docker 容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最终效果"><span class="toc-number">8.</span> <span class="toc-text">最终效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理-timestamp-时区问题"><span class="toc-number">9.</span> <span class="toc-text">处理 timestamp 时区问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#附录一-filebeat-template-all-json"><span class="toc-number">10.</span> <span class="toc-text">附录一(filebeat.template-all.json)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#附录二-fields-all-yml"><span class="toc-number">11.</span> <span class="toc-text">附录二(fields-all.yml)</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

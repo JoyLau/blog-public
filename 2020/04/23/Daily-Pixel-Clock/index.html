@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>日常折腾 --- 自制像素时钟, 不输 LaMeetric Time - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+背景之前看到一个像素时钟 LaMeetric Time, 感觉很漂亮, 但是太贵,淘宝上要卖到 2000 块左右后来又看到一个项目 AWTRIX : https://awtrixdocs.blue,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">日常折腾 --- 自制像素时钟, 不输 LaMeetric Time</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(//image.joylau.cn/blog/awtrix2/awtrix2_24.jpg?0.2533818223606168) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/日常折腾篇"><b>「
+                    </b>日常折腾篇<b> 」</b></a>
+                
+                四月 23, 2020
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2020/04/23/Daily-Pixel-Clock/" title="日常折腾 --- 自制像素时钟, 不输 LaMeetric Time" class="">日常折腾 --- 自制像素时钟, 不输 LaMeetric Time</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    5.5k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    5 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/" rel="tag">日常折腾</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>之前看到一个像素时钟 LaMeetric Time, 感觉很漂亮, 但是太贵,淘宝上要卖到 2000 块左右<br>后来又看到一个项目 AWTRIX : <a href="https://awtrixdocs.blueforcer.de/#/en-en/" target="_blank" rel="noopener">https://awtrixdocs.blueforcer.de/#/en-en/</a><br>作者在他的网站上介绍了如何制作一个像素时钟<br>于是,我就跟着他的文档后面做了起来</p>
+<h3 id="这玩意是什么"><a href="#这玩意是什么" class="headerlink" title="这玩意是什么??"></a>这玩意是什么??</h3><ol>
+<li>首先它是一个时钟</li>
+<li>其次,他能够通过 WIFI 连接到一个服务端, 服务端有 AppStore 能装很多 app 实现很多效果</li>
+<li>我想用它来实时显示我博客的访客数, 当然,这需要我后期自己编码</li>
+<li>好玩</li>
+</ol>
+<h3 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h3><h4 id="必须材料"><a href="#必须材料" class="headerlink" title="必须材料"></a>必须材料</h4><ol>
+<li>WS2812B 可编程像素软屏</li>
+<li>Wemos D1 mini ESP 8266 mini WIFI 开发板</li>
+<li>杜邦连接线,公对母</li>
+</ol>
+<p>如何你想要制作成我的这种效果, 你还需要</p>
+<ol>
+<li>10V 1000uF 电容</li>
+<li>电烙铁家用一套</li>
+<li>5v 4A 2.5mm 电源</li>
+<li>2.5mm 直流电源插头</li>
+<li>手动修改官方 3D 打印图纸, 这是我修改好的图纸,其中前面板的高度调高了 3 mm : <a href="http://image.joylau.cn//blog/awtrix2/3d打印图纸.zip" target="_blank" rel="noopener">http://image.joylau.cn//blog/awtrix2/3d打印图纸.zip</a></li>
+<li>手摇自喷漆一罐</li>
+<li>定制黑色半透明亚克力板一块,尺寸 335mm * 95mm * 3mm</li>
+<li>通用超 520 粘胶一小瓶</li>
+</ol>
+<h3 id="服务端部署"><a href="#服务端部署" class="headerlink" title="服务端部署"></a>服务端部署</h3><p>这里最方便的莫过于 docker 部署</p>
+<pre><code class="bash">    docker run -d --name awtrix2 -p 7000:7000 -p 7001:7001 --restart always -e TZ=Asia/Shanghai -v /path:/data whyet/awtrix2:latest</code></pre>
+<p>注意: 这里需要挂载容器里的目录 data, 否则重启后,安装的软件会丢失不见</p>
+<h3 id="客户端烧录"><a href="#客户端烧录" class="headerlink" title="客户端烧录"></a>客户端烧录</h3><p>最简单的方式是使用 Windows 机器</p>
+<ol>
+<li>下载烧录工具: <a href="https://blueforcer.de/downloads/ESP8266Flasher.exe" target="_blank" rel="noopener">https://blueforcer.de/downloads/ESP8266Flasher.exe</a></li>
+<li>下载最新固件: <a href="https://blueforcer.de/awtrix/stable/firmware.bin" target="_blank" rel="noopener">https://blueforcer.de/awtrix/stable/firmware.bin</a></li>
+<li>启动 ESP8266Flasher.exe 并在 “ Config” 选项卡中打开固件（单击齿轮选择固件）</li>
+<li>返回到 “操作” 选项卡，如果未自动检测到正确的串口，则需要手动设置它</li>
+<li>单击“ Flash”，然后等待该过程完成，在左下角会显示一个绿色的复选标记。</li>
+<li>重新启动控制器</li>
+</ol>
+<h3 id="连接-WiFi"><a href="#连接-WiFi" class="headerlink" title="连接 WiFi"></a>连接 WiFi</h3><ol>
+<li>启动控制器</li>
+<li>手机连接 SSID 为 “ AWTRIX Controller ” 的 WiFi, 密码是: <strong>awtrixxx</strong></li>
+<li>如果网页没有自动跳出，则可以使用任何浏览器将设置页面导航到 IP “ 172.217.28.1 ”</li>
+<li>点击“配置WiFi”，进入实际设置页面,配置家里的 WLAN 的 SSID 和密码</li>
+<li>主机 IP 则设置为之前 docker 部署的服务端的 IP, 注意不需要加端口号</li>
+<li>如果你的像素屏不是 32* 8 ,则需要配置 MatrixType2, 这个不需要配置</li>
+</ol>
+<h3 id="如何重置控制器"><a href="#如何重置控制器" class="headerlink" title="如何重置控制器???"></a>如何重置控制器???</h3><ol>
+<li>按住控制器的 reset 键 3-4 秒</li>
+<li>等待重启</li>
+<li>再按住 reset 键 3-4 秒</li>
+<li>等待重启</li>
+<li>此时如何屏上显示 <strong>RESET</strong> ,则重置成功</li>
+</ol>
+<h3 id="接线图"><a href="#接线图" class="headerlink" title="接线图"></a>接线图</h3><p><img src="//image.joylau.cn/blog/awtrix2/AWTRIX_Core_Steckplatine.jpg" alt="1"></p>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_1.jpg" alt="2">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_2.jpg" alt="3">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_3.jpg" alt="4">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_4.jpg" alt="5">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_5.jpg" alt="6">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_6.jpg" alt="7">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_7.jpg" alt="8">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_8.jpg" alt="9">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_9.jpg" alt="10">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_10.jpg" alt="11">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_11.jpg" alt="12">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_12.jpg" alt="13">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_13.jpg" alt="14">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_14.jpg" alt="15">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_15.jpg" alt="16">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_16.jpg" alt="17">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_17.jpg" alt="18">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_18.jpg" alt="19">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_19.jpg" alt="20">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_20.jpg" alt="21">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_21.jpg" alt="22">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_22.jpg" alt="23">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_23.jpg" alt="24">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_24.jpg" alt="25">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/server-page-1.png" alt="26">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/server-page-2.png" alt="27">  </p>
+<center><video src="//image.joylau.cn/blog/awtrix2/awtrix2_video1.mp4" muted loop="true" controls="controls">您的浏览器版本太低，无法观看本视频</video></center>  
+
+<center><video src="//image.joylau.cn/blog/awtrix2/awtrix2_video2.mp4" muted loop="true" controls="controls">您的浏览器版本太低，无法观看本视频</video></center>  
+
+<h3 id="Siri-语音控制"><a href="#Siri-语音控制" class="headerlink" title="Siri 语音控制"></a>Siri 语音控制</h3><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_siri-1.PNG" alt="28">  </p>
+<p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_siri-2.PNG" alt="29"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#这玩意是什么"><span class="toc-number">2.</span> <span class="toc-text">这玩意是什么??</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#材料"><span class="toc-number">3.</span> <span class="toc-text">材料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务端部署"><span class="toc-number">4.</span> <span class="toc-text">服务端部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端烧录"><span class="toc-number">5.</span> <span class="toc-text">客户端烧录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连接-WiFi"><span class="toc-number">6.</span> <span class="toc-text">连接 WiFi</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何重置控制器"><span class="toc-number">7.</span> <span class="toc-text">如何重置控制器???</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接线图"><span class="toc-number">8.</span> <span class="toc-text">接线图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#效果图"><span class="toc-number">9.</span> <span class="toc-text">效果图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Siri-语音控制"><span class="toc-number">10.</span> <span class="toc-text">Siri 语音控制</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

@@ -1,0 +1,1003 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Linux菜鸟到熟悉 --- 生产环境的搭建 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+前言
+本次搭建Java和Tomcat的运行环境，后续将接着搭建Mysql，Git,Nginx,Redis,Docker…环境
+
+Java环境搭建
+1.在/usr/目录下创建java目录
+    ,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">Linux菜鸟到熟悉 --- 生产环境的搭建</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.7189989118680733) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/Linux篇"><b>「
+                    </b>LINUX篇<b> 」</b></a>
+                
+                二月 23, 2017
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2017/02/23/Linux-BuildingEnvironment/" title="Linux菜鸟到熟悉 --- 生产环境的搭建" class="">Linux菜鸟到熟悉 --- 生产环境的搭建</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    25k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    23 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/JDK/" rel="tag">JDK</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+<p><img src="//image.joylau.cn/blog/server.jpg" alt="Server"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>本次搭建<code>Java</code>和<code>Tomcat</code>的运行环境，后续将接着搭建Mysql，Git,Nginx,Redis,Docker…环境</li>
+</ul>
+<h2 id="Java环境搭建"><a href="#Java环境搭建" class="headerlink" title="Java环境搭建"></a>Java环境搭建</h2><ul>
+<li><p>1.在/usr/目录下创建java目录</p>
+<pre><code class="bash">      [root@JoyLau ~]# mkdir/usr/java
+      [root@JoyLau ~]# cd /usr/java</code></pre>
+</li>
+<li><p>2.官网下载jdk,拷贝到服务器上，然后解压</p>
+<pre><code class="bash">         [root@JoyLau java]# tar -zxvf jdk-8u121-linux-x64.gz</code></pre>
+</li>
+<li><p>3.设置环境变量</p>
+<pre><code class="bash">          [root@JoyLau java]# vi /etc/profile</code></pre>
+</li>
+<li><p>4.在profile中添加如下内容:</p>
+<pre><code class="bash">    #set java environment
+    JAVA_HOME=/usr/java/jdk1.8.0_121
+    JRE_HOME=/usr/java/jdk1.8.0_121
+    CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
+    PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+    export JAVA_HOME JRE_HOME CLASS_PATH PATH
+</code></pre>
+</li>
+<li><p>5.让修改生效:</p>
+<pre><code class="bash">    [root@JoyLau java]# source /etc/profile
+</code></pre>
+</li>
+<li><p>6.验证</p>
+<pre><code class="bash">      [root@JoyLau ~]# java --version
+      java version &quot;1.8.0_121&quot;
+      Java(TM) SE Runtime Environment (build 1.8.0_121-b13)
+      Java HotSpot(TM) 64-Bit Server VM (build 25.121-b13, mixed mode)</code></pre>
+</li>
+<li><p>还有2中方法可以安装jdk：</p>
+<ul>
+<li>1.用<code>yum</code>安装jdk</li>
+<li>2.<code>Ubuntu</code> 上使用<code>apt-get</code>安装jdk</li>
+</ul>
+</li>
+</ul>
+<h3 id="yum-安装jdk"><a href="#yum-安装jdk" class="headerlink" title="yum 安装jdk"></a>yum 安装jdk</h3><ul>
+<li>yum search jdk ： 查看yum源上的jdk版本信息</li>
+<li>选择一个jdk8的来安装： yum install java-1.8.0-openjdk.x86_64</li>
+<li>等待即可</li>
+</ul>
+<p>注意的是默认安装的只是 Java JRE，而不是 JDK，为了开发方便，我们还是需要通过 yum 进行安装 JDK<br>yum install java-1.8.0-openjdk-devel.x86_64</p>
+<p>之后就可以直接使用 Java javac 命令了</p>
+<p>配置 JAVA_HOME变量:</p>
+<p>vim ~/.bashrc<br>在文件最后面添加如下单独一行（指向 JDK 的安装位置），并保存：<br>export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk<br>接着还需要让该环境变量生效，执行如下代码：<br>source ~/.bashrc    # 使变量设置生效<br>设置好后我们来检验一下是否设置正确：<br>echo $JAVA_HOME     # 检验变量值<br>java -version<br>$JAVA_HOME/bin/java -version  # 与直接执行 java -version 一样<br>如果设置正确的话，$JAVA_HOME/bin/java -version 会输出 java 的版本信息，且和 java -version 的输出结果一样</p>
+<h3 id="rpm-安装jdk"><a href="#rpm-安装jdk" class="headerlink" title="rpm 安装jdk"></a>rpm 安装jdk</h3><ol>
+<li>官网下载 jdk rpm包</li>
+<li>rpm -ivh jdk_xxxxx.rpm</li>
+<li>配置环境变量（和上述配置一致）</li>
+<li>卸载： rpm -qa|grep jdk ， 查出什么，就使用 rpm -e –nodeps java_xxx 来卸载</li>
+</ol>
+<h2 id="Tomcat环境搭建"><a href="#Tomcat环境搭建" class="headerlink" title="Tomcat环境搭建"></a>Tomcat环境搭建</h2><h3 id="先配置"><a href="#先配置" class="headerlink" title="先配置"></a>先配置</h3><ul>
+<li><p>配置catalina.sh,加入以下配置</p>
+<pre><code class="bash">      #add JAVA and TOMCAT config
+      JAVA_OPTS=&quot;-Xms512m -Xmx1024m -Xss1024K -XX:PermSize=512m -XX:MaxPermSize=1024m&quot;
+      export TOMCAT_HOME=/project/apache-tomcat-8.5.11
+      export CATALINA_HOME=/project/apache-tomcat-8.5.11
+      export JRE_HOME=/usr/java/jdk1.8.0_121/jre
+      export JAVA_HOME=/usr/java/jdk1.8.0_121
+
+      #add tomcat pid
+      CATALINA_PID=&quot;$TOMCAT_HOME/tomcat.pid&quot;</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>增加tomcat.service在<code>/usr/lib/systemd/system</code>目录下增加<code>tomcat.service</code>，目录必须是绝对目录。</p>
+<pre><code class="bash">      [Unit]
+      Description=Tomcat
+      After=syslog.target network.target remote-fs.target nss-lookup.target
+
+      [Service]
+      Type=forking
+      PIDFile=/project/apache-tomcat-8.5.11/tomcat.pid
+      ExecStart=/project/apache-tomcat-8.5.11/bin/startup.sh 
+      ExecReload=/bin/kill -s HUP $MAINPID
+      ExecStop=/bin/kill -s QUIT $MAINPID
+      PrivateTmp=true
+
+      [Install]
+      WantedBy=multi-user.target </code></pre>
+<h3 id="再使用"><a href="#再使用" class="headerlink" title="再使用"></a>再使用</h3></li>
+<li><p>配置开机启动 <code>systemctl enable tomcat</code></p>
+</li>
+<li><p>启动tomcat <code>systemctl start tomcat</code></p>
+</li>
+<li><p>停止tomcat <code>systemctl stop tomcat</code></p>
+</li>
+<li><p>重启tomcat <code>systemctl restart tomcat</code></p>
+</li>
+</ul>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>因为配置pid，在启动的时候会再tomcat根目录生成tomcat.pid文件，停止之后删除</li>
+<li>同时tomcat在启动时候，执行start不会启动两个tomcat，保证始终只有一个tomcat服务在运行</li>
+<li>多个tomcat可以配置在多个目录下，互不影响。</li>
+</ul>
+<h3 id="遇到2个很尴尬的问题"><a href="#遇到2个很尴尬的问题" class="headerlink" title="遇到2个很尴尬的问题"></a>遇到2个很尴尬的问题</h3><ul>
+<li>这个问题我尝试过很多次，那就是Tomcat启动的特别慢，后来查看日志发现是部署项目的时候花费时间特别长，详细看<a href="http://bbs.qcloud.com/thread-25271-1-1.html" target="_blank" rel="noopener">这里</a></li>
+<li>遇到无法启动的问题，最后是<code>startup.sh</code>没有权限，你知道该怎么做的~~</li>
+</ul>
+<h3 id="使用yum安装的tomcat注意"><a href="#使用yum安装的tomcat注意" class="headerlink" title="使用yum安装的tomcat注意"></a>使用yum安装的tomcat注意</h3><ul>
+<li>安装位置   <em>/etc/tomcat</em></li>
+<li>主程序/软件存放webapp位置   <em>/var/lib/tomcat/webapps</em></li>
+<li>在Centos使用yum安装后，Tomcat相关的目录都已采用符号链接到/usr/share/tomcat6目录，包含webapps等，这很方便我们配置管理   <em>/usr/share/tomcat</em></li>
+<li>日志记录位置   <em>/var/log/tomcat</em></li>
+<li>查看全部tomcat安装目录   <em>rpm -ql tomcat6 | cat -n</em></li>
+</ul>
+<h2 id="Mysql5-7数据库安装"><a href="#Mysql5-7数据库安装" class="headerlink" title="Mysql5.7数据库安装"></a>Mysql5.7数据库安装</h2><h3 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>mysql主要有2种方式安装<ul>
+<li>1.本文要说明的</li>
+<li>2.<a href="http://blog.sina.com.cn/s/blog_16392bde40102wol6.html" target="_blank" rel="noopener">点击这里查看</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><ul>
+<li>在mysql的官网上找到mysql的源链接</li>
+</ul>
+<p><img src="//image.joylau.cn/blog/mysqlsourceLink.jpg" alt="Mysql官网截图"></p>
+<ul>
+<li>找到原链接：<code>https://repo.mysql.com//mysql57-community-release-el7-9.noarch.rpm</code></li>
+</ul>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li><p>安装命令</p>
+<pre><code class="bash">      # wget https://repo.mysql.com//mysql57-community-release-el7-9.noarch.rpm
+      # rpm -ivh mysql57-community-release-el7-9.noarch.rpm
+      # yum install mysql-community-server</code></pre>
+</li>
+<li><p>安装过程中有确认操作，一律<strong><em>y</em></strong></p>
+</li>
+<li><p>接下来就是漫长的下载，只需要等待即可。</p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3></li>
+<li><p>安装完成后： <code>systemctl start mysqld</code> 启动mysqld服务</p>
+</li>
+</ul>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
+<li>查看<code>/var/log/mysqld.log</code>里的日志(可以查找<strong>password</strong>关键字)<br><img src="//image.joylau.cn/blog/mysqllog.jpg" alt="mysqlLog"></li>
+<li>可以看到创建的临时密码</li>
+<li>登录MySQL：<code>mysql -u root -p</code></li>
+<li>输入刚才在日志里看到的临时密码</li>
+<li>这个时候我输入任何的命令都会提示<code>You must reset your password using ALTER USER statement before executing this statement.</code><br><img src="//image.joylau.cn/blog/alertTips.jpg" alt="alterTips"></li>
+<li>通过 <code>alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;root&#39;</code> 命令，修改 root 用户的密码为 root，注意修改的密码不能过于简单</li>
+<li>退出，重新以root用户和刚设置的密码进行登录即可</li>
+</ul>
+<h3 id="MySql配置文件"><a href="#MySql配置文件" class="headerlink" title="MySql配置文件"></a>MySql配置文件</h3><ul>
+<li><p>将所有权限赋给root用户并提供外网访问</p>
+<pre><code class="bash">      grant all privileges on *.* to root@&#39;%&#39;identified by &#39;root&#39;;</code></pre>
+</li>
+<li><p>紧接着就可以在自己的机器上用<strong>Navicat</strong>了</p>
+</li>
+<li><p>配置my.cnf：<code>/etc/my.cnf</code></p>
+<pre><code class="bash">      [mysqld]
+      #
+      # Remove leading # and set to the amount of RAM for the most important data
+      # cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+      # innodb_buffer_pool_size = 128M
+      #
+      # Remove leading # to turn on a very important data integrity option: logging
+      # changes to the binary log between backups.
+      # log_bin
+      #
+      # Remove leading # to set options mainly useful for reporting servers.
+      # The server defaults are faster for transactions and fast SELECTs.
+      # Adjust sizes as needed, experiment to find the optimal values.
+      # join_buffer_size = 128M
+      # sort_buffer_size = 2M
+      # read_rnd_buffer_size = 2M
+      datadir=/var/lib/mysql
+      socket=/var/lib/mysql/mysql.sock
+      //设置端口号
+      port= 3333
+
+      //设置服务器端编码
+      character-set-server=utf8
+
+      //Linux下表名是严格区分大小写的，设置为0表示区分，设置为1表示不区分
+      lower_case_table_names= 1
+
+      # Disabling symbolic-links is recommended to prevent assorted security risks
+      symbolic-links=0
+
+      log-error=/var/log/mysqld.log
+      pid-file=/var/run/mysqld/mysqld.pid</code></pre>
+</li>
+</ul>
+<h3 id="MySQL卸载"><a href="#MySQL卸载" class="headerlink" title="MySQL卸载"></a>MySQL卸载</h3><ul>
+<li><code>yum remove  mysql mysql-server mysql-libs mysql-server;</code></li>
+<li><code>rpm -qa|grep mysql</code>(查询出来的东西yum remove掉)</li>
+<li><code>find / -name mysql</code> (将找到的相关东西delete掉；)</li>
+</ul>
+<h3 id="值得注意的是："><a href="#值得注意的是：" class="headerlink" title="值得注意的是："></a>值得注意的是：</h3><ul>
+<li>1.<code>show variables like &#39;character%&#39;;</code>可以看到数据库的编码方式<ul>
+<li><code>其中，character_set_client为客户端编码方式；</code></li>
+<li><code>character_set_connection为建立连接使用的编码；</code></li>
+<li><code>character_set_database数据库的编码；</code></li>
+<li><code>character_set_results结果集的编码；</code></li>
+<li><code>character_set_server数据库服务器的编码；</code></li>
+<li><code>只要保证以上四个采用的编码方式一样，就不会出现乱码问题。</code></li>
+</ul>
+</li>
+<li>2.暂时能配置只有这些，以后有更新，我会加上的</li>
+</ul>
+<h2 id="Redis的安装"><a href="#Redis的安装" class="headerlink" title="Redis的安装"></a>Redis的安装</h2><h3 id="说明-2"><a href="#说明-2" class="headerlink" title="说明"></a>说明</h3><h4 id="Linux安装redis是需要在官网下载redis的源码然后再编译的"><a href="#Linux安装redis是需要在官网下载redis的源码然后再编译的" class="headerlink" title="Linux安装redis是需要在官网下载redis的源码然后再编译的"></a>Linux安装redis是需要在官网下载redis的源码然后再编译的</h4><ul>
+<li>redis的官网：<a href="https://redis.io/" target="_blank" rel="noopener">https://redis.io/</a></li>
+<li>redis中文网：<a href="http://www.redis.cn/" target="_blank" rel="noopener">http://www.redis.cn/</a></li>
+<li>我已将编译好直接可以使用的Redis上传到GitHub: <a href="https://github.com/JoyLau/Redis-3.2.8-Linux" target="_blank" rel="noopener">https://github.com/JoyLau/Redis-3.2.8-Linux</a></li>
+<li>请结合本篇博客和项目里的README文件使用</li>
+</ul>
+<h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><ul>
+<li>下载linux版的压缩包,截止到我写博客的时间，官网给的稳定版是3.2.8，我们就下载<code>redis-3.2.8.tar.gz</code></li>
+<li><code>tar -zxvf redis-3.2.8.tar.gz</code></li>
+<li>进入src目录：<code>cd redis-3.2.8/src</code></li>
+<li><code>make</code> 编译</li>
+<li>这时我们不执行<code>make intsall</code>,因为该操作会把编译生成的<strong><em>重要的文件</em></strong>拷贝到<code>user/local/bin</code>下，我们想要自定义配置路径</li>
+</ul>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul>
+<li><p>中间可能报<code>/bin/sh: cc:未找到命令</code>,对于这样的情况只需要</p>
+<pre><code class="bash">      yum install gcc 
+      yum install gcc-c++ </code></pre>
+</li>
+<li><p>这里的重要文件指的是下图所示的8个文件，在redis以前版本好像是7个文件（没具体试过）</p>
+</li>
+<li><p>注意文件和文件夹的权限</p>
+</li>
+</ul>
+<h3 id="路径配置"><a href="#路径配置" class="headerlink" title="路径配置"></a>路径配置</h3><ul>
+<li><code>ls</code>查看src下的文件，你会看到有些文件是绿色的，这些事重要的文件，也正是我们所需要的，我们将这些文件单独存下来<br><img src="//image.joylau.cn/blog/redisimportantfile.png" alt="Redis源码编译后的重要文件"></li>
+<li>我们来看看编译出来的几个程序分别是干什么的：<pre><code>redis-server：顾名思义，redis服务
+redis-cli：redis client，提供一个redis客户端，以供连接到redis服务，进行增删改查等操作
+redis-sentinel：redis实例的监控管理、通知和实例失效备援服务
+redis-benchmark：redis的性能测试工具
+redis-check-aof：若以AOF方式产生日志，当意外发生时用来快速修复
+redis-check-rdb：若以RDB方式产生日志，当意外发生时用来快速修复</code></pre></li>
+<li>保存好之后我们的路径如下：<br><img src="//image.joylau.cn/blog/redisfloder.png" alt="Redis根目录"><br><img src="//image.joylau.cn/blog/redisbin.png" alt="Redis-bin"><br><img src="//image.joylau.cn/blog/redisetc.png" alt="Redis-etc"></li>
+</ul>
+<h3 id="配置文件配置"><a href="#配置文件配置" class="headerlink" title="配置文件配置"></a>配置文件配置</h3><ul>
+<li><p>redis.conf我只修改了以下配置</p>
+<ul>
+<li><code>port</code> : 端口</li>
+<li><code>requirepass</code> 密码</li>
+<li><code>bind 0.0.0.0</code> ： 配置外网可访问</li>
+<li><code>daemonize yes</code> : 将redis服务作为守护进程,作为开机启动</li>
+</ul>
+</li>
+<li><p>有了基本配置，redis还需要有一个管理启动、关闭、重启的一个脚本。redis源码里其实已经提供了一个初始化脚本<code>redis_init_script</code>,这是我的配置</p>
+<pre><code class="bash">      #!/bin/sh
+      # chkconfig: 2345 90 10 
+      # description: Redis is a persistent key-value database
+      # Simple Redis init.d script conceived to work on Linux systems
+      # as it does use of the /proc filesystem.
+      # 如果redis设置了密码，则$CLIEXEC -a $PASSWORD -p $REDISPORT shutdown 需要加一个参数
+
+      REDISPORT=6379
+      PASSWORD=123
+      EXEC=/project/redis3.2.8/bin/redis-server
+      CLIEXEC=/project/redis3.2.8/bin/redis-cli
+
+      PIDFILE=/var/run/redis_${REDISPORT}.pid
+      CONF=/project/redis3.2.8/etc/redis.conf
+
+      case &quot;$1&quot; in
+          start)
+              if [ -f $PIDFILE ]
+              then
+                      echo &quot;$PIDFILE exists, process is already running or crashed&quot;
+              else
+                      echo &quot;Starting Redis server...&quot;
+                      $EXEC $CONF
+              fi
+              ;;
+          stop)
+              if [ ! -f $PIDFILE ]
+              then
+                      echo &quot;$PIDFILE does not exist, process is not running&quot;
+              else
+                      PID=$(cat $PIDFILE)
+                      echo &quot;Stopping ...&quot;
+                      $CLIEXEC -a $PASSWORD -p $REDISPORT shutdown
+                      while [ -x /proc/${PID} ]
+                      do
+                          echo &quot;Waiting for Redis to shutdown ...&quot;
+                          sleep 1
+                      done
+                      echo &quot;Redis stopped&quot;
+              fi
+              ;;
+          *)
+              echo &quot;Please use start or stop as first argument&quot;
+              ;;
+      esac
+</code></pre>
+</li>
+<li><p>头部的chkconfig的添加是为了保证<code>chkconfig redis on</code>能够执行</p>
+</li>
+<li><p>接着将<strong>redis_init_script</strong>脚本拷贝到<strong>/etc/init.d/redis</strong>，这里重命名为redis</p>
+<pre><code class="bash">      # cp /project/redis-3.2.8/utils/redis_init_script /etc/init.d/redis</code></pre>
+</li>
+<li><p>现在还缺一个系统启动时的配置:<code>chkconfig redis on</code></p>
+</li>
+<li><p>执行之后，redis便是以系统服务启动、关闭了</p>
+<pre><code class="bash">      systemctl start redis;
+      systemctl stop redis;
+      systemctl restart redis;</code></pre>
+</li>
+</ul>
+<h2 id="FTP-服务端安装"><a href="#FTP-服务端安装" class="headerlink" title="FTP 服务端安装"></a>FTP 服务端安装</h2><ol>
+<li>yum install vsftpd</li>
+<li>修改 vim /etc/vsftpd/vsftpd.conf<br> <code>anonymous_enable=NO</code> : 不允许匿名用户登录<br> <code>chroot_local_user=YES</code> : 用户不能跳出当前的 home 目录</li>
+<li>安装好之后其实已经创建了个 ftp 的用户了,可以查看 /etc/passwd 文件,只是没有密码,这个时候使用 ftp 工具来登录是可以看到目录的,默认 ftp 的 home 目录在 /var/ftp/ 下    </li>
+<li>修改 ftp 用户密码 passwd ftp</li>
+<li>这时使用 ftp 用户登录,发现不能 上传文件和删除文件,有 553 错误</li>
+</ol>
+<h3 id="解决不能上传和删除文件"><a href="#解决不能上传和删除文件" class="headerlink" title="解决不能上传和删除文件"></a>解决不能上传和删除文件</h3><ol>
+<li><p>首先 selinux 会默认拦截 vsftp,想要不被拦截的话,可以关闭 selinux, 但是关闭后安全性得不到保障,可能会出现其他的问题,这里我们不关闭,可以开放权限</p>
+<pre><code class="shell">     setenforce 0 #暂时让SELinux进入Permissive模式
+     getsebool -a | grep ftpd #查看 ftpd 的权限
+
+     ftpd_anon_write --&gt; off
+     ftpd_connect_all_unreserved --&gt; off
+     ftpd_connect_db --&gt; off
+     ftpd_full_access --&gt; on
+     ftpd_use_cifs --&gt; off
+     ftpd_use_fusefs --&gt; off
+     ftpd_use_nfs --&gt; off
+     ftpd_use_passive_mode --&gt; off
+
+     setsebool -P ftpd_full_access 1 # 设置ftpd_full_access的权限为 on
+
+     setenforce 1 # 开启 selinux</code></pre>
+</li>
+<li><p>这时 selinux 已经开放了 vsftpd 的权限</p>
+</li>
+<li><p>给 ftp 用户的 home 目录赋予写的权限 chmod a+w /var/ftp</p>
+</li>
+<li><p>vsftpd 在新版本时,如果检测到用户不能跳出当前的 home 目录,那么用户的 home 不能有写的权限,会报 500 OOPS: vsftpd: refusing to run with writable root inside chroot() 错误,这时就尴尬了</p>
+</li>
+<li><p>解决方式: 在配置文件中添加: allow_writeable_chroot=YES</p>
+</li>
+<li><p>重启 vsftpd</p>
+</li>
+</ol>
+<h3 id="无法连接-FTP-服务器"><a href="#无法连接-FTP-服务器" class="headerlink" title="无法连接 FTP 服务器"></a>无法连接 FTP 服务器</h3><p>使用 FTP 工具连接失败,报如下错误:</p>
+<pre><code class="bash">   状态:     连接建立，等待欢迎消息...
+   状态:     不安全的服务器，不支持 FTP over TLS。
+   命令:     USER ftp
+   响应:     331 Please specify the password.
+   命令:     PASS ******
+   响应:     530 Login incorrect.
+   错误:     严重错误: 无法连接到服务器
+   状态:     已从服务器断开</code></pre>
+<p>解决方法: 找到 <code>/etc/pam.d/vsftpd</code> 注释掉 <code>#auth       required    pam_shells.so</code></p>
+<h2 id="RabbitMQ-服务端安装"><a href="#RabbitMQ-服务端安装" class="headerlink" title="RabbitMQ 服务端安装"></a>RabbitMQ 服务端安装</h2><ol>
+<li>yum install rabbitmq-server</li>
+<li>rabbitmq-plugins enable rabbitmq_management</li>
+<li>systemctl start rabbitmq-server</li>
+</ol>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
+<li>当主机的 hostname 不是 localhost 时, 启动会报错: <code>unable to connect to epmd (port 4369) on 68: badarg (unknown POSIX error)</code> , 这时在文件中 <code>/etc/rabbitmq/rabbitmq-env.conf</code> 写入 <code>NODENAME=rabbit@localhost</code> 保存重启.</li>
+</ol>
+<h2 id="MariaDB-的安装"><a href="#MariaDB-的安装" class="headerlink" title="MariaDB 的安装"></a>MariaDB 的安装</h2><ol>
+<li><code>yum install mariadb-server</code></li>
+<li>登入 mariadb <code>mysql -uroot -p</code> , 第一次登陆是 root 用户没有密码,直接进入即可</li>
+<li>初始化设置: <code>mysql_secure_installation</code> ,可以设置 root 密码,移除匿名账号等等…</li>
+<li>设置 root 可远程登录: <ol>
+<li><code>mysql -uroot -p</code> 登录</li>
+<li><code>GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39;IDENTIFIED BY &#39;123456&#39; WITH GRANT OPTION;</code> 授权 root 账户,密码 123456</li>
+<li><code>flush privileges;</code></li>
+</ol>
+</li>
+<li>继续后续操作</li>
+</ol>
+<h3 id="Mybatis-连接-MariaDB-中文乱码问题"><a href="#Mybatis-连接-MariaDB-中文乱码问题" class="headerlink" title="Mybatis 连接 MariaDB 中文乱码问题"></a>Mybatis 连接 MariaDB 中文乱码问题</h3><p>MariaDB的默认编码是latin1，插入中文会乱码，因此需要将编码改为utf8</p>
+<ol>
+<li><p>首先设置数据库的编码都为 utf8</p>
+<ol>
+<li><code>SHOW VARIABLES LIKE &#39;character%&#39;;</code> 查看编码</li>
+<li>修改 /etc/my.cnf.d/client.cnf , 在 <code>[client]</code> 里加入 <code>default-character-set=utf8</code></li>
+<li>修改 /etc/my.cnf.d/server.cnf , 在 <code>[mysqld]</code> 里加入 <code>character-set-server=utf8</code></li>
+<li><code>systemctl restart mariadb</code> 重启生效</li>
+<li>再次查看 <code>SHOW VARIABLES LIKE &#39;character%&#39;;</code> 查看编码</li>
+</ol>
+</li>
+<li><p>建库,建表,表里的 varchar 字段的字符集都用 <code>utf8</code>, 排序规则都用 <code>utf8_unicode_ci</code></p>
+</li>
+<li><p>至此服务端就配置完成了</p>
+</li>
+<li><p>连接数据配置文件,加上参数</p>
+</li>
+</ol>
+<pre><code class="yml">      datasource:
+        druid:
+          url: jdbc:mysql://34.0.7.183:3306/traffic-service?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false</code></pre>
+<h2 id="DNS-服务安装"><a href="#DNS-服务安装" class="headerlink" title="DNS 服务安装"></a>DNS 服务安装</h2><ol>
+<li><code>yum install bind</code> 安装完成后服务名为 <code>named</code></li>
+<li><code>vim /etc/named.conf</code></li>
+</ol>
+<pre><code class="bash">    options {
+            listen-on port 53 { 34.0.7.183; };
+            listen-on-v6 port 53 { ::1; };
+            directory       &quot;/var/named&quot;;
+            dump-file       &quot;/var/named/data/cache_dump.db&quot;;
+            statistics-file &quot;/var/named/data/named_stats.txt&quot;;
+            memstatistics-file &quot;/var/named/data/named_mem_stats.txt&quot;;
+            recursing-file  &quot;/var/named/data/named.recursing&quot;;
+            secroots-file   &quot;/var/named/data/named.secroots&quot;;
+            allow-query     { any; };
+
+            /* 
+             - If you are building an AUTHORITATIVE DNS server, do NOT enable recursion.
+             - If you are building a RECURSIVE (caching) DNS server, you need to enable 
+               recursion. 
+             - If your recursive DNS server has a public IP address, you MUST enable access 
+               control to limit queries to your legitimate users. Failing to do so will
+               cause your server to become part of large scale DNS amplification 
+               attacks. Implementing BCP38 within your network would greatly
+               reduce such attack surface 
+            */
+            recursion yes;
+
+            dnssec-enable yes;
+            dnssec-validation yes;
+
+            /* Path to ISC DLV key */
+            bindkeys-file &quot;/etc/named.iscdlv.key&quot;;
+
+            managed-keys-directory &quot;/var/named/dynamic&quot;;
+
+            pid-file &quot;/run/named/named.pid&quot;;
+            session-keyfile &quot;/run/named/session.key&quot;;
+    };
+
+    logging {
+            channel default_debug {
+                    file &quot;data/named.run&quot;;
+                    severity dynamic;
+            };
+    };
+
+    zone &quot;.&quot; IN {
+            type hint;
+            file &quot;named.ca&quot;;
+    };
+
+    include &quot;/etc/named.rfc1912.zones&quot;;
+    include &quot;/etc/named.root.key&quot;;
+</code></pre>
+<p><code>listen-on port 53 { 127.0.0.1; };</code>       # 指定服务监听的端口，建议写本机IP，减少服务器消耗<br><code>allow-query     { any; };</code>               # 允许哪些客户端访问DNS服务，此处改为“any”，表示任意主机</p>
+<p>修改这2项配置即可</p>
+<h3 id="配置自定义域名解析"><a href="#配置自定义域名解析" class="headerlink" title="配置自定义域名解析"></a>配置自定义域名解析</h3><p><code>include &quot;/etc/named.rfc1912.zones&quot;;</code>    # include代表该文件是子配置文件</p>
+<ol>
+<li><code>vim /etc/named.rfc1912.zones</code> , 添加一个我们自定义的域名配置,这里我使用的是 <code>baidu.com</code></li>
+</ol>
+<pre><code class="bash">    zone &quot;baidu.com&quot; IN {
+            type master;
+            file &quot;data/baidu.com.zone&quot;;
+            allow-update { none; };
+    };</code></pre>
+<p>上述文件默认的目录在 <code>/var/named/data</code> 目录下</p>
+<ol start="2">
+<li><code>vim /var/named/data/baidu.com.zone</code></li>
+</ol>
+<p>配置如下: 注意格式</p>
+<pre><code class="bash">    $TTL 1D
+    @       IN SOA         baidu.com. root (
+                                            1       ; serial
+                                            1D      ; refresh
+                                            1H      ; retry
+                                            1W      ; expire
+                                            0 )     ; minimum
+
+    @       IN      NS      ns.baidu.com.
+    ns      IN      A       34.0.7.183
+    @       IN      A       34.0.7.183
+    test    IN      A       34.0.7.183
+    liufa   IN      A       34.0.7.227</code></pre>
+<p>注意第一条记录 <code>ns.baidu.com.</code> 的解析必须添加否则会报错,添加之后,再加一条 ns 子域名的解析,直接指向自己即可</p>
+<p>这里附上一些配置的解释:</p>
+<ul>
+<li>serial：序列号。可以供从服务器判断何时获取新数据的，这里我设成今天的日期。更新数据文件必须要更新这个序列号，否则从服务器将不更新</li>
+<li>refresh：指定多长时间从服务器要与主服务器进行核对</li>
+<li>retry：如果从服务器试图检查主服务器的序列号时，主服务器没有响应，则经过这个时间后将重新进行检查</li>
+<li>expire：将决定从服务器在没有主服务器的情况下权威地持续提供域数据服务的时间长短</li>
+<li>minimum：高速缓存否定回答的存活时间</li>
+<li>SOA记录：每个区仅有一个SOA记录，该区一直延伸到遇见另一个SOA记录为止。SOA记录包括区的名字，一个技术联系人和各种不同的超时值</li>
+<li>IN记录：使用“IN”，对应的是internet</li>
+<li>A记录：是DNS数据库的核心。一个主机必须为它的每个网络接口得到一条A记录</li>
+<li>NS记录：识别对一个区有权威性的服务器（即所有主服务器和从服务器），并把子域委托给其他机构。</li>
+<li>MX记录：电子邮件系统就是使用MX记录来更有效的路由邮件。</li>
+<li>PTR记录：从IP地址到主机名的反向映射。与A记录一样，必须为每个网络接口有一条PTR记录。</li>
+</ul>
+<ol start="3">
+<li><code>chown root:named baidu.com.zone</code> 修改权限</li>
+<li><code>systemctl restart named</code></li>
+</ol>
+<h2 id="PostgreSQL-安装"><a href="#PostgreSQL-安装" class="headerlink" title="PostgreSQL 安装"></a>PostgreSQL 安装</h2><h3 id="说明-3"><a href="#说明-3" class="headerlink" title="说明"></a>说明</h3><p>yum 安装的版本可能比较低,对于一些应用来说可能不好,这里使用官网的安装包</p>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><ol>
+<li>打开 <a href="https://www.postgresql.org/download/linux/redhat/" target="_blank" rel="noopener">https://www.postgresql.org/download/linux/redhat/</a></li>
+<li>选择版本</li>
+<li>安装源,我这里以 10 为例, <code>yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm</code></li>
+<li>安装程序, <code>yum install postgresql10</code> , <code>yum install postgresql10-server</code></li>
+<li>初始化数据库 <code>/usr/pgsql-10/bin/postgresql-10-setup initdb</code></li>
+<li>开机启动 <code>systemctl enable postgresql-10;systemctl start postgresql-10</code></li>
+</ol>
+<h3 id="修改管理员密码"><a href="#修改管理员密码" class="headerlink" title="修改管理员密码"></a>修改管理员密码</h3><p>数据库的默认管理员用户是 postgres, 在 PostgreSQL 安装好后会创建用户 postgres</p>
+<ol>
+<li>切换到 postgres 用户 <code>su postgres</code></li>
+<li>执行 <code>psql</code> 登陆数据库</li>
+<li>修改密码: <code>ALTER USER postgres WITH PASSWORD &#39;postgres&#39;;</code></li>
+</ol>
+<h3 id="配置远程访问"><a href="#配置远程访问" class="headerlink" title="配置远程访问"></a>配置远程访问</h3><ol>
+<li>修改 <code>postgresql.conf</code> 文件的 <code>listen_address = *</code></li>
+<li>用户授权: 修改 <code>pg_hba.conf</code> 添加 <code>host all all 0.0.0.0/0 password</code> 一行</li>
+</ol>
+<p>说明:</p>
+<ul>
+<li>ident: 系统用户和数据库用户对于即可访问</li>
+<li>md5: md5 加密的密码认证</li>
+<li>password: 明文密码</li>
+<li>trust: 无需密码</li>
+<li>reject: 拒接认证</li>
+</ul>
+<h3 id="修改数据存放目录"><a href="#修改数据存放目录" class="headerlink" title="修改数据存放目录"></a>修改数据存放目录</h3><ol>
+<li>修改 <code>/usr/lib/systemd/system/postgresql-10.service</code> 的 <code>PGDATA</code></li>
+<li><code>systemctl daemon-reload</code></li>
+<li><code>postgresql-step initdb</code> 初始化数据库,遇到权限问题,先创建好目录<ol>
+<li>chrow -R postgres:postgres /…</li>
+<li>chmod -R 700 /…</li>
+<li>实在不行就使用 postgres 的身份操作</li>
+</ol>
+</li>
+<li>如果之前数据库有数据,可以直接拷贝数据目录,之后目录的权限设定好即可</li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java环境搭建"><span class="toc-number">2.</span> <span class="toc-text">Java环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#yum-安装jdk"><span class="toc-number">2.1.</span> <span class="toc-text">yum 安装jdk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rpm-安装jdk"><span class="toc-number">2.2.</span> <span class="toc-text">rpm 安装jdk</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tomcat环境搭建"><span class="toc-number">3.</span> <span class="toc-text">Tomcat环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#先配置"><span class="toc-number">3.1.</span> <span class="toc-text">先配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#再使用"><span class="toc-number">3.2.</span> <span class="toc-text">再使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">3.3.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到2个很尴尬的问题"><span class="toc-number">3.4.</span> <span class="toc-text">遇到2个很尴尬的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用yum安装的tomcat注意"><span class="toc-number">3.5.</span> <span class="toc-text">使用yum安装的tomcat注意</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mysql5-7数据库安装"><span class="toc-number">4.</span> <span class="toc-text">Mysql5.7数据库安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-1"><span class="toc-number">4.1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始"><span class="toc-number">4.2.</span> <span class="toc-text">开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">4.3.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动"><span class="toc-number">4.4.</span> <span class="toc-text">启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">4.5.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySql配置文件"><span class="toc-number">4.6.</span> <span class="toc-text">MySql配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL卸载"><span class="toc-number">4.7.</span> <span class="toc-text">MySQL卸载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#值得注意的是："><span class="toc-number">4.8.</span> <span class="toc-text">值得注意的是：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis的安装"><span class="toc-number">5.</span> <span class="toc-text">Redis的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-2"><span class="toc-number">5.1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载安装"><span class="toc-number">5.2.</span> <span class="toc-text">下载安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#路径配置"><span class="toc-number">5.3.</span> <span class="toc-text">路径配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件配置"><span class="toc-number">5.4.</span> <span class="toc-text">配置文件配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FTP-服务端安装"><span class="toc-number">6.</span> <span class="toc-text">FTP 服务端安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决不能上传和删除文件"><span class="toc-number">6.1.</span> <span class="toc-text">解决不能上传和删除文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无法连接-FTP-服务器"><span class="toc-number">6.2.</span> <span class="toc-text">无法连接 FTP 服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RabbitMQ-服务端安装"><span class="toc-number">7.</span> <span class="toc-text">RabbitMQ 服务端安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题"><span class="toc-number">7.1.</span> <span class="toc-text">问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MariaDB-的安装"><span class="toc-number">8.</span> <span class="toc-text">MariaDB 的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mybatis-连接-MariaDB-中文乱码问题"><span class="toc-number">8.1.</span> <span class="toc-text">Mybatis 连接 MariaDB 中文乱码问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS-服务安装"><span class="toc-number">9.</span> <span class="toc-text">DNS 服务安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置自定义域名解析"><span class="toc-number">9.1.</span> <span class="toc-text">配置自定义域名解析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PostgreSQL-安装"><span class="toc-number">10.</span> <span class="toc-text">PostgreSQL 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-3"><span class="toc-number">10.1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-1"><span class="toc-number">10.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改管理员密码"><span class="toc-number">10.3.</span> <span class="toc-text">修改管理员密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置远程访问"><span class="toc-number">10.4.</span> <span class="toc-text">配置远程访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改数据存放目录"><span class="toc-number">10.5.</span> <span class="toc-text">修改数据存放目录</span></a></li></ol></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

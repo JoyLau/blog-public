@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CentOS , Ubuntu 和 Mac OS 上编译安装 OpenCV4 及 SpringBoot 的结合使用 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+为什么没有 Windows 下的编译安装因为官网已经提供的编译好的 exe 包,双击运行就会解压到特定的目录了,除此之外官网还提供了 ios 版和 安卓版这里着重记录下 CentOS , Ubun,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">CentOS , Ubuntu 和 Mac OS 上编译安装 OpenCV4 及 SpringBoot 的结合使用</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.7107954969210666) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/OpenCV篇"><b>「
+                    </b>OPENCV篇<b> 」</b></a>
+                
+                三月 15, 2019
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2019/03/15/OpenCV-Build/" title="CentOS , Ubuntu 和 Mac OS 上编译安装 OpenCV4 及 SpringBoot 的结合使用" class="">CentOS , Ubuntu 和 Mac OS 上编译安装 OpenCV4 及 SpringBoot 的结合使用</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    18k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    17 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+<h3 id="为什么没有-Windows-下的编译安装"><a href="#为什么没有-Windows-下的编译安装" class="headerlink" title="为什么没有 Windows 下的编译安装"></a>为什么没有 Windows 下的编译安装</h3><p>因为官网已经提供的编译好的 exe 包,双击运行就会解压到特定的目录了,除此之外官网还提供了 ios 版和 安卓版<br>这里着重记录下 CentOS , Ubuntu 和 Mac OS 下的安装,因为官网没有提供编译好的包</p>
+<h3 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h3><ol>
+<li>GCC 4.4.x or later</li>
+<li>CMake 2.8.7 or higher</li>
+<li>Git</li>
+<li>GTK+2.x or higher, including headers (libgtk2.0-dev)</li>
+<li>pkg-config</li>
+<li>Python 2.6 or later and Numpy 1.5 or later with developer packages (python-dev, python-numpy)</li>
+<li>ffmpeg or libav development packages: libavcodec-dev, libavformat-dev, libswscale-dev</li>
+<li>[optional] libtbb2 libtbb-dev</li>
+<li>[optional] libdc1394 2.x</li>
+<li>[optional] libjpeg-dev, libpng-dev, libtiff-dev, libjasper-dev, libdc1394-22-dev</li>
+<li>[optional] CUDA Toolkit 6.5 or higher</li>
+</ol>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>安装常用的开发编译工具包, Centos 的命令为: yum groupinstall “Development Tools”, Ubuntu 的命令为: apt-get install build-essential</li>
+<li>安装 cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev</li>
+<li>mkdir opencv4; cd opencv4</li>
+<li>git clone <a href="https://github.com/opencv/opencv.git" target="_blank" rel="noopener">https://github.com/opencv/opencv.git</a></li>
+<li>git clone <a href="https://github.com/opencv/opencv_contrib.git" target="_blank" rel="noopener">https://github.com/opencv/opencv_contrib.git</a></li>
+<li>cd opencv</li>
+<li>mkdir build</li>
+<li>cd build</li>
+<li>cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..  (如果不工作的话,删除 -D的空格,cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..)</li>
+<li>make -j7 # runs 7 jobs in parallel 使用7个并行任务来编译</li>
+<li>生成文档 cd ~/opencv/build/doc/; make -j7 doxygen</li>
+<li>make install</li>
+</ol>
+<h3 id="编译好的包"><a href="#编译好的包" class="headerlink" title="编译好的包"></a>编译好的包</h3><ol>
+<li>centos7 版: <a href="http://cloud.joylau.cn:1194/s/kUoNelmj1SX810K" target="_blank" rel="noopener">http://cloud.joylau.cn:1194/s/kUoNelmj1SX810K</a> 或者  <a href="https://pan.baidu.com/s/1qaZ-TbF0xP0DxaEJKbdt-A" target="_blank" rel="noopener">https://pan.baidu.com/s/1qaZ-TbF0xP0DxaEJKbdt-A</a> 提取码: jkir</li>
+<li>Ubuntu 16.04 版: <a href="http://cloud.joylau.cn:1194/s/TsNRKwxJhM0v0HE" target="_blank" rel="noopener">http://cloud.joylau.cn:1194/s/TsNRKwxJhM0v0HE</a>  或者  <a href="https://pan.baidu.com/s/1ha6nATLrSt5WPL1iQlmWSg" target="_blank" rel="noopener">https://pan.baidu.com/s/1ha6nATLrSt5WPL1iQlmWSg</a> 提取码: gduu</li>
+<li>java 调用所需 opencv-410.jar 包: <a href="http://image.joylau.cn/blog/opencv-410.jar" target="_blank" rel="noopener">http://image.joylau.cn/blog/opencv-410.jar</a></li>
+</ol>
+<h3 id="Mac-OS-上"><a href="#Mac-OS-上" class="headerlink" title="Mac OS 上"></a>Mac OS 上</h3><ol>
+<li>AppStore 上安装 XCode, 安装完成打开 XCode , 同意 license</li>
+<li>安装 HomeBrew</li>
+<li>安装必要依赖: Python 3, CMake and Qt 5</li>
+</ol>
+<pre><code class="bash">    brew install python3
+    brew install cmake
+    brew install qt5</code></pre>
+<ol start="4">
+<li>安装环境</li>
+</ol>
+<pre><code class="bash">    mkdir ~/opencv4
+    git clone https://github.com/opencv/opencv.git
+    git clone https://github.com/opencv/opencv_contrib.git
+
+    # 变量定义
+    cwd=$(pwd)
+    cvVersion=&quot;master&quot;
+    QT5PATH=/usr/local/Cellar/qt/5.12.2
+
+    rm -rf opencv/build
+    rm -rf opencv_contrib/build
+
+    # Create directory for installation
+    mkdir -p installation/OpenCV-&quot;$cvVersion&quot;
+
+    sudo -H pip3 install -U pip numpy
+    # Install virtual environment
+    sudo -H python3 -m pip install virtualenv virtualenvwrapper
+    VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+    echo &quot;VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3&quot; &gt;&gt; ~/.bash_profile
+    echo &quot;# Virtual Environment Wrapper&quot; &gt;&gt; ~/.bash_profile
+    echo &quot;source /usr/local/bin/virtualenvwrapper.sh&quot; &gt;&gt; ~/.bash_profile
+    cd $cwd
+    source /usr/local/bin/virtualenvwrapper.sh
+
+    ############ For Python 3 ############
+    # create virtual environment 由于 mac OS 本身使用的是 Python 2.7 , 而一些本身的应用依赖于 Python 2 ,为了不影响原来的环境,这里创建一个 Python3 的虚拟环境来进行编译
+    mkvirtualenv OpenCV-&quot;$cvVersion&quot;-py3 -p python3
+    workon OpenCV-&quot;$cvVersion&quot;-py3
+
+    # now install python libraries within this virtual environment
+    pip install cmake numpy scipy matplotlib scikit-image scikit-learn ipython dlib
+
+    # quit virtual environment
+    deactivate
+    ######################################
+
+    cd opencv
+    mkdir build
+    cd build
+
+    cmake -D CMAKE_BUILD_TYPE=RELEASE \
+                -D CMAKE_INSTALL_PREFIX=$cwd/installation/OpenCV-&quot;$cvVersion&quot; \
+                -D INSTALL_C_EXAMPLES=ON \
+                -D INSTALL_PYTHON_EXAMPLES=ON \
+                -D WITH_TBB=ON \
+                -D WITH_V4L=ON \
+                -D OPENCV_SKIP_PYTHON_LOADER=ON \
+                -D CMAKE_PREFIX_PATH=$QT5PATH \
+                -D CMAKE_MODULE_PATH=&quot;$QT5PATH&quot;/lib/cmake \
+                -D OPENCV_PYTHON3_INSTALL_PATH=~/.virtualenvs/OpenCV-&quot;$cvVersion&quot;-py3/lib/python3.7/site-packages \
+            -D WITH_QT=ON \
+            -D WITH_OPENGL=ON \
+            -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+            -D BUILD_EXAMPLES=ON ..
+
+    make -j$(sysctl -n hw.physicalcpu)
+    make install
+</code></pre>
+<ol start="5">
+<li>cmake 后输出如下:</li>
+</ol>
+<pre><code class="bash">    --   OpenCV modules:
+    --     To be built:                 aruco bgsegm bioinspired calib3d ccalib core cvv datasets dnn dnn_objdetect dpm face features2d flann freetype fuzzy gapi hfs highgui img_hash imgcodecs imgproc java java_bindings_generator line_descriptor ml objdetect optflow phase_unwrapping photo plot python2 python3 python_bindings_generator quality reg rgbd saliency shape stereo stitching structured_light superres surface_matching text tracking ts video videoio videostab xfeatures2d ximgproc xobjdetect xphoto
+    --     Disabled:                    world
+    --     Disabled by dependency:      -
+    --     Unavailable:                 cnn_3dobj cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev hdf js matlab ovis sfm viz
+    --     Applications:                tests perf_tests examples apps
+    --     Documentation:               NO
+    --     Non-free algorithms:         NO
+    -- 
+    --   GUI: 
+    --     QT:                          YES (ver 5.12.2)
+    --       QT OpenGL support:         YES (Qt5::OpenGL 5.12.2)
+    --     Cocoa:                       YES
+    --     OpenGL support:              YES (/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework)
+    --     VTK support:                 NO
+    -- 
+    --   Media I/O: 
+    --     ZLib:                        build (ver 1.2.11)
+    --     JPEG:                        build-libjpeg-turbo (ver 2.0.2-62)
+    --     WEBP:                        build (ver encoder: 0x020e)
+    --     PNG:                         build (ver 1.6.36)
+    --     TIFF:                        build (ver 42 - 4.0.10)
+    --     JPEG 2000:                   build (ver 1.900.1)
+    --     OpenEXR:                     build (ver 1.7.1)
+    --     HDR:                         YES
+    --     SUNRASTER:                   YES
+    --     PXM:                         YES
+    --     PFM:                         YES
+    -- 
+    --   Video I/O:
+    --     DC1394:                      NO
+    --     FFMPEG:                      YES
+    --       avcodec:                   YES (58.35.100)
+    --       avformat:                  YES (58.20.100)
+    --       avutil:                    YES (56.22.100)
+    --       swscale:                   YES (5.3.100)
+    --       avresample:                YES (4.0.0)
+    --     GStreamer:                   NO
+    --     AVFoundation:                YES
+    --     v4l/v4l2:                    NO
+    -- 
+    --   Parallel framework:            GCD
+    -- 
+    --   Trace:                         YES (with Intel ITT)
+    -- 
+    --   Other third-party libraries:
+    --     Intel IPP:                   2019.0.0 Gold [2019.0.0]
+    --            at:                   /Users/joylau/opencv4/opencv/build/3rdparty/ippicv/ippicv_mac/icv
+    --     Intel IPP IW:                sources (2019.0.0)
+    --               at:                /Users/joylau/opencv4/opencv/build/3rdparty/ippicv/ippicv_mac/iw
+    --     Lapack:                      YES (/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Accelerate.framework)
+    --     Eigen:                       NO
+    --     Custom HAL:                  NO
+    --     Protobuf:                    build (3.5.1)
+    -- 
+    --   OpenCL:                        YES (no extra features)
+    --     Include path:                NO
+    --     Link libraries:              -framework OpenCL
+    -- 
+    --   Python 2:
+    --     Interpreter:                 /usr/bin/python2.7 (ver 2.7.10)
+    --     Libraries:                   /usr/lib/libpython2.7.dylib (ver 2.7.10)
+    --     numpy:                       /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/numpy/core/include (ver 1.8.0rc1)
+    --     install path:                lib/python2.7/site-packages
+    -- 
+    --   Python 3:
+    --     Interpreter:                 /usr/local/bin/python3 (ver 3.7.2)
+    --     Libraries:                   /usr/local/Frameworks/Python.framework/Versions/3.7/lib/libpython3.7m.dylib (ver 3.7.2)
+    --     numpy:                       /usr/local/lib/python3.7/site-packages/numpy/core/include (ver 1.16.2)
+    --     install path:                /Users/joylau/.virtualenvs/OpenCV-master-py3/lib/python3.7/site-packages
+    -- 
+    --   Python (for build):            /usr/bin/python2.7
+    -- 
+    --   Java:                          
+    --     ant:                         /Users/joylau/dev/apache-ant-1.10.5/bin/ant (ver 1.10.5)
+    --     JNI:                         /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/JavaVM.framework/Headers /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/JavaVM.framework/Headers /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/JavaVM.framework/Headers
+    --     Java wrappers:               YES
+    --     Java tests:                  YES
+    -- 
+    --   Install to:                    /Users/joylau/opencv4/installation/OpenCV-master
+    -- -----------------------------------------------------------------
+    -- 
+    -- Configuring done
+    -- Generating done
+    -- Build files have been written to: /Users/joylau/opencv4/opencv/build</code></pre>
+<ol start="6">
+<li>编译好的安装包: <a href="http://cloud.joylau.cn:1194/s/6GMLl09ZAYNAUMU" target="_blank" rel="noopener">http://cloud.joylau.cn:1194/s/6GMLl09ZAYNAUMU</a> 或者: <a href="https://pan.baidu.com/s/1YBxUD_vB1zKOcxHeAtn6Xw" target="_blank" rel="noopener">https://pan.baidu.com/s/1YBxUD_vB1zKOcxHeAtn6Xw</a> 提取码: twsq </li>
+</ol>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><h4 id="CentOS-上-CMake-版本太低的解决方法"><a href="#CentOS-上-CMake-版本太低的解决方法" class="headerlink" title="CentOS 上 CMake 版本太低的解决方法"></a>CentOS 上 CMake 版本太低的解决方法</h4><ol>
+<li><p>yum 上安装的版本太低,先卸载掉版本低的,yum remove cmake</p>
+</li>
+<li><p>cd /opt<br>tar zxvf cmake-3.10.2-Linux-x86_64.tar.gz</p>
+</li>
+<li><p>vim /etc/profile<br>export CMAKE_HOME=/opt/cmake-3.10.2-Linux-x86_64<br>export PATH=$PATH:$CMAKE_HOME/bin</p>
+</li>
+<li><p>source /etc/profile </p>
+</li>
+</ol>
+<h4 id="没有生成-opencv-410-jar"><a href="#没有生成-opencv-410-jar" class="headerlink" title="没有生成 opencv-410.jar"></a>没有生成 opencv-410.jar</h4><pre><code class="bash">    Java:                          
+    --     ant:                         /bin/ant (ver 1.9.4)
+    --     JNI:                         /usr/lib/jvm/java-1.8.0-openjdk/include /usr/lib/jvm/java-1.8.0-openjdk/include/linux /usr/lib/jvm/java-1.8.0-openjdk/include
+    --     Java wrappers:               YES
+    --     Java tests:                  NO
+</code></pre>
+<p>需要 ant 环境,安装后即可, java 即可进行调用</p>
+<h3 id="IDEA-及-Spring-Boot-项目中的使用"><a href="#IDEA-及-Spring-Boot-项目中的使用" class="headerlink" title="IDEA 及 Spring Boot 项目中的使用"></a>IDEA 及 Spring Boot 项目中的使用</h3><ol>
+<li>下载 opencv-410.jar 包,引入到项目中</li>
+</ol>
+<pre><code class="groovy">   dependencies {
+       implementation &#39;org.springframework.boot:spring-boot-starter-web&#39;
+       compileOnly &#39;org.projectlombok:lombok&#39;
+       annotationProcessor &#39;org.projectlombok:lombok&#39;
+       testImplementation &#39;org.springframework.boot:spring-boot-starter-test&#39;
+
+       compile fileTree(dir:&#39;libs&#39;,include:[&#39;*.jar&#39;])
+   } </code></pre>
+<ol start="2">
+<li>配置动态库路径, vm options: -Djava.library.path=/home/joylau/opencv4/opencv/build/lib</li>
+</ol>
+<p><img src="http://image.joylau.cn/blog/vm_options_config.jpg" alt="vm options"></p>
+<p>mac os 下路径为: -Djava.library.path=/Users/joylau/opencv4/installation/OpenCV-master/share/java/opencv4</p>
+<ol start="3">
+<li>加载动态库</li>
+</ol>
+<pre><code class="java">    @SpringBootApplication
+    public class OpencvTestApplication {
+
+        public static void main(String[] args) {
+            System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+            System.out.println(Core.VERSION);
+            SpringApplication.run(OpencvTestApplication.class, args);
+        }
+    }</code></pre>
+<ol start="4">
+<li>脸部识别 demo</li>
+</ol>
+<pre><code class="java">    private static void testFace() {
+            // 1 读取OpenCV自带的人脸识别特征XML文件
+            CascadeClassifier facebook = new CascadeClassifier(&quot;/home/joylau/opencv4/opencv/data/haarcascades/haarcascade_frontalface_alt.xml&quot;);
+            // 2 读取测试图片
+            Mat image = Imgcodecs.imread(&quot;/home/joylau/图片/image-test-4.jpg&quot;);
+            // 3 特征匹配
+            MatOfRect face = new MatOfRect();
+            facebook.detectMultiScale(image, face);
+            // 4 匹配 Rect 矩阵 数组
+            Rect[] rects = face.toArray();
+            System.out.println(&quot;匹配到 &quot; + rects.length + &quot; 个人脸&quot;);
+            // 5 为每张识别到的人脸画一个框
+            for (int i = 0; i &lt; rects.length; i++) {
+                Imgproc.rectangle(image,new Point(rects[i].x, rects[i].y), new Point(rects[i].x + rects[i].width, rects[i].y + rects[i].height), new Scalar(0, 0, 255));
+                Imgproc.putText(image,&quot;face-&quot; + i, new Point(rects[i].x, rects[i].y),Imgproc.FONT_HERSHEY_SIMPLEX, 1.0, new Scalar(0, 255, 0),1,Imgproc.LINE_AA,false);
+            }
+            // 6 展示图片
+            HighGui.imshow(&quot;人脸-匹配&quot;, image);
+            HighGui.waitKey(0);
+        }</code></pre>
+<p><img src="http://image.joylau.cn/blog/opencv_test_face.jpg" alt="test_face"></p>
+<blockquote>
+<p>注: 图片来自微博</p>
+</blockquote>
+<ol start="5">
+<li>边缘检测 demo</li>
+</ol>
+<pre><code class="java">    private static void testContours() {
+            //1 获取原图
+            Mat src = Imgcodecs.imread(&quot;/home/joylau/图片/image-test.jpg&quot;);
+            //2 图片灰度化
+            Mat gary = new Mat();
+            Imgproc.cvtColor(src, gary, Imgproc.COLOR_RGB2GRAY);
+            //3 图像边缘处理
+            Mat edges = new Mat();
+            Imgproc.Canny(gary, edges, 200, 500, 3, false);
+            //4 发现轮廓
+            List&lt;MatOfPoint&gt; list = new ArrayList&lt;MatOfPoint&gt;();
+            Mat hierarchy = new Mat();
+            Imgproc.findContours(edges, list, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
+            //5 绘制轮廓
+            for (int i = 0, len = list.size(); i &lt; len; i++) {
+                Imgproc.drawContours(src, list, i, new Scalar(0, 255, 0), 1, Imgproc.LINE_AA);
+            }
+            HighGui.imshow(&quot;边缘检测&quot;, src);
+            HighGui.waitKey(0);
+        }</code></pre>
+<p><img src="http://image.joylau.cn/blog/image-test.jpg" alt="test_source"><br><img src="http://image.joylau.cn/blog/test_contours.jpg" alt="test_contours"></p>
+<ol start="6">
+<li>实时人脸识别</li>
+</ol>
+<pre><code class="java">    /**
+         * OpenCV-4.0.0 实时人脸识别
+         *
+         */
+        public static void videoFace() {
+            VideoCapture capture=new VideoCapture(0);
+            Mat image=new Mat();
+            int index=0;
+            if (capture.isOpened()) {
+                do {
+                    capture.read(image);
+                    HighGui.imshow(&quot;实时人脸识别&quot;, getFace(image));
+                    index = HighGui.waitKey(1);
+                } while (index != 27);
+            }
+        }
+
+        /**
+         * OpenCV-4.0.0 人脸识别
+         * @param image 待处理Mat图片(视频中的某一帧)
+         * @return 处理后的图片
+         */
+        public static Mat getFace(Mat image) {
+            // 1 读取OpenCV自带的人脸识别特征XML文件
+            CascadeClassifier facebook=new CascadeClassifier(&quot;/Users/joylau/opencv4/opencv/data/haarcascades/haarcascade_frontalface_alt.xml&quot;);
+            // 2  特征匹配类
+            MatOfRect face = new MatOfRect();
+            // 3 特征匹配
+            facebook.detectMultiScale(image, face);
+            Rect[] rects=face.toArray();
+            log.info(&quot;匹配到 &quot;+rects.length+&quot; 个人脸&quot;);
+            // 4 为每张识别到的人脸画一个圈
+            for (Rect rect : rects) {
+                Imgproc.rectangle(image, new Point(rect.x, rect.y), new Point(rect.x + rect.width, rect.y + rect.height), new Scalar(0, 255, 0));
+                Imgproc.putText(image, &quot;Human&quot;, new Point(rect.x, rect.y), Imgproc.FONT_HERSHEY_SIMPLEX, 2.0, new Scalar(0, 255, 0), 1, Imgproc.LINE_AA, false);
+                //Mat dst=image.clone();
+                //Imgproc.resize(image, image, new Size(300,300));
+            }
+            return image;
+        }</code></pre>
+<center><video src="http://image.joylau.cn/blog/opencv-video-face.mp4" loop="true" controls="controls">您的浏览器版本太低，无法观看本视频</video></center>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么没有-Windows-下的编译安装"><span class="toc-number">1.</span> <span class="toc-text">为什么没有 Windows 下的编译安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条件"><span class="toc-number">2.</span> <span class="toc-text">条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#步骤"><span class="toc-number">3.</span> <span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译好的包"><span class="toc-number">4.</span> <span class="toc-text">编译好的包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac-OS-上"><span class="toc-number">5.</span> <span class="toc-text">Mac OS 上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到的问题"><span class="toc-number">6.</span> <span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDEA-及-Spring-Boot-项目中的使用"><span class="toc-number">7.</span> <span class="toc-text">IDEA 及 Spring Boot 项目中的使用</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

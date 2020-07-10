@@ -1,0 +1,762 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>真·Docker 自动部署个人博客 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+何为 真以前我都是服务器上执行定时任务,在凌晨的时候 pull 博客仓库在 hexo 编译, 在上传到 github 静态资源库, 在 pull 静态资源库到 nginx 目录下,这样实现个人博,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">真·Docker 自动部署个人博客</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.5569708365353749) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/Docker篇"><b>「
+                    </b>DOCKER篇<b> 」</b></a>
+                
+                三月 18, 2020
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2020/03/18/Docker-Auto-Publish-Blog/" title="真·Docker 自动部署个人博客" class="">真·Docker 自动部署个人博客</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    15k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    13 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<h3 id="何为-真"><a href="#何为-真" class="headerlink" title="何为 真"></a>何为 <code>真</code></h3><p>以前我都是服务器上执行定时任务,在凌晨的时候 pull 博客仓库在 hexo 编译, 在上传到 github 静态资源库, 在 pull 静态资源库到 nginx 目录下,这样实现个人博客的发布</p>
+<p>真: 放弃定时任务, 采用 github 的钩子, 在博客仓库有 push 行为时,立马执行上述操作, 以前直接在服务器上写的脚本来执行,这次决定将这些操作打包成一个 docker 镜像, 随时随地可部署</p>
+<p>避免了部署还需要配置定时任务和写一批脚本的问题.</p>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
+<li>以 Ubuntu 18.04 为基础镜像,进行镜像的制作</li>
+<li>docker run -it -name blog-auto-publish ubuntu:18.04 /bin/bash</li>
+<li>apt update</li>
+<li>apt install git</li>
+<li>apt install vim</li>
+<li>rm -rf /etc/apt/sources.list</li>
+<li>vim /etc/apt/sources.list</li>
+</ol>
+<pre><code class="shell">    deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+
+    deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+
+    deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+
+    deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+
+    deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+</code></pre>
+<ol start="8">
+<li>apt update</li>
+<li>apt install curl</li>
+<li>curl -sL <a href="https://deb.nodesource.com/setup_13.x" target="_blank" rel="noopener">https://deb.nodesource.com/setup_13.x</a> | bash </li>
+<li>apt-get install -y nodejs</li>
+<li>npm install hexo -g</li>
+<li>apt install nginx</li>
+<li>apt install fcgiwrap</li>
+</ol>
+<h3 id="新建目录"><a href="#新建目录" class="headerlink" title="新建目录"></a>新建目录</h3><p>mkdir /my-blog<br>mkdir -p /my-blog/bash<br>mkdir -p /my-blog/logs</p>
+<h3 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h3><p>git clone <a href="https://github.com/JoyLau/blog.git" target="_blank" rel="noopener">https://github.com/JoyLau/blog.git</a></p>
+<p>cd blog</p>
+<p>npm install</p>
+<h3 id="建立命令"><a href="#建立命令" class="headerlink" title="建立命令"></a>建立命令</h3><p>vim /my-blog/bash/init.sh</p>
+<p>vim init.sh</p>
+<pre><code class="bash">    #!/usr/bin/env bash
+    chown -R www-data:www-data /my-blog/* &amp;&amp; service fcgiwrap start &amp;&amp; service nginx start &amp;&amp; tail -f -n 500 /my-blog/logs/publish.log
+</code></pre>
+<p>vim /my-blog/bash/pull-deploy.sh</p>
+<pre><code class="bash">    #! /usr/bin/env bash
+    cd /my-blog/blog &amp;&amp; \
+    ## git checkout -- _config.yml &amp;&amp; \
+    git pull &amp;&amp; \
+    echo `pwd` &amp;&amp; \
+    ## update config
+    ## sed -i &quot;s/https:\/\/name:password@github.com\/JoyLau\/blog-public.git/https:\/\/$GITHUB_REPO_USERNAME:$GITHUB_REPO_PASSWORD@github.com\/$GITHUB_REPO_USERNAME\/$GITHUB_REPO_NAME.git/g&quot; _config.yml &amp;&amp; \
+    ## hexo clean &amp;&amp; \
+    hexo g
+    ## hexo d
+</code></pre>
+<p>vim /my-blog/bash/publish.sh</p>
+<pre><code class="bash">    #!/bin/bash
+    echo &quot;Content-Type:text/html&quot;
+    echo &quot;&quot;
+    echo &quot;ok&quot;
+    /my-blog/bash/pull-deploy.sh&gt;/my-blog/logs/publish.log
+</code></pre>
+<p>注意: 前 2 行是必须的.这样发出请求会有返回</p>
+<h3 id="配置-nginx"><a href="#配置-nginx" class="headerlink" title="配置 nginx"></a>配置 nginx</h3><p>vim /etc/nginx/sites-available/default </p>
+<pre><code class="nginx">    server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+        }
+
+    }
+
+    server {
+            listen 8080 default_server;
+            listen [::]:8080 default_server;
+
+            root /my-blog/bash;
+
+            server_name _;
+
+            location ~ ^/.*\.sh  {
+              gzip off;
+              fastcgi_pass  unix:/var/run/fcgiwrap.socket;
+              include fastcgi_params;
+              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            }
+    }
+
+</code></pre>
+<p>nginx -t 检查错误</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol>
+<li>fcgiwrap 不能以 root 组或者 root 用户运行, 这点在配置文件 /etc/init.d/fcgiwrap 可以配置,默认为 www-data, 因此 nginx 的用户也设置为 www-data,同时设置 /my-blog 目录下所属者为 www-data</li>
+</ol>
+<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><pre><code class="text">    FROM nas.joylau.cn:5007/joy/blog.joylau.cn:1.0
+
+    LABEL maintainer=&quot;blog.joylau.cn&quot;
+
+    ENV GITHUB_REPO_USERNAME &quot;&quot;
+    ENV GITHUB_REPO_PASSWORD &quot;&quot;
+    ENV GITHUB_REPO_NAME &quot;&quot;
+    ENV REPO_INFO &quot;&quot;
+
+    EXPOSE 80
+
+    EXPOSE 8080
+
+    CMD [&quot;sh&quot;, &quot;/my-blog/bash/init.sh&quot;]</code></pre>
+<p>打包镜像:<br>docker build -t nas.joylau.cn:5007/joy/blog.joylau.cn:1.0 .</p>
+<p>打包后镜像大小为: 294 MB</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>docker run -p 8081:80 -p 8082:8080 -d –name blog.joylau.cn nas.joylau.cn:5007/joy/blog.joylau.cn:1.0</p>
+<h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><ol>
+<li>80 端口提供的服务为 blog 页面</li>
+<li>8080 端口提供的服务为执行 shell 命令</li>
+<li>提供 webhook 为 <a href="http://host:port/publish.sh">http://host:port/publish.sh</a> ,通过请求这个请求来更新博客</li>
+<li>查看日志文件有 /my-blog/logs/publish.log 和 nginx 的日志文件 /var/log/nginx/error.log</li>
+</ol>
+<h3 id="后续优化备忘"><a href="#后续优化备忘" class="headerlink" title="后续优化备忘"></a>后续优化备忘</h3><ol>
+<li>删除原来的 /var/log/nginx/error.log 日志里的错误信息，现有的错误信息是是测试使用产生的</li>
+<li>在镜像里就执行一遍 chown -R www-data:www-data /my-blog/* , 否则的话容器刚启动的时候会很慢， 可以不执行 hexo g ,使用 hexo g –watch 实时监听文件变化，也不需要 nginx 了，直接使用 hexo-server ,开启 –debug 参数打印详细日志信息 </li>
+<li>考虑将 publish.sh 的最后一行命令不等待执行完就返回，现在的情况是部署到配置较低的机器上执行很慢，会导致请求超时，虽然不影响执行结果</li>
+<li>配置好容器内的时区，使得日志的时间戳更明显</li>
+</ol>
+<h3 id="优化更新记录-2020-04-01"><a href="#优化更新记录-2020-04-01" class="headerlink" title="优化更新记录 [2020-04-01]"></a>优化更新记录 [2020-04-01]</h3><ol>
+<li>设置时区:</li>
+</ol>
+<pre><code class="bash">    apt-get install tzdata
+    然后依次选择 6 , 70 即可
+
+    使用 dpkg-reconfigure tzdata 来重写选择</code></pre>
+<ol start="2">
+<li>清空 nginx 日志文件</li>
+</ol>
+<pre><code class="bash">    echo &quot;&quot; &gt; /var/log/nginx/error.log 
+    echo &quot;&quot; &gt; /var/log/nginx/access.log </code></pre>
+<ol start="3">
+<li>webhooks 不等待执行完就返回<br>vim /my-blog/bash/publish.sh</li>
+</ol>
+<pre><code class="bash">    #!/bin/bash
+    echo &quot;Content-Type:text/html&quot;
+    echo &quot;&quot;
+    echo &quot;ok&quot;
+    /my-blog/bash/pull-deploy.sh&gt;/my-blog/logs/publish.log 2&gt;&amp;1 &amp;</code></pre>
+<ol start="4">
+<li>实时监听文件变化<br>vim /my-bog/bash/init.sh</li>
+</ol>
+<pre><code class="bash">    #!/usr/bin/env bash
+    service fcgiwrap start
+    service nginx start
+    cd /my-blog/blog/ &amp;&amp; nohup hexo g --watch &gt;/my-blog/logs/hexo-generate.log 2&gt;&amp;1 &amp;
+    tail -f -n 500 /my-blog/logs/publish.log /my-blog/logs/hexo-generate.log /var/log/nginx/error.log /var/log/nginx/access.log </code></pre>
+<ol start="5">
+<li>不使用 dockerfile 来构建,直接使用 docker commit</li>
+</ol>
+<pre><code class="bash">    docker commit -c &#39;CMD [&quot;sh&quot;, &quot;/my-blog/bash/init.sh&quot;]&#39; -c &quot;EXPOSE 80&quot; -c &quot;EXPOSE 8080&quot; -a &quot;JoyLau&quot; -m &quot;JoyLau&#39;s Blog Docker Image&quot;  blog nas.joylau.cn:5007/joy/blog.joylau.cn:2.1</code></pre>
+<h3 id="优化更新记录-2020-04-02"><a href="#优化更新记录-2020-04-02" class="headerlink" title="优化更新记录 [2020-04-02]"></a>优化更新记录 [2020-04-02]</h3><p>更新脚本:</p>
+<ol>
+<li>init.sh</li>
+</ol>
+<pre><code class="bash">    #!/usr/bin/env bash
+    echo &quot;Hello! log file in /my-blog/logs/publish.log&quot;
+    service fcgiwrap start
+    service nginx start
+    su - www-data -c &quot;cd /my-blog/blog/ &amp;&amp; git pull&quot;
+    cd /my-blog/blog/
+    hexo g --watch | tee -a /my-blog/logs/publish.log
+</code></pre>
+<ol start="2">
+<li>publish.sh</li>
+</ol>
+<pre><code class="bash">    #!/bin/bash
+    echo &quot;Content-Type:text/html&quot;
+    echo &quot;&quot;
+    echo &quot;ok\r\n&quot;
+    /my-blog/bash/pull-deploy.sh | tee -a /my-blog/logs/publish.log</code></pre>
+<ol start="3">
+<li>pull-deploy.sh</li>
+</ol>
+<pre><code class="bash">    #! /usr/bin/env bash
+    echo &quot;Prepare to update Blog Posts.....&quot;
+    cd /my-blog/blog/
+    git pull
+</code></pre>
+<h3 id="优化更新记录-2020-04-07"><a href="#优化更新记录-2020-04-07" class="headerlink" title="优化更新记录 [2020-04-07]"></a>优化更新记录 [2020-04-07]</h3><p>新增 republish.sh</p>
+<pre><code class="bash">    #!/usr/bin/env bash
+    echo &quot;prepare republish......&quot;
+    cd /my-blog/blog/
+    hexo clean &amp;&amp; hexo g</code></pre>
+<p>修改 init.sh</p>
+<pre><code class="bash">    #!/usr/bin/env bash
+    echo &quot;Hello! log file in /my-blog/logs/publish.log&quot;
+    service fcgiwrap start
+    service nginx start
+    su - www-data -c &quot;cd /my-blog/blog/ &amp;&amp; git pull &amp;&amp; hexo g --watch | tee -a /my-blog/logs/publish.log&quot;</code></pre>
+<h3 id="使用-Dockerfile-构建-2020-04-21-更新"><a href="#使用-Dockerfile-构建-2020-04-21-更新" class="headerlink" title="使用 Dockerfile 构建 [2020-04-21 更新]"></a>使用 Dockerfile 构建 [2020-04-21 更新]</h3><p>在容器里各种操作是在是太黑箱了,日后极难维护,这里我编写 Dockerfile 来构建镜像</p>
+<h4 id="Dockerfile-1"><a href="#Dockerfile-1" class="headerlink" title="Dockerfile"></a>Dockerfile</h4><pre><code class="dockerfile">    FROM node:latest
+    MAINTAINER joylau 2587038142.liu@gmail.com
+    LABEL Descripttion=&quot;This image is JoyLau&#39;s Bolg&quot;
+    ENV GIT_REPO=&quot;https://github.com/JoyLau/blog.git&quot;
+    ENV BRANCH master
+    EXPOSE 80 8081
+    ADD sources.list /etc/apt/sources.list
+    RUN apt-get update &amp;&amp;\
+        apt-get install -y gosu nginx git fcgiwrap &amp;&amp;\
+        npm install hexo -g &amp;&amp;\
+        npm install -g cnpm --registry=https://registry.npm.taobao.org
+    COPY nginx.default.conf /etc/nginx/sites-available/default
+    RUN mkdir -p /my-blog/bash /my-blog/logs
+    COPY *.sh /my-blog/bash/
+    RUN chown -R www-data:www-data /my-blog &amp;&amp;\
+        chmod -R 777 /var/www &amp;&amp;\
+        chmod +x /my-blog/bash/*.sh
+    ENTRYPOINT [&quot;/my-blog/bash/docker-entrypoint.sh&quot;]
+    CMD [&quot;/my-blog/bash/init.sh&quot;]
+</code></pre>
+<h4 id="docker-entrypoint-sh"><a href="#docker-entrypoint-sh" class="headerlink" title="docker-entrypoint.sh"></a>docker-entrypoint.sh</h4><pre><code class="bash">    #!/bin/bash
+    set -e
+    if [ &quot;$1&quot; = &#39;/my-blog/bash/init.sh&#39; -a &quot;$(id -u)&quot; = &#39;0&#39; ]; then
+        service nginx start
+        service fcgiwrap start
+        echo &quot;☆☆☆☆☆ base service has started. ☆☆☆☆☆&quot;
+        exec gosu www-data &quot;$0&quot; &quot;$@&quot;
+    fi
+    exec &quot;$@&quot;</code></pre>
+<h4 id="init-sh"><a href="#init-sh" class="headerlink" title="init.sh"></a>init.sh</h4><pre><code class="bash">    #! /bin/bash
+    cd /my-blog
+    echo &quot;☆☆☆☆☆ your git repo is [$GIT_REPO] ; branch is [$BRANCH]. ☆☆☆☆☆&quot;
+    git clone -b $BRANCH --progress $GIT_REPO blog
+    cd blog
+    cnpm install -d
+    hexo g --watch --debug | tee -a /my-blog/logs/genrate.log</code></pre>
+<h4 id="nginx-default-conf"><a href="#nginx-default-conf" class="headerlink" title="nginx.default.conf"></a>nginx.default.conf</h4><pre><code class="config">    server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        root /my-blog/blog/public;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+        }
+
+    }
+
+    server {
+            listen 8081 default_server;
+            listen [::]:8080 default_server;
+
+            root /my-blog/bash;
+
+            server_name _;
+
+            location ~ ^/.*\.sh  {
+              gzip off;
+              fastcgi_pass  unix:/var/run/fcgiwrap.socket;
+              include fastcgi_params;
+              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            }
+    }</code></pre>
+<h4 id="publish-sh"><a href="#publish-sh" class="headerlink" title="publish.sh"></a>publish.sh</h4><pre><code class="bash">    #!/bin/bash
+    echo &quot;Content-Type:text/html&quot;
+    echo &quot;&quot;
+    echo &quot;&lt;h1&gt;ok&lt;/h1&gt;&quot;
+    echo &quot;&lt;h3&gt;Prepare to update Blog Posts.....&lt;/h3&gt;&quot;
+    cd /my-blog/blog/
+    git pull</code></pre>
+<h4 id="republish-sh"><a href="#republish-sh" class="headerlink" title="republish.sh"></a>republish.sh</h4><pre><code class="bash">    #!/bin/bash
+    echo &quot;Content-Type:text/html&quot;
+    echo &quot;&quot;
+    echo &quot;&lt;h1&gt;ok&lt;/h1&gt;&quot;
+    echo &quot;&lt;h3&gt;republish blog.....&lt;/h3&gt;&quot;
+    cd /my-blog/blog
+    hexo g --force</code></pre>
+<h4 id="sources-list"><a href="#sources-list" class="headerlink" title="sources.list"></a>sources.list</h4><pre><code class="text">    deb http://mirrors.163.com/debian/ stretch main non-free contrib
+    deb http://mirrors.163.com/debian/ stretch-updates main non-free contrib
+    deb http://mirrors.163.com/debian/ stretch-backports main non-free contrib
+    deb-src http://mirrors.163.com/debian/ stretch main non-free contrib
+    deb-src http://mirrors.163.com/debian/ stretch-updates main non-free contrib
+    deb-src http://mirrors.163.com/debian/ stretch-backports main non-free contrib
+    deb http://mirrors.163.com/debian-security/ stretch/updates main non-free contrib
+    deb-src http://mirrors.163.com/debian-security/ stretch/updates main non-free contrib
+</code></pre>
+<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><pre><code class="bash">    docker run -d --restart always --name blog -p 8001:80 -p 8002:8081 nas.joylau.cn:5007/joy/blog.joylau.cn:3.0</code></pre>
+<h3 id="加入代理-2020-04-28更新"><a href="#加入代理-2020-04-28更新" class="headerlink" title="加入代理 [2020-04-28更新]"></a>加入代理 [2020-04-28更新]</h3><p>遇到初始化容器很慢的情况, 原因是 git clone 很慢<br>本次在 init.sh 脚本里加入了 git 代理设置, 有代理的条件的可以设置代理<br>快速启动容器</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#何为-真"><span class="toc-number">1.</span> <span class="toc-text">何为 真</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境准备"><span class="toc-number">2.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建目录"><span class="toc-number">3.</span> <span class="toc-text">新建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#克隆仓库"><span class="toc-number">4.</span> <span class="toc-text">克隆仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建立命令"><span class="toc-number">5.</span> <span class="toc-text">建立命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置-nginx"><span class="toc-number">6.</span> <span class="toc-text">配置 nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-number">7.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile"><span class="toc-number">8.</span> <span class="toc-text">Dockerfile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">9.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#备注"><span class="toc-number">10.</span> <span class="toc-text">备注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后续优化备忘"><span class="toc-number">11.</span> <span class="toc-text">后续优化备忘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化更新记录-2020-04-01"><span class="toc-number">12.</span> <span class="toc-text">优化更新记录 [2020-04-01]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化更新记录-2020-04-02"><span class="toc-number">13.</span> <span class="toc-text">优化更新记录 [2020-04-02]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化更新记录-2020-04-07"><span class="toc-number">14.</span> <span class="toc-text">优化更新记录 [2020-04-07]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-Dockerfile-构建-2020-04-21-更新"><span class="toc-number">15.</span> <span class="toc-text">使用 Dockerfile 构建 [2020-04-21 更新]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加入代理-2020-04-28更新"><span class="toc-number">16.</span> <span class="toc-text">加入代理 [2020-04-28更新]</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

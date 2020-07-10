@@ -1,0 +1,833 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>重剑无锋,大巧不工 SpringBoot --- 使用 Elasticsearch 进行更复杂的查询 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+首先要说java 操作 elasticsearch 有四种方式
+
+调用 elasticsearch 的 restapis 接口
+调用 java elasticsearch client 的接口
+,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">重剑无锋,大巧不工 SpringBoot --- 使用 Elasticsearch 进行更复杂的查询</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.7195527599176941) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/SpringBoot篇"><b>「
+                    </b>SPRINGBOOT篇<b> 」</b></a>
+                
+                十一月 16, 2017
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2017/11/16/SpringBoot-Elasticsearch-Complex/" title="重剑无锋,大巧不工 SpringBoot --- 使用 Elasticsearch 进行更复杂的查询" class="">重剑无锋,大巧不工 SpringBoot --- 使用 Elasticsearch 进行更复杂的查询</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    31k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    28 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<h2 id="首先要说"><a href="#首先要说" class="headerlink" title="首先要说"></a>首先要说</h2><p>java 操作 elasticsearch 有四种方式</p>
+<ol>
+<li>调用 elasticsearch 的 restapis 接口</li>
+<li>调用 java elasticsearch client 的接口</li>
+<li>整合 spring data 使用 ElasticsearchTemplate 封装的方法</li>
+<li>继承 ElasticsearchRepository 接口调用方法</li>
+</ol>
+<h2 id="测试准备"><a href="#测试准备" class="headerlink" title="测试准备"></a>测试准备</h2><p>我们先来准备一些数据,写了一个之前的获取JoyMusic 的音乐数据的项目来说,项目的结构是这样的:<br><img src="http://image.joylau.cn/blog/elasticsearch-test-project.png" alt="elasticsearch-test-project"><br>获取数据的主要代码如下,只是为了增加数据</p>
+<pre><code class="java">    @RunWith(SpringJUnit4ClassRunner.class)
+    @SpringBootTest(classes = JoylauElasticsearchApplication.class,webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+    public class JoylauElasticsearchApplicationTests {
+        @Autowired
+        private RestTemplate restTemplate;
+
+        @Autowired
+        private PlaylistDAO playlistDAO;
+
+        @Autowired
+        private SongDAO songDAO;
+
+        @Autowired
+        private CommentDAO commentDAO;
+        @Test
+        public void createData() {
+            String personalizeds = restTemplate.getForObject(&quot;http://localhost:3003/apis/v1&quot;+&quot;/personalized&quot;,String.class);
+            JSONObject perJSON = JSONObject.parseObject(personalizeds);
+            JSONArray perArr = perJSON.getJSONArray(&quot;result&quot;);
+            List&lt;Playlist&gt; list = new ArrayList&lt;&gt;();
+            List&lt;Integer&gt; playListIds = new ArrayList&lt;&gt;();
+            for (Object o : perArr) {
+                JSONObject playListJSON = JSONObject.parseObject(o.toString());
+                Playlist playlist = new Playlist();
+                playlist.setId(playListJSON.getIntValue(&quot;id&quot;));
+                playListIds.add(playlist.getId());
+                playlist.setName(playListJSON.getString(&quot;name&quot;));
+                playlist.setPicURL(playListJSON.getString(&quot;picUrl&quot;));
+                playlist.setPlayCount(playListJSON.getIntValue(&quot;playCount&quot;));
+                playlist.setBookCount(playListJSON.getIntValue(&quot;bookCount&quot;));
+                playlist.setTrackCount(playListJSON.getIntValue(&quot;trackCount&quot;));
+                list.add(playlist);
+            }
+            playlistDAO.saveAll(list);
+
+
+
+            /*存储歌曲*/
+            List&lt;Integer&gt; songIds = new ArrayList&lt;&gt;();
+            List&lt;Song&gt; songList = new ArrayList&lt;&gt;();
+            for (Integer playListId : playListIds) {
+                String res = restTemplate.getForObject(&quot;http://localhost:3003/apis/v1&quot;+&quot;/playlist/detail?id=&quot;+playListId,String.class);
+                JSONArray songJSONArr = JSONObject.parseObject(res).getJSONObject(&quot;playlist&quot;).getJSONArray(&quot;tracks&quot;);
+                for (Object o : songJSONArr) {
+                    JSONObject songJSON = JSONObject.parseObject(o.toString());
+                    Song song = new Song();
+                    song.setId(songJSON.getIntValue(&quot;id&quot;));
+                    songIds.add(song.getId());
+                    song.setName(songJSON.getString(&quot;name&quot;));
+                    song.setAuthor(getSongAuthor(songJSON.getJSONArray(&quot;ar&quot;)));
+                    song.setTime(songJSON.getLong(&quot;dt&quot;));
+                    song.setPlaylistId(playListId);
+                    song.setPicURL(songJSON.getJSONObject(&quot;al&quot;).getString(&quot;picUrl&quot;));
+                    song.setAlbum(songJSON.getJSONObject(&quot;al&quot;).getString(&quot;name&quot;));
+                    songList.add(song);
+                }
+            }
+            songDAO.saveAll(songList);
+
+
+
+            /*存储评论*/
+            List&lt;Comment&gt; commentList = new ArrayList&lt;&gt;();
+            for (Integer songId : songIds) {
+                String res = restTemplate.getForObject(&quot;http://localhost:3003/apis/v1&quot;+&quot;/comment/music?id=&quot;+songId+&quot;&amp;offset=&quot;+300,String.class);
+                JSONArray commentArr = JSONObject.parseObject(res).getJSONArray(&quot;comments&quot;);
+                for (Object o : commentArr) {
+                    JSONObject commentJSON = JSONObject.parseObject(o.toString());
+                    Comment comment = new Comment();
+                    comment.setId(commentJSON.getIntValue(&quot;commentId&quot;));
+                    comment.setSongId(songId);
+                    comment.setContent(commentJSON.getString(&quot;content&quot;));
+                    comment.setAuthor(commentJSON.getJSONObject(&quot;user&quot;).getString(&quot;nickname&quot;));
+                    comment.setPicUrl(commentJSON.getJSONObject(&quot;user&quot;).getString(&quot;avatarUrl&quot;));
+                    comment.setTime(commentJSON.getLong(&quot;time&quot;));
+                    comment.setSupport(commentJSON.getIntValue(&quot;likedCount&quot;));
+                    commentList.add(comment);
+                }
+
+            }
+
+            commentDAO.saveAll(commentList);
+        }
+
+        /**
+         * 获取歌曲作者名
+         * @param arr arr
+         * @return String
+         */
+        private String getSongAuthor(JSONArray arr){
+            StringBuilder author = new StringBuilder();
+            for (Object o : arr) {
+                JSONObject json = JSONObject.parseObject(o.toString());
+                author.append(json.getString(&quot;name&quot;));
+                if (arr.size() &gt; 1){
+                    author.append(&quot;,&quot;);
+                }
+            }
+            return author.toString();
+        }
+    }
+</code></pre>
+<p>跑了起来之后, elasticsearch 增加的数据如下:<br><img src="http://image.joylau.cn/blog/elasticsearch-test-guide.png" alt="elasticsearch-test-guide"><br><img src="http://image.joylau.cn/blog/elasticsearch-test-data.png" alt="elasticsearch-test-data"></p>
+<p>现在数据有了,接下来就是使用各种方法了</p>
+<h2 id="ElasticSearchTemplate-和-ElasticsearchRepository-的关系"><a href="#ElasticSearchTemplate-和-ElasticsearchRepository-的关系" class="headerlink" title="ElasticSearchTemplate 和 ElasticsearchRepository 的关系"></a>ElasticSearchTemplate 和 ElasticsearchRepository 的关系</h2><p>ElasticSearchTemplate 是 spring date 对 elasticsearch 客户端 Java API 的封装,而 ElasticsearchRepository,是ElasticSearchTemplate更深层次的封装,可以使用注解,很类似以前 mybatis 的使用<br>ElasticSearchTemplate提供的方法更多,ElasticsearchRepository能用的方法其实全部都在而 ElasticSearchTemplate 都有实现<br>我们只要能熟悉调用的 ElasticSearchTemplate 里面的方法操作<br>ElasticsearchRepository都能够会操作</p>
+<h2 id="ElasticSearchTemplate"><a href="#ElasticSearchTemplate" class="headerlink" title="ElasticSearchTemplate"></a>ElasticSearchTemplate</h2><p>一些很底层的方法，我们最常用的就是elasticsearchTemplate.queryForList(searchQuery, class);<br>而这里面最主要的就是构建searchQuery，一下总结几个最常用的searchQuery以备忘<br>searchQuery能构建好,其他的就很简单了</p>
+<h3 id="queryStringQuery"><a href="#queryStringQuery" class="headerlink" title="queryStringQuery"></a>queryStringQuery</h3><p>单字符串全文查询</p>
+<pre><code class="java">    /**
+     * 单字符串模糊查询，默认排序。将从所有字段中查找包含传来的word分词后字符串的数据集
+     */
+    @Test
+    public void queryStringQuerySong(){
+        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(queryStringQuery(&quot;Time&quot;)).withPageable(of(0,100)).build();
+        System.out.println(searchQuery.getQuery().toString());
+        List&lt;Song&gt; songList = songDAO.search(searchQuery).getContent();
+        for (Song song : songList) {
+            System.out.println(JSONObject.toJSONString(song));
+        }
+    }</code></pre>
+<p>返回的结果如下</p>
+<pre><code class="text">    {
+      &quot;query_string&quot; : {
+        &quot;query&quot; : &quot;Time&quot;,
+        &quot;fields&quot; : [ ],
+        &quot;use_dis_max&quot; : true,
+        &quot;tie_breaker&quot; : 0.0,
+        &quot;default_operator&quot; : &quot;or&quot;,
+        &quot;auto_generate_phrase_queries&quot; : false,
+        &quot;max_determinized_states&quot; : 10000,
+        &quot;enable_position_increments&quot; : true,
+        &quot;fuzziness&quot; : &quot;AUTO&quot;,
+        &quot;fuzzy_prefix_length&quot; : 0,
+        &quot;fuzzy_max_expansions&quot; : 50,
+        &quot;phrase_slop&quot; : 0,
+        &quot;escape&quot; : false,
+        &quot;split_on_whitespace&quot; : true,
+        &quot;boost&quot; : 1.0
+      }
+    }
+    {&quot;album&quot;:&quot;Time&quot;,&quot;author&quot;:&quot;Cat naps&quot;,&quot;id&quot;:459733590,&quot;name&quot;:&quot;Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/9DmApLeDwutb4HpuhD_E-Q==/18624627464667106.jpg&quot;,&quot;playlistId&quot;:900228548,&quot;time&quot;:86465}
+    {&quot;album&quot;:&quot;Go Time&quot;,&quot;author&quot;:&quot;Mark Petrie&quot;,&quot;id&quot;:29717271,&quot;name&quot;:&quot;Go Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/TJe468hZr_0ndQRfTAKdqA==/3233663697760186.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:136071}
+    {&quot;album&quot;:&quot;Out of Time&quot;,&quot;author&quot;:&quot;R.E.M.&quot;,&quot;id&quot;:20282663,&quot;name&quot;:&quot;Losing My Religion&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/wYtpqN8Yu2jamQwdM6ugGg==/6638851209090428.jpg&quot;,&quot;playlistId&quot;:772430182,&quot;time&quot;:269270}
+    {&quot;album&quot;:&quot;Time Flies... 1994-2009&quot;,&quot;author&quot;:&quot;Oasis&quot;,&quot;id&quot;:17822660,&quot;name&quot;:&quot;Cigarettes &amp; Alcohol&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/qDgXElJRtSsuqNwsTzW8lw==/667403558069001.jpg&quot;,&quot;playlistId&quot;:772430182,&quot;time&quot;:291853}
+    {&quot;album&quot;:&quot;Electric Warrior&quot;,&quot;author&quot;:&quot;T. Rex&quot;,&quot;id&quot;:29848501,&quot;name&quot;:&quot;There Was A Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/dn1MwEBfBcL4l6isrnEwDw==/3246857839528733.jpg&quot;,&quot;playlistId&quot;:772430182,&quot;time&quot;:60577}
+    {&quot;album&quot;:&quot;Ride On Time&quot;,&quot;author&quot;:&quot;山下達郎&quot;,&quot;id&quot;:22693846,&quot;name&quot;:&quot;DAYDREAM&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/GaQVveQiyTIqecs7hhoYpA==/749866930165154.jpg&quot;,&quot;playlistId&quot;:900228548,&quot;time&quot;:273476}
+    {&quot;album&quot;:&quot;The Blossom Chronicles&quot;,&quot;author&quot;:&quot;Philter&quot;,&quot;id&quot;:21375446,&quot;name&quot;:&quot;Adventure Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/YjMS5_kM3u9PCUU0lcRK8g==/6657542907248762.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:207412}
+    {&quot;album&quot;:&quot;Decimus&quot;,&quot;author&quot;:&quot;Audio Machine&quot;,&quot;id&quot;:36586631,&quot;name&quot;:&quot;Ashes of Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/7InBepjNDGCzpzH8Feyw9A==/3395291908535260.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:190826}
+    {&quot;album&quot;:&quot;In Time: The Best Of R.E.M. 1988-2003&quot;,&quot;author&quot;:&quot;R.E.M.&quot;,&quot;id&quot;:20283068,&quot;name&quot;:&quot;Bad Day&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/aZXu5ulRJvH4dnoWPjxb3A==/18277181789089107.jpg&quot;,&quot;playlistId&quot;:772430182,&quot;time&quot;:248111}
+    {&quot;album&quot;:&quot;It&#39;s a Poppin&#39; Time&quot;,&quot;author&quot;:&quot;山下達郎&quot;,&quot;id&quot;:22693864,&quot;name&quot;:&quot;HEY THERE LONELY GIRL&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/PGZlyXk20_-5d6E3pDEKpg==/815837627833461.jpg&quot;,&quot;playlistId&quot;:900228548,&quot;time&quot;:325956}
+    {&quot;album&quot;:&quot;Shire Music Annual Selection - Myth&quot;,&quot;author&quot;:&quot;Shire Music,Songs To Your Eyes,&quot;,&quot;id&quot;:34916751,&quot;name&quot;:&quot;Between Space And Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/CCqLd2ly2XuuSPz0IW0u-g==/3284241233077333.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:222456}
+    {&quot;album&quot;:&quot;Double Live Doggie Style I&quot;,&quot;author&quot;:&quot;X-Ray Dog&quot;,&quot;id&quot;:26246058,&quot;name&quot;:&quot;Time Will Tell&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/oYEIMWnAvpuRDTk4g_l-lg==/2503587976473913.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:202133}
+    {&quot;album&quot;:&quot;The Ghost Of Tom Joad&quot;,&quot;author&quot;:&quot;Bruce Springsteen&quot;,&quot;id&quot;:16657852,&quot;name&quot;:&quot;Straight Time (Album Version)&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/yK0V-aD3Myh4xorvwUtCrw==/17889054184179160.jpg&quot;,&quot;playlistId&quot;:772430182,&quot;time&quot;:210651}
+    {&quot;album&quot;:&quot;Epic Action &amp; Adventure Vol. 6&quot;,&quot;author&quot;:&quot;Epic Score&quot;,&quot;id&quot;:4054121,&quot;name&quot;:&quot;Time Will Remember Us&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/uN8AYI3sQEgoECuSYmi9Eg==/658607465082090.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:165000}
+</code></pre>
+<p>我们修改一下排序方式，按照id从大到小排序</p>
+<pre><code class="java">    /** 
+     * 单字符串模糊查询，单字段排序。 
+     */  
+    @Test
+    public void queryStringQueryWeightSong(){
+        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(queryStringQuery(&quot;Time&quot;)).withPageable(of(0,100,new Sort(Sort.Direction.DESC,&quot;id&quot;))).build();
+        System.out.println(searchQuery.getQuery().toString());
+        List&lt;Song&gt; songList = songDAO.search(searchQuery).getContent();
+        for (Song song : songList) {
+            System.out.println(JSONObject.toJSONString(song));
+        }
+    }</code></pre>
+<p>也可以使用注解,这么写</p>
+<pre><code class="java">    public void queryStringQueryWeightSong(@PageableDefault(sort = &quot;id&quot;, direction = Sort.Direction.DESC) Pageable pageable){
+        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(queryStringQuery(&quot;Time&quot;)).withPageable(pageable).build();
+        System.out.println(searchQuery.getQuery().toString());
+        List&lt;Song&gt; songList = songDAO.search(searchQuery).getContent();
+        for (Song song : songList) {
+            System.out.println(JSONObject.toJSONString(song));
+        }
+    }</code></pre>
+<p>返回的结果</p>
+<pre><code class="text">    {
+      &quot;query_string&quot; : {
+        &quot;query&quot; : &quot;Time&quot;,
+        &quot;fields&quot; : [ ],
+        &quot;use_dis_max&quot; : true,
+        &quot;tie_breaker&quot; : 0.0,
+        &quot;default_operator&quot; : &quot;or&quot;,
+        &quot;auto_generate_phrase_queries&quot; : false,
+        &quot;max_determinized_states&quot; : 10000,
+        &quot;enable_position_increments&quot; : true,
+        &quot;fuzziness&quot; : &quot;AUTO&quot;,
+        &quot;fuzzy_prefix_length&quot; : 0,
+        &quot;fuzzy_max_expansions&quot; : 50,
+        &quot;phrase_slop&quot; : 0,
+        &quot;escape&quot; : false,
+        &quot;split_on_whitespace&quot; : true,
+        &quot;boost&quot; : 1.0
+      }
+    }
+    {&quot;album&quot;:&quot;Time&quot;,&quot;author&quot;:&quot;Cat naps&quot;,&quot;id&quot;:459733590,&quot;name&quot;:&quot;Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/9DmApLeDwutb4HpuhD_E-Q==/18624627464667106.jpg&quot;,&quot;playlistId&quot;:900228548,&quot;time&quot;:86465}
+    {&quot;album&quot;:&quot;Decimus&quot;,&quot;author&quot;:&quot;Audio Machine&quot;,&quot;id&quot;:36586631,&quot;name&quot;:&quot;Ashes of Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/7InBepjNDGCzpzH8Feyw9A==/3395291908535260.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:190826}
+    {&quot;album&quot;:&quot;Shire Music Annual Selection - Myth&quot;,&quot;author&quot;:&quot;Shire Music,Songs To Your Eyes,&quot;,&quot;id&quot;:34916751,&quot;name&quot;:&quot;Between Space And Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/CCqLd2ly2XuuSPz0IW0u-g==/3284241233077333.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:222456}
+    {&quot;album&quot;:&quot;Electric Warrior&quot;,&quot;author&quot;:&quot;T. Rex&quot;,&quot;id&quot;:29848501,&quot;name&quot;:&quot;There Was A Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/dn1MwEBfBcL4l6isrnEwDw==/3246857839528733.jpg&quot;,&quot;playlistId&quot;:772430182,&quot;time&quot;:60577}
+    {&quot;album&quot;:&quot;Go Time&quot;,&quot;author&quot;:&quot;Mark Petrie&quot;,&quot;id&quot;:29717271,&quot;name&quot;:&quot;Go Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/TJe468hZr_0ndQRfTAKdqA==/3233663697760186.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:136071}
+    {&quot;album&quot;:&quot;Double Live Doggie Style I&quot;,&quot;author&quot;:&quot;X-Ray Dog&quot;,&quot;id&quot;:26246058,&quot;name&quot;:&quot;Time Will Tell&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/oYEIMWnAvpuRDTk4g_l-lg==/2503587976473913.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:202133}
+    {&quot;album&quot;:&quot;It&#39;s a Poppin&#39; Time&quot;,&quot;author&quot;:&quot;山下達郎&quot;,&quot;id&quot;:22693864,&quot;name&quot;:&quot;HEY THERE LONELY GIRL&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/PGZlyXk20_-5d6E3pDEKpg==/815837627833461.jpg&quot;,&quot;playlistId&quot;:900228548,&quot;time&quot;:325956}
+    {&quot;album&quot;:&quot;Ride On Time&quot;,&quot;author&quot;:&quot;山下達郎&quot;,&quot;id&quot;:22693846,&quot;name&quot;:&quot;DAYDREAM&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/GaQVveQiyTIqecs7hhoYpA==/749866930165154.jpg&quot;,&quot;playlistId&quot;:900228548,&quot;time&quot;:273476}
+    {&quot;album&quot;:&quot;The Blossom Chronicles&quot;,&quot;author&quot;:&quot;Philter&quot;,&quot;id&quot;:21375446,&quot;name&quot;:&quot;Adventure Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/YjMS5_kM3u9PCUU0lcRK8g==/6657542907248762.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:207412}
+    {&quot;album&quot;:&quot;In Time: The Best Of R.E.M. 1988-2003&quot;,&quot;author&quot;:&quot;R.E.M.&quot;,&quot;id&quot;:20283068,&quot;name&quot;:&quot;Bad Day&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/aZXu5ulRJvH4dnoWPjxb3A==/18277181789089107.jpg&quot;,&quot;playlistId&quot;:772430182,&quot;time&quot;:248111}
+    {&quot;album&quot;:&quot;Out of Time&quot;,&quot;author&quot;:&quot;R.E.M.&quot;,&quot;id&quot;:20282663,&quot;name&quot;:&quot;Losing My Religion&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/wYtpqN8Yu2jamQwdM6ugGg==/6638851209090428.jpg&quot;,&quot;playlistId&quot;:772430182,&quot;time&quot;:269270}
+    {&quot;album&quot;:&quot;Time Flies... 1994-2009&quot;,&quot;author&quot;:&quot;Oasis&quot;,&quot;id&quot;:17822660,&quot;name&quot;:&quot;Cigarettes &amp; Alcohol&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/qDgXElJRtSsuqNwsTzW8lw==/667403558069001.jpg&quot;,&quot;playlistId&quot;:772430182,&quot;time&quot;:291853}
+    {&quot;album&quot;:&quot;The Ghost Of Tom Joad&quot;,&quot;author&quot;:&quot;Bruce Springsteen&quot;,&quot;id&quot;:16657852,&quot;name&quot;:&quot;Straight Time (Album Version)&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/yK0V-aD3Myh4xorvwUtCrw==/17889054184179160.jpg&quot;,&quot;playlistId&quot;:772430182,&quot;time&quot;:210651}
+    {&quot;album&quot;:&quot;Epic Action &amp; Adventure Vol. 6&quot;,&quot;author&quot;:&quot;Epic Score&quot;,&quot;id&quot;:4054121,&quot;name&quot;:&quot;Time Will Remember Us&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/uN8AYI3sQEgoECuSYmi9Eg==/658607465082090.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:165000}
+</code></pre>
+<h3 id="matchQuery"><a href="#matchQuery" class="headerlink" title="matchQuery"></a>matchQuery</h3><p>查询某个字段中模糊包含目标字符串，使用matchQuery</p>
+<pre><code class="java">    /** 
+     * 单字段对某字符串模糊查询 
+     */  
+    @Test
+    public void matchQuerySong(){
+        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchQuery(&quot;name&quot;,&quot;Time&quot;)).withPageable(of(0,100)).build();
+        System.out.println(searchQuery.getQuery().toString());
+        List&lt;Song&gt; songList = songDAO.search(searchQuery).getContent();
+        for (Song song : songList) {
+            System.out.println(JSONObject.toJSONString(song));
+        }
+    }</code></pre>
+<p>返回结果</p>
+<pre><code class="text">    {
+      &quot;match&quot; : {
+        &quot;name&quot; : {
+          &quot;query&quot; : &quot;Time&quot;,
+          &quot;operator&quot; : &quot;OR&quot;,
+          &quot;prefix_length&quot; : 0,
+          &quot;max_expansions&quot; : 50,
+          &quot;fuzzy_transpositions&quot; : true,
+          &quot;lenient&quot; : false,
+          &quot;zero_terms_query&quot; : &quot;NONE&quot;,
+          &quot;boost&quot; : 1.0
+        }
+      }
+    }
+    {&quot;album&quot;:&quot;Time&quot;,&quot;author&quot;:&quot;Cat naps&quot;,&quot;id&quot;:459733590,&quot;name&quot;:&quot;Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/9DmApLeDwutb4HpuhD_E-Q==/18624627464667106.jpg&quot;,&quot;playlistId&quot;:900228548,&quot;time&quot;:86465}
+    {&quot;album&quot;:&quot;Go Time&quot;,&quot;author&quot;:&quot;Mark Petrie&quot;,&quot;id&quot;:29717271,&quot;name&quot;:&quot;Go Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/TJe468hZr_0ndQRfTAKdqA==/3233663697760186.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:136071}
+    {&quot;album&quot;:&quot;The Blossom Chronicles&quot;,&quot;author&quot;:&quot;Philter&quot;,&quot;id&quot;:21375446,&quot;name&quot;:&quot;Adventure Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/YjMS5_kM3u9PCUU0lcRK8g==/6657542907248762.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:207412}
+    {&quot;album&quot;:&quot;Shire Music Annual Selection - Myth&quot;,&quot;author&quot;:&quot;Shire Music,Songs To Your Eyes,&quot;,&quot;id&quot;:34916751,&quot;name&quot;:&quot;Between Space And Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/CCqLd2ly2XuuSPz0IW0u-g==/3284241233077333.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:222456}
+    {&quot;album&quot;:&quot;Electric Warrior&quot;,&quot;author&quot;:&quot;T. Rex&quot;,&quot;id&quot;:29848501,&quot;name&quot;:&quot;There Was A Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/dn1MwEBfBcL4l6isrnEwDw==/3246857839528733.jpg&quot;,&quot;playlistId&quot;:772430182,&quot;time&quot;:60577}
+    {&quot;album&quot;:&quot;Double Live Doggie Style I&quot;,&quot;author&quot;:&quot;X-Ray Dog&quot;,&quot;id&quot;:26246058,&quot;name&quot;:&quot;Time Will Tell&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/oYEIMWnAvpuRDTk4g_l-lg==/2503587976473913.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:202133}
+    {&quot;album&quot;:&quot;Decimus&quot;,&quot;author&quot;:&quot;Audio Machine&quot;,&quot;id&quot;:36586631,&quot;name&quot;:&quot;Ashes of Time&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/7InBepjNDGCzpzH8Feyw9A==/3395291908535260.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:190826}
+    {&quot;album&quot;:&quot;The Ghost Of Tom Joad&quot;,&quot;author&quot;:&quot;Bruce Springsteen&quot;,&quot;id&quot;:16657852,&quot;name&quot;:&quot;Straight Time (Album Version)&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/yK0V-aD3Myh4xorvwUtCrw==/17889054184179160.jpg&quot;,&quot;playlistId&quot;:772430182,&quot;time&quot;:210651}
+    {&quot;album&quot;:&quot;Epic Action &amp; Adventure Vol. 6&quot;,&quot;author&quot;:&quot;Epic Score&quot;,&quot;id&quot;:4054121,&quot;name&quot;:&quot;Time Will Remember Us&quot;,&quot;picURL&quot;:&quot;http://p1.music.126.net/uN8AYI3sQEgoECuSYmi9Eg==/658607465082090.jpg&quot;,&quot;playlistId&quot;:636015704,&quot;time&quot;:165000}
+</code></pre>
+<h3 id="matchPhraseQuery"><a href="#matchPhraseQuery" class="headerlink" title="matchPhraseQuery"></a>matchPhraseQuery</h3><p>PhraseMatch查询，短语匹配</p>
+<pre><code class="java">    /** 
+     * 单字段对某短语进行匹配查询，短语分词的顺序会影响结果 
+     */  
+    @Test
+    public void phraseMatchSong(){
+        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchPhraseQuery(&quot;name&quot;,&quot;Time&quot;)).withPageable(of(0,100)).build();
+        System.out.println(searchQuery.getQuery().toString());
+        List&lt;Song&gt; songList = songDAO.search(searchQuery).getContent();
+        for (Song song : songList) {
+            System.out.println(JSONObject.toJSONString(song));
+        }
+    }</code></pre>
+<h3 id="termQuery"><a href="#termQuery" class="headerlink" title="termQuery"></a>termQuery</h3><p>这个是最严格的匹配，属于低级查询，不进行分词的，参考这篇文章 <a href="http://www.cnblogs.com/muniaofeiyu/p/5616316.html" target="_blank" rel="noopener">http://www.cnblogs.com/muniaofeiyu/p/5616316.html</a></p>
+<pre><code class="java">    /** 
+     * term匹配，即不分词匹配，你传来什么值就会拿你传的值去做完全匹配 
+     */  
+    @Test
+    public void termQuerySong(){
+        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery(&quot;name&quot;,&quot;Time&quot;)).withPageable(of(0,100)).build();
+        System.out.println(searchQuery.getQuery().toString());
+        List&lt;Song&gt; songList = songDAO.search(searchQuery).getContent();
+        for (Song song : songList) {
+            System.out.println(JSONObject.toJSONString(song));
+        }
+    }</code></pre>
+<h3 id="multiMatchQuery"><a href="#multiMatchQuery" class="headerlink" title="multiMatchQuery"></a>multiMatchQuery</h3><p>多个字段匹配某字符串,如果我们希望name，author两个字段去匹配某个字符串，只要任何一个字段包括该字符串即可，就可以使用multiMatchQuery。</p>
+<pre><code class="java">    /** 
+     * 多字段匹配 
+     */  
+    @Test
+    public void multiMatchQuerySong(){
+        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(multiMatchQuery(&quot;time&quot;,&quot;name&quot;,&quot;author&quot;)).withPageable(of(0,100)).build();
+        System.out.println(searchQuery.getQuery().toString());
+        List&lt;Song&gt; songList = songDAO.search(searchQuery).getContent();
+        for (Song song : songList) {
+            System.out.println(JSONObject.toJSONString(song));
+        }
+    }</code></pre>
+<h3 id="完全包含查询"><a href="#完全包含查询" class="headerlink" title="完全包含查询"></a>完全包含查询</h3><p>之前的查询中，当我们输入“我天”时，ES会把分词后所有包含“我”和“天”的都查询出来，如果我们希望必须是包含了两个字的才能被查询出来，那么我们就需要设置一下Operator。</p>
+<pre><code class="java">    /** 
+     * 单字段包含所有输入 
+     */  
+    @Test
+    public void matchQueryOperatorSong(){
+        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchQuery(&quot;name&quot;,&quot;真的&quot;).operator(Operator.AND)).withPageable(of(0,100)).build();
+        System.out.println(searchQuery.getQuery().toString());
+        List&lt;Song&gt; songList = songDAO.search(searchQuery).getContent();
+        for (Song song : songList) {
+            System.out.println(JSONObject.toJSONString(song));
+        }
+    }</code></pre>
+<p>无论是matchQuery，multiMatchQuery，queryStringQuery等，都可以设置operator。默认为Or，设置为And后，就会把符合包含所有输入的才查出来。<br>如果是and的话，譬如用户输入了5个词，但包含了4个，也是显示不出来的。我们可以通过设置精度来控制。</p>
+<pre><code class="java">    /** 
+     * 单字段包含所有输入(按比例包含) 
+     */  
+    @Test
+    public void matchQueryOperatorWithMinimumShouldMatchSong(){
+        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchQuery(&quot;name&quot;,&quot;time&quot;).operator(Operator.AND).minimumShouldMatch(&quot;80%&quot;)).withPageable(of(0,100)).build();
+        System.out.println(searchQuery.getQuery().toString());
+        List&lt;Song&gt; songList = songDAO.search(searchQuery).getContent();
+        for (Song song : songList) {
+            System.out.println(JSONObject.toJSONString(song));
+        }
+    }</code></pre>
+<p>minimumShouldMatch可以用在match查询中，设置最少匹配了多少百分比的能查询出来。</p>
+<h3 id="合并查询"><a href="#合并查询" class="headerlink" title="合并查询"></a>合并查询</h3><p>即boolQuery，可以设置多个条件的查询方式。它的作用是用来组合多个Query，有四种方式来组合，must，mustnot，filter，should。<br>must代表返回的文档必须满足must子句的条件，会参与计算分值；<br>filter代表返回的文档必须满足filter子句的条件，但不会参与计算分值；<br>should代表返回的文档可能满足should子句的条件，也可能不满足，有多个should时满足任何一个就可以，通过minimum_should_match设置至少满足几个。<br>mustnot代表必须不满足子句的条件。<br>譬如我想查询name包含“XXX”，且userId=“2345098”，且time最好小于165000的结果。那么就可以使用boolQuery来组合。</p>
+<pre><code class="java">    /** 
+     * 多字段合并查询 
+     */  
+    @Test
+    public void boolQuerySong(){
+        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(boolQuery().must(termQuery(&quot;userId&quot;, &quot;2345098&quot;))
+                .should(rangeQuery(&quot;time&quot;).lt(165000)).must(matchQuery(&quot;name&quot;, &quot;time&quot;))).build();
+        System.out.println(searchQuery.getQuery().toString());
+        List&lt;Song&gt; songList = songDAO.search(searchQuery).getContent();
+        for (Song song : songList) {
+            System.out.println(JSONObject.toJSONString(song));
+        }
+    }</code></pre>
+<p>详细点的看这篇 <a href="http://blog.csdn.net/dm_vincent/article/details/41743955" target="_blank" rel="noopener">http://blog.csdn.net/dm_vincent/article/details/41743955</a><br>boolQuery使用场景非常广泛，应该是主要学习的知识之一。</p>
+<h3 id="Query和Filter的区别"><a href="#Query和Filter的区别" class="headerlink" title="Query和Filter的区别"></a>Query和Filter的区别</h3><p>query和Filter都是QueryBuilder，也就是说在使用时，你把Filter的条件放到withQuery里也行，反过来也行。那么它们两个区别在哪？<br>查询在Query查询上下文和Filter过滤器上下文中，执行的操作是不一样的：</p>
+<p>1、查询：是在使用query进行查询时的执行环境，比如使用search的时候。<br>在查询上下文中，查询会回答这个问题——“这个文档是否匹配这个查询，它的相关度高么？”<br>ES中索引的数据都会存储一个_score分值，分值越高就代表越匹配。即使lucene使用倒排索引，对于某个搜索的分值计算还是需要一定的时间消耗。</p>
+<p>2、过滤器：在使用filter参数时候的执行环境，比如在bool查询中使用Must_not或者filter<br>在过滤器上下文中，查询会回答这个问题——“这个文档是否匹配？”<br>它不会去计算任何分值，也不会关心返回的排序问题，因此效率会高一点。<br>另外，经常使用过滤器，ES会自动的缓存过滤器的内容，这对于查询来说，会提高很多性能。</p>
+<h2 id="ElasticsearchRepository"><a href="#ElasticsearchRepository" class="headerlink" title="ElasticsearchRepository"></a>ElasticsearchRepository</h2><p>ElasticsearchRepository接口的方法有</p>
+<pre><code class="java">    @NoRepositoryBean
+    public interface ElasticsearchRepository&lt;T, ID extends Serializable&gt; extends ElasticsearchCrudRepository&lt;T, ID&gt; {
+        &lt;S extends T&gt; S index(S var1);
+
+        Iterable&lt;T&gt; search(QueryBuilder var1);
+
+        FacetedPage&lt;T&gt; search(QueryBuilder var1, Pageable var2);
+
+        FacetedPage&lt;T&gt; search(SearchQuery var1);
+
+        Page&lt;T&gt; searchSimilar(T var1, String[] var2, Pageable var3);
+    }</code></pre>
+<p>执行复杂查询最常用的就是 FacetedPage<T> search(SearchQuery var1); 这个方法了，需要的参数是 SearchQuery<br>主要是看QueryBuilder和SearchQuery两个参数，要完成一些特殊查询就主要看构建这两个参数。<br>我们先来看看它们之间的类关系<br><img src="http://img.blog.csdn.net/20170726163702583?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdGlhbnlhbGVpeGlhb3d1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<p>实际使用中，我们的主要任务就是构建NativeSearchQuery来完成一些复杂的查询的。</p>
+<pre><code class="java">    public NativeSearchQuery(QueryBuilder query, QueryBuilder filter, List&lt;SortBuilder&gt; sorts, Field[] highlightFields) {  
+            this.query = query;  
+            this.filter = filter;  
+            this.sorts = sorts;  
+            this.highlightFields = highlightFields;  
+        }  </code></pre>
+<p>我们可以看到要构建NativeSearchQuery，主要是需要几个构造参数</p>
+<p>当然了，我们没必要实现所有的参数。<br>可以看出来，大概是需要QueryBuilder，filter，和排序的SortBuilder，和高亮的字段。<br>一般情况下，我们不是直接是new NativeSearchQuery，而是使用NativeSearchQueryBuilder。<br>通过NativeSearchQueryBuilder.withQuery(QueryBuilder1).withFilter(QueryBuilder2).withSort(SortBuilder1).withXXXX().build();这样的方式来完成NativeSearchQuery的构建。<br>从名字就能看出来，QueryBuilder主要用来构建查询条件、过滤条件，SortBuilder主要是构建排序。</p>
+<p>很幸运的 ElasticsearchRepository 里的 SearchQuery 也就是上述描述的 temple 的 SearchQuery，2 者可以共用</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先要说"><span class="toc-number">1.</span> <span class="toc-text">首先要说</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试准备"><span class="toc-number">2.</span> <span class="toc-text">测试准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearchTemplate-和-ElasticsearchRepository-的关系"><span class="toc-number">3.</span> <span class="toc-text">ElasticSearchTemplate 和 ElasticsearchRepository 的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearchTemplate"><span class="toc-number">4.</span> <span class="toc-text">ElasticSearchTemplate</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#queryStringQuery"><span class="toc-number">4.1.</span> <span class="toc-text">queryStringQuery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#matchQuery"><span class="toc-number">4.2.</span> <span class="toc-text">matchQuery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#matchPhraseQuery"><span class="toc-number">4.3.</span> <span class="toc-text">matchPhraseQuery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#termQuery"><span class="toc-number">4.4.</span> <span class="toc-text">termQuery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#multiMatchQuery"><span class="toc-number">4.5.</span> <span class="toc-text">multiMatchQuery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#完全包含查询"><span class="toc-number">4.6.</span> <span class="toc-text">完全包含查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#合并查询"><span class="toc-number">4.7.</span> <span class="toc-text">合并查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Query和Filter的区别"><span class="toc-number">4.8.</span> <span class="toc-text">Query和Filter的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticsearchRepository"><span class="toc-number">5.</span> <span class="toc-text">ElasticsearchRepository</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Elasticsearch 集群安全控制 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+前言一般我们搭建起来的 es 集群都可以通过默认的 9200 端口来进行 API 访问,这在局域网上没有什么大问题，如果说搭建的环境在公网上，这将埋下巨大的隐患，因为任何人都可以操作 API 来,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">Elasticsearch 集群安全控制</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(//image.joylau.cn/blog/elasticsearch-secu.jpg?0.9846901824948113) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/大数据篇"><b>「
+                    </b>大数据篇<b> 」</b></a>
+                
+                五月 21, 2018
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2018/05/21/Elasticsearch-Security/" title="Elasticsearch 集群安全控制" class="">Elasticsearch 集群安全控制</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    5.4k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    5 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一般我们搭建起来的 es 集群都可以通过默认的 9200 端口来进行 API 访问,这在局域网上没有什么大问题，如果说搭建的环境在公网上，这将埋下巨大的隐患，因为任何人都可以操作 API 来进行增删改查，这是多么的恐怖！！</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ol>
+<li>集群环境： elasticsearch 5.3.0；centos 7.2</li>
+<li>集群公网环境</li>
+</ol>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>elasticsearch 集群搭建完成后，通过制定的端口都可以访问，但是实际情况中，我们并不想这样。我们可能想只有固定的ip地址才能访问，或者需要用户名、密码才能访问<br>对于如何控制 Elasticsearch 的安全性，我详细查了下资料，现有如下解决方式</p>
+<ol>
+<li><p>官方的 x-pack 插件，收费的，一下子就觉得用不了了，截止现在（2018年5月21日16:23:19），有最新消息，在 ElasticON 2018 的开幕主题演讲中，x-pack 负责人在博客宣布将开放 X-Pack的代码，但是现在为止只是第一阶段完成，<br> 最后在博客中宣布在6.3版本，其中免费的X-Pack功能将包含在Elastic Stack的默认发行版中，所以说现在没戏</p>
+</li>
+<li><p>官方推荐的shield插件，再5.x的版本后已经集成到 x-pack里了，版本不适合，不用</p>
+</li>
+<li><p>elasticsearch-http-basic 插件， 已经不支持 5.x的版本了，没法用</p>
+</li>
+<li><p>ReadonlyREST : 官网地址： <a href="https://readonlyrest.com/download/" target="_blank" rel="noopener">https://readonlyrest.com/download/</a> elasticsearch 版的插件，是免费的， kibana 的插件是收费的，此法可用</p>
+</li>
+<li><p>使用 nginx 的 http-basic，可用</p>
+</li>
+</ol>
+<h2 id="ReadonlyREST-插件的使用"><a href="#ReadonlyREST-插件的使用" class="headerlink" title="ReadonlyREST 插件的使用"></a>ReadonlyREST 插件的使用</h2><ol>
+<li>官网选择 elasticsearch 的版本，填写邮箱地址，收到邮件后下载插件文件<br> 注意：只能通过官网填写邮箱的方式来进行下载，注意看的话，下载的地址后面有校验参数</li>
+<li>运行 <code>bin/elasticsearch-plugin install file:///tmp/readonlyrest-1.16.19_es5.3.0.zip</code> 安装插件，注意是 file:// 再加上绝对路径<br> 卸载插件 <code>bin/elasticsearch-plugin remove readonlyrest</code></li>
+<li>配置文件 readonlyrest.yml,这个比较坑，插件生成好之后，居然不生成 readonlyrest.yml，还需要我们自己配置，还不知道需要配置什么东西，没办法，只能去 github 上查看文档，<br>文档地址： <a href="https://github.com/beshu-tech/readonlyrest-docs/blob/master/elasticsearch.md" target="_blank" rel="noopener">https://github.com/beshu-tech/readonlyrest-docs/blob/master/elasticsearch.md</a> </li>
+<li>文档说了很多，我找了半天才找到我需要的配置：</li>
+</ol>
+<pre><code class="yml">    readonlyrest:
+        prompt_for_basic_auth: true
+
+        access_control_rules:
+
+        - name: &quot;::ADMIN::&quot;
+          auth_key: admin:12333</code></pre>
+<p>此时启动 elasticsearch， 再次访问 localhost:9200 就会弹出输入用户名和密码的窗口，此时输入 admin/12333 即可看到接口信息，请求成功后，在日志里会看到 ALLOWED by { name: ‘::PERSONAL_GRP::’, p。。。 的日志信息。<br>想要屏蔽这样的日志信息，只需再 <code>auth_key</code> 下面加上配置 <code>verbosity: error</code> 即可。默认为 info</p>
+<p>这里吐槽一下，ReadonlyREST 插件的文档是真的难读，可能是国外人和我们的思维方式不一样吧。</p>
+<p>至此 ReadonlyREST 插件的使用就完毕了。</p>
+<h2 id="nginx-http-basic-的使用"><a href="#nginx-http-basic-的使用" class="headerlink" title="nginx  http-basic 的使用"></a>nginx  http-basic 的使用</h2><p>利用 nginx 的反向代理，分配一个二级域名来进行使用</p>
+<ol>
+<li>一个二级域名，比如xxxx.joylau.cn</li>
+<li>添加 nginx 的配置文件:/etc/nginx/conf.d/elasticsearch.conf, nginx 会默认读取 <code>/etc/nginx/conf.d/</code> 目录下的 *.conf的文件</li>
+</ol>
+<pre><code class="bash">    upstream JoyElasticSearch {
+            server localhost:port  weight=1;
+        }
+
+
+    server {
+        listen       80;
+        server_name  xxxxx.joylau.cn;
+
+        location / {
+            # 提示信息
+            auth_basic &quot;请输入账号密码&quot;;
+            # 密码文件，最好写绝对路径
+            auth_basic_user_file /etc/nginx/conf.d/es-password;
+            autoindex on;
+            proxy_pass  http://JoyElasticSearch;
+        }
+    }
+</code></pre>
+<p>在这里访问 xxxxx.joylau.cn 会被定向到 elasticsearch 的http端口<br><code>auth_basic_user_file</code> ：指的是密码文件，注意这里写绝对路径，防止出错</p>
+<ol start="3">
+<li>用户名，密码文件 es-password</li>
+</ol>
+<pre><code class="bash">    # root:123
+    root:Hx53TyjMWNmLo</code></pre>
+<p>这里假设 用户名是root，密码是123（实际上不是123），该加密方式为 httpd 加密，怎么获取明文加密后的密文，这个在网上有很多的在线工具可以直接使用，这里不再赘述</p>
+<ol start="4">
+<li>保存并重新加载配置</li>
+</ol>
+<pre><code class="bash">    nginx -s reload</code></pre>
+<p>访问 xxxxx.joylau.cn 就会提示输入用户名密码，输入正确即可。</p>
+<p>至此，nginx  http-basic 就结束了</p>
+<p>但是还有一个问题，就是直接访问 host + elasticsearch的端口也是可以访问的，解决这个问题，需要使用 iptables 来进行端口的限制访问。</p>
+<h2 id="iptables-限制端口的访问"><a href="#iptables-限制端口的访问" class="headerlink" title="iptables 限制端口的访问"></a>iptables 限制端口的访问</h2><ol>
+<li><p>禁用防火墙 <code>systemctl stop firewalld</code></p>
+</li>
+<li><p>禁用firewalld服务  <code>systemctl mask firewalld</code></p>
+</li>
+<li><p>安装iptables  <code>yum install -y iptables</code></p>
+</li>
+<li><p>开机自启 <code>systemctl enable iptables</code></p>
+</li>
+<li><p>启动 iptables <code>systemctl start iptables</code></p>
+</li>
+<li><p>查看现在的所有规则 <code>iptables -L -n</code></p>
+</li>
+<li><p>清空所有默认规则  <code>iptables -F</code></p>
+</li>
+<li><p>清空所有自定义规则  <code>iptables -X</code></p>
+</li>
+<li><p>添加限制规则 <code>iptables -A INPUT -p tcp --dport 9200 ! -s 127.0.0.1 -j DROP</code><br> 这句规则的意思是，除了本机，其他的地址都不允许 访问 9200 端口</p>
+</li>
+<li><p>保存：<code>service iptables save</code></p>
+</li>
+</ol>
+<p>注： 后续想要删除这条规则的话<br>       直接修改 iptables.conf 文件后 <code>service iptables save</code><br>       或者 <code>iptables -L INPUT --line-numbers</code> 查看所有规则<br>       iptables -D INPUT 1 （注意，这个1是行号，num下面的数字）<br>       保存：<code>service iptables save</code></p>
+<p>这样的话，其他机器就不能访问 elasticsearch 的http 服务的端口了，这能通过 配置好的二级域名来访问</p>
+<p>至此配置结束</p>
+<h2 id="集群环境下的配置"><a href="#集群环境下的配置" class="headerlink" title="集群环境下的配置"></a>集群环境下的配置</h2><p>在多个 elasticsearch 集群环境下，可配置一台机器作为负载均衡的机器，配置</p>
+<pre><code class="yml">    node.master: false
+    node.data: false</code></pre>
+<p>即可，其他机器的配置 <code>http.enabled: false</code> ，即对外不提供 http 服务<br>访问的时候只需访问那台负载均衡的节点。</p>
+<p>至此，文章结束。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">3.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReadonlyREST-插件的使用"><span class="toc-number">4.</span> <span class="toc-text">ReadonlyREST 插件的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx-http-basic-的使用"><span class="toc-number">5.</span> <span class="toc-text">nginx  http-basic 的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iptables-限制端口的访问"><span class="toc-number">6.</span> <span class="toc-text">iptables 限制端口的访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集群环境下的配置"><span class="toc-number">7.</span> <span class="toc-text">集群环境下的配置</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

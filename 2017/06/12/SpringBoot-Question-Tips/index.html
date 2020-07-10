@@ -1,0 +1,640 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+引用本地包并打包部署的问题背景
+在最近的开发中需要对接C++服务提供的ZeroC Ice接口，客户机环境安装了和服务环境相同的Ice，服务端的Ice比较老，是3.4.0的版本在maven的中央仓,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(//image.joylau.cn/blog/springboot-question-tips.png?0.14308128666690578) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/SpringBoot篇"><b>「
+                    </b>SPRINGBOOT篇<b> 」</b></a>
+                
+                六月 12, 2017
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2017/06/12/SpringBoot-Question-Tips/" title="重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决" class="">重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    8.4k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    8 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<h2 id="引用本地包并打包部署的问题"><a href="#引用本地包并打包部署的问题" class="headerlink" title="引用本地包并打包部署的问题"></a>引用本地包并打包部署的问题</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul>
+<li>在最近的开发中需要对接C++服务提供的<code>ZeroC Ice</code>接口，客户机环境安装了和服务环境相同的Ice，服务端的Ice比较老，是3.4.0的版本<br>在maven的中央仓库中没有找到<strong>ice-3.4.0</strong>的jar包，只能引用安装路径下提供的jar了</li>
+</ul>
+<p>那么常用的写法是这样的：（包括但不限于SpringBoot）</p>
+<pre><code class="xml">        &lt;!--Ice--&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;Ice&lt;/groupId&gt;
+                &lt;artifactId&gt;Ice&lt;/artifactId&gt;
+                &lt;version&gt;3.4.0&lt;/version&gt;
+                &lt;scope&gt;system&lt;/scope&gt;
+                &lt;systemPath&gt;${basedir}/src/lib/Ice.jar&lt;/systemPath&gt;
+            &lt;/dependency&gt;</code></pre>
+<p>我是在src下新建的lib目录，在开发编译的是没有问题的。</p>
+<p>在进行打包的时候发现Ice.jar没有被打进去</p>
+<p>相对于这个应用来说，打成jar包是最合适的做法了</p>
+<blockquote>
+<blockquote>
+<p>这里说一下，用package打包，不要用SpringBoot插件的jar打包</p>
+</blockquote>
+</blockquote>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>在<em>build</em>里加上这一段：</p>
+<pre><code class="xml">    &lt;build&gt;
+                ..............
+            &lt;resources&gt;
+                &lt;resource&gt;
+                    &lt;directory&gt;src/lib&lt;/directory&gt;
+                    &lt;targetPath&gt;BOOT-INF/lib/&lt;/targetPath&gt;
+                    &lt;includes&gt;
+                        &lt;include&gt;**/*.jar&lt;/include&gt;
+                    &lt;/includes&gt;
+                &lt;/resource&gt;
+                &lt;resource&gt;
+                    &lt;directory&gt;src/main/resources&lt;/directory&gt;
+                    &lt;targetPath&gt;BOOT-INF/classes/&lt;/targetPath&gt;
+                &lt;/resource&gt;
+            &lt;/resources&gt;
+        &lt;/build&gt;</code></pre>
+<p>之后，再打包，再解压一看，果然是打进去了，完美~</p>
+<p>然后，遇到了新问题……..</p>
+<h3 id="以jar运行时没有主清单属性"><a href="#以jar运行时没有主清单属性" class="headerlink" title="以jar运行时没有主清单属性"></a>以jar运行时没有主清单属性</h3><p>之后便很愉快的使用 <code>java -jar  xxxxx.jar</code></p>
+<p>提示：没有主清单属性</p>
+<p>再解压一看，有Application.java类，但是jar包的大小明显不对，光SpringBoot父项目依赖的jar至少也有10+M了，这个大小明显不对</p>
+<p>在结合没有主属性的错误，知道了错误的原因在这：</p>
+<pre><code class="xml">        &lt;dependencyManagement&gt;
+            &lt;dependencies&gt;
+                &lt;dependency&gt;
+                    &lt;!-- Import dependency management from Spring Boot --&gt;
+                    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                    &lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;
+                    &lt;version&gt;1.5.2.RELEASE&lt;/version&gt;
+                    &lt;type&gt;pom&lt;/type&gt;
+                    &lt;scope&gt;import&lt;/scope&gt;
+                &lt;/dependency&gt;
+        &lt;dependencyManagement&gt;</code></pre>
+<p>我用的项目是多模块依赖</p>
+<p>解决的方式是：</p>
+<pre><code class="xml">        &lt;build&gt;
+            &lt;plugins&gt;
+                &lt;plugin&gt;
+                    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+                    &lt;version&gt;${spring-boot-dependencies.version}&lt;/version&gt;
+                    &lt;executions&gt;
+                        &lt;execution&gt;
+                            &lt;goals&gt;
+                                &lt;goal&gt;repackage&lt;/goal&gt;
+                            &lt;/goals&gt;
+                        &lt;/execution&gt;
+                    &lt;/executions&gt;
+                &lt;/plugin&gt;
+        &lt;/build&gt;</code></pre>
+<p>正如我文章截图的那样，解决问题！</p>
+<h3 id="父项目依赖-打包成jar"><a href="#父项目依赖-打包成jar" class="headerlink" title="父项目依赖,打包成jar"></a>父项目依赖,打包成jar</h3><p>同时加入以下代码</p>
+<pre><code class="xml">    &lt;build&gt;
+            &lt;plugins&gt;
+                &lt;plugin&gt;
+                    &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                    &lt;configuration&gt;
+                        &lt;source&gt;1.8&lt;/source&gt;
+                        &lt;target&gt;1.8&lt;/target&gt;
+                    &lt;/configuration&gt;
+                &lt;/plugin&gt;
+                &lt;plugin&gt;
+                    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+                    &lt;version&gt;${spring-boot.version}&lt;/version&gt;
+                    &lt;executions&gt;
+                        &lt;execution&gt;
+                            &lt;goals&gt;
+                                &lt;goal&gt;repackage&lt;/goal&gt;
+                            &lt;/goals&gt;
+                        &lt;/execution&gt;
+                    &lt;/executions&gt;
+                &lt;/plugin&gt;
+            &lt;/plugins&gt;
+        &lt;/build&gt;</code></pre>
+<h2 id="2017年9月19日更新"><a href="#2017年9月19日更新" class="headerlink" title="2017年9月19日更新"></a>2017年9月19日更新</h2><h3 id="SpringBoot-项目打包时修改-MANIFEST-MF-文件"><a href="#SpringBoot-项目打包时修改-MANIFEST-MF-文件" class="headerlink" title="SpringBoot 项目打包时修改 MANIFEST.MF 文件"></a>SpringBoot 项目打包时修改 MANIFEST.MF 文件</h3><p>一般情况下我们的 MANIFEST.MF内容如下：</p>
+<pre><code class="bash">    Manifest-Version: 1.0
+    Implementation-Title: joylau-media
+    Implementation-Version: 1.7-RELEASE
+    Archiver-Version: Plexus Archiver
+    Built-By: JoyLau
+    Implementation-Vendor-Id: cn.joylau.code
+    Spring-Boot-Version: 1.5.4.RELEASE
+    Implementation-Vendor: Pivotal Software, Inc.
+    Main-Class: org.springframework.boot.loader.JarLauncher
+    Start-Class: cn.joylau.code.JoylauMediaApplication
+    Spring-Boot-Classes: BOOT-INF/classes/
+    Spring-Boot-Lib: BOOT-INF/lib/
+    Created-By: Apache Maven 3.5.0
+    Build-Jdk: 1.8.0_45
+    Implementation-URL: http://projects.spring.io/spring-boot/joylau-media
+     /
+</code></pre>
+<p>解决：</p>
+<pre><code class="xml">    &lt;plugin&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        &lt;configuration&gt;
+            &lt;!--fork :  如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart --&gt;
+            &lt;fork&gt;true&lt;/fork&gt;
+        &lt;/configuration&gt;
+    &lt;/plugin&gt;
+
+    //修改版本号，一般为pom文件的版本
+    &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+        &lt;version&gt;3.0.2&lt;/version&gt;
+        &lt;configuration&gt;
+            &lt;archive&gt;
+                &lt;manifestEntries&gt;
+                    &lt;Manifest-Version&gt;${version}&lt;/Manifest-Version&gt;
+                &lt;/manifestEntries&gt;
+            &lt;/archive&gt;
+        &lt;/configuration&gt;
+    &lt;/plugin&gt;</code></pre>
+<h3 id="SpringBoot-项目中引入缓存"><a href="#SpringBoot-项目中引入缓存" class="headerlink" title="SpringBoot 项目中引入缓存"></a>SpringBoot 项目中引入缓存</h3><ul>
+<li>引入依赖</li>
+</ul>
+<pre><code class="xml">    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-cache&lt;/artifactId&gt;
+    &lt;/dependency&gt;</code></pre>
+<p>@EnableCaching 开启缓存</p>
+<p>@CacheConfig(cacheNames = “api_cache”) 配置一个缓存类的公共信息</p>
+<p>@Cacheable() 注解到方法上开启缓存</p>
+<p>@CachePut() 根据使用的条件来执行具体的方法</p>
+<p>@CacheEvict() 根据配置的参数删除缓存</p>
+<p>SpringBoot默认支持很多缓存，spring.cache.type就可以知道，默认的是实现的是SimpleCacheManage，这里我记一下怎么设置缓存的超时时间</p>
+<pre><code class="java">    @Configuration
+    @EnableCaching
+    @EnableScheduling
+    public class CachingConfig {
+        public static final String CACHENAME = &quot;api_cache&quot;;
+        @Bean
+        public CacheManager cacheManager() {
+            return new ConcurrentMapCacheManager(CACHENAME);
+        }
+        @CacheEvict(allEntries = true, value = {CACHENAME})
+        @Scheduled(fixedDelay = 120 * 1000 ,  initialDelay = 500)
+        public void reportCacheEvict() {
+            System.out.println(&quot;Flush Cache &quot; + dateFormat.format(new Date()));
+        }
+    }</code></pre>
+<p>这里巧妙的使用了 定时任务，再其加上注解CacheEvict来清除所有cache name 为 api——cache 的缓存，超时时间是120s</p>
+<h3 id="在说说我比较喜欢的使用方式"><a href="#在说说我比较喜欢的使用方式" class="headerlink" title="在说说我比较喜欢的使用方式"></a>在说说我比较喜欢的使用方式</h3><p>单独写了篇文章，戳下面：</p>
+<ul>
+<li><a href="/2017/09/19/SpringBoot-CaffeineCache/">重剑无锋,大巧不工 SpringBoot — 推荐使用CaffeineCache</a></li>
+</ul>
+<blockquote>
+<blockquote>
+<p>持续更新中…</p>
+</blockquote>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引用本地包并打包部署的问题"><span class="toc-number">1.</span> <span class="toc-text">引用本地包并打包部署的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决"><span class="toc-number">1.2.</span> <span class="toc-text">解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以jar运行时没有主清单属性"><span class="toc-number">1.3.</span> <span class="toc-text">以jar运行时没有主清单属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#父项目依赖-打包成jar"><span class="toc-number">1.4.</span> <span class="toc-text">父项目依赖,打包成jar</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2017年9月19日更新"><span class="toc-number">2.</span> <span class="toc-text">2017年9月19日更新</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot-项目打包时修改-MANIFEST-MF-文件"><span class="toc-number">2.1.</span> <span class="toc-text">SpringBoot 项目打包时修改 MANIFEST.MF 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot-项目中引入缓存"><span class="toc-number">2.2.</span> <span class="toc-text">SpringBoot 项目中引入缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在说说我比较喜欢的使用方式"><span class="toc-number">2.3.</span> <span class="toc-text">在说说我比较喜欢的使用方式</span></a></li></ol></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

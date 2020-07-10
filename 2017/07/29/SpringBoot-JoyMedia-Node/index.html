@@ -1,0 +1,721 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ） - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+前言在线地址
+JoyMusicNode.js 的学习
+入门是从这本书上开始的
+结合Node中文网的文档开始探索开发
+
+说明
+利用 Node 来解析网易云音乐,其实质就是 跨站请求伪造 (CSRF,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(//image.joylau.cn/blog/joylau-media-node.png?0.23299694657094938) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/SpringBoot篇"><b>「
+                    </b>SPRINGBOOT篇<b> 」</b></a>
+                
+                七月 29, 2017
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2017/07/29/SpringBoot-JoyMedia-Node/" title="重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）" class="">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    9.9k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    9 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="在线地址"><a href="#在线地址" class="headerlink" title="在线地址"></a>在线地址</h3><ul>
+<li><a href="//music.joylau.cn" target="_blank" rel="noopener">JoyMusic</a><h3 id="Node-js-的学习"><a href="#Node-js-的学习" class="headerlink" title="Node.js 的学习"></a>Node.js 的学习</h3></li>
+<li>入门是从这本书上开始的</li>
+<li>结合Node中文网的文档开始探索开发</li>
+</ul>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>利用 Node 来解析网易云音乐,其实质就是 跨站请求伪造 (CSRF),通过自己在本地代码中伪造网易云的请求头,来调用网易云的接口</li>
+</ul>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="以获取歌曲评论来分析"><a href="#以获取歌曲评论来分析" class="headerlink" title="以获取歌曲评论来分析"></a>以获取歌曲评论来分析</h3><ul>
+<li>我们打开其中一首音乐,抓包看一下</li>
+</ul>
+<p><img src="//image.joylau.cn/blog/joylau-media-node-1.png" alt="JoyMedia - Node"></p>
+<ul>
+<li>绝大部分的请求都是 POST 的</li>
+<li>我们找到其中关于评论的请求,如上图所示</li>
+<li>链接中间的部分是歌曲的 id 值</li>
+<li>在返回的 JSON 数据中包含了热评和最新评论</li>
+<li>评论过多的话是分页来展示的</li>
+<li>通过参数 limit 来显示评论数量, offset 来控制分页</li>
+</ul>
+<p><img src="//image.joylau.cn/blog/joylau-media-node-2.png" alt="JoyMedia - Node"></p>
+<ul>
+<li>再来看,这是我本地浏览器中的 cookies 值,现在为止知道有个 csrf 值用来加密</li>
+</ul>
+<p><img src="//image.joylau.cn/blog/joylau-media-node-3.png" alt="JoyMedia - Node"></p>
+<ul>
+<li>每个请求后面都会跟上csrf_token 值,其他的参数还有params 和 encSecKey</li>
+<li>这些值的加密算法无非是2种,一种是前台 js 加密生成的,另一种是将参数传往后台,由后台加密完再传回来</li>
+<li>想要测试一下很简单,将里面的值复制一下在 xhr 里找一下就知道了</li>
+<li>推测是是 js 加密的,加密的 js 简直不能看,如下图</li>
+</ul>
+<p><img src="//image.joylau.cn/blog/joylau-media-node-4.png" alt="JoyMedia - Node"></p>
+<ul>
+<li>看到很多请求后面都返回了 md5 那么 md5 加密是肯定有的</li>
+<li>其实仔细看加密的参数,很多都能靠猜出来</li>
+<li>本地需要创建一个私钥secKey，十六位，之后aes加密生成，在通过rsa吧secKey加密作为参数一起传回</li>
+<li>那么下面贴出加密代码</li>
+</ul>
+<pre><code class="javascript">    const modulus = &#39;00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7&#39;;
+    const nonce = &#39;0CoJUm6Qyw8W8jud&#39;;
+    const pubKey = &#39;010001&#39;;
+    function createSecretKey(size) {
+      const keys = &quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&quot;;
+      let key = &quot;&quot;;
+      for (let i = 0; i &lt; size; i++) {
+          let pos = Math.random() * keys.length;
+          pos = Math.floor(pos);
+          key = key + keys.charAt(pos)
+      }
+      return key
+    }
+
+    function aesEncrypt(text, secKey) {
+      const _text = text;
+      const lv = new Buffer(&#39;0102030405060708&#39;, &quot;binary&quot;);
+      const _secKey = new Buffer(secKey, &quot;binary&quot;);
+      const cipher = crypto.createCipheriv(&#39;AES-128-CBC&#39;, _secKey, lv);
+      let encrypted = cipher.update(_text, &#39;utf8&#39;, &#39;base64&#39;);
+      encrypted += cipher.final(&#39;base64&#39;);
+      return encrypted
+    }
+
+    function zfill(str, size) {
+        while (str.length &lt; size) str = &quot;0&quot; + str;
+        return str
+    }
+
+    function rsaEncrypt(text, pubKey, modulus) {
+      const _text = text.split(&#39;&#39;).reverse().join(&#39;&#39;);
+      const biText = bigInt(new Buffer(_text).toString(&#39;hex&#39;), 16),
+          biEx = bigInt(pubKey, 16),
+          biMod = bigInt(modulus, 16),
+          biRet = biText.modPow(biEx, biMod);
+      return zfill(biRet.toString(16), 256)
+    }
+
+    function Encrypt(obj) {
+      const text = JSON.stringify(obj);
+      const secKey = createSecretKey(16);
+      const encText = aesEncrypt(aesEncrypt(text, nonce), secKey);
+      const encSecKey = rsaEncrypt(secKey, pubKey, modulus);
+      return {
+        params: encText,
+        encSecKey: encSecKey
+      }
+    }</code></pre>
+<ul>
+<li>挺复杂的,很多我也是参考网络上其他人的加密方式</li>
+</ul>
+<h3 id="伪造网易云头部请求"><a href="#伪造网易云头部请求" class="headerlink" title="伪造网易云头部请求"></a>伪造网易云头部请求</h3><ul>
+<li>这一步就很简单了,主要需要注意的就是 referer 的地址一定要是网易云的地址</li>
+<li>其他的想 cookie 和 User-Agent 直接复制浏览器的即可</li>
+<li>那我们构造一个 POST 的请求</li>
+<li>需要都回到函数和错误返回回调函数</li>
+<li>贴下代码</li>
+</ul>
+<pre><code class="javascript">    const Encrypt = require(&#39;./crypto.js&#39;);
+    const http = require(&#39;http&#39;);
+    function createWebAPIRequest(host, path, method, data, cookie, callback, errorcallback) {
+        let music_req = &#39;&#39;;
+        const cryptoreq = Encrypt(data);
+        const http_client = http.request({
+            hostname: host,
+            method: method,
+            path: path,
+            headers: {
+                &#39;Accept&#39;: &#39;*/*&#39;,
+                &#39;Accept-Language&#39;: &#39;zh-CN,zh;q=0.8,gl;q=0.6,zh-TW;q=0.4&#39;,
+                &#39;Connection&#39;: &#39;keep-alive&#39;,
+                &#39;Content-Type&#39;: &#39;application/x-www-form-urlencoded&#39;,
+                &#39;Referer&#39;: &#39;http://music.163.com&#39;,
+                &#39;Host&#39;: &#39;music.163.com&#39;,
+                &#39;Cookie&#39;: cookie,
+                &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36&#39;,
+
+            },
+        }, function (res) {
+            res.on(&#39;error&#39;, function (err) {
+                errorcallback(err)
+            });
+            res.setEncoding(&#39;utf8&#39;);
+            if (res.statusCode !== 200) {
+                createWebAPIRequest(host, path, method, data, cookie, callback);
+
+            } else {
+                res.on(&#39;data&#39;, function (chunk) {
+                    music_req += chunk
+                });
+                res.on(&#39;end&#39;, function () {
+                    if (music_req === &#39;&#39;) {
+                        createWebAPIRequest(host, path, method, data, cookie, callback);
+                        return
+                    }
+                    if (res.headers[&#39;set-cookie&#39;]) {
+                        callback(music_req, res.headers[&#39;set-cookie&#39;])
+                    } else {
+                        callback(music_req)
+                    }
+                })
+            }
+        });
+        http_client.write(&#39;params=&#39; + cryptoreq.params + &#39;&amp;encSecKey=&#39; + cryptoreq.encSecKey);
+        http_client.end()
+    }</code></pre>
+<ul>
+<li>那么再结合我们刚才分析的评论API, 发出该请求</li>
+</ul>
+<pre><code class="javascript">    const express = require(&quot;express&quot;);
+    const router = express();
+    const { createWebAPIRequest } = require(&quot;../common&quot;);
+
+    router.get(&quot;/&quot;, (req, res) =&gt; {
+        const rid=req.query.id;
+        const cookie = req.get(&#39;Cookie&#39;) ? req.get(&#39;Cookie&#39;) : &#39;&#39;;
+        const data = {
+            &quot;offset&quot;: req.query.offset || 0,
+            &quot;rid&quot;: rid,
+            &quot;limit&quot;: req.query.limit || 20,
+            &quot;csrf_token&quot;: &quot;&quot;
+        };
+        createWebAPIRequest(
+            &#39;music.163.com&#39;,
+            `/weapi/v1/resource/comments/R_SO_4_${rid}/?csrf_token=`,
+            &#39;POST&#39;,
+            data,
+            cookie,
+            music_req =&gt; {
+                res.send(music_req)
+            },
+            err =&gt; res.status(502).send(&#39;fetch error&#39;)
+        )
+    });
+
+    module.exports = router;</code></pre>
+<ul>
+<li>值得注意的是,这里我的 node 模板选择的 EJS 所使用的 js 语法格式也比较新,你需要将你 WebStorm 的 js 编译器的版本提升到ECMAScript 6,否则的话会报错,如下图所示:<br><img src="//image.joylau.cn/blog/joylau-media-node-5.png" alt="JoyMedia - Node"></li>
+</ul>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><ul>
+<li>我们写一个入口文件,可以直接运行期容器,以及提供 APIs</li>
+<li>那么,这个就跟简单了</li>
+</ul>
+<pre><code class="javascript">    const express = require(&#39;express&#39;);
+    const http = require(&#39;http&#39;);
+    const app = express();
+
+
+    const port = 3000;
+
+    const v = &#39;/apis/v1&#39;;
+
+    app.listen(port, () =&gt; {
+        console.log(`server starting ${port}`)
+    });
+
+    /*APIs 列表*/
+    app.use(express.static(&#39;public&#39;));
+
+
+    //推荐歌单
+    app.use(v + &quot;/personalized&quot;, require(&quot;./apis/personalized&quot;));
+
+    //歌单评论
+    app.use(v + &#39;/comment/playlist&#39;, require(&#39;./apis/comment_playlist&#39;));
+
+    //获取歌单内列表
+    app.use(v + &#39;/playlist/detail&#39;, require(&#39;./apis/playlist_detail&#39;));
+
+    //获取音乐详情
+    app.use(v + &#39;/song/detail&#39;, require(&#39;./apis/song_detail&#39;));
+
+    //单曲评论
+    app.use(v + &#39;/comment/music&#39;, require(&#39;./apis/comment_music&#39;));
+
+    //获取音乐 url
+    app.use(v + &#39;/music/url&#39;, require(&#39;./apis/musicUrl&#39;));
+
+    // 获取歌词
+    app.use(v + &#39;/lyric&#39;, require(&#39;./apis/lyric&#39;))
+
+
+    process.on(&#39;uncaughtException&#39;, function (err) {
+        //打印出错误的调用栈方便调试
+        console.log(err.stack);
+    });
+
+
+    module.exports = app;</code></pre>
+<ul>
+<li>引用 http 模块,开启 node 的默认3000 端口 </li>
+<li>目前提供了上述注释里所写的 APIs</li>
+<li>每一个 API 都会单独写一个模块,以在此调用</li>
+<li>有一个地方值得注意的事</li>
+<li>node 是单线程的异步 IO,这使得他在高并发方面得到很快相应速度,但是也有缺点</li>
+<li>当其中一个操作出错异常了,就会导致整个服务挂掉</li>
+<li>我在此的处理方式是:监听全局异常,捕到异常后将错误的堆栈信息打印出来,这样使得后续的操作不得进行以至于使整个服务挂掉</li>
+<li>当然,还有其他的方式来处理,可以通过引用相应的模块,来守护 node 的进程,简单的来说就是挂掉我就给你重启</li>
+<li>我觉得第二种方式不是我想要的,我是采取的第一种方式</li>
+<li>况且我还真想看看是什么错误引起的</li>
+<li>最后发现都是网络原因引起的错误 🤣🤣🤣🤣😂😂😂😂😂</li>
+</ul>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ul>
+<li>npm install</li>
+<li>node app.js</li>
+</ul>
+<h2 id="查看效果"><a href="#查看效果" class="headerlink" title="查看效果"></a>查看效果</h2><p><img src="//image.joylau.cn/blog/joylau-media-node-7.png" alt="JoyMedia - Node"></p>
+<p><img src="//image.joylau.cn/blog/joylau-media-node-6.png" alt="JoyMedia - Node"></p>
+<blockquote>
+<blockquote>
+<p>欢迎大家来听听试试看!😘 <a href="http://music.joylau.cn" target="_blank" rel="noopener">http://music.joylau.cn</a>  (当前版本 v1.3)</p>
+</blockquote>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在线地址"><span class="toc-number">1.1.</span> <span class="toc-text">在线地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-js-的学习"><span class="toc-number">1.2.</span> <span class="toc-text">Node.js 的学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">3.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#以获取歌曲评论来分析"><span class="toc-number">3.1.</span> <span class="toc-text">以获取歌曲评论来分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪造网易云头部请求"><span class="toc-number">3.2.</span> <span class="toc-text">伪造网易云头部请求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#封装"><span class="toc-number">4.</span> <span class="toc-text">封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行"><span class="toc-number">5.</span> <span class="toc-text">运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看效果"><span class="toc-number">6.</span> <span class="toc-text">查看效果</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

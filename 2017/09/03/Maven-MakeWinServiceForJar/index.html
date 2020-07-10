@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Maven --- 将 SpringBoot 项目做成Windows服务(Windows Service) - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+一款将 SpringBoot 项目做成Windows Service 的 Maven 插件
+
+包括但不限于 SpringBoot ,任何打成 java jar 包运行的 Maven 项目都可以使用,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">Maven --- 将 SpringBoot 项目做成Windows服务(Windows Service)</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.19344619133373886) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/Maven篇"><b>「
+                    </b>MAVEN篇<b> 」</b></a>
+                
+                九月 03, 2017
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2017/09/03/Maven-MakeWinServiceForJar/" title="Maven --- 将 SpringBoot 项目做成Windows服务(Windows Service)" class="">Maven --- 将 SpringBoot 项目做成Windows服务(Windows Service)</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    4.7k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    4 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+<h1 id="一款将-SpringBoot-项目做成Windows-Service-的-Maven-插件"><a href="#一款将-SpringBoot-项目做成Windows-Service-的-Maven-插件" class="headerlink" title="一款将 SpringBoot 项目做成Windows Service 的 Maven 插件"></a>一款将 SpringBoot 项目做成Windows Service 的 Maven 插件</h1><blockquote>
+<blockquote>
+<p>包括但不限于 SpringBoot ,任何打成 java jar 包运行的 Maven 项目都可以使用</p>
+</blockquote>
+</blockquote>
+<h2 id="编写初衷"><a href="#编写初衷" class="headerlink" title="编写初衷"></a>编写初衷</h2><ul>
+<li>公司有个项目</li>
+<li>Java 部分的全部使用的是SpringBoot</li>
+<li>该项目的部署环境是 Windows</li>
+<li>公司想把 各个 SpringBoot 的模块托管一下</li>
+<li>托管的使用方式要简单，易用，测试在打包部署的时候要很容易上手</li>
+<li>期间尝试过 Spring Boot Admin 和 Jenkins,都说不好用…</li>
+<li>于是就想着 将Spring Boot 的服务制作成 Windows 服务，这样基本上会操作电脑的人都会使用了，够简单易用的了吧</li>
+<li>花了一上午时间将其中一个 Spring Boot 模块制作成了 Windows Service</li>
+<li>发现再做其他的模块的时候，很多工作都是重复的，心想着能够将这个功能提取出来就好了</li>
+<li>于是就写了这个 Maven 插件</li>
+</ul>
+<h2 id="使用演示地址："><a href="#使用演示地址：" class="headerlink" title="使用演示地址："></a>使用演示地址：</h2><center><video src="http://image.joylau.cn/blog/joylau-springboot-daemon-service-video.mp4" loop="true" controls="controls">您的浏览器版本太低，无法观看本视频</video></center>
+
+
+<h2 id="怎么使用？"><a href="#怎么使用？" class="headerlink" title="怎么使用？"></a>怎么使用？</h2><ul>
+<li>使用方法很简单，和普通的 Maven 插件一样使用就可以了，如下<pre><code class="xml">  &lt;plugins&gt;
+      &lt;plugin&gt;
+          &lt;groupId&gt;cn.joylau.code&lt;/groupId&gt;
+          &lt;artifactId&gt;joylau-springboot-daemon-windows&lt;/artifactId&gt;
+          &lt;version&gt;1.0.RELEASE&lt;/version&gt;
+          &lt;executions&gt;
+              &lt;execution&gt;
+                  &lt;id&gt;make-win-service&lt;/id&gt;
+                  &lt;phase&gt;package&lt;/phase&gt;
+                  &lt;goals&gt;
+                      &lt;goal&gt;make-win-service&lt;/goal&gt;
+                  &lt;/goals&gt;
+              &lt;/execution&gt;
+          &lt;/executions&gt;
+      &lt;/plugin&gt;
+  &lt;/plugins&gt;</code></pre>
+</li>
+</ul>
+<p>注意：</p>
+<ol>
+<li>这里的 phase 写的是 package,意思是该插件在 mvn package 的时候调用,你也可以根据不同的需求来更改，比如 install, test等等</li>
+<li>goal 写 make-win-service 就可以了，不需要改动</li>
+<li>一般情况下我们的SpringBoot项目会有其他父项目，这时打包会使用 spring-boot-maven-plugin 插件的 repackage,这样的情况的话，请将该插件放置最后面,否则服务运行的话将提示没有主属性</li>
+</ol>
+<ul>
+<li>在你的项目中按照以上的方式引入插件后，现在可以 打包了<pre><code>  mvn package</code></pre></li>
+</ul>
+<p>打包过程中，看到如下日志信息，便制作成功了：<br><img src="http://image.joylau.cn/blog/joylau-springboot-daemon-windows-package-info.jpg" alt="joylau-springboot-daemon-windows-package-info"></p>
+<p>此时，在你项目的target目录下会生成一个 jar 包名字 一样的压缩包<br>进入文件夹，解压这个压缩包，你会看见如下内容的文件<br><img src="http://image.joylau.cn/blog/joylau-springboot-daemon-windows-package-file.jpg" alt="joylau-springboot-daemon-windows-package-file"><br>注意：</p>
+<ol>
+<li>5个 bat 文件，请右键以管理员的身份运行</li>
+<li>各文件的文件名无特殊情况，不需要修改</li>
+<li>一旦安装成了 Windows 服务，目录下的文件就不要移动了</li>
+<li>命令运行时，可能会提示安装.NET,安装完成就可运行命令了，不过现在大部分的 Windows 服务器或者个人电脑都会默认安装了.NET,没有的话启用一下就好了，如下图：<br><img src="http://image.joylau.cn/blog/joylau-springboot-daemon-windows-.net.jpg" alt="joylau-springboot-daemon-windows-.NET"></li>
+<li>运行各个命令是注意提示信息，例如卸载完服务都的状态为NonExistent，刚安装完服务后的状态为Stopped，服务成功启动的状态为Started…等等<br><img src="http://image.joylau.cn/blog/joylau-springboot-daemon-service-status.jpg" alt="joylau-springboot-daemon-windows-service-status"></li>
+</ol>
+<h2 id="扩展参数"><a href="#扩展参数" class="headerlink" title="扩展参数"></a>扩展参数</h2><p>想要在服务启动时添加自定义参数,如 SpringBoot 的配置参数或者 JMV 参数？<br>像如下配置即可：</p>
+<pre><code class="xml">    &lt;plugin&gt;
+        &lt;groupId&gt;cn.joylau.code&lt;/groupId&gt;
+        &lt;artifactId&gt;joylau-springboot-daemon-windows&lt;/artifactId&gt;
+        &lt;version&gt;1.0.RELEASE&lt;/version&gt;
+        &lt;executions&gt;
+            &lt;execution&gt;
+                &lt;id&gt;make-win-service&lt;/id&gt;
+                &lt;phase&gt;package&lt;/phase&gt;
+                &lt;goals&gt;
+                    &lt;goal&gt;make-win-service&lt;/goal&gt;
+                &lt;/goals&gt;
+            &lt;/execution&gt;
+        &lt;/executions&gt;
+        &lt;configuration&gt;
+            &lt;arguments&gt;
+                &lt;argument&gt;--server.port=9090&lt;/argument&gt;
+            &lt;/arguments&gt;
+        &lt;/configuration&gt;
+    &lt;/plugin&gt;</code></pre>
+<p>上面配置了一个 Spring Boot 应用的启动端口9090</p>
+<h2 id="使用注意"><a href="#使用注意" class="headerlink" title="使用注意"></a>使用注意</h2><ul>
+<li>打包使用过程中需要联网</li>
+<li>文档中有些图片可能看不到，再次刷新下页面就可以</li>
+<li>服务的id为artifactId，服务的名称为artifactId+version，服务的描述为description</li>
+</ul>
+<h2 id="GitHub-地址"><a href="#GitHub-地址" class="headerlink" title="GitHub 地址"></a>GitHub 地址</h2><p>源码已开源，地址 ： <a href="https://github.com/JoyLau/joylau-springboot-daemon-windows" target="_blank" rel="noopener">https://github.com/JoyLau/joylau-springboot-daemon-windows</a></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一款将-SpringBoot-项目做成Windows-Service-的-Maven-插件"><span class="toc-number">1.</span> <span class="toc-text">一款将 SpringBoot 项目做成Windows Service 的 Maven 插件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#编写初衷"><span class="toc-number">1.1.</span> <span class="toc-text">编写初衷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用演示地址："><span class="toc-number">1.2.</span> <span class="toc-text">使用演示地址：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么使用？"><span class="toc-number">1.3.</span> <span class="toc-text">怎么使用？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展参数"><span class="toc-number">1.4.</span> <span class="toc-text">扩展参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用注意"><span class="toc-number">1.5.</span> <span class="toc-text">使用注意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub-地址"><span class="toc-number">1.6.</span> <span class="toc-text">GitHub 地址</span></a></li></ol></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

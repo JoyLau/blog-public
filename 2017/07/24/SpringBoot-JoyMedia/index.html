@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 分析篇 ） - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+
+
+
+
+
+在线地址JoyMedia - Beta 预览版
+项目介绍实现目的
+本人经常在写代码或者没事的时候会听一些音乐
+以前大部分会选择本地安装客户端
+其中最喜欢的认为做的比较好的音乐客户端实属,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 分析篇 ）</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(//image.joylau.cn/blog/JoyMedia.gif?0.34124594458779334) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/SpringBoot篇"><b>「
+                    </b>SPRINGBOOT篇<b> 」</b></a>
+                
+                七月 24, 2017
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2017/07/24/SpringBoot-JoyMedia/" title="重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 分析篇 ）" class="">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 分析篇 ）</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    3.4k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    3 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<center>
+
+<p><img src="//image.joylau.cn/blog/JoyMedia.gif" alt="JoyMedia - Beta - 预览图"><br><img src="//image.joylau.cn/blog/JoyMedia.png" alt="JoyMedia - Beta - 系统结构"></p>
+</center>
+
+<h2 id="在线地址"><a href="#在线地址" class="headerlink" title="在线地址"></a>在线地址</h2><p><a href="http://media.joylau.cn" target="_blank" rel="noopener">JoyMedia - Beta 预览版</a></p>
+<h2 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h2><h3 id="实现目的"><a href="#实现目的" class="headerlink" title="实现目的"></a>实现目的</h3><ul>
+<li>本人经常在写代码或者没事的时候会听一些音乐</li>
+<li>以前大部分会选择本地安装客户端</li>
+<li>其中最喜欢的认为做的比较好的音乐客户端实属网易云音乐了</li>
+<li>无论是从 Mac 版的客户端,还是 IOS 版的客户端,界面都非常优美,简直是极客和码农的必备</li>
+<li>最主要是的网易云的歌曲推荐功能,很强大,我一度认为2个人的歌单相似度超过90%,就可以在一起了,这样再也不怕找不到对象了,😆</li>
+<li>但也有些问题,网易云有一些版权音乐,是无法听到的,有时候昨天还在听得音乐,今天就听不了了</li>
+<li>这就很烦了</li>
+</ul>
+<h3 id="自己的想法"><a href="#自己的想法" class="headerlink" title="自己的想法"></a>自己的想法</h3><ul>
+<li>最初想把这个版权音乐的 mp3 地址解析出来,这样就可以直接听了</li>
+<li>恩,想法很 nice</li>
+<li>那么,照着这个想法做吧</li>
+</ul>
+<h2 id="项目实现"><a href="#项目实现" class="headerlink" title="项目实现"></a>项目实现</h2><h3 id="总体架构"><a href="#总体架构" class="headerlink" title="总体架构"></a>总体架构</h3><ul>
+<li>正如上述系统结构所示</li>
+<li>我自己有2台云服务器,一台阿里云的,另一台是腾讯云的</li>
+<li>这2台服务器,我是这样分配的: 阿里云只提供 WEB 服务,腾讯云为 WEB 访问提供各种服务</li>
+<li>当然服务器上我还跑了其他服务</li>
+</ul>
+<h3 id="阿里云服务器"><a href="#阿里云服务器" class="headerlink" title="阿里云服务器"></a>阿里云服务器</h3><ul>
+<li>Nginx 主要负责了 JoyMedia 的 负载均衡,在该台服务器上,我用 部署了2个 spring-boot 项目,以权重的方式配置了负载均衡,这样我在更新项目的时候可以保证另一个服务的可用性</li>
+<li>当然 Nginx 还有个反向代理的作用, upstream 配置了其他项目的访问</li>
+<li>还有台 Redis 服务了,爬到的数据会存到 Redis 了,以供 WEB 服务迅速读取,当然在有些地方不会读取 Redis ,比如单曲歌曲播放的 mp3地址的获取</li>
+<li>在最开始的时候我会先在后台解析出来再存到 Redis 里,但是发现网易云的歌曲 mp3 地址失效太快了,有时会导致播放异常,不如实时解析来的实在</li>
+<li>在比如单首歌曲的评论的获取,这个得是实时解析的</li>
+</ul>
+<h3 id="腾讯云服务器"><a href="#腾讯云服务器" class="headerlink" title="腾讯云服务器"></a>腾讯云服务器</h3><ul>
+<li>提供网易云音乐解析的是一个 Node 服务，这个 Node 服务是如何解析地址的，这个需要单独再写一篇文章，先知道这个 Node 服务是干嘛的就好</li>
+<li>然后部署了3个spring-boot服务，分别提供了各自的服务，有定时爬去网易云音乐的推荐歌单，爬取歌单的歌曲列表，爬取歌单评论</li>
+<li>由于爬到的音乐信息很快就会失效，这个服务都要定时的爬取</li>
+<li>爬取到的数据的落地存储，我是存到的MongoDB中，在这篇文章中：<a href="http://blog.joylau.cn/2017/07/18/SpringBoot-MongoDB/">重剑无锋,大巧不工 SpringBoot — 整合使用MongoDB</a> , 我说明了为什么要选择 MongoDB</li>
+<li>这3个服务爬到的数据会实时存到 Redis 中,另一方面,会异步存到 MongoDB 中,我想着这些数据或许还能做什么数据分析之类的,😄</li>
+</ul>
+<h2 id="初版完成后"><a href="#初版完成后" class="headerlink" title="初版完成后"></a>初版完成后</h2><h3 id="等我搭建完这个服务后-发现了问题"><a href="#等我搭建完这个服务后-发现了问题" class="headerlink" title="等我搭建完这个服务后,发现了问题"></a>等我搭建完这个服务后,发现了问题</h3><ul>
+<li>有版权控制的音乐根本解析不到 mp3 的实际地址</li>
+<li>那么我想听的音乐,听不到还是听不到,突然变得很尴尬</li>
+</ul>
+<h3 id="又有了想法"><a href="#又有了想法" class="headerlink" title="又有了想法"></a>又有了想法</h3><ul>
+<li>一般情况下,我们在一家音乐网站上找不到自己想要的音乐,就回去其他音乐网站上找</li>
+<li>恩,就这么干</li>
+<li>网易云找不到的音乐,我就去虾米音乐,去 QQ 音乐找</li>
+<li>这2个网站的音乐我都小试了下,都是可以的</li>
+<li>于是我现在把这些功能集中在页面的搜索框中,搜索这3个音乐网站的结果,然后实施解析来播放</li>
+<li>这是我下步要做的事情</li>
+</ul>
+<h3 id="有些地方还有-BUG"><a href="#有些地方还有-BUG" class="headerlink" title="有些地方还有 BUG"></a>有些地方还有 BUG</h3><ul>
+<li>有些地方还是有 BUG 的,需要修复</li>
+</ul>
+<h3 id="有些地方功能还没写好"><a href="#有些地方功能还没写好" class="headerlink" title="有些地方功能还没写好"></a>有些地方功能还没写好</h3><ul>
+<li>比如右上角的用户登录,现在的想法是使用第三方登录,比如 QQ, 微信…,但是是登录网易云音乐呢,还是登录网站呢?</li>
+<li>要是登录网易云音乐的话,估计账号安全是个问题,而且登录接口不能频繁调用</li>
+<li>要是登录网站的,好像没什么卵用</li>
+<li>再比如左下角的歌词界面,虽然能获取到歌词,但是怎么做到歌词随着歌曲的播放实时滚动,这个现在还没有头绪…</li>
+</ul>
+<blockquote>
+<blockquote>
+<p>还在继续开发中…</p>
+</blockquote>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#在线地址"><span class="toc-number">1.</span> <span class="toc-text">在线地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目介绍"><span class="toc-number">2.</span> <span class="toc-text">项目介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现目的"><span class="toc-number">2.1.</span> <span class="toc-text">实现目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自己的想法"><span class="toc-number">2.2.</span> <span class="toc-text">自己的想法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目实现"><span class="toc-number">3.</span> <span class="toc-text">项目实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总体架构"><span class="toc-number">3.1.</span> <span class="toc-text">总体架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阿里云服务器"><span class="toc-number">3.2.</span> <span class="toc-text">阿里云服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#腾讯云服务器"><span class="toc-number">3.3.</span> <span class="toc-text">腾讯云服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初版完成后"><span class="toc-number">4.</span> <span class="toc-text">初版完成后</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#等我搭建完这个服务后-发现了问题"><span class="toc-number">4.1.</span> <span class="toc-text">等我搭建完这个服务后,发现了问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#又有了想法"><span class="toc-number">4.2.</span> <span class="toc-text">又有了想法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有些地方还有-BUG"><span class="toc-number">4.3.</span> <span class="toc-text">有些地方还有 BUG</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有些地方功能还没写好"><span class="toc-number">4.4.</span> <span class="toc-text">有些地方功能还没写好</span></a></li></ol></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

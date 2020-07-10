@@ -1,0 +1,653 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Electron --- 关于自动更新的一系列折腾 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+Electron 自动更新的方法
+使用 Electron 自己提供的 autoUpdater 模块
+使用更新服务器
+自己实现自动更新逻辑
+
+为什么说经过了一系列的折腾呢, 因为前 2 中方式都没有,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">Electron --- 关于自动更新的一系列折腾</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.05395443805502009) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/Electron篇"><b>「
+                    </b>ELECTRON篇<b> 」</b></a>
+                
+                九月 16, 2019
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2019/09/16/Electron-AutoUpdater/" title="Electron --- 关于自动更新的一系列折腾" class="">Electron --- 关于自动更新的一系列折腾</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    7.9k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    7 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+<h3 id="Electron-自动更新的方法"><a href="#Electron-自动更新的方法" class="headerlink" title="Electron 自动更新的方法"></a>Electron 自动更新的方法</h3><ol>
+<li>使用 Electron 自己提供的 autoUpdater 模块</li>
+<li>使用更新服务器</li>
+<li>自己实现自动更新逻辑</li>
+</ol>
+<p>为什么说经过了一系列的折腾呢, 因为前 2 中方式都没有解决我的问题,最后我是自己实现了自动更新的逻辑<br>没有解决我的问题是因为我需要兼顾到 mac 平台和 Windows 平台,然而 mac 平台比较麻烦,代码需要签名<br>我自己亲测方式一和方式二在 mac 平台上都需要代码签名, 而签名代码需要注册苹果开发者账号,需要付年费<br>于是这 2 条路就走不通了  </p>
+<p>最后我决定自己实现更新的逻辑</p>
+<h3 id="更新逻辑分析"><a href="#更新逻辑分析" class="headerlink" title="更新逻辑分析"></a>更新逻辑分析</h3><ol>
+<li>自动触发或手动触发软件更新检查</li>
+<li>服务器版本号大于本地版本才出现更新提示</li>
+<li>对于更新,无非就是卸载之前的版本,安装新下载的安装包</li>
+<li>软件的打包我选择的是 Electron Builder, 分别打成 dmg , setup.exe , app.zip</li>
+<li>更新的时候先从服务器下载新版本</li>
+<li>下载完成后对于安装包的安装分平台来说</li>
+</ol>
+<h3 id="Windows-下的更新"><a href="#Windows-下的更新" class="headerlink" title="Windows 下的更新"></a>Windows 下的更新</h3><ol>
+<li>Windows 下的安装包是 exe 可执行文件,安装包本身是有处理逻辑在里面的</li>
+<li>于是我们只需要将安装包下载到临时目录,然后再软件里打开它,再退出软件,剩下的安装步骤交给用户</li>
+<li>有一点需要注意的是,NSIS 的新安装包在安装前会自动卸载掉之前的版本,不过不会提示用户,我们可以在 nsis 脚本里加一个提示</li>
+</ol>
+<h3 id="MacOS-下的更新"><a href="#MacOS-下的更新" class="headerlink" title="MacOS 下的更新"></a>MacOS 下的更新</h3><ol>
+<li>相比于 Windows 下的安装包, macOS 下的 dmg 安装包就没有什么逻辑了,直接打开,然后将 app 文件拖到 Applications 目录中即可完成安装</li>
+<li>于是有 2 中方法可选</li>
+<li>一. 挂载 dmg, 找到挂载目录,在 mac 下是 /Volumes 目录下; 删除 /Applications 下的 app, 将 /Volumes 下的 app 拷贝到 /Applications 目录下; 再卸载 dmg; 重启应用即可,该方法可实现类似无缝更新的效果</li>
+<li>二. 和方法一一个道理,只不过不是挂载 dmg 来查找 app, 直接解压 app.zip 压缩文件即可得到 app ,在使用相同的方式覆盖即可.</li>
+</ol>
+<h3 id="软件的版本控制"><a href="#软件的版本控制" class="headerlink" title="软件的版本控制"></a>软件的版本控制</h3><p>可以采取一个 json 文件来记录个版本的更新记录, 这里给个参考:</p>
+<pre><code class="json">    [
+      {
+        &quot;version&quot;: &quot;1.1.0&quot;,
+        &quot;force&quot;: false,
+        &quot;time&quot;: &quot;2019-09-14&quot;,
+        &quot;download&quot;: {
+          &quot;winSetup&quot;: &quot;&quot;,
+          &quot;dmg&quot;: &quot;&quot;,
+          &quot;appZip&quot;: &quot;&quot;
+        },
+        &quot;description&quot;: [
+          &quot;1. 修复若干 BUG,稳定性提升&quot;
+        ]
+      },
+      {
+        &quot;version&quot;: &quot;1.0.0&quot;,
+        &quot;force&quot;: false,
+        &quot;time&quot;: &quot;2019-09-01&quot;,
+        &quot;download&quot;: {
+          &quot;winSetup&quot;: &quot;&quot;,
+          &quot;dmg&quot;: &quot;&quot;,
+          &quot;appZip&quot;: &quot;&quot;
+        },
+        &quot;description&quot;: [
+          &quot;1. 全新界面,主体功能完成&quot;
+        ]
+      }
+    ]</code></pre>
+<h3 id="代码参考"><a href="#代码参考" class="headerlink" title="代码参考"></a>代码参考</h3><pre><code class="js">    import $ from &#39;jquery&#39;;
+    import semver from &#39;semver&#39;;
+    import request from &#39;request&#39;;
+    import progress from &#39;request-progress&#39;;
+
+    //global.fs = require(&#39;fs&#39;);
+    //global.cp = require(&#39;child_process&#39;);
+    const fs = window.fs;
+    const cp = window.cp;
+    const electron = window.electron;
+    const {app, shell} = electron.remote;
+
+    state = {
+        check: true,
+        latest: {},
+        // wait,download,install,error
+        update: &#39;wait&#39;,
+        downloadState: {}
+    };
+
+    // 检查更新
+    $.ajax({
+        url: appConfig.updateCheckURL,
+        timeout: 10000,
+        type: &#39;GET&#39;,
+        cache:false,
+        success: function (data) {
+            let latest = data[0];
+            if(semver.satisfies(latest.version, &#39;&gt;&#39; + app.getVersion())){
+                if (latest.force) {
+                    that.updateVersion();
+                }
+            }
+        },
+        complete: function (XMLHttpRequest, status) {
+            that.setState({
+                check: false
+            })
+        }
+    });
+
+
+    updateVersion(){
+        let that = this;
+        const platform = osInfo.platform();
+        try {
+            const downloadUrl = platform === &#39;darwin&#39; ? this.state.latest.download.dmg : platform === &#39;win32&#39; ? this.state.latest.download.winSetup : &#39;&#39;;
+            if (downloadUrl === &#39;&#39;) return;
+
+            const downloadUrlArr = downloadUrl.split(&quot;/&quot;);
+
+            const filename = downloadUrlArr[downloadUrlArr.length-1];
+
+            const savePath = osInfo.tmpdir() + &#39;/&#39; + filename;
+
+            const _request = request(downloadUrl);
+            progress(_request, {
+                // throttle: 2000,                    // Throttle the progress event to 2000ms, defaults to 1000ms
+                // delay: 1000,                       // Only start to emit after 1000ms delay, defaults to 0ms
+                // lengthHeader: &#39;x-transfer-length&#39;  // Length header to use, defaults to content-length
+            })
+                .on(&#39;progress&#39;, function (state) {
+                    // The state is an object that looks like this:
+                    // {
+                    //     percent: 0.5,               // Overall percent (between 0 to 1)
+                    //     speed: 554732,              // The download speed in bytes/sec
+                    //     size: {
+                    //         total: 90044871,        // The total payload size in bytes
+                    //         transferred: 27610959   // The transferred payload size in bytes
+                    //     },
+                    //     time: {
+                    //         elapsed: 36.235,        // The total elapsed seconds since the start (3 decimals)
+                    //         remaining: 81.403       // The remaining seconds to finish (3 decimals)
+                    //     }
+                    // }
+                    that.setState({downloadState: state})
+                })
+                .on(&#39;error&#39;, function (err) {
+                    that.setState({
+                        downloadState:{
+                            error: true
+                        }
+                    })
+                })
+                .on(&#39;end&#39;, function () {
+                    if (that.state.update === &#39;error&#39;) return;
+                    that.setState({
+                        update: &#39;install&#39;,
+                    });
+
+                    setTimeout(function () {
+                        if (platform === &#39;darwin&#39;){
+                            const appName = pjson.build.productName;
+                            const appVersion = app.getVersion();
+                            console.info(appName,appVersion);
+                            // 挂载
+                            cp.execSync(`hdiutil attach &#39;${savePath}&#39; -nobrowse`, {
+                                stdio: [&#39;ignore&#39;, &#39;ignore&#39;, &#39;ignore&#39;]
+                            });
+
+                            // 覆盖原 app
+                            cp.execSync(`rm -rf &#39;/Applications/${appName}.app&#39; &amp;&amp; cp -R &#39;/Volumes/${appName} ${appVersion}/${appName}.app&#39; &#39;/Applications/${appName}.app&#39;`);
+
+                            // 卸载挂载的 dmg
+                            cp.execSync(`hdiutil eject &#39;/Volumes/${appName} ${appVersion}&#39;`, {
+                                stdio: [&#39;ignore&#39;, &#39;ignore&#39;, &#39;ignore&#39;]
+                            });
+
+                            // 重启
+                            app.relaunch();
+                            app.quit();
+                        }
+
+                        if (platform === &#39;win32&#39;) {
+                            shell.openItem(savePath);
+                            setTimeout(function () {
+                                app.quit();
+                            },1500)
+                        }
+                    },2000)
+                })
+                .pipe(fs.createWriteStream(savePath));
+
+            that.setState({update:&#39;download&#39;});
+        } catch (e) {
+            console.info(e);
+            that.setState({
+                update: &#39;error&#39;,
+            });
+        }
+    }</code></pre>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Electron-自动更新的方法"><span class="toc-number">1.</span> <span class="toc-text">Electron 自动更新的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新逻辑分析"><span class="toc-number">2.</span> <span class="toc-text">更新逻辑分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows-下的更新"><span class="toc-number">3.</span> <span class="toc-text">Windows 下的更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MacOS-下的更新"><span class="toc-number">4.</span> <span class="toc-text">MacOS 下的更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#软件的版本控制"><span class="toc-number">5.</span> <span class="toc-text">软件的版本控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码参考"><span class="toc-number">6.</span> <span class="toc-text">代码参考</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

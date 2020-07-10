@@ -1,0 +1,694 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JoyLau-MyBatis 使用说明 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+
+关于joylau-mybatis的说明
+该项目来源自  https://github.com/abel533/Mapper  详细信息和源代码可fork查看
+我封装之后项目地址  https:,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">JoyLau-MyBatis 使用说明</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.6926147668144067) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/MyBatis篇"><b>「
+                    </b>MYBATIS篇<b> 」</b></a>
+                
+                四月 06, 2017
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2017/04/06/MyBatis-Joylau-MyBatis/" title="JoyLau-MyBatis 使用说明" class="">JoyLau-MyBatis 使用说明</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    7.5k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    7 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+
+<h2 id="关于joylau-mybatis的说明"><a href="#关于joylau-mybatis的说明" class="headerlink" title="关于joylau-mybatis的说明"></a>关于joylau-mybatis的说明</h2><ul>
+<li>该项目来源自  <a href="https://github.com/abel533/Mapper" target="_blank" rel="noopener">https://github.com/abel533/Mapper</a>  详细信息和源代码可fork查看</li>
+<li>我封装之后项目地址  <a href="https://github.com/JoyLau/joylau-mybatis" target="_blank" rel="noopener">https://github.com/JoyLau/joylau-mybatis</a></li>
+<li>我自己整合通用Mapper，分页，以及排序功能，使用起来无缝结合，丝般顺滑</li>
+<li>我对其封装了所有的通用mapper，并整合本项目添加了自己的方法，详细请查看下文或者在线查看api文档： <a href="http://api.joylau.cn/" target="_blank" rel="noopener">http://api.joylau.cn/</a></li>
+<li>文档你主要需要查看function的类注释</li>
+<li>下面我来逐一介绍：</li>
+</ul>
+<h3 id="BaseController"><a href="#BaseController" class="headerlink" title="BaseController"></a>BaseController</h3><p>继承FunctionController，目前有2个抽象方法，getSession()和getContextPath()，一看就知道是干嘛的，不多说。想要扩展很简单，继续写自己的方法即可</p>
+<h3 id="BaseMapper"><a href="#BaseMapper" class="headerlink" title="BaseMapper"></a>BaseMapper</h3><ul>
+<li>集成了MySQL所使用的绝大部分通用Mapper，包括BaseMapper，ExampleMapper，RowBoundsMapper，MySqlMapper，IdsMapper…等等，详细可查看API文档，或者下载源码查看</li>
+<li>所有的单表及简单的多表操作都在这里面啦，基本上你是不需要扩展啦，好不好用，敲起mapper再点一下你就知道了</li>
+</ul>
+<h3 id="BaseService"><a href="#BaseService" class="headerlink" title="BaseService"></a>BaseService</h3><ul>
+<li>得益于Spring项目的强大支持，在Spring4.x后，支持泛型注入，这使得我们封装的更加简单了</li>
+<li>现在，不必再调用到Mapper层，现在在Service层就可以完美使用，封装了3个插入方法，4个更新方法，5个删除方法，13个查询方法</li>
+<li>内容涵盖了单条记录CRUD；根据ID或者属性或者条件CRUD；批量删除，插入；分页查询</li>
+<li>说下分页查询怎么使用：调用selectPage可以进行单表分页查询，调用selectPageByExample可以进行条件分页查询</li>
+</ul>
+<h3 id="BaseServiceImpl"><a href="#BaseServiceImpl" class="headerlink" title="BaseServiceImpl"></a>BaseServiceImpl</h3><ul>
+<li>继承的FunctionServiceImpl已经实现了上述所有的通用CURD方法</li>
+<li>在继承的FunctionServiceImpl类里我提供了获取mapper的方法，由此方法，可以进行很方便的扩展，你懂得~~</li>
+</ul>
+<h3 id="BaseModel"><a href="#BaseModel" class="headerlink" title="BaseModel"></a>BaseModel</h3><ul>
+<li>添加每个实体都会用到的id属性</li>
+<li>添加了createTime和updateTime属性，虽然在业务上可能没有什么用处，但是对于开发和运维的作用相当大，谁用谁知道</li>
+</ul>
+<h2 id="我的接口解释"><a href="#我的接口解释" class="headerlink" title="我的接口解释"></a>我的接口解释</h2><pre><code class="java">
+    /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 保存一个实体，null的属性也会保存，不会使用数据库默认值
+         */
+        int insert(T model);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 保存一个实体，null的属性不会保存，会使用数据库默认值
+         */
+        int insertSelective(T model);
+
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 批量插入，支持批量插入的数据库可以使用，另外该接口限制实体包含`id`属性并且必须为自增列
+         */
+        int insertList(List&lt;T&gt; list);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据主键更新实体全部字段，null值会被更新
+         */
+        int updateByPrimaryKey(T model);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据主键更新属性不为null的值
+         */
+        int updateByPrimaryKeySelective(T model);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据Example条件更新实体`model`包含的全部属性，null值会被更新
+         */
+        int updateByExample(T model, Object example);
+
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据Example条件更新实体`model`包含的不是null的属性值
+         */
+        int updateByExampleSelective(T model, Object example);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据实体属性作为条件进行删除，查询条件使用等号
+         */
+        int delete(T model);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据实体id删除
+         */
+        int deleteById(int id);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据Example条件删除数据
+         */
+        int deleteByExample(Object example);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据主键字符串进行删除，类中只有存在一个带有@Id注解的字段
+         *
+         * @param ids 如 &quot;1,2,3,4&quot;
+         */
+        int deleteByIds(String ids);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据主键字段进行删除，方法参数必须包含完整的主键属性
+         */
+        int deleteByPrimaryKey(Object key);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据实体中的属性值进行查询，查询条件使用等号
+         */
+        List&lt;T&gt; select(T model);
+
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据实体中的id查询实体
+         */
+        T selectById(int id);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 查询全部结果
+         */
+        List&lt;T&gt; selectAll();
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据Example条件进行查询
+         */
+        List&lt;T&gt; selectByExample(Object example);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据example条件和RowBounds进行分页查询
+         */
+        List&lt;T&gt; selectByExampleAndRowBounds(Object example, RowBounds rowBounds);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据主键字符串进行查询，类中只有存在一个带有@Id注解的字段
+         *
+         * @param ids 如 &quot;1,2,3,4&quot;
+         */
+        List&lt;T&gt; selectByIds(String ids);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据主键字段进行查询，方法参数必须包含完整的主键属性，查询条件使用等号
+         */
+        T selectByPrimaryKey(Object key);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据实体中的属性查询总数，查询条件使用等号
+         */
+        int selectCount(T model);
+
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据Example条件进行查询总数
+         */
+        int selectCountByExample(Object example);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据实体中的属性进行查询，只能有一个返回值，有多个结果是抛出异常，查询条件使用等号
+         */
+        T selectOne(T model);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据实体属性和RowBounds进行分页查询
+         */
+        List&lt;T&gt; selectByRowBounds(T model, RowBounds rowBounds);
+
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 单表分页查询
+         */
+        PageInfo selectPage(int pageNum, int pageSize, T model);
+
+        /**
+         * Created by JoyLau on 4/6/2017.
+         * 2587038142.liu@gmail.com
+         * 根据Example条件进行分页查询
+         */
+        PageInfo selectPageByExample(int pageNum, int pageSize, Object example);</code></pre>
+<h2 id="怎么使用？"><a href="#怎么使用？" class="headerlink" title="怎么使用？"></a>怎么使用？</h2><p>很简单</p>
+<ul>
+<li>你的Mapper继承BaseMapper</li>
+<li>你的Service继承BaseService</li>
+<li>你的ServiceImpl实现你的Service借口，再继承BaseServiceImpl</li>
+<li>你的Model继承BaseModel</li>
+</ul>
+<h2 id="来试一下"><a href="#来试一下" class="headerlink" title="来试一下"></a>来试一下</h2><ul>
+<li>在你的ServiceImpl里点一下方法试试? 是不是很棒???</li>
+<li>在你的Mapper里再点一下方法试试?? 6666…</li>
+</ul>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
+<li>能想到的我都写了，BaseMapper和BaseServiceImpl基本上不需要扩展了，有不明白的可以联系我</li>
+<li>欢迎指正，共同学习</li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于joylau-mybatis的说明"><span class="toc-number">1.</span> <span class="toc-text">关于joylau-mybatis的说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BaseController"><span class="toc-number">1.1.</span> <span class="toc-text">BaseController</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BaseMapper"><span class="toc-number">1.2.</span> <span class="toc-text">BaseMapper</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BaseService"><span class="toc-number">1.3.</span> <span class="toc-text">BaseService</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BaseServiceImpl"><span class="toc-number">1.4.</span> <span class="toc-text">BaseServiceImpl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BaseModel"><span class="toc-number">1.5.</span> <span class="toc-text">BaseModel</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#我的接口解释"><span class="toc-number">2.</span> <span class="toc-text">我的接口解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么使用？"><span class="toc-number">3.</span> <span class="toc-text">怎么使用？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#来试一下"><span class="toc-number">4.</span> <span class="toc-text">来试一下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">5.</span> <span class="toc-text">最后</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>

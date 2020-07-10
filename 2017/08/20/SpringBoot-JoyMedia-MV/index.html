@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ） - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+
+前言效果展示您的浏览器版本太低，无法观看本视频
+
+在线地址
+JoyMusic
+
+开始需要准备
+这次要解析的是 网易云音乐的 MV
+需要准备的解析的有
+获取 MV 信息列表
+获取 MV 详细信息
+,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
+
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.18119421764264265) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/SpringBoot篇"><b>「
+                    </b>SPRINGBOOT篇<b> 」</b></a>
+                
+                八月 20, 2017
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2017/08/20/SpringBoot-JoyMedia-MV/" title="重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）" class="">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    5.7k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    5 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><center><video src="//image.joylau.cn/blog/joymusic-mv.mp4" loop="true" controls="controls" poster="//image.joylau.cn/blog/joymusic-mv-poster.png">您的浏览器版本太低，无法观看本视频</video></center>
+
+<h3 id="在线地址"><a href="#在线地址" class="headerlink" title="在线地址"></a>在线地址</h3><ul>
+<li><a href="//music.joylau.cn" target="_blank" rel="noopener">JoyMusic</a></li>
+</ul>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h3><ul>
+<li>这次要解析的是 网易云音乐的 MV</li>
+<li>需要准备的解析的有</li>
+<li>获取 MV 信息列表</li>
+<li>获取 MV 详细信息</li>
+<li>获取 MV 播放地址</li>
+<li>在线播放 MV</li>
+<li>获取 MV 排行榜</li>
+<li>获取最新 MV</li>
+</ul>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>大部分解析提供的接口都和我以前2篇文章类似,之前的文章有分析过,这里就不再多说了</li>
+<li>这里重点说明下 MV 的播放问题</li>
+</ul>
+<h3 id="关于-MV-的播放"><a href="#关于-MV-的播放" class="headerlink" title="关于 MV 的播放"></a>关于 MV 的播放</h3><ul>
+<li>解析 MV 详细信息,可获得 MV 的真实播放的 MP4 的地址</li>
+<li>但是这个地址,网易云做了防盗链处理</li>
+<li>什么是防盗链?</li>
+<li>一般情况下,我的资源文件,比如 图片, css,js,视频,我们自己放到服务器上可以直接引用</li>
+<li>同样的道理,别人可以访问你的服务器,也可以直接引用</li>
+<li>那么,不想被别人引用怎么办呢?</li>
+<li>这就引申出了防盗链的操作</li>
+<li>最常见的防盗链的处理就是加上 referer识别,就是来源网址信息</li>
+<li>referer 其实是个错误的拼写,这个就是有历史原因了,以前的开发人员在定义这个属性的时候,把这个单词写错了,后来没有人注意到,一直使用到他作为标准</li>
+<li>后来,也没有人去特意改他了,就这么用着吧</li>
+<li>这个是简单防盗链处理</li>
+<li>还有更复杂的,比如 js 加密路径信息,每次请求路径都会变化,这个就复杂了</li>
+<li>很幸运,网易云的 MV 采用的就是 referer 的识别方式</li>
+<li>那么就有相应的破解方法了</li>
+</ul>
+<h3 id="关于-referer"><a href="#关于-referer" class="headerlink" title="关于 referer"></a>关于 referer</h3><ul>
+<li>MP4 的地址在浏览器地址栏直接粘过去是可以播放的,但是由其他网站跳进去的则不能访问,因为带进了 rerferer</li>
+<li>那么,要做的就是去除 请求的 rerferer </li>
+<li>我找了很多资料也尝试了很多次,想在浏览器端把 rerferer 去除掉,基本是实现不了的,如果你实现在页面里单独请求 mp4 地址时不带referer, 请联系我</li>
+<li>那么要做的就是在服务端操作了</li>
+<li>在服务端操作很简单,就是伪造头信息进行请求</li>
+</ul>
+<p>这个是带 referer 的请求,被网易云直接拒绝了</p>
+<p><img src="http://image.joylau.cn/blog/joymusic-mv-referer.png" alt="joymusic-mv-referer"></p>
+<p>这个是复制地址到地址栏,则可以直接播放</p>
+<p><img src="http://image.joylau.cn/blog/joymusic-mv-no-referer.png" alt="joymusic-mv-no-referer"></p>
+<h2 id="服务单去除-referer"><a href="#服务单去除-referer" class="headerlink" title="服务单去除 referer"></a>服务单去除 referer</h2><ul>
+<li>严格来说不能说去除 refere,我们需要将原本我们自己服务器的 referer 修改为网易云服务器的 referer<h3 id="Java-版"><a href="#Java-版" class="headerlink" title="Java 版"></a>Java 版</h3><pre><code class="java">  public void playMV(HttpServletResponse res, String mvurl) throws IOException {
+          if (StringUtils.isEmpty(mvurl)){
+              return;
+          }
+          res.setContentType(&quot;video/mpeg4; charset=utf-8&quot;);
+          URLConnection connection = new URL(mvurl).openConnection();
+          connection.setRequestProperty(&quot;referer&quot;, &quot;http://music.163.com/&quot;);
+          connection.setRequestProperty(&quot;cookie&quot;, &quot;appver=1.5.0.75771;&quot;);
+          connection.connect();
+          InputStream is = connection.getInputStream();
+          OutputStream os = res.getOutputStream();
+          byte bf[] = new byte[2048];
+          int length;
+          try {
+              while ((length = is.read(bf)) &gt; 0) {
+                  os.write(bf, 0, length);
+              }
+          } catch (IOException e) {
+              is.close();
+              os.close();
+              return;
+          }
+          is.close();
+          os.close();
+      }</code></pre>
+</li>
+</ul>
+<p>解释: </p>
+<ol>
+<li>首先我们请求的资源不是本地的资源,是存储在其他服务器上的,这里用到的是URL</li>
+<li>这里我们需要设置 referer 和 cookie,结合前面使用的 URL, 这里使用的是URLConnection</li>
+<li>后面的就很好理解了,相当于做了一个管道,将读取的文件流原封不动的通过Response返回给调用者</li>
+<li>不要忘了设置 setContentType 为 MP4 的格式</li>
+</ol>
+<h3 id="nodejs-版"><a href="#nodejs-版" class="headerlink" title="nodejs 版"></a>nodejs 版</h3><pre><code class="javascript">    const express = require(&quot;express&quot;);
+    const router = express();
+    const request = require(&quot;request&quot;);
+
+    router.get(&quot;/&quot;, (req, res) =&gt; {
+      const url = req.query.url;
+      const headers = {
+        &quot;Referer&quot;: &quot;http://music.163.com/&quot;,
+        &quot;Cookie&quot;: &quot;appver=1.5.0.75771;&quot;,
+        &#39;Content-Type&#39;: &#39;video/mp4&#39;,
+        &#39;Location&#39;: url
+      };
+      const options = {
+        header: headers,
+        url: url
+      };
+      request(options).on(&#39;error&#39;, err =&gt; {
+          res.send({ err })
+        }).pipe(res)
+    });
+
+    module.exports = router;</code></pre>
+<p>解释:<br>和上面的 Java 版代码是一个意思,主要是 pipe 流管道将文件流返回给调用者</p>
+<h3 id="功能完成"><a href="#功能完成" class="headerlink" title="功能完成"></a>功能完成</h3><ul>
+<li>那么这样解决了 MP4 地址防盗链的问题</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>不足之处也暴露了</li>
+<li>首先这段代码必须部署到服务端</li>
+<li>部署到服务端就需要服务器去拉去 MV 的流信息,这无疑给服务器增加过多的流量压力</li>
+<li>其次,由于使用的流传输,这个 MP4 的播放是不支持快进操作的</li>
+</ul>
+<h2 id="有个简单的解决方式"><a href="#有个简单的解决方式" class="headerlink" title="有个简单的解决方式"></a>有个简单的解决方式</h2><ul>
+<li>在 html5 之后,想去除 referer 信息, a标签有个属性 rel </li>
+<li>将 <code>rel=&quot;noreferrer&quot;</code> 即可在 a 标签的 href 的链接上去除 referer信息</li>
+<li>这一属性已被我使用在播放器的右下角的一个小飞机的按钮上</li>
+<li>点击小飞机按钮就可以直接看 MV 视频了,流量走的是网易云的CDN,不再试自己的服务器</li>
+</ul>
+<p><img src="http://image.joylau.cn/blog/joymusic-mv-no-referer-href.png" alt="joymusic-mv-no-referer-href"></p>
+<h2 id="不完美"><a href="#不完美" class="headerlink" title="不完美"></a>不完美</h2><ul>
+<li>总感觉这个解决不够完美</li>
+<li>如果你看到这篇文章能有更好的解决办法,请联系我</li>
+</ul>
+<blockquote>
+<blockquote>
+<p>欢迎大家来看看试试看!😘 <a href="http://music.joylau.cn" target="_blank" rel="noopener">http://music.joylau.cn</a>  (当前版本 v1.4)</p>
+</blockquote>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">190 <p>文章</p></a></li>
+                    <li><a href="/categories">42 <p>分类</p></a></li>
+                    <li><a href="/tags">97 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#效果展示"><span class="toc-number">1.1.</span> <span class="toc-text">效果展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在线地址"><span class="toc-number">1.2.</span> <span class="toc-text">在线地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-number">2.</span> <span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#需要准备"><span class="toc-number">2.1.</span> <span class="toc-text">需要准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">2.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于-MV-的播放"><span class="toc-number">2.3.</span> <span class="toc-text">关于 MV 的播放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于-referer"><span class="toc-number">2.4.</span> <span class="toc-text">关于 referer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务单去除-referer"><span class="toc-number">3.</span> <span class="toc-text">服务单去除 referer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-版"><span class="toc-number">3.1.</span> <span class="toc-text">Java 版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nodejs-版"><span class="toc-number">3.2.</span> <span class="toc-text">nodejs 版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#功能完成"><span class="toc-number">3.3.</span> <span class="toc-text">功能完成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点"><span class="toc-number">3.4.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有个简单的解决方式"><span class="toc-number">4.</span> <span class="toc-text">有个简单的解决方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不完美"><span class="toc-number">5.</span> <span class="toc-text">不完美</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+</html>
