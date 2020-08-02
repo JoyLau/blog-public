@@ -153,16 +153,16 @@
             <a href="/categories/Linux篇"><b>「
                 </b>LINUX篇<b> 」</b></a>
             
-            五月 17, 2018
+            五月 18, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/05/17/Linux-NoteBookPC/" title="Linux菜鸟到熟悉 --- 闲置笔记本安装 Centos" class="posttitle">Linux菜鸟到熟悉 --- 闲置笔记本安装 Centos</a></h3>
+            <a href="/2018/05/18/Linux-Systemctl/" title="Linux菜鸟到熟悉 --- systemctl 托管自定义程序" class="posttitle">Linux菜鸟到熟悉 --- systemctl 托管自定义程序</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                4.6k
+                4.5k
             </span>
             
             
@@ -181,17 +181,19 @@
             
             <a id="more"></a>
 <ol>
-<li>以前的笔记本是 windows7 的操作系统</li>
-<li>6GB 内存</li>
-<li>还剩 96G 硬盘</li>
-<li>打算安装 Centos 7.2</li>
+<li>系统 centos 7</li>
+<li>能够开机启动</li>
+<li>能够一键开启，关闭，重启</li>
 </ol>
-<ol>
-<li>U 盘一个（&gt;= 8G）</li>
-<li>centos 镜像文件</li>
-<li>刻录软件 UltraISO...</li></ol>
+<p>注意文件编码的问题</p>
+<ul>
+<li>service 文件</li>
+</ul>
+<pre><code class="shell">    [Unit]
+    Description=frp server Service
+    After...</code></pre>
             
-            <span class="read-more"><a href="/2018/05/17/Linux-NoteBookPC/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/05/18/Linux-Systemctl/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -216,7 +218,72 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9734662848063194);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.22743599105296908);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Linux篇">
+                  <b>「 </b>LINUX篇<b> 」</b>
+                </a>
+            
+            五月 18, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/05/18/Linux-Systemctl/" title="Linux菜鸟到熟悉 --- systemctl 托管自定义程序" class="posttitle">Linux菜鸟到熟悉 --- systemctl 托管自定义程序</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        4.5k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        4 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/CMD/" rel="tag">CMD</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<ol>
+<li>系统 centos 7</li>
+<li>能够开机启动</li>
+<li>能够一键开启，关闭，重启</li>
+</ol>
+<p>注意文件编码的问题</p>
+<ul>
+<li>service 文件</li>
+</ul>
+<pre><code class="shell">    [Unit]
+    Description=frp server Service
+    After=network.target
+
+    [Service]
+    ## 可以包含的值为simple、forking、oneshot、dbus、notify、idel其中之一。
+    ## Type=forking
+
+    ## 守护进程的PID文件，必须是绝对路径，强烈建议在Type=forking的情况下明确设置此选项
+    ...</code></pre>
+            
+            <span class="read-more"><a href="/2018/05/18/Linux-Systemctl/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.2962211325500148);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -283,7 +350,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/Lombok.png?0.4623090288648828);">
+            url(//image.joylau.cn/blog/Lombok.png?0.20665446158714373);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -337,7 +404,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.17769511140408145);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7511896786739067);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -386,7 +453,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9099406841369118);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.12562702061373598);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -429,59 +496,6 @@
                              &#39;&quot;remote_addr&quot;: &quot;$remote_addr&quot;, &#39...</code></pre>
             
             <span class="read-more"><a href="/2018/05/08/Logstash-Nginx/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.11533735321870187);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/大数据篇">
-                  <b>「 </b>大数据篇<b> 」</b>
-                </a>
-            
-            五月 07, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/05/07/Elasticsearch-ELK/" title="ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台" class="posttitle">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        5.3k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        5 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<ol>
-<li>Elasticsearch， Logstash，Kibana 版本都是5.3.0</li>
-<li>SpringBoot 集成 ELK，实际上指的就是 SpringBoot 与 Logstash 的整合</li>
-<li>Elasticsearch 负责数据的存储，Logstash 负责数据的接受和数据的发送，相当于一个中转站，Kibana 负责数据的展示，查询</li>
-<li>SpringBoot 项目是我们产生日志并且需要存储和分析的项目</li>
-<li>SpringBoot 我还是使用的默认的 logback 日志系统，当然也可以采用 log4j,不过...</li></ol>
-            
-            <span class="read-more"><a href="/2018/05/07/Elasticsearch-ELK/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

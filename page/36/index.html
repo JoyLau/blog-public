@@ -143,50 +143,52 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(/img/cover.jpg);">
+                url(//image.joylau.cn/blog/SpringEureka.png);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/MyBatis篇"><b>「
-                </b>MYBATIS篇<b> 」</b></a>
+            <a href="/categories/SpringCloud篇"><b>「
+                </b>SPRINGCLOUD篇<b> 」</b></a>
             
-            四月 06, 2017
+            四月 24, 2017
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2017/04/06/MyBatis-Joylau-MyBatis/" title="JoyLau-MyBatis 使用说明" class="posttitle">JoyLau-MyBatis 使用说明</a></h3>
+            <a href="/2017/04/24/SpringCloud-Building/" title="SpringCloud --- 构建开发环境" class="posttitle">SpringCloud --- 构建开发环境</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                7.5k
+                10k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                7 mins.
+                9 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Eureka/" rel="tag">Eureka</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-
+<p></p>
+<p>2个项目先来测试一下：</p>
 <ul>
-<li>该项目来源自  <a href="https://github.com/abel533/Mapper" target="_blank" rel="noopener">https://github.com/abel533/Mapper</a>  详细信息和源代码可fork查看</li>
-<li>我封装之后项目地址  <a href="https://github.com/JoyLau/joylau-mybatis" target="_blank" rel="noopener">https://github.com/JoyLau/joylau...</a></li></ul>
+<li>eureka-server</li>
+<li>eureka-service</li>
+</ul>
+<h3 id="pom-配置"><a href="#pom-配置" class="headerlink" title="pom 配置"></a>pom 配置</h3><pre><code class="xml">    &lt;?xml version=&quot;1.0&quot; encoding=&quot;...</code></pre>
             
-            <span class="read-more"><a href="/2017/04/06/MyBatis-Joylau-MyBatis/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2017/04/24/SpringCloud-Building/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -211,7 +213,62 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.17178802482083988);">
+            url(//image.joylau.cn/blog/SpringEureka.png?0.7175070826852199);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringCloud篇">
+                  <b>「 </b>SPRINGCLOUD篇<b> 」</b>
+                </a>
+            
+            四月 24, 2017
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/04/24/SpringCloud-Building/" title="SpringCloud --- 构建开发环境" class="posttitle">SpringCloud --- 构建开发环境</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        10k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        9 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Eureka/" rel="tag">Eureka</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p></p>
+<p>2个项目先来测试一下：</p>
+<ul>
+<li>eureka-server</li>
+<li>eureka-service</li>
+</ul>
+<h3 id="pom-配置"><a href="#pom-配置" class="headerlink" title="pom 配置"></a>pom 配置</h3><pre><code class="xml">    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    &lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+        xsi:schemaLocat...</code></pre>
+            
+            <span class="read-more"><a href="/2017/04/24/SpringCloud-Building/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.414011133041303);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -266,7 +323,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/Redis-Benchmark.jpg?0.05889975031837147);">
+            url(//image.joylau.cn/blog/Redis-Benchmark.jpg?0.9901707336131411);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -324,7 +381,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.825783606401945);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.3395847987416938);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -381,7 +438,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/SpringBatch.jpg?0.38024899230561915);">
+            url(//image.joylau.cn/blog/SpringBatch.jpg?0.6907582409931916);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -431,61 +488,6 @@
 <p>SpringBoot 整合 SpringBatch 只需要引入依赖并注册成Spring ...</p></blockquote></blockquote>
             
             <span class="read-more"><a href="/2017/03/21/SpringBoot-SpringBatch/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/emoji.jpg?0.8576773896958603);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/MySQL篇">
-                  <b>「 </b>MYSQL篇<b> 」</b>
-                </a>
-            
-            三月 21, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/03/21/MySQL-Emoji/" title="为网站添加emoji表情支持" class="posttitle">为网站添加emoji表情支持</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.1k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/emoji/" rel="tag">emoji</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p></p>
-<ul>
-<li>MySQL5.5.3+</li>
-<li>mysql-connector-java5.1.13+</li>
-</ul>
-<pre><code class="bash">    java.sql.SQLException: Incorrect string value: &#39;\xF0\x9F\x92\x94&#39; for colum n &#39;name&#39; at row 1 
-    at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1073) 
-    at com.mysql.jdbc.MysqlIO.checkErrorPac...</code></pre>
-            
-            <span class="read-more"><a href="/2017/03/21/MySQL-Emoji/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

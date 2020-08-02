@@ -150,19 +150,19 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Node篇"><b>「
-                </b>NODE篇<b> 」</b></a>
+            <a href="/categories/PM2篇"><b>「
+                </b>PM2篇<b> 」</b></a>
             
-            十月 26, 2019
+            十月 27, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/10/26/Node-Use-ES6/" title="NodeJs 使用 ES6 语法" class="posttitle">NodeJs 使用 ES6 语法</a></h3>
+            <a href="/2019/10/27/PM2-Cluster-ES6/" title="PM2 集群模式使用 ES6 语法" class="posttitle">PM2 集群模式使用 ES6 语法</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                651
+                1.1k
             </span>
             
             
@@ -182,16 +182,13 @@
             <a id="more"></a>
 
 <ol>
-<li>package.json 添加 </li>
+<li>fork 模式下</li>
 </ol>
-<pre><code class="json">    &quot;babel&quot;: {
-        &quot;presets&quot;: [
-          &quot;es2015&quot;
-        ]
-      },
-    &quot;devDependencies...</code></pre>
+<ul>
+<li>使用命令参数 <code>pm2 start app.js --node-args=&quot;--harmony&quot;</code></li>
+<li>json 文件添加配置: <code>&quot;node_args&...</code></li></ul>
             
-            <span class="read-more"><a href="/2019/10/26/Node-Use-ES6/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/10/27/PM2-Cluster-ES6/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -216,7 +213,68 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5986427200564035);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4561263758691796);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/PM2篇">
+                  <b>「 </b>PM2篇<b> 」</b>
+                </a>
+            
+            十月 27, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/10/27/PM2-Cluster-ES6/" title="PM2 集群模式使用 ES6 语法" class="posttitle">PM2 集群模式使用 ES6 语法</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.1k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<ol>
+<li>fork 模式下</li>
+</ol>
+<ul>
+<li>使用命令参数 <code>pm2 start app.js --node-args=&quot;--harmony&quot;</code></li>
+<li>json 文件添加配置: <code>&quot;node_args&quot; : &quot;--harmony&quot;</code></li>
+</ul>
+<ol start="2">
+<li>cluster 模式下<br>使用上一篇的方法 <code>require(&quot;babel-register&quot;);</code><br>在更改配置:</li>
+</ol>
+<pre><code class="json">    {
+      &quot;apps&quot;: [
+        {
+          &quot;name&quot;: &quot;my_name...</code></pre>
+            
+            <span class="read-more"><a href="/2019/10/27/PM2-Cluster-ES6/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.8180683166439386);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -275,7 +333,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.0837861790614387);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6547143469566699);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -331,7 +389,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6860156225399883);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.2824669176339678);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -384,7 +442,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7633727162638253);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7369065673283552);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -428,63 +486,6 @@
 <p>最后我决...</p>
             
             <span class="read-more"><a href="/2019/09/16/Electron-AutoUpdater/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.15158465981342606);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Electron篇">
-                  <b>「 </b>ELECTRON篇<b> 」</b>
-                </a>
-            
-            九月 14, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/09/14/Electron-Electron-Builder/" title="Electron --- Electron-Builder 打包的各种配置" class="posttitle">Electron --- Electron-Builder 打包的各种配置</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        4k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        4 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="打包的资源无法包含-build-目录"><a href="#打包的资源无法包含-build-目录" class="headerlink" title="打包的资源无法包含 build 目录"></a>打包的资源无法包含 build 目录</h3><pre><code class="json">    &quot;files&quot;: [
-          &quot;**/*&quot;,
-          &quot;build/&quot;,
-          &quot;!build/static/js/*.js.map&quot;,
-          &quot;!src/&quot;
-        ],</code></pre>
-<p>同时该配置也可防止源码被打包进去,</p>
-<h3 id="查看打包后的目录结构"><a href="#查看打包后的目录结构" class="headerlink" title="查看打包后的目录结构"></a>查看打包后的目录结构</h3><p><code>&quot;asar&quot;: false,</code> </p>
-<h3 id="引入外部文件"><a href="#引入外部文件" class="headerlink" title="引入外部文件"></a>引入外部文件</h3><pre><code class="json">    &quot;extraResources&quot;: [
-          {
-            &quot;from&quot;: ...</code></pre>
-            
-            <span class="read-more"><a href="/2019/09/14/Electron-Electron-Builder/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
