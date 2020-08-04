@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2020-08-02T07:07:03.827Z</updated>
+  <updated>2020-08-04T09:27:23.858Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MacBook Pro 使用绿联 TypeC 网卡关闭笔记本盖子时导致局域网网络不可用的问题解决</title>
+    <link href="http://blog.joylau.cn/2020/08/04/MacBookPro-uGreen-TypeC-Hub-/"/>
+    <id>http://blog.joylau.cn/2020/08/04/MacBookPro-uGreen-TypeC-Hub-/</id>
+    <published>2020-08-04T09:06:29.000Z</published>
+    <updated>2020-08-04T09:27:23.858Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>我的 MacBook Pro 使用的是绿联的外接扩展坞, 其中有一个网口<br>在京东购买的: <a href="https://item.jd.com/4445121.html" target="_blank" rel="noopener">https://item.jd.com/4445121.html</a></p><p>型号为: CM179<br>网卡芯片为: RTL8153B</p><p>最近发现只要我的 MacBook Pro 关闭了盖子, 会导致接在同一交换机下的路由器就无法上网<br>打开盖子后,网络又恢复正常了  </p><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>搜索了一番没找到解决方式</p><p>于是就找到当时购买的这款产品的京东介绍页面看了看</p><p>想着去绿联的官网找找驱动试试: <a href="https://www.lulian.cn/download/list-34-cn.html" target="_blank" rel="noopener">https://www.lulian.cn/download/list-34-cn.html</a></p><p>找到对应的型号和网卡芯片: <a href="https://www.lulian.cn/download/38-cn.html" target="_blank" rel="noopener">https://www.lulian.cn/download/38-cn.html</a></p><p>下载并解压驱动压缩包，双击“RTUNICv1.0.20.pkg”文件，一直点击继续，安装完成后重启电脑即可。</p><p>重启后又试了下关闭盖子, 问题解决了!!!</p>]]></content>
+    
+    <summary type="html">
+    
+      MacBook Pro 使用绿联 TypeC 网卡关闭笔记本盖子时导致局域网网络不可用的问题解决
+    
+    </summary>
+    
+    
+      <category term="MacOS篇" scheme="http://blog.joylau.cn/categories/MacOS%E7%AF%87/"/>
+    
+    
+      <category term="MacOS" scheme="http://blog.joylau.cn/tags/MacOS/"/>
+    
+  </entry>
   
   <entry>
     <title>Awtrix App 开发 --- 开发一款显示个人博客访问人数的 App</title>
@@ -446,29 +469,6 @@
     <summary type="html">
     
       继续上篇文章来写, 本次基于 Breed 系统刷入集客 AP 系统, 来完成 KVR 漫游配置
-    
-    </summary>
-    
-    
-      <category term="日常折腾篇" scheme="http://blog.joylau.cn/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE%E7%AF%87/"/>
-    
-    
-      <category term="KVR" scheme="http://blog.joylau.cn/tags/KVR/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>日常折腾之 KVR 漫游(一) --- 新路由 3 (Newifi D2) 刷入 Breed (刷不死)固件</title>
-    <link href="http://blog.joylau.cn/2020/04/13/Daily-KVR-NewifiD2-Breed/"/>
-    <id>http://blog.joylau.cn/2020/04/13/Daily-KVR-NewifiD2-Breed/</id>
-    <published>2020-04-13T00:59:56.000Z</published>
-    <updated>2020-07-10T00:43:19.431Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>目前想要组 WIFI 漫游可选的方案有 AC + AP 或者 mesh 组网, 可这些的价格都不便宜, 而我选择用 2 台之前很火的矿机新路由 3 (Newifi D2) 来组 AP 实现 KVR 漫游<br>想要组 KVR 漫游, 2 台路由必须刷入集客 AP 固件, 而刷入集客 AP 固件前必须先刷入 Breed 固件<br>本篇介绍新路由 3 如何刷入该固件 </p><h2 id="我的新路由-3"><a href="#我的新路由-3" class="headerlink" title="我的新路由 3"></a>我的新路由 3</h2><p>一次性搞了 3 台</p><p><img src="//image.joylau.cn/blog/Daily-KVR-NewifiD2-Breed.jpeg" alt="新路由 3"></p><h2 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h2><h3 id="802-11k"><a href="#802-11k" class="headerlink" title="802.11k"></a>802.11k</h3><p>通过创建优化的频道列表，802.11k 标准可帮助设备快速搜索附近可作为漫游目标的 AP。如果当前接入点的信号强度变弱，您的设备将进行扫描来确定是否有此列表中的目标接入点。</p><h3 id="802-11v"><a href="#802-11v" class="headerlink" title="802.11v"></a>802.11v</h3><p>具备“即将解除关联”功能的 BSS 转换管理可向网络的控制层提供附近接入点的负载信息，从而影响客户端漫游行为。设备在确定可能的漫游目标时会考量这些信息。</p><p>DMS 可优化无线网络上的多播流量传输。设备会利用这些信息来增强多播通信，并保持电池续航能力。</p><p>BSS 最大空闲服务有助于客户端和接入点在没有流量传输时，高效地决定保持关联的时长。设备会利用这些信息来保持电池续航能力。</p><h3 id="802-11r"><a href="#802-11r" class="headerlink" title="802.11r"></a>802.11r</h3><p>当您的设备在同一网络中从一个 AP 漫游到另一个 AP 时，802.11r 会使用一项名为“快速基本服务集转换”(FT) 的功能更快地进行认证。FT 适用于预共享密钥 (PSK) 和 802.1X 鉴定方法。</p><p>以上来自苹果官网对于 KVR 的介绍: <a href="https://support.apple.com/zh-cn/HT202628" target="_blank" rel="noopener">https://support.apple.com/zh-cn/HT202628</a></p><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="材料准备"><a href="#材料准备" class="headerlink" title="材料准备"></a>材料准备</h3><ol><li><a href="//image.joylau.cn/blog/newifi-d2-jail-break.ko" target="_blank" rel="noopener">newifi-d2-jail-break.ko</a></li></ol><h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><ol><li>重置现有路由器系统: 开机状态下按住 reset 键 5 秒,等待重启</li><li>进入 <a href="http://192.168.99.1" target="_blank" rel="noopener">http://192.168.99.1</a> 初始化路由器,设置好 WIFI 和密码</li><li>浏览器访问 <a href="http://192.168.99.1/newifi/ifiwen_hss.html" target="_blank" rel="noopener">http://192.168.99.1/newifi/ifiwen_hss.html</a> 开启路由器的 ssh 登录, 用户名为 root ,密码为刚才设置的密码</li><li>使用 scp 命令拷贝 newifi-d2-jail-break.ko 到 tmp 目录下: scp ./newifi-d2-jail-break.ko <a href="mailto:root@192.168.99.1">root@192.168.99.1</a>:/tmp</li><li>刷入系统: insmod /tmp/newifi-d2-jail-break.ko </li><li>等待 30 秒左右, 断电, 再按住 reset 键通电</li><li>此时路由器分配的网段为 192.168.1.0</li><li>访问 <a href="http://192.168.1.1" target="_blank" rel="noopener">http://192.168.1.1</a> 进行设置</li></ol><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol><li>newifi-d2-jail-break.ko 是恩山论坛上一个大神破解的,如果在 Breed 官网(<a href="https://breed.hackpascal.net/)下载固件" target="_blank" rel="noopener">https://breed.hackpascal.net/)下载固件</a> <code>breed-mt7621-newifi-d2.bin</code>,是无法通过自身恢复模式刷入固件的,别问我怎么知道的</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      目前想要组 WIFI 漫游可选的方案有 AC + AP 或者 mesh 组网, 可这些的价格都不便宜, 而我选择用 2 台之前很火的矿机新路由 3 (Newifi D2) 来组 AP 实现 KVR 漫游,想要组 KVR 漫游, 2 台路由必须刷入集客 AP 固件, 而刷入集客 AP 固件前必须先刷入 Breed 固件,本篇介绍新路由 3 如何刷入该固件
     
     </summary>
     
