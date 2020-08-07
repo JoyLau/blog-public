@@ -143,7 +143,7 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(//image.joylau.cn/blog/stat-disk_002.png);">
+                url(/img/cover.jpg);">
         </div>
     </div>
     
@@ -153,22 +153,22 @@
             <a href="/categories/Ubuntu篇"><b>「
                 </b>UBUNTU篇<b> 」</b></a>
             
-            八月 07, 2020
+            八月 08, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/08/07/Ubuntu-Disk-Stat/" title="Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控" class="posttitle">Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控</a></h3>
+            <a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="Ubuntu --- 调整状态栏托盘图标的顺序" class="posttitle">Ubuntu --- 调整状态栏托盘图标的顺序</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                2.4k
+                1.4k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                2 mins.
+                1 mins.
             </span>
             
             
@@ -181,11 +181,10 @@
             
             <a id="more"></a>
 
-<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>indicator-sysmonitor 可以新建传感器，可以自定义命令来显示输出， 于是我想着使用 shell 命令获取当前磁盘的 I/O 在输出即可</p>
-<h3 id="dstat-方式"><a href="#dstat-方式" class="headerlink" title="dstat 方式"></a>dstat 方式</h3><ol>
-<li>使用 <code>dstat</code> ...</li></ol>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>继上一篇文章 【indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控】，这里我想让监控的数据放到状态栏的最左侧， 可发现事情并不简单。。。</p>
+<p>因为 Ubuntu 下并不像 ...</p>
             
-            <span class="read-more"><a href="/2020/08/07/Ubuntu-Disk-Stat/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +209,62 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4237614446868325);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.22726375557619383);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Ubuntu篇">
+                  <b>「 </b>UBUNTU篇<b> 」</b>
+                </a>
+            
+            八月 07, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/08/07/Ubuntu-Disk-Stat/" title="Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控" class="posttitle">Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2.6k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>indicator-sysmonitor 默认的模式可以监控 CPU 使用率， 内存使用， 网络 I/O 等， 但是却缺少了很关键的对当前磁盘 I/O 的监控，于是我就想着把他给加上去</p>
+<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>indicator-sysmonitor 可以新建传感器，可以自定义命令来显示输出， 于是我想着使用 shell 命令获取当前磁盘的 I/O 在输出即可</p>
+<h3 id="dstat-方式"><a href="#dstat-方式" class="headerlink" title="dstat 方式"></a>dstat 方式</h3><ol>
+<li>使用 <code>dstat</code> 命令， 需要机器上事先安装 <code>dstat</code> </li>
+</ol>
+<pre><code class="shell">    dstat  --disk</code></pre>
+<p>该命令可以监控磁盘使用情况</p>
+<p>我在稍对结...</p>
+            
+            <span class="read-more"><a href="/2020/08/07/Ubuntu-Disk-Stat/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.8625076080695557);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -262,7 +316,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.921625531734698);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.43304437782209404);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -312,7 +366,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5733198026743056);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6352216082360109);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -370,60 +424,9 @@
 </div>
 
 
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3119807499305438);">
     </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Ubuntu篇">
-                  <b>「 </b>UBUNTU篇<b> 」</b>
-                </a>
-            
-            六月 28, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/06/28/Ubuntu-SystemConfig/" title="Ubuntu 自用配置记录" class="posttitle">Ubuntu 自用配置记录</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<ol>
-<li><p>关闭并禁用 swap 分区： sudo swapoff 并且 sudo vim /etc/fstab 注释掉 swap 那行</p>
-</li>
-<li><p>开启点击图标最小化： gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true</p>
-</li>
-<li><p>开机开启小键盘： sudo apt-get install numlockx 然后 sudo vim /usr/share...</p></li></ol>
-            
-            <span class="read-more"><a href="/2018/06/28/Ubuntu-SystemConfig/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-    </div>
+    
+    <div id="pager"><a href="/categories/Ubuntu%E7%AF%87/page/2/" class="more" data-loading="加载中..." data-load-more="加载更多">加载更多</a></div>
     
 </div>
 <div id="preview"></div>

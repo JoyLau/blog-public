@@ -12,9 +12,8 @@
     <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
     <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
 
-解决方式indicator-sysmonitor 可以新建传感器，可以自定义命令来显示输出， 于是我想着使用 shell 命令获取当前磁盘的 I/O 在输出即可
-dstat 方式
-使用 dsta,"> 
+背景indicator-sysmonitor 默认的模式可以监控 CPU 使用率， 内存使用， 网络 I/O 等， 但是却缺少了很关键的对当前磁盘 I/O 的监控，于是我就想着把他给加上去
+解决,"> 
     <meta name="author" content="JoyLau"> 
     <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
     <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
@@ -90,7 +89,7 @@ dstat 方式
             animation-duration: 1.2s;
             background-image: 
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-                url(//image.joylau.cn/blog/stat-disk_002.png?0.9314546401183905) ">
+                url(http://nas.joylau.cn:5016/1920x1080?0.6909769062161188) ">
         </div>
         <div class="else">
             <p class="animated fadeInDown">
@@ -107,7 +106,7 @@ dstat 方式
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    2.4k
+                    2.6k
                 </span>
                 
                 
@@ -149,6 +148,7 @@ dstat 方式
         <div class="content markdown animated fadeIn">
             <a id="more"></a>
 
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>indicator-sysmonitor 默认的模式可以监控 CPU 使用率， 内存使用， 网络 I/O 等， 但是却缺少了很关键的对当前磁盘 I/O 的监控，于是我就想着把他给加上去</p>
 <h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>indicator-sysmonitor 可以新建传感器，可以自定义命令来显示输出， 于是我想着使用 shell 命令获取当前磁盘的 I/O 在输出即可</p>
 <h3 id="dstat-方式"><a href="#dstat-方式" class="headerlink" title="dstat 方式"></a>dstat 方式</h3><ol>
 <li>使用 <code>dstat</code> 命令， 需要机器上事先安装 <code>dstat</code> </li>
@@ -192,6 +192,9 @@ dstat 方式
 
     NET_USERS ALL=(root)   NOPASSWD:SYS_STATUS</code></pre>
 <p><code>Ctrl + O</code> 保存后，普通用户 joylau 使用 <code>sudo iotop</code> 就不需要输入密码了， 也就实现了第二种方式的效果了</p>
+<ol start="3">
+<li>性能对比： 实测第一种方式的性能（CPU使用平均在 2%）要稍好于第二种（CPU使用平均在 5%）</li>
+</ol>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -239,7 +242,7 @@ dstat 方式
                     </dl>
                 </div>
                 <ul>
-                    <li><a href="/">197 <p>文章</p></a></li>
+                    <li><a href="/">198 <p>文章</p></a></li>
                     <li><a href="/categories">43 <p>分类</p></a></li>
                     <li><a href="/tags">98 <p>标签</p></a></li>
                 </ul>
@@ -250,7 +253,7 @@ dstat 方式
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>目录</h4>
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方式"><span class="toc-number">1.</span> <span class="toc-text">解决方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dstat-方式"><span class="toc-number">2.</span> <span class="toc-text">dstat 方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iotop"><span class="toc-number">3.</span> <span class="toc-text">iotop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对比"><span class="toc-number">4.</span> <span class="toc-text">对比</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方式"><span class="toc-number">2.</span> <span class="toc-text">解决方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dstat-方式"><span class="toc-number">3.</span> <span class="toc-text">dstat 方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iotop"><span class="toc-number">4.</span> <span class="toc-text">iotop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对比"><span class="toc-number">5.</span> <span class="toc-text">对比</span></a></li></ol>
                 </div>
             </div>
             

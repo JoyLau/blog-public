@@ -143,7 +143,7 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(//image.joylau.cn/blog/stat-disk_002.png);">
+                url(/img/cover.jpg);">
         </div>
     </div>
     
@@ -153,22 +153,22 @@
             <a href="/categories/Ubuntu篇"><b>「
                 </b>UBUNTU篇<b> 」</b></a>
             
-            八月 07, 2020
+            八月 08, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/08/07/Ubuntu-Disk-Stat/" title="Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控" class="posttitle">Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控</a></h3>
+            <a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="Ubuntu --- 调整状态栏托盘图标的顺序" class="posttitle">Ubuntu --- 调整状态栏托盘图标的顺序</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                2.4k
+                1.4k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                2 mins.
+                1 mins.
             </span>
             
             
@@ -181,11 +181,10 @@
             
             <a id="more"></a>
 
-<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>indicator-sysmonitor 可以新建传感器，可以自定义命令来显示输出， 于是我想着使用 shell 命令获取当前磁盘的 I/O 在输出即可</p>
-<h3 id="dstat-方式"><a href="#dstat-方式" class="headerlink" title="dstat 方式"></a>dstat 方式</h3><ol>
-<li>使用 <code>dstat</code> ...</li></ol>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>继上一篇文章 【indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控】，这里我想让监控的数据放到状态栏的最左侧， 可发现事情并不简单。。。</p>
+<p>因为 Ubuntu 下并不像 ...</p>
             
-            <span class="read-more"><a href="/2020/08/07/Ubuntu-Disk-Stat/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +209,62 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4436413713488103);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4384110786945483);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Ubuntu篇">
+                  <b>「 </b>UBUNTU篇<b> 」</b>
+                </a>
+            
+            八月 07, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/08/07/Ubuntu-Disk-Stat/" title="Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控" class="posttitle">Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2.6k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>indicator-sysmonitor 默认的模式可以监控 CPU 使用率， 内存使用， 网络 I/O 等， 但是却缺少了很关键的对当前磁盘 I/O 的监控，于是我就想着把他给加上去</p>
+<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>indicator-sysmonitor 可以新建传感器，可以自定义命令来显示输出， 于是我想着使用 shell 命令获取当前磁盘的 I/O 在输出即可</p>
+<h3 id="dstat-方式"><a href="#dstat-方式" class="headerlink" title="dstat 方式"></a>dstat 方式</h3><ol>
+<li>使用 <code>dstat</code> 命令， 需要机器上事先安装 <code>dstat</code> </li>
+</ol>
+<pre><code class="shell">    dstat  --disk</code></pre>
+<p>该命令可以监控磁盘使用情况</p>
+<p>我在稍对结...</p>
+            
+            <span class="read-more"><a href="/2020/08/07/Ubuntu-Disk-Stat/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.5330088639113333);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -262,7 +316,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9762066020648563);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.33535655474657355);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -312,7 +366,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6762695486442163);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5578860433221984);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -361,61 +415,6 @@
 <p>之后我想着电脑很久没关机了，想重启一下，顺便去倒杯水<br>回来之后发现系统...</p>
             
             <span class="read-more"><a href="/2019/04/10/Linux-Fix-DiskError/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.046017929473831876);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Git篇">
-                  <b>「 </b>GIT篇<b> 」</b>
-                </a>
-            
-            八月 07, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理" class="posttitle">Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>这一段时间 GitHub 在国内的访问又出问题,代码提交不上去,需要在 Git 上走代理了</p>
-<ol>
-<li>需要全局 git 都走代理</li>
-</ol>
-<pre><code class="bash">    git config --global http.proxy &#39;socks5://127.0.0.1:1080&#39;
-    git config --global https.proxy &#39;socks5://127.0.0.1:1080&#39;</code></pre>
-<p>取消</p>
-<pre><code class="bash">    git config --global --unset http.proxy
-    git config -...</code></pre>
-            
-            <span class="read-more"><a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

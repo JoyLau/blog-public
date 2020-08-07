@@ -143,46 +143,50 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(//image.joylau.cn/blog/awtrix2/awtrix2_24.jpg);">
+                url(/img/cover.jpg);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/日常折腾篇"><b>「
-                </b>日常折腾篇<b> 」</b></a>
+            <a href="/categories/Tools篇"><b>「
+                </b>TOOLS篇<b> 」</b></a>
             
-            四月 23, 2020
+            四月 27, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/04/23/Daily-Pixel-Clock/" title="日常折腾 --- 自制像素时钟, 不输 LaMeetric Time" class="posttitle">日常折腾 --- 自制像素时钟, 不输 LaMeetric Time</a></h3>
+            <a href="/2020/04/27/Tools-PowerDesigner/" title="PowerDesigner 数据库逆向生成物理模型并显示 Comment 注释" class="posttitle">PowerDesigner 数据库逆向生成物理模型并显示 Comment 注释</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                5.5k
+                3.7k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                5 mins.
+                3 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/" rel="tag">日常折腾</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/PowerDesigner/" rel="tag">PowerDesigner</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>之前看到一个像素时钟 LaMeetric Time, 感觉很漂亮, 但是太贵,淘宝上要卖到 2000 块左右<br>后来又看到一个项目 AWTRIX : <a href="https://awtrixdocs.blueforcer.de/#/en-en/" target="_blank" rel="noopener">https://awtrixdocs.blueforcer...</a></p>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ol>
+<li>PowerDesigner 16.5</li>
+</ol>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>使用 PowerDesigner 的原生方式连接各种数据库我遇到很多问题, 于是,这里我都是使用的 JDBC 的方式连接</p>
+<p>使用 JDBC 方式连接需...</p>
             
-            <span class="read-more"><a href="/2020/04/23/Daily-Pixel-Clock/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/04/27/Tools-PowerDesigner/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -207,7 +211,65 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/awtrix2/awtrix2_24.jpg?0.37263500553860873);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.18622365897420567);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Tools篇">
+                  <b>「 </b>TOOLS篇<b> 」</b>
+                </a>
+            
+            四月 27, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/04/27/Tools-PowerDesigner/" title="PowerDesigner 数据库逆向生成物理模型并显示 Comment 注释" class="posttitle">PowerDesigner 数据库逆向生成物理模型并显示 Comment 注释</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        3.7k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        3 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/PowerDesigner/" rel="tag">PowerDesigner</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ol>
+<li>PowerDesigner 16.5</li>
+</ol>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>使用 PowerDesigner 的原生方式连接各种数据库我遇到很多问题, 于是,这里我都是使用的 JDBC 的方式连接</p>
+<p>使用 JDBC 方式连接需要注意一下几点</p>
+<ol>
+<li>JDK 的版本必须是 32 位的</li>
+<li>需要 JDBC 的驱动 jar 包</li>
+<li>需要新建 <strong>CLASSPATH</strong> 环境变量, 并且将驱动 jar 包的路径配置到 <code>CLASSPATH</code> 中, 否则的话会导致无法加载驱动类</li>
+</ol>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>File -&gt; New Module, 选择 <code>Physical ...</code></li></ol>
+            
+            <span class="read-more"><a href="/2020/04/27/Tools-PowerDesigner/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(//image.joylau.cn/blog/awtrix2/awtrix2_24.jpg?0.20691307194927533);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -258,7 +320,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5723417573146572);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.589334315406713);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -314,7 +376,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/iPhone7/4.jpeg?0.8437851769337235);">
+            url(//image.joylau.cn/blog/iPhone7/4.jpeg?0.26430176271204164);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -376,7 +438,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6600545507385776);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.09445223833920058);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -422,59 +484,6 @@
           &lt;appender name=&quot;CONSOLE&quot; class=&quot;ch.qos.logback...</code></pre>
             
             <span class="read-more"><a href="/2020/04/18/SpringBoot-FileBeat/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.17954926055576692);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/MacOS篇">
-                  <b>「 </b>MACOS篇<b> 」</b>
-                </a>
-            
-            四月 15, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/04/15/MacOS-Tunnelblick/" title="Tunnelblick The tmp system folder (&#x2F;tmp) is not secure. 问题解决记录" class="posttitle">Tunnelblick The tmp system folder (&#x2F;tmp) is not secure. 问题解决记录</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.3k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Tunnelblick/" rel="tag">Tunnelblick</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h3><p>MacOS 升级到 10.15 后,每次打开 Tunnelblick 都会提示 The tmp system folder (/tmp) is not secure<br>虽然点继续可以使用,但是无法打开软件的配置界面, 会直接闪退<br>于是就想着修复这个问题<br>可是过程并没有那么顺利</p>
-<ol>
-<li>首先查看官方文档</li>
-</ol>
-<p><a href="https://tunnelblick.net/cSystemFolderNotSecure.html" target="_blank" rel="noopener">https://tunnelblick.net/cSystemFolderNotSecure.html</a></p>
-<p>根据文档提示执行操作:</p>
-<pre><code class="bash">    sudo chown root:admin /tmp; sudo chmod...</code></pre>
-            
-            <span class="read-more"><a href="/2020/04/15/MacOS-Tunnelblick/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

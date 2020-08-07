@@ -150,41 +150,43 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Ubuntu篇"><b>「
-                </b>UBUNTU篇<b> 」</b></a>
+            <a href="/categories/Git篇"><b>「
+                </b>GIT篇<b> 」</b></a>
             
-            七月 13, 2018
+            八月 07, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/07/13/Ubuntu-Fonts-Monaco/" title="Ubuntu 最佳编程字体 Monaco 的优化显示" class="posttitle">Ubuntu 最佳编程字体 Monaco 的优化显示</a></h3>
+            <a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理" class="posttitle">Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.5k
+                2k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                2 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<p>自从入了 MBP 后就被其默认的字体显示效果吸引了，在编辑器里写代码更是舒服，于是想着把 Mac 下的字体也移植到 Ubuntu 下，但是显示效果并不是特别的好，尤其是粗体字的显示</p>
-<p>左侧使用前，右侧...</p>
+<p>这一段时间 GitHub 在国内的访问又出问题,代码提交不上去,需要在 Git 上走代理了</p>
+<ol>
+<li>需要全局 git 都走代理</li>
+</ol>
+<pre><code class="bash">    git config --global http.proxy &#39;...</code></pre>
             
-            <span class="read-more"><a href="/2018/07/13/Ubuntu-Fonts-Monaco/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +211,62 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.419484949446727);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8103371953954794);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Git篇">
+                  <b>「 </b>GIT篇<b> 」</b>
+                </a>
+            
+            八月 07, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理" class="posttitle">Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>这一段时间 GitHub 在国内的访问又出问题,代码提交不上去,需要在 Git 上走代理了</p>
+<ol>
+<li>需要全局 git 都走代理</li>
+</ol>
+<pre><code class="bash">    git config --global http.proxy &#39;socks5://127.0.0.1:1080&#39;
+    git config --global https.proxy &#39;socks5://127.0.0.1:1080&#39;</code></pre>
+<p>取消</p>
+<pre><code class="bash">    git config --global --unset http.proxy
+    git config -...</code></pre>
+            
+            <span class="read-more"><a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.11708704957452776);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -271,7 +328,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4225273190795167);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5651294301043444);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
