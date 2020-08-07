@@ -143,7 +143,7 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(/img/cover.jpg);">
+                url(//image.joylau.cn/blog/stat-disk_002.png);">
         </div>
     </div>
     
@@ -153,22 +153,22 @@
             <a href="/categories/Ubuntu篇"><b>「
                 </b>UBUNTU篇<b> 」</b></a>
             
-            七月 15, 2019
+            八月 07, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/07/15/Ubuntu-Force-Resolution/" title="Ubuntu 强制设置分辨率" class="posttitle">Ubuntu 强制设置分辨率</a></h3>
+            <a href="/2020/08/07/Ubuntu-Disk-Stat/" title="Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控" class="posttitle">Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.4k
+                2.4k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                2 mins.
             </span>
             
             
@@ -181,11 +181,11 @@
             
             <a id="more"></a>
 
-<p>一次系统重启后,Ubuntu 系统无法正确识别连接的显示器分辨率了,我连接的 2 个显示器,其中一个分辨率正确识别,另一个却无法识别,默认成 1024 的分辨率了</p>
-<p>强制设置的分辨率起码显示器得支持</p>
-...
+<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>indicator-sysmonitor 可以新建传感器，可以自定义命令来显示输出， 于是我想着使用 shell 命令获取当前磁盘的 I/O 在输出即可</p>
+<h3 id="dstat-方式"><a href="#dstat-方式" class="headerlink" title="dstat 方式"></a>dstat 方式</h3><ol>
+<li>使用 <code>dstat</code> ...</li></ol>
             
-            <span class="read-more"><a href="/2019/07/15/Ubuntu-Force-Resolution/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/08/07/Ubuntu-Disk-Stat/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +210,59 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3670194103299107);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4237614446868325);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Ubuntu篇">
+                  <b>「 </b>UBUNTU篇<b> 」</b>
+                </a>
+            
+            七月 15, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/07/15/Ubuntu-Force-Resolution/" title="Ubuntu 强制设置分辨率" class="posttitle">Ubuntu 强制设置分辨率</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.4k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>一次系统重启后,Ubuntu 系统无法正确识别连接的显示器分辨率了,我连接的 2 个显示器,其中一个分辨率正确识别,另一个却无法识别,默认成 1024 的分辨率了</p>
+<p>强制设置的分辨率起码显示器得支持</p>
+<ol>
+<li><code>xrandr</code> 查看当前显示器的设置信息, 记住当前显示接口的名称,我这里是 <code>VGA-1</code>, 而且支持的分辨率列表应该是没有你想要的分辨率,不然的话在设置里就能看到了</li>
+<li>添加一个分辨率,我这里是 1920 * 1080 : <code>cvt 1920 1080</code>; 得到输出: <code>Modeline &quot;1920x1080_60...</code></li></ol>
+            
+            <span class="read-more"><a href="/2019/07/15/Ubuntu-Force-Resolution/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.921625531734698);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -260,7 +312,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8694621576495907);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5733198026743056);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -322,7 +374,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.0074825894767585055);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.3119807499305438);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">

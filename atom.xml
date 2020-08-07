@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2020-08-04T14:40:18.596Z</updated>
+  <updated>2020-08-07T07:36:13.417Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控</title>
+    <link href="http://blog.joylau.cn/2020/08/07/Ubuntu-Disk-Stat/"/>
+    <id>http://blog.joylau.cn/2020/08/07/Ubuntu-Disk-Stat/</id>
+    <published>2020-08-07T07:06:08.000Z</published>
+    <updated>2020-08-07T07:36:13.417Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>indicator-sysmonitor 可以新建传感器，可以自定义命令来显示输出， 于是我想着使用 shell 命令获取当前磁盘的 I/O 在输出即可</p><h3 id="dstat-方式"><a href="#dstat-方式" class="headerlink" title="dstat 方式"></a>dstat 方式</h3><ol><li>使用 <code>dstat</code> 命令， 需要机器上事先安装 <code>dstat</code> </li></ol><pre><code class="shell">    dstat  --disk</code></pre><p>该命令可以监控磁盘使用情况</p><p>我在稍对结果做下过滤的优化， 使用下面的命令</p><pre><code class="shell">    dstat  --disk 1 1 | sed -n &#39;4p&#39; | awk &#39;{printf &quot;r: &quot;}{printf $1}{printf &quot;   w: &quot;}{printf $2}&#39;</code></pre><p>上述的命令的解释为 1s 输出一次， 一次输出一行， 取第四行， 取第一列和第二列，在加上读写的标识 <code>r:</code> 和 <code>w:</code> 的前缀</p><p>输出的结果为：</p><pre><code class="text">    r: 0   w: 6244kj</code></pre><p>在 indicator-sysmonitor 里新建一项， 复制上述命令，效果如下</p><p><img src="http://image.joylau.cn/blog/stat-disk_001.png" alt="disk-dstat"></p><h3 id="iotop"><a href="#iotop" class="headerlink" title="iotop"></a>iotop</h3><ol><li>使用 <code>iotop</code> 命令， 需要机器上事先安装 <code>iotop</code> </li></ol><pre><code class="shell">    sudo iotop</code></pre><p>在美化下输出结果：</p><pre><code class="bash">    sudo iotop -o -b -n 1 | sed -n &#39;2p&#39; | awk &#39;{printf &quot;r: &quot;}{printf  $4 $5}{printf &quot;  w: &quot;}{printf $10 $11}&#39;</code></pre><p>命令的意思同上</p><p>输出的结果为：</p><pre><code class="text">    r: 0.00B/s  w: 0.00B/s</code></pre><p>同上操作， 命令更换下，效果如下：</p><p><img src="http://image.joylau.cn/blog/stat-disk_002.png" alt="disk-iotop"></p><h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><ol><li>输出单位不一样，第一种方式单位只有 k,m 这样的， 第二种是 B/s, KB/s, MB/s 这样的， 不过第一种方式的单位也可以手动给补全上</li><li>第一种方式 <code>dstat</code> 命令不需要 root 权限即可执行， 第二种方式 <code>iotop</code> 命令需要 root 权限即需要加 <code>sudo</code></li></ol><p>使用 sudo 的常用方式为：</p><pre><code class="bash">    echo &quot;你的 root 的密码&quot; | sudo iotop ....</code></pre><p>但是这样的方式在终端执行可以输出结果， 在 indicator-sysmonitor 执行却不能输出结果。。。。。</p><p>于是需要解决这个问题， 即使用普通用户执行 <code>iotop</code> 命令时不需要输入密码</p><p>这里我的解决方案如下：</p><pre><code class="bash">    sudo visudo    ## 添加下面几行    User_Alias NET_USERS = joylau    Cmnd_Alias SYS_STATUS = /usr/sbin/iotop # 多个命令逗号隔开    NET_USERS ALL=(root)   NOPASSWD:SYS_STATUS</code></pre><p><code>Ctrl + O</code> 保存后，普通用户 joylau 使用 <code>sudo iotop</code> 就不需要输入密码了， 也就实现了第二种方式的效果了</p>]]></content>
+    
+    <summary type="html">
+    
+      indicator-sysmonitor 默认的模式可以监控 CPU 使用率， 内存使用， 网络 I/O 等， 但是却缺少了很关键的对当前磁盘 I/O 的监控，于是我就想着把他给加上去
+    
+    </summary>
+    
+    
+      <category term="Ubuntu篇" scheme="http://blog.joylau.cn/categories/Ubuntu%E7%AF%87/"/>
+    
+    
+      <category term="Ubuntu" scheme="http://blog.joylau.cn/tags/Ubuntu/"/>
+    
+  </entry>
   
   <entry>
     <title>MacBook Pro 使用绿联 TypeC 网卡关闭笔记本盖子时导致局域网网络不可用的问题解决</title>
@@ -454,29 +477,6 @@
     
     
       <category term="Tunnelblick" scheme="http://blog.joylau.cn/tags/Tunnelblick/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>日常折腾之 KVR 漫游(二) --- 利用新路由 3 (Newifi D2) 组 KVR Wi-Fi 漫游</title>
-    <link href="http://blog.joylau.cn/2020/04/14/Daily-KVR-NewifiD2-JiKe/"/>
-    <id>http://blog.joylau.cn/2020/04/14/Daily-KVR-NewifiD2-JiKe/</id>
-    <published>2020-04-14T04:59:56.000Z</published>
-    <updated>2020-07-10T00:43:19.431Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>继续上篇文章来写, 本次基于 Breed 系统刷入集客 AP 系统, 来完成 KVR 漫游配置</p><h2 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h2><ol><li>集客 AP 固件 GECOOS_AP243P_mt7621_LLELL_5.8_2020013000.bin : <a href="http://file.cnrouter.com/index.php/Index/index.html?model_id=40&amp;device_type_id=6" target="_blank" rel="noopener">http://file.cnrouter.com/index.php/Index/index.html?model_id=40&amp;device_type_id=6</a></li></ol><p>我目前为止下载的版本为: 5.8_2020013000</p><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol><li>打开 Breed 管理界面: <a href="http://192.168.1.1" target="_blank" rel="noopener">http://192.168.1.1</a></li><li>选择固件,上传</li><li>耐心等待重启</li><li>由于 AP 没有 DHCP 功能, 没有自动分配 IP, 我们需要手动将 ip 设置为 6.6.6.x 网段, 子网掩码: 255.255.255.0, 网关不填</li><li>浏览器访问: <a href="http://6.6.6.6" target="_blank" rel="noopener">http://6.6.6.6</a>, 默认密码为 admin</li></ol><p>这时前期工作已经完成, 可以把路由器接入家里的主路由了</p><h2 id="配置-AP"><a href="#配置-AP" class="headerlink" title="配置 AP"></a>配置 AP</h2><ol><li>首先进入系统管理设置设备名称和重新修改密码</li><li>进入无线管理-&gt;SSID 设置WIFI 信息, 只要设置一台即可,下面通过克隆的方式来配置其他的 AP</li><li>进入微AC-&gt;AP列表</li></ol><p><img src="//image.joylau.cn/blog/Daily-KVR-NewifiD2-JiKe.png" alt="配置信息如下"></p><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol><li><p>我三台 新路由 3,其中有一台是 1.1 版本的,无法开启 5G WIFI<br>新路由 3 版本识别:<br>查询路由器底部 SN 前三位:<br>PND: 1.1<br>MND: 1.1+<br>HND: 1.2</p></li><li><p>注意 WIFI 切换不同的信道,防止互相干扰</p></li></ol><p><img src="//image.joylau.cn/blog/Daily-KVR-NewifiD2-JiKe-2.png" alt="信道切换"></p><p>之后可以使用 WIFI 魔盒对家里的各个地方进行网速和稳定性及漫游的测试了✿✿ヽ(°▽°)ノ✿</p>]]></content>
-    
-    <summary type="html">
-    
-      继续上篇文章来写, 本次基于 Breed 系统刷入集客 AP 系统, 来完成 KVR 漫游配置
-    
-    </summary>
-    
-    
-      <category term="日常折腾篇" scheme="http://blog.joylau.cn/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE%E7%AF%87/"/>
-    
-    
-      <category term="KVR" scheme="http://blog.joylau.cn/tags/KVR/"/>
     
   </entry>
   

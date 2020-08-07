@@ -143,48 +143,49 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(/img/cover.jpg);">
+                url(//image.joylau.cn/blog/stat-disk_002.png);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/MacOS篇"><b>「
-                </b>MACOS篇<b> 」</b></a>
+            <a href="/categories/Ubuntu篇"><b>「
+                </b>UBUNTU篇<b> 」</b></a>
             
-            八月 04, 2020
+            八月 07, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/08/04/MacBookPro-uGreen-TypeC-Hub/" title="MacBook Pro 使用绿联 TypeC 网卡关闭笔记本盖子时导致局域网网络不可用的问题解决" class="posttitle">MacBook Pro 使用绿联 TypeC 网卡关闭笔记本盖子时导致局域网网络不可用的问题解决</a></h3>
+            <a href="/2020/08/07/Ubuntu-Disk-Stat/" title="Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控" class="posttitle">Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                895
+                2.4k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                2 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 
-<p>我的 MacBook Pro 使用的是绿联的外接扩展坞, 其中有一个网口<br>在京东购买的: <a href="https://item.jd.com/4445121.html" target="_blank" rel="noopener">https://item.jd.com/4445121.html</a></p>
-<p>型号为: CM179<br>网卡芯片为: RTL8153B...</p>
+<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>indicator-sysmonitor 可以新建传感器，可以自定义命令来显示输出， 于是我想着使用 shell 命令获取当前磁盘的 I/O 在输出即可</p>
+<h3 id="dstat-方式"><a href="#dstat-方式" class="headerlink" title="dstat 方式"></a>dstat 方式</h3><ol>
+<li>使用 <code>dstat</code> ...</li></ol>
             
-            <span class="read-more"><a href="/2020/08/04/MacBookPro-uGreen-TypeC-Hub/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/08/07/Ubuntu-Disk-Stat/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +210,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/Awtrix-preview-png.png?0.18700193642922036);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1081266136437713);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/MacOS篇">
+                  <b>「 </b>MACOS篇<b> 」</b>
+                </a>
+            
+            八月 04, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/08/04/MacBookPro-uGreen-TypeC-Hub/" title="MacBook Pro 使用绿联 TypeC 网卡关闭笔记本盖子时导致局域网网络不可用的问题解决" class="posttitle">MacBook Pro 使用绿联 TypeC 网卡关闭笔记本盖子时导致局域网网络不可用的问题解决</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        895
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>我的 MacBook Pro 使用的是绿联的外接扩展坞, 其中有一个网口<br>在京东购买的: <a href="https://item.jd.com/4445121.html" target="_blank" rel="noopener">https://item.jd.com/4445121.html</a></p>
+<p>型号为: CM179<br>网卡芯片为: RTL8153B</p>
+<p>最近发现只要我的 MacBook Pro 关闭了盖子, 会导致接在同一交换机下的路由器就无法上网<br>打开盖子后,网络又恢复正常了  </p>
+<p>搜索了一番没找到解决方式</p>
+<p>于是就找到当时购买的这款产品的京东介绍页面看了看</p>
+<p>想着去绿联的官网找找驱动试试: <a href="https://www.lulian.cn/download/list-34-cn.html" target="_blank" rel="noopener">https://www.lulian.cn/download...</a></p>
+            
+            <span class="read-more"><a href="/2020/08/04/MacBookPro-uGreen-TypeC-Hub/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(//image.joylau.cn/blog/Awtrix-preview-png.png?0.1829884623505873);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -275,7 +329,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8386262620426237);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7120532408580316);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -327,7 +381,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2319898316868394);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5895894833344182);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -368,57 +422,6 @@
 
             
             <span class="read-more"><a href="/2020/07/10/JavaScript-Async/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5706306098858562);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Java篇">
-                  <b>「 </b>JAVA篇<b> 」</b>
-                </a>
-            
-            七月 01, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/07/01/Java-Multi-Files-Compress-Downloading/" title="Java 多文件边压缩边下载" class="posttitle">Java 多文件边压缩边下载</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>有时我们希望在后台实时生成文件并下载到客户端</p>
-<pre><code class="java">    @GetMapping(value = &quot;download&quot;)
-    public void download(HttpServletResponse response) {
-       try(OutputStream outputStream = response.getOutputStream();
-          ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream, StandardChar...</code></pre>
-            
-            <span class="read-more"><a href="/2020/07/01/Java-Multi-Files-Compress-Downloading/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

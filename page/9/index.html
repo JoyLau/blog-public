@@ -150,44 +150,43 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Electron篇"><b>「
-                </b>ELECTRON篇<b> 」</b></a>
+            <a href="/categories/Docker篇"><b>「
+                </b>DOCKER篇<b> 」</b></a>
             
-            九月 16, 2019
+            九月 23, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/09/16/Electron-AutoUpdater/" title="Electron --- 关于自动更新的一系列折腾" class="posttitle">Electron --- 关于自动更新的一系列折腾</a></h3>
+            <a href="/2019/09/23/Docker-Mariadb-InitDB/" title="Docker --- Maridb 容器启动时初始化数据库" class="posttitle">Docker --- Maridb 容器启动时初始化数据库</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                7.9k
+                447
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                7 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mariaDB/" rel="tag">mariaDB</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="Electron-自动更新的方法"><a href="#Electron-自动更新的方法" class="headerlink" title="Electron 自动更新的方法"></a>Electron 自动更新的方法</h3><ol>
-<li>使用 Electron 自己提供的 autoUpdater 模块</li>
-<li>使用更新服务器</li>
-<li>自己实现自动更新逻辑</li>
+<h3 id="容器启动时初始化数据的方法"><a href="#容器启动时初始化数据的方法" class="headerlink" title="容器启动时初始化数据的方法"></a>容器启动时初始化数据的方法</h3><ol>
+<li>编写好脚本,支持 .sql;.sh;.sql.gz</li>
+<li>容器启动时, 将脚本挂载到容器的 <code>/docker-entrypoint-initdb.d</code> 目录下即可</li>
 </ol>
-<p>为什么说经过了一系列的折腾呢, 因为前 2 中方式都没有解...</p>
+<p>可就是这么简单...</p>
             
-            <span class="read-more"><a href="/2019/09/16/Electron-AutoUpdater/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/09/23/Docker-Mariadb-InitDB/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -212,7 +211,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.697951124313479);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4580924349155304);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            九月 23, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/09/23/Docker-Mariadb-InitDB/" title="Docker --- Maridb 容器启动时初始化数据库" class="posttitle">Docker --- Maridb 容器启动时初始化数据库</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        447
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mariaDB/" rel="tag">mariaDB</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="容器启动时初始化数据的方法"><a href="#容器启动时初始化数据的方法" class="headerlink" title="容器启动时初始化数据的方法"></a>容器启动时初始化数据的方法</h3><ol>
+<li>编写好脚本,支持 .sql;.sh;.sql.gz</li>
+<li>容器启动时, 将脚本挂载到容器的 <code>/docker-entrypoint-initdb.d</code> 目录下即可</li>
+</ol>
+<p>可就是这么简单的操作,我却没有成功…</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>该方法只在初始化数据库的时候起作用,意思是,当你想把 mariadb 的数据目录 <code>/var/lib/mysql</code> 挂载到本地盘上,那么 该目下有文件时,放置的脚本将不会执行</p>
+
+            
+            <span class="read-more"><a href="/2019/09/23/Docker-Mariadb-InitDB/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.4090477300488069);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -265,7 +317,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.24553488078106378);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.26832656248703257);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -322,7 +374,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.39612029917741576);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.0990996609195407);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -374,7 +426,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.07543221534586464);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4089570293996463);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -419,65 +471,6 @@
 <h3 id="Electron-的实现"><a href="#Electron-的实现" class="headerlink" title="Electron 的实现"></a>Electron 的实现</h3><pre><code class="js">   app...</code></pre>
             
             <span class="read-more"><a href="/2019/09/12/Electron-URL-Scheme/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4931484498545462);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Electron篇">
-                  <b>「 </b>ELECTRON篇<b> 」</b>
-                </a>
-            
-            九月 11, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/09/11/Electron-Questions/" title="Electron --- 知识点小记" class="posttitle">Electron --- 知识点小记</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        4.9k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        4 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="Electron-只启动一个实例"><a href="#Electron-只启动一个实例" class="headerlink" title="Electron 只启动一个实例"></a>Electron 只启动一个实例</h3><p>使用 app.requestSingleInstanceLock()</p>
-<pre><code class="js">    const gotTheLock = app.requestSingleInstanceLock();
-
-    if (!gotTheLock) {
-        app.quit()
-    } else {
-        app.on(&#39;ready&#39;, createWindow);
-
-        app.on(&#39;window-all-closed&#39;, () =&gt; {
-            app.quit();
-        });
-
-        app....</code></pre>
-            
-            <span class="read-more"><a href="/2019/09/11/Electron-Questions/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

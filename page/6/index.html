@@ -150,42 +150,40 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/MacOS篇"><b>「
-                </b>MACOS篇<b> 」</b></a>
+            <a href="/categories/Docker篇"><b>「
+                </b>DOCKER篇<b> 」</b></a>
             
             三月 18, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/03/18/MacOS-Homebrew-Question/" title="MacOS HomeBrew 更新遇到的问题解决" class="posttitle">MacOS HomeBrew 更新遇到的问题解决</a></h3>
+            <a href="/2020/03/18/Docker-Auto-Publish-Blog/" title="真·Docker 自动部署个人博客" class="posttitle">真·Docker 自动部署个人博客</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                976
+                15k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                13 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/brew/" rel="tag">brew</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p>brew update 遇到错误, 错误信息如下:</p>
-<pre><code class="shell">   Updating Homebrew...
-   Warning: You are using macOS 10.15.
-   We do not provide...</code></pre>
+
+<h3 id="何为-真"><a href="#何为-真" class="headerlink" title="何为 真"></a>何为 <code>真</code></h3><p>以前我都是服务器上执行定时任务,在凌晨的时候 pull 博客仓库在 hexo 编译, 在上传到 github 静态资源库, 在 pull 静态资源库到 nginx 目录下,这样实现个人博客的...</p>
             
-            <span class="read-more"><a href="/2020/03/18/MacOS-Homebrew-Question/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/03/18/Docker-Auto-Publish-Blog/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +208,59 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.43734657626598605);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7635336497687111);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            三月 18, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/03/18/Docker-Auto-Publish-Blog/" title="真·Docker 自动部署个人博客" class="posttitle">真·Docker 自动部署个人博客</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        15k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        13 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="何为-真"><a href="#何为-真" class="headerlink" title="何为 真"></a>何为 <code>真</code></h3><p>以前我都是服务器上执行定时任务,在凌晨的时候 pull 博客仓库在 hexo 编译, 在上传到 github 静态资源库, 在 pull 静态资源库到 nginx 目录下,这样实现个人博客的发布</p>
+<p>真: 放弃定时任务, 采用 github 的钩子, 在博客仓库有 push 行为时,立马执行上述操作, 以前直接在服务器上写的脚本来执行,这次决定将这些操作打包成一个 docker 镜像, 随时随地可部署</p>
+<p>避免了部署还需要配置定时任务和写一批脚本的问题.</p>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
+<li>以 Ubuntu 18.04...</li></ol>
+            
+            <span class="read-more"><a href="/2020/03/18/Docker-Auto-Publish-Blog/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.9761693598474042);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -262,7 +312,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/qlPlugin-not-work.png?0.39854464654492805);">
+            url(//image.joylau.cn/blog/qlPlugin-not-work.png?0.9593193302955723);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -327,7 +377,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8449591045846179);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8738908561727359);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -376,7 +426,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.16062635392852176);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6625081914108513);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -423,55 +473,6 @@
 <li>Hard：不仅撤销 commit...</li></ul>
             
             <span class="read-more"><a href="/2020/02/18/Git-Knowledges/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.18006204035374274);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/React篇">
-                  <b>「 </b>REACT篇<b> 」</b>
-                </a>
-            
-            一月 15, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/01/15/React-WebSocket/" title="React WebSocket 的一些配置" class="posttitle">React WebSocket 的一些配置</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        4.4k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        4 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="spring-boot-后台的配置"><a href="#spring-boot-后台的配置" class="headerlink" title="spring boot 后台的配置"></a>spring boot 后台的配置</h3><p>这里记录一些坑<br>使用 gradle 配置, 其中移除了 Tomcat , 使用的是 Undertow<br>先引入依赖</p>
-<p><code>implementation (&#39;org.springframework.boot:spring-boot-starter-websocket&#39;)</code></p>
-<p>提示报错 web 容器没有实现 JSR356<br>undertow 肯定是实现了 JSR356, 在 undertow-websockets-jsr 这个依赖里<br>判断肯定是由于移除 Tomcat 的...</p>
-            
-            <span class="read-more"><a href="/2020/01/15/React-WebSocket/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

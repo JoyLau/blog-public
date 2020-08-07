@@ -64,7 +64,7 @@
                 <div class="content animated fadeIn">
                     <div class="set">
                         <h1 style="text-align: center">Archived</h1>
-                        <p style="text-align: center">「 196 」</p>
+                        <p style="text-align: center">「 197 」</p>
                         <ul class="timeline timeline-centered">
                             
                             
@@ -76,6 +76,29 @@
                                         <h2 class="timeline-title">八月 2020</h2>
                                     </div>
                                 </li>
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">八月 07, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/08/07/Ubuntu-Disk-Stat/">Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控</a>
+                                        <p>
+                                            
+
+解决方式indicator-sysmonitor 可以新建传感器，可以自定义命令来显示输出， 于是我想着使用 shell 命令获取当前磁盘的 I/O 在输出即可
+dstat 方式
+使用 dstat 命令， 需要机器上事先安装 dstat 
+
+    dstat  --disk
+该命令可以监控磁盘使用情况
+我在稍对结果做下过滤的优化， 使用下面的命令
+    dstat  --disk 1...
+                                        </p>
+                                    </div>
+                                </li>
+                            
                                 
                                 <li class="timeline-item">
                                     <div class="timeline-info">

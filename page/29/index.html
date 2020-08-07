@@ -150,42 +150,53 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Node篇"><b>「
-                </b>NODE篇<b> 」</b></a>
+            <a href="/categories/工具类篇"><b>「
+                </b>工具类篇<b> 」</b></a>
             
-            十一月 07, 2017
+            十一月 15, 2017
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2017/11/07/Node-Install-Error/" title="npm install 居然出错了" class="posttitle">npm install 居然出错了</a></h3>
+            <a href="/2017/11/15/FastJson-JSONPath/" title="FastJSON 还有这样的用法 涨姿势了" class="posttitle">FastJSON 还有这样的用法 涨姿势了</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                713
+                4.9k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                4 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/JSON/" rel="tag">JSON</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-
-<p>今天在安装完nodejs后执行 npm install 居然出错了</p>
-<p>npm: relocation error: npm: symbol SSL_set_cert_cb, version libssl...</p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>JSONPath。这是一个很强大的功能，可以在java框架中当作对象查询语言（OQL）来使用</p>
+<h3 id="语法说明"><a href="#语法说明" class="headerlink" title="语法说明"></a>语法说明</h3><table>
+<thead>
+<tr>
+<th align="left">JSONPATH</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">$</td>
+<td align="left">根对象，例如$.name</td>
+</tr>
+<tr>
+<td align="left">[num]</td>
+<td align="left">数组访问，...</td></tr></tbody></table>
             
-            <span class="read-more"><a href="/2017/11/07/Node-Install-Error/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2017/11/15/FastJson-JSONPath/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +221,76 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.46958729656259157);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6300013481815845);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/工具类篇">
+                  <b>「 </b>工具类篇<b> 」</b>
+                </a>
+            
+            十一月 15, 2017
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/11/15/FastJson-JSONPath/" title="FastJSON 还有这样的用法 涨姿势了" class="posttitle">FastJSON 还有这样的用法 涨姿势了</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        4.9k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        4 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/JSON/" rel="tag">JSON</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>JSONPath。这是一个很强大的功能，可以在java框架中当作对象查询语言（OQL）来使用</p>
+<h3 id="语法说明"><a href="#语法说明" class="headerlink" title="语法说明"></a>语法说明</h3><table>
+<thead>
+<tr>
+<th align="left">JSONPATH</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">$</td>
+<td align="left">根对象，例如$.name</td>
+</tr>
+<tr>
+<td align="left">[num]</td>
+<td align="left">数组访问，其中num是数字，可以是负数。例如$[0].leader.departments[-1].name</td>
+</tr>
+<tr>
+<td align="left">[num0,num1,num2…]</td>
+<td align="left">数组多个元素访问，其中num是数字，可以是负数，返回数组中的多个元素。例如$[0,3,-2,5]</td>
+</tr>
+<tr>
+<td align="left">[start:end]</td>
+<td align="left">数组范围访问，其中start和end...</td></tr></tbody></table>
+            
+            <span class="read-more"><a href="/2017/11/15/FastJson-JSONPath/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.29852694216124975);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -261,7 +341,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9542665688932732);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5279204147195322);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -312,7 +392,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.24006422657214954);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.3754024111325618);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -365,7 +445,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.33319921626189286);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7927191470812598);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -426,60 +506,6 @@
 <td align="left">作为 URL 加载...</td></tr></tbody></table>
             
             <span class="read-more"><a href="/2017/10/30/SpringBoot-ReadJSONFile/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5842527140229354);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringBoot篇">
-                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
-                </a>
-            
-            十月 26, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/10/26/SpringBoot-Oracle/" title="SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载" class="posttitle">SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.3k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="pom-文件配置"><a href="#pom-文件配置" class="headerlink" title="pom 文件配置"></a>pom 文件配置</h3><pre><code class="xml">    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.oracle&lt;/groupId&gt;
-        &lt;artifactId&gt;...</code></pre>
-            
-            <span class="read-more"><a href="/2017/10/26/SpringBoot-Oracle/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
