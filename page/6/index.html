@@ -150,42 +150,40 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/日常折腾篇"><b>「
-                </b>日常折腾篇<b> 」</b></a>
+            <a href="/categories/Docker篇"><b>「
+                </b>DOCKER篇<b> 」</b></a>
             
-            四月 01, 2020
+            四月 12, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/04/01/Daily-Various-Proxy-Setting/" title="各种代理设置汇总记录" class="posttitle">各种代理设置汇总记录</a></h3>
+            <a href="/2020/04/12/Docker-LibreOffice-Online/" title="Docker LibreOffice Online Requesting address is denied&amp;#58; &amp;#58;&amp;#58; ffff&amp;#58;172.xx.xx.xx 错误解决记录" class="posttitle">Docker LibreOffice Online Requesting address is denied&amp;#58; &amp;#58;&amp;#58; ffff&amp;#58;172.xx.xx.xx 错误解决记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                3.8k
+                292
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                3 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Proxy/" rel="tag">Proxy</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>以前博客多多少少写个一些常用工具的代理设置,这里做一个汇总, 以后有更多工具使用代理直接在此处记录了</p>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>如果代理有用户名密码的话, 使用</p>
-<pre><code class="bash">    http://username:password@127...</code></pre>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>这是容器内使用 ipv6 造成的<br>解决方式:<br>添加参数</p>
+<pre><code class="text">    - e &#39;extra_params=--o:ssl.enable=false --o:net.post_allow.host[0]=...</code></pre>
             
-            <span class="read-more"><a href="/2020/04/01/Daily-Various-Proxy-Setting/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/04/12/Docker-LibreOffice-Online/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +208,57 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5121807730169772);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.2724407118984442);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            四月 12, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/04/12/Docker-LibreOffice-Online/" title="Docker LibreOffice Online Requesting address is denied&amp;#58; &amp;#58;&amp;#58; ffff&amp;#58;172.xx.xx.xx 错误解决记录" class="posttitle">Docker LibreOffice Online Requesting address is denied&amp;#58; &amp;#58;&amp;#58; ffff&amp;#58;172.xx.xx.xx 错误解决记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        292
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>这是容器内使用 ipv6 造成的<br>解决方式:<br>添加参数</p>
+<pre><code class="text">    - e &#39;extra_params=--o:ssl.enable=false --o:net.post_allow.host[0]=.\{1,99\}&#39;</code></pre>
+<p>使用正则匹配所有 ip , 注意使用单引号, 否则反斜杠需要转义</p>
+
+            
+            <span class="read-more"><a href="/2020/04/12/Docker-LibreOffice-Online/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.9861094556609857);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -264,7 +312,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.247026347508428);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.0869081839642154);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -316,7 +364,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2900636151364102);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.616389449463794);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -368,7 +416,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/qlPlugin-not-work.png?0.12072937729796207);">
+            url(//image.joylau.cn/blog/qlPlugin-not-work.png?0.9735022125589305);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -424,55 +472,6 @@
 <p>点击 “Allow Anyway”...</p>
             
             <span class="read-more"><a href="/2020/03/18/MacOS-Quick-Look/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5845992271822873);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            三月 12, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/03/12/Docker-Java-OOM/" title="Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用" class="posttitle">Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.7k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>在一次生产环境部署 elasticsearch 节点时 docker 容器设置了 –restart always,<br>此时 elasticsearch 的一个节点发生了 java.lang.OutOfMemoryError: Java heap space<br>容器并没有重启</p>
-<p>elasticsearch 已经设置了 -Xms -Xmx</p>
-<p>JVM堆内存超出xmx限制，并抛java.lang.OutOfMemoryError: Java heap space异常。堆内存爆了之后，JVM和java进程会继续运行...</p>
-            
-            <span class="read-more"><a href="/2020/03/12/Docker-Java-OOM/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

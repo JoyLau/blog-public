@@ -150,41 +150,43 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/SpringSecurity篇"><b>「
-                </b>SPRINGSECURITY篇<b> 」</b></a>
+            <a href="/categories/大数据篇"><b>「
+                </b>大数据篇<b> 」</b></a>
             
-            三月 30, 2018
+            五月 07, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/" title="SpringSecurity Session并发过期后会重定向到 &#x2F;login (入口点问题)问题的解决" class="posttitle">SpringSecurity Session并发过期后会重定向到 &#x2F;login (入口点问题)问题的解决</a></h3>
+            <a href="/2018/05/07/Elasticsearch-ELK/" title="ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台" class="posttitle">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                13k
+                5.3k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                12 mins.
+                5 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringSecurity/" rel="tag">SpringSecurity</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p>在 SpringSecurity 中，我想配置一个关于session并发的控制，于是我是这样配置的</p>
-<pre><code class="java">     @Override
-        protected void configure(HttpSecurity ...</code></pre>
+
+<ol>
+<li>Elasticsearch， Logstash，Kibana 版本都是5.3.0</li>
+<li>SpringBoot 集成 ELK，实际上指的就是 SpringBoot 与 Logstash 的整合</li>
+<li>Elasticsearch...</li></ol>
             
-            <span class="read-more"><a href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/05/07/Elasticsearch-ELK/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +211,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7412209879122309);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7915794236253033);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/大数据篇">
+                  <b>「 </b>大数据篇<b> 」</b>
+                </a>
+            
+            五月 07, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/05/07/Elasticsearch-ELK/" title="ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台" class="posttitle">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        5.3k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        5 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<ol>
+<li>Elasticsearch， Logstash，Kibana 版本都是5.3.0</li>
+<li>SpringBoot 集成 ELK，实际上指的就是 SpringBoot 与 Logstash 的整合</li>
+<li>Elasticsearch 负责数据的存储，Logstash 负责数据的接受和数据的发送，相当于一个中转站，Kibana 负责数据的展示，查询</li>
+<li>SpringBoot 项目是我们产生日志并且需要存储和分析的项目</li>
+<li>SpringBoot 我还是使用的默认的 logback 日志系统，当然也可以采用 log4j,不过...</li></ol>
+            
+            <span class="read-more"><a href="/2018/05/07/Elasticsearch-ELK/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.8704080822467568);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -262,7 +317,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.010461209559103235);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6879112294065794);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -317,7 +372,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://image.joylau.cn/blog/Assembly-Package.png?0.7625084502481212);">
+            url(http://image.joylau.cn/blog/Assembly-Package.png?0.28013290907095856);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -366,7 +421,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6853672782491396);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.46118408522383336);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -407,62 +462,6 @@
 <p>年初我自己搭建这个脚手架使用的时候,那时 Druid...</p>
             
             <span class="read-more"><a href="/2017/11/29/SpringBoot-Druid-MyBatis-Mapper-PageHelper/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9704502318793473);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringBoot篇">
-                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
-                </a>
-            
-            十一月 16, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/11/16/SpringBoot-Elasticsearch-Complex/" title="重剑无锋,大巧不工 SpringBoot --- 使用 Elasticsearch 进行更复杂的查询" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 使用 Elasticsearch 进行更复杂的查询</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        31k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        28 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p>java 操作 elasticsearch 有四种方式</p>
-<ol>
-<li>调用 elasticsearch 的 restapis 接口</li>
-<li>调用 java elasticsearch client 的接口</li>
-<li>整合 spring data 使用 ElasticsearchTemplate 封装的方法</li>
-<li>继承 ElasticsearchRepository 接口调用方法</li>
-</ol>
-<p>我们先来准备一些数据,写了一个之前的获取JoyMusic 的音乐数据的项目来说,项目的结构是这样的:<br><br>获取数据的主要代码如下,只是为了增加数据</p>
-<pre><code class="java">    @RunWith...</code></pre>
-            
-            <span class="read-more"><a href="/2017/11/16/SpringBoot-Elasticsearch-Complex/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

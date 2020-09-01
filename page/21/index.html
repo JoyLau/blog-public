@@ -153,39 +153,39 @@
             <a href="/categories/Docker篇"><b>「
                 </b>DOCKER篇<b> 」</b></a>
             
-            十一月 19, 2018
+            十一月 20, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/11/19/Docker-PrivateRepo/" title="Docker 私服搭建记录" class="posttitle">Docker 私服搭建记录</a></h3>
+            <a href="/2018/11/20/Docker-OpenVPN/" title="Docker OpenVPN 服务搭建记录" class="posttitle">Docker OpenVPN 服务搭建记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                6.6k
+                9.1k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                6 mins.
+                8 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenVPN/" rel="tag">OpenVPN</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
+<p>出差在外或者在家工作都需要连接公司网络,没有 VPN 怎么能行</p>
 <ol>
-<li><p>docker pull registry</p>
-</li>
-<li><p>docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 –restart=always...</p></li></ol>
+<li>全局变量配置: OVPN_DATA=”/home/joylau/ovpn-data”</li>
+<li><code>mkdir ${OVPN_DATA}</code> , <code>cd...</code></li></ol>
             
-            <span class="read-more"><a href="/2018/11/19/Docker-PrivateRepo/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/11/20/Docker-OpenVPN/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +210,58 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6192638266940171);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9108239841803791);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            十一月 20, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/11/20/Docker-OpenVPN/" title="Docker OpenVPN 服务搭建记录" class="posttitle">Docker OpenVPN 服务搭建记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        9.1k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        8 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenVPN/" rel="tag">OpenVPN</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>出差在外或者在家工作都需要连接公司网络,没有 VPN 怎么能行</p>
+<ol>
+<li>全局变量配置: OVPN_DATA=”/home/joylau/ovpn-data”</li>
+<li><code>mkdir ${OVPN_DATA}</code> , <code>cd ${OVPN_DATA}</code></li>
+<li>这里我使用的是 tcp, udp 的好像没映射, 我用起来有问题,后来换的 tcp 方式, <code>docker run -v ${OVPN_DATA}:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u tcp://公网 ...</code></li></ol>
+            
+            <span class="read-more"><a href="/2018/11/20/Docker-OpenVPN/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.6128188820595104);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -260,7 +311,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7549336690668182);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.14398328265517146);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -312,7 +363,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.03573028321073024);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9915383187627425);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -366,7 +417,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.43338842996335036);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9159710646856278);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -407,55 +458,6 @@
                 .setScroll...</code></pre>
             
             <span class="read-more"><a href="/2018/08/09/Elasticsearch-SearchAll/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9116192527740667);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/前端篇">
-                  <b>「 </b>前端篇<b> 」</b>
-                </a>
-            
-            八月 09, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/08/09/Jquery-Load-Plugins/" title="$(...).autocomplete is not a function 问题的解决" class="posttitle">$(...).autocomplete is not a function 问题的解决</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.4k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Jquery/" rel="tag">Jquery</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>因项目需求,需要一个自动提示的功能,想到之前有 jquery 的 jQuery-Autocomplete 插件,于是就直接拿来用了,<br>直接在github 上找到了一个 starts 最多的项目 <a href="https://github.com/devbridge/jQuery-Autocomplete.git" target="_blank" rel="noopener">jQuery-Autocomplete</a><br>看了下插件的 API 可配置项很多,有一个 appendTo 配置,是我想要的,于是就决定使用这个差价</p>
-<p>直接把 插件下载下来 放到项目中去,直接 $(…).autocomplete is not a function<br>……</p>
-<p>项目中我写的只是其中的一个模块,页面的代码...</p>
-            
-            <span class="read-more"><a href="/2018/08/09/Jquery-Load-Plugins/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
