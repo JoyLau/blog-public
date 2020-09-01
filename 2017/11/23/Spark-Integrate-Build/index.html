@@ -1,361 +1,150 @@
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="loading">
 <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>大数据之路 Spark 环境搭建 - JoyLau&#39;s Blog | JoyLau</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="JoyLau,Blog,JoyLau&#39;s Blog,"> 
+    <meta name="description" content="JoyLau的技术学习与思考,JoyLau的个人博客,刘法的技术学习与思考,刘法的个人博客。,
+准备工作首先首先要说明的是,本篇文章用的  Spark 的版本都是目前最新版,直接在官网上下载就可以了,有注意的,下面详细说有些命令可能已经不适应之前的旧版本了,以最新的版的为准以下操作命令均是在,"> 
+    <meta name="author" content="JoyLau"> 
+    <link rel="alternative" href="atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml"> 
+    <link rel="icon" href="http://image.joylau.cn/favicon.ico"> 
+    <meta name="baidu-site-verification" content="YKshmF02SZ" />
+    
+<link rel="stylesheet" href="/css/font.css">
 
-    <!--[if lt IE 9]>
-        <style>body {display: none; background: none !important} </style>
-        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
-    <![endif]-->
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1792772_esp1kuicf2e.css">
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="keywords" content="JoyLau,joylau,JoyLau  blog,刘法,刘法的博客,刘法的技术与思考,Java,JavaWeb,Web程序员,Web开发,JavaWeb开发,个人博客" />
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="JoyLau" />
+    
+<link rel="stylesheet" href="/css/animate.css/3.7.2/animate.min.css">
 
+    
+<link rel="stylesheet" href="/css/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 
-<meta name="description" content="记录这篇 Spark 环境搭建与之前那篇 Hadoop 环境搭建相呼应">
-<meta property="og:type" content="article">
-<meta property="og:title" content="大数据之路 Spark 环境搭建">
-<meta property="og:url" content="http://blog.joylau.cn/2017/11/23/Spark-Integrate-Build/index.html">
-<meta property="og:site_name" content="JoyLau&#39;s Blog | JoyLau">
-<meta property="og:description" content="记录这篇 Spark 环境搭建与之前那篇 Hadoop 环境搭建相呼应">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2017-11-23T06:19:37.000Z">
-<meta property="article:modified_time" content="2018-06-07T05:27:36.220Z">
-<meta property="article:author" content="JoyLau">
-<meta property="article:tag" content="Spark">
-<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/codemirror.min.css">
 
-<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+    
+<link rel="stylesheet" href="/css/codemirror/5.53.2/theme/dracula.css">
 
+    
+<link rel="stylesheet" href="/css/obsidian.css">
 
-    <link rel="alternate" href="/atom.xml" title="JoyLau&#39;s Blog | JoyLau" type="application/atom+xml">
-
-
-
-    <link rel="shortcut icon" href="//image.joylau.cn/favicon.ico">
-
-
-
-    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
-
-
-
-    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
-
-
-
-    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
-
-
-
-<link rel="stylesheet" href="/css/style.css">
-
-
-
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
-
-<title>大数据之路 Spark 环境搭建 | JoyLau&#39;s Blog | JoyLau</title>
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-
-<script>
-    var yiliaConfig = {
-        fancybox: true,
-        animate: true,
-        isHome: false,
-        isPost: true,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
-        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: true
-    }
-</script>
-
-
-    <script> yiliaConfig.jquery_ui = [false]; </script>
-
-
-
-    <script> yiliaConfig.rootUrl = "\/";</script>
-
-
-
-
-
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
-            var s = document.getElementsByTagName("script")[0]; 
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-
-
-
-    <script src="//image.joylau.cn/blog/chaffle.min.js"></script>
-
-
-    <script src="//image.joylau.cn/blog/lettering.js"></script>
-    <script src="//image.joylau.cn/blog/textillate.js"></script>
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
 
 <meta name="generator" content="Hexo 4.2.0"></head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/" class="profilepic">
-            <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
-        </a>
-        <hgroup>
-          <h1 class="header-author"><a class="chaffle" data-lang="en" href="/">JoyLau</a></h1>
-        </hgroup>
-
-        
-        <p class="header-subtitle chaffle" data-lang="zh">刘法的技术学习与思考</p>
-        
-
-        
-            <form id="search-form">
-            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
-            <i class="fa fa-times" onclick="resetSearch()"></i>
-            </form>
-            <div id="local-search-result"></div>
-            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
-        
 
 
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">JoyLau&#39;s Blog | JoyLau</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" style="border-radius:50%" class="icon-home" src="http://image.joylau.cn/blog/JoyLau.jpg" alt="" data-url="http://blog.joylau.cn">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">大数据之路 Spark 环境搭建</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
                     
                 </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li class="chaffle" data-lang="zh">菜单</li>
-                        <li class="chaffle" data-lang="zh">标签</li>
-                        
-                        <li class="chaffle" data-lang="zh">友情链接</li>
-                        
-                        
-                        <li class="chaffle" data-lang="zh">关于</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
-
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a class="chaffle" data-lang="zh" href="/">主页</a></li>
-                        
-                            <li><a class="chaffle" data-lang="zh" href="/archives/">所有文章</a></li>
-                        
-                            <li><a class="chaffle" data-lang="zh" href="/tags/">标签云</a></li>
-                        
-                            <li><a class="chaffle" data-lang="zh" href="/about/">留言板</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" href="mailto:2587038142@qq.com" title="Email"></a>
-                            
-                                <a class="fa 知乎" href="https://www.zhihu.com/" target="_blank" rel="noopener" title="知乎"></a>
-                            
-                                <a class="fa GitHub" href="https://github.com/JoyLau" target="_blank" rel="noopener" title="GitHub"></a>
-                            
-                                <a class="fa Facebook" href="https://www.facebook.com/profile.php?id=100007776496425" target="_blank" rel="noopener" title="Facebook"></a>
-                            
-                                <a class="fa 网易云音乐" href="http://music.163.com/#/user/home?id=246512565" target="_blank" rel="noopener" title="网易云音乐"></a>
-                            
-                                <a class="fa QQ" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
-                            
-                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/" rel="tag">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/" rel="tag">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMD/" rel="tag">CMD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ClashX/" rel="tag">ClashX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cron/" rel="tag">Cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker-Swarm/" rel="tag">Docker Swarm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker-Compose/" rel="tag">Docker-Compose</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Druid/" rel="tag">Druid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Electron/" rel="tag">Electron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eureka/" rel="tag">Eureka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Filebeat/" rel="tag">Filebeat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPG/" rel="tag">GPG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GZIP/" rel="tag">GZIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/" rel="tag">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/InnoSetup/" rel="tag">InnoSetup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntelliJ-IDEA/" rel="tag">IntelliJ IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/" rel="tag">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSON/" rel="tag">JSON</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jquery/" rel="tag">Jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KVR/" rel="tag">KVR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/" rel="tag">Kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LibreOffice/" rel="tag">LibreOffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logstash/" rel="tag">Logstash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lombok/" rel="tag">Lombok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MATE-Desktop/" rel="tag">MATE Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacBookPro/" rel="tag">MacBookPro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mapper/" rel="tag">Mapper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenOffice/" rel="tag">OpenOffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenVPN/" rel="tag">OpenVPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PageHelper/" rel="tag">PageHelper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugins/" rel="tag">Plugins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PowerDesigner/" rel="tag">PowerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSL/" rel="tag">SSL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scala/" rel="tag">Scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/" rel="tag">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBatch/" rel="tag">SpringBatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringSecurity/" rel="tag">SpringSecurity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger2/" rel="tag">Swagger2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thymeleaf/" rel="tag">Thymeleaf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tunnelblick/" rel="tag">Tunnelblick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode/" rel="tag">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YUM/" rel="tag">YUM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZeroC-Ice/" rel="tag">ZeroC Ice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew/" rel="tag">brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/emoji/" rel="tag">emoji</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/license/" rel="tag">license</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mariaDB/" rel="tag">mariaDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openoffice/" rel="tag">openoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ownCloud/" rel="tag">ownCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E8%83%BD/" rel="tag">技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/" rel="tag">日常折腾</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/" rel="tag">磁盘挂载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BE%A4%E6%99%96/" rel="tag">群晖</a></li></ul>
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
-                    
-                      <a class="main-nav-link switch-friends-link" href="http://www.joylau.cn/" target="_blank" rel="noopener">JoyLau</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="http://life.joylau.cn/" target="_blank" rel="noopener">JoyLau’life</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="http://media.joylau.cn/" target="_blank" rel="noopener">JoyMedia</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="http://blog.wfyvv.com/" target="_blank" rel="noopener">wfyvv</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="http://chaxiaoniu.oschina.io/" target="_blank" rel="noopener">CherryChang</a>
-                    
-                    </div>
-                </section>
-                
-
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，与大家分享交流，同时能够对这些技术进行备忘，以便日后查询</div>
-                </section>
-                
             </div>
         </div>
-    </header>                
+    </div>
 </div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">JoyLau</a></h1>
-      </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                <img src="//image.joylau.cn/blog/JoyLau.jpg" class="animated zoomIn">
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">JoyLau</a></h1>
-            </hgroup>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(http://nas.joylau.cn:5016/1920x1080?0.6862663402767879) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/大数据篇"><b>「
+                    </b>大数据篇<b> 」</b></a>
+                
+                十一月 23, 2017
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2017/11/23/Spark-Integrate-Build/" title="大数据之路 Spark 环境搭建" class="">大数据之路 Spark 环境搭建</a>
+            </h3>
             
-            <p class="header-subtitle">刘法的技术学习与思考</p>
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    7k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    6 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv_copy"></span>
+                </span>
+                
+            </p>
             
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/tags/">标签云</a></li>
-                
-                    <li><a href="/about/">留言板</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-            <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" target="_blank" href="mailto:2587038142@qq.com" title="Email"></a>
-                            
-                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/" title="知乎"></a>
-                            
-                                <a class="fa GitHub" target="_blank" href="https://github.com/JoyLau" title="GitHub"></a>
-                            
-                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100007776496425" title="Facebook"></a>
-                            
-                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=246512565" title="网易云音乐"></a>
-                            
-                                <a class="fa QQ" target="_blank" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2587038142" title="QQ"></a>
-                            
-                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-            </nav>
-        </header>                
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spark/" rel="tag">Spark</a></li></ul>
+            
+        </div>
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于"/>
-</nav>
-      <div class="body-wrap"><article id="post-Spark-Integrate-Build" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/11/23/Spark-Integrate-Build/" class="article-date">
-      <time datetime="2017-11-23T06:19:37.000Z" itemprop="datePublished">2017-11-23</time>
-</a>
+</div>
 
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-           <div id="jl_custom">
-                
-
-                
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
             </div>
-        
-  
-    <h1 class="article-title article-tlt-h" itemprop="name">大数据之路 Spark 环境搭建</h1>
-  
-
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%AF%87/">大数据篇</a>
+        </div>
     </div>
+</div>
 
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/" rel="tag">Spark</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <a id="more"></a>
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <a id="more"></a>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h3><p>首先要说明的是,本篇文章用的  Spark 的版本都是目前最新版,直接在官网上下载就可以了,有注意的,下面详细说<br>有些命令可能已经不适应之前的旧版本了,以最新的版的为准<br>以下操作命令均是在服务的根目录下,使用的是相对目录</p>
 <h3 id="当前版本说明"><a href="#当前版本说明" class="headerlink" title="当前版本说明"></a>当前版本说明</h3><ul>
 <li>jdk 1.8.0</li>
@@ -367,19 +156,16 @@
 <h2 id="安装-Spark"><a href="#安装-Spark" class="headerlink" title="安装 Spark"></a>安装 Spark</h2><p>打开官网下载的地址: <a href="http://spark.apache.org/downloads.html" target="_blank" rel="noopener">http://spark.apache.org/downloads.html</a><br>需要注意的是,在选择下载包类型 <code>Choose a package type</code> 这个需要根据安装的 Hadoop 的版本来定的,或者直接选择  <code>Pre-build with user-provided Apache Hadoop</code><br>这样我们可以自己配置 Hadoop 的版本</p>
 <p>下载后,解压</p>
 <p>进入 conf目录拷贝一份配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp ./conf/spark-env.sh.template ./conf/spark-env.sh</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">    cp ./conf/spark-env.sh.template ./conf/spark-env.sh</code></pre>
 <p>加入环境变量</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> SPARK_DIST_CLASSPATH=$(/home/hadoop-2.8.2/bin/hadoop classpath)</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">    export SPARK_DIST_CLASSPATH=$(/home/hadoop-2.8.2/bin/hadoop classpath)</code></pre>
 <p>我们运行 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ./sbin/start-all.sh</span></span><br></pre></td></tr></table></figure>
+<pre><code class="bash">    # ./sbin/start-all.sh</code></pre>
 <p>Spark 便会运行起来,查看地址 : <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>  可查看到集群情况</p>
 <h2 id="运行-Spark-示例程序"><a href="#运行-Spark-示例程序" class="headerlink" title="运行 Spark 示例程序"></a>运行 Spark 示例程序</h2><p>正如前面的 Hadoop 一样, Spark 自带有很多示例程序,目录在 ./example 下面,有 Java 的 Python,Scala ,R 语言的,<br>这里我们选个最熟悉的 Java 版的来跑下</p>
 <p>我们找到 Java 的目录里也能看到里面有很多程序,能看到我们熟悉的 wordcount</p>
 <p>这里我们跑个 计算π的值</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ./bin/run-example SparkPi</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash">    # ./bin/run-example SparkPi</code></pre>
 <p>运行后控制台打印很多信息,但是能看到这么一行:</p>
 <p><em><strong>Pi is roughly 3.1432557162785812</strong></em></p>
 <p>这就可以了</p>
@@ -396,296 +182,413 @@
 </ul>
 <h2 id="Spark-Shell"><a href="#Spark-Shell" class="headerlink" title="Spark-Shell"></a>Spark-Shell</h2><p>Spark-shell 支持 Scala 和 Python 2中语言,这里我们就用 Scala 来做,关于 Scala 的使用和语法我打算新写一篇文章来记录下,<br>在之前我也写过 在 maven 中集成使用 Scala 来编程,这里我先用下</p>
 <p>执行 shell </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ./bin/spark-shell</span></span><br><span class="line"></span><br><span class="line">To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).</span><br><span class="line">17/11/24 09:33:36 WARN util.NativeCodeLoader: Unable to load native-hadoop library <span class="keyword">for</span> your platform... using <span class="built_in">builtin</span>-java classes <span class="built_in">where</span> applicable</span><br><span class="line">17/11/24 09:33:37 WARN util.Utils: Your hostname, JoyLinux resolves to a loopback address: 127.0.0.1; using 10.0.2.15 instead (on interface enp0s3)</span><br><span class="line">17/11/24 09:33:37 WARN util.Utils: Set SPARK_LOCAL_IP <span class="keyword">if</span> you need to <span class="built_in">bind</span> to another address</span><br><span class="line">Spark context Web UI available at http://10.0.2.15:4040</span><br><span class="line">Spark context available as <span class="string">'sc'</span> (master = <span class="built_in">local</span>[*], app id = <span class="built_in">local</span>-1511487218050).</span><br><span class="line">Spark session available as <span class="string">'spark'</span>.</span><br><span class="line">Welcome to</span><br><span class="line">      ____              __</span><br><span class="line">     / __/__  ___ _____/ /__</span><br><span class="line">    _\ \/ _ \/ _ `/ __/  <span class="string">'_/</span></span><br><span class="line"><span class="string">   /___/ .__/\_,_/_/ /_/\_\   version 2.2.0</span></span><br><span class="line"><span class="string">      /_/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_151)</span></span><br><span class="line"><span class="string">Type in expressions to have them evaluated.</span></span><br><span class="line"><span class="string">Type :help for more information.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">scala&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="bash">    # ./bin/spark-shell
 
+    To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+    17/11/24 09:33:36 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+    17/11/24 09:33:37 WARN util.Utils: Your hostname, JoyLinux resolves to a loopback address: 127.0.0.1; using 10.0.2.15 instead (on interface enp0s3)
+    17/11/24 09:33:37 WARN util.Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+    Spark context Web UI available at http://10.0.2.15:4040
+    Spark context available as &#39;sc&#39; (master = local[*], app id = local-1511487218050).
+    Spark session available as &#39;spark&#39;.
+    Welcome to
+          ____              __
+         / __/__  ___ _____/ /__
+        _\ \/ _ \/ _ `/ __/  &#39;_/
+       /___/ .__/\_,_/_/ /_/\_\   version 2.2.0
+          /_/
+
+    Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_151)
+    Type in expressions to have them evaluated.
+    Type :help for more information.
+
+    scala&gt;</code></pre>
 <p>来执行一个文本统计</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val textFile = sc.textFile(<span class="string">"file:///home/hadoop-2.8.2/input/test.txt"</span>).count()</span><br><span class="line"></span><br><span class="line">textFile: Long = 4</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">    scala&gt; val textFile = sc.textFile(&quot;file:///home/hadoop-2.8.2/input/test.txt&quot;).count()
 
+    textFile: Long = 4</code></pre>
 <p>默认读取的文件是 Hadoop HDFS 上的,上面的示例是从本地文件读取</p>
 <p>来一个从 HDFS 上读取的,在这里我们之前在 HDFS 上传了个 tets.txt 的文档,在这里就可以直接使用了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; val textFile = sc.textFile(<span class="string">"test2.txt"</span>);textFile.count()</span><br><span class="line"></span><br><span class="line">textFile: org.apache.spark.rdd.RDD[String] = test2.txt MapPartitionsRDD[19] at textFile at &lt;console&gt;:26</span><br><span class="line">res7: Long = 4</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">    scala&gt; val textFile = sc.textFile(&quot;test2.txt&quot;);textFile.count()
 
+    textFile: org.apache.spark.rdd.RDD[String] = test2.txt MapPartitionsRDD[19] at textFile at &lt;console&gt;:26
+    res7: Long = 4</code></pre>
 <p>可以看到结果是一样的</p>
 <h2 id="Spark-SQL-和-DataFrames"><a href="#Spark-SQL-和-DataFrames" class="headerlink" title="Spark SQL 和 DataFrames"></a>Spark SQL 和 DataFrames</h2><p>Spark SQL 是 Spark 内嵌的模块，用于结构化数据。在 Spark 程序中可以使用 SQL 查询语句或 DataFrame API。DataFrames 和 SQL 提供了通用的方式来连接多种数据源，支持 Hive、Avro、Parquet、ORC、JSON、和 JDBC，并且可以在多种数据源之间执行 join 操作。</p>
 <p>下面仍在 Spark shell 中演示一下 Spark SQL 的基本操作，该部分内容主要参考了 Spark SQL、DataFrames 和 Datasets 指南。</p>
 <p>Spark SQL 的功能是通过 SQLContext 类来使用的，而创建 SQLContext 是通过 SparkContext 创建的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; var df = spark.read.json(<span class="string">"file:///home/spark-2.2.0-bin-without-hadoop/examples/src/main/resources/employees.json"</span>)</span><br><span class="line">df: org.apache.spark.sql.DataFrame = [name: string, salary: bigint]</span><br><span class="line"></span><br><span class="line">scala&gt; df.show()</span><br><span class="line">+-------+------+</span><br><span class="line">|   name|salary|</span><br><span class="line">+-------+------+</span><br><span class="line">|Michael|  3000|</span><br><span class="line">|   Andy|  4500|</span><br><span class="line">| Justin|  3500|</span><br><span class="line">|  Berta|  4000|</span><br><span class="line">+-------+------+</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">scala&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">    scala&gt; var df = spark.read.json(&quot;file:///home/spark-2.2.0-bin-without-hadoop/examples/src/main/resources/employees.json&quot;)
+    df: org.apache.spark.sql.DataFrame = [name: string, salary: bigint]
 
+    scala&gt; df.show()
+    +-------+------+
+    |   name|salary|
+    +-------+------+
+    |Michael|  3000|
+    |   Andy|  4500|
+    | Justin|  3500|
+    |  Berta|  4000|
+    +-------+------+
+
+
+    scala&gt;</code></pre>
 <p>再来执行2条查询语句<br><code>df.select(&quot;name&quot;).show()</code><br><code>df.filter(df(&quot;salary&quot;)&gt;=4000).show()</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; df.select(<span class="string">"name"</span>).show()</span><br><span class="line">+-------+</span><br><span class="line">|   name|</span><br><span class="line">+-------+</span><br><span class="line">|Michael|</span><br><span class="line">|   Andy|</span><br><span class="line">| Justin|</span><br><span class="line">|  Berta|</span><br><span class="line">+-------+</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">scala&gt; df.filter(df(<span class="string">"salary"</span>)&gt;=4000).show()</span><br><span class="line">+-----+------+</span><br><span class="line">| name|salary|</span><br><span class="line">+-----+------+</span><br><span class="line">| Andy|  4500|</span><br><span class="line">|Berta|  4000|</span><br><span class="line">+-----+------+</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">    scala&gt; df.select(&quot;name&quot;).show()
+    +-------+
+    |   name|
+    +-------+
+    |Michael|
+    |   Andy|
+    | Justin|
+    |  Berta|
+    +-------+
 
+
+    scala&gt; df.filter(df(&quot;salary&quot;)&gt;=4000).show()
+    +-----+------+
+    | name|salary|
+    +-----+------+
+    | Andy|  4500|
+    |Berta|  4000|
+    +-----+------+</code></pre>
 <p>执行一条 sql 语句试试</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; df.registerTempTable(<span class="string">"employees"</span>)</span><br><span class="line">warning: there was one deprecation warning; re-run with -deprecation <span class="keyword">for</span> details</span><br><span class="line"></span><br><span class="line">scala&gt; spark.sql(<span class="string">"select * from employees"</span>).show()</span><br><span class="line">+-------+------+</span><br><span class="line">|   name|salary|</span><br><span class="line">+-------+------+</span><br><span class="line">|Michael|  3000|</span><br><span class="line">|   Andy|  4500|</span><br><span class="line">| Justin|  3500|</span><br><span class="line">|  Berta|  4000|</span><br><span class="line">+-------+------+</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">scala&gt; spark.sql(<span class="string">"select * from employees where salary &gt;= 4000"</span>).show()</span><br><span class="line">+-----+------+</span><br><span class="line">| name|salary|</span><br><span class="line">+-----+------+</span><br><span class="line">| Andy|  4500|</span><br><span class="line">|Berta|  4000|</span><br><span class="line">+-----+------+</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">    scala&gt; df.registerTempTable(&quot;employees&quot;)
+    warning: there was one deprecation warning; re-run with -deprecation for details
 
+    scala&gt; spark.sql(&quot;select * from employees&quot;).show()
+    +-------+------+
+    |   name|salary|
+    +-------+------+
+    |Michael|  3000|
+    |   Andy|  4500|
+    | Justin|  3500|
+    |  Berta|  4000|
+    +-------+------+
+
+
+    scala&gt; spark.sql(&quot;select * from employees where salary &gt;= 4000&quot;).show()
+    +-----+------+
+    | name|salary|
+    +-----+------+
+    | Andy|  4500|
+    |Berta|  4000|
+    +-----+------+</code></pre>
 <p>其实还有很多功能呢, <a href="http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame</a> ,这里先写2个试试,后续再细节学习</p>
 <p>这篇文章暂时先写到这,还有后续的 Spark Streaming ,想先学学看流式计算Storm,之后对比下看看写一篇文章</p>
 <p>接下来,熟悉 Scala 语法写一个 JavaScala 应用程序来通过 SparkAPI 单独部署一下试试</p>
 <h3 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h3><p>这篇文章写下来等于将当时搭建 Spark 环境重复了一遍, 也是一遍敲命令,一遍记录下来,温故而知新,自己也学到不少东西,棒棒哒💯</p>
 
-      
-    </div>
-    
-  </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/11/23/Spark-Integrate-Build/">大数据之路 Spark 环境搭建</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">JoyLau</a></p>
-        <p><span>发布时间:</span>2017-11-23, 14:19:37</p>
-        <p><span>最后更新:</span>2018-06-07, 13:27:36</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/11/23/Spark-Integrate-Build/" title="大数据之路 Spark 环境搭建">http://blog.joylau.cn/2017/11/23/Spark-Integrate-Build/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://blog.joylau.cn/2017/11/23/Spark-Integrate-Build/　　作者: JoyLau" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> 转载请保留原文链接及作者。
-        </p>
-    </div>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='d9218a69d0b64a6a69b4'
+        data-cs='1ff13ada2c9062d823689a5fef4bb431f257916b'
+        data-r='blog'
+        data-o='JoyLau'
+        data-a='JoyLau'
+        data-d=''
+    >留言</div>
 
 
-
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/11/24/JavaScript-Array-Method/">
-                    JavaScript 数组的一些常用的方法记录
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/11/22/Hadoop-Integrate-Build/">
-                    大数据之路 Hadoop 环境搭建
-                </a>
-            </div>
-        
-    </nav>
-
-  
-</article>
-
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#首先"><span class="toc-number">1.1.</span> <span class="toc-text">首先</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#当前版本说明"><span class="toc-number">1.2.</span> <span class="toc-text">当前版本说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首先需要做的"><span class="toc-number">1.3.</span> <span class="toc-text">首先需要做的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Spark"><span class="toc-number">2.</span> <span class="toc-text">安装 Spark</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行-Spark-示例程序"><span class="toc-number">3.</span> <span class="toc-text">运行 Spark 示例程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDD"><span class="toc-number">4.</span> <span class="toc-text">RDD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spark-Shell"><span class="toc-number">5.</span> <span class="toc-text">Spark-Shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spark-SQL-和-DataFrames"><span class="toc-number">6.</span> <span class="toc-text">Spark SQL 和 DataFrames</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#感受"><span class="toc-number">6.1.</span> <span class="toc-text">感受</span></a></li></ol></li></ol>
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-6 i,
-        .toc-level-6 ol {
-            display: none !important;
-        }
-    </style>
-
-    <input type="button" id="tocButton" value="隐藏"  title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏", "显示", !!"false"];
-    </script>
-
-
-
-    
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+            
+            
         </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"大数据之路 Spark 环境搭建　| JoyLau's Blog | JoyLau　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
-</div>
-
-
-
-
-
-
-
-    
-
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2017/11/24/JavaScript-Array-Method/" title="上一篇: JavaScript 数组的一些常用的方法记录">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2017/11/22/Hadoop-Integrate-Build/" title="下一篇: 大数据之路 Hadoop 环境搭建">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/05/03/VSCode-Win10-IconStyle/">VSCode 图标在 Windows 10 系统开始菜单里的背景色为黑色问题的解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/02/Clash-Docker/">Docker 安装 Clash 并对外提供代理服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/01/Clash-Config/">Clash 基本配置记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/29/SpringBoot-Elasticsearch-RestHighLevelClient/">重剑无锋,大巧不工 SpringBoot --- 使用 rest-high-level-client 连接 Elasticsearch</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/28/Clash-Mac-Language/">ClashX 在英文 Mac 系统中切换界面语言</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/27/Tools-PowerDesigner/">PowerDesigner 数据库逆向生成物理模型并显示 Comment 注释</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/23/Daily-Pixel-Clock/">日常折腾 --- 自制像素时钟, 不输 LaMeetric Time</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/22/Docker-ENTRYPOINT-CMD/">Docker ENTRYPOINT 和 CMD 组合使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/21/Daily-iPhone7-Replace-Battery/">日常折腾 --- iPhone 7 更换电池,缝缝补补又三年</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/18/SpringBoot-FileBeat/">重剑无锋,大巧不工 SpringBoot --- Filebeat 实时收集 SpringBoot 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/15/MacOS-Tunnelblick/">Tunnelblick The tmp system folder (/tmp) is not secure. 问题解决记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/14/Daily-KVR-NewifiD2-JiKe/">日常折腾之 KVR 漫游(二) --- 利用新路由 3 (Newifi D2) 组 KVR Wi-Fi 漫游</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/13/Daily-KVR-NewifiD2-Breed/">日常折腾之 KVR 漫游(一) --- 新路由 3 (Newifi D2) 刷入 Breed (刷不死)固件</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/12/Docker-Jib/">Docker Jib 插件使用问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/12/Docker-LibreOffice-Online/">Docker LibreOffice Online Requesting address is denied&#58; &#58;&#58; ffff&#58;172.xx.xx.xx 错误解决记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/01/Daily-Various-Proxy-Setting/">各种代理设置汇总记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/Docker-Auto-Publish-Blog/">真·Docker 自动部署个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/MacOS-Homebrew-Question/">MacOS HomeBrew 更新遇到的问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/MacOS-Quick-Look/">MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/12/Docker-Java-OOM/">Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/02/18/Git-Knowledges/">Git 知识点小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/15/React-WebSocket/">React WebSocket 的一些配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/26/React-App-Rewired/">React-App-Rewired 的一些配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/23/Elasticsearch-Multi-NestedQuery/">Elasticsearch Nested 类型动态数据的组合查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/29/IntelliJIDEA-JetBrains-License/">开源项目申请 JetBrains 家族系列软件的 License</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/20/SpringBoot-Spel/">Spring EL 表达式 ${} 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/19/Docker-Logs/">Docker 日志信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/13/Gradle-Offline-Mode/">gradle No cached version available for offline mode</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/27/PM2-Cluster-ES6/">PM2 集群模式使用 ES6 语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/26/Node-Use-ES6/">NodeJs 使用 ES6 语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/28/Gradle-Update-5-Questions/">Gradle 升级到 5.x+ 之后遇到的问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/23/Docker-Mariadb-InitDB/">Docker --- Maridb 容器启动时初始化数据库</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/16/Electron-AutoUpdater/">Electron --- 关于自动更新的一系列折腾</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/14/Electron-Electron-Builder/">Electron --- Electron-Builder 打包的各种配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/13/Electron-Icon-Icns/">Electron --- Windows 和 MacOS 套娃图标的制作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/12/Electron-URL-Scheme/">Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/11/Electron-Questions/">Electron --- 知识点小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/10/React-Create-React-App/">Create-React-App 的一些配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/10/Electron-Create-React-App/">Electron --- Create-React-App + Antd + Electron 的搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/09/Synology-Docker-Insecure/">群晖系列 --- 添加私有仓库无法下载镜像问题的解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/04/InnoSetup-Experience/">InnoSetup --- 使用心得记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/03/Git-RememberMe/">git pull 和 git push 记住用户名密码</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/23/Java-Future/">Java 开启子线程执行其他操作，并获取结果</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/19/SpringBoot-SpringSecurity-Anonymous/">Spring Security 禁用匿名用户（anonymous().disable()）后无限重定向到登录页的问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/26/Daily-Somix-E95X/">日常折腾 --- 硕美科 E95x 耳机复活记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/15/Ubuntu-Force-Resolution/">Ubuntu 强制设置分辨率</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/OpenCV-Baidu-Traffic-5/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/04/Gradle-Proxy/">Gradle 配置代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/29/Synology-Private-Docker/">群晖系列 --- 使用群晖搭建 Docker 私有仓库并管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/11/Daily-Multi-PPPoE/">基于 iKuai 软路由系统的单线多拨和多线多拨</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/30/Synology-DouBan-Scraper/">群晖系列 --- 使用豆瓣的削刮器来检索视频的元数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29/Synology-Semi-Activation/">群晖系列 --- 如何半洗白操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29/Synology-Recover-Data/">群晖系列 --- 如何恢复群晖系统数据盘的数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/27/Daily-NAS/">日常折腾 --- 蜗牛星际安装黑群晖</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22/Daily-Soft-Router/">日常折腾 --- 软路由攒机记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22/Daily-Reform-Cable/">日常折腾 --- 家里网线改造记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/17/OpenCV-Knowledge-Points/">OpenCV --- 知识点速记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/OpenCV-Baidu-Traffic-4/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/10/OpenCV-Baidu-Traffic-3/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (三)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/05/OpenCV-Baidu-Traffic-2/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/01/OpenCV-Baidu-Traffic-1/">OpenCV --- 基于 OpenCV 的百度路况研究记录 (一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/25/SpringBoot-Response-Ignore-Null/">重剑无锋,大巧不工 SpringBoot --- 序列化返回对象时忽略空或者 null 属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/SpringBoot-Ajax-FormData/">重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/Ubuntu-Remote-Desktop/">Ubuntu 优雅的远程桌面服务端配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/Linux-Fix-DiskError/">记录一次 Ubuntu 因磁盘问题导致开机进入紧急模式的情况</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/08/Docker-Start-Error/">Docker 启动报错： Error starting daemon： Error initializing network controller： list bridge addresses failed： no available network</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/OpenCV-ByteImage/">OpenCV 读取数据流图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/OpenCV-Basic/">OpenCV 基础知识与概念</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/Docker-MountVolumes/">Docker 容器挂载宿主机上的目录时出现 Permission denied</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/20/IntelliJIDEA-Support-@-Alias/">IntelliJ IDEA (WebStorm) 识别 @ 作为别名进行导包</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/OpenCV-Build/">CentOS , Ubuntu 和 Mac OS 上编译安装 OpenCV4 及 SpringBoot 的结合使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/Docker-Swarm-Choice-Node/">Docker-Swarm 自定义服务部署的节点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/18/Docker-Swarm-Cluster/">Docker-Swarm 集群搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/26/SpringBoot-Validated/">Validated 注解的 groups 使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/25/Docker-RemoveDeadContainer/">Docker 删除 状态为Dead 的容器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/24/Elasticsearch-Analyzer/">Elasticsearch analyzer 和 search_analyzer 的使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/23/Docker-Elasticsearch/">Docker elasticsearch 集群搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/16/SpringBoot-Elasticsearch-HealthCheck/">重剑无锋,大巧不工 SpringBoot --- Elasticsearch health check failed</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/14/Gradle-Elastic-Job-Dependency/">Gradle 构建 elastic-job 项目的奇怪依赖问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/24/JDK8-Stream-Use/">关于Jdk 8 Stream 的使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/19/Docker-Exec-Failed/">Docker exec failed docker 无法进入容器问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/19/Docker-Compose-StartOrder/">Docker-Compose 中多容器启动顺序问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/18/SpringCloud-Docker/">SpringCloud --- Docker 部署问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/14/MacOS-Route/">MacOS 上路由表的操作记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/13/Linux-Cron/">Linux 定时删除 10 天前的日志文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/13/Docker-Questions/">Docker 问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/08/Linux-Private-Yum/">Yum 私服搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/04/Jquery-Post/">$.post() 和 $.ajax() 的问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/24/SpringBoot-ThreadPoolTaskExecutor/">重剑无锋,大巧不工 SpringBoot --- 理解 ThreadPoolTaskExecutor</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/21/Docker-OpenVPN/">Docker OpenVPN 服务搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/Docker-PrivateRepo/">Docker 私服搭建记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/26/Docker-ownCloud/">记录 -- Docker 三种方式部署 ownCloud</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/Elasticsearch-AutoComplete/">Elasticsearch 关键字自动补全的实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/Elasticsearch-SearchAll/">Elasticsearch 查询全部数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/Jquery-Load-Plugins/">$(...).autocomplete is not a function 问题的解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/">Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/03/BroadbandSpeedConversion/">宽带速率转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/30/Spring-NamedParameterJdbcTemplate/">NamedParameterJdbcTemplate 使用具名参数记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/29/OracleNubmer-JdbcType/">Oracle 里 number 类型对应 JdbcType bean 类型记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/19/Linux-Cancel-DenyHosts/">DenyHosts 清除黑名单 IP 地址</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/Ubuntu-Fonts-Monaco/">Ubuntu 最佳编程字体 Monaco 的优化显示</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/12/Docker-AliAccelerator/">Docker 使用阿里云个人专属加速器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/05/Docker-Manager-NonRoot/">以非 root 用户身份管理 Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/02/OfficeSuiteStudy/">office 套件的一系列研究记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/28/Ubuntu-SystemConfig/">Ubuntu 自用配置记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/IntelliJIDEA-MyConfigs/">IntelliJ IDEA 自用配置记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/22/Linux-OpenOffice/">Linux 安装 OpenOffice 服务小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/21/Elasticsearch-ingest-attachment/">Elasticsearch 文档文本内容搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/20/React-DebugWithIDEA/">React 项目使用 IDEA 进行调试</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/14/MacOS-ChangeMacAddr/">MacOS 修改 mac 地址</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/12/Elasticsearch-Ik/">Elasticsearch 分词插件的使用及 demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/23/MyBatis-DateFormat/">Mybatis 前后台时间传参格式化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/21/Elasticsearch-Security/">Elasticsearch 集群安全控制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/18/Linux-Systemctl/">Linux菜鸟到熟悉 --- systemctl 托管自定义程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/17/Linux-NoteBookPC/">Linux菜鸟到熟悉 --- 闲置笔记本安装 Centos</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/15/Lombok/">Lombok 注解小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/08/Filebeat-Nginx/">Filebeat 实时收集 Nginx 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/08/Logstash-Nginx/">Logstash 实时收集 Nginx 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/07/Elasticsearch-ELK/">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/07/Elasticsearch-Cluster/">Elasticsearch 集群搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/MacOS-CleanMac/">MacOS 垃圾清理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/">SpringSecurity Session并发过期后会重定向到 /login (入口点问题)问题的解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/SpringBoot-SpringSecurity/">重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/27/MyBatis-Example/">关于通用 Mapper Example 使用记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/12/SpringBoot-Assembly-Package/">重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/29/SpringBoot-Druid-MyBatis-Mapper-PageHelper/">重剑无锋,大巧不工 SpringBoot --- 最新版 SpringBoot 整合 Druid,MyBatis,通用 Mapper,PageHelper的脚手架</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/24/JavaScript-Array-Method/">JavaScript 数组的一些常用的方法记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/23/Spark-Integrate-Build/">大数据之路 Spark 环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/22/Hadoop-Integrate-Build/">大数据之路 Hadoop 环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/17/Hadoop-Study-Way/">大数据之路 Hadoop 的学习流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/16/SpringBoot-Elasticsearch-Complex/">重剑无锋,大巧不工 SpringBoot --- 使用 Elasticsearch 进行更复杂的查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/15/FastJson-JSONPath/">FastJSON 还有这样的用法 涨姿势了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/Node-Install-Error/">npm install 居然出错了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/02/SpringBoot-Kafka/">SpringBoot 整合 Kafka 踩坑记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/01/SpringBoot-IDEA-DevTools/">IDEA 中 SpringBoot 项目热部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/SpringBoot-ReadJSONFile/">SpringBoot 读取 JSON 文件并转化为 JSON 对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/26/SpringBoot-Oracle/">SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Elasticsearch-Config/">Elasticsearch 配置说明 && 遇坑记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Hadoop-FristDay/">Hadoop 的第一天</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/23/SpringBoot-Elasticsearch/">重剑无锋,大巧不工 SpringBoot --- 整合使用 Elasticsearch</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/Open-Source-License/">开源许可证</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/16/Maven-ResourceCompressor/">Maven --- 一款打包压缩 js css html 的Maven插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/13/CSS3-Image-Scale/">当鼠标移入图片上慢慢放大的效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/26/Java-Scala/">Java 代码中使用 Scala</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/19/SpringBoot-CaffeineCache/">重剑无锋,大巧不工 SpringBoot --- 推荐使用CaffeineCache</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/11/JoyGame/">JoyGame --- 一个情怀游戏平台</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/Maven-MakeWinServiceForJar/">Maven --- 将 SpringBoot 项目做成Windows服务(Windows Service)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/20/SpringBoot-JoyMedia-MV/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ MV篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/06/SpringBoot-JoyMedia-Search/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 搜索篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/SpringBoot-JoyMedia-Node/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ Node篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/SpringBoot-JoyMedia/">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ 分析篇 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/18/SpringBoot-MongoDB/">重剑无锋,大巧不工 SpringBoot --- 整合使用MongoDB</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/10/ZeroC-Ice/">ZeroC Ice --- 高性能RPC技术王者</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/03/Git-Multi-Repo-Push/">记录一次Git多仓库提交</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/MacOS-Dev-App/">MacOS常用开发使用APP</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/24/MacBookPro-Unboxing/">MacBook Pro 2017 --- 不行！我要开箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/SpringBoot-RESTfulAPI/">重剑无锋,大巧不工 SpringBoot --- RESTful API</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/SpringBoot-RabbitMQ/">重剑无锋,大巧不工 SpringBoot --- 整合RabbitMQ</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/Console-Better/">让你的Windows控制台窗口更优美</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/13/SpringBoot-ConfigurationProperties/">重剑无锋,大巧不工 SpringBoot --- 属性注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-Question-Tips/">重剑无锋,大巧不工 SpringBoot --- 项目问题汇总及解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/SpringBoot-RequestBody/">重剑无锋,大巧不工 SpringBoot --- @RequestBody JSON参数处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/09/College-Entrance-Examination-of-2017-for-Progarmmer/">2017年程序员高考试卷</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/05/Skill-Tree-Of-Java/">收集整理一些JAVA学习的技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/02/SolveBrainAndPuzzles/">解决一道智力题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/28/IntelliJIDEA-Plugins/">IntelliJ IDEA 插件开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/27/Redis-Master-Slave/">Redis主从复制 --- 实现读写分离</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/24/SpringCloud-Building/">SpringCloud --- 构建开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/06/MyBatis-Joylau-MyBatis/">JoyLau-MyBatis 使用说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/01/Redis-Benchmark/">Redis有多快??? --- 基准性能测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/22/Docker-Command/">Docker常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/SpringBoot-SpringBatch/">重剑无锋,大巧不工 SpringBoot --- 批处理SpringBatch</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/MySQL-Emoji/">为网站添加emoji表情支持</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/17/Maven-Release-Component/">Maven --- 发布自己的构件到中央仓库</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/Programmer-Boast/">程序员，那些年吹过的牛逼，最后都自己加班了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/">JS数组去重最简单方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Integrate/">重剑无锋,大巧不工 SpringBoot --- 环境集成</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/SpringBoot-Research/">重剑无锋,大巧不工 SpringBoot --- 探索篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/13/SpringBoot-Basic/">重剑无锋,大巧不工 SpringBoot --- 基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-GUI/">Linux菜鸟到熟悉 --- 视图界面</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-Command/">Linux菜鸟到熟悉 --- 常用命令备忘</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-BuildingEnvironment/">Linux菜鸟到熟悉 --- 生产环境的搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/23/Linux-MountDisk/">Linux菜鸟到熟悉 --- 数据盘的格式化和挂载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/Thymeleaf/">重新拾起我曾抛弃的Thymeleaf</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/SSL/">SSL证书部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/20/TomcatMulti-Root/">Tomcat服务器添加多个Root项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/HelloWorld/">Hello World</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
-</div>
-      <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
-                2017-2020 JoyLau All Rights Reserved.
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="http://image.joylau.cn/blog/JoyLau.jpg" height=300 width=300></img>
+                    <p>JoyLau</p>
+                    <span>整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，对这些技术进行备忘，以便日后查询</span>
+                    <dl>
+                        <dd><a href="mailto:2587038142.liu@gmail.com" target="_blank"><span
+                                        class=" iconfont icon-email-fill"></span></a></dd>
+                        <dd><a href="https://github.com/JoyLau" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/FailingLiu" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">198 <p>文章</p></a></li>
+                    <li><a href="/categories">43 <p>分类</p></a></li>
+                    <li><a href="/tags">98 <p>标签</p></a></li>
+                </ul>
             </div>
-            <div class="footer-right">
-                <i class="fa fa-heart animated infinite pulse"></i>Hexo Theme by MOxFIVE<i class="fa fa-heart animated infinite pulse"></i>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#首先"><span class="toc-number">1.1.</span> <span class="toc-text">首先</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#当前版本说明"><span class="toc-number">1.2.</span> <span class="toc-text">当前版本说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首先需要做的"><span class="toc-number">1.3.</span> <span class="toc-text">首先需要做的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Spark"><span class="toc-number">2.</span> <span class="toc-text">安装 Spark</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行-Spark-示例程序"><span class="toc-number">3.</span> <span class="toc-text">运行 Spark 示例程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDD"><span class="toc-number">4.</span> <span class="toc-text">RDD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spark-Shell"><span class="toc-number">5.</span> <span class="toc-text">Spark-Shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spark-SQL-和-DataFrames"><span class="toc-number">6.</span> <span class="toc-text">Spark SQL 和 DataFrames</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#感受"><span class="toc-number">6.1.</span> <span class="toc-text">感受</span></a></li></ol></li></ol>
+                </div>
             </div>
+            
+            
         </div>
-        
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
-                        </span>
-                    </span>
-                
-                
-                    <span>| </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    </span>
-                
-            </div>
-        
     </div>
-</footer>
-<!--百度自动推送-->
-<script>
-    (function(){
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        }
-        else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
-
-<script>
-    $('.chaffle').chaffle();
-</script>
-
-
-<script>
-    var animateList = ['flipInX','flipInY','bounceInLeft','bounceInUp','bounceInDown','rotateIn','fadeInUp','fadeInDown'];
-    var animateIndex = Math.ceil(Math.random() * (animateList.length - 1));
-    $('.article-tlt-a').textillate({
-        initialDelay: 100,
-        in: {
-            effect: 'fadeInDown',
-            delayScale: 1.5,
-            delay: 50,
-            shuffle: true
-        }
-    });
-    $('.article-description-tlt').textillate({
-        initialDelay: 50,
-        in: {
-            effect: 'fadeIn',
-            delayScale: 1.0,
-            delay: 50,
-            shuffle: true
-        }
-    });
-    $('.article-tlt-h').textillate({
-        initialDelay: 100,
-        in: {
-            effect: animateList[animateIndex],
-            delayScale: 2.5,
-            delay: 50,
-            shuffle: true
-        }
-    });
-</script>
-
-    </div>
-    
-<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 10;
-                var backgroundimg = "url(//image.joylau.cn/blog/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
-
-
-
-
-
-
-<div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="javascript:;" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
-<script>
-    // Open in New Window
-    
-        var oOpenInNew = {
-            
-            
-             post: ".article-entry a[href], .copyright a[href]", 
-            
-            
-            
-            
-            
-            
-             friends: "#js-friends a", 
-             socail: ".social a" 
-        }
-        for (var x in oOpenInNew) {
-            $(oOpenInNew[x]).attr("target", "_blank");
-        }
-    
-</script>
 
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  </div>
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
 </body>
+<footer>
+    <p class="copyright">
+        <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
+    </p>
+    <p class="copyright" id="copyright">
+        &copy; 2017 - 2020
+        <span class="gradient-text">
+            JoyLau
+        </span>.
+        Powered by
+        <span class="gradient-text">
+            Hexo
+        </span>
+        Theme
+        <span class="gradient-text">
+            Obsidian
+        </span>
+    </p>
+</footer>
+
+    
+<link rel="stylesheet" href="/css/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="/js/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+
+
+<script src="//cdn.bootcss.com/codemirror/5.53.2/codemirror.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/php/php.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/yaml/yaml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/groovy/groovy.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/sql/sql.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/jsx/jsx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/powershell/powershell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/nginx/nginx.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.53.2/mode/http/http.min.js"></script>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="/js/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="/js/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="/js/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="/css/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="/js/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="/js/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?691c26474b1733df80dca4dfa7ba5536";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
 </html>
