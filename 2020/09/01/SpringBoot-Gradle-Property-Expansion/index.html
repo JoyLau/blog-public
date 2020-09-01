@@ -87,7 +87,7 @@
             animation-duration: 1.2s;
             background-image: 
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-                url(http://nas.joylau.cn:5016/1920x1080?0.11108660785409619) ">
+                url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png?0.15536311802738534) ">
         </div>
         <div class="else">
             <p class="animated fadeInDown">
@@ -104,13 +104,13 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    7.1k
+                    7.2k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                    6 mins.
+                    7 mins.
                 </span>
                 
                 
@@ -182,6 +182,7 @@
 </blockquote>
 <p>经过如上使用, springboot 应用会在编译期将配置文件转化并复制到了项目的 <strong>build/resources/main</strong> 目录下, 如果到该目录下查找配置文件, 则会发现文件里的属性已经被实际的值替换了</p>
 <h3 id="自定义属性配置到-Banner-图中"><a href="#自定义属性配置到-Banner-图中" class="headerlink" title="自定义属性配置到 Banner 图中"></a>自定义属性配置到 Banner 图中</h3><p>很多时候我们会自定义 banner 图, 使用 banner.txt 可以使用 springboot 的内置变量<br>结合上面的使用方法, 我给出我的使用示例<br>banner 的生成可以去这个在线网站: <a href="https://devops.datenkollektiv.de/banner.txt/index.html" target="_blank" rel="noopener">Online Spring Boot Banner Generator</a></p>
+<p><img src="http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png" alt="SpringBoot-Gradle-Property-Expansion"></p>
 <h4 id="banner-txt"><a href="#banner-txt" class="headerlink" title="banner.txt"></a>banner.txt</h4><pre><code class="text">    ,------.  ,---.           ,------.    ,-----.   ,-----.          ,-----.  ,------. ,------. ,--.  ,-----. ,------.
     |  .---&#39; &#39;   .-&#39;          |  .-.  \  &#39;  .-.  &#39; &#39;  .--./         &#39;  .-.  &#39; |  .---&#39; |  .---&#39; |  | &#39;  .--./ |  .---&#39;
     |  `--,  `.  `-.          |  |  \  : |  | |  | |  |             |  | |  | |  `--,  |  `--,  |  | |  |     |  `--,
