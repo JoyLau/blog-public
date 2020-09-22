@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2020-09-01T08:28:25.240Z</updated>
+  <updated>2020-09-22T03:23:55.782Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker Compose Version 3 限制 CPU 和 内存的使用方法</title>
+    <link href="http://blog.joylau.cn/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/"/>
+    <id>http://blog.joylau.cn/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/</id>
+    <published>2020-09-22T03:18:12.000Z</published>
+    <updated>2020-09-22T03:23:55.782Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在 docker 官方问文档里查找关于 docker compose 3 关于资源限制的配置项<br>发现只能用于集群部署</p><h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>依然使用集群部署的配置方式:</p><pre><code class="yaml">    redis:        image: redis:alpine        container_name: redis        deploy:          resources:            limits:              cpus: &#39;0.50&#39;              memory: 50M</code></pre><p>这时启动时加入参数 <code>--compatibility</code> 即可</p><pre><code class="bash">    docker-compose --compatibility up -d</code></pre><p><code>--compatibility</code>: 以兼容模式运行, 将 v3 的语法转化为 v2 的语法, 而不需要将 compose 文件改为 v2 的版本</p>]]></content>
+    
+    <summary type="html">
+    
+      记录 Docker Compose Version 3 限制 CPU 和 内存的使用方法
+    
+    </summary>
+    
+    
+      <category term="Docker篇" scheme="http://blog.joylau.cn/categories/Docker%E7%AF%87/"/>
+    
+    
+      <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用</title>
@@ -456,27 +479,6 @@
     
     
       <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>日常折腾 --- iPhone 7 更换电池,缝缝补补又三年</title>
-    <link href="http://blog.joylau.cn/2020/04/21/Daily-iPhone7-Replace-Battery/"/>
-    <id>http://blog.joylau.cn/2020/04/21/Daily-iPhone7-Replace-Battery/</id>
-    <published>2020-04-21T07:13:57.000Z</published>
-    <updated>2020-07-10T00:43:19.432Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>有台老 iPhone 7,电池峰值只有 66%, 家人一直在用,想着买块电池换上,缝缝补补又三年….</p><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol><li>使用 0.8mm 五角螺丝刀拆下充电口 2 边的螺丝</li><li>吹风机均匀加热手机 5 分钟, 使手机的边框的防水胶变软</li><li>使用吸盘吸住屏幕,并使用拆机片沿手机尾部慢慢切入,并沿着四周慢慢划开</li><li>注意手机的右侧,有屏幕和指纹的排线,切入右侧的时候需要小心</li><li>打开手机屏幕,将手机绑到一个瓶子上固定住</li></ol><p><img src="//image.joylau.cn/blog/iPhone7/1.jpeg" alt="1"></p><p><img src="//image.joylau.cn/blog/iPhone7/2.jpeg" alt="2"></p><ol start="6"><li>卸下下图位置的挡板,先断开电池的排线, 在断开指纹和屏幕的排线</li></ol><p><img src="//image.joylau.cn/blog/iPhone7/4.jpeg" alt="4"></p><p><img src="//image.joylau.cn/blog/iPhone7/3.jpeg" alt="3"></p><ol start="7"><li>断开电池尾部震动马达的排线和手机上面的排线接口</li></ol><p><img src="//image.joylau.cn/blog/iPhone7/5.jpeg" alt="5"></p><ol start="8"><li>拿下屏幕,使用镊子挑开屏幕尾部的易拉胶,再慢慢抽出来, 我这里抽断了,再次使用吹风机在背部加热三分钟,然后在使用拆机片沿底部慢慢切入划开,注意不要硬撬,有风险</li></ol><p><img src="//image.joylau.cn/blog/iPhone7/6.jpeg" alt="6"></p><p>花了不少时间,电池都形变了</p><p><img src="//image.joylau.cn/blog/iPhone7/7.jpeg" alt="7"></p><p><img src="//image.joylau.cn/blog/iPhone7/8.jpeg" alt="8"></p><ol start="9"><li>卸下的螺丝按位置摆放好</li></ol><p><img src="//image.joylau.cn/blog/iPhone7/9.jpeg" alt="9"></p><ol start="10"><li><p>换上新电池,注意先扣上排线接口,再放入电池</p></li><li><p>依次接好之前挑开的排线,开机测试,查看电池容量, 测试电池充放电是否正常..</p></li><li><p>没有问题,再次关机, 在电池背部贴上易拉胶,上好之前卸下的螺丝,扣上屏幕</p></li><li><p>满血复活</p></li></ol><p><img src="//image.joylau.cn/blog/iPhone7/10.jpeg" alt="10"></p>]]></content>
-    
-    <summary type="html">
-    
-      有台老 iPhone 7,电池峰值只有 66%, 家人一直在用,想着买块电池换上,缝缝补补又三年....
-    
-    </summary>
-    
-    
-      <category term="日常折腾篇" scheme="http://blog.joylau.cn/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE%E7%AF%87/"/>
-    
     
   </entry>
   

@@ -153,38 +153,39 @@
             <a href="/categories/Docker篇"><b>「
                 </b>DOCKER篇<b> 」</b></a>
             
-            十月 26, 2018
+            十一月 19, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/10/26/Docker-ownCloud/" title="记录 -- Docker 三种方式部署 ownCloud" class="posttitle">记录 -- Docker 三种方式部署 ownCloud</a></h3>
+            <a href="/2018/11/19/Docker-PrivateRepo/" title="Docker 私服搭建记录" class="posttitle">Docker 私服搭建记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                7.3k
+                6.6k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                7 mins.
+                6 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/ownCloud/" rel="tag">ownCloud</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>ownCloud 除了传统的部署方式,在如今 docker 大行其道的环境下,使用 docker 部署 ownCloud 才是最方便的</p>
-<h3 id="第一种-owncloud-镜像直接安装"><a href="#第一种-owncloud-镜像直接安装" class="headerlink" title="第一种 owncloud 镜像直接安装"></a>第一种 owncloud 镜像直接安装</h3><p>直接部署 owncloud...</p>
+<ol>
+<li><p>docker pull registry</p>
+</li>
+<li><p>docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 –restart=always...</p></li></ol>
             
-            <span class="read-more"><a href="/2018/10/26/Docker-ownCloud/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/11/19/Docker-PrivateRepo/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +210,57 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9710106507602956);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.44372682224520155);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            十一月 19, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/11/19/Docker-PrivateRepo/" title="Docker 私服搭建记录" class="posttitle">Docker 私服搭建记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        6.6k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        6 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<ol>
+<li><p>docker pull registry</p>
+</li>
+<li><p>docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 –restart=always –privileged=true –name registry registry:latest<br> 参数说明<br> -itd：在容器中打开一个伪终端进行交互操作，并在后台运行；<br> -v：把宿主机的/data/registry目录绑定 到 容器/var/lib/registry目录(这个目录是registry...</p></li></ol>
+            
+            <span class="read-more"><a href="/2018/11/19/Docker-PrivateRepo/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.18378100268601094);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -261,7 +312,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.07675697098180723);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.16398197013545612);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -316,7 +367,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.28638298920566263);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.803903674347336);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -364,7 +415,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3611528903758512);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7711097157172806);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -417,67 +468,9 @@
 </div>
 
 
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.925147292179817);">
     </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Linux篇">
-                  <b>「 </b>LINUX篇<b> 」</b>
-                </a>
-            
-            二月 23, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/02/23/Linux-BuildingEnvironment/" title="Linux菜鸟到熟悉 --- 生产环境的搭建" class="posttitle">Linux菜鸟到熟悉 --- 生产环境的搭建</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        25k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        23 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/JDK/" rel="tag">JDK</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p></p>
-<ul>
-<li>本次搭建<code>Java</code>和<code>Tomcat</code>的运行环境，后续将接着搭建Mysql，Git,Nginx,Redis,Docker…环境</li>
-</ul>
-<ul>
-<li><p>1.在/usr/目录下创建java目录</p>
-<pre><code class="bash">      [root@JoyLau ~]# mkdir/usr/java
-      [root@JoyLau ~]# cd /usr/java</code></pre>
-</li>
-<li><p>2.官网下载jdk,拷贝到服务器上，然后解压</p>
-<pre><code class="bash">         [root@JoyLau java]# tar -zxvf jdk-8u121-linux-x64.gz</code></pre>
-</li>
-<li><p>3.设置环境变量</p>
-<pre><code class="bash">          [root@JoyLau ...</code></pre></li></ul>
-            
-            <span class="read-more"><a href="/2017/02/23/Linux-BuildingEnvironment/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-    </div>
+    
+    <div id="pager"><a href="/tags/Docker/page/6/" class="more" data-loading="加载中..." data-load-more="加载更多">加载更多</a></div>
     
 </div>
 <div id="preview"></div>

@@ -156,35 +156,34 @@
             十二月 19, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/12/19/Docker-Compose-StartOrder/" title="Docker-Compose 中多容器启动顺序问题" class="posttitle">Docker-Compose 中多容器启动顺序问题</a></h3>
+            <a href="/2018/12/19/Docker-Exec-Failed/" title="Docker exec failed docker 无法进入容器问题解决" class="posttitle">Docker exec failed docker 无法进入容器问题解决</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                3.9k
+                912
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                4 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker-Compose/" rel="tag">Docker-Compose</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我们在 docker-compose 一条命令就启动我们的多个容器时,需要考虑到容器之间的启动顺序问题…..</p>
-<p>比如有的服务依赖数据库的启动, service 依赖 eureka 的启动完成</p>
-<p>docker...</p>
+<h3 id="无法进入容器"><a href="#无法进入容器" class="headerlink" title="无法进入容器"></a>无法进入容器</h3><p>docker exec -it name /bin/sh 失败,<br>查看容器 inspect 报错信息如下:</p>
+<pre><code class="bash">    pc error: code = 2 desc = oci runtime error...</code></pre>
             
-            <span class="read-more"><a href="/2018/12/19/Docker-Compose-StartOrder/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/12/19/Docker-Exec-Failed/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +208,57 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8692591464069623);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7606876712018362);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            十二月 19, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/12/19/Docker-Exec-Failed/" title="Docker exec failed docker 无法进入容器问题解决" class="posttitle">Docker exec failed docker 无法进入容器问题解决</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        912
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="无法进入容器"><a href="#无法进入容器" class="headerlink" title="无法进入容器"></a>无法进入容器</h3><p>docker exec -it name /bin/sh 失败,<br>查看容器 inspect 报错信息如下:</p>
+<pre><code class="bash">    pc error: code = 2 desc = oci runtime error: exec failed: 
+    container_linux.go:247: starting container process caused &quot;process_linux.go:110: 
+    decoding init error from pipe caused \&quot;read...</code></pre>
+            
+            <span class="read-more"><a href="/2018/12/19/Docker-Exec-Failed/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.3888145648614507);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -260,7 +309,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6848487473000582);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.556401036339881);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -313,7 +362,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.02783089447290621);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7340653343468933);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -369,7 +418,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5044163658402123);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5800923859261311);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -411,56 +460,6 @@
 <li>这里我使用的是 tcp, udp 的好像没映射, 我用起来有问题,后来换的 tcp 方式, <code>docker run -v ${OVPN_DATA}:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u tcp://公网 ...</code></li></ol>
             
             <span class="read-more"><a href="/2018/11/20/Docker-OpenVPN/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8095671278443537);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            十一月 19, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/11/19/Docker-PrivateRepo/" title="Docker 私服搭建记录" class="posttitle">Docker 私服搭建记录</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        6.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        6 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<ol>
-<li><p>docker pull registry</p>
-</li>
-<li><p>docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 –restart=always –privileged=true –name registry registry:latest<br> 参数说明<br> -itd：在容器中打开一个伪终端进行交互操作，并在后台运行；<br> -v：把宿主机的/data/registry目录绑定 到 容器/var/lib/registry目录(这个目录是registry...</p></li></ol>
-            
-            <span class="read-more"><a href="/2018/11/19/Docker-PrivateRepo/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

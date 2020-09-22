@@ -150,40 +150,44 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Clash"><b>「
-                </b>CLASH<b> 」</b></a>
+            <a href="/categories/SpringBoot篇"><b>「
+                </b>SPRINGBOOT篇<b> 」</b></a>
             
-            四月 28, 2020
+            四月 29, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/04/28/Clash-Mac-Language/" title="ClashX 在英文 Mac 系统中切换界面语言" class="posttitle">ClashX 在英文 Mac 系统中切换界面语言</a></h3>
+            <a href="/2020/04/29/SpringBoot-Elasticsearch-RestHighLevelClient/" title="重剑无锋,大巧不工 SpringBoot --- 使用 rest-high-level-client 连接 Elasticsearch" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 使用 rest-high-level-client 连接 Elasticsearch</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                584
+                8.5k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                8 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/ClashX/" rel="tag">ClashX</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在网络上搜索关于 ClashX 的教程, 看到的截图都是中文的界面, 而我安装后的界面语言却是英文的, 就想着怎么能够切换下<br>在软件的设置里, 没有找到设置语言的选项</p>
-<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><p>去作者的 Github ...</p>
+
+<h3 id="版本环境"><a href="#版本环境" class="headerlink" title="版本环境"></a>版本环境</h3><ol>
+<li>Elasticsearch 6.4.3</li>
+<li>SpringBoot 2.1.2.RELEASE</li>
+</ol>
+<h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><pre><code class="groovy">    compile group: &#39;org.elasticsearch.client...</code></pre>
             
-            <span class="read-more"><a href="/2020/04/28/Clash-Mac-Language/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/04/29/SpringBoot-Elasticsearch-RestHighLevelClient/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -208,7 +212,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6187545578993934);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.22591945622979126);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            四月 29, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/04/29/SpringBoot-Elasticsearch-RestHighLevelClient/" title="重剑无锋,大巧不工 SpringBoot --- 使用 rest-high-level-client 连接 Elasticsearch" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 使用 rest-high-level-client 连接 Elasticsearch</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        8.5k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        8 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="版本环境"><a href="#版本环境" class="headerlink" title="版本环境"></a>版本环境</h3><ol>
+<li>Elasticsearch 6.4.3</li>
+<li>SpringBoot 2.1.2.RELEASE</li>
+</ol>
+<h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><pre><code class="groovy">    compile group: &#39;org.elasticsearch.client&#39;, name: &#39;elasticsearch-rest-high-level-client&#39;, version: &#39;6.4.3&#39;</code></pre>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>其实引入这依赖后, <code>spring-boot-autoconfigure-2.1.2.RELEASE.jar</code> 这个依赖你会为...</p>
+            
+            <span class="read-more"><a href="/2020/04/29/SpringBoot-Elasticsearch-RestHighLevelClient/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.4053853098758098);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -260,7 +317,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7794658617194523);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.44687130137123265);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -318,7 +375,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/awtrix2/awtrix2_24.jpg?0.2557368393071686);">
+            url(//image.joylau.cn/blog/awtrix2/awtrix2_24.jpg?0.33253001212327793);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -369,7 +426,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7737999264707651);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.33613568994318);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -416,68 +473,6 @@
 <li>ENTRYPOINT 使用了 exec 模式，CMD 也应该使用 exec...</li></ol>
             
             <span class="read-more"><a href="/2020/04/22/Docker-ENTRYPOINT-CMD/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/iPhone7/4.jpeg?0.7805339399227029);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/日常折腾篇">
-                  <b>「 </b>日常折腾篇<b> 」</b>
-                </a>
-            
-            四月 21, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/04/21/Daily-iPhone7-Replace-Battery/" title="日常折腾 --- iPhone 7 更换电池,缝缝补补又三年" class="posttitle">日常折腾 --- iPhone 7 更换电池,缝缝补补又三年</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p>有台老 iPhone 7,电池峰值只有 66%, 家人一直在用,想着买块电池换上,缝缝补补又三年….</p>
-<ol>
-<li>使用 0.8mm 五角螺丝刀拆下充电口 2 边的螺丝</li>
-<li>吹风机均匀加热手机 5 分钟, 使手机的边框的防水胶变软</li>
-<li>使用吸盘吸住屏幕,并使用拆机片沿手机尾部慢慢切入,并沿着四周慢慢划开</li>
-<li>注意手机的右侧,有屏幕和指纹的排线,切入右侧的时候需要小心</li>
-<li>打开手机屏幕,将手机绑到一个瓶子上固定住</li>
-</ol>
-<p></p>
-<p></p>
-<ol start="6">
-<li>卸下下图位置的挡板,先断开电池的排线, 在断开指纹和屏幕的排线</li>
-</ol>
-<p></p>
-<p></p>
-<ol start="7">
-<li>断开电池尾部震动马达的排线和手...</li></ol>
-            
-            <span class="read-more"><a href="/2020/04/21/Daily-iPhone7-Replace-Battery/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

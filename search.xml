@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Docker Compose Version 3 限制 CPU 和 内存的使用方法</title>
+      <link href="/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/"/>
+      <url>/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在 docker 官方问文档里查找关于 docker compose 3 关于资源限制的配置项<br>发现只能用于集群部署</p><h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>依然使用集群部署的配置方式:</p><pre><code class="yaml">    redis:        image: redis:alpine        container_name: redis        deploy:          resources:            limits:              cpus: &#39;0.50&#39;              memory: 50M</code></pre><p>这时启动时加入参数 <code>--compatibility</code> 即可</p><pre><code class="bash">    docker-compose --compatibility up -d</code></pre><p><code>--compatibility</code>: 以兼容模式运行, 将 v3 的语法转化为 v2 的语法, 而不需要将 compose 文件改为 v2 的版本</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docker篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用</title>
       <link href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/"/>
       <url>/2020/09/01/SpringBoot-Gradle-Property-Expansion/</url>

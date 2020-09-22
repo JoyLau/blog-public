@@ -150,19 +150,19 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Linux篇"><b>「
-                </b>LINUX篇<b> 」</b></a>
+            <a href="/categories/Ubuntu篇"><b>「
+                </b>UBUNTU篇<b> 」</b></a>
             
             四月 10, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/04/10/Linux-Fix-DiskError/" title="记录一次 Ubuntu 因磁盘问题导致开机进入紧急模式的情况" class="posttitle">记录一次 Ubuntu 因磁盘问题导致开机进入紧急模式的情况</a></h3>
+            <a href="/2019/04/10/Ubuntu-Remote-Desktop/" title="Ubuntu 优雅的远程桌面服务端配置" class="posttitle">Ubuntu 优雅的远程桌面服务端配置</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                4.5k
+                4.9k
             </span>
             
             
@@ -175,15 +175,16 @@
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 
-<p>在家里使用 vnc 协议远程连接公司的 Ubuntu 电脑<br>导致桌面卡死<br>期间还遇到了 搜狗输入法崩溃，提示我删除用户目录下的一个文件然后重启<br>鼠标可以动<br>界面上的任何东西都无法点击<br>没再操作<br>等第二天到公司解...</p>
+<p>上一篇文章记录了因为远程桌面连接把 Ubuntu 的 <code>/home</code> 弄坏了<br>好一番折腾。。。。<br>其实这个远程桌面我早就想重新配置了，今天我终于受不了它了，于是我觉得仔细研究一番找到适合我自己的方式来操作</p>
+...
             
-            <span class="read-more"><a href="/2019/04/10/Linux-Fix-DiskError/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/04/10/Ubuntu-Remote-Desktop/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -208,7 +209,57 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.20322536383175338);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4913306024343882);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Ubuntu篇">
+                  <b>「 </b>UBUNTU篇<b> 」</b>
+                </a>
+            
+            四月 10, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/04/10/Ubuntu-Remote-Desktop/" title="Ubuntu 优雅的远程桌面服务端配置" class="posttitle">Ubuntu 优雅的远程桌面服务端配置</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        4.9k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        4 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>上一篇文章记录了因为远程桌面连接把 Ubuntu 的 <code>/home</code> 弄坏了<br>好一番折腾。。。。<br>其实这个远程桌面我早就想重新配置了，今天我终于受不了它了，于是我觉得仔细研究一番找到适合我自己的方式来操作</p>
+<p>之前我的远程配置是 <code>xrdp</code> + <code>tightvncserver</code><br>然后我每次都是使用 Windows 上的 <code>mstsc</code> 来连接的<br>连接上后会出现 <code>xrpd</code> 的登录选项<br>每次我都选第一个 <code>sesman-Xvnc</code> 然后输入用户名密码即可</p>
+<p>可这样的连接方式有个很不好的方面，就是这种方式是多用户的，想回家继续没干完...</p>
+            
+            <span class="read-more"><a href="/2019/04/10/Ubuntu-Remote-Desktop/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.7966100518307284);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -266,7 +317,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.44703050867415817);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7716192545521532);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -316,7 +367,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.02745047278740076);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.23128142455824285);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -371,7 +422,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5066595025168446);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4703596266128245);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -413,59 +464,6 @@
 <h3 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h3><p>OpenCV 中，图像...</p>
             
             <span class="read-more"><a href="/2019/03/28/OpenCV-Basic/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.933116842211211);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            三月 21, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/03/21/Docker-MountVolumes/" title="Docker 容器挂载宿主机上的目录时出现 Permission denied" class="posttitle">Docker 容器挂载宿主机上的目录时出现 Permission denied</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        5 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>启动 docker 容器时挂载容器以前存在的数据文件时出现了 Permission denied 的错误</p>
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ol>
-<li>首先以为是挂载的文件夹有读写数据的权限问题 <code>chmod -R 777 xxxx</code> , 没有解决，依然报错</li>
-<li>再分析是文件目录的所属者的问题： <code>chown -R gname:uname xxxx</code> , 没有解决，依然报错</li>
-<li>这时我们进入容器之后 使用 ll 查看挂载的目录的所属者，发现组名和户名跟宿主机的组名和用户名不一致</li>
-<li>原因在于，操作系统判断用户组和用户其实并不是根据名称来的，而是根据...</li></ol>
-            
-            <span class="read-more"><a href="/2019/03/21/Docker-MountVolumes/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

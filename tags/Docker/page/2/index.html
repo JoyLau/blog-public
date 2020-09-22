@@ -153,22 +153,22 @@
             <a href="/categories/Docker篇"><b>「
                 </b>DOCKER篇<b> 」</b></a>
             
-            三月 12, 2020
+            三月 18, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/03/12/Docker-Java-OOM/" title="Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用" class="posttitle">Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用</a></h3>
+            <a href="/2020/03/18/Docker-Auto-Publish-Blog/" title="真·Docker 自动部署个人博客" class="posttitle">真·Docker 自动部署个人博客</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.7k
+                15k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                2 mins.
+                13 mins.
             </span>
             
             
@@ -180,9 +180,10 @@
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p>在一次生产环境部署 elasticsearch 节点时 docker 容器设置了 –restart always,<br>此时 elasticsearch 的一个节点发生了 java.lang.OutOfMemoryError...</p>
+
+<h3 id="何为-真"><a href="#何为-真" class="headerlink" title="何为 真"></a>何为 <code>真</code></h3><p>以前我都是服务器上执行定时任务,在凌晨的时候 pull 博客仓库在 hexo 编译, 在上传到 github 静态资源库, 在 pull 静态资源库到 nginx 目录下,这样实现个人博客的...</p>
             
-            <span class="read-more"><a href="/2020/03/12/Docker-Java-OOM/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/03/18/Docker-Auto-Publish-Blog/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -207,7 +208,59 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2523782426497734);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8347197503590049);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            三月 18, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/03/18/Docker-Auto-Publish-Blog/" title="真·Docker 自动部署个人博客" class="posttitle">真·Docker 自动部署个人博客</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        15k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        13 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="何为-真"><a href="#何为-真" class="headerlink" title="何为 真"></a>何为 <code>真</code></h3><p>以前我都是服务器上执行定时任务,在凌晨的时候 pull 博客仓库在 hexo 编译, 在上传到 github 静态资源库, 在 pull 静态资源库到 nginx 目录下,这样实现个人博客的发布</p>
+<p>真: 放弃定时任务, 采用 github 的钩子, 在博客仓库有 push 行为时,立马执行上述操作, 以前直接在服务器上写的脚本来执行,这次决定将这些操作打包成一个 docker 镜像, 随时随地可部署</p>
+<p>避免了部署还需要配置定时任务和写一批脚本的问题.</p>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
+<li>以 Ubuntu 18.04...</li></ol>
+            
+            <span class="read-more"><a href="/2020/03/18/Docker-Auto-Publish-Blog/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.32494888975510205);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -256,7 +309,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8364819752058845);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4855324005847206);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -307,7 +360,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7326475592398347);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.0809152123156418);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -359,7 +412,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.49339021178366416);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.07171480323096024);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -400,59 +453,6 @@
     -- Subject: Unit docker.socket has...</code></pre>
             
             <span class="read-more"><a href="/2019/04/08/Docker-Start-Error/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.09379885986579395);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            三月 21, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/03/21/Docker-MountVolumes/" title="Docker 容器挂载宿主机上的目录时出现 Permission denied" class="posttitle">Docker 容器挂载宿主机上的目录时出现 Permission denied</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        5 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>启动 docker 容器时挂载容器以前存在的数据文件时出现了 Permission denied 的错误</p>
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ol>
-<li>首先以为是挂载的文件夹有读写数据的权限问题 <code>chmod -R 777 xxxx</code> , 没有解决，依然报错</li>
-<li>再分析是文件目录的所属者的问题： <code>chown -R gname:uname xxxx</code> , 没有解决，依然报错</li>
-<li>这时我们进入容器之后 使用 ll 查看挂载的目录的所属者，发现组名和户名跟宿主机的组名和用户名不一致</li>
-<li>原因在于，操作系统判断用户组和用户其实并不是根据名称来的，而是根据...</li></ol>
-            
-            <span class="read-more"><a href="/2019/03/21/Docker-MountVolumes/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

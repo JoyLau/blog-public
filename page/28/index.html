@@ -143,46 +143,50 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(http://image.joylau.cn/blog/Assembly-Package.png);">
+                url(/img/cover.jpg);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/SpringBoot篇"><b>「
-                </b>SPRINGBOOT篇<b> 」</b></a>
+            <a href="/categories/MyBatis篇"><b>「
+                </b>MYBATIS篇<b> 」</b></a>
             
-            十二月 12, 2017
+            二月 27, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2017/12/12/SpringBoot-Assembly-Package/" title="重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件</a></h3>
+            <a href="/2018/02/27/MyBatis-Example/" title="关于通用 Mapper Example 使用记录" class="posttitle">关于通用 Mapper Example 使用记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                7.8k
+                3.9k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                7 mins.
+                4 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p>SpringBoot 默认有2种打包方式，一种是直接打成 jar 包，直接使用 java -jar 跑起来，另一种是打成 war 包，移除掉 web starter 里的容器依赖，然后丢到外部容器跑...</p>
+
+
+<ul>
+<li>项目整合 通用 mapper 和 pagehelper 插件，这部分以前有写过，略</li>
+<li>需要集成 mybatis 的 generator 插件，方便自动生成 实体类和 mapper 类，还可以生成xml...</li></ul>
             
-            <span class="read-more"><a href="/2017/12/12/SpringBoot-Assembly-Package/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/02/27/MyBatis-Example/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -207,7 +211,61 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://image.joylau.cn/blog/Assembly-Package.png?0.9360239773055294);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5997619888611048);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/MyBatis篇">
+                  <b>「 </b>MYBATIS篇<b> 」</b>
+                </a>
+            
+            二月 27, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/02/27/MyBatis-Example/" title="关于通用 Mapper Example 使用记录" class="posttitle">关于通用 Mapper Example 使用记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        3.9k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        4 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+
+<ul>
+<li>项目整合 通用 mapper 和 pagehelper 插件，这部分以前有写过，略</li>
+<li>需要集成 mybatis 的 generator 插件，方便自动生成 实体类和 mapper 类，还可以生成xml，不过一般我们都不用 xml</li>
+<li>baseMapper 需要继承 ExampleMapper<t> 不过只需要继承 Mapper<t> 就可以了，因为 Mapper<t> 已经继承了 ExampleMapper<t></t></t></t></t></li>
+</ul>
+<p>首先需要说明一点 ，和 Example 使用相同的还有 Condition 类 该类继承自 Example...</p>
+            
+            <span class="read-more"><a href="/2018/02/27/MyBatis-Example/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://image.joylau.cn/blog/Assembly-Package.png?0.15202831511408932);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -256,7 +314,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6795191511006022);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7842878660414587);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -306,7 +364,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2664480239007143);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.11609374898469427);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -358,7 +416,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4183043850726762);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5395423618035624);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -403,60 +461,6 @@
 <h3 id="首先需要做的"><a href="#首先需要做的" class="headerlink" title="首先需要做的"></a>首先需要做的</h3><p>安装 jdk 环境,再此不做详细叙述了,需要注意的是 jdk 的环境变量的配置<br>安装 Hadoop 环境,必须安装 Hadoop 才能使用 Spark...</p>
             
             <span class="read-more"><a href="/2017/11/23/Spark-Integrate-Build/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6610437063976742);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/大数据篇">
-                  <b>「 </b>大数据篇<b> 」</b>
-                </a>
-            
-            十一月 22, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/11/22/Hadoop-Integrate-Build/" title="大数据之路 Hadoop 环境搭建" class="posttitle">大数据之路 Hadoop 环境搭建</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        12k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        11 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>首先要说明的是,本篇文章用的 Hadoop 的版本都是目前最新版,直接在官网上下载就可以了<br>有些命令可能已经不适应之前的旧版本了,以最新的版的为准<br>以下操作命令均是在服务的根目录下,使用的是相对目录</p>
-<h3 id="当前版本说明"><a href="#当前版本说明" class="headerlink" title="当前版本说明"></a>当前版本说明</h3><ul>
-<li>Hadoop 版本2.8.2</li>
-<li>操作系统版本 centos 7.2</li>
-</ul>
-<p>安装 jdk 环境,再此不做详细叙述了,需要注意的是 jdk 的环境变量的配置</p>
-<p><code>yum install openjdk1.8xxxxx</code> 这个安装的是 jre环境,并不是 jdk,安装 jdk</p>
-<pre><code class="bash">    sudo yum install...</code></pre>
-            
-            <span class="read-more"><a href="/2017/11/22/Hadoop-Integrate-Build/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
