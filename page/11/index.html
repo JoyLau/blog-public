@@ -150,41 +150,47 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Electron篇"><b>「
-                </b>ELECTRON篇<b> 」</b></a>
+            <a href="/categories/React篇"><b>「
+                </b>REACT篇<b> 」</b></a>
             
             九月 10, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/09/10/Electron-Create-React-App/" title="Electron --- Create-React-App + Antd + Electron 的搭建" class="posttitle">Electron --- Create-React-App + Antd + Electron 的搭建</a></h3>
+            <a href="/2019/09/10/React-Create-React-App/" title="Create-React-App 的一些配置" class="posttitle">Create-React-App 的一些配置</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                4.3k
+                6.3k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                4 mins.
+                6 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/react/" rel="tag">react</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="创建-create-react-app-antd-项目"><a href="#创建-create-react-app-antd-项目" class="headerlink" title="创建 create-react-app-antd 项目"></a>创建 create-react-app-antd 项目</h3><ol>
-<li>git clone <a href="https://github.com/ant-design/create-react-app-antd" target="_blank" rel="noopener">https://github.com/ant-design/create-react-app-antd</a></li>
-<li>npm install...</li></ol>
+
+<h3 id="添加多页面配置"><a href="#添加多页面配置" class="headerlink" title="添加多页面配置"></a>添加多页面配置</h3><ol>
+<li><code>npm run eject</code></li>
+<li>修改 webpack.config.js</li>
+</ol>
+<p>entry 修改:<br>这里我加了一个 update.html 页面</p>
+<pre><code class="js">    entry: {
+      index: [
+        // Include...</code></pre>
             
-            <span class="read-more"><a href="/2019/09/10/Electron-Create-React-App/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/09/10/React-Create-React-App/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +215,63 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6656359834327528);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.012703230169866853);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/React篇">
+                  <b>「 </b>REACT篇<b> 」</b>
+                </a>
+            
+            九月 10, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/09/10/React-Create-React-App/" title="Create-React-App 的一些配置" class="posttitle">Create-React-App 的一些配置</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        6.3k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        6 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/react/" rel="tag">react</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="添加多页面配置"><a href="#添加多页面配置" class="headerlink" title="添加多页面配置"></a>添加多页面配置</h3><ol>
+<li><code>npm run eject</code></li>
+<li>修改 webpack.config.js</li>
+</ol>
+<p>entry 修改:<br>这里我加了一个 update.html 页面</p>
+<pre><code class="js">    entry: {
+      index: [
+        // Include an alternative client for WebpackDevServer. A client&#39;s job is to
+        // connect to WebpackDevServer by a socket and get notified about changes....</code></pre>
+            
+            <span class="read-more"><a href="/2019/09/10/React-Create-React-App/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.8164090308191501);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -262,7 +324,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.38971743615017207);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.014795996964329206);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -314,7 +376,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8232909568483662);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.2895636078487436);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -364,7 +426,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.02584978547014627);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.34365536182409273);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -407,64 +469,6 @@
 
             
             <span class="read-more"><a href="/2019/09/03/Git-RememberMe/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.10476527295516935);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Java篇">
-                  <b>「 </b>JAVA篇<b> 」</b>
-                </a>
-            
-            八月 23, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/08/23/Java-Future/" title="Java 开启子线程执行其他操作，并获取结果" class="posttitle">Java 开启子线程执行其他操作，并获取结果</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        475
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p>示例代码，10后抛出超时错误，并且取消子线程任务的执行</p>
-<pre><code class="java">    ExecutorService executorService = Executors.newSingleThreadExecutor();
-    Future&lt;String&gt; future = executorService.submit(() -&gt; {
-                ....
-            }
-    );
-
-    try {
-        return future.get(10, TimeUnit.SECONDS);
-    } catch (Exception e) {
-        future...</code></pre>
-            
-            <span class="read-more"><a href="/2019/08/23/Java-Future/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

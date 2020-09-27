@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Termius 多终端软件配置手动同步</title>
+      <link href="/2020/09/27/Termius-Multi-Tterminal-Sync/"/>
+      <url>/2020/09/27/Termius-Multi-Tterminal-Sync/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><p>Termius 算是我比较喜欢的一款终端软件了, 因为它很漂亮, 自带的字体很好看, 软件本身是免费的, 但是如果要使用一些高级功能</p><p>比如不同操作系统下的 Termius 的软件配置同步则需要订阅他的高级功能, 收费不低, 关键还不是买断机制的, 是按年缴费</p><p>这不得不使我研究了一番</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>经我研究, Termius 是使用 Electron 开发的, 挂不得它可以把界面做的这么好看</p><p>我本身也使用 Electron 开发过一些加壳软件, 知道软件的一些配置信息存储的技术手段</p><ol><li>本地文件存储</li><li>cookie 存储</li><li>Local Storage 存储</li><li>IndexedDB 存储</li></ol><p>其中第二,第三的方式存储不太可能, 是一些简单的字符串存储, 容量小, 且数据结构简单</p><p>最终我定位了它使用的是 IndexedDB 存储</p><p>且存储的位置(Mac OS)在 <code>/Users/joylau/Library/Containers/com.termius.mac/Data/Library/Application Support/Termius/IndexedDB/file__0.indexeddb.leveldb/000003.log</code></p><p>同理在 Windows 下或者 Linux 下找到该 indexedDB 数据文件, 再进行替换, 则软件的配置得以同步</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具类篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Termius </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker Compose Version 3 限制 CPU 和 内存的使用方法</title>
       <link href="/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/"/>
       <url>/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/</url>
@@ -3245,7 +3270,7 @@
       <link href="/2018/05/15/Lombok/"/>
       <url>/2018/05/15/Lombok/</url>
       
-        <content type="html"><![CDATA[<a id="more"></a><ul><li>val可以将变量申明是final类型。</li><li>@NonNull注解能够为方法或构造函数的参数提供非空检查。</li><li>@Cleanup注解能够自动释放资源。</li><li>@Getter/@Setter注解可以针对类的属性字段自动生成Get/Set方法。</li><li>@ToString注解，为使用该注解的类生成一个toString方法，默认的toString格式为：ClassName(fieldName= fieleValue ,fieldName1=fieleValue)。</li><li>@EqualsAndHashCode注解，为使用该注解的类自动生成equals和hashCode方法。</li><li>@NoArgsConstructor, @RequiredArgsConstructor, @AllArgsConstructor,这几个注解分别为类自动生成了无参构造器、指定参数的构造器和包含所有参数的构造器。</li><li>@Data注解作用比较全，其包含注解的集合 @ToString， @EqualsAndHashCode，所有字段的 @Getter和所有非final字段的 @Setter, @RequiredArgsConstructor。</li><li>@Builder注解提供了一种比较推崇的构建值对象的方式。</li><li>@Synchronized注解类似Java中的Synchronized 关键字，但是可以隐藏同步锁</li></ul><p>官网地址： <a href="https://www.projectlombok.org/features/all" target="_blank" rel="noopener">https://www.projectlombok.org/features/all</a></p>]]></content>
+        <content type="html"><![CDATA[<a id="more"></a><p><img src="http://image.joylau.cn/blog/Lombok.png" alt="img"></p><ul><li>val可以将变量申明是final类型。</li><li>@NonNull注解能够为方法或构造函数的参数提供非空检查。</li><li>@Cleanup注解能够自动释放资源。</li><li>@Getter/@Setter注解可以针对类的属性字段自动生成Get/Set方法。</li><li>@ToString注解，为使用该注解的类生成一个toString方法，默认的toString格式为：ClassName(fieldName= fieleValue ,fieldName1=fieleValue)。</li><li>@EqualsAndHashCode注解，为使用该注解的类自动生成equals和hashCode方法。</li><li>@NoArgsConstructor, @RequiredArgsConstructor, @AllArgsConstructor,这几个注解分别为类自动生成了无参构造器、指定参数的构造器和包含所有参数的构造器。</li><li>@Data注解作用比较全，其包含注解的集合 @ToString， @EqualsAndHashCode，所有字段的 @Getter和所有非final字段的 @Setter, @RequiredArgsConstructor。</li><li>@Builder注解提供了一种比较推崇的构建值对象的方式。</li><li>@Synchronized注解类似Java中的Synchronized 关键字，但是可以隐藏同步锁</li></ul><p>官网地址： <a href="https://www.projectlombok.org/features/all" target="_blank" rel="noopener">https://www.projectlombok.org/features/all</a></p>]]></content>
       
       
       <categories>

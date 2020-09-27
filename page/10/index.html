@@ -153,22 +153,22 @@
             <a href="/categories/Electron篇"><b>「
                 </b>ELECTRON篇<b> 」</b></a>
             
-            九月 14, 2019
+            九月 16, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/09/14/Electron-Electron-Builder/" title="Electron --- Electron-Builder 打包的各种配置" class="posttitle">Electron --- Electron-Builder 打包的各种配置</a></h3>
+            <a href="/2019/09/16/Electron-AutoUpdater/" title="Electron --- 关于自动更新的一系列折腾" class="posttitle">Electron --- 关于自动更新的一系列折腾</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                4k
+                7.9k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                4 mins.
+                7 mins.
             </span>
             
             
@@ -180,12 +180,14 @@
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="打包的资源无法包含-build-目录"><a href="#打包的资源无法包含-build-目录" class="headerlink" title="打包的资源无法包含 build 目录"></a>打包的资源无法包含 build 目录</h3><pre><code class="json">    &quot;files&quot;: [
-          &quot;**/*&quot;,
-          &quot;build/&quot;,
-          &quot;!build/static/js...</code></pre>
+<h3 id="Electron-自动更新的方法"><a href="#Electron-自动更新的方法" class="headerlink" title="Electron 自动更新的方法"></a>Electron 自动更新的方法</h3><ol>
+<li>使用 Electron 自己提供的 autoUpdater 模块</li>
+<li>使用更新服务器</li>
+<li>自己实现自动更新逻辑</li>
+</ol>
+<p>为什么说经过了一系列的折腾呢, 因为前 2 中方式都没有解...</p>
             
-            <span class="read-more"><a href="/2019/09/14/Electron-Electron-Builder/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/09/16/Electron-AutoUpdater/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +212,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7553557000933215);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8752046957931943);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Electron篇">
+                  <b>「 </b>ELECTRON篇<b> 」</b>
+                </a>
+            
+            九月 16, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/09/16/Electron-AutoUpdater/" title="Electron --- 关于自动更新的一系列折腾" class="posttitle">Electron --- 关于自动更新的一系列折腾</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        7.9k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        7 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="Electron-自动更新的方法"><a href="#Electron-自动更新的方法" class="headerlink" title="Electron 自动更新的方法"></a>Electron 自动更新的方法</h3><ol>
+<li>使用 Electron 自己提供的 autoUpdater 模块</li>
+<li>使用更新服务器</li>
+<li>自己实现自动更新逻辑</li>
+</ol>
+<p>为什么说经过了一系列的折腾呢, 因为前 2 中方式都没有解决我的问题,最后我是自己实现了自动更新的逻辑<br>没有解决我的问题是因为我需要兼顾到 mac 平台和 Windows 平台,然而 mac 平台比较麻烦,代码需要签名<br>我自己亲测方式一和方式二在 mac 平台上都需要代码签名, 而签名代码需要注册苹果开发者账号,需要付年费<br>于是这 2 条路就走不通了  </p>
+<p>最后我决...</p>
+            
+            <span class="read-more"><a href="/2019/09/16/Electron-AutoUpdater/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.7052895879962036);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -267,7 +322,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5999675685970589);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5153038312753908);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -319,7 +374,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.30286992585987105);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9133634412230283);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -373,7 +428,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9816369038662676);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5059140826260551);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -423,62 +478,6 @@
         app....</code></pre>
             
             <span class="read-more"><a href="/2019/09/11/Electron-Questions/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.018964373562868397);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/React篇">
-                  <b>「 </b>REACT篇<b> 」</b>
-                </a>
-            
-            九月 10, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/09/10/React-Create-React-App/" title="Create-React-App 的一些配置" class="posttitle">Create-React-App 的一些配置</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        6.3k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        6 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/react/" rel="tag">react</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="添加多页面配置"><a href="#添加多页面配置" class="headerlink" title="添加多页面配置"></a>添加多页面配置</h3><ol>
-<li><code>npm run eject</code></li>
-<li>修改 webpack.config.js</li>
-</ol>
-<p>entry 修改:<br>这里我加了一个 update.html 页面</p>
-<pre><code class="js">    entry: {
-      index: [
-        // Include an alternative client for WebpackDevServer. A client&#39;s job is to
-        // connect to WebpackDevServer by a socket and get notified about changes....</code></pre>
-            
-            <span class="read-more"><a href="/2019/09/10/React-Create-React-App/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

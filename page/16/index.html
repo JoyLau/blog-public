@@ -150,41 +150,42 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Ubuntu篇"><b>「
-                </b>UBUNTU篇<b> 」</b></a>
+            <a href="/categories/SpringBoot篇"><b>「
+                </b>SPRINGBOOT篇<b> 」</b></a>
             
-            四月 10, 2019
+            四月 15, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/04/10/Ubuntu-Remote-Desktop/" title="Ubuntu 优雅的远程桌面服务端配置" class="posttitle">Ubuntu 优雅的远程桌面服务端配置</a></h3>
+            <a href="/2019/04/15/SpringBoot-Ajax-FormData/" title="重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                4.9k
+                1.3k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                4 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
+<h3 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h3><pre><code class="javascript">    const formData = new FormData();
 
-<p>上一篇文章记录了因为远程桌面连接把 Ubuntu 的 <code>/home</code> 弄坏了<br>好一番折腾。。。。<br>其实这个远程桌面我早就想重新配置了，今天我终于受不了它了，于是我觉得仔细研究一番找到适合我自己的方式来操作</p>
-...
+    fileList.forEach(file =&gt; {
+        formData.append(&#39;file&#39;, file...</code></pre>
             
-            <span class="read-more"><a href="/2019/04/10/Ubuntu-Remote-Desktop/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/04/15/SpringBoot-Ajax-FormData/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +210,70 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4913306024343882);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8171378097528184);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            四月 15, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/04/15/SpringBoot-Ajax-FormData/" title="重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.3k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h3><pre><code class="javascript">    const formData = new FormData();
+
+    fileList.forEach(file =&gt; {
+        formData.append(&#39;file&#39;, file.originFileObj);
+    });
+
+
+    // 每个表单是否填写完成
+    let params = [];
+
+    .....
+
+
+    let data = {};
+    data.filePath = &quot;&quot;;
+    data.markers = params;
+    formData.append(&quot...</code></pre>
+            
+            <span class="read-more"><a href="/2019/04/15/SpringBoot-Ajax-FormData/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.9400169073880063);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -259,7 +323,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7966100518307284);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.10867300366758803);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -317,7 +381,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7716192545521532);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.33187720156387);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -367,7 +431,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.23128142455824285);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.2096492622798427);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -413,57 +477,6 @@
 <li><strong>IMREAD_UNCHANGED...</strong></li></ul>
             
             <span class="read-more"><a href="/2019/04/03/OpenCV-ByteImage/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4703596266128245);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/OpenCV篇">
-                  <b>「 </b>OPENCV篇<b> 」</b>
-                </a>
-            
-            三月 28, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/03/28/OpenCV-Basic/" title="OpenCV 基础知识与概念" class="posttitle">OpenCV 基础知识与概念</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="数字图像"><a href="#数字图像" class="headerlink" title="数字图像"></a>数字图像</h3><p>数字图像指的是现在的图像都是以二维数字表示，每个像素的灰度值均由一个数字表示，范围为0-255(2^8)</p>
-<h3 id="二值图像"><a href="#二值图像" class="headerlink" title="二值图像"></a>二值图像</h3><p>图像中每个像素的灰度值仅可取0或1，即不是取黑，就是取白，二值图像可理解为黑白图像</p>
-<h3 id="灰度图像"><a href="#灰度图像" class="headerlink" title="灰度图像"></a>灰度图像</h3><p>图像中每个像素可以由0-255的灰度值表示，具体表现为从全黑到全白中间有255个介于中间的灰色值可以取</p>
-<h3 id="彩色图像"><a href="#彩色图像" class="headerlink" title="彩色图像"></a>彩色图像</h3><p>每幅图像是由三幅灰度图像组合而成，依次表示红绿蓝三通道的灰度值，即我们熟知的RGB，此时彩色图像要视为三维的 <code>[height，width, 3]</code></p>
-<h3 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h3><p>OpenCV 中，图像...</p>
-            
-            <span class="read-more"><a href="/2019/03/28/OpenCV-Basic/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

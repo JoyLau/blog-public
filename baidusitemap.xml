@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.joylau.cn/2018/05/15/Lombok/</loc>
+    <lastmod>2020-09-27</lastmod>
+  </url>  <url>
+    <loc>http://blog.joylau.cn/2020/09/27/Termius-Multi-Tterminal-Sync/</loc>
+    <lastmod>2020-09-27</lastmod>
+  </url>  <url>
     <loc>http://blog.joylau.cn/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/</loc>
     <lastmod>2020-09-22</lastmod>
   </url>  <url>
@@ -368,9 +374,6 @@
     <lastmod>2020-07-10</lastmod>
   </url>  <url>
     <loc>http://blog.joylau.cn/2018/05/08/Logstash-Nginx/</loc>
-    <lastmod>2020-07-10</lastmod>
-  </url>  <url>
-    <loc>http://blog.joylau.cn/2018/05/15/Lombok/</loc>
     <lastmod>2020-07-10</lastmod>
   </url>  <url>
     <loc>http://blog.joylau.cn/2018/05/08/Filebeat-Nginx/</loc>
