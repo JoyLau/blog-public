@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Linux 挂载有用户名密码的网络磁盘</title>
+      <link href="/2020/09/29/Linux-Mount-Auth-NetDisk/"/>
+      <url>/2020/09/29/Linux-Mount-Auth-NetDisk/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘</p><p>很多时候，为了安全考虑网络磁盘都设置了用户名密码</p><p>这时挂载的时候就需要设置用户名密码了</p><p>很可惜上述方式 nfs 没有找到设置用户名密码的参数</p><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>使用 cifs </p><ol><li><p>安装依赖： <code>yum install cifs-utils</code></p></li><li><p>挂载： <code>mount -t cifs -o username=USERNAME,password=PASSWORD,iocharset=utf8 //192.168.10.191/CM_Backup /mnt/191-nas</code></p></li></ol><p>注意主机地址前的 <code>//</code> 不能省略</p><ol start="3"><li>卸载挂载： umount /mnt/191-nas</li></ol><h2 id="额外的"><a href="#额外的" class="headerlink" title="额外的"></a>额外的</h2><p>挂载网络磁盘很多时候无非为了备份， 使用 <code>cp</code> 命令像本地拷贝文件一样备份即可，但是 cp 命令无法显示进度，对于大文件来说，就会等待上很长的时间无输出</p><p>我这里提供 2 中解决方式</p><ol><li>使用 <code>pv</code></li></ol><p>语法： <code>pv sourcefile &gt; targetfile</code></p><p>优点： 提供实时进度条显示</p><p>缺点： 只能终端显示， 无法记录到文件中， 而且一旦终止任务， 进程无法正常退出</p><ol start="2"><li>使用 <code>rsync</code></li></ol><p>语法： <code>rsync -avPh  sourcefile  targetfile</code></p><p>优点： 使用命令 <code>rsync -avPh  sourcefile  targetfile | tee log.log</code> 可将进度写入日志文件中</p><p>缺点： 暂无</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Termius 多终端软件配置手动同步</title>
       <link href="/2020/09/27/Termius-Multi-Tterminal-Sync/"/>
       <url>/2020/09/27/Termius-Multi-Tterminal-Sync/</url>

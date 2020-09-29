@@ -64,7 +64,7 @@
                 <div class="content animated fadeIn">
                     <div class="set">
                         <h1 style="text-align: center">Archived</h1>
-                        <p style="text-align: center">「 201 」</p>
+                        <p style="text-align: center">「 202 」</p>
                         <ul class="timeline timeline-centered">
                             
                             
@@ -76,6 +76,30 @@
                                         <h2 class="timeline-title">九月 2020</h2>
                                     </div>
                                 </li>
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">九月 29, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/09/29/Linux-Mount-Auth-NetDisk/">Linux 挂载有用户名密码的网络磁盘</a>
+                                        <p>
+                                            
+
+背景很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘
+很多时候，为了安全考虑网络磁盘都设置了用户名密码
+这时挂载的时候就需要设置用户名密码了
+很可惜上述方式 nfs 没有找到设置用户名密码的参数
+解决使用 cifs 
+
+安装依赖： yum install cifs-utils
+
+挂载： mount -t cifs ...
+                                        </p>
+                                    </div>
+                                </li>
+                            
                                 
                                 <li class="timeline-item">
                                     <div class="timeline-info">

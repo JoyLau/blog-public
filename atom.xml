@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2020-09-27T07:18:08.599Z</updated>
+  <updated>2020-09-29T08:58:34.751Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux 挂载有用户名密码的网络磁盘</title>
+    <link href="http://blog.joylau.cn/2020/09/29/Linux-Mount-Auth-NetDisk/"/>
+    <id>http://blog.joylau.cn/2020/09/29/Linux-Mount-Auth-NetDisk/</id>
+    <published>2020-09-29T08:36:37.000Z</published>
+    <updated>2020-09-29T08:58:34.751Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘</p><p>很多时候，为了安全考虑网络磁盘都设置了用户名密码</p><p>这时挂载的时候就需要设置用户名密码了</p><p>很可惜上述方式 nfs 没有找到设置用户名密码的参数</p><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>使用 cifs </p><ol><li><p>安装依赖： <code>yum install cifs-utils</code></p></li><li><p>挂载： <code>mount -t cifs -o username=USERNAME,password=PASSWORD,iocharset=utf8 //192.168.10.191/CM_Backup /mnt/191-nas</code></p></li></ol><p>注意主机地址前的 <code>//</code> 不能省略</p><ol start="3"><li>卸载挂载： umount /mnt/191-nas</li></ol><h2 id="额外的"><a href="#额外的" class="headerlink" title="额外的"></a>额外的</h2><p>挂载网络磁盘很多时候无非为了备份， 使用 <code>cp</code> 命令像本地拷贝文件一样备份即可，但是 cp 命令无法显示进度，对于大文件来说，就会等待上很长的时间无输出</p><p>我这里提供 2 中解决方式</p><ol><li>使用 <code>pv</code></li></ol><p>语法： <code>pv sourcefile &gt; targetfile</code></p><p>优点： 提供实时进度条显示</p><p>缺点： 只能终端显示， 无法记录到文件中， 而且一旦终止任务， 进程无法正常退出</p><ol start="2"><li>使用 <code>rsync</code></li></ol><p>语法： <code>rsync -avPh  sourcefile  targetfile</code></p><p>优点： 使用命令 <code>rsync -avPh  sourcefile  targetfile | tee log.log</code> 可将进度写入日志文件中</p><p>缺点： 暂无</p>]]></content>
+    
+    <summary type="html">
+    
+      很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘， 为了安全考虑网络磁盘都设置了用户名密码， 这时....
+    
+    </summary>
+    
+    
+      <category term="Linux篇" scheme="http://blog.joylau.cn/categories/Linux%E7%AF%87/"/>
+    
+    
+      <category term="Linux" scheme="http://blog.joylau.cn/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Termius 多终端软件配置手动同步</title>
@@ -456,29 +479,6 @@
     
     
       <category term="PowerDesigner" scheme="http://blog.joylau.cn/tags/PowerDesigner/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>日常折腾 --- 自制像素时钟, 不输 LaMeetric Time</title>
-    <link href="http://blog.joylau.cn/2020/04/23/Daily-Pixel-Clock/"/>
-    <id>http://blog.joylau.cn/2020/04/23/Daily-Pixel-Clock/</id>
-    <published>2020-04-23T06:30:43.000Z</published>
-    <updated>2020-07-10T00:43:19.431Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>之前看到一个像素时钟 LaMeetric Time, 感觉很漂亮, 但是太贵,淘宝上要卖到 2000 块左右<br>后来又看到一个项目 AWTRIX : <a href="https://awtrixdocs.blueforcer.de/#/en-en/" target="_blank" rel="noopener">https://awtrixdocs.blueforcer.de/#/en-en/</a><br>作者在他的网站上介绍了如何制作一个像素时钟<br>于是,我就跟着他的文档后面做了起来</p><h3 id="这玩意是什么"><a href="#这玩意是什么" class="headerlink" title="这玩意是什么??"></a>这玩意是什么??</h3><ol><li>首先它是一个时钟</li><li>其次,他能够通过 WIFI 连接到一个服务端, 服务端有 AppStore 能装很多 app 实现很多效果</li><li>我想用它来实时显示我博客的访客数, 当然,这需要我后期自己编码</li><li>好玩</li></ol><h3 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h3><h4 id="必须材料"><a href="#必须材料" class="headerlink" title="必须材料"></a>必须材料</h4><ol><li>WS2812B 可编程像素软屏</li><li>Wemos D1 mini ESP 8266 mini WIFI 开发板</li><li>杜邦连接线,公对母</li></ol><p>如何你想要制作成我的这种效果, 你还需要</p><ol><li>10V 1000uF 电容</li><li>电烙铁家用一套</li><li>5v 4A 2.5mm 电源</li><li>2.5mm 直流电源插头</li><li>手动修改官方 3D 打印图纸, 这是我修改好的图纸,其中前面板的高度调高了 3 mm : <a href="http://image.joylau.cn//blog/awtrix2/3d打印图纸.zip" target="_blank" rel="noopener">http://image.joylau.cn//blog/awtrix2/3d打印图纸.zip</a></li><li>手摇自喷漆一罐</li><li>定制黑色半透明亚克力板一块,尺寸 335mm * 95mm * 3mm</li><li>通用超 520 粘胶一小瓶</li></ol><h3 id="服务端部署"><a href="#服务端部署" class="headerlink" title="服务端部署"></a>服务端部署</h3><p>这里最方便的莫过于 docker 部署</p><pre><code class="bash">    docker run -d --name awtrix2 -p 7000:7000 -p 7001:7001 --restart always -e TZ=Asia/Shanghai -v /path:/data whyet/awtrix2:latest</code></pre><p>注意: 这里需要挂载容器里的目录 data, 否则重启后,安装的软件会丢失不见</p><h3 id="客户端烧录"><a href="#客户端烧录" class="headerlink" title="客户端烧录"></a>客户端烧录</h3><p>最简单的方式是使用 Windows 机器</p><ol><li>下载烧录工具: <a href="https://blueforcer.de/downloads/ESP8266Flasher.exe" target="_blank" rel="noopener">https://blueforcer.de/downloads/ESP8266Flasher.exe</a></li><li>下载最新固件: <a href="https://blueforcer.de/awtrix/stable/firmware.bin" target="_blank" rel="noopener">https://blueforcer.de/awtrix/stable/firmware.bin</a></li><li>启动 ESP8266Flasher.exe 并在 “ Config” 选项卡中打开固件（单击齿轮选择固件）</li><li>返回到 “操作” 选项卡，如果未自动检测到正确的串口，则需要手动设置它</li><li>单击“ Flash”，然后等待该过程完成，在左下角会显示一个绿色的复选标记。</li><li>重新启动控制器</li></ol><h3 id="连接-WiFi"><a href="#连接-WiFi" class="headerlink" title="连接 WiFi"></a>连接 WiFi</h3><ol><li>启动控制器</li><li>手机连接 SSID 为 “ AWTRIX Controller ” 的 WiFi, 密码是: <strong>awtrixxx</strong></li><li>如果网页没有自动跳出，则可以使用任何浏览器将设置页面导航到 IP “ 172.217.28.1 ”</li><li>点击“配置WiFi”，进入实际设置页面,配置家里的 WLAN 的 SSID 和密码</li><li>主机 IP 则设置为之前 docker 部署的服务端的 IP, 注意不需要加端口号</li><li>如果你的像素屏不是 32* 8 ,则需要配置 MatrixType2, 这个不需要配置</li></ol><h3 id="如何重置控制器"><a href="#如何重置控制器" class="headerlink" title="如何重置控制器???"></a>如何重置控制器???</h3><ol><li>按住控制器的 reset 键 3-4 秒</li><li>等待重启</li><li>再按住 reset 键 3-4 秒</li><li>等待重启</li><li>此时如何屏上显示 <strong>RESET</strong> ,则重置成功</li></ol><h3 id="接线图"><a href="#接线图" class="headerlink" title="接线图"></a>接线图</h3><p><img src="//image.joylau.cn/blog/awtrix2/AWTRIX_Core_Steckplatine.jpg" alt="1"></p><h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_1.jpg" alt="2">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_2.jpg" alt="3">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_3.jpg" alt="4">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_4.jpg" alt="5">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_5.jpg" alt="6">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_6.jpg" alt="7">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_7.jpg" alt="8">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_8.jpg" alt="9">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_9.jpg" alt="10">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_10.jpg" alt="11">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_11.jpg" alt="12">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_12.jpg" alt="13">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_13.jpg" alt="14">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_14.jpg" alt="15">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_15.jpg" alt="16">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_16.jpg" alt="17">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_17.jpg" alt="18">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_18.jpg" alt="19">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_19.jpg" alt="20">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_20.jpg" alt="21">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_21.jpg" alt="22">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_22.jpg" alt="23">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_23.jpg" alt="24">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_24.jpg" alt="25">  </p><p><img src="//image.joylau.cn/blog/awtrix2/server-page-1.png" alt="26">  </p><p><img src="//image.joylau.cn/blog/awtrix2/server-page-2.png" alt="27">  </p><center><video src="//image.joylau.cn/blog/awtrix2/awtrix2_video1.mp4" muted loop="true" controls="controls">您的浏览器版本太低，无法观看本视频</video></center>  <center><video src="//image.joylau.cn/blog/awtrix2/awtrix2_video2.mp4" muted loop="true" controls="controls">您的浏览器版本太低，无法观看本视频</video></center>  <h3 id="Siri-语音控制"><a href="#Siri-语音控制" class="headerlink" title="Siri 语音控制"></a>Siri 语音控制</h3><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_siri-1.PNG" alt="28">  </p><p><img src="//image.joylau.cn/blog/awtrix2/awtrix2_siri-2.PNG" alt="29"></p>]]></content>
-    
-    <summary type="html">
-    
-      自制像素时钟, 不输 LaMeetric Time
-    
-    </summary>
-    
-    
-      <category term="日常折腾篇" scheme="http://blog.joylau.cn/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE%E7%AF%87/"/>
-    
-    
-      <category term="日常折腾" scheme="http://blog.joylau.cn/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/"/>
     
   </entry>
   

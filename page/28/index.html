@@ -153,22 +153,22 @@
             <a href="/categories/SpringSecurity篇"><b>「
                 </b>SPRINGSECURITY篇<b> 」</b></a>
             
-            三月 28, 2018
+            三月 30, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/03/28/SpringBoot-SpringSecurity/" title="重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity</a></h3>
+            <a href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/" title="SpringSecurity Session并发过期后会重定向到 &#x2F;login (入口点问题)问题的解决" class="posttitle">SpringSecurity Session并发过期后会重定向到 &#x2F;login (入口点问题)问题的解决</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                17k
+                13k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                15 mins.
+                12 mins.
             </span>
             
             
@@ -180,12 +180,11 @@
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<pre><code class="xml">    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring...</code></pre>
+<p>在 SpringSecurity 中，我想配置一个关于session并发的控制，于是我是这样配置的</p>
+<pre><code class="java">     @Override
+        protected void configure(HttpSecurity ...</code></pre>
             
-            <span class="read-more"><a href="/2018/03/28/SpringBoot-SpringSecurity/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +209,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5407118893806564);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7702216978239023);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringSecurity篇">
+                  <b>「 </b>SPRINGSECURITY篇<b> 」</b>
+                </a>
+            
+            三月 30, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/" title="SpringSecurity Session并发过期后会重定向到 &#x2F;login (入口点问题)问题的解决" class="posttitle">SpringSecurity Session并发过期后会重定向到 &#x2F;login (入口点问题)问题的解决</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        13k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        12 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringSecurity/" rel="tag">SpringSecurity</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>在 SpringSecurity 中，我想配置一个关于session并发的控制，于是我是这样配置的</p>
+<pre><code class="java">     @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http
+                    .sessionManagement()
+                    .invalidSessionStrategy(new InvalidSessionStrategyImpl())
+                    .maximumSessions(-1).expiredSessionStrategy...</code></pre>
+            
+            <span class="read-more"><a href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.14743886831597153);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -265,7 +317,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6569442658076587);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.04417776123769013);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -319,7 +371,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://image.joylau.cn/blog/Assembly-Package.png?0.44989601589091666);">
+            url(http://image.joylau.cn/blog/Assembly-Package.png?0.03703298025970514);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -368,7 +420,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.08154997968999189);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9809550015090269);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -409,58 +461,6 @@
 <p>年初我自己搭建这个脚手架使用的时候,那时 Druid...</p>
             
             <span class="read-more"><a href="/2017/11/29/SpringBoot-Druid-MyBatis-Mapper-PageHelper/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.028729245341140297);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/JavaScript篇">
-                  <b>「 </b>JAVASCRIPT篇<b> 」</b>
-                </a>
-            
-            十一月 24, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/11/24/JavaScript-Array-Method/" title="JavaScript 数组的一些常用的方法整理" class="posttitle">JavaScript 数组的一些常用的方法整理</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        13k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        12 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="push-添加最后一项"><a href="#push-添加最后一项" class="headerlink" title="push 添加最后一项"></a>push 添加最后一项</h3><p>在数组末尾添加一项，并返回数组的长度, 可以添加任意类型的值作为数组的一项。</p>
-<pre><code class="javascript">    var arr = [1,2];
-    arr.push(6)     // arr: [1,2,6]
-    arr.push(&#39;aa&#39;)  // arr: [1,2,6,&quot;aa&quot;]
-    arr.push(undefined)  // arr: [1,2,6,&quot;aa&quot;,undefined]
-    arr.push({a: &quot;A&quot;, b: &quot;B...</code></pre>
-            
-            <span class="read-more"><a href="/2017/11/24/JavaScript-Array-Method/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
