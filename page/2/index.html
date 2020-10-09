@@ -153,22 +153,22 @@
             <a href="/categories/Ubuntu篇"><b>「
                 </b>UBUNTU篇<b> 」</b></a>
             
-            八月 07, 2020
+            八月 08, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/08/07/Ubuntu-Disk-Stat/" title="Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控" class="posttitle">Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控</a></h3>
+            <a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="Ubuntu --- 调整状态栏托盘图标的顺序" class="posttitle">Ubuntu --- 调整状态栏托盘图标的顺序</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                2.6k
+                1.4k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                2 mins.
+                1 mins.
             </span>
             
             
@@ -181,10 +181,10 @@
             
             <a id="more"></a>
 
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>indicator-sysmonitor 默认的模式可以监控 CPU 使用率， 内存使用， 网络 I/O 等， 但是却缺少了很关键的对当前磁盘 I/O 的监控，于是我就想着把他给加上去</p>
-<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式...</h3>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>继上一篇文章 【indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控】，这里我想让监控的数据放到状态栏的最左侧， 可发现事情并不简单。。。</p>
+<p>因为 Ubuntu 下并不像 ...</p>
             
-            <span class="read-more"><a href="/2020/08/07/Ubuntu-Disk-Stat/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +209,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.08181918873819694);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.057868443084112986);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Ubuntu篇">
+                  <b>「 </b>UBUNTU篇<b> 」</b>
+                </a>
+            
+            八月 08, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="Ubuntu --- 调整状态栏托盘图标的顺序" class="posttitle">Ubuntu --- 调整状态栏托盘图标的顺序</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.4k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>继上一篇文章 【indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控】，这里我想让监控的数据放到状态栏的最左侧， 可发现事情并不简单。。。</p>
+<p>因为 Ubuntu 下并不像 Mac 下按住 option 键可随意拖动</p>
+<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><pre><code class="bash">    sudo vim /usr/share/indicator-application/ordering-override.keyfile</code></pre>
+<p>修改顺序， 数字越小越靠左</p>
+<p>修改完毕使用 <code>restart unity-panel-service</code> 重启生效</p>
+<p>但...</p>
+            
+            <span class="read-more"><a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.6321822030282604);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -264,7 +317,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.565388561423529);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.14354712316901952);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -317,7 +370,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/Awtrix-preview-png.png?0.07763321304960225);">
+            url(//image.joylau.cn/blog/Awtrix-preview-png.png?0.7320995619585526);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -384,7 +437,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.09309942494945522);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1972672554351642);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -427,56 +480,6 @@
 <p>-Dhttp.proxyHost<br>-Dhttp.proxyPort...</p>
             
             <span class="read-more"><a href="/2020/07/20/IntelliJIDEA-Proxy/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3651154457814889);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/JavaScript篇">
-                  <b>「 </b>JAVASCRIPT篇<b> 」</b>
-                </a>
-            
-            七月 10, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/07/10/JavaScript-Async/" title="async 在箭头函数上的使用方式" class="posttitle">async 在箭头函数上的使用方式</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        105
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<pre><code class="js">    fun = async () =&gt; {
-       await .....
-    }</code></pre>
-
-            
-            <span class="read-more"><a href="/2020/07/10/JavaScript-Async/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

@@ -153,16 +153,16 @@
             <a href="/categories/Linux篇"><b>「
                 </b>LINUX篇<b> 」</b></a>
             
-            九月 29, 2020
+            十月 09, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="Linux 挂载有用户名密码的网络磁盘" class="posttitle">Linux 挂载有用户名密码的网络磁盘</a></h3>
+            <a href="/2020/10/09/Linux-install-bpytop/" title="CentOS 7 安装 bpytop 记录" class="posttitle">CentOS 7 安装 bpytop 记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.2k
+                1k
             </span>
             
             
@@ -181,11 +181,9 @@
             
             <a id="more"></a>
 
-<p>很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘</p>
-<p>很多时候，为了安全考虑网络磁盘都设置了用户名密码</p>
-<p>这时挂载的时候就需要设置...</p>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在 CentOS 8 上安装 bpytop 很简单, 安装 epel 库后执行 <code>dnf install bpytop</code> 即可, 但是在 CentOS 7 的 epel 库里却没有这个 bpytop...</p>
             
-            <span class="read-more"><a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/10/09/Linux-install-bpytop/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +208,63 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9701871822906634);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.3770636530157361);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Linux篇">
+                  <b>「 </b>LINUX篇<b> 」</b>
+                </a>
+            
+            九月 29, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="Linux 挂载有用户名密码的网络磁盘" class="posttitle">Linux 挂载有用户名密码的网络磁盘</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.2k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘</p>
+<p>很多时候，为了安全考虑网络磁盘都设置了用户名密码</p>
+<p>这时挂载的时候就需要设置用户名密码了</p>
+<p>很可惜上述方式 nfs 没有找到设置用户名密码的参数</p>
+<p>使用 cifs </p>
+<ol>
+<li><p>安装依赖： <code>yum install cifs-utils</code></p>
+</li>
+<li><p>挂载： <code>mount -t cifs -o username=USERNAME,password=PASSWORD,iocharset=utf8 //192...</code></p></li></ol>
+            
+            <span class="read-more"><a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.5111881520741706);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -265,7 +319,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4122057483398034);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6293264940650249);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -323,7 +377,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png?0.5438417321438591);">
+            url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png?0.002098934403299779);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -371,59 +425,6 @@
 <p>如果想将 gradle 的配置应用于所...</p>
             
             <span class="read-more"><a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5239757767927911);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Ubuntu篇">
-                  <b>「 </b>UBUNTU篇<b> 」</b>
-                </a>
-            
-            八月 08, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="Ubuntu --- 调整状态栏托盘图标的顺序" class="posttitle">Ubuntu --- 调整状态栏托盘图标的顺序</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.4k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>继上一篇文章 【indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控】，这里我想让监控的数据放到状态栏的最左侧， 可发现事情并不简单。。。</p>
-<p>因为 Ubuntu 下并不像 Mac 下按住 option 键可随意拖动</p>
-<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><pre><code class="bash">    sudo vim /usr/share/indicator-application/ordering-override.keyfile</code></pre>
-<p>修改顺序， 数字越小越靠左</p>
-<p>修改完毕使用 <code>restart unity-panel-service</code> 重启生效</p>
-<p>但...</p>
-            
-            <span class="read-more"><a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

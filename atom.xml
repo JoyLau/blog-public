@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2020-09-29T08:58:34.751Z</updated>
+  <updated>2020-10-09T02:23:28.445Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS 7 安装 bpytop 记录</title>
+    <link href="http://blog.joylau.cn/2020/10/09/Linux-install-bpytop/"/>
+    <id>http://blog.joylau.cn/2020/10/09/Linux-install-bpytop/</id>
+    <published>2020-10-09T02:07:44.000Z</published>
+    <updated>2020-10-09T02:23:28.445Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在 CentOS 8 上安装 bpytop 很简单, 安装 epel 库后执行 <code>dnf install bpytop</code> 即可, 但是在 CentOS 7 的 epel 库里却没有这个 bpytop 包, 这里介绍如何在 CentOS 7 下安装 bpytop</p><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol><li>安装 epel 库</li></ol><pre><code class="bash">    yum install epel-release</code></pre><ol start="2"><li>安装 snapd 并启用 snapd 套接字</li></ol><pre><code class="bash">    yum install snapd    systemctl enable --now snapd.socket</code></pre><ol start="3"><li>创建符号链接</li></ol><pre><code class="bash">    ln -s /var/lib/snapd/snap /snap</code></pre><ol start="4"><li>安装及权限配置</li></ol><pre><code class="shell">    snap install bpytop    sudo snap connect bpytop:mount-observe    sudo snap connect bpytop:network-control    sudo snap connect bpytop:hardware-observe    sudo snap connect bpytop:system-observe    sudo snap connect bpytop:process-control    sudo snap connect bpytop:physical-memory-observe</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      在 CentOS 8 上安装 bpytop 很简单, 安装 epel 库后执行 `dnf install bpytop` 即可, 但是在 CentOS 7 的 epel 库里却没有这个 bpytop 包
+    
+    </summary>
+    
+    
+      <category term="Linux篇" scheme="http://blog.joylau.cn/categories/Linux%E7%AF%87/"/>
+    
+    
+      <category term="Linux" scheme="http://blog.joylau.cn/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux 挂载有用户名密码的网络磁盘</title>
@@ -456,29 +479,6 @@
     
     
       <category term="ClashX" scheme="http://blog.joylau.cn/tags/ClashX/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PowerDesigner 数据库逆向生成物理模型并显示 Comment 注释</title>
-    <link href="http://blog.joylau.cn/2020/04/27/Tools-PowerDesigner/"/>
-    <id>http://blog.joylau.cn/2020/04/27/Tools-PowerDesigner/</id>
-    <published>2020-04-27T03:46:01.000Z</published>
-    <updated>2020-07-10T00:43:19.442Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ol><li>PowerDesigner 16.5</li></ol><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>使用 PowerDesigner 的原生方式连接各种数据库我遇到很多问题, 于是,这里我都是使用的 JDBC 的方式连接</p><p>使用 JDBC 方式连接需要注意一下几点</p><ol><li>JDK 的版本必须是 32 位的</li><li>需要 JDBC 的驱动 jar 包</li><li>需要新建 <strong>CLASSPATH</strong> 环境变量, 并且将驱动 jar 包的路径配置到 <code>CLASSPATH</code> 中, 否则的话会导致无法加载驱动类</li></ol><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol><li>File -&gt; New Module, 选择 <code>Physical Diagram</code>, DBMS 选择实际的数据库类型</li><li>选择 Database -&gt; Configure Connections… -&gt; Connection Profiles , 选择 第二个图标, <code>add data source</code></li><li>Connections Type 现在 JDBC, 然后根据实际情况填写, 注意最后一项的 <code>JDBC driver jar files</code> 的文件需要配置的 CLASSPATH 环境变量中去, 如果已经配置了, 则此项都可以不用选择,亲测</li><li>点击测试,没有问题,保存即可</li><li>选择 Database -&gt; Update Model from Database , 选择需要的表</li><li>此时双击表,可能没有注释, 需要双击表，弹出表属性对话框，切到 ColumnTab ，默认是没显示 Comment 的，此时点击漏斗状的按钮 <code>Customize Columns and Filter</code>, 勾选 <code>Comment</code></li></ol><h3 id="设置物理模型显示注释"><a href="#设置物理模型显示注释" class="headerlink" title="设置物理模型显示注释"></a>设置物理模型显示注释</h3><ol><li>Tools&gt;Display Perferences..</li><li>进入 Table, 先勾选 Comment</li><li>再点击 Advanced -&gt; Columns , 点击 List columns 右边的按钮 <code>select</code> , 选择上 code, 并将位置调的最上方, 点击确定</li><li>Tools&gt;Execute Commands&gt;Edit/Run Script.., 执行下面的脚本, 脚本的作用是将 NAME 替换成 COMMENT</li></ol><pre><code class="bash">    Option   Explicit           ValidationMode   =   True           InteractiveMode   =   im_Batch        Dim blankStr        blankStr   =   Space(1)        Dim   mdl   &#39;   the   current   model          &#39;   get   the   current   active   model           Set   mdl   =   ActiveModel           If   (mdl   Is   Nothing)   Then                 MsgBox   &quot;There   is   no   current   Model &quot;           ElseIf   Not   mdl.IsKindOf(PdPDM.cls_Model)   Then                 MsgBox   &quot;The   current   model   is   not   an   Physical   Data   model. &quot;           Else                 ProcessFolder   mdl           End   If          Private   sub   ProcessFolder(folder)           On Error Resume Next                Dim   Tab   &#39;running     table                 for   each   Tab   in   folder.tables                       if   not   tab.isShortcut   then                             tab.name   =   tab.comment                            Dim   col   &#39;   running   column                             for   each   col   in   tab.columns                             if col.comment = &quot;&quot; or replace(col.comment,&quot; &quot;, &quot;&quot;)=&quot;&quot; Then                                col.name = blankStr                                blankStr = blankStr &amp; Space(1)                          else                                  col.name = col.comment                             end if                            next                       end   if                 next                Dim   view   &#39;running   view                 for   each   view   in   folder.Views                       if   not   view.isShortcut   then                             view.name   =   view.comment                       end   if                 next                &#39;   go   into   the   sub-packages                 Dim   f   &#39;   running   folder                 For   Each   f   In   folder.Packages                       if   not   f.IsShortcut   then                             ProcessFolder   f                       end   if                 Next           end   sub  </code></pre>]]></content>
-    
-    <summary type="html">
-    
-      PowerDesigner 数据库逆向生成物理模型并显示 Comment 注释
-    
-    </summary>
-    
-    
-      <category term="Tools篇" scheme="http://blog.joylau.cn/categories/Tools%E7%AF%87/"/>
-    
-    
-      <category term="PowerDesigner" scheme="http://blog.joylau.cn/tags/PowerDesigner/"/>
     
   </entry>
   

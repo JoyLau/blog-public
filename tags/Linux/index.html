@@ -153,16 +153,16 @@
             <a href="/categories/Linux篇"><b>「
                 </b>LINUX篇<b> 」</b></a>
             
-            九月 29, 2020
+            十月 09, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="Linux 挂载有用户名密码的网络磁盘" class="posttitle">Linux 挂载有用户名密码的网络磁盘</a></h3>
+            <a href="/2020/10/09/Linux-install-bpytop/" title="CentOS 7 安装 bpytop 记录" class="posttitle">CentOS 7 安装 bpytop 记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.2k
+                1k
             </span>
             
             
@@ -181,11 +181,9 @@
             
             <a id="more"></a>
 
-<p>很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘</p>
-<p>很多时候，为了安全考虑网络磁盘都设置了用户名密码</p>
-<p>这时挂载的时候就需要设置...</p>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在 CentOS 8 上安装 bpytop 很简单, 安装 epel 库后执行 <code>dnf install bpytop</code> 即可, 但是在 CentOS 7 的 epel 库里却没有这个 bpytop...</p>
             
-            <span class="read-more"><a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/10/09/Linux-install-bpytop/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +208,63 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7847752265695505);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5942748263531379);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Linux篇">
+                  <b>「 </b>LINUX篇<b> 」</b>
+                </a>
+            
+            九月 29, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="Linux 挂载有用户名密码的网络磁盘" class="posttitle">Linux 挂载有用户名密码的网络磁盘</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.2k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘</p>
+<p>很多时候，为了安全考虑网络磁盘都设置了用户名密码</p>
+<p>这时挂载的时候就需要设置用户名密码了</p>
+<p>很可惜上述方式 nfs 没有找到设置用户名密码的参数</p>
+<p>使用 cifs </p>
+<ol>
+<li><p>安装依赖： <code>yum install cifs-utils</code></p>
+</li>
+<li><p>挂载： <code>mount -t cifs -o username=USERNAME,password=PASSWORD,iocharset=utf8 //192...</code></p></li></ol>
+            
+            <span class="read-more"><a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.9665913057340292);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -268,7 +322,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.22145729113813162);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.11427908487110927);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -323,7 +377,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7003008439514322);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9332934640693005);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -365,59 +419,6 @@
 <li>下载的很多依赖包都有安装的先后顺序,...</li></ol>
             
             <span class="read-more"><a href="/2018/12/08/Linux-Private-Yum/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.24038430605663264);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Linux篇">
-                  <b>「 </b>LINUX篇<b> 」</b>
-                </a>
-            
-            七月 19, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/07/19/Linux-Cancel-DenyHosts/" title="DenyHosts 清除黑名单 IP 地址" class="posttitle">DenyHosts 清除黑名单 IP 地址</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>今天连接远程服务器发生了以下的错误</p>
-<pre><code class="bash">    ssh_exchange_identification: read: Connection reset</code></pre>
-<p>我想应该是我当前的 IP 地址被 DenyHosts 加入了黑名单<br>本来想只要将当前的 ip 地址在黑名单中去掉就可以了<br>没想到事实并不是如此,为此还查资料花费了一点功夫<br>现记录下来</p>
-<ol>
-<li>停用 DenyHosts : <code>systemctl stop denyhosts.service</code></li>
-<li>删除黑名单中当前的ip地址: <code>vim /etc/hosts.deny</code></li>
-<li>进入  <code>/var...</code></li></ol>
-            
-            <span class="read-more"><a href="/2018/07/19/Linux-Cancel-DenyHosts/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
