@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2020-10-09T02:23:28.445Z</updated>
+  <updated>2020-10-10T00:42:26.903Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -18,12 +18,12 @@
   
   <entry>
     <title>CentOS 7 安装 bpytop 记录</title>
-    <link href="http://blog.joylau.cn/2020/10/09/Linux-install-bpytop/"/>
-    <id>http://blog.joylau.cn/2020/10/09/Linux-install-bpytop/</id>
+    <link href="http://blog.joylau.cn/2020/10/09/Linux-Install-Bpytop/"/>
+    <id>http://blog.joylau.cn/2020/10/09/Linux-Install-Bpytop/</id>
     <published>2020-10-09T02:07:44.000Z</published>
-    <updated>2020-10-09T02:23:28.445Z</updated>
+    <updated>2020-10-10T00:42:26.903Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在 CentOS 8 上安装 bpytop 很简单, 安装 epel 库后执行 <code>dnf install bpytop</code> 即可, 但是在 CentOS 7 的 epel 库里却没有这个 bpytop 包, 这里介绍如何在 CentOS 7 下安装 bpytop</p><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol><li>安装 epel 库</li></ol><pre><code class="bash">    yum install epel-release</code></pre><ol start="2"><li>安装 snapd 并启用 snapd 套接字</li></ol><pre><code class="bash">    yum install snapd    systemctl enable --now snapd.socket</code></pre><ol start="3"><li>创建符号链接</li></ol><pre><code class="bash">    ln -s /var/lib/snapd/snap /snap</code></pre><ol start="4"><li>安装及权限配置</li></ol><pre><code class="shell">    snap install bpytop    sudo snap connect bpytop:mount-observe    sudo snap connect bpytop:network-control    sudo snap connect bpytop:hardware-observe    sudo snap connect bpytop:system-observe    sudo snap connect bpytop:process-control    sudo snap connect bpytop:physical-memory-observe</code></pre>]]></content>
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在 CentOS 8 上安装 bpytop 很简单, 安装 epel 库后执行 <code>dnf install bpytop</code> 即可, 但是在 CentOS 7 的 epel 库里却没有这个 bpytop 包, 这里介绍如何在 CentOS 7 下安装 bpytop</p><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol><li>安装 epel 库</li></ol><pre><code class="bash">    yum install epel-release</code></pre><ol start="2"><li>安装 snapd 并启用 snapd 套接字</li></ol><pre><code class="bash">    yum install snapd    systemctl enable --now snapd.socket</code></pre><ol start="3"><li>用户重新登录</li></ol><ol start="4"><li>安装及权限配置</li></ol><pre><code class="shell">    snap install bpytop    sudo snap connect bpytop:mount-observe    sudo snap connect bpytop:network-control    sudo snap connect bpytop:hardware-observe    sudo snap connect bpytop:system-observe    sudo snap connect bpytop:process-control    sudo snap connect bpytop:physical-memory-observe</code></pre>]]></content>
     
     <summary type="html">
     
