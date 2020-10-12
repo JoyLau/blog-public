@@ -153,16 +153,16 @@
             <a href="/categories/OpenCV篇"><b>「
                 </b>OPENCV篇<b> 」</b></a>
             
-            五月 01, 2019
+            五月 05, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/05/01/OpenCV-Baidu-Traffic-1/" title="OpenCV --- 基于 OpenCV 的百度路况研究记录 (一)" class="posttitle">OpenCV --- 基于 OpenCV 的百度路况研究记录 (一)</a></h3>
+            <a href="/2019/05/05/OpenCV-Baidu-Traffic-2/" title="OpenCV --- 基于 OpenCV 的百度路况研究记录 (二)" class="posttitle">OpenCV --- 基于 OpenCV 的百度路况研究记录 (二)</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                2k
+                2.1k
             </span>
             
             
@@ -180,13 +180,10 @@
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>城市版交通路况的分析基于高速公路路况的基础上以合肥为试点城市进行的研究课题. </p>
-<h3 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h3><p>目前该研究课题已完成:</p>
-<ol>
-<li>筛选出合肥市在百度地图 17 等级下的路况瓦片 62354 张</li>
-<li>对合肥二环路内圈的路...</li></ol>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>本篇就之前对于拥堵路段为曲线状且涉及多个路段时分析的结果差强人意的情况进行了算法重构</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>之前算法核心是 找出分段拥堵,并提取信息<br>之前算法的缺陷是使用霍夫变换提取瓦片中的直线时, 无法很好的控制...</p>
             
-            <span class="read-more"><a href="/2019/05/01/OpenCV-Baidu-Traffic-1/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/05/05/OpenCV-Baidu-Traffic-2/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -211,7 +208,58 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7006655496262886);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8863774736787324);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/OpenCV篇">
+                  <b>「 </b>OPENCV篇<b> 」</b>
+                </a>
+            
+            五月 05, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/05/05/OpenCV-Baidu-Traffic-2/" title="OpenCV --- 基于 OpenCV 的百度路况研究记录 (二)" class="posttitle">OpenCV --- 基于 OpenCV 的百度路况研究记录 (二)</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2.1k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>本篇就之前对于拥堵路段为曲线状且涉及多个路段时分析的结果差强人意的情况进行了算法重构</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>之前算法核心是 找出分段拥堵,并提取信息<br>之前算法的缺陷是使用霍夫变换提取瓦片中的直线时, 无法很好的控制参数, 导致在临近的曲线情况下分析结果不正确<br>简单示意图:<br>  </p>
+<p>在二维的坐标系中, 控制直线的是参数 m(斜率) 和 b(截距)</p>
+<p>转化为极坐标系再化简后,控制直线的参数是  θ (极角) 和 r(极径)</p>
+<p>原来的思路是曲线是有很多小部分的直线段构成的,如若能够将曲线分成适合的若干线段,那么同样可以将整个曲线...</p>
+            
+            <span class="read-more"><a href="/2019/05/05/OpenCV-Baidu-Traffic-2/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.3533253986116902);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -274,7 +322,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3428721196456461);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5949706104576722);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -323,7 +371,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.33761946522209363);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7178011489991656);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -386,7 +434,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.08316231746435498);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5634003578256286);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -427,64 +475,6 @@
 <p>可这样的连接方式有个很不好的方面，就是这种方式是多用户的，想回家继续没干完...</p>
             
             <span class="read-more"><a href="/2019/04/10/Ubuntu-Remote-Desktop/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9754950677128169);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Linux篇">
-                  <b>「 </b>LINUX篇<b> 」</b>
-                </a>
-            
-            四月 10, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/04/10/Linux-Fix-DiskError/" title="记录一次 Ubuntu 因磁盘问题导致开机进入紧急模式的情况" class="posttitle">记录一次 Ubuntu 因磁盘问题导致开机进入紧急模式的情况</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        4.5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        4 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p>在家里使用 vnc 协议远程连接公司的 Ubuntu 电脑<br>导致桌面卡死<br>期间还遇到了 搜狗输入法崩溃，提示我删除用户目录下的一个文件然后重启<br>鼠标可以动<br>界面上的任何东西都无法点击<br>没再操作<br>等第二天到公司解决</p>
-<p>这样的情况遇到很多了<br>ctrl + alt + f1</p>
-<pre><code class="bash">    ps -t tty7
-
-    PID TTY          TIME CMD
-    1758 tty7     00:00:55 Xorg
-
-    kill -9 1758
-</code></pre>
-<p>之后桌面上的应用都会被关闭，回到登录界面</p>
-<p>之后我想着电脑很久没关机了，想重启一下，顺便去倒杯水<br>回来之后发现系统...</p>
-            
-            <span class="read-more"><a href="/2019/04/10/Linux-Fix-DiskError/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

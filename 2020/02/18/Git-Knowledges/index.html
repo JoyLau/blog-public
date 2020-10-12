@@ -89,7 +89,7 @@ git 命令显示中文直接在终端中执行下面的命令git config –globa
             animation-duration: 1.2s;
             background-image: 
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-                url(http://nas.joylau.cn:5016/1920x1080?0.45525331604075636) ">
+                url(http://nas.joylau.cn:5016/1920x1080?0.07969657868455204) ">
         </div>
         <div class="else">
             <p class="animated fadeInDown">
@@ -106,7 +106,7 @@ git 命令显示中文直接在终端中执行下面的命令git config –globa
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    1.8k
+                    2.1k
                 </span>
                 
                 
@@ -177,6 +177,11 @@ git 命令显示中文直接在终端中执行下面的命令git config –globa
 <ol start="2">
 <li>分支合并,可以把本地未push的分叉提交历史整理成直线</li>
 </ol>
+<h2 id="将提交合并到其他分支上"><a href="#将提交合并到其他分支上" class="headerlink" title="将提交合并到其他分支上"></a>将提交合并到其他分支上</h2><p>有时候我们在某一个分支上提交了一些代码, 需要将这次提交合并到其他分支上, 这时的做法是:</p>
+<p>这当前分支上使用 git log 查看需要进行合并的提交记录的 ID</p>
+<p>切换到需要合并的分支上: <code>git checkout 分支名</code></p>
+<p>进行合并: <code>git cherry-pick commitId</code></p>
+<p>推送到到上游分支: <code>git push</code></p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -224,7 +229,7 @@ git 命令显示中文直接在终端中执行下面的命令git config –globa
                     </dl>
                 </div>
                 <ul>
-                    <li><a href="/">203 <p>文章</p></a></li>
+                    <li><a href="/">204 <p>文章</p></a></li>
                     <li><a href="/categories">43 <p>分类</p></a></li>
                     <li><a href="/tags">99 <p>标签</p></a></li>
                 </ul>
@@ -235,7 +240,7 @@ git 命令显示中文直接在终端中执行下面的命令git config –globa
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>目录</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-命令显示中文"><span class="toc-number">1.</span> <span class="toc-text">git 命令显示中文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件回滚"><span class="toc-number">2.</span> <span class="toc-text">文件回滚</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-fetch-和-git-pull"><span class="toc-number">3.</span> <span class="toc-text">git fetch 和 git pull</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-merge-和-git-rebase"><span class="toc-number">4.</span> <span class="toc-text">git merge 和 git rebase</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-命令显示中文"><span class="toc-number">1.</span> <span class="toc-text">git 命令显示中文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件回滚"><span class="toc-number">2.</span> <span class="toc-text">文件回滚</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-fetch-和-git-pull"><span class="toc-number">3.</span> <span class="toc-text">git fetch 和 git pull</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-merge-和-git-rebase"><span class="toc-number">4.</span> <span class="toc-text">git merge 和 git rebase</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将提交合并到其他分支上"><span class="toc-number">5.</span> <span class="toc-text">将提交合并到其他分支上</span></a></li></ol>
                 </div>
             </div>
             

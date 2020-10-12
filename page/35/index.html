@@ -143,51 +143,52 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(//image.joylau.cn/blog/macos-soft.png);">
+                url(/img/cover.jpg);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/MacOS篇"><b>「
-                </b>MACOS篇<b> 」</b></a>
+            <a href="/categories/Git篇"><b>「
+                </b>GIT篇<b> 」</b></a>
             
-            六月 29, 2017
+            七月 03, 2017
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2017/06/29/MacOS-Dev-App/" title="MacOS常用开发使用APP" class="posttitle">MacOS常用开发使用APP</a></h3>
+            <a href="/2017/07/03/Git-Multi-Repo-Push/" title="记录一次Git多仓库提交" class="posttitle">记录一次Git多仓库提交</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                2.6k
+                894
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                2 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacBookPro/" rel="tag">MacBookPro</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 
 <ul>
-<li><strong>BetterZip</strong> : mac上面的最好的解压工具</li>
-<li><strong>CHM View</strong> : 查看chm类型的开发文档</li>
-<li><strong>Easy New File Free</strong> : 右击桌面，可以像win一样新建文件</li>
-<li><strong>Bartender...</strong></li></ul>
+<li>新建一个项目</li>
+<li>可先分别在码云和 GitHub 上建好仓库&lt;可选&gt;</li>
+<li>将项目提交的码云上</li>
+<li>项目提交到另一个仓库的时候重新 define remote &lt;可选&gt;</li>
+<li>之后每次先提交到...</li></ul>
             
-            <span class="read-more"><a href="/2017/06/29/MacOS-Dev-App/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2017/07/03/Git-Multi-Repo-Push/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -212,7 +213,67 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/macos-soft.png?0.3215008518552209);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8748043955626645);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Git篇">
+                  <b>「 </b>GIT篇<b> 」</b>
+                </a>
+            
+            七月 03, 2017
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/07/03/Git-Multi-Repo-Push/" title="记录一次Git多仓库提交" class="posttitle">记录一次Git多仓库提交</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        894
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<ul>
+<li>新建一个项目</li>
+<li>可先分别在码云和 GitHub 上建好仓库&lt;可选&gt;</li>
+<li>将项目提交的码云上</li>
+<li>项目提交到另一个仓库的时候重新 define remote &lt;可选&gt;</li>
+<li>之后每次先提交到本地仓库，可以根据每次提交到本地仓库的不同，来选择定义的 remote 来分别提交</li>
+<li>每次 pull 也可以选择仓库</li>
+</ul>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul>
+<li>在我新建好码云的仓库后，提交项目，遇到  Git Pull Failed: fatal: refusing to merge unrelated histories</li>
+</ul>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><ul>
+<li>原因...</li></ul>
+            
+            <span class="read-more"><a href="/2017/07/03/Git-Multi-Repo-Push/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(//image.joylau.cn/blog/macos-soft.png?0.21529893487261265);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -270,7 +331,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/MacBookPro-Unboxing.png?0.9416805340235197);">
+            url(//image.joylau.cn/blog/MacBookPro-Unboxing.png?0.838234930517721);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -343,7 +404,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/spring-boot-swagger.png?0.39099881391341706);">
+            url(//image.joylau.cn/blog/spring-boot-swagger.png?0.9575905896192303);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -402,7 +463,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/spring-boot-rabbitMQ.png?0.07653862543842838);">
+            url(//image.joylau.cn/blog/spring-boot-rabbitMQ.png?0.1908465714249954);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -448,60 +509,6 @@
 <h3 id="在使用之前先看一下rabbitMQ-client的使用"><a href="#在使用之前先看一下rabbitMQ-client的使用" class="headerlink" title="在使用之前先看一下rabbitMQ-client的使用"></a>在使用之前先看一下rabbitMQ-client的使用</h3><p>先引入依赖：...</p>
             
             <span class="read-more"><a href="/2017/06/16/SpringBoot-RabbitMQ/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/console-better.png?0.214659602125975);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/其他篇">
-                  <b>「 </b>其他篇<b> 」</b>
-                </a>
-            
-            六月 16, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/06/16/Console-Better/" title="让你的Windows控制台窗口更优美" class="posttitle">让你的Windows控制台窗口更优美</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        661
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/CMD/" rel="tag">CMD</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-
-<p>Windows下最适合编程的字体要数<code>Consolas</code>字体了，那么如何将命令提示符换成Consolas字体呢？我们只需要注册以下信息即可:</p>
-<pre><code class="bash">    Windows Registry Editor Version 5.00
-    [HKEY_CURRENT_USER\Console\%SystemRoot%_system32_cmd.exe]
-    &quot;WindowSize&quot;=dword:00170058
-    &quot;ScreenBufferSize&quot;=dword:01170058
-    &quot...</code></pre>
-            
-            <span class="read-more"><a href="/2017/06/16/Console-Better/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
