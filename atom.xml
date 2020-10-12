@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2020-10-10T00:42:26.903Z</updated>
+  <updated>2020-10-12T03:37:03.633Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Office for Mac 2019 切换显示语言</title>
+    <link href="http://blog.joylau.cn/2020/10/12/Daily-Mac-Office/"/>
+    <id>http://blog.joylau.cn/2020/10/12/Daily-Mac-Office/</id>
+    <published>2020-10-12T03:36:26.000Z</published>
+    <updated>2020-10-12T03:37:03.633Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近因为工作原因不得不在 Mac 上安装了 Office 套件</p><p>但是有一个问题, 我的 Mac 的系统语言是英文的, 安装完 Office 后, 整个操作都是英文的, 蒙蔽了….</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><p>打开终端:</p><pre><code class="shell">    defaults write com.microsoft.Word AppleLanguages &#39;(&quot;zh_CN&quot;)&#39;    defaults write com.microsoft.Excel AppleLanguages &#39;(&quot;zh_CN&quot;)&#39;    defaults write com.microsoft.Powerpoint AppleLanguages &#39;(&quot;zh_CN&quot;)&#39;</code></pre><p>切换回英文的话, 修改 zh_CH 为 en 即可</p><h4 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h4><p>在系统设置里面修改特定APP的语言</p><p><img src="https://pic4.zhimg.com/v2-f10a8fd2e6852595707a23bc0bf58871_r.jpg" alt="IMage"></p><p>注: 转自知乎</p>]]></content>
+    
+    <summary type="html">
+    
+      Office for Mac 2019 切换显示语言
+    
+    </summary>
+    
+    
+      <category term="日常折腾篇" scheme="http://blog.joylau.cn/categories/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE%E7%AF%87/"/>
+    
+    
+      <category term="日常折腾" scheme="http://blog.joylau.cn/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>CentOS 7 安装 bpytop 记录</title>
@@ -456,29 +479,6 @@
       <category term="Elasticsearch" scheme="http://blog.joylau.cn/tags/Elasticsearch/"/>
     
       <category term="SpringBoot" scheme="http://blog.joylau.cn/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ClashX 在英文 Mac 系统中切换界面语言</title>
-    <link href="http://blog.joylau.cn/2020/04/28/Clash-Mac-Language/"/>
-    <id>http://blog.joylau.cn/2020/04/28/Clash-Mac-Language/</id>
-    <published>2020-04-28T07:00:31.000Z</published>
-    <updated>2020-07-10T00:43:19.431Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在网络上搜索关于 ClashX 的教程, 看到的截图都是中文的界面, 而我安装后的界面语言却是英文的, 就想着怎么能够切换下<br>在软件的设置里, 没有找到设置语言的选项</p><h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><p>去作者的 Github 去看了下代码, 发现是有中英文的配置的<br>那么既然作者做了语言环境适配, 那么在安装包里肯定有语言文件</p><ol><li>在 <code>Applications</code> 右键 <code>ClashX</code> ,显示包内容</li><li>进入 <code>Resources</code> 目录, 看到 <code>en.lproj</code> 和 <code>zh-Hans.lproj</code></li><li>将 <code>zh-Hans.lproj</code> 目录里的文件拷贝并覆盖掉 <code>en.lproj</code> 里的文件</li><li>重启软件即可</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      在网络上搜索关于 ClashX 的教程, 看到的截图都是中文的界面, 而我安装后的界面语言却是英文的, 就想着怎么能够切换下
-    
-    </summary>
-    
-    
-      <category term="Clash" scheme="http://blog.joylau.cn/categories/Clash/"/>
-    
-    
-      <category term="ClashX" scheme="http://blog.joylau.cn/tags/ClashX/"/>
     
   </entry>
   

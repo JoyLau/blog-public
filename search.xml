@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Office for Mac 2019 切换显示语言</title>
+      <link href="/2020/10/12/Daily-Mac-Office/"/>
+      <url>/2020/10/12/Daily-Mac-Office/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近因为工作原因不得不在 Mac 上安装了 Office 套件</p><p>但是有一个问题, 我的 Mac 的系统语言是英文的, 安装完 Office 后, 整个操作都是英文的, 蒙蔽了….</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><p>打开终端:</p><pre><code class="shell">    defaults write com.microsoft.Word AppleLanguages &#39;(&quot;zh_CN&quot;)&#39;    defaults write com.microsoft.Excel AppleLanguages &#39;(&quot;zh_CN&quot;)&#39;    defaults write com.microsoft.Powerpoint AppleLanguages &#39;(&quot;zh_CN&quot;)&#39;</code></pre><p>切换回英文的话, 修改 zh_CH 为 en 即可</p><h4 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h4><p>在系统设置里面修改特定APP的语言</p><p><img src="https://pic4.zhimg.com/v2-f10a8fd2e6852595707a23bc0bf58871_r.jpg" alt="IMage"></p><p>注: 转自知乎</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 日常折腾篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 日常折腾 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CentOS 7 安装 bpytop 记录</title>
       <link href="/2020/10/09/Linux-Install-Bpytop/"/>
       <url>/2020/10/09/Linux-Install-Bpytop/</url>
@@ -1750,31 +1775,6 @@
       <url>/2019/05/22/Daily-Soft-Router/</url>
       
         <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>上篇说到了家里使用多条宽带,而一般的路由器无法使用多个运营商的宽带进行拨号,这就需要软路由了,其实也就是个小主机</p><h3 id="实机"><a href="#实机" class="headerlink" title="实机"></a>实机</h3><p>看下我攒的把</p><p><img src="http://image.joylau.cn/blog/IMG_0314.jpg" alt=""></p><p><img src="http://image.joylau.cn/blog/IMG_0315.jpg" alt=""></p><p><img src="http://image.joylau.cn/blog/IMG_0316.jpg" alt=""></p><h3 id="硬件配置"><a href="#硬件配置" class="headerlink" title="硬件配置"></a>硬件配置</h3><h3 id="主要硬件"><a href="#主要硬件" class="headerlink" title="主要硬件"></a>主要硬件</h3><ul><li>CPU Intel(R) Atom(TM) CPU D525 @ 1.80GHz | 512 KB | 1796 MHz | ×4</li><li>硬盘 ATA DragonDiamond D2 5 (3.75GB)</li><li>内存 2037MB</li><li>主板芯片：Intel Corporation Atom Processor D4xx/D5xx/N4xx/N5xx DMI Bridge (rev 02)</li><li>网卡：Intel Corporation 82583V Gigabit Network Connection (eth0 20:90:30:e8:2f:99)</li><li>网卡：Intel Corporation 82583V Gigabit Network Connection (eth1 20:90:30:e8:2f:9a)</li><li>网卡：Intel Corporation 82583V Gigabit Network Connection (eth2 20:90:30:e8:2f:9b)</li><li>网卡：Intel Corporation 82583V Gigabit Network Connection (eth3 20:90:30:e8:2f:9c)</li></ul><h3 id="其它硬件"><a href="#其它硬件" class="headerlink" title="其它硬件"></a>其它硬件</h3><ul><li>显卡：Intel Corporation Atom Processor D4xx/D5xx/N4xx/N5xx Integrated Graphics Controller (rev 02)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #4 (rev 03)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #5 (rev 03)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB2 EHCI Controller #2 (rev 03)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #1 (rev 03)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #2 (rev 03)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB UHCI Controller #3 (rev 03)</li><li>USB控制器：Intel Corporation 82801H (ICH8 Family) USB2 EHCI Controller #1 (rev 03)</li><li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 1 (rev 03)</li><li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 2 (rev 03)</li><li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 3 (rev 03)</li><li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 4 (rev 03)</li><li>PCI桥：Intel Corporation 82801H (ICH8 Family) PCI Express Port 5 (rev 03)</li><li>PCI桥：Intel Corporation 82801 Mobile PCI Bridge (rev f3)</li><li>IDE接口：Intel Corporation 82801HM/HEM (ICH8M/ICH8M-E) IDE Controller (rev 03)</li><li>IDE接口：Intel Corporation 82801HM/HEM (ICH8M/ICH8M-E) SATA Controller [IDE mode] (rev 03)</li><li>SMBus：Intel Corporation 82801H (ICH8 Family) SMBus Controller (rev 03)</li></ul><h3 id="我的使用"><a href="#我的使用" class="headerlink" title="我的使用"></a>我的使用</h3><ol><li>四个网口,2 个作为 WAN 口,一个电信宽带,一个长城宽带,一个作为 LAN 口,接台式机,最后一个作为 LAN 口,接路由器的 LAN 口提供 WIFI</li><li>2 个宽带使用负载均衡实现宽带叠加</li><li>端口分流,实现 WIFI 设备走长城宽带的流量,台式机和一些静态的 DHCP 的 IP 走电信流量</li><li>还有一些端口映射和 DMZ 主机和动态域名绑定等普通路由器的功能 (支持 阿里云的 DDNS, 提供 accessKey 和 Access Key Secret 即可)</li></ol><h3 id="花费"><a href="#花费" class="headerlink" title="花费"></a>花费</h3><p>目前这样的配置完全跑个软路由系统绰绰有余了, 我用的是 iKuai, CPU 温度在 22 度左右, CPU 使用率低于 10%, 内存使用率 20% 左右<br>全部花费 234 元</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 日常折腾篇 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 日常折腾 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Office for Mac 2019 切换显示语言</title>
-      <link href="/2019/05/22/Daily-Mac-Office/"/>
-      <url>/2019/05/22/Daily-Mac-Office/</url>
-      
-        <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近因为工作原因不得不在 Mac 上安装了 Office 套件</p><p>但是有一个问题, 我的 Mac 的系统语言是英文的, 安装完 Office 后, 整个操作都是英文的, 蒙蔽了….</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><p>打开终端:</p><pre><code class="shell">    defaults write com.microsoft.Word AppleLanguages &#39;(&quot;zh_CN&quot;)&#39;    defaults write com.microsoft.Excel AppleLanguages &#39;(&quot;zh_CN&quot;)&#39;    defaults write com.microsoft.Powerpoint AppleLanguages &#39;(&quot;zh_CN&quot;)&#39;</code></pre><p>切换回英文的话, 修改 zh_CH 为 en 即可</p><h4 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h4><p>在系统设置里面修改特定APP的语言</p><p><img src="https://pic4.zhimg.com/v2-f10a8fd2e6852595707a23bc0bf58871_r.jpg" alt="IMage"></p><p>注: 转自知乎</p>]]></content>
       
       
       <categories>
