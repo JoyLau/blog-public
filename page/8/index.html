@@ -143,26 +143,26 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(/img/cover.jpg);">
+                url(//image.joylau.cn/blog/qlPlugin-not-work.png);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Docker篇"><b>「
-                </b>DOCKER篇<b> 」</b></a>
+            <a href="/categories/MacOS篇"><b>「
+                </b>MACOS篇<b> 」</b></a>
             
-            三月 12, 2020
+            三月 18, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/03/12/Docker-Java-OOM/" title="Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用" class="posttitle">Docker 容器内 Java 应用发生 OutOfMemoryError 堆内存空间不足时, 容器无法重启应用</a></h3>
+            <a href="/2020/03/18/MacOS-Quick-Look/" title="MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法" class="posttitle">MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.7k
+                1.8k
             </span>
             
             
@@ -175,14 +175,18 @@
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p>在一次生产环境部署 elasticsearch 节点时 docker 容器设置了 –restart always,<br>此时 elasticsearch 的一个节点发生了 java.lang.OutOfMemoryError...</p>
+<p>MacOS 升级到 10.15 版本时,预览文件出现下面的提示</p>
+<center></center>
+
+<p>删除 ~/Library/QuickLook 目录下的隔离属性 (quarantine attribute) </p>
+<p>运行下面命令查看属性...</p>
             
-            <span class="read-more"><a href="/2020/03/12/Docker-Java-OOM/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/03/18/MacOS-Quick-Look/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -207,7 +211,72 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.1539605335958112);">
+            url(//image.joylau.cn/blog/qlPlugin-not-work.png?0.24702074728682044);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/MacOS篇">
+                  <b>「 </b>MACOS篇<b> 」</b>
+                </a>
+            
+            三月 18, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/03/18/MacOS-Quick-Look/" title="MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法" class="posttitle">MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.8k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>MacOS 升级到 10.15 版本时,预览文件出现下面的提示</p>
+<center></center>
+
+<p>删除 ~/Library/QuickLook 目录下的隔离属性 (quarantine attribute) </p>
+<p>运行下面命令查看属性:</p>
+<pre><code class="shell">    xattr -r ~/Library/QuickLook</code></pre>
+<p>运行下列命令移除这些属性:</p>
+<pre><code class="shell">    xattr -d -r com.apple.quarantine ~/Library/QuickLook</code></pre>
+<ol>
+<li>空格预览文件出现下列提示,点击 取消</li>
+</ol>
+<center></center>
+
+<ol start="2">
+<li>转到系统设置里</li>
+</ol>
+<center></center>
+
+<p>点击 “Allow Anyway”...</p>
+            
+            <span class="read-more"><a href="/2020/03/18/MacOS-Quick-Look/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.3466067366893968);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -256,7 +325,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3325137218656886);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.044564893904531555);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -311,7 +380,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7777278076091101);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.27777470127276893);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -360,7 +429,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.23067327264945092);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5307287926140509);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -405,61 +474,6 @@
 <p>-serviceWorker.js<br>-metadata.js...</p>
             
             <span class="read-more"><a href="/2019/12/26/React-App-Rewired/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.1346695266793283);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/大数据篇">
-                  <b>「 </b>大数据篇<b> 」</b>
-                </a>
-            
-            十二月 23, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/12/23/Elasticsearch-Multi-NestedQuery/" title="Elasticsearch Nested 类型动态数据的组合查询" class="posttitle">Elasticsearch Nested 类型动态数据的组合查询</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.7k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>Nested 类型的数据不多说了,<br>先看 mapping:</p>
-<pre><code class="json">    &quot;metaArray&quot;: {
-        &quot;type&quot;: &quot;nested&quot;,
-        &quot;properties&quot;: {
-          &quot;key&quot;: {
-            &quot;type&quot;: &quot;text&quot;,
-            &quot;analyzer&quot;: &quot;ik_max_word&quot;,
-            &quot;fields&quot;: {
-              &quot...</code></pre>
-            
-            <span class="read-more"><a href="/2019/12/23/Elasticsearch-Multi-NestedQuery/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

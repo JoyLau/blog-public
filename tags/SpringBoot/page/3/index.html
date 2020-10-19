@@ -150,43 +150,44 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/大数据篇"><b>「
-                </b>大数据篇<b> 」</b></a>
+            <a href="/categories/SpringBoot篇"><b>「
+                </b>SPRINGBOOT篇<b> 」</b></a>
             
-            五月 07, 2018
+            十一月 24, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/05/07/Elasticsearch-ELK/" title="ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台" class="posttitle">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a></h3>
+            <a href="/2018/11/24/SpringBoot-ThreadPoolTaskExecutor/" title="重剑无锋,大巧不工 SpringBoot --- 理解 ThreadPoolTaskExecutor" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 理解 ThreadPoolTaskExecutor</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                5.3k
+                12k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                5 mins.
+                11 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<ol>
-<li>Elasticsearch， Logstash，Kibana 版本都是5.3.0</li>
-<li>SpringBoot 集成 ELK，实际上指的就是 SpringBoot 与 Logstash 的整合</li>
-<li>Elasticsearch...</li></ol>
+<h3 id="spring-的线程池-ThreadPoolTaskExecutor"><a href="#spring-的线程池-ThreadPoolTaskExecutor" class="headerlink" title="spring 的线程池 ThreadPoolTaskExecutor"></a>spring 的线程池 ThreadPoolTaskExecutor</h3><p>spring 为我们实现了一个基于 ThreadPoolExecutor 线程池</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
+<li>yml </li>
+</ol>
+<pre><code class="yml">    traffic:
+      executor...</code></pre>
             
-            <span class="read-more"><a href="/2018/05/07/Elasticsearch-ELK/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/11/24/SpringBoot-ThreadPoolTaskExecutor/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -211,7 +212,65 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4764752883206471);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5075707556677782);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            十一月 24, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/11/24/SpringBoot-ThreadPoolTaskExecutor/" title="重剑无锋,大巧不工 SpringBoot --- 理解 ThreadPoolTaskExecutor" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 理解 ThreadPoolTaskExecutor</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        12k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        11 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="spring-的线程池-ThreadPoolTaskExecutor"><a href="#spring-的线程池-ThreadPoolTaskExecutor" class="headerlink" title="spring 的线程池 ThreadPoolTaskExecutor"></a>spring 的线程池 ThreadPoolTaskExecutor</h3><p>spring 为我们实现了一个基于 ThreadPoolExecutor 线程池</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
+<li>yml </li>
+</ol>
+<pre><code class="yml">    traffic:
+      executor:
+        name: &quot;trafficServiceExecutor&quot;
+        core-pool-size: 5
+        max-pool-size: 10
+        queue-capacity: 20
+        thread-name-prefix: &quot;traffic-service-&quot;</code></pre>
+...
+            
+            <span class="read-more"><a href="/2018/11/24/SpringBoot-ThreadPoolTaskExecutor/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.8672830855219558);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -264,7 +323,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.0779455369264721);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.33062840035259633);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -317,7 +376,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5448872900814978);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.04209643620700354);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -372,7 +431,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://image.joylau.cn/blog/Assembly-Package.png?0.559713017080075);">
+            url(http://image.joylau.cn/blog/Assembly-Package.png?0.45435227928558986);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -412,56 +471,6 @@
 <p>第二种方式的缺点是需要依赖外部容器，这无非多...</p>
             
             <span class="read-more"><a href="/2017/12/12/SpringBoot-Assembly-Package/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.10705698996927926);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringBoot篇">
-                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
-                </a>
-            
-            十一月 29, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/11/29/SpringBoot-Druid-MyBatis-Mapper-PageHelper/" title="重剑无锋,大巧不工 SpringBoot --- 最新版 SpringBoot 整合 Druid,MyBatis,通用 Mapper,PageHelper的脚手架" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 最新版 SpringBoot 整合 Druid,MyBatis,通用 Mapper,PageHelper的脚手架</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        9.7k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        9 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Druid/" rel="tag">Druid</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Mapper/" rel="tag">Mapper</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/PageHelper/" rel="tag">PageHelper</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p>上次自己写这篇文章 已经是今年初了,一年过去了, Spring Boot 项目在不停的更新着,与此同时其他的 stater项目也在不停的更新着,今天就来重新整合下Druid,MyBatis,通用 Mapper,PageHelper,打算在企业级项目中使用</p>
-<p>当前 SpringBoot 最新的发布版是 1.5.9.RELEASE<br>昨天还是 1.5.8,今天发现就是1.5.9.RELEASE了<br>本篇文章搭建的脚手架就是基于 1.5.9.RELEASE</p>
-<p>年初我自己搭建这个脚手架使用的时候,那时 Druid...</p>
-            
-            <span class="read-more"><a href="/2017/11/29/SpringBoot-Druid-MyBatis-Mapper-PageHelper/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

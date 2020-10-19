@@ -150,40 +150,41 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/群晖篇"><b>「
-                </b>群晖篇<b> 」</b></a>
+            <a href="/categories/Electron篇"><b>「
+                </b>ELECTRON篇<b> 」</b></a>
             
-            九月 09, 2019
+            九月 10, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/09/09/Synology-Docker-Insecure/" title="群晖系列 --- 添加私有仓库无法下载镜像问题的解决" class="posttitle">群晖系列 --- 添加私有仓库无法下载镜像问题的解决</a></h3>
+            <a href="/2019/09/10/Electron-Create-React-App/" title="Electron --- Create-React-App + Antd + Electron 的搭建" class="posttitle">Electron --- Create-React-App + Antd + Electron 的搭建</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                977
+                4.3k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                4 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E7%BE%A4%E6%99%96/" rel="tag">群晖</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在群晖的 Docker 组件里添加了个人的私有仓库,发现却无法下载镜像….</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>在 Docker 组件里添加新的仓库,并设置为使用仓库,发现在仓库里下载镜像总是失败,状态栏提示查看日志,可是在日...</p>
+<h3 id="创建-create-react-app-antd-项目"><a href="#创建-create-react-app-antd-项目" class="headerlink" title="创建 create-react-app-antd 项目"></a>创建 create-react-app-antd 项目</h3><ol>
+<li>git clone <a href="https://github.com/ant-design/create-react-app-antd" target="_blank" rel="noopener">https://github.com/ant-design/create-react-app-antd</a></li>
+<li>npm install...</li></ol>
             
-            <span class="read-more"><a href="/2019/09/09/Synology-Docker-Insecure/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/09/10/Electron-Create-React-App/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -208,7 +209,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.44031613093395405);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8165867427313431);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Electron篇">
+                  <b>「 </b>ELECTRON篇<b> 」</b>
+                </a>
+            
+            九月 10, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/09/10/Electron-Create-React-App/" title="Electron --- Create-React-App + Antd + Electron 的搭建" class="posttitle">Electron --- Create-React-App + Antd + Electron 的搭建</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        4.3k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        4 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="创建-create-react-app-antd-项目"><a href="#创建-create-react-app-antd-项目" class="headerlink" title="创建 create-react-app-antd 项目"></a>创建 create-react-app-antd 项目</h3><ol>
+<li>git clone <a href="https://github.com/ant-design/create-react-app-antd" target="_blank" rel="noopener">https://github.com/ant-design/create-react-app-antd</a></li>
+<li>npm install</li>
+<li>将 webpack 所有内建的配置暴露出来, <code>npm run eject</code>, 如果发现错误,看下 package.json 里 eject 的脚本是不是为 <code>react-scripts eject</code></li>
+<li>修改 config-overrides.js</li>
+</ol>
+<pre><code class="js">    module.exports = function...</code></pre>
+            
+            <span class="read-more"><a href="/2019/09/10/Electron-Create-React-App/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.8541154896410112);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -260,7 +314,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7404847280843347);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.030506139802595866);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -310,7 +364,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.12235114838932715);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6749276451890882);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -362,7 +416,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.944082775817537);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.27228926806791187);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -411,57 +465,6 @@
         future...</code></pre>
             
             <span class="read-more"><a href="/2019/08/23/Java-Future/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5518277155823377);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringSecurity篇">
-                  <b>「 </b>SPRINGSECURITY篇<b> 」</b>
-                </a>
-            
-            八月 19, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/08/19/SpringBoot-SpringSecurity-Anonymous/" title="Spring Security 禁用匿名用户（anonymous().disable()）后无限重定向到登录页的问题解决" class="posttitle">Spring Security 禁用匿名用户（anonymous().disable()）后无限重定向到登录页的问题解决</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        40k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        36 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringSecurity/" rel="tag">SpringSecurity</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>最近做了一个小 demo，需要使用到 spring security，于是就把以前写过的 spring security 的代码直接 copy 过来用了，没想到却出现了问题…..</p>
-<p>小 demo 直接使用 spring boot 构建，前后端不分离，于是自己写的登录界面，在 spring security 里配置好 loginPage 后，发现只要打开登录页就会无限重定向到登录页，其他任何请求都是如此</p>
-<pre><code class="java">    @Configuration
-    @EnableWebSecurity
-    public class...</code></pre>
-            
-            <span class="read-more"><a href="/2019/08/19/SpringBoot-SpringSecurity-Anonymous/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

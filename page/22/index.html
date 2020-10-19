@@ -150,42 +150,44 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Docker篇"><b>「
-                </b>DOCKER篇<b> 」</b></a>
+            <a href="/categories/SpringBoot篇"><b>「
+                </b>SPRINGBOOT篇<b> 」</b></a>
             
-            十一月 20, 2018
+            十一月 24, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/11/20/Docker-OpenVPN/" title="Docker OpenVPN 服务搭建记录" class="posttitle">Docker OpenVPN 服务搭建记录</a></h3>
+            <a href="/2018/11/24/SpringBoot-ThreadPoolTaskExecutor/" title="重剑无锋,大巧不工 SpringBoot --- 理解 ThreadPoolTaskExecutor" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 理解 ThreadPoolTaskExecutor</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                9.1k
+                12k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                8 mins.
+                11 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenVPN/" rel="tag">OpenVPN</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p>出差在外或者在家工作都需要连接公司网络,没有 VPN 怎么能行</p>
-<ol>
-<li>全局变量配置: OVPN_DATA=”/home/joylau/ovpn-data”</li>
-<li><code>mkdir ${OVPN_DATA}</code> , <code>cd...</code></li></ol>
+<h3 id="spring-的线程池-ThreadPoolTaskExecutor"><a href="#spring-的线程池-ThreadPoolTaskExecutor" class="headerlink" title="spring 的线程池 ThreadPoolTaskExecutor"></a>spring 的线程池 ThreadPoolTaskExecutor</h3><p>spring 为我们实现了一个基于 ThreadPoolExecutor 线程池</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
+<li>yml </li>
+</ol>
+<pre><code class="yml">    traffic:
+      executor...</code></pre>
             
-            <span class="read-more"><a href="/2018/11/20/Docker-OpenVPN/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/11/24/SpringBoot-ThreadPoolTaskExecutor/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +212,65 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7030171926536999);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8427405169414457);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            十一月 24, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/11/24/SpringBoot-ThreadPoolTaskExecutor/" title="重剑无锋,大巧不工 SpringBoot --- 理解 ThreadPoolTaskExecutor" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 理解 ThreadPoolTaskExecutor</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        12k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        11 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="spring-的线程池-ThreadPoolTaskExecutor"><a href="#spring-的线程池-ThreadPoolTaskExecutor" class="headerlink" title="spring 的线程池 ThreadPoolTaskExecutor"></a>spring 的线程池 ThreadPoolTaskExecutor</h3><p>spring 为我们实现了一个基于 ThreadPoolExecutor 线程池</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
+<li>yml </li>
+</ol>
+<pre><code class="yml">    traffic:
+      executor:
+        name: &quot;trafficServiceExecutor&quot;
+        core-pool-size: 5
+        max-pool-size: 10
+        queue-capacity: 20
+        thread-name-prefix: &quot;traffic-service-&quot;</code></pre>
+...
+            
+            <span class="read-more"><a href="/2018/11/24/SpringBoot-ThreadPoolTaskExecutor/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.14204144807462704);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -261,7 +321,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7243932851613781);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.06163644611318109);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -311,7 +371,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.510556880491831);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9376641342267329);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -363,7 +423,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2744786131773558);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5374888732713392);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -408,56 +468,6 @@
               &quot;tokenizer...</code></pre>
             
             <span class="read-more"><a href="/2018/08/13/Elasticsearch-AutoComplete/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.014414403251365338);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/大数据篇">
-                  <b>「 </b>大数据篇<b> 」</b>
-                </a>
-            
-            八月 09, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/08/09/Elasticsearch-SearchAll/" title="Elasticsearch 查询全部数据" class="posttitle">Elasticsearch 查询全部数据</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        909
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>有时我们希望查询 固定条件下的全部数据<br>ES 默认的策略是返回10条数据<br>虽然可以 setSize()<br>但是默认上限是 10 万还是 100 万条数据,这不够优雅,一般不这么干</p>
-<h3 id="TransportClient-方法"><a href="#TransportClient-方法" class="headerlink" title="TransportClient 方法"></a>TransportClient 方法</h3><pre><code class="java">    TimeValue keepAlive = TimeValue.timeValueMinutes(30);
-        SearchRequestBuilder searchRequest = client.prepareSearch(ES_KNOWLEDGE_INDEX)
-                .setScroll...</code></pre>
-            
-            <span class="read-more"><a href="/2018/08/09/Elasticsearch-SearchAll/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

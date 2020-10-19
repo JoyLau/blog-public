@@ -143,7 +143,7 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png);">
+                url(/img/cover.jpg);">
         </div>
     </div>
     
@@ -153,36 +153,37 @@
             <a href="/categories/SpringBoot篇"><b>「
                 </b>SPRINGBOOT篇<b> 」</b></a>
             
-            九月 01, 2020
+            十月 19, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用</a></h3>
+            <a href="/2020/10/19/SpringBoot-RestTemplate-SSL/" title="SpringBoot RestTemplate 支持发送 HTTPS 请求" class="posttitle">SpringBoot RestTemplate 支持发送 HTTPS 请求</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                7.2k
+                5.8k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                7 mins.
+                5 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>有时我们在 gradle 里定义了一些属性, 想在 springboot 的 application 配置文件里使用, 这里介绍这种处理方式, 并且将配置应用于 springboot 的自定义 ...</p>
+<p>有时在项目中调用的接口是 https 的形式, 这时使用 RestTemplate 来调用请求就会出错:</p>
+<pre><code class="text">    javax.net.ssl.SSLHandshakeException: sun.security...</code></pre>
             
-            <span class="read-more"><a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/10/19/SpringBoot-RestTemplate-SSL/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -207,7 +208,64 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9744164864458471);">
+            url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png?0.4269323787657582);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            九月 01, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        7.2k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        7 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>有时我们在 gradle 里定义了一些属性, 想在 springboot 的 application 配置文件里使用, 这里介绍这种处理方式, 并且将配置应用于 springboot 的自定义 Banner 图中</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>配置 build.gradle</li>
+</ol>
+<p>添加以下配置</p>
+<pre><code class="groovy">    processResources {
+        filesMatching(&#39;application.yml&#39;) {
+            expand(project.properties)
+        }
+    }</code></pre>
+<p>如果想将 gradle 的配置应用于所...</p>
+            
+            <span class="read-more"><a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.6492043751532466);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -260,7 +318,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7106993768388368);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.41134053867565057);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -315,7 +373,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.28644287858204565);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4990102875755995);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -358,57 +416,6 @@
 <li>使用T(Type): 使用...</li></ol>
             
             <span class="read-more"><a href="/2019/11/20/SpringBoot-Spel/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.564359477192883);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringSecurity篇">
-                  <b>「 </b>SPRINGSECURITY篇<b> 」</b>
-                </a>
-            
-            八月 19, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/08/19/SpringBoot-SpringSecurity-Anonymous/" title="Spring Security 禁用匿名用户（anonymous().disable()）后无限重定向到登录页的问题解决" class="posttitle">Spring Security 禁用匿名用户（anonymous().disable()）后无限重定向到登录页的问题解决</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        40k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        36 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringSecurity/" rel="tag">SpringSecurity</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>最近做了一个小 demo，需要使用到 spring security，于是就把以前写过的 spring security 的代码直接 copy 过来用了，没想到却出现了问题…..</p>
-<p>小 demo 直接使用 spring boot 构建，前后端不分离，于是自己写的登录界面，在 spring security 里配置好 loginPage 后，发现只要打开登录页就会无限重定向到登录页，其他任何请求都是如此</p>
-<pre><code class="java">    @Configuration
-    @EnableWebSecurity
-    public class...</code></pre>
-            
-            <span class="read-more"><a href="/2019/08/19/SpringBoot-SpringSecurity-Anonymous/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

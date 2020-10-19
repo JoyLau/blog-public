@@ -143,46 +143,49 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png);">
+                url(/img/cover.jpg);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/SpringBoot篇"><b>「
-                </b>SPRINGBOOT篇<b> 」</b></a>
+            <a href="/categories/Docker篇"><b>「
+                </b>DOCKER篇<b> 」</b></a>
             
-            九月 01, 2020
+            九月 22, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用</a></h3>
+            <a href="/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/" title="Docker Compose Version 3 限制 CPU 和 内存的使用方法" class="posttitle">Docker Compose Version 3 限制 CPU 和 内存的使用方法</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                7.2k
+                694
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                7 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>有时我们在 gradle 里定义了一些属性, 想在 springboot 的 application 配置文件里使用, 这里介绍这种处理方式, 并且将配置应用于 springboot 的自定义 ...</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在 docker 官方问文档里查找关于 docker compose 3 关于资源限制的配置项<br>发现只能用于集群部署</p>
+<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>依然使用集群部署的配置方式:</p>
+<pre><code class="yaml">    redis:
+        image: redis...</code></pre>
             
-            <span class="read-more"><a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -207,7 +210,65 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png?0.22381598615267673);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.17810581293206962);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            九月 22, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/" title="Docker Compose Version 3 限制 CPU 和 内存的使用方法" class="posttitle">Docker Compose Version 3 限制 CPU 和 内存的使用方法</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        694
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在 docker 官方问文档里查找关于 docker compose 3 关于资源限制的配置项<br>发现只能用于集群部署</p>
+<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>依然使用集群部署的配置方式:</p>
+<pre><code class="yaml">    redis:
+        image: redis:alpine
+        container_name: redis
+        deploy:
+          resources:
+            limits:
+              cpus: &#39;0.50&#39;
+              memory: 50M</code></pre>
+<p>这时启动时加入参数 <code>--compatibility</code> 即可</p>
+<pre><code class="bash">    docker-compose --compatibility...</code></pre>
+            
+            <span class="read-more"><a href="/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png?0.18839048807011194);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -264,7 +325,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8341815829447818);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.08243096280819318);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -317,7 +378,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7364281789743166);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9061068953554849);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -372,7 +433,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.1339725606491129);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9393584673494491);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -416,73 +477,6 @@
 <p>想着去绿联的官网找找驱动试试: <a href="https://www.lulian.cn/download/list-34-cn.html" target="_blank" rel="noopener">https://www.lulian.cn/download...</a></p>
             
             <span class="read-more"><a href="/2020/08/04/MacBookPro-uGreen-TypeC-Hub/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/Awtrix-preview-png.png?0.511323226697324);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Awtrix">
-                  <b>「 </b>AWTRIX<b> 」</b>
-                </a>
-            
-            八月 02, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/08/02/Awtrix-BlogViews/" title="Awtrix App --- 开发一款显示个人博客访问人数的 App" class="posttitle">Awtrix App --- 开发一款显示个人博客访问人数的 App</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        45k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        41 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Awtrix/" rel="tag">Awtrix</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>Awtrix App 开发入门之开发一款显示个人博客访问人数的 App</p>
-<ol>
-<li>具备 Awtrix 硬件设备</li>
-<li>博客的计数工具是<strong>不蒜子</strong></li>
-</ol>
-<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
-<li>JDK 8 的环境</li>
-<li>开发工具： <a href="https://www.b4x.com/b4j.html" target="_blank" rel="noopener">B4J</a></li>
-</ol>
-<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><br><br></p>
-<h3 id="开发准备"><a href="#开发准备" class="headerlink" title="开发准备"></a>开发准备</h3><ol>
-<li>模板文件</li>
-</ol>
-<p>AWTRIX.bas： 这个文件的内容不需要改动直接复制即可</p>
-<pre><code class="text">    B4J=true
-    Group=Default Group
-    ModulesStructureVersion=1
-    Type=Class
-    Version=7.31
-    @EndOfDesignText@
-    &#39;This Class...</code></pre>
-            
-            <span class="read-more"><a href="/2020/08/02/Awtrix-BlogViews/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

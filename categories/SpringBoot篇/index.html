@@ -143,7 +143,7 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png);">
+                url(/img/cover.jpg);">
         </div>
     </div>
     
@@ -153,36 +153,37 @@
             <a href="/categories/SpringBoot篇"><b>「
                 </b>SPRINGBOOT篇<b> 」</b></a>
             
-            九月 01, 2020
+            十月 19, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用</a></h3>
+            <a href="/2020/10/19/SpringBoot-RestTemplate-SSL/" title="SpringBoot RestTemplate 支持发送 HTTPS 请求" class="posttitle">SpringBoot RestTemplate 支持发送 HTTPS 请求</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                7.2k
+                5.8k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                7 mins.
+                5 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>有时我们在 gradle 里定义了一些属性, 想在 springboot 的 application 配置文件里使用, 这里介绍这种处理方式, 并且将配置应用于 springboot 的自定义 ...</p>
+<p>有时在项目中调用的接口是 https 的形式, 这时使用 RestTemplate 来调用请求就会出错:</p>
+<pre><code class="text">    javax.net.ssl.SSLHandshakeException: sun.security...</code></pre>
             
-            <span class="read-more"><a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/10/19/SpringBoot-RestTemplate-SSL/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -207,7 +208,64 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8381715864976915);">
+            url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png?0.160837590185257);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            九月 01, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        7.2k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        7 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>有时我们在 gradle 里定义了一些属性, 想在 springboot 的 application 配置文件里使用, 这里介绍这种处理方式, 并且将配置应用于 springboot 的自定义 Banner 图中</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>配置 build.gradle</li>
+</ol>
+<p>添加以下配置</p>
+<pre><code class="groovy">    processResources {
+        filesMatching(&#39;application.yml&#39;) {
+            expand(project.properties)
+        }
+    }</code></pre>
+<p>如果想将 gradle 的配置应用于所...</p>
+            
+            <span class="read-more"><a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.32184067230910585);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -260,7 +318,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.04019974188966535);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9179676257614351);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -312,7 +370,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.49941618880482364);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9098356144703212);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -352,69 +410,6 @@
 
             
             <span class="read-more"><a href="/2019/04/25/SpringBoot-Response-Ignore-Null/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9702108566648155);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringBoot篇">
-                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
-                </a>
-            
-            四月 15, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/04/15/SpringBoot-Ajax-FormData/" title="重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.3k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h3><pre><code class="javascript">    const formData = new FormData();
-
-    fileList.forEach(file =&gt; {
-        formData.append(&#39;file&#39;, file.originFileObj);
-    });
-
-
-    // 每个表单是否填写完成
-    let params = [];
-
-    .....
-
-
-    let data = {};
-    data.filePath = &quot;&quot;;
-    data.markers = params;
-    formData.append(&quot...</code></pre>
-            
-            <span class="read-more"><a href="/2019/04/15/SpringBoot-Ajax-FormData/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
