@@ -143,26 +143,26 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(/img/cover.jpg);">
+                url(http://image.joylau.cn/blog/image-scale.gif);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Scala篇"><b>「
-                </b>SCALA篇<b> 」</b></a>
+            <a href="/categories/前端篇"><b>「
+                </b>前端篇<b> 」</b></a>
             
-            九月 26, 2017
+            十月 13, 2017
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2017/09/26/Java-Scala/" title="Java 代码中使用 Scala" class="posttitle">Java 代码中使用 Scala</a></h3>
+            <a href="/2017/10/13/CSS3-Image-Scale/" title="当鼠标移入图片上慢慢放大的效果" class="posttitle">当鼠标移入图片上慢慢放大的效果</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.5k
+                1k
             </span>
             
             
@@ -175,19 +175,16 @@
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Scala/" rel="tag">Scala</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-
-
-<p>将 Scala 依赖 scala-library 和插件 scala-maven-plugin 添加到 Maven 项目中</p>
-<pre><code class="xml">    &lt;dependency&gt;
-        &lt;groupId&gt;org...</code></pre>
+<ul>
+<li>今天在浏览网站时，<a href="http://ai.baidu.com/" target="_blank" rel="noopener">http://ai.baidu.com/</a> ，看到一个CSS3的效果:将鼠标放到图片上，图片会稍稍方大一点，当时很好奇是怎么做的</li>
+<li>当即百度了一下，有人用js做的，有人用css做的，...</li></ul>
             
-            <span class="read-more"><a href="/2017/09/26/Java-Scala/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2017/10/13/CSS3-Image-Scale/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -212,7 +209,65 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3066958073465573);">
+            url(http://image.joylau.cn/blog/image-scale.gif?0.9347123602133627);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/前端篇">
+                  <b>「 </b>前端篇<b> 」</b>
+                </a>
+            
+            十月 13, 2017
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/10/13/CSS3-Image-Scale/" title="当鼠标移入图片上慢慢放大的效果" class="posttitle">当鼠标移入图片上慢慢放大的效果</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<ul>
+<li>今天在浏览网站时，<a href="http://ai.baidu.com/" target="_blank" rel="noopener">http://ai.baidu.com/</a> ，看到一个CSS3的效果:将鼠标放到图片上，图片会稍稍方大一点，当时很好奇是怎么做的</li>
+<li>当即百度了一下，有人用js做的，有人用css做的，首先js做的肯定不够好，一看效果就是css3的效果</li>
+<li>于是自己查看了下 这块 div 的效果</li>
+<li>将压缩的css展开来</li>
+<li>原来是这样的：</li>
+</ul>
+<pre><code class="css">    # 鼠标移上去各浏览器的延时效果
+    .solution-img {
+        height: 100%;
+        -webkit-transform-origin: 50% 50%;
+        -...</code></pre>
+            
+            <span class="read-more"><a href="/2017/10/13/CSS3-Image-Scale/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.08201568505086221);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -271,7 +326,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7024483855570112);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.16428659191552364);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -326,7 +381,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/JoyGame-login.png?0.6517306992456731);">
+            url(//image.joylau.cn/blog/JoyGame-login.png?0.3876007039971703);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -385,7 +440,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.33890453156711553);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.62531625160044);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -435,64 +490,6 @@
 <li>于是就想着 将Spring Boot 的服务制作成 Windows 服务，这样基本上会...</li></ul>
             
             <span class="read-more"><a href="/2017/09/03/Maven-MakeWinServiceForJar/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/joymusic-mv-noreferer.png?0.5281185466576428);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringBoot篇">
-                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
-                </a>
-            
-            八月 29, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/" title="重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 实战项目 JoyMedia （ NoReferer篇 ）</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        5.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        5 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><center>
-![JoyMusic-NoReferer](//image.joylau.cn/blog/joymusic-mv-noreferer.png)
-![JoyMusic-NoReferer](//image.joylau.cn/blog/joymusic-mv-video-small.gif)
-![JoyMusic-NoReferer](//image.joylau.cn/blog/joymusic-mv-video-url.gif)
-</center>
-
-<h3 id="在线地址"><a href="#在线地址" class="headerlink" title="在线地址"></a>在线地址</h3><ul>
-<li><a href="//music.joylau.cn" target="_blank" rel="noopener">JoyMusic</a></li>
-</ul>
-<h3 id="问题说明"><a href="#问题说明" class="headerlink" title="问题说明"></a>问题说明</h3><ul>
-<li>为什么解析...</li></ul>
-            
-            <span class="read-more"><a href="/2017/08/29/SpringBoot-JoyMedia-NoReferer/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

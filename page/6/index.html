@@ -143,48 +143,50 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(//image.joylau.cn/blog/iPhone7/4.jpeg);">
+                url(/img/cover.jpg);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/日常折腾篇"><b>「
-                </b>日常折腾篇<b> 」</b></a>
+            <a href="/categories/Docker篇"><b>「
+                </b>DOCKER篇<b> 」</b></a>
             
-            四月 21, 2020
+            四月 22, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/04/21/Daily-iPhone7-Replace-Battery/" title="日常折腾 --- iPhone 7 更换电池,缝缝补补又三年" class="posttitle">日常折腾 --- iPhone 7 更换电池,缝缝补补又三年</a></h3>
+            <a href="/2020/04/22/Docker-ENTRYPOINT-CMD/" title="Docker ENTRYPOINT 和 CMD 组合使用" class="posttitle">Docker ENTRYPOINT 和 CMD 组合使用</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.5k
+                2.9k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                3 mins.
             </span>
             
             
         </p>
         
         
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+        
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 
-<p>有台老 iPhone 7,电池峰值只有 66%, 家人一直在用,想着买块电池换上,缝缝补补又三年….</p>
-<ol>
-<li>使用 0.8mm 五角螺丝刀拆下充电口 2 边的螺丝</li>
-<li>吹风机均匀加热手机 5 分钟, 使手机的...</li></ol>
+<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><ol>
+<li>清楚 ENTRYPOINT 和 CMD 的 shell 和 exec 的 2 种写法</li>
+<li>定义多个 CMD, 只有最后一个 CMD 生效</li>
+<li>同时定义 ENTRYPOINT 和 CMD, 那么 ENTRYPOINT...</li></ol>
             
-            <span class="read-more"><a href="/2020/04/21/Daily-iPhone7-Replace-Battery/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/04/22/Docker-ENTRYPOINT-CMD/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +211,63 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/iPhone7/4.jpeg?0.9194547708825422);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8340304885810468);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            四月 22, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/04/22/Docker-ENTRYPOINT-CMD/" title="Docker ENTRYPOINT 和 CMD 组合使用" class="posttitle">Docker ENTRYPOINT 和 CMD 组合使用</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2.9k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        3 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><ol>
+<li>清楚 ENTRYPOINT 和 CMD 的 shell 和 exec 的 2 种写法</li>
+<li>定义多个 CMD, 只有最后一个 CMD 生效</li>
+<li>同时定义 ENTRYPOINT 和 CMD, 那么 ENTRYPOINT 会覆盖 CMD</li>
+</ol>
+<h3 id="总结的结论"><a href="#总结的结论" class="headerlink" title="总结的结论"></a>总结的结论</h3><ol>
+<li>ENTRYPOINT 使用了 shell 模式，CMD 指令会被忽略</li>
+<li>ENTRYPOINT 使用了 exec 模式，CMD 指定的内容被追加为 ENTRYPOINT 指定命令的参数</li>
+<li>ENTRYPOINT 使用了 exec 模式，CMD 也应该使用 exec...</li></ol>
+            
+            <span class="read-more"><a href="/2020/04/22/Docker-ENTRYPOINT-CMD/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(//image.joylau.cn/blog/iPhone7/4.jpeg?0.6662110794688656);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -271,7 +329,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9407998236638022);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.359168665944817);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -326,7 +384,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.33141688231003674);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1373961951224516);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -379,7 +437,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.37566217973070226);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.20065942942216775);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -424,57 +482,6 @@
 <li>打开 Breed 管理界面: <a href="http://192.168.1.1" target="_blank" rel="noopener">http://192.168...</a></li></ol>
             
             <span class="read-more"><a href="/2020/04/14/Daily-KVR-NewifiD2-JiKe/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/Daily-KVR-NewifiD2-Breed.jpeg?0.3259798770589677);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/日常折腾篇">
-                  <b>「 </b>日常折腾篇<b> 」</b>
-                </a>
-            
-            四月 13, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/04/13/Daily-KVR-NewifiD2-Breed/" title="日常折腾之 KVR 漫游(一) --- 新路由 3 (Newifi D2) 刷入 Breed (刷不死)固件" class="posttitle">日常折腾之 KVR 漫游(一) --- 新路由 3 (Newifi D2) 刷入 Breed (刷不死)固件</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.8k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/KVR/" rel="tag">KVR</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p>目前想要组 WIFI 漫游可选的方案有 AC + AP 或者 mesh 组网, 可这些的价格都不便宜, 而我选择用 2 台之前很火的矿机新路由 3 (Newifi D2) 来组 AP 实现 KVR 漫游<br>想要组 KVR 漫游, 2 台路由必须刷入集客 AP 固件, 而刷入集客 AP 固件前必须先刷入 Breed 固件<br>本篇介绍新路由 3 如何刷入该固件 </p>
-<p>一次性搞了 3 台</p>
-<p></p>
-<h3 id="802-11k"><a href="#802-11k" class="headerlink" title="802.11k"></a>802.11k</h3><p>通过创建优化的频道列表，802.11k 标准可帮助设备快速搜索附近可作为漫游目标的 AP。如果当前接入点的信...</p>
-            
-            <span class="read-more"><a href="/2020/04/13/Daily-KVR-NewifiD2-Breed/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

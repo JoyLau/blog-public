@@ -150,42 +150,41 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/大数据篇"><b>「
-                </b>大数据篇<b> 」</b></a>
+            <a href="/categories/React篇"><b>「
+                </b>REACT篇<b> 」</b></a>
             
-            十二月 23, 2019
+            十二月 26, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/12/23/Elasticsearch-Multi-NestedQuery/" title="Elasticsearch Nested 类型动态数据的组合查询" class="posttitle">Elasticsearch Nested 类型动态数据的组合查询</a></h3>
+            <a href="/2019/12/26/React-App-Rewired/" title="React-App-Rewired 的一些配置" class="posttitle">React-App-Rewired 的一些配置</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                3.7k
+                2.6k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                3 mins.
+                2 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>Nested 类型的数据不多说了,<br>先看 mapping:</p>
-<pre><code class="json">    &quot;metaArray&quot;: {
-        &quot;type&quot;: &quot;nested&quot;,
-        &quot...</code></pre>
+<h3 id="添加多页面配置"><a href="#添加多页面配置" class="headerlink" title="添加多页面配置"></a>添加多页面配置</h3><p>之前写过一篇 npm eject 之后的多页面配置,可以往前翻阅 , 现在不想 eject, 该怎么配置多页面?</p>
+<ol>
+<li><p>npm install react-app-rewire-multiple...</p></li></ol>
             
-            <span class="read-more"><a href="/2019/12/23/Elasticsearch-Multi-NestedQuery/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/12/26/React-App-Rewired/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +209,61 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5984638156176436);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.708928574228243);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/React篇">
+                  <b>「 </b>REACT篇<b> 」</b>
+                </a>
+            
+            十二月 26, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/12/26/React-App-Rewired/" title="React-App-Rewired 的一些配置" class="posttitle">React-App-Rewired 的一些配置</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2.6k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="添加多页面配置"><a href="#添加多页面配置" class="headerlink" title="添加多页面配置"></a>添加多页面配置</h3><p>之前写过一篇 npm eject 之后的多页面配置,可以往前翻阅 , 现在不想 eject, 该怎么配置多页面?</p>
+<ol>
+<li><p>npm install react-app-rewire-multiple-entry –save-dev</p>
+</li>
+<li><p>在 config-overrides.js 中添加配置<br>现在 public 里复制一个 html 页面, 在 src 目录下再新增一个目录,里面的文件拷贝 index 的稍微改动下,<br>大致目录如下:</p>
+</li>
+</ol>
+<p>-serviceWorker.js<br>-metadata.js...</p>
+            
+            <span class="read-more"><a href="/2019/12/26/React-App-Rewired/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.16159410757802384);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -265,7 +318,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.13789012918630328);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.3356414780987178);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -315,7 +368,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.16571087393903983);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8487131176368596);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -367,7 +420,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.750754688432965);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.868507304694291);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -409,56 +462,6 @@
 <p>docker daemon 有一个默认的日志驱动程序，默认为json-file<br>json...</p>
             
             <span class="read-more"><a href="/2019/11/19/Docker-Logs/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6965333633361659);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Gradle篇">
-                  <b>「 </b>GRADLE篇<b> 」</b>
-                </a>
-            
-            十一月 13, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/11/13/Gradle-Offline-Mode/" title="gradle No cached version available for offline mode" class="posttitle">gradle No cached version available for offline mode</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        243
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>在 idea 以前的版本里,在 Preferences | Build, Execution, Deployment | Gradle 去掉勾选 Offline work 即可</p>
-<p>但是在最新版 2019.2 里,需要点击 gradle 面板里最上面一排小扳手左边一个图标,取消离线模式 </p>
-
-            
-            <span class="read-more"><a href="/2019/11/13/Gradle-Offline-Mode/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

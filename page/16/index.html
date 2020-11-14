@@ -153,22 +153,22 @@
             <a href="/categories/OpenCV篇"><b>「
                 </b>OPENCV篇<b> 」</b></a>
             
-            五月 10, 2019
+            五月 15, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/05/10/OpenCV-Baidu-Traffic-3/" title="OpenCV --- 基于 OpenCV 的百度路况研究记录 (三)" class="posttitle">OpenCV --- 基于 OpenCV 的百度路况研究记录 (三)</a></h3>
+            <a href="/2019/05/15/OpenCV-Baidu-Traffic-4/" title="OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)" class="posttitle">OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                2.3k
+                1.1k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                2 mins.
+                1 mins.
             </span>
             
             
@@ -180,18 +180,16 @@
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>本篇研究的内容有:</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>本篇主要内容:</p>
 <ol>
-<li><p>分析得到的大量拥堵点抽稀处理</p>
-</li>
-<li><p>拥堵区域骨架提取</p>
-</li>
-<li><p>部分优化算法和性能</p>
-</li>
+<li>搭建离线地址解析服务</li>
 </ol>
-<h3 id="抽稀处理"><a href="#抽稀处理" class="headerlink" title="抽稀处理"></a>抽稀处理</h3><p>根据之前的处理得到一张瓦片的一块拥堵区域时,需要对其进行结构化数据的分析:将坐标转化为百...</p>
+<h3 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h3><p>继上篇研究内容之后,重新思考了之前抛出的问题: 如何获取某个省或市的道路信息?</p>
+<p>之前对于该问题的解法有 2 种:</p>
+<ol>
+<li><p>使用总队或者支队提供的道路信...</p></li></ol>
             
-            <span class="read-more"><a href="/2019/05/10/OpenCV-Baidu-Traffic-3/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/05/15/OpenCV-Baidu-Traffic-4/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -216,7 +214,73 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.1717902799727844);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1537579662881441);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/OpenCV篇">
+                  <b>「 </b>OPENCV篇<b> 」</b>
+                </a>
+            
+            五月 15, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/05/15/OpenCV-Baidu-Traffic-4/" title="OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)" class="posttitle">OpenCV --- 基于 OpenCV 的百度路况研究记录 (四)</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.1k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>本篇主要内容:</p>
+<ol>
+<li>搭建离线地址解析服务</li>
+</ol>
+<h3 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h3><p>继上篇研究内容之后,重新思考了之前抛出的问题: 如何获取某个省或市的道路信息?</p>
+<p>之前对于该问题的解法有 2 种:</p>
+<ol>
+<li><p>使用总队或者支队提供的道路信息,然后根据分析出来的经纬度和提供的道路信息进行匹配</p>
+</li>
+<li><p>调用互联网接口,进行经纬度转道路地址</p>
+</li>
+</ol>
+<p>分析这 2 中方式之后,其弊端很明显:</p>
+<p>第一种方式:  </p>
+<ol>
+<li><p>无法确定总队或者支队是否能够提供道路信息; </p>
+</li>
+<li><p>提供的数据又是否足够详细全面,要知道在百度地图 17 等级下,解析出来的道路是很详细的 </p>
+</li>
+<li><p>姑且...</p></li></ol>
+            
+            <span class="read-more"><a href="/2019/05/15/OpenCV-Baidu-Traffic-4/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.34199299504845193);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -275,7 +339,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8367439575952313);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4328175923391093);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -326,7 +390,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.24842521657067995);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.3719064474365017);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -389,7 +453,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.797635095946511);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.24832332805526391);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -429,69 +493,6 @@
 
             
             <span class="read-more"><a href="/2019/04/25/SpringBoot-Response-Ignore-Null/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5915142766973025);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringBoot篇">
-                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
-                </a>
-            
-            四月 15, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/04/15/SpringBoot-Ajax-FormData/" title="重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 使用 Ajax FromData 上传文件并传参</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.3k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h3><pre><code class="javascript">    const formData = new FormData();
-
-    fileList.forEach(file =&gt; {
-        formData.append(&#39;file&#39;, file.originFileObj);
-    });
-
-
-    // 每个表单是否填写完成
-    let params = [];
-
-    .....
-
-
-    let data = {};
-    data.filePath = &quot;&quot;;
-    data.markers = params;
-    formData.append(&quot...</code></pre>
-            
-            <span class="read-more"><a href="/2019/04/15/SpringBoot-Ajax-FormData/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
