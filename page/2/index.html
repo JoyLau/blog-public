@@ -150,19 +150,19 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/工具类篇"><b>「
-                </b>工具类篇<b> 」</b></a>
+            <a href="/categories/Linux篇"><b>「
+                </b>LINUX篇<b> 」</b></a>
             
-            九月 27, 2020
+            九月 29, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/09/27/Termius-Multi-Tterminal-Sync/" title="Termius 多终端软件配置手动同步" class="posttitle">Termius 多终端软件配置手动同步</a></h3>
+            <a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="Linux 挂载有用户名密码的网络磁盘" class="posttitle">Linux 挂载有用户名密码的网络磁盘</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                775
+                1.2k
             </span>
             
             
@@ -175,16 +175,17 @@
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Termius/" rel="tag">Termius</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 
-<p>Termius 算是我比较喜欢的一款终端软件了, 因为它很漂亮, 自带的字体很好看, 软件本身是免费的, 但是如果要使用一些高级功能</p>
-<p>比如不同操作系统下的 Termius 的软件配置同步则需要订阅他...</p>
+<p>很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘</p>
+<p>很多时候，为了安全考虑网络磁盘都设置了用户名密码</p>
+<p>这时挂载的时候就需要设置...</p>
             
-            <span class="read-more"><a href="/2020/09/27/Termius-Multi-Tterminal-Sync/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +210,63 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.941764765169331);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4225398345675231);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Linux篇">
+                  <b>「 </b>LINUX篇<b> 」</b>
+                </a>
+            
+            九月 29, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="Linux 挂载有用户名密码的网络磁盘" class="posttitle">Linux 挂载有用户名密码的网络磁盘</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.2k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘</p>
+<p>很多时候，为了安全考虑网络磁盘都设置了用户名密码</p>
+<p>这时挂载的时候就需要设置用户名密码了</p>
+<p>很可惜上述方式 nfs 没有找到设置用户名密码的参数</p>
+<p>使用 cifs </p>
+<ol>
+<li><p>安装依赖： <code>yum install cifs-utils</code></p>
+</li>
+<li><p>挂载： <code>mount -t cifs -o username=USERNAME,password=PASSWORD,iocharset=utf8 //192...</code></p></li></ol>
+            
+            <span class="read-more"><a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.6127693759979869);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -264,7 +321,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.19960446544102894);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4513191597001862);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -322,7 +379,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png?0.7551616445928091);">
+            url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png?0.7620833126134183);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -379,7 +436,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5111004929830227);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5142492294467989);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -423,61 +480,6 @@
 <p>但...</p>
             
             <span class="read-more"><a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9795799544843904);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Ubuntu篇">
-                  <b>「 </b>UBUNTU篇<b> 」</b>
-                </a>
-            
-            八月 07, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/08/07/Ubuntu-Disk-Stat/" title="Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控" class="posttitle">Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>indicator-sysmonitor 默认的模式可以监控 CPU 使用率， 内存使用， 网络 I/O 等， 但是却缺少了很关键的对当前磁盘 I/O 的监控，于是我就想着把他给加上去</p>
-<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>indicator-sysmonitor 可以新建传感器，可以自定义命令来显示输出， 于是我想着使用 shell 命令获取当前磁盘的 I/O 在输出即可</p>
-<h3 id="dstat-方式"><a href="#dstat-方式" class="headerlink" title="dstat 方式"></a>dstat 方式</h3><ol>
-<li>使用 <code>dstat</code> 命令， 需要机器上事先安装 <code>dstat</code> </li>
-</ol>
-<pre><code class="shell">    dstat  --disk</code></pre>
-<p>该命令可以监控磁盘使用情况</p>
-<p>我在稍对结...</p>
-            
-            <span class="read-more"><a href="/2020/08/07/Ubuntu-Disk-Stat/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

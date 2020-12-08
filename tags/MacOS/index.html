@@ -153,38 +153,41 @@
             <a href="/categories/MacOS篇"><b>「
                 </b>MACOS篇<b> 」</b></a>
             
-            八月 04, 2020
+            十二月 08, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/08/04/MacBookPro-uGreen-TypeC-Hub/" title="MacBook Pro 使用绿联 TypeC 网卡关闭笔记本盖子时导致局域网网络不可用的问题解决" class="posttitle">MacBook Pro 使用绿联 TypeC 网卡关闭笔记本盖子时导致局域网网络不可用的问题解决</a></h3>
+            <a href="/2020/12/08/MacOS-Dev-Questions/" title="MacOS 开发问题备忘记录" class="posttitle">MacOS 开发问题备忘记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                895
+                1.7k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                2 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacBookPro/" rel="tag">MacBookPro</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 
-<p>我的 MacBook Pro 使用的是绿联的外接扩展坞, 其中有一个网口<br>在京东购买的: <a href="https://item.jd.com/4445121.html" target="_blank" rel="noopener">https://item.jd.com/4445121.html</a></p>
-<p>型号为: CM179<br>网卡芯片为: RTL8153B...</p>
+<h3 id="清理-brew"><a href="#清理-brew" class="headerlink" title="清理 brew"></a>清理 brew</h3><ol>
+<li>brew cleanup</li>
+<li>brew cleanup –prune 1 #清理早于 1 天的</li>
+</ol>
+<h3 id="防止-mac-锁屏后关闭显示器的方法"><a href="#防止-mac-锁屏后关闭显示器的方法" class="headerlink" title="防止 mac 锁屏后关闭显示器的方法"></a>防止 mac 锁屏后关闭显示器的方法</h3><p>brew cask install keepingyouawake...</p>
             
-            <span class="read-more"><a href="/2020/08/04/MacBookPro-uGreen-TypeC-Hub/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/12/08/MacOS-Dev-Questions/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +212,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4246754417605052);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6578545057087946);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/MacOS篇">
+                  <b>「 </b>MACOS篇<b> 」</b>
+                </a>
+            
+            八月 04, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/08/04/MacBookPro-uGreen-TypeC-Hub/" title="MacBook Pro 使用绿联 TypeC 网卡关闭笔记本盖子时导致局域网网络不可用的问题解决" class="posttitle">MacBook Pro 使用绿联 TypeC 网卡关闭笔记本盖子时导致局域网网络不可用的问题解决</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        895
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>我的 MacBook Pro 使用的是绿联的外接扩展坞, 其中有一个网口<br>在京东购买的: <a href="https://item.jd.com/4445121.html" target="_blank" rel="noopener">https://item.jd.com/4445121.html</a></p>
+<p>型号为: CM179<br>网卡芯片为: RTL8153B</p>
+<p>最近发现只要我的 MacBook Pro 关闭了盖子, 会导致接在同一交换机下的路由器就无法上网<br>打开盖子后,网络又恢复正常了  </p>
+<p>搜索了一番没找到解决方式</p>
+<p>于是就找到当时购买的这款产品的京东介绍页面看了看</p>
+<p>想着去绿联的官网找找驱动试试: <a href="https://www.lulian.cn/download/list-34-cn.html" target="_blank" rel="noopener">https://www.lulian.cn/download...</a></p>
+            
+            <span class="read-more"><a href="/2020/08/04/MacBookPro-uGreen-TypeC-Hub/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.6478286068993397);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -261,7 +317,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/qlPlugin-not-work.png?0.25120868958966325);">
+            url(//image.joylau.cn/blog/qlPlugin-not-work.png?0.8031904400210845);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -326,7 +382,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7214766239232422);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5764496307092208);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -374,61 +430,6 @@
 <li><p>清空路由表: <code>sudo route...</code></p></li></ol>
             
             <span class="read-more"><a href="/2018/12/14/MacOS-Route/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2645895161001055);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/MacOS篇">
-                  <b>「 </b>MACOS篇<b> 」</b>
-                </a>
-            
-            六月 14, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/06/14/MacOS-ChangeMacAddr/" title="MacOS 修改 mac 地址" class="posttitle">MacOS 修改 mac 地址</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        746
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>公司的网络接入是需要 ip 地址和 mac 地址绑定在一起的，笔记接入的 WiFi 没绑定就无法上网，公司那么多电脑不用，就使用他们已经绑定好的 静态 IP 地址和 mac 地址来上网</p>
-<ol>
-<li>随机生成一个全新的MAC网卡地址</li>
-</ol>
-<pre><code class="shell">    openssl rand -hex 6 | sed &#39;s/\(..\)/\1:/g; s/.$//&#39;</code></pre>
-<ol start="2">
-<li>断开airport无线网卡连接</li>
-</ol>
-<pre><code class="shell">    sudo /System/Library/PrivateFrameworks/Apple80211.framework...</code></pre>
-            
-            <span class="read-more"><a href="/2018/06/14/MacOS-ChangeMacAddr/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

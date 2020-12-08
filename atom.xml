@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2020-11-14T11:57:10.339Z</updated>
+  <updated>2020-12-08T07:54:13.142Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MacOS 开发问题备忘记录</title>
+    <link href="http://blog.joylau.cn/2020/12/08/MacOS-Dev-Questions/"/>
+    <id>http://blog.joylau.cn/2020/12/08/MacOS-Dev-Questions/</id>
+    <published>2020-12-08T07:29:08.000Z</published>
+    <updated>2020-12-08T07:54:13.142Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="清理-brew"><a href="#清理-brew" class="headerlink" title="清理 brew"></a>清理 brew</h3><ol><li>brew cleanup</li><li>brew cleanup –prune 1 #清理早于 1 天的</li></ol><h3 id="防止-mac-锁屏后关闭显示器的方法"><a href="#防止-mac-锁屏后关闭显示器的方法" class="headerlink" title="防止 mac 锁屏后关闭显示器的方法"></a>防止 mac 锁屏后关闭显示器的方法</h3><p>brew cask install keepingyouawake</p><h3 id="zsh-对-docker-命令的自动提示"><a href="#zsh-对-docker-命令的自动提示" class="headerlink" title="zsh 对 docker 命令的自动提示"></a>zsh 对 docker 命令的自动提示</h3><ol><li>首先确定安装好了 oh-my-zsh</li><li>在文件 <strong>~/.zshrc</strong> 文件中启用 docker docker-compose, 下面是我启用的插件</li></ol><p>参考: <a href="https://docs.docker.com/compose/completion/" target="_blank" rel="noopener">https://docs.docker.com/compose/completion/</a></p><pre><code class="bash">    plugins=(git gradle mvn node npm brew yarn docker docker-compose)</code></pre><h3 id="zsh-插件推荐"><a href="#zsh-插件推荐" class="headerlink" title="zsh 插件推荐"></a>zsh 插件推荐</h3><ol><li>自动补全插件 zsh-autosuggestions</li></ol><p>这里利用Oh my zsh的方法安装。直接一句话命令行里下载并移动到 oh my zsh 目录中：</p><pre><code class="bash">    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions</code></pre><p>然后在 ~/.zshrc 文件中找到 plugins 数组，加入 zsh-autosuggestions 名字，重新打开终端即可。</p><ol start="2"><li>语法高亮插件 zsh-syntax-highlighting</li></ol><p>将插件下载到oh my zsh的插件目录下的该新建插件同名文件夹中</p><pre><code class="shell">    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting</code></pre><p>编辑 ~/.zshrc 文件将然后将插件引用命令写入该文件最后一行（必须）</p><pre><code class="bash">    source &quot;$ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh&quot;</code></pre><p>保存重新打开即可看到高亮的命令行了。</p>]]></content>
+    
+    <summary type="html">
+    
+      记录一下自己平时使用 MacOS 开发遇到的一些问题以及一些配置信息备忘
+    
+    </summary>
+    
+    
+      <category term="MacOS篇" scheme="http://blog.joylau.cn/categories/MacOS%E7%AF%87/"/>
+    
+    
+      <category term="MacOS" scheme="http://blog.joylau.cn/tags/MacOS/"/>
+    
+      <category term="MacBookPro" scheme="http://blog.joylau.cn/tags/MacBookPro/"/>
+    
+  </entry>
   
   <entry>
     <title>黑苹果 --- Hackintosh + GIGABYTE Z390 AORUS PRO WIFI + i9-9900K + RX 580 + BCM94360CD + OpenCore 0.6.3 黑苹果主机配置与安装记录</title>
@@ -454,31 +479,6 @@
     
     
       <category term="VSCode" scheme="http://blog.joylau.cn/tags/VSCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker 安装 Clash 并对外提供代理服务</title>
-    <link href="http://blog.joylau.cn/2020/05/02/Clash-Docker/"/>
-    <id>http://blog.joylau.cn/2020/05/02/Clash-Docker/</id>
-    <published>2020-05-02T03:00:31.000Z</published>
-    <updated>2020-07-10T00:43:19.431Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol><li>端口: <code>port: 7890 ; socks-port: 7891</code></li><li>运行局域网访问: <code>allow-lan: true</code></li><li>对外提供 rest 接口: <code>external-controller: 0.0.0.0:8080</code></li><li>dashboard 路径: <code>external-ui: /ui</code></li><li>配置文件 yaml, 挂载到: <code>/root/.config/clash/config.yaml</code></li></ol><h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><pre><code class="bash">    docker run -d --name clash-client --restart always -p 7890:7890 -p 7891:7891 -p 8080:8080 -v /path/config.yaml:/root/.config/clash/config.yaml -v /path/ui:/ui dreamacro/clash</code></pre><h3 id="Dashboard"><a href="#Dashboard" class="headerlink" title="Dashboard"></a>Dashboard</h3><ol><li>使用官方的 Dashboard : <a href="https://github.com/Dreamacro/clash-dashboard/tree/gh-pages" target="_blank" rel="noopener">https://github.com/Dreamacro/clash-dashboard/tree/gh-pages</a></li><li>使用另一个第三方看起来很炫酷的 Dashboard: <a href="https://github.com/haishanh/yacd/tree/gh-pages" target="_blank" rel="noopener">https://github.com/haishanh/yacd/tree/gh-pages</a></li></ol><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>既然对外提供服务, 最好加密, 包括 Dashboard 加密和 http, socks 代理加用户名密码认证</p><pre><code class="yaml">    port: 7890    socks-port: 7891    allow-lan: true    mode: Rule    log-level: info    external-controller: &#39;0.0.0.0:9090&#39;    secret: &#39;passwd&#39;    external-ui: /ui    authentication:      - &quot;user:passwd&quot;    Proxy:    Proxy Group:    Rule:</code></pre><p>启动之后,便可以使用 Dashboard 来操作 Clash 了.</p>]]></content>
-    
-    <summary type="html">
-    
-      Docker 安装 Clash 并对外提供代理服务
-    
-    </summary>
-    
-    
-      <category term="Clash" scheme="http://blog.joylau.cn/categories/Clash/"/>
-    
-    
-      <category term="Clash" scheme="http://blog.joylau.cn/tags/Clash/"/>
-    
-      <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
     
   </entry>
   

@@ -143,49 +143,50 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(//image.joylau.cn/blog/Redis-Master&Slave.jpg);">
+                url(//image.joylau.cn/blog/IntelliJIDEA-Plugins.png);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Redis篇"><b>「
-                </b>REDIS篇<b> 」</b></a>
+            <a href="/categories/IntelliJ IDEA篇"><b>「
+                </b>INTELLIJ IDEA篇<b> 」</b></a>
             
-            四月 27, 2017
+            四月 28, 2017
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2017/04/27/Redis-Master-Slave/" title="Redis主从复制 --- 实现读写分离" class="posttitle">Redis主从复制 --- 实现读写分离</a></h3>
+            <a href="/2017/04/28/IntelliJIDEA-Plugins/" title="IntelliJ IDEA 插件开发" class="posttitle">IntelliJ IDEA 插件开发</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                8k
+                3.7k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                7 mins.
+                3 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/redis/" rel="tag">redis</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/IntelliJ-IDEA/" rel="tag">IntelliJ IDEA</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Plugins/" rel="tag">Plugins</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 <p></p>
-<pre><code class="bash">    ################################# REPLICATION #################################
-
-    # Master-Slave replication...</code></pre>
+<p>我现在用的这个插件时ECTranslation,是用于做中英文翻译的，可以在看文档和注释的是方便的使用，然而近期变得不好用了</p>
+<ul>
+<li>翻译的内容有时能出来，有时出不来，有时甚至没有反应</li>
+<li><strong>查看了该款插件的...</strong></li></ul>
             
-            <span class="read-more"><a href="/2017/04/27/Redis-Master-Slave/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2017/04/28/IntelliJIDEA-Plugins/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +211,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/Redis-Master&Slave.jpg?0.8066930100299154);">
+            url(//image.joylau.cn/blog/IntelliJIDEA-Plugins.png?0.15165150844532094);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/IntelliJ IDEA篇">
+                  <b>「 </b>INTELLIJ IDEA篇<b> 」</b>
+                </a>
+            
+            四月 28, 2017
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/04/28/IntelliJIDEA-Plugins/" title="IntelliJ IDEA 插件开发" class="posttitle">IntelliJ IDEA 插件开发</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        3.7k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        3 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/IntelliJ-IDEA/" rel="tag">IntelliJ IDEA</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Plugins/" rel="tag">Plugins</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p></p>
+<p>我现在用的这个插件时ECTranslation,是用于做中英文翻译的，可以在看文档和注释的是方便的使用，然而近期变得不好用了</p>
+<ul>
+<li>翻译的内容有时能出来，有时出不来，有时甚至没有反应</li>
+<li><strong>查看了该款插件的源代码，发现是调用的有道翻译的API接口，而且在代码里写死了APIkey和KeyFrom</strong></li>
+<li>调用了有道的API，加上上面作者提供的Key，再传入翻译的文本内容，发现返回值居然是请求次数过多，被封禁了…..</li>
+<li>明白了，很多使用这个插件的开发者都是用的作者提供的默认Key，默认情况下1小时请求的限制次数是1000...</li></ul>
+            
+            <span class="read-more"><a href="/2017/04/28/IntelliJIDEA-Plugins/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(//image.joylau.cn/blog/Redis-Master&Slave.jpg?0.2500506814562169);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -263,7 +317,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/SpringEureka.png?0.7995943757028772);">
+            url(//image.joylau.cn/blog/SpringEureka.png?0.7293114496385766);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -318,7 +372,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.09978939393946207);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.26894375608839005);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -373,7 +427,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/Redis-Benchmark.jpg?0.08516272946991865);">
+            url(//image.joylau.cn/blog/Redis-Benchmark.jpg?0.21957990823151197);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -422,63 +476,6 @@
    -h &lt;hostname&gt;      Server...</code></pre></li></ul>
             
             <span class="read-more"><a href="/2017/04/01/Redis-Benchmark/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2239349135584232);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            三月 22, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/03/22/Docker-Command/" title="Docker常用命令备忘" class="posttitle">Docker常用命令备忘</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.9k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><ul>
-<li>安装： <code>yum install docker</code></li>
-<li>卸载： <code>yum remove docker</code></li>
-<li>启动： <code>systemctl start docker</code></li>
-<li>开机自启： <code>systemctl enable docker</code></li>
-</ul>
-<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><pre><code class="bash">    FROM java:8
-    MAINTAINER joylau
-    ADD joyalu-0.0.1-SNAPSHOT.jar joylau.jar
-    EXPOSE 8080
-    ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;...</code></pre>
-            
-            <span class="read-more"><a href="/2017/03/22/Docker-Command/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

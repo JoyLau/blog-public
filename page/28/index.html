@@ -156,36 +156,35 @@
             五月 08, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/05/08/Logstash-Nginx/" title="Logstash 实时收集 Nginx 日志" class="posttitle">Logstash 实时收集 Nginx 日志</a></h3>
+            <a href="/2018/05/08/Filebeat-Nginx/" title="Filebeat 实时收集 Nginx 日志" class="posttitle">Filebeat 实时收集 Nginx 日志</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                2.2k
+                8.8k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                2 mins.
+                8 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Logstash/" rel="tag">Logstash</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Filebeat/" rel="tag">Filebeat</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 
-<p>logstash 需要和 nginx 部署到一台机器<br>需要修改 nginx 的日志格式</p>
-<p>更改日志记录的格式</p>
-<pre><code class="bash">    log_format json &#39;{ &quot;@timestamp&quot;...</code></pre>
+<ol>
+<li>Filebeat 版本为 5.3.0<br> 之所以使用 beats 家族的 Filebeat 来替代 Logstash 是因为 Logstash 实在太消耗资源了（服务器资源充足的土豪请无视）<br> 在官网下...</li></ol>
             
-            <span class="read-more"><a href="/2018/05/08/Logstash-Nginx/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/05/08/Filebeat-Nginx/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +209,56 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.27434103600857895);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1601505317959797);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/大数据篇">
+                  <b>「 </b>大数据篇<b> 」</b>
+                </a>
+            
+            五月 08, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/05/08/Filebeat-Nginx/" title="Filebeat 实时收集 Nginx 日志" class="posttitle">Filebeat 实时收集 Nginx 日志</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        8.8k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        8 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Filebeat/" rel="tag">Filebeat</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<ol>
+<li>Filebeat 版本为 5.3.0<br> 之所以使用 beats 家族的 Filebeat 来替代 Logstash 是因为 Logstash 实在太消耗资源了（服务器资源充足的土豪请无视）<br> 在官网下载 Logstash 有 89M，而 Filebeat 才8.4M，由此可见一斑<br> Logstash 可以配置 jvm 参数，经过我本身的调试，内存分配小了，启动很慢有时根本起不来，分配大了，其他服务就没有资源了<br> 所有说对于配置低的服务器，选择 Filebeat 是最好的选择了，而且现在 Filebeat...</li></ol>
+            
+            <span class="read-more"><a href="/2018/05/08/Filebeat-Nginx/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.9794952376263999);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -262,7 +310,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2817188489586546);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1834695324216815);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -315,7 +363,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8629122345810889);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.10001859705757954);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -376,7 +424,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7871795135974649);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8678024901407468);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -422,59 +470,6 @@
 <p>那就在进入 Library...</p>
             
             <span class="read-more"><a href="/2018/04/01/MacOS-CleanMac/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.43895451968285215);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringSecurity篇">
-                  <b>「 </b>SPRINGSECURITY篇<b> 」</b>
-                </a>
-            
-            三月 30, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/" title="SpringSecurity Session并发过期后会重定向到 &#x2F;login (入口点问题)问题的解决" class="posttitle">SpringSecurity Session并发过期后会重定向到 &#x2F;login (入口点问题)问题的解决</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        13k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        12 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringSecurity/" rel="tag">SpringSecurity</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>在 SpringSecurity 中，我想配置一个关于session并发的控制，于是我是这样配置的</p>
-<pre><code class="java">     @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http
-                    .sessionManagement()
-                    .invalidSessionStrategy(new InvalidSessionStrategyImpl())
-                    .maximumSessions(-1).expiredSessionStrategy...</code></pre>
-            
-            <span class="read-more"><a href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

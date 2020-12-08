@@ -150,40 +150,41 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/大数据篇"><b>「
-                </b>大数据篇<b> 」</b></a>
+            <a href="/categories/Docker篇"><b>「
+                </b>DOCKER篇<b> 」</b></a>
             
-            八月 13, 2018
+            十月 26, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/08/13/Elasticsearch-AutoComplete/" title="Elasticsearch 关键字自动补全的实现" class="posttitle">Elasticsearch 关键字自动补全的实现</a></h3>
+            <a href="/2018/10/26/Docker-ownCloud/" title="记录 -- Docker 三种方式部署 ownCloud" class="posttitle">记录 -- Docker 三种方式部署 ownCloud</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                9.6k
+                7.3k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                9 mins.
+                7 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/ownCloud/" rel="tag">ownCloud</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我们经常能看到在各大电商网站搜索关键字的时候,底下下拉框会补全你要搜索的商品,或者类似的商品,有时候甚至连错别字也能纠正过来,其实ElasticSearch也能实现这样的功能</p>
-<h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>首先,能够...</p>
+
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>ownCloud 除了传统的部署方式,在如今 docker 大行其道的环境下,使用 docker 部署 ownCloud 才是最方便的</p>
+<h3 id="第一种-owncloud-镜像直接安装"><a href="#第一种-owncloud-镜像直接安装" class="headerlink" title="第一种 owncloud 镜像直接安装"></a>第一种 owncloud 镜像直接安装</h3><p>直接部署 owncloud...</p>
             
-            <span class="read-more"><a href="/2018/08/13/Elasticsearch-AutoComplete/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/10/26/Docker-ownCloud/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -208,7 +209,59 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7302907449757081);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.08655528262333734);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            十月 26, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/10/26/Docker-ownCloud/" title="记录 -- Docker 三种方式部署 ownCloud" class="posttitle">记录 -- Docker 三种方式部署 ownCloud</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        7.3k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        7 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/ownCloud/" rel="tag">ownCloud</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>ownCloud 除了传统的部署方式,在如今 docker 大行其道的环境下,使用 docker 部署 ownCloud 才是最方便的</p>
+<h3 id="第一种-owncloud-镜像直接安装"><a href="#第一种-owncloud-镜像直接安装" class="headerlink" title="第一种 owncloud 镜像直接安装"></a>第一种 owncloud 镜像直接安装</h3><p>直接部署 owncloud 镜像,该镜像地址: <a href="https://hub.docker.com/r/_/owncloud/" target="_blank" rel="noopener">https://hub.docker.com/r/_/owncloud/</a></p>
+<pre><code class="sbtshell">    docker pull owncloud
+    docker run -d -p 80:80 owncloud</code></pre>
+<p>这种方式的需要你提前装好 MariaDb 数据库,在启动完成后打开页面会按照流程填写数据库...</p>
+            
+            <span class="read-more"><a href="/2018/10/26/Docker-ownCloud/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.6003607181051187);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -262,7 +315,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3807282868292525);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.07059533779749239);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -312,7 +365,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.46466465921380706);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.11226720694408732);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -361,7 +414,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.33305409678752573);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.43959909591391777);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -407,56 +460,6 @@
     git config -...</code></pre>
             
             <span class="read-more"><a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.09526851579151963);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/其他篇">
-                  <b>「 </b>其他篇<b> 」</b>
-                </a>
-            
-            八月 03, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/08/03/BroadbandSpeedConversion/" title="宽带速率转换" class="posttitle">宽带速率转换</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%8A%80%E8%83%BD/" rel="tag">技能</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>昨天和别人吃饭谈起了家里宽带的问题，办了多少兆的宽带，网速能有多少等云云，对方是个小白，和他说了半天，但是有些深层次的原理我也弄不清楚，后来我上网科普了一下，现在整理如下</p>
-<h3 id="什么是宽带速率？"><a href="#什么是宽带速率？" class="headerlink" title="什么是宽带速率？"></a>什么是宽带速率？</h3><p>宽带速率是指技术上所能达到的理论最高信息传送比特率，一般是上传和下载的速度，速率越高，上传和下载的越快。用户申请的宽带业务速率指技术上所能达到的最大理论速率值。但用户上网时还受到用户电脑软硬件的配置、所浏览网站的地址、终端网站带宽等情况的影响。因此，用户上网时的速率通常低于理论速率值。</p>
-<p>理论上，2M，即2Mb...</p>
-            
-            <span class="read-more"><a href="/2018/08/03/BroadbandSpeedConversion/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
