@@ -153,22 +153,22 @@
             <a href="/categories/Electron篇"><b>「
                 </b>ELECTRON篇<b> 」</b></a>
             
-            九月 11, 2019
+            九月 12, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/09/11/Electron-Questions/" title="Electron --- 知识点小记" class="posttitle">Electron --- 知识点小记</a></h3>
+            <a href="/2019/09/12/Electron-URL-Scheme/" title="Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用" class="posttitle">Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                4.9k
+                3.6k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                4 mins.
+                3 mins.
             </span>
             
             
@@ -180,10 +180,11 @@
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="Electron-只启动一个实例"><a href="#Electron-只启动一个实例" class="headerlink" title="Electron 只启动一个实例"></a>Electron 只启动一个实例</h3><p>使用 app.requestSingleInstanceLock()</p>
-<pre><code class="js">    const gotTheLock = app.requestSingleInstanceLock...</code></pre>
+<h3 id="什么是-URL-Scheme-协议"><a href="#什么是-URL-Scheme-协议" class="headerlink" title="什么是 URL Scheme 协议"></a>什么是 URL Scheme 协议</h3><p>个人理解为注册一种协议来实现应用间的跳转</p>
+<h3 id="Windows-上的实现"><a href="#Windows-上的实现" class="headerlink" title="Windows 上的实现"></a>Windows 上的实现</h3><p>Windows 上是通过注册表实现的</p>
+<p>通过在 HKCR (HKEY_CALSSES_ROOT) 添...</p>
             
-            <span class="read-more"><a href="/2019/09/11/Electron-Questions/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/09/12/Electron-URL-Scheme/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -208,7 +209,61 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.15529921202939878);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8916775348360522);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Electron篇">
+                  <b>「 </b>ELECTRON篇<b> 」</b>
+                </a>
+            
+            九月 12, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/09/12/Electron-URL-Scheme/" title="Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用" class="posttitle">Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        3.6k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        3 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="什么是-URL-Scheme-协议"><a href="#什么是-URL-Scheme-协议" class="headerlink" title="什么是 URL Scheme 协议"></a>什么是 URL Scheme 协议</h3><p>个人理解为注册一种协议来实现应用间的跳转</p>
+<h3 id="Windows-上的实现"><a href="#Windows-上的实现" class="headerlink" title="Windows 上的实现"></a>Windows 上的实现</h3><p>Windows 上是通过注册表实现的</p>
+<p>通过在 HKCR (HKEY_CALSSES_ROOT) 添加一条注册表记录</p>
+<p></p>
+<p>其中 command 的命令即为要执行的命令,注意后面要加一个参数 <code>&quot;%1&quot;</code></p>
+<h3 id="Mac-上的实现"><a href="#Mac-上的实现" class="headerlink" title="Mac 上的实现"></a>Mac 上的实现</h3><p>在应用里显示包内容,使用 xcode 查看 Info.plist 找到 URL types – URL Schemes 里添加一项</p>
+<p></p>
+<h3 id="Electron-的实现"><a href="#Electron-的实现" class="headerlink" title="Electron 的实现"></a>Electron 的实现</h3><pre><code class="js">   app...</code></pre>
+            
+            <span class="read-more"><a href="/2019/09/12/Electron-URL-Scheme/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.8936607436540607);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -267,7 +322,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7904400803159202);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.40465931924297727);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -323,7 +378,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.13052687651671824);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.18447895926409386);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -376,7 +431,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8938224389595169);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8955829953357193);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -419,56 +474,6 @@
 <li>使用命令 docker pull xxx:xxx, 发现报错 <code>Get https://172.18.18.90:5000/v2/: http...</code></li></ol>
             
             <span class="read-more"><a href="/2019/09/09/Synology-Docker-Insecure/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.39077456374450126);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/InnoSetup篇">
-                  <b>「 </b>INNOSETUP篇<b> 」</b>
-                </a>
-            
-            九月 04, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/09/04/InnoSetup-Experience/" title="InnoSetup --- 使用心得记录" class="posttitle">InnoSetup --- 使用心得记录</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        11k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        10 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/InnoSetup/" rel="tag">InnoSetup</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<pre><code class="text">   [Registry]
-   Root: HKCR; Subkey: &quot;JOY-SECURITY&quot;; ValueType: string; ValueData: &quot;URL:JOY-SECURITY Protocol Handler&quot;; Flags: uninsdeletekey</code></pre>
-<h3 id="Root-必需的"><a href="#Root-必需的" class="headerlink" title="Root  (必需的)"></a>Root  (必需的)</h3><p>根键。必须是下列值中的一个:</p>
-<p>HKCR  (HKEY_CLASSES_ROOT)<br>HKCU  (HKEY_CURRENT_USER)<br>HKLM  (HKEY_LOCAL_MACHINE...</p>
-            
-            <span class="read-more"><a href="/2019/09/04/InnoSetup-Experience/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

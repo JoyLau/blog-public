@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2020-12-08T07:54:13.142Z</updated>
+  <updated>2020-12-08T09:37:44.413Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker 安装的 Maven 私服 Nexus3 因磁盘爆满而导致的无法启动的问题解决及忘记 admin 用户密码的解决方式</title>
+    <link href="http://blog.joylau.cn/2020/12/08/Docker-Nexus3/"/>
+    <id>http://blog.joylau.cn/2020/12/08/Docker-Nexus3/</id>
+    <published>2020-12-08T09:07:05.000Z</published>
+    <updated>2020-12-08T09:37:44.413Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="Maven-私服-Nexus3-因磁盘爆满而导致的无法启动的问题"><a href="#Maven-私服-Nexus3-因磁盘爆满而导致的无法启动的问题" class="headerlink" title="Maven 私服 Nexus3 因磁盘爆满而导致的无法启动的问题"></a>Maven 私服 Nexus3 因磁盘爆满而导致的无法启动的问题</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>同事在 Nexus3 私服的宿主机上部署了一个服务, 结果因为网络问题导致服务打印大量的日志信息, 将宿主机的磁盘撑爆了,经过一系列排除, 删除了大日志文件<br>重启 Nexus3 容器,发现无法启动了, 报错如下:</p><pre><code class="bash">    com.orientechnologies.orient.core.exception.OStorageException: Cannot open local storage &#39;/nexus-data/db/config&#39; with mode=rw            DB name=&quot;config&quot;            at com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage.open(OAbstractPaginatedStorage.java:323)            at com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx.open(ODatabaseDocumentTx.java:259)            at org.sonatype.nexus.orient.DatabaseManagerSupport.connect(DatabaseManagerSupport.java:178)            at org.sonatype.nexus.orient.DatabaseManagerSupport.createInstance(DatabaseManagerSupport.java:312)            at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1660)            at org.sonatype.nexus.orient.DatabaseManagerSupport.instance(DatabaseManagerSupport.java:289)            at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)            at java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)            at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)            at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:290)            at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)            at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)            at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)            at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)            at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)    Caused by: java.lang.NullPointerException: null            at com.orientechnologies.orient.core.storage.impl.local.paginated.wal.ODiskWriteAheadLog.cutTill(ODiskWriteAheadLog.java:919)            at com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage.makeFullCheckpoint(OAbstractPaginatedStorage.java:3706)            at com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage.recoverIfNeeded(OAbstractPaginatedStorage.java:3937)            at com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage.open(OAbstractPaginatedStorage.java:288)            ... 14 common frames omitted</code></pre><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ol><li>进入宿主机存放 Nexus3 数据目录下</li></ol><p>先对该目录分配用户和用户组:</p><pre><code class="shell">    chown -R 200 /home/transport/maven-repos-data</code></pre><p>分别删除 db/config 目录下和 db/component 目录下的所有的 <strong>.wal</strong> 文件 </p><pre><code class="shell">    cd /home/transport/maven-repos-data/db/config    rm -rf *.wal    cd /home/transport/maven-repos-data/db/component    rm -rf *.wal</code></pre><ol start="2"><li>找到容器中的 <strong>nexus-orient-console.jar</strong> jar 包</li></ol><pre><code class="bash">    find / -name nexus-orient-console.jar</code></pre><p>进入上述目录, 我这里是: <em>/var/lib/docker/overlay2/3b9c8d7685a03dcbb9ee69c33cd8fd9b487d980731596da27e7639854c0bb6e1/diff/opt/sonatype/nexus/lib/support</em></p><p>执行 <code>java -jar nexus-orient-console.jar</code> , 来连接数据库</p><pre><code class="shell">    connect plocal:/home/transport/maven-repos-data/db/component admin admin</code></pre><p>执行下列命令进行修复, 修复完成并退出:</p><pre><code class="bash">    rebuild index *    repair database --fix-links    disconnect    exit</code></pre><ol start="3"><li>数据目录重新授权</li></ol><pre><code class="bash">    chmod 777 -R /home/transport/maven-repos-data/db</code></pre><ol start="4"><li>重启容器</li></ol><h2 id="Maven-私服-Nexus3-忘记-admin-用户密码的解决"><a href="#Maven-私服-Nexus3-忘记-admin-用户密码的解决" class="headerlink" title="Maven 私服 Nexus3 忘记 admin 用户密码的解决"></a>Maven 私服 Nexus3 忘记 admin 用户密码的解决</h2><p>如上述步骤描述的, 运行 <strong>nexus-orient-console.jar</strong> </p><p>进入 security 数据库:</p><pre><code class="bash">    connect plocal:/home/transport/maven-repos-data/db/security admin admin</code></pre><p>将 admin 用户密码重置为 admin123</p><pre><code class="bash">    update user SET password=&quot;$shiro1$SHA-512$1024$NE+wqQq/TmjZMvfI7ENh/g==$V4yPw8T64UQ6GfJfxYq2hLsVrBY8D1v+bktfOxGdt4b/9BthpWPNUy/CBk6V9iA0nHpzYzJFWO8v/tZFtES8CA==&quot; UPSERT WHERE id=&quot;admin&quot;</code></pre><p>数据目录重新授权</p><pre><code class="bash">    chmod 777 -R /home/transport/maven-repos-data/db</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      Docker 安装的 Maven 私服 Nexus3 因磁盘爆满而导致的无法启动的问题解决及忘记 admin 用户密码的解决方式
+    
+    </summary>
+    
+    
+      <category term="Docker篇" scheme="http://blog.joylau.cn/categories/Docker%E7%AF%87/"/>
+    
+    
+      <category term="Docker" scheme="http://blog.joylau.cn/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>MacOS 开发问题备忘记录</title>
@@ -456,29 +479,6 @@
     
     
       <category term="OpenVPN" scheme="http://blog.joylau.cn/tags/OpenVPN/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VSCode 图标在 Windows 10 系统开始菜单里的背景色为黑色问题的解决</title>
-    <link href="http://blog.joylau.cn/2020/05/02/VSCode-Win10-IconStyle/"/>
-    <id>http://blog.joylau.cn/2020/05/02/VSCode-Win10-IconStyle/</id>
-    <published>2020-05-02T17:00:31.000Z</published>
-    <updated>2020-07-10T00:43:19.443Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>安装好 CODE 后， 将快捷方式固定到开始菜单， 发现图标的背景色为黑色，和其他图标一比较，显得格格不入</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>由于 VSCODE 是 electron 开发的， 通过GitHub 查看源码，发现配置文件位于： <code>https://github.com/Microsoft/vscode/blob/master/resources/win32/VisualElementsManifest.xml</code></p><p>那么安装好之后的该配置文件位于安装路径的根目录下：<code>Code.VisualElementsManifest.xml</code></p><p>修改 BackgroundColor 为透明色 rgba(0, 0, 0, 0) 即可：</p><pre><code class="xml">    &lt;Application xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;            &lt;VisualElements                    BackgroundColor=&quot;rgba(0, 0, 0, 0)&quot;                    ShowNameOnSquare150x150Logo=&quot;on&quot;                    Square150x150Logo=&quot;resources\app\resources\win32\code_150x150.png&quot;                    Square70x70Logo=&quot;resources\app\resources\win32\code_70x70.png&quot;                    ForegroundText=&quot;light&quot; /&gt;    &lt;/Application&gt;</code></pre><p>重新创建快捷方式， 再固定到开始菜单上即可看到效果。</p>]]></content>
-    
-    <summary type="html">
-    
-      安装好 CODE 后， 将快捷方式固定到开始菜单， 发现图标的背景色为黑色，和其他图标一比较，显得格格不入
-    
-    </summary>
-    
-    
-      <category term="VSCode" scheme="http://blog.joylau.cn/categories/VSCode/"/>
-    
-    
-      <category term="VSCode" scheme="http://blog.joylau.cn/tags/VSCode/"/>
     
   </entry>
   

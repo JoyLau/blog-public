@@ -150,19 +150,19 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/其他篇"><b>「
-                </b>其他篇<b> 」</b></a>
+            <a href="/categories/Git篇"><b>「
+                </b>GIT篇<b> 」</b></a>
             
-            八月 03, 2018
+            八月 07, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/08/03/BroadbandSpeedConversion/" title="宽带速率转换" class="posttitle">宽带速率转换</a></h3>
+            <a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理" class="posttitle">Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                2.6k
+                2k
             </span>
             
             
@@ -175,16 +175,18 @@
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%8A%80%E8%83%BD/" rel="tag">技能</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>昨天和别人吃饭谈起了家里宽带的问题，办了多少兆的宽带，网速能有多少等云云，对方是个小白，和他说了半天，但是有些深层次的原理我也弄不清楚，后来我上网科普了一下，现在整理如下</p>
-<h3 id="什么是宽带速率？"><a href="#什么是宽带速率？" class="headerlink" title="什么是宽带速率？"></a>什么是宽带速率？</h3><p>宽带速...</p>
+<p>这一段时间 GitHub 在国内的访问又出问题,代码提交不上去,需要在 Git 上走代理了</p>
+<ol>
+<li>需要全局 git 都走代理</li>
+</ol>
+<pre><code class="bash">    git config --global http.proxy &#39;...</code></pre>
             
-            <span class="read-more"><a href="/2018/08/03/BroadbandSpeedConversion/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +211,62 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5185283313228979);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1022335813406503);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Git篇">
+                  <b>「 </b>GIT篇<b> 」</b>
+                </a>
+            
+            八月 07, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理" class="posttitle">Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>这一段时间 GitHub 在国内的访问又出问题,代码提交不上去,需要在 Git 上走代理了</p>
+<ol>
+<li>需要全局 git 都走代理</li>
+</ol>
+<pre><code class="bash">    git config --global http.proxy &#39;socks5://127.0.0.1:1080&#39;
+    git config --global https.proxy &#39;socks5://127.0.0.1:1080&#39;</code></pre>
+<p>取消</p>
+<pre><code class="bash">    git config --global --unset http.proxy
+    git config -...</code></pre>
+            
+            <span class="read-more"><a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.10461632234257312);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -259,7 +316,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.033315657028544665);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5233824872989119);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -308,7 +365,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7588712342480808);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5086872712952026);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -381,7 +438,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.37459130080139214);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9376720151894282);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -425,68 +482,6 @@
 <li>进入  <code>/var...</code></li></ol>
             
             <span class="read-more"><a href="/2018/07/19/Linux-Cancel-DenyHosts/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6478796268264304);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Ubuntu篇">
-                  <b>「 </b>UBUNTU篇<b> 」</b>
-                </a>
-            
-            七月 13, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/07/13/Ubuntu-Fonts-Monaco/" title="Ubuntu 最佳编程字体 Monaco 的优化显示" class="posttitle">Ubuntu 最佳编程字体 Monaco 的优化显示</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p>自从入了 MBP 后就被其默认的字体显示效果吸引了，在编辑器里写代码更是舒服，于是想着把 Mac 下的字体也移植到 Ubuntu 下，但是显示效果并不是特别的好，尤其是粗体字的显示</p>
-<p>左侧使用前，右侧使用后</p>
-<figure class="half"></figure>
-
-<figure class="half"></figure>
-
-<figure class="half"></figure>
-
-<ol>
-<li>该字体为开源字体，字体地址： <a href="https://github.com/vjpr/monaco-bold" target="_blank" rel="noopener">https://github.com/vjpr/monaco-bold</a></li>
-<li>复制到 <code>/usr/share/fonts</code></li>
-<li><code>fc-cache -fv</code> 生成字体缓存</li>
-</ol>
-<p>我的 1080P 分辨率，我的配置如下：<br></p>
-<p>看到一篇关于 Ubuntu 字体渲染问题的文章: 修复 ...</p>
-            
-            <span class="read-more"><a href="/2018/07/13/Ubuntu-Fonts-Monaco/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

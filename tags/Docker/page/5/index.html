@@ -153,39 +153,39 @@
             <a href="/categories/Docker篇"><b>「
                 </b>DOCKER篇<b> 」</b></a>
             
-            十一月 19, 2018
+            十一月 20, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/11/19/Docker-PrivateRepo/" title="Docker 私服搭建记录" class="posttitle">Docker 私服搭建记录</a></h3>
+            <a href="/2018/11/20/Docker-OpenVPN/" title="Docker OpenVPN 服务搭建记录" class="posttitle">Docker OpenVPN 服务搭建记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                6.6k
+                9.1k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                6 mins.
+                8 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenVPN/" rel="tag">OpenVPN</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
+<p>出差在外或者在家工作都需要连接公司网络,没有 VPN 怎么能行</p>
 <ol>
-<li><p>docker pull registry</p>
-</li>
-<li><p>docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 –restart=always...</p></li></ol>
+<li>全局变量配置: OVPN_DATA=”/home/joylau/ovpn-data”</li>
+<li><code>mkdir ${OVPN_DATA}</code> , <code>cd...</code></li></ol>
             
-            <span class="read-more"><a href="/2018/11/19/Docker-PrivateRepo/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/11/20/Docker-OpenVPN/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +210,58 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.36320648972071057);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7597685893061017);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            十一月 20, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/11/20/Docker-OpenVPN/" title="Docker OpenVPN 服务搭建记录" class="posttitle">Docker OpenVPN 服务搭建记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        9.1k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        8 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenVPN/" rel="tag">OpenVPN</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>出差在外或者在家工作都需要连接公司网络,没有 VPN 怎么能行</p>
+<ol>
+<li>全局变量配置: OVPN_DATA=”/home/joylau/ovpn-data”</li>
+<li><code>mkdir ${OVPN_DATA}</code> , <code>cd ${OVPN_DATA}</code></li>
+<li>这里我使用的是 tcp, udp 的好像没映射, 我用起来有问题,后来换的 tcp 方式, <code>docker run -v ${OVPN_DATA}:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u tcp://公网 ...</code></li></ol>
+            
+            <span class="read-more"><a href="/2018/11/20/Docker-OpenVPN/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.09654598458468588);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -260,7 +311,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6567365745510474);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9312916045860227);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -312,7 +363,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2617239616317293);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.2066803882906243);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -367,7 +418,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.008177031312033511);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5646344768095886);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -406,63 +457,6 @@
 <h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>docker 守护进程绑定至 Unix 套接字，而不是 TCP 端口。默认情况下，该 Unix 套接字由用户 root 所有，而其他用户只能使用 sudo 访问它...</p>
             
             <span class="read-more"><a href="/2018/07/05/Docker-Manager-NonRoot/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.38480855691389904);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            三月 22, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/03/22/Docker-Command/" title="Docker常用命令备忘" class="posttitle">Docker常用命令备忘</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.9k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><ul>
-<li>安装： <code>yum install docker</code></li>
-<li>卸载： <code>yum remove docker</code></li>
-<li>启动： <code>systemctl start docker</code></li>
-<li>开机自启： <code>systemctl enable docker</code></li>
-</ul>
-<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><pre><code class="bash">    FROM java:8
-    MAINTAINER joylau
-    ADD joyalu-0.0.1-SNAPSHOT.jar joylau.jar
-    EXPOSE 8080
-    ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;...</code></pre>
-            
-            <span class="read-more"><a href="/2017/03/22/Docker-Command/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

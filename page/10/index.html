@@ -150,41 +150,40 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Docker篇"><b>「
-                </b>DOCKER篇<b> 」</b></a>
+            <a href="/categories/SpringBoot篇"><b>「
+                </b>SPRINGBOOT篇<b> 」</b></a>
             
-            十一月 19, 2019
+            十一月 20, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/11/19/Docker-Logs/" title="Docker 日志信息" class="posttitle">Docker 日志信息</a></h3>
+            <a href="/2019/11/20/SpringBoot-Spel/" title="Spring EL 表达式 ${} 和" class="posttitle">Spring EL 表达式 ${} 和</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.3k
+                4.1k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                4 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p>docker 容器启动, 通过 docker logs -f container 可以实时查看日志</p>
-<p>但是控制台输出的日志太多,会怎么样,容器里控制台输出的日志在宿主机什么位置?</p>
-<p>有时容器输出太多,运...</p>
+
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>个人理解:<br><code>${}</code> : 用于加载外部文件中指定key的值<br><code>#{}</code> : 功能更强大的SpEl表达式，将内容赋值给属性<br><code>#{…}</code> 和 <code>${…}</code> 可以混合使用，但是必须<code>#{}</code>外面，${}在里面,#{ ‘${...</p>
             
-            <span class="read-more"><a href="/2019/11/19/Docker-Logs/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/11/20/SpringBoot-Spel/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +208,59 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.14652338659369835);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8940126813777434);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            十一月 20, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/11/20/SpringBoot-Spel/" title="Spring EL 表达式 ${} 和" class="posttitle">Spring EL 表达式 ${} 和</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        4.1k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        4 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>个人理解:<br><code>${}</code> : 用于加载外部文件中指定key的值<br><code>#{}</code> : 功能更强大的SpEl表达式，将内容赋值给属性<br><code>#{…}</code> 和 <code>${…}</code> 可以混合使用，但是必须<code>#{}</code>外面，${}在里面,#{ ‘${}’ } ，注意单引号，注意不能反过来</p>
+<h3 id="功能"><a href="#功能" class="headerlink" title="#{} 功能"></a><strong>#{}</strong> 功能</h3><ol>
+<li>直接量表达式: “#{‘Hello World’}”</li>
+<li>使用java代码new/instance of: 此方法只能是java.lang 下的类才可以省略包名 #{“new Spring(‘Hello World’)”}</li>
+<li>使用T(Type): 使用...</li></ol>
+            
+            <span class="read-more"><a href="/2019/11/20/SpringBoot-Spel/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.32123622683417596);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -260,7 +311,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7824731899014861);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4419442153331419);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -310,7 +361,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.27378519427310755);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.09293809013084253);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -371,7 +422,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.46569478206471726);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.79160734094239);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -421,62 +472,6 @@
         &quot;babel-register&quot;: &quot...</code></pre>
             
             <span class="read-more"><a href="/2019/10/26/Node-Use-ES6/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.19869780726145447);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Gradle篇">
-                  <b>「 </b>GRADLE篇<b> 」</b>
-                </a>
-            
-            九月 28, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/09/28/Gradle-Update-5-Questions/" title="Gradle 升级到 5.x+ 之后遇到的问题记录" class="posttitle">Gradle 升级到 5.x+ 之后遇到的问题记录</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="lombok-依赖编译报错"><a href="#lombok-依赖编译报错" class="headerlink" title="lombok 依赖编译报错"></a>lombok 依赖编译报错</h3><p>在gradle4.7以后对于加入依赖lombok方式发生变化，gradle4.7版本以前，可以直接如下引用：</p>
-<pre><code class="groovy">    compile(&quot;org.projectlombok:lombok:1.18.2&quot;)或者compileOnly(&quot;org.projectlombok:lombok:1.18.2&quot;)</code></pre>
-<p>在gradle5.0这种方式会产生警告,在gradle5.0里面会直接报编译错误</p>
-<p>有 2 中解决方式:</p>
-<ol>
-<li>官方推荐</li>
-</ol>
-<p>开发依赖：</p>
-<pre><code class="groovy">    annotationPro...</code></pre>
-            
-            <span class="read-more"><a href="/2019/09/28/Gradle-Update-5-Questions/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

@@ -150,44 +150,39 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/MacOS篇"><b>「
-                </b>MACOS篇<b> 」</b></a>
+            <a href="/categories/Docker篇"><b>「
+                </b>DOCKER篇<b> 」</b></a>
             
             十二月 08, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/12/08/MacOS-Dev-Questions/" title="MacOS 开发问题备忘记录" class="posttitle">MacOS 开发问题备忘记录</a></h3>
+            <a href="/2020/12/08/Docker-Nexus3/" title="Docker 安装的 Maven 私服 Nexus3 因磁盘爆满而导致的无法启动的问题解决及忘记 admin 用户密码的解决方式" class="posttitle">Docker 安装的 Maven 私服 Nexus3 因磁盘爆满而导致的无法启动的问题解决及忘记 admin 用户密码的解决方式</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.7k
+                4.8k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                2 mins.
+                4 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacBookPro/" rel="tag">MacBookPro</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<h3 id="清理-brew"><a href="#清理-brew" class="headerlink" title="清理 brew"></a>清理 brew</h3><ol>
-<li>brew cleanup</li>
-<li>brew cleanup –prune 1 #清理早于 1 天的</li>
-</ol>
-<h3 id="防止-mac-锁屏后关闭显示器的方法"><a href="#防止-mac-锁屏后关闭显示器的方法" class="headerlink" title="防止 mac 锁屏后关闭显示器的方法"></a>防止 mac 锁屏后关闭显示器的方法</h3><p>brew cask install keepingyouawake...</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>同事在 Nexus3 私服的宿主机上部署了一个服务, 结果因为网络问题导致服务打印大量的日志信息, 将宿主机的磁盘撑爆了,经过一系列排除, 删除了大日志文件<br>重启 Nexus3 容器,发现无法启动...</p>
             
-            <span class="read-more"><a href="/2020/12/08/MacOS-Dev-Questions/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/12/08/Docker-Nexus3/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -212,7 +207,65 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://image.joylau.cn/blog/%E6%95%88%E6%9E%9C%E5%9B%BE-1.JPG?0.6397059130556617);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6196555097028329);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/MacOS篇">
+                  <b>「 </b>MACOS篇<b> 」</b>
+                </a>
+            
+            十二月 08, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/12/08/MacOS-Dev-Questions/" title="MacOS 开发问题备忘记录" class="posttitle">MacOS 开发问题备忘记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.7k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacBookPro/" rel="tag">MacBookPro</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="清理-brew"><a href="#清理-brew" class="headerlink" title="清理 brew"></a>清理 brew</h3><ol>
+<li>brew cleanup</li>
+<li>brew cleanup –prune 1 #清理早于 1 天的</li>
+</ol>
+<h3 id="防止-mac-锁屏后关闭显示器的方法"><a href="#防止-mac-锁屏后关闭显示器的方法" class="headerlink" title="防止 mac 锁屏后关闭显示器的方法"></a>防止 mac 锁屏后关闭显示器的方法</h3><p>brew cask install keepingyouawake</p>
+<h3 id="zsh-对-docker-命令的自动提示"><a href="#zsh-对-docker-命令的自动提示" class="headerlink" title="zsh 对 docker 命令的自动提示"></a>zsh 对 docker 命令的自动提示</h3><ol>
+<li>首先确定安装好了 oh-my-zsh</li>
+<li>在文件 <strong>~/.zshrc</strong> 文件中启用 docker docker-compose, 下面是我启用的插件</li>
+</ol>
+<p>参考: <a href="https://docs.docker.com/compose/completion/" target="_blank" rel="noopener">https://docs.docker.com/compose/completion/</a></p>
+<pre><code class="bash">    ...</code></pre>
+            
+            <span class="read-more"><a href="/2020/12/08/MacOS-Dev-Questions/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://image.joylau.cn/blog/%E6%95%88%E6%9E%9C%E5%9B%BE-1.JPG?0.4982294113724841);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -265,7 +318,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5010163628744482);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.034838277055178724);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -313,7 +366,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(https://pic4.zhimg.com/v2-f10a8fd2e6852595707a23bc0bf58871_r.jpg?0.7006343085623372);">
+            url(https://pic4.zhimg.com/v2-f10a8fd2e6852595707a23bc0bf58871_r.jpg?0.4578951010021417);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -355,63 +408,6 @@
     defaults write com.microsoft.Excel AppleLanguages &#39;(&quot;zh_CN...</code></pre>
             
             <span class="read-more"><a href="/2020/10/12/Daily-Mac-Office/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.22528672716387033);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Linux篇">
-                  <b>「 </b>LINUX篇<b> 」</b>
-                </a>
-            
-            十月 09, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/10/09/Linux-Install-Bpytop/" title="CentOS 7 安装 bpytop 记录" class="posttitle">CentOS 7 安装 bpytop 记录</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        969
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在 CentOS 8 上安装 bpytop 很简单, 安装 epel 库后执行 <code>dnf install bpytop</code> 即可, 但是在 CentOS 7 的 epel 库里却没有这个 bpytop 包, 这里介绍如何在 CentOS 7 下安装 bpytop</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
-<li>安装 epel 库</li>
-</ol>
-<pre><code class="bash">    yum install epel-release</code></pre>
-<ol start="2">
-<li>安装 snapd 并启用 snapd 套接字</li>
-</ol>
-<pre><code class="bash">    yum install snapd
-    systemctl enable --now snapd.socket...</code></pre>
-            
-            <span class="read-more"><a href="/2020/10/09/Linux-Install-Bpytop/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

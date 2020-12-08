@@ -153,38 +153,39 @@
             <a href="/categories/Docker篇"><b>「
                 </b>DOCKER篇<b> 」</b></a>
             
-            十月 26, 2018
+            十一月 19, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/10/26/Docker-ownCloud/" title="记录 -- Docker 三种方式部署 ownCloud" class="posttitle">记录 -- Docker 三种方式部署 ownCloud</a></h3>
+            <a href="/2018/11/19/Docker-PrivateRepo/" title="Docker 私服搭建记录" class="posttitle">Docker 私服搭建记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                7.3k
+                6.6k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                7 mins.
+                6 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/ownCloud/" rel="tag">ownCloud</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>ownCloud 除了传统的部署方式,在如今 docker 大行其道的环境下,使用 docker 部署 ownCloud 才是最方便的</p>
-<h3 id="第一种-owncloud-镜像直接安装"><a href="#第一种-owncloud-镜像直接安装" class="headerlink" title="第一种 owncloud 镜像直接安装"></a>第一种 owncloud 镜像直接安装</h3><p>直接部署 owncloud...</p>
+<ol>
+<li><p>docker pull registry</p>
+</li>
+<li><p>docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 –restart=always...</p></li></ol>
             
-            <span class="read-more"><a href="/2018/10/26/Docker-ownCloud/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/11/19/Docker-PrivateRepo/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +210,57 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.08655528262333734);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4455049448310342);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            十一月 19, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/11/19/Docker-PrivateRepo/" title="Docker 私服搭建记录" class="posttitle">Docker 私服搭建记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        6.6k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        6 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<ol>
+<li><p>docker pull registry</p>
+</li>
+<li><p>docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 –restart=always –privileged=true –name registry registry:latest<br> 参数说明<br> -itd：在容器中打开一个伪终端进行交互操作，并在后台运行；<br> -v：把宿主机的/data/registry目录绑定 到 容器/var/lib/registry目录(这个目录是registry...</p></li></ol>
+            
+            <span class="read-more"><a href="/2018/11/19/Docker-PrivateRepo/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.048677975279149965);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -261,7 +312,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6003607181051187);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.03870588148523879);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -315,7 +366,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.07059533779749239);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.2322963769134725);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -365,7 +416,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.11226720694408732);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.3180020321013548);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -405,61 +456,6 @@
 <p>项目中我写的只是其中的一个模块,页面的代码...</p>
             
             <span class="read-more"><a href="/2018/08/09/Jquery-Load-Plugins/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.43959909591391777);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Git篇">
-                  <b>「 </b>GIT篇<b> 」</b>
-                </a>
-            
-            八月 07, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理" class="posttitle">Git 使用 ss 代理和 Ubuntu 使用 ss 全局代理</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>这一段时间 GitHub 在国内的访问又出问题,代码提交不上去,需要在 Git 上走代理了</p>
-<ol>
-<li>需要全局 git 都走代理</li>
-</ol>
-<pre><code class="bash">    git config --global http.proxy &#39;socks5://127.0.0.1:1080&#39;
-    git config --global https.proxy &#39;socks5://127.0.0.1:1080&#39;</code></pre>
-<p>取消</p>
-<pre><code class="bash">    git config --global --unset http.proxy
-    git config -...</code></pre>
-            
-            <span class="read-more"><a href="/2018/08/07/Git-Proxy-And-Ubuntu-Global-Proxy/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
