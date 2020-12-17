@@ -153,22 +153,22 @@
             <a href="/categories/Docker篇"><b>「
                 </b>DOCKER篇<b> 」</b></a>
             
-            三月 22, 2017
+            七月 05, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2017/03/22/Docker-Command/" title="Docker常用命令备忘" class="posttitle">Docker常用命令备忘</a></h3>
+            <a href="/2018/07/05/Docker-Manager-NonRoot/" title="以非 root 用户身份管理 Docker" class="posttitle">以非 root 用户身份管理 Docker</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                2.9k
+                1.4k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                3 mins.
+                1 mins.
             </span>
             
             
@@ -180,13 +180,9 @@
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><ul>
-<li>安装： <code>yum install docker</code></li>
-<li>卸载： <code>yum remove docker</code></li>
-<li>启动： <code>systemctl start docker</code></li>
-<li>开机自启： <code>systemctl enable...</code></li></ul>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。<br>有没有什么方式能够解...</p>
             
-            <span class="read-more"><a href="/2017/03/22/Docker-Command/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/07/05/Docker-Manager-NonRoot/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -211,7 +207,55 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.043349595755433734);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.09064589757568298);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            七月 05, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/07/05/Docker-Manager-NonRoot/" title="以非 root 用户身份管理 Docker" class="posttitle">以非 root 用户身份管理 Docker</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.4k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。<br>有没有什么方式能够解决？<br>官方文档地址： <a href="https://docs.docker.com/install/linux/linux-postinstall/" target="_blank" rel="noopener">https://docs.docker.com/install/linux/linux-postinstall/</a></p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>docker 守护进程绑定至 Unix 套接字，而不是 TCP 端口。默认情况下，该 Unix 套接字由用户 root 所有，而其他用户只能使用 sudo 访问它...</p>
+            
+            <span class="read-more"><a href="/2018/07/05/Docker-Manager-NonRoot/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.30595602905313224);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -268,7 +312,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.06752885868303182);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1841869904919795);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">

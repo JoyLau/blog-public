@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>关于 Docker -p 穿透防火墙 firewalld 的问题的研究记录</title>
+      <link href="/2020/12/17/Docker-Passed-Firewalld/"/>
+      <url>/2020/12/17/Docker-Passed-Firewalld/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>使用 docker run -p 或者 docker compose 启动暴露的端口的容器, 会直接穿透防火墙, 不受系统防火墙的 firewalld 的管控</p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>docker 容器会在启动的时候向 iptables 添加转发的规则<br>而 firewalld 也是通过操作 iptables 来实现的防火墙的功能</p><pre><code class="bash">    [root@centOS7 es-test]# iptables -L DOCKER    Chain DOCKER (3 references)    target     prot opt source               destination             ACCEPT     tcp  --  anywhere             172.18.0.2           tcp dpt:xic    ACCEPT     tcp  --  anywhere             172.20.0.2           tcp dpt:vrace    ACCEPT     tcp  --  anywhere             172.20.0.2           tcp dpt:wap-wsp</code></pre><p>可以看到是 anywhere</p><h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><h4 id="第一种-禁用-docker-操作-iptables"><a href="#第一种-禁用-docker-操作-iptables" class="headerlink" title="第一种 禁用 docker 操作 iptables"></a>第一种 禁用 docker 操作 iptables</h4><p>在 /etc/docker/daemon.json 配置禁用 iptables: </p><pre><code class="json">    {&quot;iptables&quot;: false}</code></pre><p>之后重启 docker 服务, 可以看到 docker 不会自动往 iptables 里添加规则了</p><p>这种方式有个弊端: 就是容器之间无法互相访问, 而且容器里的程序也无法访问外部网络</p><p>解决方式:<br>在防火墙里开始 net 转发:</p><p>配置 /etc/firewalld/zones/public.xml</p><pre><code class="xml">    &lt;zone&gt;      &lt;short&gt;Public&lt;/short&gt;      &lt;description&gt;For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.&lt;/description&gt;      &lt;service name=&quot;ssh&quot;/&gt;      &lt;service name=&quot;dhcpv6-client&quot;/&gt;      &lt;masquerade/&gt;     &lt;/zone&gt;</code></pre><p>或者使用下面的方式添加 iptables 规则</p><pre><code class="bash">    firewall-cmd --zone=public --add-masquerade</code></pre><p>之后使用 firewall-cmd –restart 或者 systemctl restart firewalld 使配置生效即可</p><p>但是这样做还有个问题, 就是所有访问容器的程序对于容器来说 IP 的变成的网关的 IP<br>这样的问题对于一些需要特定限制一些 IP 地址来源的应用和使用 IP 地址来作区分的应用来说就有很大问题, 比如注册中心<br>目前没有找到什么方式解决这个问题</p><h4 id="第二种-容器直接指定主机网络"><a href="#第二种-容器直接指定主机网络" class="headerlink" title="第二种 容器直接指定主机网络"></a>第二种 容器直接指定主机网络</h4><p>docker run 的时候不显式暴露端口 -p 什么的, 使用 –net host 的形式直接将容器的端口绑定到宿主机上</p><p>docker compose 运行的时候使用:</p><pre><code class="yaml">    version:  &#39;3.2&#39;    services:      abc:        network_mode: &quot;host&quot;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docker篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker 安装的 Maven 私服 Nexus3 因磁盘爆满而导致的无法启动的问题解决及忘记 admin 用户密码的解决方式</title>
       <link href="/2020/12/08/Docker-Nexus3/"/>
       <url>/2020/12/08/Docker-Nexus3/</url>

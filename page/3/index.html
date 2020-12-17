@@ -143,48 +143,46 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(/img/cover.jpg);">
+                url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Ubuntu篇"><b>「
-                </b>UBUNTU篇<b> 」</b></a>
+            <a href="/categories/SpringBoot篇"><b>「
+                </b>SPRINGBOOT篇<b> 」</b></a>
             
-            八月 08, 2020
+            九月 01, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="Ubuntu --- 调整状态栏托盘图标的顺序" class="posttitle">Ubuntu --- 调整状态栏托盘图标的顺序</a></h3>
+            <a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.4k
+                7.2k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                7 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>继上一篇文章 【indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控】，这里我想让监控的数据放到状态栏的最左侧， 可发现事情并不简单。。。</p>
-<p>因为 Ubuntu 下并不像 ...</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>有时我们在 gradle 里定义了一些属性, 想在 springboot 的 application 配置文件里使用, 这里介绍这种处理方式, 并且将配置应用于 springboot 的自定义 ...</p>
             
-            <span class="read-more"><a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +207,64 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.08450027081826783);">
+            url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png?0.7281599124204932);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            九月 01, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        7.2k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        7 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>有时我们在 gradle 里定义了一些属性, 想在 springboot 的 application 配置文件里使用, 这里介绍这种处理方式, 并且将配置应用于 springboot 的自定义 Banner 图中</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>配置 build.gradle</li>
+</ol>
+<p>添加以下配置</p>
+<pre><code class="groovy">    processResources {
+        filesMatching(&#39;application.yml&#39;) {
+            expand(project.properties)
+        }
+    }</code></pre>
+<p>如果想将 gradle 的配置应用于所...</p>
+            
+            <span class="read-more"><a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.44992903297688214);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -262,7 +317,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.05889939456439319);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9232725077850876);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -317,7 +372,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.42845540824513595);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7320969272984788);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -370,7 +425,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/Awtrix-preview-png.png?0.3793337362138973);">
+            url(//image.joylau.cn/blog/Awtrix-preview-png.png?0.9097536503478862);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -428,58 +483,6 @@
     &#39;This Class...</code></pre>
             
             <span class="read-more"><a href="/2020/08/02/Awtrix-BlogViews/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6356143569662289);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/IntelliJ IDEA篇">
-                  <b>「 </b>INTELLIJ IDEA篇<b> 」</b>
-                </a>
-            
-            七月 20, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/07/20/IntelliJIDEA-Proxy/" title="IntelliJ 软件代理报错：You have JVM property https.proxyHost set.." class="posttitle">IntelliJ 软件代理报错：You have JVM property https.proxyHost set..</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        566
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/IntelliJ-IDEA/" rel="tag">IntelliJ IDEA</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h3><pre><code class="shell">    You have JVM property https.proxyHost set to &#39;...&#39;.
-    This may lead to incorrect behaviour. Proxy should be set in Settings | Proxy</code></pre>
-<p>这是由于本地开启了科学上网代理服务造成的</p>
-<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>select Help -&gt; Edit Custom VM Options add below:</p>
-<p>-Dhttp.proxyHost<br>-Dhttp.proxyPort...</p>
-            
-            <span class="read-more"><a href="/2020/07/20/IntelliJIDEA-Proxy/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

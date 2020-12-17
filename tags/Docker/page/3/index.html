@@ -150,39 +150,40 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Docker篇"><b>「
-                </b>DOCKER篇<b> 」</b></a>
+            <a href="/categories/群晖篇"><b>「
+                </b>群晖篇<b> 」</b></a>
             
-            四月 08, 2019
+            九月 09, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/04/08/Docker-Start-Error/" title="Docker 启动报错： Error starting daemon： Error initializing network controller： list bridge addresses failed： no available network" class="posttitle">Docker 启动报错： Error starting daemon： Error initializing network controller： list bridge addresses failed： no available network</a></h3>
+            <a href="/2019/09/09/Synology-Docker-Insecure/" title="群晖系列 --- 添加私有仓库无法下载镜像问题的解决" class="posttitle">群晖系列 --- 添加私有仓库无法下载镜像问题的解决</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                6.6k
+                977
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                6 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E7%BE%A4%E6%99%96/" rel="tag">群晖</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p>Docker 启动报错： Error starting daemon: Error initializing network controller: list bridge addresses failed...</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在群晖的 Docker 组件里添加了个人的私有仓库,发现却无法下载镜像….</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>在 Docker 组件里添加新的仓库,并设置为使用仓库,发现在仓库里下载镜像总是失败,状态栏提示查看日志,可是在日...</p>
             
-            <span class="read-more"><a href="/2019/04/08/Docker-Start-Error/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/09/09/Synology-Docker-Insecure/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -207,7 +208,59 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9759718643776525);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6113978815311103);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/群晖篇">
+                  <b>「 </b>群晖篇<b> 」</b>
+                </a>
+            
+            九月 09, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/09/09/Synology-Docker-Insecure/" title="群晖系列 --- 添加私有仓库无法下载镜像问题的解决" class="posttitle">群晖系列 --- 添加私有仓库无法下载镜像问题的解决</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        977
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E7%BE%A4%E6%99%96/" rel="tag">群晖</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在群晖的 Docker 组件里添加了个人的私有仓库,发现却无法下载镜像….</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>在 Docker 组件里添加新的仓库,并设置为使用仓库,发现在仓库里下载镜像总是失败,状态栏提示查看日志,可是在日志里总看不到东西</p>
+<p>想了想,可能是新添加的 docker 私服是 http 的服务,而不是 https</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ol>
+<li>于是我使用 GateOne 组件进入 shell </li>
+<li>使用命令 docker pull xxx:xxx, 发现报错 <code>Get https://172.18.18.90:5000/v2/: http...</code></li></ol>
+            
+            <span class="read-more"><a href="/2019/09/09/Synology-Docker-Insecure/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.4162146564203575);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -257,7 +310,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8889129680798451);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7746720539162915);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -310,7 +363,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3854234782003798);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.02010901736577142);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -372,7 +425,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9863830197846848);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.3996724659332056);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -420,56 +473,6 @@
 <li>初始化 swarm 集群 : <code>docker...</code></li></ol>
             
             <span class="read-more"><a href="/2019/02/18/Docker-Swarm-Cluster/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.428725236983416);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            一月 25, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/01/25/Docker-RemoveDeadContainer/" title="Docker 删除 状态为Dead 的容器" class="posttitle">Docker 删除 状态为Dead 的容器</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        6.4k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        6 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><p>因为一些不正确的操作,导致容器的状态变成了 dead</p>
-<pre><code class="bash">    CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS                      PORTS                                                              NAMES
-    c21c993c5107        34.0.7.183:5000/joylau/traffic-service:2.1.7          &quot;java -Djava.secur...&quot;   2 weeks ago         Dead                                                                                           traffic-service
-    dfbd1cdb31c2        34.0.7.183:5000/joylau/traffic...</code></pre>
-            
-            <span class="read-more"><a href="/2019/01/25/Docker-RemoveDeadContainer/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

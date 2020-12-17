@@ -150,40 +150,40 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/InnoSetup篇"><b>「
-                </b>INNOSETUP篇<b> 」</b></a>
+            <a href="/categories/群晖篇"><b>「
+                </b>群晖篇<b> 」</b></a>
             
-            九月 04, 2019
+            九月 09, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/09/04/InnoSetup-Experience/" title="InnoSetup --- 使用心得记录" class="posttitle">InnoSetup --- 使用心得记录</a></h3>
+            <a href="/2019/09/09/Synology-Docker-Insecure/" title="群晖系列 --- 添加私有仓库无法下载镜像问题的解决" class="posttitle">群晖系列 --- 添加私有仓库无法下载镜像问题的解决</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                11k
+                977
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                10 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/InnoSetup/" rel="tag">InnoSetup</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E7%BE%A4%E6%99%96/" rel="tag">群晖</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<pre><code class="text">   [Registry]
-   Root: HKCR; Subkey: &quot;JOY-SECURITY&quot;; ValueType: string; ValueData: &quot;URL:JOY...</code></pre>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在群晖的 Docker 组件里添加了个人的私有仓库,发现却无法下载镜像….</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>在 Docker 组件里添加新的仓库,并设置为使用仓库,发现在仓库里下载镜像总是失败,状态栏提示查看日志,可是在日...</p>
             
-            <span class="read-more"><a href="/2019/09/04/InnoSetup-Experience/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/09/09/Synology-Docker-Insecure/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -208,7 +208,59 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5572165368918451);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7612604995678263);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/群晖篇">
+                  <b>「 </b>群晖篇<b> 」</b>
+                </a>
+            
+            九月 09, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/09/09/Synology-Docker-Insecure/" title="群晖系列 --- 添加私有仓库无法下载镜像问题的解决" class="posttitle">群晖系列 --- 添加私有仓库无法下载镜像问题的解决</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        977
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E7%BE%A4%E6%99%96/" rel="tag">群晖</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在群晖的 Docker 组件里添加了个人的私有仓库,发现却无法下载镜像….</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>在 Docker 组件里添加新的仓库,并设置为使用仓库,发现在仓库里下载镜像总是失败,状态栏提示查看日志,可是在日志里总看不到东西</p>
+<p>想了想,可能是新添加的 docker 私服是 http 的服务,而不是 https</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ol>
+<li>于是我使用 GateOne 组件进入 shell </li>
+<li>使用命令 docker pull xxx:xxx, 发现报错 <code>Get https://172.18.18.90:5000/v2/: http...</code></li></ol>
+            
+            <span class="read-more"><a href="/2019/09/09/Synology-Docker-Insecure/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.31832138500938023);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -258,7 +310,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2059355799008058);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6091477910179088);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -310,7 +362,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7667768589866346);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.20719563938881547);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -368,7 +420,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.17903385923657367);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1115140553877294);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -410,62 +462,6 @@
     public class...</code></pre>
             
             <span class="read-more"><a href="/2019/08/19/SpringBoot-SpringSecurity-Anonymous/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://image.joylau.cn/blog/Somix_E95x_IMG_0547.JPG?0.5086988711922751);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/日常折腾篇">
-                  <b>「 </b>日常折腾篇<b> 」</b>
-                </a>
-            
-            七月 26, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/07/26/Daily-Somix-E95X/" title="日常折腾 --- 硕美科 E95x 耳机复活记" class="posttitle">日常折腾 --- 硕美科 E95x 耳机复活记</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.2k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/" rel="tag">日常折腾</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>我这款硕美科耳机是 2015 年入手的,到现在已经 4 年多了,日常使用中汗水已经腐蚀了耳机的皮套和头悬梁的皮套<br>但是耳机本身是没有任何问题的,只是用起来经常掉皮,我并不想重新再买一个<br>于是我决定在淘宝上买些配件<br>把原来腐蚀掉的皮套给换掉</p>
-<p>就下面 2 个皮套和一个头悬梁<br></p>
-<p>下面是我耳机没有更换前的模样,掉皮,平时我都是用纸巾包一层在戴到头上使用</p>
-<p><br><br>  </p>
-<ol>
-<li><p>先硬撕掉耳机保护套,撕不掉用剪子剪掉</p>
-</li>
-<li><p>撕掉之后使用扁平的螺丝刀沿着边缘将卡口翘出来,像下面这样<br><br></p>
-</li>
-<li><p>之后将皮套套到卡口的圈中,注意皮套上的一圈洞和卡口上...</p></li></ol>
-            
-            <span class="read-more"><a href="/2019/07/26/Daily-Somix-E95X/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

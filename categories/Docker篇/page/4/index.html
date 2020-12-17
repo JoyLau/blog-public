@@ -153,37 +153,38 @@
             <a href="/categories/Docker篇"><b>「
                 </b>DOCKER篇<b> 」</b></a>
             
-            十二月 19, 2018
+            一月 23, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/12/19/Docker-Exec-Failed/" title="Docker exec failed docker 无法进入容器问题解决" class="posttitle">Docker exec failed docker 无法进入容器问题解决</a></h3>
+            <a href="/2019/01/23/Docker-Elasticsearch/" title="Docker elasticsearch 集群搭建记录" class="posttitle">Docker elasticsearch 集群搭建记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                912
+                5.1k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                5 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="无法进入容器"><a href="#无法进入容器" class="headerlink" title="无法进入容器"></a>无法进入容器</h3><p>docker exec -it name /bin/sh 失败,<br>查看容器 inspect 报错信息如下:</p>
-<pre><code class="bash">    pc error: code = 2 desc = oci runtime error...</code></pre>
+<h3 id="env"><a href="#env" class="headerlink" title=".env"></a>.env</h3><pre><code class=".env">    PRIVATE_REPO=34.0.7.183:5000
+    ES_VERSION=6.4.3
+    ELASTICSEARCH_CLUSTER_DIR=/Users/joylau/dev/idea...</code></pre>
             
-            <span class="read-more"><a href="/2018/12/19/Docker-Exec-Failed/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/01/23/Docker-Elasticsearch/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -208,7 +209,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.12303146491514028);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.059543167310387224);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            一月 23, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/01/23/Docker-Elasticsearch/" title="Docker elasticsearch 集群搭建记录" class="posttitle">Docker elasticsearch 集群搭建记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        5.1k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        5 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="env"><a href="#env" class="headerlink" title=".env"></a>.env</h3><pre><code class=".env">    PRIVATE_REPO=34.0.7.183:5000
+    ES_VERSION=6.4.3
+    ELASTICSEARCH_CLUSTER_DIR=/Users/joylau/dev/idea-project/dev-app/es-doc-office/elasticsearch-cluster</code></pre>
+<h3 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h3><pre><code class="yaml">    version: &#39;2.2&#39;
+    services:
+      node-0:
+        image: ${PRIVATE_REPO}/joylau/es-doc:...</code></pre>
+            
+            <span class="read-more"><a href="/2019/01/23/Docker-Elasticsearch/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.09812513130834288);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -258,7 +312,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8629701737413602);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8073868567888574);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -309,7 +363,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.35622889951048875);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9160418795355458);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -365,7 +419,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.25305316181419535);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.46217159292732846);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -407,56 +461,6 @@
 <li>这里我使用的是 tcp, udp 的好像没映射, 我用起来有问题,后来换的 tcp 方式, <code>docker run -v ${OVPN_DATA}:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u tcp://公网 ...</code></li></ol>
             
             <span class="read-more"><a href="/2018/11/20/Docker-OpenVPN/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.760552745913393);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            十一月 19, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/11/19/Docker-PrivateRepo/" title="Docker 私服搭建记录" class="posttitle">Docker 私服搭建记录</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        6.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        6 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<ol>
-<li><p>docker pull registry</p>
-</li>
-<li><p>docker run -itd -v /data/registry:/var/lib/registry -p 5000:5000 –restart=always –privileged=true –name registry registry:latest<br> 参数说明<br> -itd：在容器中打开一个伪终端进行交互操作，并在后台运行；<br> -v：把宿主机的/data/registry目录绑定 到 容器/var/lib/registry目录(这个目录是registry...</p></li></ol>
-            
-            <span class="read-more"><a href="/2018/11/19/Docker-PrivateRepo/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
