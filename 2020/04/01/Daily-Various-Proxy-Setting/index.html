@@ -90,7 +90,7 @@
             animation-duration: 1.2s;
             background-image: 
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-                url(http://nas.joylau.cn:5016/1920x1080?0.6524394063143066) ">
+                url(http://nas.joylau.cn:5016/1920x1080?0.41689406254841077) ">
         </div>
         <div class="else">
             <p class="animated fadeInDown">
@@ -107,13 +107,13 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    3.8k
+                    4.2k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                    3 mins.
+                    4 mins.
                 </span>
                 
                 
@@ -185,6 +185,16 @@
     systemProp.https.proxyUser=userid
     systemProp.https.proxyPassword=password
     systemProp.https.nonProxyHosts=*.nonproxyrepos.com|localhost</code></pre>
+<p>另一种快速的方法是使用阿里云的 maven 仓库<br>配置如下:<br>在用户目录下的 .gradle 的目录下新建文件 init.gradle</p>
+<pre><code class="groovy">    allprojects {
+        repositories {
+            mavenLocal()
+            maven {
+                url &quot;http://maven.aliyun.com/nexus/content/groups/public&quot;
+            }
+            mavenCentral()
+        }
+    }</code></pre>
 <h3 id="Docker-配置代理"><a href="#Docker-配置代理" class="headerlink" title="Docker 配置代理"></a>Docker 配置代理</h3><p>在命令行使用 export HTTP_PROXY=xxxx:xx , 命令行里绝大部分命令都可以使用此代理联网,但是安装的 docker 不行,无法 pull 下来镜像文件,想要 pull 使用代理的话,需要添加代理的变量<br>vim /usr/lib/systemd/system/docker.service<br>添加</p>
 <p><code>Environment=HTTP_PROXY=http://xxxx:xxx</code><br><code>Environment=HTTPS_PROXY=http://xxxx:xxx</code></p>
 <p>保存</p>
