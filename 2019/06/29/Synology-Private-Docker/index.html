@@ -87,7 +87,7 @@
             animation-duration: 1.2s;
             background-image: 
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-                url(http://nas.joylau.cn:5016/1920x1080?0.17161533386361438) ">
+                url(http://nas.joylau.cn:5016/1920x1080?0.15808014460740738) ">
         </div>
         <div class="else">
             <p class="animated fadeInDown">
@@ -104,7 +104,7 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    7.4k
+                    7.9k
                 </span>
                 
                 
@@ -317,6 +317,13 @@
 <li>docker registry 的地址直接填 nginx 提供服务的<code>主机 + 端口号</code>即可, 后面不需要加其他东西</li>
 </ol>
 <p>这样方式在 docker-registry-ui 连接 docker 私服时会弹框输入用户名密码, 也能完美解决删除镜像的问题</p>
+<h3 id="Docker-私服配置-SSL-证书"><a href="#Docker-私服配置-SSL-证书" class="headerlink" title="Docker 私服配置 SSL 证书"></a>Docker 私服配置 SSL 证书</h3><ol>
+<li>去证书申请网站上下载证书, 我的是阿里云的, 下载下来的压缩包里有 2 个文件 .key 和 .pem</li>
+<li>将这 2 个文件上传到 NAS 上, 配置 registry 挂载这 2 个文件, 并配置如下 2 个环境变量, 重启 registry 容器即可</li>
+</ol>
+<pre><code class="bash">      -e REGISTRY_HTTP_TLS_CERTIFICATE=/server.crt
+      -e REGISTRY_HTTP_TLS_KEY=/server.key</code></pre>
+<p>REGISTRY_HTTP_TLS_CERTIFICATE 这个变量指定的文件可以在挂载的时候将 .pem 直接更名为 .crt 文件</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -375,7 +382,7 @@
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>目录</h4>
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法"><span class="toc-number">2.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#registry-配置"><span class="toc-number">3.</span> <span class="toc-text">registry 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后续配置"><span class="toc-number">4.</span> <span class="toc-text">后续配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#镜像的删除"><span class="toc-number">5.</span> <span class="toc-text">镜像的删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除方式-1"><span class="toc-number">6.</span> <span class="toc-text">删除方式 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除方式-2"><span class="toc-number">7.</span> <span class="toc-text">删除方式 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-registry-ui-对于有认证的-docker-私服的配置-2020-04-09-更新"><span class="toc-number">8.</span> <span class="toc-text">docker-registry-ui 对于有认证的 docker 私服的配置 [2020-04-09 更新]</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法"><span class="toc-number">2.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#registry-配置"><span class="toc-number">3.</span> <span class="toc-text">registry 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后续配置"><span class="toc-number">4.</span> <span class="toc-text">后续配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#镜像的删除"><span class="toc-number">5.</span> <span class="toc-text">镜像的删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除方式-1"><span class="toc-number">6.</span> <span class="toc-text">删除方式 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除方式-2"><span class="toc-number">7.</span> <span class="toc-text">删除方式 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-registry-ui-对于有认证的-docker-私服的配置-2020-04-09-更新"><span class="toc-number">8.</span> <span class="toc-text">docker-registry-ui 对于有认证的 docker 私服的配置 [2020-04-09 更新]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-私服配置-SSL-证书"><span class="toc-number">9.</span> <span class="toc-text">Docker 私服配置 SSL 证书</span></a></li></ol>
                 </div>
             </div>
             
