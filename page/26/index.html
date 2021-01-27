@@ -79,7 +79,7 @@
         
     </ul>
     <p class="copyright" id="copyright">
-        &copy; 2017 - 2020 JoyLau.
+        &copy; 2017 - 2021 JoyLau.
         Powered by Hexo
         Theme Obsidian
     </p>
@@ -150,43 +150,44 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Ubuntu篇"><b>「
-                </b>UBUNTU篇<b> 」</b></a>
+            <a href="/categories/大数据篇"><b>「
+                </b>大数据篇<b> 」</b></a>
             
-            六月 28, 2018
+            七月 02, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/06/28/Ubuntu-SystemConfig/" title="Ubuntu 自用配置记录" class="posttitle">Ubuntu 自用配置记录</a></h3>
+            <a href="/2018/07/02/OfficeSuiteStudy/" title="office 套件的一系列研究记录" class="posttitle">office 套件的一系列研究记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                2.6k
+                19k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                2 mins.
+                18 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/LibreOffice/" rel="tag">LibreOffice</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenOffice/" rel="tag">OpenOffice</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
+<p>略</p>
 <ol>
-<li><p>关闭并禁用 swap 分区： sudo swapoff 并且 sudo vim /etc/fstab 注释掉 swap 那行</p>
+<li><p>安装插件 <a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik</a></p>
 </li>
-<li><p>开启点击图标最小化： gsettings set org.compiz...</p></li></ol>
+<li><p>测试分词：</p>
+<p>ik_max_word会将文本做最细粒度的拆分；<br>ik_smart ...</p></li></ol>
             
-            <span class="read-more"><a href="/2018/06/28/Ubuntu-SystemConfig/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/07/02/OfficeSuiteStudy/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -211,7 +212,69 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5595760431067949);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9400835477503366);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/大数据篇">
+                  <b>「 </b>大数据篇<b> 」</b>
+                </a>
+            
+            七月 02, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/07/02/OfficeSuiteStudy/" title="office 套件的一系列研究记录" class="posttitle">office 套件的一系列研究记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        19k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        18 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/LibreOffice/" rel="tag">LibreOffice</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenOffice/" rel="tag">OpenOffice</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>略</p>
+<ol>
+<li><p>安装插件 <a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik</a></p>
+</li>
+<li><p>测试分词：</p>
+<p>ik_max_word会将文本做最细粒度的拆分；<br>ik_smart 会做最粗粒度的拆分。</p>
+</li>
+</ol>
+<pre><code class="json">    http://192.168.10.74:9200/_analyze/ POST
+        {
+          &quot;analyzer&quot;: &quot;ik_max_word&quot;,
+          &quot;text&quot;: &quot;绝地求生是最好玩的游戏&quot;
+        }
+
+        和
+        ...</code></pre>
+            
+            <span class="read-more"><a href="/2018/07/02/OfficeSuiteStudy/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.8217662314742036);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -264,7 +327,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.945864169924866);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.45847741270851383);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -317,7 +380,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7658904462389033);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1753061830083793);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -372,7 +435,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4185053543596069);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7591568957544492);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -417,57 +480,6 @@
 </div>
 
 
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.09253868798357812);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/React篇">
-                  <b>「 </b>REACT篇<b> 」</b>
-                </a>
-            
-            六月 19, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/06/19/React-DebugWithIDEA/" title="React 项目使用 IDEA 进行调试" class="posttitle">React 项目使用 IDEA 进行调试</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<ol>
-<li><p>You would need to have WebStorm and JetBrains IDE Support Chrome extension installed.<br> 需要安装 JetBrains IDE Support 的 chrome 插件</p>
-</li>
-<li><p>In the WebStorm menu Run select Edit Configurations…. Then click + and select JavaScript Debug. Paste <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000...</a></p></li></ol>
-            
-            <span class="read-more"><a href="/2018/06/19/React-DebugWithIDEA/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
     </div>
     
     <div id="pager"><a href="/page/27/" class="more" data-loading="加载中..." data-load-more="加载更多">加载更多</a></div>
@@ -486,7 +498,7 @@
         <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
     </p>
     <p class="copyright" id="copyright">
-        &copy; 2017 - 2020
+        &copy; 2017 - 2021
         <span class="gradient-text">
             JoyLau
         </span>.

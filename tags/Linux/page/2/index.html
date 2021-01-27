@@ -79,7 +79,7 @@
         
     </ul>
     <p class="copyright" id="copyright">
-        &copy; 2017 - 2020 JoyLau.
+        &copy; 2017 - 2021 JoyLau.
         Powered by Hexo
         Theme Obsidian
     </p>
@@ -153,38 +153,36 @@
             <a href="/categories/Linux篇"><b>「
                 </b>LINUX篇<b> 」</b></a>
             
-            七月 19, 2018
+            十二月 08, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/07/19/Linux-Cancel-DenyHosts/" title="DenyHosts 清除黑名单 IP 地址" class="posttitle">DenyHosts 清除黑名单 IP 地址</a></h3>
+            <a href="/2018/12/08/Linux-Private-Yum/" title="Yum 私服搭建记录" class="posttitle">Yum 私服搭建记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.5k
+                7.5k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                7 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/YUM/" rel="tag">YUM</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p>今天连接远程服务器发生了以下的错误</p>
-<pre><code class="bash">    ssh_exchange_identification: read: Connection reset</code></pre>
-<p>我想应该是我当前的 IP 地址被 DenyHosts 加...</p>
+<p>有时我们的服务器网络并不允许连接互联网,这时候 yum 安装软件就有很多麻烦事情了, 我们也许会通过 yumdownloader 来从可以连接互联网的机器上下载好 rpm 安装包,<br>然后再拷贝到 服务...</p>
             
-            <span class="read-more"><a href="/2018/07/19/Linux-Cancel-DenyHosts/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/12/08/Linux-Private-Yum/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +207,58 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.915902998047524);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.26980549112601193);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Linux篇">
+                  <b>「 </b>LINUX篇<b> 」</b>
+                </a>
+            
+            十二月 08, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/12/08/Linux-Private-Yum/" title="Yum 私服搭建记录" class="posttitle">Yum 私服搭建记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        7.5k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        7 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/YUM/" rel="tag">YUM</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>有时我们的服务器网络并不允许连接互联网,这时候 yum 安装软件就有很多麻烦事情了, 我们也许会通过 yumdownloader 来从可以连接互联网的机器上下载好 rpm 安装包,<br>然后再拷贝到 服务器上.<br>命令 : <code>yumdownloader  --resolve mariadb-server</code> , 所有依赖下载到当前文件夹下</p>
+<p>这样做会存在很多问题:</p>
+<ol>
+<li>虽然上述命令已经加上了 <code>--resolve</code> 来解决依赖,但是一些基础的依赖包仍然没有下载到,这时安装就有问题了</li>
+<li>下载的很多依赖包都有安装的先后顺序,...</li></ol>
+            
+            <span class="read-more"><a href="/2018/12/08/Linux-Private-Yum/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.23067958073473194);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -262,7 +311,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/elasticsearch-secu.jpg?0.29003721202233446);">
+            url(//image.joylau.cn/blog/elasticsearch-secu.jpg?0.3818721919641852);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -315,7 +364,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7064827776541769);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1322262860304062);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -380,7 +429,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.1333383157650887);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.17225139402488354);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -443,64 +492,6 @@
 </div>
 
 
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.02777118323538552);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Linux篇">
-                  <b>「 </b>LINUX篇<b> 」</b>
-                </a>
-            
-            二月 23, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/02/23/Linux-Command/" title="Linux菜鸟到熟悉 --- 常用命令备忘" class="posttitle">Linux菜鸟到熟悉 --- 常用命令备忘</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        14k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        12 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/CMD/" rel="tag">CMD</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<pre><code>``` bash
-    ////////////////////////////////////////////////////////////////////
-    //                          _ooOoo_                               //
-    //                         o8888888o                              //
-    //                         88&quot; . &quot;88                              //
-    //                         (| ^_^ |)                              //
-    //                         O\  =  /O                              //
-    //                      ____/`---&#39;\____                           //
-    //                    .&#39;  \\|     |//  `.                         //
-    //                   /  \\|||  :  |||//  \                        //
-    //                  /  _|||||...</code></pre>
-            
-            <span class="read-more"><a href="/2017/02/23/Linux-Command/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
     </div>
     
     <div id="pager"><a href="/tags/Linux/page/3/" class="more" data-loading="加载中..." data-load-more="加载更多">加载更多</a></div>
@@ -520,7 +511,7 @@
         <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
     </p>
     <p class="copyright" id="copyright">
-        &copy; 2017 - 2020
+        &copy; 2017 - 2021
         <span class="gradient-text">
             JoyLau
         </span>.

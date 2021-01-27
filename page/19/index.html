@@ -79,7 +79,7 @@
         
     </ul>
     <p class="copyright" id="copyright">
-        &copy; 2017 - 2020 JoyLau.
+        &copy; 2017 - 2021 JoyLau.
         Powered by Hexo
         Theme Obsidian
     </p>
@@ -150,43 +150,42 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/IntelliJ IDEA篇"><b>「
-                </b>INTELLIJ IDEA篇<b> 」</b></a>
+            <a href="/categories/Docker篇"><b>「
+                </b>DOCKER篇<b> 」</b></a>
             
-            三月 20, 2019
+            三月 21, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/03/20/IntelliJIDEA-Support-@-Alias/" title="IntelliJ IDEA (WebStorm) 识别 @ 作为别名进行导包" class="posttitle">IntelliJ IDEA (WebStorm) 识别 @ 作为别名进行导包</a></h3>
+            <a href="/2019/03/21/Docker-MountVolumes/" title="Docker 容器挂载宿主机上的目录时出现 Permission denied" class="posttitle">Docker 容器挂载宿主机上的目录时出现 Permission denied</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                729
+                5k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                5 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/IntelliJ-IDEA/" rel="tag">IntelliJ IDEA</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="配置前"><a href="#配置前" class="headerlink" title="配置前"></a>配置前</h3><p></p>
-<p>@ 导包的类无法点击跳转,也不识别</p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>在项目根目录添加配置文件 webpack.config.js</p>
-<pre><code class="js">    /**
-     * 不是真实的 webpack 配置，仅为兼容 webstorm 和 intellij...</code></pre>
+
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>启动 docker 容器时挂载容器以前存在的数据文件时出现了 Permission denied 的错误</p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ol>
+<li>首先以为是挂载的文件夹有读写数据的权限问题 <code>chmod -R 777 xxxx</code> ,...</li></ol>
             
-            <span class="read-more"><a href="/2019/03/20/IntelliJIDEA-Support-@-Alias/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/03/21/Docker-MountVolumes/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -211,7 +210,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9641654232378318);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5522095131626072);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            三月 21, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/03/21/Docker-MountVolumes/" title="Docker 容器挂载宿主机上的目录时出现 Permission denied" class="posttitle">Docker 容器挂载宿主机上的目录时出现 Permission denied</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        5k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        5 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>启动 docker 容器时挂载容器以前存在的数据文件时出现了 Permission denied 的错误</p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ol>
+<li>首先以为是挂载的文件夹有读写数据的权限问题 <code>chmod -R 777 xxxx</code> , 没有解决，依然报错</li>
+<li>再分析是文件目录的所属者的问题： <code>chown -R gname:uname xxxx</code> , 没有解决，依然报错</li>
+<li>这时我们进入容器之后 使用 ll 查看挂载的目录的所属者，发现组名和户名跟宿主机的组名和用户名不一致</li>
+<li>原因在于，操作系统判断用户组和用户其实并不是根据名称来的，而是根据...</li></ol>
+            
+            <span class="read-more"><a href="/2019/03/21/Docker-MountVolumes/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.7830473979969963);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -268,7 +320,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.866354152886611);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.3711581352041229);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -322,7 +374,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.580735176659712);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.49055098504509753);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -384,7 +436,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.11100367691134849);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.12010767878375916);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -437,59 +489,6 @@
 </div>
 
 
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7619787807652552);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringBoot篇">
-                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
-                </a>
-            
-            一月 26, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/01/26/SpringBoot-Validated/" title="Validated 注解的 groups 使用记录" class="posttitle">Validated 注解的 groups 使用记录</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.1k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="Valid-和-Validated"><a href="#Valid-和-Validated" class="headerlink" title="@Valid 和 @Validated"></a>@Valid 和 @Validated</h3><ol>
-<li><code>@Valid</code> 和 <code>@Validated</code> 注解都用于字段校验</li>
-<li><code>@Valid</code> 所属包为：<code>javax.validation.Valid</code> ; <code>@Validated</code> 所属包为 <code>org.springframework.validation.annotation.Validated</code></li>
-<li><code>@Validated</code> 是 <code>@Valid</code> 的一次封装，是Spring提供的校验机制使用。<code>@Valid</code> 不提供分组功能</li>
-</ol>
-<h3 id="Validated的特殊用法"><a href="#Validated的特殊用法" class="headerlink" title="@Validated的特殊用法"></a>@Validated的特殊用法</h3><p>当一个实体类需要多种验证方式时，例：对于...</p>
-            
-            <span class="read-more"><a href="/2019/01/26/SpringBoot-Validated/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
     </div>
     
     <div id="pager"><a href="/page/20/" class="more" data-loading="加载中..." data-load-more="加载更多">加载更多</a></div>
@@ -508,7 +507,7 @@
         <span title="本站访问量"><span class=" iconfont icon-yonghu"> </span> <span id="busuanzi_value_site_pv" class="gradient-text"></span></span> | <span title="本页阅读量"><span class="iconfont icon-eye"> </span> <span id="busuanzi_value_page_pv" class="gradient-text"></span></span>
     </p>
     <p class="copyright" id="copyright">
-        &copy; 2017 - 2020
+        &copy; 2017 - 2021
         <span class="gradient-text">
             JoyLau
         </span>.
