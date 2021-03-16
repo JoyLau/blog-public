@@ -92,7 +92,7 @@
             animation-duration: 1.2s;
             background-image: 
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-                url(http://nas.joylau.cn:5016/1920x1080?0.5849715664050292) ">
+                url(http://nas.joylau.cn:5016/1920x1080?0.4587667422800674) ">
         </div>
         <div class="else">
             <p class="animated fadeInDown">
@@ -109,7 +109,7 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    4.4k
+                    4.6k
                 </span>
                 
                 
@@ -228,7 +228,12 @@ The partition table has been altered!
 
 Calling ioctl() to re-read partition table.
 正在同步磁盘。</code></pre>
-<h4 id="第二步-格式化磁盘"><a href="#第二步-格式化磁盘" class="headerlink" title="第二步: 格式化磁盘"></a>第二步: 格式化磁盘</h4><p><code>mkfs -t xfs /dev/vdb1</code></p>
+<h4 id="第二步-格式化磁盘"><a href="#第二步-格式化磁盘" class="headerlink" title="第二步: 格式化磁盘"></a>第二步: 格式化磁盘</h4><p>通知内核重新读取分区信息 <code>partprobe /dev/vdb</code></p>
+<p>先执行 blkid 查看磁盘的格式</p>
+<p>如果是 xfs 格式，执行下面的命令</p>
+<p><code>mkfs -t xfs /dev/vdb1</code></p>
+<p>如果是 ext4 的话</p>
+<p><code>mkfs -t ext4 /dev/vdb1</code></p>
 <pre><code class="bash">[root@localhost core]# mkfs -t xfs /dev/vdb1
 meta-data=/dev/vdb1              isize=512    agcount=4, agsize=98303936 blks
          =                       sectsz=512   attr=2, projid32bit=1
