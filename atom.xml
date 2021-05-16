@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2021-05-16T04:48:58.551Z</updated>
+  <updated>2021-05-16T05:02:42.205Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Grafana 设置二级目录及配置 Nginx 代理</title>
+    <link href="http://blog.joylau.cn/2021/02/15/Grafana-Set-Context/"/>
+    <id>http://blog.joylau.cn/2021/02/15/Grafana-Set-Context/</id>
+    <published>2021-02-15T03:00:01.000Z</published>
+    <updated>2021-05-16T05:02:42.205Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>设置环境变量：</p><pre><code class="yaml">    env:    - name: GF_SERVER_ROOT_URL      value: &quot;%(protocol)s://%(domain)s:%(http_port)s/grafana&quot;    - name: GF_SERVER_SERVE_FROM_SUB_PATH  value: &quot;true&quot;</code></pre><p>此时 NGINX 进行反向代理的配置：</p><pre><code class="nginx">    location /grafana/ {        proxy_set_header Host $host;        proxy_set_header X-Real-IP $remote_addr;        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;        proxy_pass http://10.55.3.160:31120/;    }</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      Grafana 设置二级目录及配置 Nginx 代理
+    
+    </summary>
+    
+    
+      <category term="Grafana篇" scheme="http://blog.joylau.cn/categories/Grafana%E7%AF%87/"/>
+    
+    
+      <category term="Grafana" scheme="http://blog.joylau.cn/tags/Grafana/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MinIO 数据迁移简记</title>
+    <link href="http://blog.joylau.cn/2021/02/05/MinIO-Data-Migration/"/>
+    <id>http://blog.joylau.cn/2021/02/05/MinIO-Data-Migration/</id>
+    <published>2021-02-05T03:00:01.000Z</published>
+    <updated>2021-05-16T04:57:16.143Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol><li>下载 minio/mc 项目</li><li>分别添加源服务器和目标服务器： <code>./mc.exe config host add local http://10.55.3.131:9000 &quot;AKIAIOSFODNN7EXAMPLE&quot; &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&quot;</code></li><li>按桶进行迁移： <code>./mc.exe mirror local/blacklist new/blacklist</code></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      MinIO 数据迁移简记
+    
+    </summary>
+    
+    
+      <category term="MinIO篇" scheme="http://blog.joylau.cn/categories/MinIO%E7%AF%87/"/>
+    
+    
+      <category term="MinIO" scheme="http://blog.joylau.cn/tags/MinIO/"/>
+    
+  </entry>
   
   <entry>
     <title>OpenVPN 客户端创建多个网络适配器</title>
@@ -435,52 +481,6 @@
     
     
       <category term="IntelliJ IDEA" scheme="http://blog.joylau.cn/tags/IntelliJ-IDEA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>async 在箭头函数上的使用方式</title>
-    <link href="http://blog.joylau.cn/2020/07/10/JavaScript-Async/"/>
-    <id>http://blog.joylau.cn/2020/07/10/JavaScript-Async/</id>
-    <published>2020-07-10T02:57:18.483Z</published>
-    <updated>2020-07-10T02:57:18.483Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><pre><code class="js">    fun = async () =&gt; {       await .....    }</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      async 在箭头函数上的使用方式
-    
-    </summary>
-    
-    
-      <category term="JavaScript篇" scheme="http://blog.joylau.cn/categories/JavaScript%E7%AF%87/"/>
-    
-    
-      <category term="JavaScript" scheme="http://blog.joylau.cn/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java 多文件边压缩边下载</title>
-    <link href="http://blog.joylau.cn/2020/07/01/Java-Multi-Files-Compress-Downloading/"/>
-    <id>http://blog.joylau.cn/2020/07/01/Java-Multi-Files-Compress-Downloading/</id>
-    <published>2020-07-01T01:42:35.000Z</published>
-    <updated>2020-07-10T02:57:18.483Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><p>有时我们希望在后台实时生成文件并下载到客户端</p><pre><code class="java">    @GetMapping(value = &quot;download&quot;)    public void download(HttpServletResponse response) {       try(OutputStream outputStream = response.getOutputStream();          ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream, StandardCharsets.UTF_8)       ) {          response.setContentType(&quot;application/octet-stream&quot;);          response.setHeader(&quot;Content-Disposition&quot;, &quot;attachment; filename=&quot; + new String(&quot;压缩文件.zip&quot;.getBytes(&quot;UTF-8&quot;), &quot;ISO-8859-1&quot;));          File[] files = new File(&quot;&quot;).listFiles();          for (File file : files) {             // 单个文件压缩             compress(zipOutputStream, new FileInputStream(file), file.getName());          }          zipOutputStream.flush();       } catch (IOException e) {       }    }    /**     * 单个文件压缩     *     * @param zipOutputStream     * @param inputStream     * @param fileName     * @throws IOException     */    private static void compress(ZipOutputStream zipOutputStream, InputStream inputStream, String fileName) throws IOException {        if (inputStream == null) return;        zipOutputStream.putNextEntry(new ZipEntry(fileName));        int bytesRead;        byte[] buffer = new byte[FileUtil.BUFFER_SIZE];        while ((bytesRead = inputStream.read(buffer)) != -1) {            zipOutputStream.write(buffer, 0, bytesRead);        }        zipOutputStream.closeEntry();        inputStream.close();    }</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      Java 多文件边压缩边下载
-    
-    </summary>
-    
-    
-      <category term="Java篇" scheme="http://blog.joylau.cn/categories/Java%E7%AF%87/"/>
-    
-    
-      <category term="Java" scheme="http://blog.joylau.cn/tags/Java/"/>
     
   </entry>
   

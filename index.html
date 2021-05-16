@@ -150,19 +150,19 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/OpenVPN篇"><b>「
-                </b>OPENVPN篇<b> 」</b></a>
+            <a href="/categories/Grafana篇"><b>「
+                </b>GRAFANA篇<b> 」</b></a>
             
-            二月 03, 2021
+            二月 15, 2021
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2021/02/03/OpenVPN-AddTAP/" title="OpenVPN 客户端创建多个网络适配器" class="posttitle">OpenVPN 客户端创建多个网络适配器</a></h3>
+            <a href="/2021/02/15/Grafana-Set-Context/" title="Grafana 设置二级目录及配置 Nginx 代理" class="posttitle">Grafana 设置二级目录及配置 Nginx 代理</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                276
+                616
             </span>
             
             
@@ -175,16 +175,18 @@
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenVPN/" rel="tag">OpenVPN</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Grafana/" rel="tag">Grafana</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 
-<p>Open VPN 的客户端不做特殊配置无法同时连接多个服务器，会出现异常。提示设备已在使用</p>
-<p>进入 openVPN 的安装目录，以管理员的身份执行 addtap.bat 文件即可， 可在网络适配器里看...</p>
+<p>设置环境变量：</p>
+<pre><code class="yaml">    env:
+    - name: GF_SERVER_ROOT_URL
+      value: &quot;%(protocol)s://%(domain)s:%(http_port)s/grafana...</code></pre>
             
-            <span class="read-more"><a href="/2021/02/03/OpenVPN-AddTAP/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2021/02/15/Grafana-Set-Context/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +211,111 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7243204049299707);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4500659681304737);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/MinIO篇">
+                  <b>「 </b>MINIO篇<b> 」</b>
+                </a>
+            
+            二月 05, 2021
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2021/02/05/MinIO-Data-Migration/" title="MinIO 数据迁移简记" class="posttitle">MinIO 数据迁移简记</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        377
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MinIO/" rel="tag">MinIO</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<ol>
+<li>下载 minio/mc 项目</li>
+<li>分别添加源服务器和目标服务器： <code>./mc.exe config host add local http://10.55.3.131:9000 &quot;AKIAIOSFODNN7EXAMPLE&quot; &quot;
+wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&quot;</code></li>
+<li>按桶进行迁移： <code>./mc.exe mirror local/blacklist new/blacklist</code></li>
+</ol>
+
+            
+            <span class="read-more"><a href="/2021/02/05/MinIO-Data-Migration/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.08335704971031688);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/OpenVPN篇">
+                  <b>「 </b>OPENVPN篇<b> 」</b>
+                </a>
+            
+            二月 03, 2021
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2021/02/03/OpenVPN-AddTAP/" title="OpenVPN 客户端创建多个网络适配器" class="posttitle">OpenVPN 客户端创建多个网络适配器</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        276
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenVPN/" rel="tag">OpenVPN</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>Open VPN 的客户端不做特殊配置无法同时连接多个服务器，会出现异常。提示设备已在使用</p>
+<p>进入 openVPN 的安装目录，以管理员的身份执行 addtap.bat 文件即可， 可在网络适配器里看到多出一块虚拟网卡</p>
+
+            
+            <span class="read-more"><a href="/2021/02/03/OpenVPN-AddTAP/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.4935855978309702);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -268,7 +374,7 @@ I/O 大小(最小/最佳)：512 字节 / 512 字节
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9598975865430659);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7450351518198859);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -310,113 +416,6 @@ I/O 大小(最小/最佳)：512 字节 / 512 字节
     target     prot opt source...</code></pre>
             
             <span class="read-more"><a href="/2020/12/17/Docker-Passed-Firewalld/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.721115464486427);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            十二月 08, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/12/08/Docker-Nexus3/" title="Docker 安装的 Maven 私服 Nexus3 因磁盘爆满而导致的无法启动的问题解决及忘记 admin 用户密码的解决方式" class="posttitle">Docker 安装的 Maven 私服 Nexus3 因磁盘爆满而导致的无法启动的问题解决及忘记 admin 用户密码的解决方式</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        4.8k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        4 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>同事在 Nexus3 私服的宿主机上部署了一个服务, 结果因为网络问题导致服务打印大量的日志信息, 将宿主机的磁盘撑爆了,经过一系列排除, 删除了大日志文件<br>重启 Nexus3 容器,发现无法启动了, 报错如下:</p>
-<pre><code class="bash">    com.orientechnologies.orient.core.exception.OStorageException: Cannot open local storage &#39;/nexus-data/db/config&#39; with mode=rw
-            DB name...</code></pre>
-            
-            <span class="read-more"><a href="/2020/12/08/Docker-Nexus3/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.881777724536428);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/MacOS篇">
-                  <b>「 </b>MACOS篇<b> 」</b>
-                </a>
-            
-            十二月 08, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/12/08/MacOS-Dev-Questions/" title="MacOS 开发问题备忘记录" class="posttitle">MacOS 开发问题备忘记录</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.7k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacBookPro/" rel="tag">MacBookPro</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="清理-brew"><a href="#清理-brew" class="headerlink" title="清理 brew"></a>清理 brew</h3><ol>
-<li>brew cleanup</li>
-<li>brew cleanup –prune 1 #清理早于 1 天的</li>
-</ol>
-<h3 id="防止-mac-锁屏后关闭显示器的方法"><a href="#防止-mac-锁屏后关闭显示器的方法" class="headerlink" title="防止 mac 锁屏后关闭显示器的方法"></a>防止 mac 锁屏后关闭显示器的方法</h3><p>brew cask install keepingyouawake</p>
-<h3 id="zsh-对-docker-命令的自动提示"><a href="#zsh-对-docker-命令的自动提示" class="headerlink" title="zsh 对 docker 命令的自动提示"></a>zsh 对 docker 命令的自动提示</h3><ol>
-<li>首先确定安装好了 oh-my-zsh</li>
-<li>在文件 <strong>~/.zshrc</strong> 文件中启用 docker docker-compose, 下面是我启用的插件</li>
-</ol>
-<p>参考: <a href="https://docs.docker.com/compose/completion/" target="_blank" rel="noopener">https://docs.docker.com/compose/completion/</a></p>
-<pre><code class="bash">    ...</code></pre>
-            
-            <span class="read-more"><a href="/2020/12/08/MacOS-Dev-Questions/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
