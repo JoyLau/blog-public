@@ -64,9 +64,40 @@
                 <div class="content animated fadeIn">
                     <div class="set">
                         <h1 style="text-align: center">Archived</h1>
-                        <p style="text-align: center">「 213 」</p>
+                        <p style="text-align: center">「 215 」</p>
                         <ul class="timeline timeline-centered">
                             
+                            
+                                
+                                <li class="timeline-item period">
+                                    <div class="timeline-info"></div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h2 class="timeline-title">三月 2021</h2>
+                                    </div>
+                                </li>
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">三月 12, 2021</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2021/03/12/Elasticsearch-Max-Shards/">Elasticsearch maximum shards open 的问题</a>
+                                        <p>
+                                            
+
+https://www.elastic.co/guide/en/elasticsearch/reference/7.10/modules-cluster.html
+修改 yml 文件：
+cluster.max_shards_per_node 的配置
+或者
+PUT _cluster/settings
+    {
+      &quot;transient&quot;: {
+        ...
+                                        </p>
+                                    </div>
+                                </li>
                             
                                 
                                 <li class="timeline-item period">
@@ -76,6 +107,22 @@
                                         <h2 class="timeline-title">二月 2021</h2>
                                     </div>
                                 </li>
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">二月 18, 2021</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2021/02/18/SpringBoot-Jackson/">重剑无锋,大巧不工 SpringBoot --- Jackson 关于日期时间的注解</a>
+                                        <p>
+                                            
+
+说明@JsonFormat(pattern = “yyyy-MM-dd HH:mm:ss”)   : 后端 =&gt;前端的转换@DateTimeFormat(pattern = “yyyy-MM-dd’T’HH:mm:ss”) ： 前端 =&gt; 后端的转换@JsonDeserialize(using = LocalDateTimeDeserializer.class) ： jack...
+                                        </p>
+                                    </div>
+                                </li>
+                            
                                 
                                 <li class="timeline-item">
                                     <div class="timeline-info">

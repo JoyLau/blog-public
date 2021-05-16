@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>Elasticsearch maximum shards open 的问题</title>
+      <link href="/2021/03/12/Elasticsearch-Max-Shards/"/>
+      <url>/2021/03/12/Elasticsearch-Max-Shards/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.10/modules-cluster.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elasticsearch/reference/7.10/modules-cluster.html</a></p><p>修改 yml 文件：</p><p>cluster.max_shards_per_node 的配置</p><p>或者</p><p>PUT _cluster/settings</p><pre><code class="json">    {      &quot;transient&quot;: {        &quot;cluster.max_shards_per_node&quot;: 5000      }    }</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Elasticsearch </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Elasticsearch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>重剑无锋,大巧不工 SpringBoot --- Jackson 关于日期时间的注解</title>
+      <link href="/2021/02/18/SpringBoot-Jackson/"/>
+      <url>/2021/02/18/SpringBoot-Jackson/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>@JsonFormat(pattern = “yyyy-MM-dd HH:mm:ss”)   : 后端 =&gt;前端的转换<br>@DateTimeFormat(pattern = “yyyy-MM-dd’T’HH:mm:ss”) ： 前端 =&gt; 后端的转换<br>@JsonDeserialize(using = LocalDateTimeDeserializer.class) ： jackson 反序列化<br>@JsonSerialize(using = LocalDateTimeSerializer.class)： jackson 序列化</p><p>注意：</p><ol><li><p>当 @JsonFormat 和 @JsonDeserialize 或者 @JsonSerialize 同时存在时， @JsonFormat 优先级更高</p></li><li><p>@JsonFormat不仅可以完成后台到前台参数传递的类型转换，还可以实现前台到后台类型转换。</p></li></ol><p>当content-type为application/json时，优先使用@JsonFormat的pattern进行类型转换。而不会使用@DateTimeFormat进行类型转换。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> SpringBoot </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SpringBoot </tag>
+            
+            <tag> Jackson </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Grafana 设置二级目录及配置 Nginx 代理</title>
       <link href="/2021/02/15/Grafana-Set-Context/"/>
       <url>/2021/02/15/Grafana-Set-Context/</url>
