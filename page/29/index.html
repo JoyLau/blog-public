@@ -153,40 +153,39 @@
             <a href="/categories/大数据篇"><b>「
                 </b>大数据篇<b> 」</b></a>
             
-            五月 07, 2018
+            五月 08, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/05/07/Elasticsearch-ELK/" title="ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台" class="posttitle">ELK(Elasticsearch + Logstash + Kibana) 日志分析平台搭建及 SpringBoot 如何实时发送日志存储到 ELK 平台</a></h3>
+            <a href="/2018/05/08/Logstash-Nginx/" title="Logstash 实时收集 Nginx 日志" class="posttitle">Logstash 实时收集 Nginx 日志</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                5.3k
+                2.2k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                5 mins.
+                2 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Logstash/" rel="tag">Logstash</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 
-<ol>
-<li>Elasticsearch， Logstash，Kibana 版本都是5.3.0</li>
-<li>SpringBoot 集成 ELK，实际上指的就是 SpringBoot 与 Logstash 的整合</li>
-<li>Elasticsearch...</li></ol>
+<p>logstash 需要和 nginx 部署到一台机器<br>需要修改 nginx 的日志格式</p>
+<p>更改日志记录的格式</p>
+<pre><code class="bash">    log_format json &#39;{ &quot;@timestamp&quot;...</code></pre>
             
-            <span class="read-more"><a href="/2018/05/07/Elasticsearch-ELK/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/05/08/Logstash-Nginx/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -211,7 +210,59 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2821683586905852);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8923341498781541);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/大数据篇">
+                  <b>「 </b>大数据篇<b> 」</b>
+                </a>
+            
+            五月 08, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/05/08/Logstash-Nginx/" title="Logstash 实时收集 Nginx 日志" class="posttitle">Logstash 实时收集 Nginx 日志</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2.2k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Logstash/" rel="tag">Logstash</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>logstash 需要和 nginx 部署到一台机器<br>需要修改 nginx 的日志格式</p>
+<p>更改日志记录的格式</p>
+<pre><code class="bash">    log_format json &#39;{ &quot;@timestamp&quot;: &quot;$time_iso8601&quot;, &#39;
+                             &#39;&quot;time&quot;: &quot;$time_iso8601&quot;, &#39;
+                             &#39;&quot;remote_addr&quot;: &quot;$remote_addr&quot;, &#39...</code></pre>
+            
+            <span class="read-more"><a href="/2018/05/08/Logstash-Nginx/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.9741745309220091);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -264,7 +315,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9663507801517943);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.2179364165515567);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -325,7 +376,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.042680467340067585);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.3090611108198724);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -380,7 +431,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8854684974680134);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.041742735767156924);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -424,61 +475,6 @@
                     .maximumSessions(-1).expiredSessionStrategy...</code></pre>
             
             <span class="read-more"><a href="/2018/03/30/SpringBoot-SpringSecurity-EntryPoint/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7467794825489582);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringSecurity篇">
-                  <b>「 </b>SPRINGSECURITY篇<b> 」</b>
-                </a>
-            
-            三月 28, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/03/28/SpringBoot-SpringSecurity/" title="重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 整合使用 SpringSecurity</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        17k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        15 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringSecurity/" rel="tag">SpringSecurity</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<pre><code class="xml">    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
-        &lt;artifactId...</code></pre>
-            
-            <span class="read-more"><a href="/2018/03/28/SpringBoot-SpringSecurity/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

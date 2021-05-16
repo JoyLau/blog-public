@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>OpenVPN 客户端创建多个网络适配器</title>
+      <link href="/2021/02/03/OpenVPN-AddTAP/"/>
+      <url>/2021/02/03/OpenVPN-AddTAP/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>Open VPN 的客户端不做特殊配置无法同时连接多个服务器，会出现异常。提示设备已在使用</p><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>进入 openVPN 的安装目录，以管理员的身份执行 addtap.bat 文件即可， 可在网络适配器里看到多出一块虚拟网卡</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> OpenVPN篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> OpenVPN </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CentOS 7 磁盘扩展方法</title>
       <link href="/2021/01/27/Linux-MountDisk2/"/>
       <url>/2021/01/27/Linux-MountDisk2/</url>

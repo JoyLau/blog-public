@@ -143,46 +143,47 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(/img/cover.jpg);">
+                url(//image.joylau.cn/blog/Daily-KVR-NewifiD2-Breed.jpeg);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Docker篇"><b>「
-                </b>DOCKER篇<b> 」</b></a>
+            <a href="/categories/日常折腾篇"><b>「
+                </b>日常折腾篇<b> 」</b></a>
             
-            四月 12, 2020
+            四月 13, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/04/12/Docker-Jib/" title="Docker Jib 插件使用问题记录" class="posttitle">Docker Jib 插件使用问题记录</a></h3>
+            <a href="/2020/04/13/Daily-KVR-NewifiD2-Breed/" title="日常折腾之 KVR 漫游(一) --- 新路由 3 (Newifi D2) 刷入 Breed (刷不死)固件" class="posttitle">日常折腾之 KVR 漫游(一) --- 新路由 3 (Newifi D2) 刷入 Breed (刷不死)固件</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                958
+                2.8k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                3 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/KVR/" rel="tag">KVR</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><pre><code class="text">    Failed to execute goal com.google.cloud.tools:jib-maven-plugin:1.1.2:dockerBuild (default-cli)...</code></pre>
+
+<p>目前想要组 WIFI 漫游可选的方案有 AC + AP 或者 mesh 组网, 可这些的价格都不便宜, 而我选择用 2 台之前很火的矿机新路由 3 (Newifi D2) 来组 AP 实现 KVR ...</p>
             
-            <span class="read-more"><a href="/2020/04/12/Docker-Jib/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/04/13/Daily-KVR-NewifiD2-Breed/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -207,7 +208,58 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.07693930827369622);">
+            url(//image.joylau.cn/blog/Daily-KVR-NewifiD2-Breed.jpeg?0.1693578212824025);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/日常折腾篇">
+                  <b>「 </b>日常折腾篇<b> 」</b>
+                </a>
+            
+            四月 13, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/04/13/Daily-KVR-NewifiD2-Breed/" title="日常折腾之 KVR 漫游(一) --- 新路由 3 (Newifi D2) 刷入 Breed (刷不死)固件" class="posttitle">日常折腾之 KVR 漫游(一) --- 新路由 3 (Newifi D2) 刷入 Breed (刷不死)固件</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2.8k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        3 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/KVR/" rel="tag">KVR</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>目前想要组 WIFI 漫游可选的方案有 AC + AP 或者 mesh 组网, 可这些的价格都不便宜, 而我选择用 2 台之前很火的矿机新路由 3 (Newifi D2) 来组 AP 实现 KVR 漫游<br>想要组 KVR 漫游, 2 台路由必须刷入集客 AP 固件, 而刷入集客 AP 固件前必须先刷入 Breed 固件<br>本篇介绍新路由 3 如何刷入该固件 </p>
+<p>一次性搞了 3 台</p>
+<p></p>
+<h3 id="802-11k"><a href="#802-11k" class="headerlink" title="802.11k"></a>802.11k</h3><p>通过创建优化的频道列表，802.11k 标准可帮助设备快速搜索附近可作为漫游目标的 AP。如果当前接入点的信...</p>
+            
+            <span class="read-more"><a href="/2020/04/13/Daily-KVR-NewifiD2-Breed/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.5441791592504208);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -254,7 +306,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7875877925497679);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8571535923881666);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -304,7 +356,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.968122980549343);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5509867964945003);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -358,7 +410,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5023941690256686);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.022313554178676087);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -401,58 +453,6 @@
 <li>以 Ubuntu 18.04...</li></ol>
             
             <span class="read-more"><a href="/2020/03/18/Docker-Auto-Publish-Blog/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.185388486948185);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/MacOS篇">
-                  <b>「 </b>MACOS篇<b> 」</b>
-                </a>
-            
-            三月 18, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/03/18/MacOS-Homebrew-Question/" title="MacOS HomeBrew 更新遇到的问题解决" class="posttitle">MacOS HomeBrew 更新遇到的问题解决</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        976
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/brew/" rel="tag">brew</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>brew update 遇到错误, 错误信息如下:</p>
-<pre><code class="shell">   Updating Homebrew...
-   Warning: You are using macOS 10.15.
-   We do not provide support for this pre-release version.
-   You will encounter build failures with some formulae.
-   Please create pull requests instead of asking for help ...</code></pre>
-            
-            <span class="read-more"><a href="/2020/03/18/MacOS-Homebrew-Question/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
