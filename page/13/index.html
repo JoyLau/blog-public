@@ -150,42 +150,45 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Electron篇"><b>「
-                </b>ELECTRON篇<b> 」</b></a>
+            <a href="/categories/PM2篇"><b>「
+                </b>PM2篇<b> 」</b></a>
             
-            九月 14, 2019
+            十月 27, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/09/14/Electron-Electron-Builder/" title="Electron --- Electron-Builder 打包的各种配置" class="posttitle">Electron --- Electron-Builder 打包的各种配置</a></h3>
+            <a href="/2019/10/27/PM2-Cluster-ES6/" title="PM2 集群模式使用 ES6 语法" class="posttitle">PM2 集群模式使用 ES6 语法</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                4k
+                1.1k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                4 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="打包的资源无法包含-build-目录"><a href="#打包的资源无法包含-build-目录" class="headerlink" title="打包的资源无法包含 build 目录"></a>打包的资源无法包含 build 目录</h3><pre><code class="json">    &quot;files&quot;: [
-          &quot;**/*&quot;,
-          &quot;build/&quot;,
-          &quot;!build/static/js...</code></pre>
+
+<ol>
+<li>fork 模式下</li>
+</ol>
+<ul>
+<li>使用命令参数 <code>pm2 start app.js --node-args=&quot;--harmony&quot;</code></li>
+<li>json 文件添加配置: <code>&quot;node_args&...</code></li></ul>
             
-            <span class="read-more"><a href="/2019/09/14/Electron-Electron-Builder/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/10/27/PM2-Cluster-ES6/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,81 +213,24 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6146534532754715);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5157851373262288);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
             
-                <a href="/categories/Electron篇">
-                  <b>「 </b>ELECTRON篇<b> 」</b>
+                <a href="/categories/PM2篇">
+                  <b>「 </b>PM2篇<b> 」</b>
                 </a>
             
-            九月 14, 2019
+            十月 27, 2019
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/09/14/Electron-Electron-Builder/" title="Electron --- Electron-Builder 打包的各种配置" class="posttitle">Electron --- Electron-Builder 打包的各种配置</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/10/27/PM2-Cluster-ES6/" title="PM2 集群模式使用 ES6 语法" class="posttitle">PM2 集群模式使用 ES6 语法</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        4k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        4 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="打包的资源无法包含-build-目录"><a href="#打包的资源无法包含-build-目录" class="headerlink" title="打包的资源无法包含 build 目录"></a>打包的资源无法包含 build 目录</h3><pre><code class="json">    &quot;files&quot;: [
-          &quot;**/*&quot;,
-          &quot;build/&quot;,
-          &quot;!build/static/js/*.js.map&quot;,
-          &quot;!src/&quot;
-        ],</code></pre>
-<p>同时该配置也可防止源码被打包进去,</p>
-<h3 id="查看打包后的目录结构"><a href="#查看打包后的目录结构" class="headerlink" title="查看打包后的目录结构"></a>查看打包后的目录结构</h3><p><code>&quot;asar&quot;: false,</code> </p>
-<h3 id="引入外部文件"><a href="#引入外部文件" class="headerlink" title="引入外部文件"></a>引入外部文件</h3><pre><code class="json">    &quot;extraResources&quot;: [
-          {
-            &quot;from&quot;: ...</code></pre>
-            
-            <span class="read-more"><a href="/2019/09/14/Electron-Electron-Builder/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.35520848869733057);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Electron篇">
-                  <b>「 </b>ELECTRON篇<b> 」</b>
-                </a>
-            
-            九月 13, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/09/13/Electron-Icon-Icns/" title="Electron --- Windows 和 MacOS 套娃图标的制作" class="posttitle">Electron --- Windows 和 MacOS 套娃图标的制作</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        869
+                        1.1k
                     </span>
                 
                 
@@ -296,189 +242,250 @@
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="什么是套娃图标"><a href="#什么是套娃图标" class="headerlink" title="什么是套娃图标"></a>什么是套娃图标</h3><p>可能见过一种套娃的玩具,就是一个大的套着一个小的,每一个玩具的形状颜色都一样,只是大小比例不一样,套娃图标也是这个意思</p>
-<h3 id="什么工具"><a href="#什么工具" class="headerlink" title="什么工具"></a>什么工具</h3><p>需要这么一个工具, IconFX : <a href="http://nas.joylau.cn:5000/sharing/Y3xyQ0OJV" target="_blank" rel="noopener">下载</a></p>
-<p></p>
-<p>制做一组至少有 256<em>256 (此外还有 128</em>128 , 96<em>96, 64</em>64, 48<em>48,32</em>32,16*16)的一套图标, Windows 下格式为 icon, Mac 下格式为 icns</p>
-<h3 id="怎么制作"><a href="#怎么制作" class="headerlink" title="怎么制作"></a>怎么制作</h3><p>使用 PS 制作一张图片或者下载一张图片,按照下面的步骤完成所有大小的图标创建,之后保存.</p>
-<p>图像 — 从图...</p>
-            
-            <span class="read-more"><a href="/2019/09/13/Electron-Icon-Icns/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5315015686919871);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Electron篇">
-                  <b>「 </b>ELECTRON篇<b> 」</b>
-                </a>
-            
-            九月 12, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/09/12/Electron-URL-Scheme/" title="Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用" class="posttitle">Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="什么是-URL-Scheme-协议"><a href="#什么是-URL-Scheme-协议" class="headerlink" title="什么是 URL Scheme 协议"></a>什么是 URL Scheme 协议</h3><p>个人理解为注册一种协议来实现应用间的跳转</p>
-<h3 id="Windows-上的实现"><a href="#Windows-上的实现" class="headerlink" title="Windows 上的实现"></a>Windows 上的实现</h3><p>Windows 上是通过注册表实现的</p>
-<p>通过在 HKCR (HKEY_CALSSES_ROOT) 添加一条注册表记录</p>
-<p></p>
-<p>其中 command 的命令即为要执行的命令,注意后面要加一个参数 <code>&quot;%1&quot;</code></p>
-<h3 id="Mac-上的实现"><a href="#Mac-上的实现" class="headerlink" title="Mac 上的实现"></a>Mac 上的实现</h3><p>在应用里显示包内容,使用 xcode 查看 Info.plist 找到 URL types – URL Schemes 里添加一项</p>
-<p></p>
-<h3 id="Electron-的实现"><a href="#Electron-的实现" class="headerlink" title="Electron 的实现"></a>Electron 的实现</h3><pre><code class="js">   app...</code></pre>
-            
-            <span class="read-more"><a href="/2019/09/12/Electron-URL-Scheme/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6863136874974649);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Electron篇">
-                  <b>「 </b>ELECTRON篇<b> 」</b>
-                </a>
-            
-            九月 11, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/09/11/Electron-Questions/" title="Electron --- 知识点小记" class="posttitle">Electron --- 知识点小记</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        4.9k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        4 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="Electron-只启动一个实例"><a href="#Electron-只启动一个实例" class="headerlink" title="Electron 只启动一个实例"></a>Electron 只启动一个实例</h3><p>使用 app.requestSingleInstanceLock()</p>
-<pre><code class="js">    const gotTheLock = app.requestSingleInstanceLock();
-
-    if (!gotTheLock) {
-        app.quit()
-    } else {
-        app.on(&#39;ready&#39;, createWindow);
-
-        app.on(&#39;window-all-closed&#39;, () =&gt; {
-            app.quit();
-        });
-
-        app....</code></pre>
-            
-            <span class="read-more"><a href="/2019/09/11/Electron-Questions/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8415932584621861);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/React篇">
-                  <b>「 </b>REACT篇<b> 」</b>
-                </a>
-            
-            九月 10, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/09/10/React-Create-React-App/" title="Create-React-App 的一些配置" class="posttitle">Create-React-App 的一些配置</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        6.3k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        6 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/react/" rel="tag">react</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
 
-<h3 id="添加多页面配置"><a href="#添加多页面配置" class="headerlink" title="添加多页面配置"></a>添加多页面配置</h3><ol>
-<li><code>npm run eject</code></li>
-<li>修改 webpack.config.js</li>
+<ol>
+<li>fork 模式下</li>
 </ol>
-<p>entry 修改:<br>这里我加了一个 update.html 页面</p>
-<pre><code class="js">    entry: {
-      index: [
-        // Include an alternative client for WebpackDevServer. A client&#39;s job is to
-        // connect to WebpackDevServer by a socket and get notified about changes....</code></pre>
+<ul>
+<li>使用命令参数 <code>pm2 start app.js --node-args=&quot;--harmony&quot;</code></li>
+<li>json 文件添加配置: <code>&quot;node_args&quot; : &quot;--harmony&quot;</code></li>
+</ul>
+<ol start="2">
+<li>cluster 模式下<br>使用上一篇的方法 <code>require(&quot;babel-register&quot;);</code><br>在更改配置:</li>
+</ol>
+<pre><code class="json">    {
+      &quot;apps&quot;: [
+        {
+          &quot;name&quot;: &quot;my_name...</code></pre>
             
-            <span class="read-more"><a href="/2019/09/10/React-Create-React-App/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2019/10/27/PM2-Cluster-ES6/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.9987976189563357);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Node篇">
+                  <b>「 </b>NODE篇<b> 」</b>
+                </a>
+            
+            十月 26, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/10/26/Node-Use-ES6/" title="NodeJs 使用 ES6 语法" class="posttitle">NodeJs 使用 ES6 语法</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        651
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<ol>
+<li>package.json 添加 </li>
+</ol>
+<pre><code class="json">    &quot;babel&quot;: {
+        &quot;presets&quot;: [
+          &quot;es2015&quot;
+        ]
+      },
+    &quot;devDependencies&quot;: {
+        &quot;babel-cli&quot;: &quot;^6.26.0&quot;,
+        &quot;babel-preset-es2015&quot;: &quot;^6.24.1&quot;,
+        &quot;babel-register&quot;: &quot...</code></pre>
+            
+            <span class="read-more"><a href="/2019/10/26/Node-Use-ES6/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.46672797796790766);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Gradle篇">
+                  <b>「 </b>GRADLE篇<b> 」</b>
+                </a>
+            
+            九月 28, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/09/28/Gradle-Update-5-Questions/" title="Gradle 升级到 5.x+ 之后遇到的问题记录" class="posttitle">Gradle 升级到 5.x+ 之后遇到的问题记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="lombok-依赖编译报错"><a href="#lombok-依赖编译报错" class="headerlink" title="lombok 依赖编译报错"></a>lombok 依赖编译报错</h3><p>在gradle4.7以后对于加入依赖lombok方式发生变化，gradle4.7版本以前，可以直接如下引用：</p>
+<pre><code class="groovy">    compile(&quot;org.projectlombok:lombok:1.18.2&quot;)或者compileOnly(&quot;org.projectlombok:lombok:1.18.2&quot;)</code></pre>
+<p>在gradle5.0这种方式会产生警告,在gradle5.0里面会直接报编译错误</p>
+<p>有 2 中解决方式:</p>
+<ol>
+<li>官方推荐</li>
+</ol>
+<p>开发依赖：</p>
+<pre><code class="groovy">    annotationPro...</code></pre>
+            
+            <span class="read-more"><a href="/2019/09/28/Gradle-Update-5-Questions/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.24251684121485373);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            九月 23, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/09/23/Docker-Mariadb-InitDB/" title="Docker --- Maridb 容器启动时初始化数据库" class="posttitle">Docker --- Maridb 容器启动时初始化数据库</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        447
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mariaDB/" rel="tag">mariaDB</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="容器启动时初始化数据的方法"><a href="#容器启动时初始化数据的方法" class="headerlink" title="容器启动时初始化数据的方法"></a>容器启动时初始化数据的方法</h3><ol>
+<li>编写好脚本,支持 .sql;.sh;.sql.gz</li>
+<li>容器启动时, 将脚本挂载到容器的 <code>/docker-entrypoint-initdb.d</code> 目录下即可</li>
+</ol>
+<p>可就是这么简单的操作,我却没有成功…</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>该方法只在初始化数据库的时候起作用,意思是,当你想把 mariadb 的数据目录 <code>/var/lib/mysql</code> 挂载到本地盘上,那么 该目下有文件时,放置的脚本将不会执行</p>
+
+            
+            <span class="read-more"><a href="/2019/09/23/Docker-Mariadb-InitDB/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.30318629972194167);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Electron篇">
+                  <b>「 </b>ELECTRON篇<b> 」</b>
+                </a>
+            
+            九月 16, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/09/16/Electron-AutoUpdater/" title="Electron --- 关于自动更新的一系列折腾" class="posttitle">Electron --- 关于自动更新的一系列折腾</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        7.9k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        7 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="Electron-自动更新的方法"><a href="#Electron-自动更新的方法" class="headerlink" title="Electron 自动更新的方法"></a>Electron 自动更新的方法</h3><ol>
+<li>使用 Electron 自己提供的 autoUpdater 模块</li>
+<li>使用更新服务器</li>
+<li>自己实现自动更新逻辑</li>
+</ol>
+<p>为什么说经过了一系列的折腾呢, 因为前 2 中方式都没有解决我的问题,最后我是自己实现了自动更新的逻辑<br>没有解决我的问题是因为我需要兼顾到 mac 平台和 Windows 平台,然而 mac 平台比较麻烦,代码需要签名<br>我自己亲测方式一和方式二在 mac 平台上都需要代码签名, 而签名代码需要注册苹果开发者账号,需要付年费<br>于是这 2 条路就走不通了  </p>
+<p>最后我决...</p>
+            
+            <span class="read-more"><a href="/2019/09/16/Electron-AutoUpdater/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

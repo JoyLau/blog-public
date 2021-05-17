@@ -150,40 +150,44 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/SpringBoot篇"><b>「
-                </b>SPRINGBOOT篇<b> 」</b></a>
+            <a href="/categories/Linux篇"><b>「
+                </b>LINUX篇<b> 」</b></a>
             
-            十月 19, 2020
+            一月 27, 2021
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/10/19/SpringBoot-RestTemplate-SSL/" title="SpringBoot RestTemplate 支持发送 HTTPS 请求" class="posttitle">SpringBoot RestTemplate 支持发送 HTTPS 请求</a></h3>
+            <a href="/2021/01/27/Linux-MountDisk2/" title="CentOS 7 磁盘扩展方法" class="posttitle">CentOS 7 磁盘扩展方法</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                5.8k
+                4.8k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                5 mins.
+                4 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/" rel="tag">磁盘挂载</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p>有时在项目中调用的接口是 https 的形式, 这时使用 RestTemplate 来调用请求就会出错:</p>
-<pre><code class="text">    javax.net.ssl.SSLHandshakeException: sun.security...</code></pre>
+<h4 id="第一步-磁盘分区"><a href="#第一步-磁盘分区" class="headerlink" title="第一步:    磁盘分区"></a>第一步:    磁盘分区</h4><ol>
+<li>使用 <code>fdisk -l</code> 查看本机磁盘分区情况</li>
+</ol>
+<pre><code class="bash">[root@localhost core]# fdisk -l
+
+磁盘 /dev/vda：85.9 GB, 85899345920 ...</code></pre>
             
-            <span class="read-more"><a href="/2020/10/19/SpringBoot-RestTemplate-SSL/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2021/01/27/Linux-MountDisk2/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -208,106 +212,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9182169885499596);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringBoot篇">
-                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
-                </a>
-            
-            十月 19, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/10/19/SpringBoot-RestTemplate-SSL/" title="SpringBoot RestTemplate 支持发送 HTTPS 请求" class="posttitle">SpringBoot RestTemplate 支持发送 HTTPS 请求</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        5.8k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        5 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>有时在项目中调用的接口是 https 的形式, 这时使用 RestTemplate 来调用请求就会出错:</p>
-<pre><code class="text">    javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification...</code></pre>
-            
-            <span class="read-more"><a href="/2020/10/19/SpringBoot-RestTemplate-SSL/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(https://pic4.zhimg.com/v2-f10a8fd2e6852595707a23bc0bf58871_r.jpg?0.18561104712361431);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/日常折腾篇">
-                  <b>「 </b>日常折腾篇<b> 」</b>
-                </a>
-            
-            十月 12, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/10/12/Daily-Mac-Office/" title="Office for Mac 2019 切换显示语言" class="posttitle">Office for Mac 2019 切换显示语言</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        874
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/" rel="tag">日常折腾</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近因为工作原因不得不在 Mac 上安装了 Office 套件</p>
-<p>但是有一个问题, 我的 Mac 的系统语言是英文的, 安装完 Office 后, 整个操作都是英文的, 蒙蔽了….</p>
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><p>打开终端:</p>
-<pre><code class="shell">    defaults write com.microsoft.Word AppleLanguages &#39;(&quot;zh_CN&quot;)&#39;
-    defaults write com.microsoft.Excel AppleLanguages &#39;(&quot;zh_CN...</code></pre>
-            
-            <span class="read-more"><a href="/2020/10/12/Daily-Mac-Office/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3584788587492589);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.06517742606917554);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -316,45 +221,47 @@
                   <b>「 </b>LINUX篇<b> 」</b>
                 </a>
             
-            十月 09, 2020
+            一月 27, 2021
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/10/09/Linux-Install-Bpytop/" title="CentOS 7 安装 bpytop 记录" class="posttitle">CentOS 7 安装 bpytop 记录</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2021/01/27/Linux-MountDisk2/" title="CentOS 7 磁盘扩展方法" class="posttitle">CentOS 7 磁盘扩展方法</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        969
+                        4.8k
                     </span>
                 
                 
                     <span>
                         <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
+                        4 mins.
                     </span>
                 
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/" rel="tag">磁盘挂载</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
+<h4 id="第一步-磁盘分区"><a href="#第一步-磁盘分区" class="headerlink" title="第一步:    磁盘分区"></a>第一步:    磁盘分区</h4><ol>
+<li>使用 <code>fdisk -l</code> 查看本机磁盘分区情况</li>
+</ol>
+<pre><code class="bash">[root@localhost core]# fdisk -l
 
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在 CentOS 8 上安装 bpytop 很简单, 安装 epel 库后执行 <code>dnf install bpytop</code> 即可, 但是在 CentOS 7 的 epel 库里却没有这个 bpytop 包, 这里介绍如何在 CentOS 7 下安装 bpytop</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
-<li>安装 epel 库</li>
-</ol>
-<pre><code class="bash">    yum install epel-release</code></pre>
-<ol start="2">
-<li>安装 snapd 并启用 snapd 套接字</li>
-</ol>
-<pre><code class="bash">    yum install snapd
-    systemctl enable --now snapd.socket...</code></pre>
+磁盘 /dev/vda：85.9 GB, 85899345920 字节，167772160 个扇区
+Units = 扇区 of 1 * 512 = 512 bytes
+扇区大小(逻辑/物理)：512 字节 / 512 字节
+I/O 大小(最小/最佳)：512 字节 / 512 字节
+磁盘标签类型：dos
+磁盘标识符：0x000b2efb
+
+   设备 Boot      Start...</code></pre>
             
-            <span class="read-more"><a href="/2020/10/09/Linux-Install-Bpytop/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2021/01/27/Linux-MountDisk2/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
@@ -364,53 +271,48 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6958745449767187);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.2851907832336076);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
             
-                <a href="/categories/Linux篇">
-                  <b>「 </b>LINUX篇<b> 」</b>
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
                 </a>
             
-            九月 29, 2020
+            十二月 17, 2020
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="Linux 挂载有用户名密码的网络磁盘" class="posttitle">Linux 挂载有用户名密码的网络磁盘</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/12/17/Docker-Passed-Firewalld/" title="关于 Docker -p 穿透防火墙 firewalld 的问题的研究记录" class="posttitle">关于 Docker -p 穿透防火墙 firewalld 的问题的研究记录</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.2k
+                        2.4k
                     </span>
                 
                 
                     <span>
                         <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
+                        2 mins.
                     </span>
                 
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
-
-<p>很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘</p>
-<p>很多时候，为了安全考虑网络磁盘都设置了用户名密码</p>
-<p>这时挂载的时候就需要设置用户名密码了</p>
-<p>很可惜上述方式 nfs 没有找到设置用户名密码的参数</p>
-<p>使用 cifs </p>
-<ol>
-<li><p>安装依赖： <code>yum install cifs-utils</code></p>
-</li>
-<li><p>挂载： <code>mount -t cifs -o username=USERNAME,password=PASSWORD,iocharset=utf8 //192...</code></p></li></ol>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>使用 docker run -p 或者 docker compose 启动暴露的端口的容器, 会直接穿透防火墙, 不受系统防火墙的 firewalld 的管控</p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>docker 容器会在启动的时候向 iptables 添加转发的规则<br>而 firewalld 也是通过操作 iptables 来实现的防火墙的功能</p>
+<pre><code class="bash">    [root@centOS7 es-test]# iptables -L DOCKER
+    Chain DOCKER (3 references)
+    target     prot opt source...</code></pre>
             
-            <span class="read-more"><a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2020/12/17/Docker-Passed-Firewalld/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
@@ -420,52 +322,157 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8514392599864211);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1437490570272404);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
             
-                <a href="/categories/工具类篇">
-                  <b>「 </b>工具类篇<b> 」</b>
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
                 </a>
             
-            九月 27, 2020
+            十二月 08, 2020
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/09/27/Termius-Multi-Tterminal-Sync/" title="Termius 多终端软件配置手动同步" class="posttitle">Termius 多终端软件配置手动同步</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/12/08/Docker-Nexus3/" title="Docker 安装的 Maven 私服 Nexus3 因磁盘爆满而导致的无法启动的问题解决及忘记 admin 用户密码的解决方式" class="posttitle">Docker 安装的 Maven 私服 Nexus3 因磁盘爆满而导致的无法启动的问题解决及忘记 admin 用户密码的解决方式</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        775
+                        4.8k
                     </span>
                 
                 
                     <span>
                         <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
+                        4 mins.
                     </span>
                 
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Termius/" rel="tag">Termius</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>同事在 Nexus3 私服的宿主机上部署了一个服务, 结果因为网络问题导致服务打印大量的日志信息, 将宿主机的磁盘撑爆了,经过一系列排除, 删除了大日志文件<br>重启 Nexus3 容器,发现无法启动了, 报错如下:</p>
+<pre><code class="bash">    com.orientechnologies.orient.core.exception.OStorageException: Cannot open local storage &#39;/nexus-data/db/config&#39; with mode=rw
+            DB name...</code></pre>
+            
+            <span class="read-more"><a href="/2020/12/08/Docker-Nexus3/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.47219623121614074);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/MacOS篇">
+                  <b>「 </b>MACOS篇<b> 」</b>
+                </a>
+            
+            十二月 08, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/12/08/MacOS-Dev-Questions/" title="MacOS 开发问题备忘记录" class="posttitle">MacOS 开发问题备忘记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.7k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacBookPro/" rel="tag">MacBookPro</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
 
-<p>Termius 算是我比较喜欢的一款终端软件了, 因为它很漂亮, 自带的字体很好看, 软件本身是免费的, 但是如果要使用一些高级功能</p>
-<p>比如不同操作系统下的 Termius 的软件配置同步则需要订阅他的高级功能, 收费不低, 关键还不是买断机制的, 是按年缴费</p>
-<p>这不得不使我研究了一番</p>
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>经我研究, Termius 是使用 Electron 开发的, 挂不得它可以把界面做的这么好看</p>
-<p>我本身也使用 Electron 开发过一些加壳软件, 知道软件的一些配置信息存储的技术手段</p>
-<ol>
-<li>本地文件存储</li>
-<li>cookie...</li></ol>
+<h3 id="清理-brew"><a href="#清理-brew" class="headerlink" title="清理 brew"></a>清理 brew</h3><ol>
+<li>brew cleanup</li>
+<li>brew cleanup –prune 1 #清理早于 1 天的</li>
+</ol>
+<h3 id="防止-mac-锁屏后关闭显示器的方法"><a href="#防止-mac-锁屏后关闭显示器的方法" class="headerlink" title="防止 mac 锁屏后关闭显示器的方法"></a>防止 mac 锁屏后关闭显示器的方法</h3><p>brew cask install keepingyouawake</p>
+<h3 id="zsh-对-docker-命令的自动提示"><a href="#zsh-对-docker-命令的自动提示" class="headerlink" title="zsh 对 docker 命令的自动提示"></a>zsh 对 docker 命令的自动提示</h3><ol>
+<li>首先确定安装好了 oh-my-zsh</li>
+<li>在文件 <strong>~/.zshrc</strong> 文件中启用 docker docker-compose, 下面是我启用的插件</li>
+</ol>
+<p>参考: <a href="https://docs.docker.com/compose/completion/" target="_blank" rel="noopener">https://docs.docker.com/compose/completion/</a></p>
+<pre><code class="bash">    ...</code></pre>
             
-            <span class="read-more"><a href="/2020/09/27/Termius-Multi-Tterminal-Sync/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2020/12/08/MacOS-Dev-Questions/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://image.joylau.cn/blog/%E6%95%88%E6%9E%9C%E5%9B%BE-1.JPG?0.44714274180792657);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Hackintosh">
+                  <b>「 </b>HACKINTOSH<b> 」</b>
+                </a>
+            
+            十一月 14, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/11/14/Hackintosh-My-Mac/" title="黑苹果 --- Hackintosh + GIGABYTE Z390 AORUS PRO WIFI + i9-9900K + RX 580 + BCM94360CD + OpenCore 0.6.3 黑苹果主机配置与安装记录" class="posttitle">黑苹果 --- Hackintosh + GIGABYTE Z390 AORUS PRO WIFI + i9-9900K + RX 580 + BCM94360CD + OpenCore 0.6.3 黑苹果主机配置与安装记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        17k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        15 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Hackintosh/" rel="tag">Hackintosh</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/" rel="tag">黑苹果</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>组装一台黑苹果最重要的是硬件的选择， 选择的重点是尽量选择与白苹果一致的配件<br>在硬件选择的方面有几点需要特别的注意</p>
+<ol>
+<li>CPU 的选择，CPU尽量选择 Intel 的，7/8/9代 酷睿 i9，i7，i5，i3 都可以， AMD 的CPU 也不是不行， 只不过需要打补丁，折腾的东西比较多</li>
+<li>显卡的选择， 白苹果的显卡都是 A 卡， 所以在显卡的选择上直接选择 A 卡即可， 选择 A 卡需要注意的是，直接选择免驱动的 A 卡类型， 首选蓝宝石和微星的，下面列举了一些免驱的 A 卡</li>
+</ol>
+<ul>
+<li>Vega FE...</li></ul>
+            
+            <span class="read-more"><a href="/2020/11/14/Hackintosh-My-Mac/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

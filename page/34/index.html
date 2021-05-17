@@ -150,40 +150,39 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/大数据篇"><b>「
-                </b>大数据篇<b> 」</b></a>
+            <a href="/categories/SpringBoot篇"><b>「
+                </b>SPRINGBOOT篇<b> 」</b></a>
             
-            十月 25, 2017
+            十一月 02, 2017
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2017/10/25/Hadoop-FristDay/" title="Hadoop 的第一天" class="posttitle">Hadoop 的第一天</a></h3>
+            <a href="/2017/11/02/SpringBoot-Kafka/" title="SpringBoot 整合 Kafka 踩坑记录" class="posttitle">SpringBoot 整合 Kafka 踩坑记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.5k
+                2.9k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                3 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Kafka/" rel="tag">Kafka</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p>第一天学习 Hadoop 看了不少资料和文档，在这里想总结一下这一天的所学</p>
-<p>以前一直以为 JavaWeb 和大数据这是2条路子，学了大数据之后就要放下 JavaWeb，就像在项目中使用 Struts2...</p>
+<h3 id="第一个坑"><a href="#第一个坑" class="headerlink" title="第一个坑"></a>第一个坑</h3><p>SpringBoot 在1.5版本后就有了 starter， 但是在依赖列表中却没有找到相应的依赖，原因是名字不叫starter，傻傻的我还用JavaConfig 配置了一遍<br>现在看下整合 starter...</p>
             
-            <span class="read-more"><a href="/2017/10/25/Hadoop-FristDay/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2017/11/02/SpringBoot-Kafka/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -208,7 +207,235 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.13437539412933575);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5713271628555876);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            十一月 02, 2017
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/11/02/SpringBoot-Kafka/" title="SpringBoot 整合 Kafka 踩坑记录" class="posttitle">SpringBoot 整合 Kafka 踩坑记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2.9k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        3 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Kafka/" rel="tag">Kafka</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="第一个坑"><a href="#第一个坑" class="headerlink" title="第一个坑"></a>第一个坑</h3><p>SpringBoot 在1.5版本后就有了 starter， 但是在依赖列表中却没有找到相应的依赖，原因是名字不叫starter，傻傻的我还用JavaConfig 配置了一遍<br>现在看下整合 starter 之后的是怎么样的吧！</p>
+<pre><code class="xml">    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.kafka&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-kafka&lt;/artifactId&gt;
+    &lt;/...</code></pre>
+            
+            <span class="read-more"><a href="/2017/11/02/SpringBoot-Kafka/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.7339640039586259);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            十一月 01, 2017
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/11/01/SpringBoot-IDEA-DevTools/" title="IDEA 中 SpringBoot 项目热部署" class="posttitle">IDEA 中 SpringBoot 项目热部署</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.7k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>本文转自：<a href="http://blog.csdn.net/jsshaojinjie/article/details/64125458" target="_blank" rel="noopener">http://blog.csdn.net/jsshaojinjie/article/details/64125458</a></p>
+<p>maven dependencies增加</p>
+<pre><code class="xml">    &lt;dependency&gt;  
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
+        &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;  
+        &lt;optional&gt;true&lt;/optional...</code></pre>
+            
+            <span class="read-more"><a href="/2017/11/01/SpringBoot-IDEA-DevTools/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.0041957091116502365);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            十月 30, 2017
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/10/30/SpringBoot-ReadJSONFile/" title="SpringBoot 读取 JSON 文件并转化为 JSON 对象" class="posttitle">SpringBoot 读取 JSON 文件并转化为 JSON 对象</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.4k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/JSON/" rel="tag">JSON</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="通过注解读取文件"><a href="#通过注解读取文件" class="headerlink" title="通过注解读取文件"></a>通过注解读取文件</h3><pre><code class="java">    @Value(&quot;classpath:static/json/addTask.json&quot;)
+    Resource addTaskJson;</code></pre>
+<h3 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h3><table>
+<thead>
+<tr>
+<th align="left">前缀</th>
+<th align="left">例子</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">classpath:</td>
+<td align="left">classpath:com/myapp/config.xml</td>
+<td align="left">从classpath中加载</td>
+</tr>
+<tr>
+<td align="left">file:</td>
+<td align="left">file:/data/config.xml</td>
+<td align="left">作为 URL 从文件系统中加载</td>
+</tr>
+<tr>
+<td align="left">http:</td>
+<td align="left"><a href="http://myserver/logo.png" target="_blank" rel="noopener">http://myserver/logo.png</a></td>
+<td align="left">作为 URL 加载...</td></tr></tbody></table>
+            
+            <span class="read-more"><a href="/2017/10/30/SpringBoot-ReadJSONFile/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.567547699315553);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            十月 26, 2017
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/10/26/SpringBoot-Oracle/" title="SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载" class="posttitle">SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        3.3k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        3 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="pom-文件配置"><a href="#pom-文件配置" class="headerlink" title="pom 文件配置"></a>pom 文件配置</h3><pre><code class="xml">    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.oracle&lt;/groupId&gt;
+        &lt;artifactId&gt;...</code></pre>
+            
+            <span class="read-more"><a href="/2017/10/26/SpringBoot-Oracle/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.8072908366791771);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -219,62 +446,13 @@
             
             十月 25, 2017
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/10/25/Hadoop-FristDay/" title="Hadoop 的第一天" class="posttitle">Hadoop 的第一天</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/10/25/Elasticsearch-Config/" title="Elasticsearch 配置说明 &amp;&amp; 遇坑记录" class="posttitle">Elasticsearch 配置说明 &amp;&amp; 遇坑记录</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>第一天学习 Hadoop 看了不少资料和文档，在这里想总结一下这一天的所学</p>
-<p>以前一直以为 JavaWeb 和大数据这是2条路子，学了大数据之后就要放下 JavaWeb，就像在项目中使用 Struts2 和 SpringMVC，2者只能选一个使用，在看了一些资料之后，我发现我的认识错了，其实 JavaWeb 和大数据技术就像 SpringMVC 和Spring Boot<br>2者是并行不悖的。大数据技术囊括很多技术，JavaWeb只是其中的一部分，要学习大数据需要学习的技术还有很多。</p>
-<h3 id="Hadoop是干什么的"><a href="#Hadoop是干什么的" class="headerlink" title="Hadoop是干什么的"></a>Hadoop是干...</h3>
-            
-            <span class="read-more"><a href="/2017/10/25/Hadoop-FristDay/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.1960930609697933);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringBoot篇">
-                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
-                </a>
-            
-            十月 23, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/10/23/SpringBoot-Elasticsearch/" title="重剑无锋,大巧不工 SpringBoot --- 整合使用 Elasticsearch" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 整合使用 Elasticsearch</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.4k
+                        3.8k
                     </span>
                 
                 
@@ -286,192 +464,22 @@
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
 
-<h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><pre><code class="xml">    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-data-elasticsearch&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;net.java.dev.jna&lt;/groupId&gt;
-        &lt;artifactId...</code></pre>
-            
-            <span class="read-more"><a href="/2017/10/23/SpringBoot-Elasticsearch/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
+<pre><code>配置Elasticsearch的集群名称，默认是elasticsearch，Elasticsearch会自动发现在同一网段下的Elasticsearch 节点，如果在同一网段下有多个集群，就可以用这个属性来区分不同的集群。
+cluster.name: elasticsearch
 
+节点名，默认随机指定一个name列表中名字，不能重复。
+node.name: &quot;node1&quot;
 
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5233404141270175);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
+指定该节点是否有资格被选举成为node，默认是true，es是默认集群中的第一台机器为master，如果...</code></pre>
             
-                <a href="/categories/开源篇">
-                  <b>「 </b>开源篇<b> 」</b>
-                </a>
-            
-            十月 20, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/10/20/Open-Source-License/" title="开源许可证" class="posttitle">开源许可证</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        5 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/license/" rel="tag">license</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<blockquote>
-<blockquote>
-<p>本文转自 <a href="http://www.ruanyifeng.com/blog/2017/10/open-source-license-tutorial.html" target="_blank" rel="noopener">阮一峰- 开源许可证教程</a></p>
-</blockquote>
-</blockquote>
-<p>作为一个开发者，如果你打算开源自己的代码，千万不要忘记，选择一种开源许可证（license）。</p>
-<p>许多开发者对开源许可证了解很少，不清楚有哪些许可证，应该怎么选择。本文介绍开源许可证的基本知识，主要参考了 OpenSource.com （<a href="https://opensource.com/article/17/9/9-open-source-software-rules-startups" target="_blank" rel="noopener">1</a>，<a href="https://opensource.com/article/17/9/open-source-licensing" target="_blank" rel="noopener">2</a>）。</p>
-<p></p>
-<p>开源许可证是一种法律许可。通过它，版权拥有人明确允许，用户可以免费地使用、修改、共享版权软件。</p>
-<p>版权法默认禁止共享，也就是说，没有许可证的软件，就等同于保留版权，虽然开源了，用户只能看看源码，不能用，一用...</p>
-            
-            <span class="read-more"><a href="/2017/10/20/Open-Source-License/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://image.joylau.cn/blog/resource-compressor.png?0.0694144545413593);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Maven篇">
-                  <b>「 </b>MAVEN篇<b> 」</b>
-                </a>
-            
-            十月 16, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/10/16/Maven-ResourceCompressor/" title="Maven --- 一款打包压缩 js css html 的Maven插件" class="posttitle">Maven --- 一款打包压缩 js css html 的Maven插件</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Maven/" rel="tag">Maven</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p>pom 中引入插件：</p>
-<pre><code class="xml">    &lt;plugin&gt;
-        &lt;groupId&gt;cn.joylau.code&lt;/groupId&gt;
-        &lt;artifactId&gt;joylau-compressor-plugins&lt;/artifactId&gt;
-        &lt;version&gt;1.2.RELEASE&lt;/version&gt;
-        &lt;executions&gt;
-            &lt;execution&gt;
-                &lt;id&gt;resource-compressor&lt;...</code></pre>
-            
-            <span class="read-more"><a href="/2017/10/16/Maven-ResourceCompressor/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://image.joylau.cn/blog/image-scale.gif?0.511633645173108);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/前端篇">
-                  <b>「 </b>前端篇<b> 」</b>
-                </a>
-            
-            十月 13, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/10/13/CSS3-Image-Scale/" title="当鼠标移入图片上慢慢放大的效果" class="posttitle">当鼠标移入图片上慢慢放大的效果</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<ul>
-<li>今天在浏览网站时，<a href="http://ai.baidu.com/" target="_blank" rel="noopener">http://ai.baidu.com/</a> ，看到一个CSS3的效果:将鼠标放到图片上，图片会稍稍方大一点，当时很好奇是怎么做的</li>
-<li>当即百度了一下，有人用js做的，有人用css做的，首先js做的肯定不够好，一看效果就是css3的效果</li>
-<li>于是自己查看了下 这块 div 的效果</li>
-<li>将压缩的css展开来</li>
-<li>原来是这样的：</li>
-</ul>
-<pre><code class="css">    # 鼠标移上去各浏览器的延时效果
-    .solution-img {
-        height: 100%;
-        -webkit-transform-origin: 50% 50%;
-        -...</code></pre>
-            
-            <span class="read-more"><a href="/2017/10/13/CSS3-Image-Scale/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2017/10/25/Elasticsearch-Config/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

@@ -153,36 +153,40 @@
             <a href="/categories/Docker篇"><b>「
                 </b>DOCKER篇<b> 」</b></a>
             
-            四月 08, 2019
+            九月 23, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/04/08/Docker-Start-Error/" title="Docker 启动报错： Error starting daemon： Error initializing network controller： list bridge addresses failed： no available network" class="posttitle">Docker 启动报错： Error starting daemon： Error initializing network controller： list bridge addresses failed： no available network</a></h3>
+            <a href="/2019/09/23/Docker-Mariadb-InitDB/" title="Docker --- Maridb 容器启动时初始化数据库" class="posttitle">Docker --- Maridb 容器启动时初始化数据库</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                6.6k
+                447
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                6 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mariaDB/" rel="tag">mariaDB</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p>Docker 启动报错： Error starting daemon: Error initializing network controller: list bridge addresses failed...</p>
+<h3 id="容器启动时初始化数据的方法"><a href="#容器启动时初始化数据的方法" class="headerlink" title="容器启动时初始化数据的方法"></a>容器启动时初始化数据的方法</h3><ol>
+<li>编写好脚本,支持 .sql;.sh;.sql.gz</li>
+<li>容器启动时, 将脚本挂载到容器的 <code>/docker-entrypoint-initdb.d</code> 目录下即可</li>
+</ol>
+<p>可就是这么简单...</p>
             
-            <span class="read-more"><a href="/2019/04/08/Docker-Start-Error/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/09/23/Docker-Mariadb-InitDB/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -207,7 +211,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.23268006168501532);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7296725629279759);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            九月 23, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/09/23/Docker-Mariadb-InitDB/" title="Docker --- Maridb 容器启动时初始化数据库" class="posttitle">Docker --- Maridb 容器启动时初始化数据库</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        447
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mariaDB/" rel="tag">mariaDB</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="容器启动时初始化数据的方法"><a href="#容器启动时初始化数据的方法" class="headerlink" title="容器启动时初始化数据的方法"></a>容器启动时初始化数据的方法</h3><ol>
+<li>编写好脚本,支持 .sql;.sh;.sql.gz</li>
+<li>容器启动时, 将脚本挂载到容器的 <code>/docker-entrypoint-initdb.d</code> 目录下即可</li>
+</ol>
+<p>可就是这么简单的操作,我却没有成功…</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>该方法只在初始化数据库的时候起作用,意思是,当你想把 mariadb 的数据目录 <code>/var/lib/mysql</code> 挂载到本地盘上,那么 该目下有文件时,放置的脚本将不会执行</p>
+
+            
+            <span class="read-more"><a href="/2019/09/23/Docker-Mariadb-InitDB/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.7125939293581711);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -257,7 +314,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5843166006564486);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.429848478491911);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -310,7 +367,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.03376515518479617);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6370878794666506);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -372,7 +429,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5727547479642687);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5359291909244752);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -420,56 +477,6 @@
 <li>初始化 swarm 集群 : <code>docker...</code></li></ol>
             
             <span class="read-more"><a href="/2019/02/18/Docker-Swarm-Cluster/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5339275668582879);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            一月 25, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/01/25/Docker-RemoveDeadContainer/" title="Docker 删除 状态为Dead 的容器" class="posttitle">Docker 删除 状态为Dead 的容器</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        6.4k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        6 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><p>因为一些不正确的操作,导致容器的状态变成了 dead</p>
-<pre><code class="bash">    CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS                      PORTS                                                              NAMES
-    c21c993c5107        34.0.7.183:5000/joylau/traffic-service:2.1.7          &quot;java -Djava.secur...&quot;   2 weeks ago         Dead                                                                                           traffic-service
-    dfbd1cdb31c2        34.0.7.183:5000/joylau/traffic...</code></pre>
-            
-            <span class="read-more"><a href="/2019/01/25/Docker-RemoveDeadContainer/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

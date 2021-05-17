@@ -153,38 +153,41 @@
             <a href="/categories/Docker篇"><b>「
                 </b>DOCKER篇<b> 」</b></a>
             
-            一月 25, 2019
+            二月 18, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/01/25/Docker-RemoveDeadContainer/" title="Docker 删除 状态为Dead 的容器" class="posttitle">Docker 删除 状态为Dead 的容器</a></h3>
+            <a href="/2019/02/18/Docker-Swarm-Cluster/" title="Docker-Swarm 集群搭建" class="posttitle">Docker-Swarm 集群搭建</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                6.4k
+                4.1k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                6 mins.
+                4 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker-Swarm/" rel="tag">Docker Swarm</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><p>因为一些不正确的操作,导致容器的状态变成了 dead</p>
-<pre><code class="bash">    CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS                      PORTS                                                              NAMES
-    c21c993c5107        ...</code></pre>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ol>
+<li>docker 18.09</li>
+</ol>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ol>
+<li>本篇文章中的搭建过程有多台物理机,如果说是自己测试使用的话,或者只有一台机器,可以使用 docker-machine 来创建多个 docker 主机</li>
+<li>比如创建...</li></ol>
             
-            <span class="read-more"><a href="/2019/01/25/Docker-RemoveDeadContainer/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/02/18/Docker-Swarm-Cluster/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +212,64 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.08190840848227943);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5482345164336178);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            二月 18, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/02/18/Docker-Swarm-Cluster/" title="Docker-Swarm 集群搭建" class="posttitle">Docker-Swarm 集群搭建</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        4.1k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        4 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker-Swarm/" rel="tag">Docker Swarm</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ol>
+<li>docker 18.09</li>
+</ol>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ol>
+<li>本篇文章中的搭建过程有多台物理机,如果说是自己测试使用的话,或者只有一台机器,可以使用 docker-machine 来创建多个 docker 主机</li>
+<li>比如创建一个主机名为 work 的 docker 主机 : <code>docker-machine create -d virtualbox worker</code></li>
+<li>之后进入刚才创建的主机 : <code>docker-machine ssh worker</code></li>
+<li>然后就当成是一台独立机器来执行以下的操作</li>
+</ol>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>初始化 swarm 集群 : <code>docker...</code></li></ol>
+            
+            <span class="read-more"><a href="/2019/02/18/Docker-Swarm-Cluster/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.5734892394066677);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -259,7 +319,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6713219237096024);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9067920402933589);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -312,7 +372,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9542639606639283);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5254632218116733);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -362,7 +422,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9872647091618403);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.657701108125216);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -404,59 +464,6 @@
 <h3 id="官方的做法"><a href="#官方的做法" class="headerlink" title="官方的做法"></a>官方的做法</h3><p>地址 : <a href="https://docs.docker.com/compose/startup-order/" target="_blank" rel="noopener">https://docs...</a></p>
             
             <span class="read-more"><a href="/2018/12/19/Docker-Compose-StartOrder/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.366137186670892);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringCloud篇">
-                  <b>「 </b>SPRINGCLOUD篇<b> 」</b>
-                </a>
-            
-            十二月 18, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/12/18/SpringCloud-Docker/" title="SpringCloud --- Docker 部署问题记录" class="posttitle">SpringCloud --- Docker 部署问题记录</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="Docker-容器中-IP-的配置"><a href="#Docker-容器中-IP-的配置" class="headerlink" title="Docker 容器中 IP 的配置"></a>Docker 容器中 IP 的配置</h3><p>将 spring cloud 项目部署到 docker 容器中后,虽然可以配置容器的端口映射到宿主机的端口<br>但是在 eureka 界面显示的instance id 是一串随机的字符串,类似于 d97d725bf6ae 这样的<br>但是,事实上,我们想让他显示出 IP ,这样我们可以直接点击而打开 info 端点信息</p>
-<p>修改 3 处配置项:</p>
-<pre><code class="yaml">    eureka:
-      client:
-        service-url:
-          defaultZone: http://34.0.7.183:9368/...</code></pre>
-            
-            <span class="read-more"><a href="/2018/12/18/SpringCloud-Docker/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

@@ -150,42 +150,40 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Docker篇"><b>「
-                </b>DOCKER篇<b> 」</b></a>
+            <a href="/categories/SpringBoot篇"><b>「
+                </b>SPRINGBOOT篇<b> 」</b></a>
             
-            九月 22, 2020
+            十月 19, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/" title="Docker Compose Version 3 限制 CPU 和 内存的使用方法" class="posttitle">Docker Compose Version 3 限制 CPU 和 内存的使用方法</a></h3>
+            <a href="/2020/10/19/SpringBoot-RestTemplate-SSL/" title="SpringBoot RestTemplate 支持发送 HTTPS 请求" class="posttitle">SpringBoot RestTemplate 支持发送 HTTPS 请求</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                694
+                5.8k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                5 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在 docker 官方问文档里查找关于 docker compose 3 关于资源限制的配置项<br>发现只能用于集群部署</p>
-<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>依然使用集群部署的配置方式:</p>
-<pre><code class="yaml">    redis:
-        image: redis...</code></pre>
+<p>有时在项目中调用的接口是 https 的形式, 这时使用 RestTemplate 来调用请求就会出错:</p>
+<pre><code class="text">    javax.net.ssl.SSLHandshakeException: sun.security...</code></pre>
             
-            <span class="read-more"><a href="/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/10/19/SpringBoot-RestTemplate-SSL/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,65 +208,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7590586736380898);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            九月 22, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/" title="Docker Compose Version 3 限制 CPU 和 内存的使用方法" class="posttitle">Docker Compose Version 3 限制 CPU 和 内存的使用方法</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        694
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在 docker 官方问文档里查找关于 docker compose 3 关于资源限制的配置项<br>发现只能用于集群部署</p>
-<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>依然使用集群部署的配置方式:</p>
-<pre><code class="yaml">    redis:
-        image: redis:alpine
-        container_name: redis
-        deploy:
-          resources:
-            limits:
-              cpus: &#39;0.50&#39;
-              memory: 50M</code></pre>
-<p>这时启动时加入参数 <code>--compatibility</code> 即可</p>
-<pre><code class="bash">    docker-compose --compatibility...</code></pre>
-            
-            <span class="read-more"><a href="/2020/09/22/Docker-Compose-3-Mem-CPU-Limit/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://image.joylau.cn/blog/SpringBoot-Gradle-Property-Expansion.png?0.3857749073730341);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.38025205387043526);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -277,45 +217,144 @@
                   <b>「 </b>SPRINGBOOT篇<b> 」</b>
                 </a>
             
-            九月 01, 2020
+            十月 19, 2020
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 自动注入 Gradle 属性并在自定义 Banner 图中使用</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/10/19/SpringBoot-RestTemplate-SSL/" title="SpringBoot RestTemplate 支持发送 HTTPS 请求" class="posttitle">SpringBoot RestTemplate 支持发送 HTTPS 请求</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        7.2k
+                        5.8k
                     </span>
                 
                 
                     <span>
                         <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        7 mins.
+                        5 mins.
                     </span>
                 
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>有时我们在 gradle 里定义了一些属性, 想在 springboot 的 application 配置文件里使用, 这里介绍这种处理方式, 并且将配置应用于 springboot 的自定义 Banner 图中</p>
+<p>有时在项目中调用的接口是 https 的形式, 这时使用 RestTemplate 来调用请求就会出错:</p>
+<pre><code class="text">    javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification...</code></pre>
+            
+            <span class="read-more"><a href="/2020/10/19/SpringBoot-RestTemplate-SSL/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(https://pic4.zhimg.com/v2-f10a8fd2e6852595707a23bc0bf58871_r.jpg?0.5870272542390611);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/日常折腾篇">
+                  <b>「 </b>日常折腾篇<b> 」</b>
+                </a>
+            
+            十月 12, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/10/12/Daily-Mac-Office/" title="Office for Mac 2019 切换显示语言" class="posttitle">Office for Mac 2019 切换显示语言</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        874
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/" rel="tag">日常折腾</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近因为工作原因不得不在 Mac 上安装了 Office 套件</p>
+<p>但是有一个问题, 我的 Mac 的系统语言是英文的, 安装完 Office 后, 整个操作都是英文的, 蒙蔽了….</p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><p>打开终端:</p>
+<pre><code class="shell">    defaults write com.microsoft.Word AppleLanguages &#39;(&quot;zh_CN&quot;)&#39;
+    defaults write com.microsoft.Excel AppleLanguages &#39;(&quot;zh_CN...</code></pre>
+            
+            <span class="read-more"><a href="/2020/10/12/Daily-Mac-Office/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.41401572473805914);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Linux篇">
+                  <b>「 </b>LINUX篇<b> 」</b>
+                </a>
+            
+            十月 09, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/10/09/Linux-Install-Bpytop/" title="CentOS 7 安装 bpytop 记录" class="posttitle">CentOS 7 安装 bpytop 记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        969
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在 CentOS 8 上安装 bpytop 很简单, 安装 epel 库后执行 <code>dnf install bpytop</code> 即可, 但是在 CentOS 7 的 epel 库里却没有这个 bpytop 包, 这里介绍如何在 CentOS 7 下安装 bpytop</p>
 <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
-<li>配置 build.gradle</li>
+<li>安装 epel 库</li>
 </ol>
-<p>添加以下配置</p>
-<pre><code class="groovy">    processResources {
-        filesMatching(&#39;application.yml&#39;) {
-            expand(project.properties)
-        }
-    }</code></pre>
-<p>如果想将 gradle 的配置应用于所...</p>
+<pre><code class="bash">    yum install epel-release</code></pre>
+<ol start="2">
+<li>安装 snapd 并启用 snapd 套接字</li>
+</ol>
+<pre><code class="bash">    yum install snapd
+    systemctl enable --now snapd.socket...</code></pre>
             
-            <span class="read-more"><a href="/2020/09/01/SpringBoot-Gradle-Property-Expansion/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2020/10/09/Linux-Install-Bpytop/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
@@ -325,24 +364,24 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6428059358680824);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.26877531197816396);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
             
-                <a href="/categories/Ubuntu篇">
-                  <b>「 </b>UBUNTU篇<b> 」</b>
+                <a href="/categories/Linux篇">
+                  <b>「 </b>LINUX篇<b> 」</b>
                 </a>
             
-            八月 08, 2020
+            九月 29, 2020
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="Ubuntu --- 调整状态栏托盘图标的顺序" class="posttitle">Ubuntu --- 调整状态栏托盘图标的顺序</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="Linux 挂载有用户名密码的网络磁盘" class="posttitle">Linux 挂载有用户名密码的网络磁盘</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.4k
+                        1.2k
                     </span>
                 
                 
@@ -354,21 +393,24 @@
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
 
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>继上一篇文章 【indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控】，这里我想让监控的数据放到状态栏的最左侧， 可发现事情并不简单。。。</p>
-<p>因为 Ubuntu 下并不像 Mac 下按住 option 键可随意拖动</p>
-<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><pre><code class="bash">    sudo vim /usr/share/indicator-application/ordering-override.keyfile</code></pre>
-<p>修改顺序， 数字越小越靠左</p>
-<p>修改完毕使用 <code>restart unity-panel-service</code> 重启生效</p>
-<p>但...</p>
+<p>很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘</p>
+<p>很多时候，为了安全考虑网络磁盘都设置了用户名密码</p>
+<p>这时挂载的时候就需要设置用户名密码了</p>
+<p>很可惜上述方式 nfs 没有找到设置用户名密码的参数</p>
+<p>使用 cifs </p>
+<ol>
+<li><p>安装依赖： <code>yum install cifs-utils</code></p>
+</li>
+<li><p>挂载： <code>mount -t cifs -o username=USERNAME,password=PASSWORD,iocharset=utf8 //192...</code></p></li></ol>
             
-            <span class="read-more"><a href="/2020/08/08/Ubuntu-Tray-Icon-Order/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2020/09/29/Linux-Mount-Auth-NetDisk/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
@@ -378,79 +420,24 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5070509051488405);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.588461963270658);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
             
-                <a href="/categories/Ubuntu篇">
-                  <b>「 </b>UBUNTU篇<b> 」</b>
+                <a href="/categories/工具类篇">
+                  <b>「 </b>工具类篇<b> 」</b>
                 </a>
             
-            八月 07, 2020
+            九月 27, 2020
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/08/07/Ubuntu-Disk-Stat/" title="Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控" class="posttitle">Ubuntu --- indicator-sysmonitor 状态栏监控工具开启对磁盘读写的监控</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/09/27/Termius-Multi-Tterminal-Sync/" title="Termius 多终端软件配置手动同步" class="posttitle">Termius 多终端软件配置手动同步</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>indicator-sysmonitor 默认的模式可以监控 CPU 使用率， 内存使用， 网络 I/O 等， 但是却缺少了很关键的对当前磁盘 I/O 的监控，于是我就想着把他给加上去</p>
-<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><p>indicator-sysmonitor 可以新建传感器，可以自定义命令来显示输出， 于是我想着使用 shell 命令获取当前磁盘的 I/O 在输出即可</p>
-<h3 id="dstat-方式"><a href="#dstat-方式" class="headerlink" title="dstat 方式"></a>dstat 方式</h3><ol>
-<li>使用 <code>dstat</code> 命令， 需要机器上事先安装 <code>dstat</code> </li>
-</ol>
-<pre><code class="shell">    dstat  --disk</code></pre>
-<p>该命令可以监控磁盘使用情况</p>
-<p>我在稍对结...</p>
-            
-            <span class="read-more"><a href="/2020/08/07/Ubuntu-Disk-Stat/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9064202072546379);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/MacOS篇">
-                  <b>「 </b>MACOS篇<b> 」</b>
-                </a>
-            
-            八月 04, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/08/04/MacBookPro-uGreen-TypeC-Hub/" title="MacBook Pro 使用绿联 TypeC 网卡关闭笔记本盖子时导致局域网网络不可用的问题解决" class="posttitle">MacBook Pro 使用绿联 TypeC 网卡关闭笔记本盖子时导致局域网网络不可用的问题解决</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        895
+                        775
                     </span>
                 
                 
@@ -462,21 +449,23 @@
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Termius/" rel="tag">Termius</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
 
-<p>我的 MacBook Pro 使用的是绿联的外接扩展坞, 其中有一个网口<br>在京东购买的: <a href="https://item.jd.com/4445121.html" target="_blank" rel="noopener">https://item.jd.com/4445121.html</a></p>
-<p>型号为: CM179<br>网卡芯片为: RTL8153B</p>
-<p>最近发现只要我的 MacBook Pro 关闭了盖子, 会导致接在同一交换机下的路由器就无法上网<br>打开盖子后,网络又恢复正常了  </p>
-<p>搜索了一番没找到解决方式</p>
-<p>于是就找到当时购买的这款产品的京东介绍页面看了看</p>
-<p>想着去绿联的官网找找驱动试试: <a href="https://www.lulian.cn/download/list-34-cn.html" target="_blank" rel="noopener">https://www.lulian.cn/download...</a></p>
+<p>Termius 算是我比较喜欢的一款终端软件了, 因为它很漂亮, 自带的字体很好看, 软件本身是免费的, 但是如果要使用一些高级功能</p>
+<p>比如不同操作系统下的 Termius 的软件配置同步则需要订阅他的高级功能, 收费不低, 关键还不是买断机制的, 是按年缴费</p>
+<p>这不得不使我研究了一番</p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>经我研究, Termius 是使用 Electron 开发的, 挂不得它可以把界面做的这么好看</p>
+<p>我本身也使用 Electron 开发过一些加壳软件, 知道软件的一些配置信息存储的技术手段</p>
+<ol>
+<li>本地文件存储</li>
+<li>cookie...</li></ol>
             
-            <span class="read-more"><a href="/2020/08/04/MacBookPro-uGreen-TypeC-Hub/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2020/09/27/Termius-Multi-Tterminal-Sync/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

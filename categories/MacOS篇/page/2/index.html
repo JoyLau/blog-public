@@ -143,7 +143,7 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(/img/cover.jpg);">
+                url(//image.joylau.cn/blog/qlPlugin-not-work.png);">
         </div>
     </div>
     
@@ -153,16 +153,16 @@
             <a href="/categories/MacOS篇"><b>「
                 </b>MACOS篇<b> 」</b></a>
             
-            十二月 14, 2018
+            三月 18, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/12/14/MacOS-Route/" title="MacOS 上路由表的操作记录" class="posttitle">MacOS 上路由表的操作记录</a></h3>
+            <a href="/2020/03/18/MacOS-Quick-Look/" title="MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法" class="posttitle">MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.7k
+                1.8k
             </span>
             
             
@@ -180,17 +180,13 @@
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
+<p>MacOS 升级到 10.15 版本时,预览文件出现下面的提示</p>
+<center></center>
 
-<ol>
-<li><p>查看路由表: <code>netstat -nr</code></p>
-</li>
-<li><p>添加路由: <code>sudo route add 34.0.7.0 34.0.7.1</code></p>
-</li>
-<li><p>删除路由: <code>sudo route delete 0.0.0.0</code></p>
-</li>
-<li><p>清空路由表...</p></li></ol>
+<p>删除 ~/Library/QuickLook 目录下的隔离属性 (quarantine attribute) </p>
+<p>运行下面命令查看属性...</p>
             
-            <span class="read-more"><a href="/2018/12/14/MacOS-Route/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/03/18/MacOS-Quick-Look/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -215,7 +211,72 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.44706641668825786);">
+            url(//image.joylau.cn/blog/qlPlugin-not-work.png?0.5750294417485342);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/MacOS篇">
+                  <b>「 </b>MACOS篇<b> 」</b>
+                </a>
+            
+            三月 18, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/03/18/MacOS-Quick-Look/" title="MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法" class="posttitle">MacOS 10.15 版本里 Quick Look 插件无法使用的解决办法</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.8k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>MacOS 升级到 10.15 版本时,预览文件出现下面的提示</p>
+<center></center>
+
+<p>删除 ~/Library/QuickLook 目录下的隔离属性 (quarantine attribute) </p>
+<p>运行下面命令查看属性:</p>
+<pre><code class="shell">    xattr -r ~/Library/QuickLook</code></pre>
+<p>运行下列命令移除这些属性:</p>
+<pre><code class="shell">    xattr -d -r com.apple.quarantine ~/Library/QuickLook</code></pre>
+<ol>
+<li>空格预览文件出现下列提示,点击 取消</li>
+</ol>
+<center></center>
+
+<ol start="2">
+<li>转到系统设置里</li>
+</ol>
+<center></center>
+
+<p>点击 “Allow Anyway”...</p>
+            
+            <span class="read-more"><a href="/2020/03/18/MacOS-Quick-Look/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.40199194571368313);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -272,7 +333,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6510893168612479);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.49860889207320325);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -327,7 +388,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.14943205687174843);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.30681161199593054);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -382,7 +443,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/macos-soft.png?0.5581708019761862);">
+            url(//image.joylau.cn/blog/macos-soft.png?0.8900902061487457);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -436,80 +497,9 @@
 </div>
 
 
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/MacBookPro-Unboxing.png?0.08393534917917789);">
     </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/MacOS篇">
-                  <b>「 </b>MACOS篇<b> 」</b>
-                </a>
-            
-            六月 24, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/06/24/MacBookPro-Unboxing/" title="MacBook Pro 2017 --- 不行！我要开箱" class="posttitle">MacBook Pro 2017 --- 不行！我要开箱</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        4.7k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        4 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacBookPro/" rel="tag">MacBookPro</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<center>
-<video src="//image.joylau.cn/blog/macbook-pro-design.mp4" loop="true" controls="controls" poster="//image.joylau.cn/blog/MacBookPro-unboxing-video.png">您的浏览器版本太低，无法观看本视频</video>
-</center>
-
-
-<center>
-![MacBook Pro](http://image.joylau.cn/blog/macbookpro/IMG_2180.JPG)
-
-<p>先来看一下刚拿到手的包装是什么样的</p>
-<p>一台主机</p>
-<p>我在官网订购了一个 USB-typeC 转 USB 的转接口</p>
-<p>那个小盒子就是</p>
-<p></p>
-<p>打开主机纸盒</p>
-<p></p>
-<p>掰开这个直接就可以把里面的主机盒抽出来,很方便</p>
-<p>两边都是这样设计的</p>
-<p></p>
-<p>就2样东西</p>
-<p>都摆放好了</p>
-<p>准备拿剪刀拆开</p>
-<p></p>
-<p>来一张侧面照</p>
-<p></p>
-<p>拆开盒子保护膜</p>
-<p>打开镂空设计的上盖，看到我们的主机...</p></center>
-            
-            <span class="read-more"><a href="/2017/06/24/MacBookPro-Unboxing/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-    </div>
+    
+    <div id="pager"><a href="/categories/MacOS%E7%AF%87/page/3/" class="more" data-loading="加载中..." data-load-more="加载更多">加载更多</a></div>
     
 </div>
 <div id="preview"></div>

@@ -64,9 +64,123 @@
                 <div class="content animated fadeIn">
                     <div class="set">
                         <h1 style="text-align: center">Archived</h1>
-                        <p style="text-align: center">「 215 」</p>
+                        <p style="text-align: center">「 220 」</p>
                         <ul class="timeline timeline-centered">
                             
+                            
+                                
+                                <li class="timeline-item period">
+                                    <div class="timeline-info"></div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h2 class="timeline-title">五月 2021</h2>
+                                    </div>
+                                </li>
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">五月 12, 2021</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2021/05/12/Prometheus-Node-Exporter/">Prometheus --- 物理机安装 node_exporter</a>
+                                        <p>
+                                            
+
+步骤https://copr.fedorainfracloud.org/coprs/ibotty/prometheus-exporters/
+curl -Lo /etc/yum.repos.d/_copr_ibotty-prometheus-exporters.repo https://copr.fedorainfracloud.org/coprs/ibotty/prometheus-e...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">五月 03, 2021</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2021/05/03/Java-Replace-Jar-Class-File/">替换 jar 包中的 class 文件</a>
+                                        <p>
+                                            
+
+在test.jar 的同目录下新建一个与 NeedReplace 类的全路径相同的目录，执行以下命令md com\lovedata\bigdata\jar执行 java -jar 来进行替换jar uvf test.jar com\lovedata\bigdata\jar\NeedReplace.class
+
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item period">
+                                    <div class="timeline-info"></div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h2 class="timeline-title">四月 2021</h2>
+                                    </div>
+                                </li>
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">四月 28, 2021</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2021/04/28/MacOS-Synology-Note-Station/">MacOS 无法打开 Synology Note Station Client</a>
+                                        <p>
+                                            
+
+将 APP 拷贝到用户目录下的 Application 的目录下即可
+
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">四月 12, 2021</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2021/04/12/Docker-MySQL-Cluster/">Docker MySQL 最简单的主从搭建</a>
+                                        <p>
+                                            
+主：    version: &quot;3&quot;
+    services:
+      mysql:
+        image: mysql:8.0.22
+        container_name: mysql
+        restart: always
+        security_opt:
+          - seccomp:unconfined
+     ...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">四月 02, 2021</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2021/04/02/SpringCloud-Feign/">SpringCloud --- Feign 单独为某个接口提供超时配置</a>
+                                        <p>
+                                            
+
+配置
+将原先的接口提取出来，单独写一份@FeignClient(value = “etc-exchange”, contextId = “etc-exchange-2”, fallback = PsamRemoteServiceFallback2.class)重新声明一个 contextId
+
+添加配置项
+
+
+    feign:
+      client:
+        config...
+                                        </p>
+                                    </div>
+                                </li>
                             
                                 
                                 <li class="timeline-item period">

@@ -92,7 +92,7 @@
             animation-duration: 1.2s;
             background-image: 
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-                url(http://nas.joylau.cn:5016/1920x1080?0.6098369360232465) ">
+                url(http://nas.joylau.cn:5016/1920x1080?0.7105513138044541) ">
         </div>
         <div class="else">
             <p class="animated fadeInDown">
@@ -109,7 +109,7 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    4.6k
+                    4.8k
                 </span>
                 
                 
@@ -188,6 +188,16 @@ I/O 大小(最小/最佳)：512 字节 / 512 字节
 Units = 扇区 of 1 * 512 = 512 bytes
 扇区大小(逻辑/物理)：512 字节 / 512 字节
 I/O 大小(最小/最佳)：512 字节 / 512 字节</code></pre>
+<blockquote>
+<p>CentOS 默认挂载盘无法超过 2T， 需要挂载超过 2T 的磁盘，需要先对磁盘的分区方式进行转换成 GPT</p>
+</blockquote>
+<p>转换方式：</p>
+<pre><code class="shell">    parted /dev/vdb
+
+    mklabel
+    gtp
+    quit
+</code></pre>
 <p>可以看到一个 <strong>/dev/vdb</strong> 的设备没有使用</p>
 <ol start="2">
 <li>执行分区:<ul>
@@ -309,9 +319,9 @@ vdb
                     </dl>
                 </div>
                 <ul>
-                    <li><a href="/">215 <p>文章</p></a></li>
-                    <li><a href="/categories">47 <p>分类</p></a></li>
-                    <li><a href="/tags">104 <p>标签</p></a></li>
+                    <li><a href="/">220 <p>文章</p></a></li>
+                    <li><a href="/categories">48 <p>分类</p></a></li>
+                    <li><a href="/tags">106 <p>标签</p></a></li>
                 </ul>
             </div>
             

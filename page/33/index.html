@@ -150,39 +150,40 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/SpringBoot篇"><b>「
-                </b>SPRINGBOOT篇<b> 」</b></a>
+            <a href="/categories/大数据篇"><b>「
+                </b>大数据篇<b> 」</b></a>
             
-            十一月 02, 2017
+            十一月 22, 2017
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2017/11/02/SpringBoot-Kafka/" title="SpringBoot 整合 Kafka 踩坑记录" class="posttitle">SpringBoot 整合 Kafka 踩坑记录</a></h3>
+            <a href="/2017/11/22/Hadoop-Integrate-Build/" title="大数据之路 Hadoop 环境搭建" class="posttitle">大数据之路 Hadoop 环境搭建</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                2.9k
+                12k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                3 mins.
+                11 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Kafka/" rel="tag">Kafka</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="第一个坑"><a href="#第一个坑" class="headerlink" title="第一个坑"></a>第一个坑</h3><p>SpringBoot 在1.5版本后就有了 starter， 但是在依赖列表中却没有找到相应的依赖，原因是名字不叫starter，傻傻的我还用JavaConfig 配置了一遍<br>现在看下整合 starter...</p>
+<p>首先要说明的是,本篇文章用的 Hadoop 的版本都是目前最新版,直接在官网上下载就可以了<br>有些命令可能已经不适应之前的旧版本了,以最新的版的为准<br>以下操作命令均是在服务的根目录下,使用的是相对目录</p>
+<h3 id="当前版本说明"><a href="#当前版本说明" class="headerlink" title="当前版本说明"></a>当...</h3>
             
-            <span class="read-more"><a href="/2017/11/02/SpringBoot-Kafka/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2017/11/22/Hadoop-Integrate-Build/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -207,48 +208,51 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5214366833054553);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.11038648989441091);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
             
-                <a href="/categories/SpringBoot篇">
-                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                <a href="/categories/大数据篇">
+                  <b>「 </b>大数据篇<b> 」</b>
                 </a>
             
-            十一月 02, 2017
+            十一月 22, 2017
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/11/02/SpringBoot-Kafka/" title="SpringBoot 整合 Kafka 踩坑记录" class="posttitle">SpringBoot 整合 Kafka 踩坑记录</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/11/22/Hadoop-Integrate-Build/" title="大数据之路 Hadoop 环境搭建" class="posttitle">大数据之路 Hadoop 环境搭建</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.9k
+                        12k
                     </span>
                 
                 
                     <span>
                         <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
+                        11 mins.
                     </span>
                 
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Kafka/" rel="tag">Kafka</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
-<h3 id="第一个坑"><a href="#第一个坑" class="headerlink" title="第一个坑"></a>第一个坑</h3><p>SpringBoot 在1.5版本后就有了 starter， 但是在依赖列表中却没有找到相应的依赖，原因是名字不叫starter，傻傻的我还用JavaConfig 配置了一遍<br>现在看下整合 starter 之后的是怎么样的吧！</p>
-<pre><code class="xml">    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.kafka&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-kafka&lt;/artifactId&gt;
-    &lt;/...</code></pre>
+<p>首先要说明的是,本篇文章用的 Hadoop 的版本都是目前最新版,直接在官网上下载就可以了<br>有些命令可能已经不适应之前的旧版本了,以最新的版的为准<br>以下操作命令均是在服务的根目录下,使用的是相对目录</p>
+<h3 id="当前版本说明"><a href="#当前版本说明" class="headerlink" title="当前版本说明"></a>当前版本说明</h3><ul>
+<li>Hadoop 版本2.8.2</li>
+<li>操作系统版本 centos 7.2</li>
+</ul>
+<p>安装 jdk 环境,再此不做详细叙述了,需要注意的是 jdk 的环境变量的配置</p>
+<p><code>yum install openjdk1.8xxxxx</code> 这个安装的是 jre环境,并不是 jdk,安装 jdk</p>
+<pre><code class="bash">    sudo yum install...</code></pre>
             
-            <span class="read-more"><a href="/2017/11/02/SpringBoot-Kafka/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2017/11/22/Hadoop-Integrate-Build/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
@@ -258,77 +262,24 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6483800833444073);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9142979014720012);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
             
-                <a href="/categories/SpringBoot篇">
-                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                <a href="/categories/大数据篇">
+                  <b>「 </b>大数据篇<b> 」</b>
                 </a>
             
-            十一月 01, 2017
+            十一月 17, 2017
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/11/01/SpringBoot-IDEA-DevTools/" title="IDEA 中 SpringBoot 项目热部署" class="posttitle">IDEA 中 SpringBoot 项目热部署</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/11/17/Hadoop-Study-Way/" title="大数据之路 Hadoop 的学习流程" class="posttitle">大数据之路 Hadoop 的学习流程</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.7k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p>本文转自：<a href="http://blog.csdn.net/jsshaojinjie/article/details/64125458" target="_blank" rel="noopener">http://blog.csdn.net/jsshaojinjie/article/details/64125458</a></p>
-<p>maven dependencies增加</p>
-<pre><code class="xml">    &lt;dependency&gt;  
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
-        &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;  
-        &lt;optional&gt;true&lt;/optional...</code></pre>
-            
-            <span class="read-more"><a href="/2017/11/01/SpringBoot-IDEA-DevTools/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4618504451266834);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SpringBoot篇">
-                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
-                </a>
-            
-            十月 30, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/10/30/SpringBoot-ReadJSONFile/" title="SpringBoot 读取 JSON 文件并转化为 JSON 对象" class="posttitle">SpringBoot 读取 JSON 文件并转化为 JSON 对象</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.4k
+                        753
                     </span>
                 
                 
@@ -340,38 +291,23 @@
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/JSON/" rel="tag">JSON</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
-<h3 id="通过注解读取文件"><a href="#通过注解读取文件" class="headerlink" title="通过注解读取文件"></a>通过注解读取文件</h3><pre><code class="java">    @Value(&quot;classpath:static/json/addTask.json&quot;)
-    Resource addTaskJson;</code></pre>
-<h3 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h3><table>
-<thead>
-<tr>
-<th align="left">前缀</th>
-<th align="left">例子</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">classpath:</td>
-<td align="left">classpath:com/myapp/config.xml</td>
-<td align="left">从classpath中加载</td>
-</tr>
-<tr>
-<td align="left">file:</td>
-<td align="left">file:/data/config.xml</td>
-<td align="left">作为 URL 从文件系统中加载</td>
-</tr>
-<tr>
-<td align="left">http:</td>
-<td align="left"><a href="http://myserver/logo.png" target="_blank" rel="noopener">http://myserver/logo.png</a></td>
-<td align="left">作为 URL 加载...</td></tr></tbody></table>
+<p>首先记录,在这篇文章书写前,自己并不是刚刚上手 Hadoop, 其实学了有一段时间了<br>在这段时间内,由最开始的对 Hadoop 的懵懂无知到渐渐的熟悉 Hadoop 大致的开发流程<br>整个过程越来越清晰<br>于是就想着,把自己接下来在 Hadoop 上的学习计划记录下来</p>
+<ol>
+<li>了解 Hadoop 背景,开发作用</li>
+<li>然后搭建Hadoop集群，先让它在自己电脑上运行。</li>
+<li>学习分布式文件系统HDFS。</li>
+<li>学习分布式计算框架MapReduce</li>
+<li>学习流式计算Storm</li>
+<li>学习分布式协作服务Zookeeper</li>
+<li>学习Hive—数据...</li></ol>
             
-            <span class="read-more"><a href="/2017/10/30/SpringBoot-ReadJSONFile/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2017/11/17/Hadoop-Study-Way/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
@@ -381,7 +317,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3840047947772014);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.505804236602198);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -390,42 +326,44 @@
                   <b>「 </b>SPRINGBOOT篇<b> 」</b>
                 </a>
             
-            十月 26, 2017
+            十一月 16, 2017
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/10/26/SpringBoot-Oracle/" title="SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载" class="posttitle">SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/11/16/SpringBoot-Elasticsearch-Complex/" title="重剑无锋,大巧不工 SpringBoot --- 使用 Elasticsearch 进行更复杂的查询" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 使用 Elasticsearch 进行更复杂的查询</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.3k
+                        31k
                     </span>
                 
                 
                     <span>
                         <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
+                        28 mins.
                     </span>
                 
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
-<h3 id="pom-文件配置"><a href="#pom-文件配置" class="headerlink" title="pom 文件配置"></a>pom 文件配置</h3><pre><code class="xml">    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
-    &lt;/dependency&gt;
 
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.oracle&lt;/groupId&gt;
-        &lt;artifactId&gt;...</code></pre>
+<p>java 操作 elasticsearch 有四种方式</p>
+<ol>
+<li>调用 elasticsearch 的 restapis 接口</li>
+<li>调用 java elasticsearch client 的接口</li>
+<li>整合 spring data 使用 ElasticsearchTemplate 封装的方法</li>
+<li>继承 ElasticsearchRepository 接口调用方法</li>
+</ol>
+<p>我们先来准备一些数据,写了一个之前的获取JoyMusic 的音乐数据的项目来说,项目的结构是这样的:<br><br>获取数据的主要代码如下,只是为了增加数据</p>
+<pre><code class="java">    @RunWith...</code></pre>
             
-            <span class="read-more"><a href="/2017/10/26/SpringBoot-Oracle/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2017/11/16/SpringBoot-Elasticsearch-Complex/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
@@ -435,51 +373,117 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7568058771066308);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4404045472863354);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
             
-                <a href="/categories/大数据篇">
-                  <b>「 </b>大数据篇<b> 」</b>
+                <a href="/categories/工具类篇">
+                  <b>「 </b>工具类篇<b> 」</b>
                 </a>
             
-            十月 25, 2017
+            十一月 15, 2017
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/10/25/Elasticsearch-Config/" title="Elasticsearch 配置说明 &amp;&amp; 遇坑记录" class="posttitle">Elasticsearch 配置说明 &amp;&amp; 遇坑记录</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/11/15/FastJson-JSONPath/" title="FastJSON 还有这样的用法 涨姿势了" class="posttitle">FastJSON 还有这样的用法 涨姿势了</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.8k
+                        4.9k
                     </span>
                 
                 
                     <span>
                         <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
+                        4 mins.
                     </span>
                 
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/JSON/" rel="tag">JSON</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>JSONPath。这是一个很强大的功能，可以在java框架中当作对象查询语言（OQL）来使用</p>
+<h3 id="语法说明"><a href="#语法说明" class="headerlink" title="语法说明"></a>语法说明</h3><table>
+<thead>
+<tr>
+<th align="left">JSONPATH</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">$</td>
+<td align="left">根对象，例如$.name</td>
+</tr>
+<tr>
+<td align="left">[num]</td>
+<td align="left">数组访问，其中num是数字，可以是负数。例如$[0].leader.departments[-1].name</td>
+</tr>
+<tr>
+<td align="left">[num0,num1,num2…]</td>
+<td align="left">数组多个元素访问，其中num是数字，可以是负数，返回数组中的多个元素。例如$[0,3,-2,5]</td>
+</tr>
+<tr>
+<td align="left">[start:end]</td>
+<td align="left">数组范围访问，其中start和end...</td></tr></tbody></table>
+            
+            <span class="read-more"><a href="/2017/11/15/FastJson-JSONPath/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.47314256842514046);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Node篇">
+                  <b>「 </b>NODE篇<b> 」</b>
+                </a>
+            
+            十一月 07, 2017
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/11/07/Node-Install-Error/" title="npm install 居然出错了" class="posttitle">npm install 居然出错了</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        713
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
 
-<pre><code>配置Elasticsearch的集群名称，默认是elasticsearch，Elasticsearch会自动发现在同一网段下的Elasticsearch 节点，如果在同一网段下有多个集群，就可以用这个属性来区分不同的集群。
-cluster.name: elasticsearch
 
-节点名，默认随机指定一个name列表中名字，不能重复。
-node.name: &quot;node1&quot;
-
-指定该节点是否有资格被选举成为node，默认是true，es是默认集群中的第一台机器为master，如果...</code></pre>
+<p>今天在安装完nodejs后执行 npm install 居然出错了</p>
+<p>npm: relocation error: npm: symbol SSL_set_cert_cb, version libssl.so.10 not defined in file libssl.</p>
+<p>npm: relocation error: npm: symbol SSL_set_cert_cb, version libssl.so.10 not defined in file libssl.so.10 with link...</p>
             
-            <span class="read-more"><a href="/2017/10/25/Elasticsearch-Config/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2017/11/07/Node-Install-Error/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

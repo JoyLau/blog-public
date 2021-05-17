@@ -153,16 +153,16 @@
             <a href="/categories/Docker篇"><b>「
                 </b>DOCKER篇<b> 」</b></a>
             
-            十二月 17, 2020
+            四月 12, 2021
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/12/17/Docker-Passed-Firewalld/" title="关于 Docker -p 穿透防火墙 firewalld 的问题的研究记录" class="posttitle">关于 Docker -p 穿透防火墙 firewalld 的问题的研究记录</a></h3>
+            <a href="/2021/04/12/Docker-MySQL-Cluster/" title="Docker MySQL 最简单的主从搭建" class="posttitle">Docker MySQL 最简单的主从搭建</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                2.4k
+                2.3k
             </span>
             
             
@@ -175,15 +175,19 @@
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>使用 docker run -p 或者 docker compose 启动暴露的端口的容器, 会直接穿透防火墙, 不受系统防火墙的 firewalld 的管控</p>
-<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>docker 容器会在启动的时...</p>
+<h3 id="主："><a href="#主：" class="headerlink" title="主："></a>主：</h3><pre><code class="yaml">    version: &quot;3&quot;
+    services:
+      mysql:
+        image: mysql:8.0.22
+        container_name: mysql
+        restart: always...</code></pre>
             
-            <span class="read-more"><a href="/2020/12/17/Docker-Passed-Firewalld/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2021/04/12/Docker-MySQL-Cluster/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -208,7 +212,58 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8819160095523537);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4240166164020298);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            十二月 17, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/12/17/Docker-Passed-Firewalld/" title="关于 Docker -p 穿透防火墙 firewalld 的问题的研究记录" class="posttitle">关于 Docker -p 穿透防火墙 firewalld 的问题的研究记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2.4k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>使用 docker run -p 或者 docker compose 启动暴露的端口的容器, 会直接穿透防火墙, 不受系统防火墙的 firewalld 的管控</p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>docker 容器会在启动的时候向 iptables 添加转发的规则<br>而 firewalld 也是通过操作 iptables 来实现的防火墙的功能</p>
+<pre><code class="bash">    [root@centOS7 es-test]# iptables -L DOCKER
+    Chain DOCKER (3 references)
+    target     prot opt source...</code></pre>
+            
+            <span class="read-more"><a href="/2020/12/17/Docker-Passed-Firewalld/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.41197571642321296);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -257,7 +312,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.502580300086912);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4326514504961947);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -315,7 +370,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8295755038036166);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7906709675961074);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -360,62 +415,6 @@
 <h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><pre><code class="bash">    docker run -d --name clash-client --restart always -p 7890...</code></pre>
             
             <span class="read-more"><a href="/2020/05/02/Clash-Docker/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4731143926769137);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            四月 22, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/04/22/Docker-ENTRYPOINT-CMD/" title="Docker ENTRYPOINT 和 CMD 组合使用" class="posttitle">Docker ENTRYPOINT 和 CMD 组合使用</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        2.9k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><ol>
-<li>清楚 ENTRYPOINT 和 CMD 的 shell 和 exec 的 2 种写法</li>
-<li>定义多个 CMD, 只有最后一个 CMD 生效</li>
-<li>同时定义 ENTRYPOINT 和 CMD, 那么 ENTRYPOINT 会覆盖 CMD</li>
-</ol>
-<h3 id="总结的结论"><a href="#总结的结论" class="headerlink" title="总结的结论"></a>总结的结论</h3><ol>
-<li>ENTRYPOINT 使用了 shell 模式，CMD 指令会被忽略</li>
-<li>ENTRYPOINT 使用了 exec 模式，CMD 指定的内容被追加为 ENTRYPOINT 指定命令的参数</li>
-<li>ENTRYPOINT 使用了 exec 模式，CMD 也应该使用 exec...</li></ol>
-            
-            <span class="read-more"><a href="/2020/04/22/Docker-ENTRYPOINT-CMD/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

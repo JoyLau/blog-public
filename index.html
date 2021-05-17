@@ -150,19 +150,19 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Elasticsearch"><b>「
-                </b>ELASTICSEARCH<b> 」</b></a>
+            <a href="/categories/Prometheus篇"><b>「
+                </b>PROMETHEUS篇<b> 」</b></a>
             
-            三月 12, 2021
+            五月 12, 2021
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2021/03/12/Elasticsearch-Max-Shards/" title="Elasticsearch maximum shards open 的问题" class="posttitle">Elasticsearch maximum shards open 的问题</a></h3>
+            <a href="/2021/05/12/Prometheus-Node-Exporter/" title="Prometheus --- 物理机安装 node_exporter" class="posttitle">Prometheus --- 物理机安装 node_exporter</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                473
+                865
             </span>
             
             
@@ -175,17 +175,16 @@
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Prometheus/" rel="tag">Prometheus</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 
-<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.10/modules-cluster.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elasticsearch/reference/7.10/modules-cluster.html</a></p>
-<p>修改 yml 文件：</p>
-<p>cluster...</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p><a href="https://copr.fedorainfracloud.org/coprs/ibotty/prometheus-exporters/" target="_blank" rel="noopener">https://copr.fedorainfracloud.org/coprs/ibotty/prometheus-exporters/</a></p>
+<p>curl -Lo /etc/yum.repos.d/_copr_ibotty...</p>
             
-            <span class="read-more"><a href="/2021/03/12/Elasticsearch-Max-Shards/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2021/05/12/Prometheus-Node-Exporter/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,24 +209,24 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.011652120917198916);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9464320405770572);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
             
-                <a href="/categories/SpringBoot">
-                  <b>「 </b>SPRINGBOOT<b> 」</b>
+                <a href="/categories/Java篇">
+                  <b>「 </b>JAVA篇<b> 」</b>
                 </a>
             
-            二月 18, 2021
+            五月 03, 2021
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2021/02/18/SpringBoot-Jackson/" title="重剑无锋,大巧不工 SpringBoot --- Jackson 关于日期时间的注解" class="posttitle">重剑无锋,大巧不工 SpringBoot --- Jackson 关于日期时间的注解</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2021/05/03/Java-Replace-Jar-Class-File/" title="替换 jar 包中的 class 文件" class="posttitle">替换 jar 包中的 class 文件</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        650
+                        193
                     </span>
                 
                 
@@ -239,16 +238,17 @@
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Jackson/" rel="tag">Jackson</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
 
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>@JsonFormat(pattern = “yyyy-MM-dd HH:mm:ss”)   : 后端 =&gt;前端的转换<br>@DateTimeFormat(pattern = “yyyy-MM-dd’T’HH:mm:ss”) ： 前端 =&gt; 后端的转换<br>@JsonDeserialize(using = LocalDateTimeDeserializer.class) ： jackson 反序列化<br>@JsonSerialize(using = LocalDateTimeSerializer.class...</p>
+<p>在test.jar 的同目录下新建一个与 NeedReplace 类的全路径相同的目录，执行以下命令<br>md com\lovedata\bigdata\jar<br>执行 java -jar 来进行替换<br>jar uvf test.jar com\lovedata\bigdata\jar\NeedReplace.class</p>
+
             
-            <span class="read-more"><a href="/2021/02/18/SpringBoot-Jackson/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2021/05/03/Java-Replace-Jar-Class-File/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
@@ -258,24 +258,24 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7254331315870477);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.10336877598724814);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
             
-                <a href="/categories/Grafana篇">
-                  <b>「 </b>GRAFANA篇<b> 」</b>
+                <a href="/categories/MacOS篇">
+                  <b>「 </b>MACOS篇<b> 」</b>
                 </a>
             
-            二月 15, 2021
+            四月 28, 2021
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2021/02/15/Grafana-Set-Context/" title="Grafana 设置二级目录及配置 Nginx 代理" class="posttitle">Grafana 设置二级目录及配置 Nginx 代理</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2021/04/28/MacOS-Synology-Note-Station/" title="MacOS 无法打开 Synology Note Station Client" class="posttitle">MacOS 无法打开 Synology Note Station Client</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        616
+                        61
                     </span>
                 
                 
@@ -287,25 +287,17 @@
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Grafana/" rel="tag">Grafana</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
 
-<p>设置环境变量：</p>
-<pre><code class="yaml">    env:
-    - name: GF_SERVER_ROOT_URL
-      value: &quot;%(protocol)s://%(domain)s:%(http_port)s/grafana&quot;
-    - name: GF_SERVER_SERVE_FROM_SUB_PATH
-  value: &quot;true&quot;</code></pre>
-<p>此时 NGINX 进行反向代理的配置：</p>
-<pre><code class="nginx">    location /grafana/ {
-        proxy_set_header Host $host;
-        proxy_set_header...</code></pre>
+<p>将 APP 拷贝到用户目录下的 Application 的目录下即可</p>
+
             
-            <span class="read-more"><a href="/2021/02/15/Grafana-Set-Context/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2021/04/28/MacOS-Synology-Note-Station/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
@@ -315,24 +307,85 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6406123753134791);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.834709434567791);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
             
-                <a href="/categories/MinIO篇">
-                  <b>「 </b>MINIO篇<b> 」</b>
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
                 </a>
             
-            二月 05, 2021
+            四月 12, 2021
         </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2021/02/05/MinIO-Data-Migration/" title="MinIO 数据迁移简记" class="posttitle">MinIO 数据迁移简记</a></h3>
+        <h3 class="post-title animated fadeInDown"><a href="/2021/04/12/Docker-MySQL-Cluster/" title="Docker MySQL 最简单的主从搭建" class="posttitle">Docker MySQL 最简单的主从搭建</a></h3>
         
             <p class="post-count animated fadeInDown">
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        377
+                        2.3k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="主："><a href="#主：" class="headerlink" title="主："></a>主：</h3><pre><code class="yaml">    version: &quot;3&quot;
+    services:
+      mysql:
+        image: mysql:8.0.22
+        container_name: mysql
+        restart: always
+        security_opt:
+          - seccomp:unconfined
+        ports:
+          - 3306:3306
+        volumes:
+          - ./mysql-data:/var/lib/mysql
+          - ./my.cnf:/etc/mysql/my.cnf
+        environment:
+          - MYSQL_ROOT_PASSWORD...</code></pre>
+            
+            <span class="read-more"><a href="/2021/04/12/Docker-MySQL-Cluster/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.7499884889234425);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringCloud篇">
+                  <b>「 </b>SPRINGCLOUD篇<b> 」</b>
+                </a>
+            
+            四月 02, 2021
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2021/04/02/SpringCloud-Feign/" title="SpringCloud --- Feign 单独为某个接口提供超时配置" class="posttitle">SpringCloud --- Feign 单独为某个接口提供超时配置</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        458
                     </span>
                 
                 
@@ -344,72 +397,28 @@
                 
             </p>
             
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/MinIO/" rel="tag">MinIO</a></li></ul>
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Feign/" rel="tag">Feign</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li></ul>
             
         
         <div class="md-content animated fadeIn">
             
                 <a id="more"></a>
 
-<ol>
-<li>下载 minio/mc 项目</li>
-<li>分别添加源服务器和目标服务器： <code>./mc.exe config host add local http://10.55.3.131:9000 &quot;AKIAIOSFODNN7EXAMPLE&quot; &quot;
-wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&quot;</code></li>
-<li>按桶进行迁移： <code>./mc.exe mirror local/blacklist new/blacklist</code></li>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li><p>将原先的接口提取出来，单独写一份<br>@FeignClient(value = “etc-exchange”, contextId = “etc-exchange-2”, fallback = PsamRemoteServiceFallback2.class)<br>重新声明一个 contextId</p>
+</li>
+<li><p>添加配置项</p>
+</li>
 </ol>
+<pre><code class="yaml">    feign:
+      client:
+        config:
+          etc-exchange-2:
+            connect-timeout: 3000
+            read-timeout: 3000</code></pre>
 
             
-            <span class="read-more"><a href="/2021/02/05/MinIO-Data-Migration/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.28083757948142685);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/OpenVPN篇">
-                  <b>「 </b>OPENVPN篇<b> 」</b>
-                </a>
-            
-            二月 03, 2021
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2021/02/03/OpenVPN-AddTAP/" title="OpenVPN 客户端创建多个网络适配器" class="posttitle">OpenVPN 客户端创建多个网络适配器</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        276
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenVPN/" rel="tag">OpenVPN</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p>Open VPN 的客户端不做特殊配置无法同时连接多个服务器，会出现异常。提示设备已在使用</p>
-<p>进入 openVPN 的安装目录，以管理员的身份执行 addtap.bat 文件即可， 可在网络适配器里看到多出一块虚拟网卡</p>
-
-            
-            <span class="read-more"><a href="/2021/02/03/OpenVPN-AddTAP/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+            <span class="read-more"><a href="/2021/04/02/SpringCloud-Feign/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
