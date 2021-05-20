@@ -150,19 +150,19 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Elasticsearch"><b>「
-                </b>ELASTICSEARCH<b> 」</b></a>
+            <a href="/categories/SpringCloud篇"><b>「
+                </b>SPRINGCLOUD篇<b> 」</b></a>
             
-            三月 12, 2021
+            四月 02, 2021
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2021/03/12/Elasticsearch-Max-Shards/" title="Elasticsearch maximum shards open 的问题" class="posttitle">Elasticsearch maximum shards open 的问题</a></h3>
+            <a href="/2021/04/02/SpringCloud-Feign/" title="SpringCloud --- Feign 单独为某个接口提供超时配置" class="posttitle">SpringCloud --- Feign 单独为某个接口提供超时配置</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                473
+                458
             </span>
             
             
@@ -175,17 +175,16 @@
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Feign/" rel="tag">Feign</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 
-<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.10/modules-cluster.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elasticsearch/reference/7.10/modules-cluster.html</a></p>
-<p>修改 yml 文件：</p>
-<p>cluster...</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li><p>将原先的接口提取出来，单独写一份<br>@FeignClient(value = “etc-exchange”, contextId = “etc-exchange-2”, fallback = PsamRemoteSe...</p></li></ol>
             
-            <span class="read-more"><a href="/2021/03/12/Elasticsearch-Max-Shards/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2021/04/02/SpringCloud-Feign/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +209,67 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.23096117620140633);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7680777378775852);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringCloud篇">
+                  <b>「 </b>SPRINGCLOUD篇<b> 」</b>
+                </a>
+            
+            四月 02, 2021
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2021/04/02/SpringCloud-Feign/" title="SpringCloud --- Feign 单独为某个接口提供超时配置" class="posttitle">SpringCloud --- Feign 单独为某个接口提供超时配置</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        458
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Feign/" rel="tag">Feign</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li><p>将原先的接口提取出来，单独写一份<br>@FeignClient(value = “etc-exchange”, contextId = “etc-exchange-2”, fallback = PsamRemoteServiceFallback2.class)<br>重新声明一个 contextId</p>
+</li>
+<li><p>添加配置项</p>
+</li>
+</ol>
+<pre><code class="yaml">    feign:
+      client:
+        config:
+          etc-exchange-2:
+            connect-timeout: 3000
+            read-timeout: 3000</code></pre>
+
+            
+            <span class="read-more"><a href="/2021/04/02/SpringCloud-Feign/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.7787654002220927);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -268,7 +327,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.11586004839586339);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.08583618235713186);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -316,7 +375,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3396699952387161);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.04534719570029888);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -373,7 +432,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8688781956215441);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5705197511399098);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -418,56 +477,6 @@ wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&quot;</code></li>
 
             
             <span class="read-more"><a href="/2021/02/05/MinIO-Data-Migration/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.68720426012905);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/OpenVPN篇">
-                  <b>「 </b>OPENVPN篇<b> 」</b>
-                </a>
-            
-            二月 03, 2021
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2021/02/03/OpenVPN-AddTAP/" title="OpenVPN 客户端创建多个网络适配器" class="posttitle">OpenVPN 客户端创建多个网络适配器</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        276
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenVPN/" rel="tag">OpenVPN</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p>Open VPN 的客户端不做特殊配置无法同时连接多个服务器，会出现异常。提示设备已在使用</p>
-<p>进入 openVPN 的安装目录，以管理员的身份执行 addtap.bat 文件即可， 可在网络适配器里看到多出一块虚拟网卡</p>
-
-            
-            <span class="read-more"><a href="/2021/02/03/OpenVPN-AddTAP/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

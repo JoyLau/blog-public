@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>MySQL 数据库数据定时备份并上传至 minIO</title>
+      <link href="/2021/05/20/MySQL-Backup-MinIO/"/>
+      <url>/2021/05/20/MySQL-Backup-MinIO/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><ol><li>下载 minIO 客户端</li></ol><p><a href="http://dl.minio.org.cn/client/mc/release/linux-amd64/mc" target="_blank" rel="noopener">http://dl.minio.org.cn/client/mc/release/linux-amd64/mc</a></p><p>拷贝到 MySQL 服务器的 /usr/bin 目录下并授权</p><p><code>chmod +x /usr/bin/mc</code></p><ol start="2"><li>配置 mc 客户端</li></ol><p><code>mc config host add minio http://10.55.3.132:9000 &quot;AKIAIOSFODNN7EXAMPLE&quot; &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&quot;</code></p><p>文档地址： <a href="https://docs.min.io/minio/baremetal/reference/minio-cli/minio-mc.html" target="_blank" rel="noopener">https://docs.min.io/minio/baremetal/reference/minio-cli/minio-mc.html</a></p><ol start="3"><li>添加备份脚本</li></ol><p>mysql-backup.sh</p><pre><code class="shell">#!/bin/sh# 创建桶 mysql-backupmc mb minio/mysql-backupdocker exec  mysql-slave-1 mysqldump -h 10.55.3.123 -u root -pKaiyuan@2020  etc | mc pipe --attr &quot;Artist=mysql&quot; minio/mysql-backup/etc-`date &quot;+%Y-%m-%d_%H-%M-%S&quot;`.sql# 删除 10 天前的备份mc rm --older-than=10 --force --recursive minio/mysql-backup/</code></pre><p><code>chmod +x mysql-backup.sh</code></p><ol start="4"><li>添加定时任务</li></ol><pre><code class="shell">    crontab -e    30 4 * * * /root/backup-mysql.sh&gt;/root/backup-mysql.log 2&gt;&amp;1 &amp;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> MySQL篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+            <tag> MinIO </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Prometheus --- 物理机安装 node_exporter</title>
       <link href="/2021/05/12/Prometheus-Node-Exporter/"/>
       <url>/2021/05/12/Prometheus-Node-Exporter/</url>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2021-05-16T06:15:14.857Z</updated>
+  <updated>2021-05-20T06:03:08.537Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL 数据库数据定时备份并上传至 minIO</title>
+    <link href="http://blog.joylau.cn/2021/05/20/MySQL-Backup-MinIO/"/>
+    <id>http://blog.joylau.cn/2021/05/20/MySQL-Backup-MinIO/</id>
+    <published>2021-05-20T06:01:47.000Z</published>
+    <updated>2021-05-20T06:03:08.537Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><ol><li>下载 minIO 客户端</li></ol><p><a href="http://dl.minio.org.cn/client/mc/release/linux-amd64/mc" target="_blank" rel="noopener">http://dl.minio.org.cn/client/mc/release/linux-amd64/mc</a></p><p>拷贝到 MySQL 服务器的 /usr/bin 目录下并授权</p><p><code>chmod +x /usr/bin/mc</code></p><ol start="2"><li>配置 mc 客户端</li></ol><p><code>mc config host add minio http://10.55.3.132:9000 &quot;AKIAIOSFODNN7EXAMPLE&quot; &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&quot;</code></p><p>文档地址： <a href="https://docs.min.io/minio/baremetal/reference/minio-cli/minio-mc.html" target="_blank" rel="noopener">https://docs.min.io/minio/baremetal/reference/minio-cli/minio-mc.html</a></p><ol start="3"><li>添加备份脚本</li></ol><p>mysql-backup.sh</p><pre><code class="shell">#!/bin/sh# 创建桶 mysql-backupmc mb minio/mysql-backupdocker exec  mysql-slave-1 mysqldump -h 10.55.3.123 -u root -pKaiyuan@2020  etc | mc pipe --attr &quot;Artist=mysql&quot; minio/mysql-backup/etc-`date &quot;+%Y-%m-%d_%H-%M-%S&quot;`.sql# 删除 10 天前的备份mc rm --older-than=10 --force --recursive minio/mysql-backup/</code></pre><p><code>chmod +x mysql-backup.sh</code></p><ol start="4"><li>添加定时任务</li></ol><pre><code class="shell">    crontab -e    30 4 * * * /root/backup-mysql.sh&gt;/root/backup-mysql.log 2&gt;&amp;1 &amp;</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      MySQL 数据库数据定时备份并上传至 minIO
+    
+    </summary>
+    
+    
+      <category term="MySQL篇" scheme="http://blog.joylau.cn/categories/MySQL%E7%AF%87/"/>
+    
+    
+      <category term="MySQL" scheme="http://blog.joylau.cn/tags/MySQL/"/>
+    
+      <category term="MinIO" scheme="http://blog.joylau.cn/tags/MinIO/"/>
+    
+  </entry>
   
   <entry>
     <title>Prometheus --- 物理机安装 node_exporter</title>
@@ -462,29 +487,6 @@
     
     
       <category term="Linux" scheme="http://blog.joylau.cn/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Termius 多终端软件配置手动同步</title>
-    <link href="http://blog.joylau.cn/2020/09/27/Termius-Multi-Tterminal-Sync/"/>
-    <id>http://blog.joylau.cn/2020/09/27/Termius-Multi-Tterminal-Sync/</id>
-    <published>2020-09-27T07:02:15.000Z</published>
-    <updated>2020-09-27T07:18:08.599Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><p>Termius 算是我比较喜欢的一款终端软件了, 因为它很漂亮, 自带的字体很好看, 软件本身是免费的, 但是如果要使用一些高级功能</p><p>比如不同操作系统下的 Termius 的软件配置同步则需要订阅他的高级功能, 收费不低, 关键还不是买断机制的, 是按年缴费</p><p>这不得不使我研究了一番</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>经我研究, Termius 是使用 Electron 开发的, 挂不得它可以把界面做的这么好看</p><p>我本身也使用 Electron 开发过一些加壳软件, 知道软件的一些配置信息存储的技术手段</p><ol><li>本地文件存储</li><li>cookie 存储</li><li>Local Storage 存储</li><li>IndexedDB 存储</li></ol><p>其中第二,第三的方式存储不太可能, 是一些简单的字符串存储, 容量小, 且数据结构简单</p><p>最终我定位了它使用的是 IndexedDB 存储</p><p>且存储的位置(Mac OS)在 <code>/Users/joylau/Library/Containers/com.termius.mac/Data/Library/Application Support/Termius/IndexedDB/file__0.indexeddb.leveldb/000003.log</code></p><p>同理在 Windows 下或者 Linux 下找到该 indexedDB 数据文件, 再进行替换, 则软件的配置得以同步</p>]]></content>
-    
-    <summary type="html">
-    
-      Termius 多终端软件配置手动同步
-    
-    </summary>
-    
-    
-      <category term="工具类篇" scheme="http://blog.joylau.cn/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB%E7%AF%87/"/>
-    
-    
-      <category term="Termius" scheme="http://blog.joylau.cn/tags/Termius/"/>
     
   </entry>
   

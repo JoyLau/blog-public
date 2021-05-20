@@ -153,22 +153,22 @@
             <a href="/categories/大数据篇"><b>「
                 </b>大数据篇<b> 」</b></a>
             
-            八月 09, 2018
+            八月 13, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/08/09/Elasticsearch-SearchAll/" title="Elasticsearch 查询全部数据" class="posttitle">Elasticsearch 查询全部数据</a></h3>
+            <a href="/2018/08/13/Elasticsearch-AutoComplete/" title="Elasticsearch 关键字自动补全的实现" class="posttitle">Elasticsearch 关键字自动补全的实现</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                909
+                9.6k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                9 mins.
             </span>
             
             
@@ -180,10 +180,10 @@
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>有时我们希望查询 固定条件下的全部数据<br>ES 默认的策略是返回10条数据<br>虽然可以 setSize()<br>但是默认上限是 10 万还是 100 万条数据,这不够优雅,一般不这么干</p>
-<h3 id="TransportClient-方法"><a href="#TransportClient-方法" class="headerlink" title="TransportClient 方法"></a>TransportClient...</h3>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我们经常能看到在各大电商网站搜索关键字的时候,底下下拉框会补全你要搜索的商品,或者类似的商品,有时候甚至连错别字也能纠正过来,其实ElasticSearch也能实现这样的功能</p>
+<h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>首先,能够...</p>
             
-            <span class="read-more"><a href="/2018/08/09/Elasticsearch-SearchAll/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/08/13/Elasticsearch-AutoComplete/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -208,7 +208,61 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9390471371703364);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7957553007689457);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/大数据篇">
+                  <b>「 </b>大数据篇<b> 」</b>
+                </a>
+            
+            八月 13, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/08/13/Elasticsearch-AutoComplete/" title="Elasticsearch 关键字自动补全的实现" class="posttitle">Elasticsearch 关键字自动补全的实现</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        9.6k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        9 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我们经常能看到在各大电商网站搜索关键字的时候,底下下拉框会补全你要搜索的商品,或者类似的商品,有时候甚至连错别字也能纠正过来,其实ElasticSearch也能实现这样的功能</p>
+<h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>首先,能够被自动补全的需要设置索引类型为”completion”,其次,还可以设置自动提示为中文分词</p>
+<pre><code class="json">    {
+      &quot;settings&quot;: {
+        &quot;analysis&quot;: {
+          &quot;analyzer&quot;: {
+            &quot;ik&quot;: {
+              &quot;tokenizer...</code></pre>
+            
+            <span class="read-more"><a href="/2018/08/13/Elasticsearch-AutoComplete/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.07982347474455498);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -258,7 +312,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9020537081194211);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.00032053878521343115);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -307,7 +361,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9227622722750637);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5242251838969525);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -362,7 +416,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9893588980489956);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6778736317937584);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -403,55 +457,6 @@
 <p>理论上，2M，即2Mb...</p>
             
             <span class="read-more"><a href="/2018/08/03/BroadbandSpeedConversion/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.472994972214112);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Spring">
-                  <b>「 </b>SPRING<b> 」</b>
-                </a>
-            
-            七月 30, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/07/30/Spring-NamedParameterJdbcTemplate/" title="NamedParameterJdbcTemplate 使用具名参数记录" class="posttitle">NamedParameterJdbcTemplate 使用具名参数记录</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.7k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近维护了一个比较老的项目，操作数据库直接用的 Spring 的 JdbcTemplate，有很多地方我们传入的参数都是不确定的<br>简单的还好，复杂的 sql 语句在代码里用字符串拼接起来简直不能忍，<br>又不想对原来的项目有什么大的改动，就想这能不能在现在的基础上优化一下<br>还好有 NamedParameterJdbcTemplate</p>
-<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p>具名参数: SQL 按名称(以冒号开头)而不是按位置进行指定. 具名参数更易于维护, 也提升了可读性. 具名参数由框架类在运行时用占位符取代<br>具名参数只在 NamedParameterJ...</p>
-            
-            <span class="read-more"><a href="/2018/07/30/Spring-NamedParameterJdbcTemplate/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

@@ -150,65 +150,40 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Java"><b>「
-                </b>JAVA<b> 」</b></a>
+            <a href="/categories/Spring"><b>「
+                </b>SPRING<b> 」</b></a>
             
-            七月 29, 2018
+            七月 30, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/07/29/OracleNubmer-JdbcType/" title="Oracle 里 number 类型对应 JdbcType bean 类型记录" class="posttitle">Oracle 里 number 类型对应 JdbcType bean 类型记录</a></h3>
+            <a href="/2018/07/30/Spring-NamedParameterJdbcTemplate/" title="NamedParameterJdbcTemplate 使用具名参数记录" class="posttitle">NamedParameterJdbcTemplate 使用具名参数记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                300
+                3.7k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                3 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 
-<table>
-<thead>
-<tr>
-<th>number长度</th>
-<th>Java类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1~4</td>
-<td>Short</td>
-</tr>
-<tr>
-<td>5~9</td>
-<td>Integer</td>
-</tr>
-<tr>
-<td>10~18</td>
-<td>Long</td>
-</tr>
-<tr>
-<td>18+</td>
-<td>BigDecimal</td>
-</tr>
-</tbody></table>
-<p>须指定number类型的大小。</p>
-
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近维护了一个比较老的项目，操作数据库直接用的 Spring 的 JdbcTemplate，有很多地方我们传入的参数都是不确定的<br>简单的还好，复杂的 sql 语句在代码里用字符串拼接起来简直不能忍...</p>
             
-            <span class="read-more"><a href="/2018/07/29/OracleNubmer-JdbcType/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/07/30/Spring-NamedParameterJdbcTemplate/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -233,7 +208,56 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3998552421326649);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6627622256353582);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Spring">
+                  <b>「 </b>SPRING<b> 」</b>
+                </a>
+            
+            七月 30, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/07/30/Spring-NamedParameterJdbcTemplate/" title="NamedParameterJdbcTemplate 使用具名参数记录" class="posttitle">NamedParameterJdbcTemplate 使用具名参数记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        3.7k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        3 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近维护了一个比较老的项目，操作数据库直接用的 Spring 的 JdbcTemplate，有很多地方我们传入的参数都是不确定的<br>简单的还好，复杂的 sql 语句在代码里用字符串拼接起来简直不能忍，<br>又不想对原来的项目有什么大的改动，就想这能不能在现在的基础上优化一下<br>还好有 NamedParameterJdbcTemplate</p>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p>具名参数: SQL 按名称(以冒号开头)而不是按位置进行指定. 具名参数更易于维护, 也提升了可读性. 具名参数由框架类在运行时用占位符取代<br>具名参数只在 NamedParameterJ...</p>
+            
+            <span class="read-more"><a href="/2018/07/30/Spring-NamedParameterJdbcTemplate/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.014174822490740091);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -306,7 +330,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5712569418668756);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.3823514934258838);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -359,7 +383,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.1538095264722401);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8184491040973381);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -421,7 +445,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3138351314897805);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1979063166319146);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -467,54 +491,6 @@
 <p> sudo systemctl ...</p></li></ol>
             
             <span class="read-more"><a href="/2018/07/12/Docker-AliAccelerator/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3132502022315411);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            七月 05, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/07/05/Docker-Manager-NonRoot/" title="以非 root 用户身份管理 Docker" class="posttitle">以非 root 用户身份管理 Docker</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.4k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>docker 安装完成后，其他用户只能使用 sudo 访问它。docker 守护进程始终以 root 用户身份运行，这样每次在使用命令时都需要在前面加上sudo,这很不方便。<br>有没有什么方式能够解决？<br>官方文档地址： <a href="https://docs.docker.com/install/linux/linux-postinstall/" target="_blank" rel="noopener">https://docs.docker.com/install/linux/linux-postinstall/</a></p>
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>docker 守护进程绑定至 Unix 套接字，而不是 TCP 端口。默认情况下，该 Unix 套接字由用户 root 所有，而其他用户只能使用 sudo 访问它...</p>
-            
-            <span class="read-more"><a href="/2018/07/05/Docker-Manager-NonRoot/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
