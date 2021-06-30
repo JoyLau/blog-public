@@ -92,7 +92,7 @@ http://dl.minio.org.cn/client/mc/release/linux-amd64/mc
             animation-duration: 1.2s;
             background-image: 
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-                url(http://nas.joylau.cn:5016/1920x1080?0.776935952259552) ">
+                url(http://nas.joylau.cn:5016/1920x1080?0.7721880551656639) ">
         </div>
         <div class="else">
             <p class="animated fadeInDown">
@@ -174,7 +174,7 @@ mc mb minio/mysql-backup
 docker exec  mysql-slave-1 mysqldump -h 10.55.3.123 -u root -pKaiyuan@2020  etc | mc pipe --attr &quot;Artist=mysql&quot; minio/mysql-backup/etc-`date &quot;+%Y-%m-%d_%H-%M-%S&quot;`.sql
 
 # 删除 10 天前的备份
-mc rm --older-than=10 --force --recursive minio/mysql-backup/</code></pre>
+mc rm --older-than=10d --force --recursive minio/mysql-backup/</code></pre>
 <p><code>chmod +x mysql-backup.sh</code></p>
 <ol start="4">
 <li>添加定时任务</li>
@@ -230,8 +230,8 @@ mc rm --older-than=10 --force --recursive minio/mysql-backup/</code></pre>
                     </dl>
                 </div>
                 <ul>
-                    <li><a href="/">221 <p>文章</p></a></li>
-                    <li><a href="/categories">48 <p>分类</p></a></li>
+                    <li><a href="/">222 <p>文章</p></a></li>
+                    <li><a href="/categories">49 <p>分类</p></a></li>
                     <li><a href="/tags">106 <p>标签</p></a></li>
                 </ul>
             </div>

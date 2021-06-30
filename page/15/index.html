@@ -150,47 +150,40 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/React篇"><b>「
-                </b>REACT篇<b> 」</b></a>
+            <a href="/categories/Electron篇"><b>「
+                </b>ELECTRON篇<b> 」</b></a>
             
-            九月 10, 2019
+            九月 11, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/09/10/React-Create-React-App/" title="Create-React-App 的一些配置" class="posttitle">Create-React-App 的一些配置</a></h3>
+            <a href="/2019/09/11/Electron-Questions/" title="Electron --- 知识点小记" class="posttitle">Electron --- 知识点小记</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                6.3k
+                4.9k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                6 mins.
+                4 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/react/" rel="tag">react</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<h3 id="添加多页面配置"><a href="#添加多页面配置" class="headerlink" title="添加多页面配置"></a>添加多页面配置</h3><ol>
-<li><code>npm run eject</code></li>
-<li>修改 webpack.config.js</li>
-</ol>
-<p>entry 修改:<br>这里我加了一个 update.html 页面</p>
-<pre><code class="js">    entry: {
-      index: [
-        // Include...</code></pre>
+<h3 id="Electron-只启动一个实例"><a href="#Electron-只启动一个实例" class="headerlink" title="Electron 只启动一个实例"></a>Electron 只启动一个实例</h3><p>使用 app.requestSingleInstanceLock()</p>
+<pre><code class="js">    const gotTheLock = app.requestSingleInstanceLock...</code></pre>
             
-            <span class="read-more"><a href="/2019/09/10/React-Create-React-App/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/09/11/Electron-Questions/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -215,7 +208,66 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9509853604154237);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.34030857881039167);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Electron篇">
+                  <b>「 </b>ELECTRON篇<b> 」</b>
+                </a>
+            
+            九月 11, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/09/11/Electron-Questions/" title="Electron --- 知识点小记" class="posttitle">Electron --- 知识点小记</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        4.9k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        4 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="Electron-只启动一个实例"><a href="#Electron-只启动一个实例" class="headerlink" title="Electron 只启动一个实例"></a>Electron 只启动一个实例</h3><p>使用 app.requestSingleInstanceLock()</p>
+<pre><code class="js">    const gotTheLock = app.requestSingleInstanceLock();
+
+    if (!gotTheLock) {
+        app.quit()
+    } else {
+        app.on(&#39;ready&#39;, createWindow);
+
+        app.on(&#39;window-all-closed&#39;, () =&gt; {
+            app.quit();
+        });
+
+        app....</code></pre>
+            
+            <span class="read-more"><a href="/2019/09/11/Electron-Questions/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.9775831243757651);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -271,7 +323,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.20044891576530333);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8818159461415271);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -324,7 +376,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2907816815778901);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.1983449651068141);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -376,7 +428,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.825124700603439);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.04551683034259768);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -417,58 +469,6 @@
 <p>HKCR  (HKEY_CLASSES_ROOT)<br>HKCU  (HKEY_CURRENT_USER)<br>HKLM  (HKEY_LOCAL_MACHINE...</p>
             
             <span class="read-more"><a href="/2019/09/04/InnoSetup-Experience/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7173787573949151);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Git篇">
-                  <b>「 </b>GIT篇<b> 」</b>
-                </a>
-            
-            九月 03, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/09/03/Git-RememberMe/" title="git pull 和 git push 记住用户名密码" class="posttitle">git pull 和 git push 记住用户名密码</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        242
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<p>执行 <code>git config credential.helper store</code></p>
-<p>或者在 .gitconfig 添加</p>
-<pre><code class="text">    [credential]
-    helper = store</code></pre>
-
-            
-            <span class="read-more"><a href="/2019/09/03/Git-RememberMe/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

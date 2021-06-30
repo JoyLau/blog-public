@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2021-05-20T06:03:08.537Z</updated>
+  <updated>2021-06-30T09:19:55.736Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -17,13 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Nginx 使用 proxy_cookie_path 解决反向代理 cookie 丢失导致无法登录的问题</title>
+    <link href="http://blog.joylau.cn/2021/06/30/Nginx-Proxy-Cookie-Path/"/>
+    <id>http://blog.joylau.cn/2021/06/30/Nginx-Proxy-Cookie-Path/</id>
+    <published>2021-06-30T09:05:55.000Z</published>
+    <updated>2021-06-30T09:19:55.736Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="proxy-cookie-path-语法"><a href="#proxy-cookie-path-语法" class="headerlink" title="proxy_cookie_path 语法"></a>proxy_cookie_path 语法</h2><p>proxy_cookie_path source target;<br>source 源路径<br>target 目标路径</p><h2 id="使用原因"><a href="#使用原因" class="headerlink" title="使用原因"></a>使用原因</h2><p>cookie 的 path 与地址栏上的 path 不一致<br>浏览器就不会接受这个 cookie，无法传入 JSESSIONID 的 cookie<br>导致登录验证失败</p><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>当 nginx 配置的反向代理的路径和源地址路径不一致时使用</p><h2 id="使用-Demo"><a href="#使用-Demo" class="headerlink" title="使用 Demo"></a>使用 Demo</h2><pre><code class="nginx">    # elastic-job 代理配置    location /etc-job/api/ {       proxy_set_header Host $host;       proxy_set_header X-Real-IP $remote_addr;       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;       proxy_pass http://10.55.3.139:8088/api/;       proxy_cookie_path / /etc-job/api/;       proxy_set_header   Cookie $http_cookie;    }</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      Nginx 使用 proxy_cookie_path 解决反向代理 cookie 丢失导致无法登录的问题
+    
+    </summary>
+    
+    
+      <category term="Nginx篇" scheme="http://blog.joylau.cn/categories/Nginx%E7%AF%87/"/>
+    
+    
+      <category term="Nginx" scheme="http://blog.joylau.cn/tags/Nginx/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MySQL 数据库数据定时备份并上传至 minIO</title>
     <link href="http://blog.joylau.cn/2021/05/20/MySQL-Backup-MinIO/"/>
     <id>http://blog.joylau.cn/2021/05/20/MySQL-Backup-MinIO/</id>
     <published>2021-05-20T06:01:47.000Z</published>
-    <updated>2021-05-20T06:03:08.537Z</updated>
+    <updated>2021-06-28T09:57:33.456Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a><ol><li>下载 minIO 客户端</li></ol><p><a href="http://dl.minio.org.cn/client/mc/release/linux-amd64/mc" target="_blank" rel="noopener">http://dl.minio.org.cn/client/mc/release/linux-amd64/mc</a></p><p>拷贝到 MySQL 服务器的 /usr/bin 目录下并授权</p><p><code>chmod +x /usr/bin/mc</code></p><ol start="2"><li>配置 mc 客户端</li></ol><p><code>mc config host add minio http://10.55.3.132:9000 &quot;AKIAIOSFODNN7EXAMPLE&quot; &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&quot;</code></p><p>文档地址： <a href="https://docs.min.io/minio/baremetal/reference/minio-cli/minio-mc.html" target="_blank" rel="noopener">https://docs.min.io/minio/baremetal/reference/minio-cli/minio-mc.html</a></p><ol start="3"><li>添加备份脚本</li></ol><p>mysql-backup.sh</p><pre><code class="shell">#!/bin/sh# 创建桶 mysql-backupmc mb minio/mysql-backupdocker exec  mysql-slave-1 mysqldump -h 10.55.3.123 -u root -pKaiyuan@2020  etc | mc pipe --attr &quot;Artist=mysql&quot; minio/mysql-backup/etc-`date &quot;+%Y-%m-%d_%H-%M-%S&quot;`.sql# 删除 10 天前的备份mc rm --older-than=10 --force --recursive minio/mysql-backup/</code></pre><p><code>chmod +x mysql-backup.sh</code></p><ol start="4"><li>添加定时任务</li></ol><pre><code class="shell">    crontab -e    30 4 * * * /root/backup-mysql.sh&gt;/root/backup-mysql.log 2&gt;&amp;1 &amp;</code></pre>]]></content>
+    <content type="html"><![CDATA[<a id="more"></a><ol><li>下载 minIO 客户端</li></ol><p><a href="http://dl.minio.org.cn/client/mc/release/linux-amd64/mc" target="_blank" rel="noopener">http://dl.minio.org.cn/client/mc/release/linux-amd64/mc</a></p><p>拷贝到 MySQL 服务器的 /usr/bin 目录下并授权</p><p><code>chmod +x /usr/bin/mc</code></p><ol start="2"><li>配置 mc 客户端</li></ol><p><code>mc config host add minio http://10.55.3.132:9000 &quot;AKIAIOSFODNN7EXAMPLE&quot; &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&quot;</code></p><p>文档地址： <a href="https://docs.min.io/minio/baremetal/reference/minio-cli/minio-mc.html" target="_blank" rel="noopener">https://docs.min.io/minio/baremetal/reference/minio-cli/minio-mc.html</a></p><ol start="3"><li>添加备份脚本</li></ol><p>mysql-backup.sh</p><pre><code class="shell">#!/bin/sh# 创建桶 mysql-backupmc mb minio/mysql-backupdocker exec  mysql-slave-1 mysqldump -h 10.55.3.123 -u root -pKaiyuan@2020  etc | mc pipe --attr &quot;Artist=mysql&quot; minio/mysql-backup/etc-`date &quot;+%Y-%m-%d_%H-%M-%S&quot;`.sql# 删除 10 天前的备份mc rm --older-than=10d --force --recursive minio/mysql-backup/</code></pre><p><code>chmod +x mysql-backup.sh</code></p><ol start="4"><li>添加定时任务</li></ol><pre><code class="shell">    crontab -e    30 4 * * * /root/backup-mysql.sh&gt;/root/backup-mysql.log 2&gt;&amp;1 &amp;</code></pre>]]></content>
     
     <summary type="html">
     
@@ -456,29 +479,6 @@
     <summary type="html">
     
       在 CentOS 8 上安装 bpytop 很简单, 安装 epel 库后执行 `dnf install bpytop` 即可, 但是在 CentOS 7 的 epel 库里却没有这个 bpytop 包
-    
-    </summary>
-    
-    
-      <category term="Linux篇" scheme="http://blog.joylau.cn/categories/Linux%E7%AF%87/"/>
-    
-    
-      <category term="Linux" scheme="http://blog.joylau.cn/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux 挂载有用户名密码的网络磁盘</title>
-    <link href="http://blog.joylau.cn/2020/09/29/Linux-Mount-Auth-NetDisk/"/>
-    <id>http://blog.joylau.cn/2020/09/29/Linux-Mount-Auth-NetDisk/</id>
-    <published>2020-09-29T08:36:37.000Z</published>
-    <updated>2020-09-29T08:58:34.751Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘</p><p>很多时候，为了安全考虑网络磁盘都设置了用户名密码</p><p>这时挂载的时候就需要设置用户名密码了</p><p>很可惜上述方式 nfs 没有找到设置用户名密码的参数</p><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>使用 cifs </p><ol><li><p>安装依赖： <code>yum install cifs-utils</code></p></li><li><p>挂载： <code>mount -t cifs -o username=USERNAME,password=PASSWORD,iocharset=utf8 //192.168.10.191/CM_Backup /mnt/191-nas</code></p></li></ol><p>注意主机地址前的 <code>//</code> 不能省略</p><ol start="3"><li>卸载挂载： umount /mnt/191-nas</li></ol><h2 id="额外的"><a href="#额外的" class="headerlink" title="额外的"></a>额外的</h2><p>挂载网络磁盘很多时候无非为了备份， 使用 <code>cp</code> 命令像本地拷贝文件一样备份即可，但是 cp 命令无法显示进度，对于大文件来说，就会等待上很长的时间无输出</p><p>我这里提供 2 中解决方式</p><ol><li>使用 <code>pv</code></li></ol><p>语法： <code>pv sourcefile &gt; targetfile</code></p><p>优点： 提供实时进度条显示</p><p>缺点： 只能终端显示， 无法记录到文件中， 而且一旦终止任务， 进程无法正常退出</p><ol start="2"><li>使用 <code>rsync</code></li></ol><p>语法： <code>rsync -avPh  sourcefile  targetfile</code></p><p>优点： 使用命令 <code>rsync -avPh  sourcefile  targetfile | tee log.log</code> 可将进度写入日志文件中</p><p>缺点： 暂无</p>]]></content>
-    
-    <summary type="html">
-    
-      很多时候我们通过 mount -t nfs -o nolock 服务端IP:共享目录绝对路径 本地挂载目录 来挂载网络磁盘， 为了安全考虑网络磁盘都设置了用户名密码， 这时....
     
     </summary>
     

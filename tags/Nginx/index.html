@@ -150,41 +150,41 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/大数据篇"><b>「
-                </b>大数据篇<b> 」</b></a>
+            <a href="/categories/Nginx篇"><b>「
+                </b>NGINX篇<b> 」</b></a>
             
-            五月 08, 2018
+            六月 30, 2021
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/05/08/Filebeat-Nginx/" title="Filebeat 实时收集 Nginx 日志" class="posttitle">Filebeat 实时收集 Nginx 日志</a></h3>
+            <a href="/2021/06/30/Nginx-Proxy-Cookie-Path/" title="Nginx 使用 proxy_cookie_path 解决反向代理 cookie 丢失导致无法登录的问题" class="posttitle">Nginx 使用 proxy_cookie_path 解决反向代理 cookie 丢失导致无法登录的问题</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                8.8k
+                982
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                8 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Filebeat/" rel="tag">Filebeat</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
 
-<ol>
-<li>Filebeat 版本为 5.3.0<br> 之所以使用 beats 家族的 Filebeat 来替代 Logstash 是因为 Logstash 实在太消耗资源了（服务器资源充足的土豪请无视）<br> 在官网下...</li></ol>
+<p>proxy_cookie_path source target;<br>source 源路径<br>target 目标路径</p>
+<p>cookie 的 path 与地址栏上的 path 不一致<br>浏览器就不会接受这个 cookie...</p>
             
-            <span class="read-more"><a href="/2018/05/08/Filebeat-Nginx/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2021/06/30/Nginx-Proxy-Cookie-Path/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +209,56 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6780372273527724);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.22366843358813226);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/大数据篇">
+                  <b>「 </b>大数据篇<b> 」</b>
+                </a>
+            
+            五月 08, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/05/08/Filebeat-Nginx/" title="Filebeat 实时收集 Nginx 日志" class="posttitle">Filebeat 实时收集 Nginx 日志</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        8.8k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        8 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Filebeat/" rel="tag">Filebeat</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<ol>
+<li>Filebeat 版本为 5.3.0<br> 之所以使用 beats 家族的 Filebeat 来替代 Logstash 是因为 Logstash 实在太消耗资源了（服务器资源充足的土豪请无视）<br> 在官网下载 Logstash 有 89M，而 Filebeat 才8.4M，由此可见一斑<br> Logstash 可以配置 jvm 参数，经过我本身的调试，内存分配小了，启动很慢有时根本起不来，分配大了，其他服务就没有资源了<br> 所有说对于配置低的服务器，选择 Filebeat 是最好的选择了，而且现在 Filebeat...</li></ol>
+            
+            <span class="read-more"><a href="/2018/05/08/Filebeat-Nginx/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.9096852920281611);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -261,7 +310,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.17755188854507775);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9549312767730924);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">

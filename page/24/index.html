@@ -150,40 +150,41 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/SpringCloud篇"><b>「
-                </b>SPRINGCLOUD篇<b> 」</b></a>
+            <a href="/categories/Docker篇"><b>「
+                </b>DOCKER篇<b> 」</b></a>
             
-            十二月 18, 2018
+            十二月 19, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/12/18/SpringCloud-Docker/" title="SpringCloud --- Docker 部署问题记录" class="posttitle">SpringCloud --- Docker 部署问题记录</a></h3>
+            <a href="/2018/12/19/Docker-Compose-StartOrder/" title="Docker-Compose 中多容器启动顺序问题" class="posttitle">Docker-Compose 中多容器启动顺序问题</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                3.6k
+                3.9k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                3 mins.
+                4 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker-Compose/" rel="tag">Docker-Compose</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<h3 id="Docker-容器中-IP-的配置"><a href="#Docker-容器中-IP-的配置" class="headerlink" title="Docker 容器中 IP 的配置"></a>Docker 容器中 IP 的配置</h3><p>将 spring cloud 项目部署到 docker 容器中后,虽然可以配置容器的端口映射到宿主机的端口<br>但是在 eureka 界面显示的instance id 是...</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我们在 docker-compose 一条命令就启动我们的多个容器时,需要考虑到容器之间的启动顺序问题…..</p>
+<p>比如有的服务依赖数据库的启动, service 依赖 eureka 的启动完成</p>
+<p>docker...</p>
             
-            <span class="read-more"><a href="/2018/12/18/SpringCloud-Docker/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/12/19/Docker-Compose-StartOrder/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -208,7 +209,58 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7797747723224602);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.28623143210434177);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            十二月 19, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/12/19/Docker-Compose-StartOrder/" title="Docker-Compose 中多容器启动顺序问题" class="posttitle">Docker-Compose 中多容器启动顺序问题</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        3.9k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        4 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker-Compose/" rel="tag">Docker-Compose</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我们在 docker-compose 一条命令就启动我们的多个容器时,需要考虑到容器之间的启动顺序问题…..</p>
+<p>比如有的服务依赖数据库的启动, service 依赖 eureka 的启动完成</p>
+<p>docker compose 里有 depends_on 配置,但是他不能等上一个容器里的服务完全启动完成,才启动下一个容器,这仅仅定义了启动的顺序, 那么这就会导致很多问题的发生</p>
+<p>比如应用正在等待数据库就绪,而此时数据库正在初始化数据, 导致无法连接退出等等</p>
+<h3 id="官方的做法"><a href="#官方的做法" class="headerlink" title="官方的做法"></a>官方的做法</h3><p>地址 : <a href="https://docs.docker.com/compose/startup-order/" target="_blank" rel="noopener">https://docs...</a></p>
+            
+            <span class="read-more"><a href="/2018/12/19/Docker-Compose-StartOrder/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.38784914424144645);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -261,7 +313,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9827891605647794);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.7451137996753259);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -318,7 +370,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9425819876092902);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.0311702313183031);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -373,7 +425,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9782601523808918);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.2506219118033626);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -420,57 +472,6 @@
 ...</ol>
             
             <span class="read-more"><a href="/2018/12/13/Docker-Questions/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8325404962580933);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Linux篇">
-                  <b>「 </b>LINUX篇<b> 」</b>
-                </a>
-            
-            十二月 08, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/12/08/Linux-Private-Yum/" title="Yum 私服搭建记录" class="posttitle">Yum 私服搭建记录</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        7.5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        7 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/YUM/" rel="tag">YUM</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<p>有时我们的服务器网络并不允许连接互联网,这时候 yum 安装软件就有很多麻烦事情了, 我们也许会通过 yumdownloader 来从可以连接互联网的机器上下载好 rpm 安装包,<br>然后再拷贝到 服务器上.<br>命令 : <code>yumdownloader  --resolve mariadb-server</code> , 所有依赖下载到当前文件夹下</p>
-<p>这样做会存在很多问题:</p>
-<ol>
-<li>虽然上述命令已经加上了 <code>--resolve</code> 来解决依赖,但是一些基础的依赖包仍然没有下载到,这时安装就有问题了</li>
-<li>下载的很多依赖包都有安装的先后顺序,...</li></ol>
-            
-            <span class="read-more"><a href="/2018/12/08/Linux-Private-Yum/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

@@ -143,47 +143,46 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(//image.joylau.cn/blog/elasticsearch-secu.jpg);">
+                url(/img/cover.jpg);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/大数据篇"><b>「
-                </b>大数据篇<b> 」</b></a>
+            <a href="/categories/MyBatis篇"><b>「
+                </b>MYBATIS篇<b> 」</b></a>
             
-            五月 21, 2018
+            五月 23, 2018
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/05/21/Elasticsearch-Security/" title="Elasticsearch 集群安全控制" class="posttitle">Elasticsearch 集群安全控制</a></h3>
+            <a href="/2018/05/23/MyBatis-DateFormat/" title="Mybatis 前后台时间传参格式化" class="posttitle">Mybatis 前后台时间传参格式化</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                5.4k
+                650
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                5 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<p>一般我们搭建起来的 es 集群都可以通过默认的 9200 端口来进行 API 访问,这在局域网上没有什么大问题，如果说搭建的环境在公网上，这将埋下巨大的隐患，因为任何人都可以操作 API 来进行增删...</p>
+<p>好久不用 mybatis 了,今天突然遇到了一个时间参数的格式化问题…..<br>mysql 后台取出的时间格式的字段，传到前台变成了时间戳<br>一下就想到有一个注解进行格式化<br>可是半天想不到那个注解怎么写的了，于...</p>
             
-            <span class="read-more"><a href="/2018/05/21/Elasticsearch-Security/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2018/05/23/MyBatis-DateFormat/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -208,7 +207,58 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/elasticsearch-secu.jpg?0.7482623848840617);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.0939754586817092);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/MyBatis篇">
+                  <b>「 </b>MYBATIS篇<b> 」</b>
+                </a>
+            
+            五月 23, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/05/23/MyBatis-DateFormat/" title="Mybatis 前后台时间传参格式化" class="posttitle">Mybatis 前后台时间传参格式化</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        650
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>好久不用 mybatis 了,今天突然遇到了一个时间参数的格式化问题…..<br>mysql 后台取出的时间格式的字段，传到前台变成了时间戳<br>一下就想到有一个注解进行格式化<br>可是半天想不到那个注解怎么写的了，于是一顿查</p>
+<p>以前经常使用的注解，现在都忘了，得记下来</p>
+<ol>
+<li>@JsonFormat(pattern=”yyyy-MM-dd HH:mm:ss”,timezone=”GMT+8”) ： 后台 Date 类型转时间字符串，注意时区 （后台 -&gt; 前台）</li>
+<li>@DateTimeFormat(pattern=”...</li></ol>
+            
+            <span class="read-more"><a href="/2018/05/23/MyBatis-DateFormat/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(//image.joylau.cn/blog/elasticsearch-secu.jpg?0.9179830653552279);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -261,7 +311,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.07535315471999149);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5313280201723098);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -326,7 +376,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3358619181655773);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.5754958318255816);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -393,7 +443,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/Lombok.png?0.6610329074465202);">
+            url(//image.joylau.cn/blog/Lombok.png?0.8442315772575675);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -440,55 +490,6 @@
 <li>@EqualsAndHashCode注解，为使用该注解...</li></ul>
             
             <span class="read-more"><a href="/2018/05/15/Lombok/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6239762769526935);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/大数据篇">
-                  <b>「 </b>大数据篇<b> 」</b>
-                </a>
-            
-            五月 08, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/05/08/Filebeat-Nginx/" title="Filebeat 实时收集 Nginx 日志" class="posttitle">Filebeat 实时收集 Nginx 日志</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        8.8k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        8 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Filebeat/" rel="tag">Filebeat</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<ol>
-<li>Filebeat 版本为 5.3.0<br> 之所以使用 beats 家族的 Filebeat 来替代 Logstash 是因为 Logstash 实在太消耗资源了（服务器资源充足的土豪请无视）<br> 在官网下载 Logstash 有 89M，而 Filebeat 才8.4M，由此可见一斑<br> Logstash 可以配置 jvm 参数，经过我本身的调试，内存分配小了，启动很慢有时根本起不来，分配大了，其他服务就没有资源了<br> 所有说对于配置低的服务器，选择 Filebeat 是最好的选择了，而且现在 Filebeat...</li></ol>
-            
-            <span class="read-more"><a href="/2018/05/08/Filebeat-Nginx/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

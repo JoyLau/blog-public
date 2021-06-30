@@ -150,45 +150,41 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/SpringBoot篇"><b>「
-                </b>SPRINGBOOT篇<b> 」</b></a>
+            <a href="/categories/Docker篇"><b>「
+                </b>DOCKER篇<b> 」</b></a>
             
-            一月 16, 2019
+            一月 23, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/01/16/SpringBoot-Elasticsearch-HealthCheck/" title="重剑无锋,大巧不工 SpringBoot --- Elasticsearch health check failed" class="posttitle">重剑无锋,大巧不工 SpringBoot --- Elasticsearch health check failed</a></h3>
+            <a href="/2019/01/23/Docker-Elasticsearch/" title="Docker elasticsearch 集群搭建记录" class="posttitle">Docker elasticsearch 集群搭建记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                12k
+                5.1k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                11 mins.
+                5 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<h3 id="版本环境"><a href="#版本环境" class="headerlink" title="版本环境"></a>版本环境</h3><ol>
-<li>spring boot : 2.1.2.RELEASE</li>
-<li>spring-data-elasticsearch :3.1.4.RELEASE</li>
-<li>elasticsearch: 6.4.3</li>
-</ol>
-<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描...</h3>
+<h3 id="env"><a href="#env" class="headerlink" title=".env"></a>.env</h3><pre><code class=".env">    PRIVATE_REPO=34.0.7.183:5000
+    ES_VERSION=6.4.3
+    ELASTICSEARCH_CLUSTER_DIR=/Users/joylau/dev/idea...</code></pre>
             
-            <span class="read-more"><a href="/2019/01/16/SpringBoot-Elasticsearch-HealthCheck/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/01/23/Docker-Elasticsearch/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -213,7 +209,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.012896327983157985);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9734163065867683);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            一月 23, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/01/23/Docker-Elasticsearch/" title="Docker elasticsearch 集群搭建记录" class="posttitle">Docker elasticsearch 集群搭建记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        5.1k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        5 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="env"><a href="#env" class="headerlink" title=".env"></a>.env</h3><pre><code class=".env">    PRIVATE_REPO=34.0.7.183:5000
+    ES_VERSION=6.4.3
+    ELASTICSEARCH_CLUSTER_DIR=/Users/joylau/dev/idea-project/dev-app/es-doc-office/elasticsearch-cluster</code></pre>
+<h3 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h3><pre><code class="yaml">    version: &#39;2.2&#39;
+    services:
+      node-0:
+        image: ${PRIVATE_REPO}/joylau/es-doc:...</code></pre>
+            
+            <span class="read-more"><a href="/2019/01/23/Docker-Elasticsearch/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.43888631938142075);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -272,7 +321,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.46688566911924934);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4595384582919335);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -331,7 +380,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7966475185127193);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.2951805956806983);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -383,7 +432,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.11147411213648795);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.2701776601006187);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -424,57 +473,6 @@
     decoding init error from pipe caused \&quot;read...</code></pre>
             
             <span class="read-more"><a href="/2018/12/19/Docker-Exec-Failed/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.24892662873260685);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Docker篇">
-                  <b>「 </b>DOCKER篇<b> 」</b>
-                </a>
-            
-            十二月 19, 2018
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2018/12/19/Docker-Compose-StartOrder/" title="Docker-Compose 中多容器启动顺序问题" class="posttitle">Docker-Compose 中多容器启动顺序问题</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.9k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        4 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker-Compose/" rel="tag">Docker-Compose</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我们在 docker-compose 一条命令就启动我们的多个容器时,需要考虑到容器之间的启动顺序问题…..</p>
-<p>比如有的服务依赖数据库的启动, service 依赖 eureka 的启动完成</p>
-<p>docker compose 里有 depends_on 配置,但是他不能等上一个容器里的服务完全启动完成,才启动下一个容器,这仅仅定义了启动的顺序, 那么这就会导致很多问题的发生</p>
-<p>比如应用正在等待数据库就绪,而此时数据库正在初始化数据, 导致无法连接退出等等</p>
-<h3 id="官方的做法"><a href="#官方的做法" class="headerlink" title="官方的做法"></a>官方的做法</h3><p>地址 : <a href="https://docs.docker.com/compose/startup-order/" target="_blank" rel="noopener">https://docs...</a></p>
-            
-            <span class="read-more"><a href="/2018/12/19/Docker-Compose-StartOrder/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

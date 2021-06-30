@@ -143,51 +143,50 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(//image.joylau.cn/blog/SpringBatch.jpg);">
+                url(/img/cover.jpg);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/SpringBoot篇"><b>「
-                </b>SPRINGBOOT篇<b> 」</b></a>
+            <a href="/categories/Docker篇"><b>「
+                </b>DOCKER篇<b> 」</b></a>
             
-            三月 21, 2017
+            三月 22, 2017
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2017/03/21/SpringBoot-SpringBatch/" title="重剑无锋,大巧不工 SpringBoot --- 批处理SpringBatch" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 批处理SpringBatch</a></h3>
+            <a href="/2017/03/22/Docker-Command/" title="Docker常用命令备忘" class="posttitle">Docker常用命令备忘</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                4k
+                2.9k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                4 mins.
+                3 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBatch/" rel="tag">SpringBatch</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p></p>
-<ul>
-<li><code>JobRepository</code>: 用来注册<strong>Job</strong>的容器</li>
-<li><code>JobLauncher</code>: 用来启动<strong>Job</strong>的接口</li>
-<li><code>Job</code> : 我要实际执行的任务，包含一个或多个Step</li>
-<li><code>Step</code> : Step-步骤包含<strong>ItemReader...</strong></li></ul>
+<h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><ul>
+<li>安装： <code>yum install docker</code></li>
+<li>卸载： <code>yum remove docker</code></li>
+<li>启动： <code>systemctl start docker</code></li>
+<li>开机自启： <code>systemctl enable...</code></li></ul>
             
-            <span class="read-more"><a href="/2017/03/21/SpringBoot-SpringBatch/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2017/03/22/Docker-Command/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -212,7 +211,64 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/SpringBatch.jpg?0.5114037626012162);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.05680241175840295);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Docker篇">
+                  <b>「 </b>DOCKER篇<b> 」</b>
+                </a>
+            
+            三月 22, 2017
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/03/22/Docker-Command/" title="Docker常用命令备忘" class="posttitle">Docker常用命令备忘</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2.9k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        3 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><ul>
+<li>安装： <code>yum install docker</code></li>
+<li>卸载： <code>yum remove docker</code></li>
+<li>启动： <code>systemctl start docker</code></li>
+<li>开机自启： <code>systemctl enable docker</code></li>
+</ul>
+<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><pre><code class="bash">    FROM java:8
+    MAINTAINER joylau
+    ADD joyalu-0.0.1-SNAPSHOT.jar joylau.jar
+    EXPOSE 8080
+    ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;...</code></pre>
+            
+            <span class="read-more"><a href="/2017/03/22/Docker-Command/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(//image.joylau.cn/blog/SpringBatch.jpg?0.6166836615410152);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -271,7 +327,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/emoji.jpg?0.1968392057441659);">
+            url(//image.joylau.cn/blog/emoji.jpg?0.8793733652177433);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -326,7 +382,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/sonatype.png?0.9713129141181893);">
+            url(//image.joylau.cn/blog/sonatype.png?0.9509243442146225);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -384,7 +440,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.25647253329896813);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.640678371510472);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -426,57 +482,6 @@
 <p><strong>这段代码肯定没bug，我都测试过...</strong></p>
             
             <span class="read-more"><a href="/2017/03/14/Programmer-Boast/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.3343208937904534);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/JavaScript篇">
-                  <b>「 </b>JAVASCRIPT篇<b> 」</b>
-                </a>
-            
-            三月 14, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/" title="JS数组去重最简单方法" class="posttitle">JS数组去重最简单方法</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        173
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<pre><code class="javascript">    let arr = [1, 1, 2, 2]
-    arr = Array.prototype.slice.call(new Set(arr))
-    alert(arr)
-    //output: 1, 2</code></pre>
-
-            
-            <span class="read-more"><a href="/2017/03/14/JavaScript-The-Easiest-Way-to-Repeat-of-Array/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
