@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Maven --- mvn 命令获取 maven 项目的信息</title>
+      <link href="/2021/07/05/Maven-MvnGetProjectInfo/"/>
+      <url>/2021/07/05/Maven-MvnGetProjectInfo/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h2 id="使用-Maven-的-exec-插件"><a href="#使用-Maven-的-exec-插件" class="headerlink" title="使用 Maven 的 exec 插件"></a>使用 Maven 的 exec 插件</h2><p>有时候我们需要使用 mvn 命令获取 maven 项目的一些信息， 比如版本号， 项目名称，项目描述等，除了解析 pom.xml 文件，还可以使用以下<br>命令来获取这些信息</p><pre><code class="shell">    mvn -q -N -Dexec.executable=&quot;echo&quot;  -Dexec.args=&#39;${project.description}&#39;  org.codehaus.mojo:exec-maven-plugin:3.0.0:exec</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Maven篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Maven </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Nginx 使用 proxy_cookie_path 解决反向代理 cookie 丢失导致无法登录的问题</title>
       <link href="/2021/06/30/Nginx-Proxy-Cookie-Path/"/>
       <url>/2021/06/30/Nginx-Proxy-Cookie-Path/</url>

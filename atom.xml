@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.joylau.cn/"/>
-  <updated>2021-06-30T09:19:55.736Z</updated>
+  <updated>2021-08-05T08:43:53.515Z</updated>
   <id>http://blog.joylau.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Maven --- mvn 命令获取 maven 项目的信息</title>
+    <link href="http://blog.joylau.cn/2021/07/05/Maven-MvnGetProjectInfo/"/>
+    <id>http://blog.joylau.cn/2021/07/05/Maven-MvnGetProjectInfo/</id>
+    <published>2021-07-05T08:38:20.000Z</published>
+    <updated>2021-08-05T08:43:53.515Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="使用-Maven-的-exec-插件"><a href="#使用-Maven-的-exec-插件" class="headerlink" title="使用 Maven 的 exec 插件"></a>使用 Maven 的 exec 插件</h2><p>有时候我们需要使用 mvn 命令获取 maven 项目的一些信息， 比如版本号， 项目名称，项目描述等，除了解析 pom.xml 文件，还可以使用以下<br>命令来获取这些信息</p><pre><code class="shell">    mvn -q -N -Dexec.executable=&quot;echo&quot;  -Dexec.args=&#39;${project.description}&#39;  org.codehaus.mojo:exec-maven-plugin:3.0.0:exec</code></pre>]]></content>
+    
+    <summary type="html">
+    
+       
+    
+    </summary>
+    
+    
+      <category term="Maven篇" scheme="http://blog.joylau.cn/categories/Maven%E7%AF%87/"/>
+    
+    
+      <category term="Maven" scheme="http://blog.joylau.cn/tags/Maven/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx 使用 proxy_cookie_path 解决反向代理 cookie 丢失导致无法登录的问题</title>
@@ -464,29 +487,6 @@
     
     
       <category term="日常折腾" scheme="http://blog.joylau.cn/tags/%E6%97%A5%E5%B8%B8%E6%8A%98%E8%85%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS 7 安装 bpytop 记录</title>
-    <link href="http://blog.joylau.cn/2020/10/09/Linux-Install-Bpytop/"/>
-    <id>http://blog.joylau.cn/2020/10/09/Linux-Install-Bpytop/</id>
-    <published>2020-10-09T02:07:44.000Z</published>
-    <updated>2020-10-10T00:42:26.903Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在 CentOS 8 上安装 bpytop 很简单, 安装 epel 库后执行 <code>dnf install bpytop</code> 即可, 但是在 CentOS 7 的 epel 库里却没有这个 bpytop 包, 这里介绍如何在 CentOS 7 下安装 bpytop</p><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol><li>安装 epel 库</li></ol><pre><code class="bash">    yum install epel-release</code></pre><ol start="2"><li>安装 snapd 并启用 snapd 套接字</li></ol><pre><code class="bash">    yum install snapd    systemctl enable --now snapd.socket</code></pre><ol start="3"><li>用户重新登录</li></ol><ol start="4"><li>安装及权限配置</li></ol><pre><code class="shell">    snap install bpytop    sudo snap connect bpytop:mount-observe    sudo snap connect bpytop:network-control    sudo snap connect bpytop:hardware-observe    sudo snap connect bpytop:system-observe    sudo snap connect bpytop:process-control    sudo snap connect bpytop:physical-memory-observe</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      在 CentOS 8 上安装 bpytop 很简单, 安装 epel 库后执行 `dnf install bpytop` 即可, 但是在 CentOS 7 的 epel 库里却没有这个 bpytop 包
-    
-    </summary>
-    
-    
-      <category term="Linux篇" scheme="http://blog.joylau.cn/categories/Linux%E7%AF%87/"/>
-    
-    
-      <category term="Linux" scheme="http://blog.joylau.cn/tags/Linux/"/>
     
   </entry>
   

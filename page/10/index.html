@@ -150,42 +150,39 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/日常折腾篇"><b>「
-                </b>日常折腾篇<b> 」</b></a>
+            <a href="/categories/MacOS篇"><b>「
+                </b>MACOS篇<b> 」</b></a>
             
-            四月 14, 2020
+            四月 15, 2020
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/04/14/Daily-KVR-NewifiD2-JiKe/" title="日常折腾之 KVR 漫游(二) --- 利用新路由 3 (Newifi D2) 组 KVR Wi-Fi 漫游" class="posttitle">日常折腾之 KVR 漫游(二) --- 利用新路由 3 (Newifi D2) 组 KVR Wi-Fi 漫游</a></h3>
+            <a href="/2020/04/15/MacOS-Tunnelblick/" title="Tunnelblick The tmp system folder (&#x2F;tmp) is not secure. 问题解决记录" class="posttitle">Tunnelblick The tmp system folder (&#x2F;tmp) is not secure. 问题解决记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.7k
+                3.3k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                2 mins.
+                3 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/KVR/" rel="tag">KVR</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Tunnelblick/" rel="tag">Tunnelblick</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-
-<p>继续上篇文章来写, 本次基于 Breed 系统刷入集客 AP 系统, 来完成 KVR 漫游配置</p>
-<ol>
-<li>集客 AP 固件 GECOOS_AP243P_mt7621_LLELL_5.8_2020013000...</li></ol>
+<h3 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h3><p>MacOS 升级到 10.15 后,每次打开 Tunnelblick 都会提示 The tmp system folder (/tmp) is not secure<br>虽然点继续可以使用,但是无法打...</p>
             
-            <span class="read-more"><a href="/2020/04/14/Daily-KVR-NewifiD2-JiKe/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2020/04/15/MacOS-Tunnelblick/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +207,60 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7516725794166894);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.4490676512131144);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/MacOS篇">
+                  <b>「 </b>MACOS篇<b> 」</b>
+                </a>
+            
+            四月 15, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/04/15/MacOS-Tunnelblick/" title="Tunnelblick The tmp system folder (&#x2F;tmp) is not secure. 问题解决记录" class="posttitle">Tunnelblick The tmp system folder (&#x2F;tmp) is not secure. 问题解决记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        3.3k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        3 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Tunnelblick/" rel="tag">Tunnelblick</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h3><p>MacOS 升级到 10.15 后,每次打开 Tunnelblick 都会提示 The tmp system folder (/tmp) is not secure<br>虽然点继续可以使用,但是无法打开软件的配置界面, 会直接闪退<br>于是就想着修复这个问题<br>可是过程并没有那么顺利</p>
+<ol>
+<li>首先查看官方文档</li>
+</ol>
+<p><a href="https://tunnelblick.net/cSystemFolderNotSecure.html" target="_blank" rel="noopener">https://tunnelblick.net/cSystemFolderNotSecure.html</a></p>
+<p>根据文档提示执行操作:</p>
+<pre><code class="bash">    sudo chown root:admin /tmp; sudo chmod...</code></pre>
+            
+            <span class="read-more"><a href="/2020/04/15/MacOS-Tunnelblick/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.08602992326501413);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -264,7 +314,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/Daily-KVR-NewifiD2-Breed.jpeg?0.16664311918049401);">
+            url(//image.joylau.cn/blog/Daily-KVR-NewifiD2-Breed.jpeg?0.849599211272003);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -315,7 +365,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.4856422648735679);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.6318508902218603);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -362,7 +412,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5538406200690131);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9368638505290858);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -403,60 +453,6 @@
 
             
             <span class="read-more"><a href="/2020/04/12/Docker-LibreOffice-Online/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7696058995205568);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/日常折腾篇">
-                  <b>「 </b>日常折腾篇<b> 」</b>
-                </a>
-            
-            四月 01, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/04/01/Daily-Various-Proxy-Setting/" title="各种代理设置汇总记录" class="posttitle">各种代理设置汇总记录</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        4.2k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        4 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Proxy/" rel="tag">Proxy</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>以前博客多多少少写个一些常用工具的代理设置,这里做一个汇总, 以后有更多工具使用代理直接在此处记录了</p>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>如果代理有用户名密码的话, 使用</p>
-<pre><code class="bash">    http://username:password@127.0.0.1:1087
-    # 或者
-    sockts5://username:password@127.0.0.1:1087</code></pre>
-<h3 id="Mac-终端代理设置"><a href="#Mac-终端代理设置" class="headerlink" title="Mac 终端代理设置"></a>Mac 终端代理设置</h3><p><code>export HTTP_PROXY=http://127.0.0.1:1087</code></p>
-<p><code>export SOCKS5_PROXY=socks5://127.0.0.1...</code></p>
-            
-            <span class="read-more"><a href="/2020/04/01/Daily-Various-Proxy-Setting/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

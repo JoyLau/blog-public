@@ -143,46 +143,48 @@
             animation-duration: 2.8s;
             background-image:
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(http://image.joylau.cn/blog/Assembly-Package.png);">
+                url(/img/cover.jpg);">
         </div>
     </div>
     
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/SpringBoot篇"><b>「
-                </b>SPRINGBOOT篇<b> 」</b></a>
+            <a href="/categories/Maven篇"><b>「
+                </b>MAVEN篇<b> 」</b></a>
             
-            十二月 12, 2017
+            七月 05, 2021
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2017/12/12/SpringBoot-Assembly-Package/" title="重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件</a></h3>
+            <a href="/2021/07/05/Maven-MvnGetProjectInfo/" title="Maven --- mvn 命令获取 maven 项目的信息" class="posttitle">Maven --- mvn 命令获取 maven 项目的信息</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                7.8k
+                427
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                7 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Maven/" rel="tag">Maven</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<p>SpringBoot 默认有2种打包方式，一种是直接打成 jar 包，直接使用 java -jar 跑起来，另一种是打成 war 包，移除掉 web starter 里的容器依赖，然后丢到外部容器跑...</p>
+
+<p>有时候我们需要使用 mvn 命令获取 maven 项目的一些信息， 比如版本号， 项目名称，项目描述等，除了解析 pom.xml 文件，还可以使用以下<br>命令来获取这些信息</p>
+<pre><code class="shell">    mvn -q -N -Dexec...</code></pre>
             
-            <span class="read-more"><a href="/2017/12/12/SpringBoot-Assembly-Package/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2021/07/05/Maven-MvnGetProjectInfo/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -207,7 +209,56 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://image.joylau.cn/blog/resource-compressor.png?0.4707066941718283);">
+            url(http://image.joylau.cn/blog/Assembly-Package.png?0.5795808120145294);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            十二月 12, 2017
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/12/12/SpringBoot-Assembly-Package/" title="重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件" class="posttitle">重剑无锋,大巧不工 SpringBoot --- 自定义打包部署，暴露配置文件和静态资源文件</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        7.8k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        7 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<p>SpringBoot 默认有2种打包方式，一种是直接打成 jar 包，直接使用 java -jar 跑起来，另一种是打成 war 包，移除掉 web starter 里的容器依赖，然后丢到外部容器跑起来。</p>
+<p>第一种方式的缺点是整个项目作为一个 jar，部署到生产环境中一旦有配置文件需要修改，则过程比较麻烦<br>linux 下可以使用 vim jar 包，找到配置文件修改后再保存<br>window 下需要使用 解压缩软件打开 jar 再找到配置文件，修改后替换更新</p>
+<p>第二种方式的缺点是需要依赖外部容器，这无非多...</p>
+            
+            <span class="read-more"><a href="/2017/12/12/SpringBoot-Assembly-Package/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://image.joylau.cn/blog/resource-compressor.png?0.628106907865468);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -262,7 +313,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9064751981522476);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.936708552458746);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -321,7 +372,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(//image.joylau.cn/blog/sonatype.png?0.159424629234741);">
+            url(//image.joylau.cn/blog/sonatype.png?0.5664331754785006);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">

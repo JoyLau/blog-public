@@ -150,42 +150,42 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/OpenCV篇"><b>「
-                </b>OPENCV篇<b> 」</b></a>
+            <a href="/categories/Ubuntu篇"><b>「
+                </b>UBUNTU篇<b> 」</b></a>
             
-            七月 04, 2019
+            七月 15, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/07/04/OpenCV-Baidu-Traffic-5/" title="OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试" class="posttitle">OpenCV --- 基于 OpenCV 的百度路况研究记录 (五) 性能测试</a></h3>
+            <a href="/2019/07/15/Ubuntu-Force-Resolution/" title="Ubuntu 强制设置分辨率" class="posttitle">Ubuntu 强制设置分辨率</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                134k
+                1.4k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                2:02
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/OpenCV/" rel="tag">OpenCV</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><p>基于百度地图的路况分析服务目前实现的功能有:</p>
-<ol>
-<li>根据给定的行政区划(省,市,区,县等)获取任一缩放等级下的瓦片</li>
-<li>提取分析拥堵数据(拥堵等级,拥堵点集,拥堵空间数据,拥堵距离,道路代码,省,市...</li></ol>
+
+<p>一次系统重启后,Ubuntu 系统无法正确识别连接的显示器分辨率了,我连接的 2 个显示器,其中一个分辨率正确识别,另一个却无法识别,默认成 1024 的分辨率了</p>
+<p>强制设置的分辨率起码显示器得支持</p>
+...
             
-            <span class="read-more"><a href="/2019/07/04/OpenCV-Baidu-Traffic-5/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/07/15/Ubuntu-Force-Resolution/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -210,7 +210,59 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8437996665188561);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.699510131679514);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Ubuntu篇">
+                  <b>「 </b>UBUNTU篇<b> 」</b>
+                </a>
+            
+            七月 15, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/07/15/Ubuntu-Force-Resolution/" title="Ubuntu 强制设置分辨率" class="posttitle">Ubuntu 强制设置分辨率</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.4k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<p>一次系统重启后,Ubuntu 系统无法正确识别连接的显示器分辨率了,我连接的 2 个显示器,其中一个分辨率正确识别,另一个却无法识别,默认成 1024 的分辨率了</p>
+<p>强制设置的分辨率起码显示器得支持</p>
+<ol>
+<li><code>xrandr</code> 查看当前显示器的设置信息, 记住当前显示接口的名称,我这里是 <code>VGA-1</code>, 而且支持的分辨率列表应该是没有你想要的分辨率,不然的话在设置里就能看到了</li>
+<li>添加一个分辨率,我这里是 1920 * 1080 : <code>cvt 1920 1080</code>; 得到输出: <code>Modeline &quot;1920x1080_60...</code></li></ol>
+            
+            <span class="read-more"><a href="/2019/07/15/Ubuntu-Force-Resolution/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.15738053748275127);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -266,7 +318,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.0643174844134713);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.8595918749187275);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -323,7 +375,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7333046737146829);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.19192382944618425);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -378,7 +430,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.42654618946234946);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.190303190422342);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -421,63 +473,6 @@
 <li>在多线负载配置中,添加一条规则: 源 IP + 目的 IP + 目的端口,运...</li></ol>
             
             <span class="read-more"><a href="/2019/06/11/Daily-Multi-PPPoE/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.8428883558592033);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/群晖篇">
-                  <b>「 </b>群晖篇<b> 」</b>
-                </a>
-            
-            五月 30, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/05/30/Synology-DouBan-Scraper/" title="群晖系列 --- 使用豆瓣的削刮器来检索视频的元数据" class="posttitle">群晖系列 --- 使用豆瓣的削刮器来检索视频的元数据</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        692
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E7%BE%A4%E6%99%96/" rel="tag">群晖</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>Video Station 自带的削刮器好像并不是很好用,很多电视剧都搜不到元数据,换了豆瓣的就比较好用了</p>
-<h3 id="安装方法："><a href="#安装方法：" class="headerlink" title="安装方法："></a>安装方法：</h3><ol>
-<li>开启DSM的ssh，并登入</li>
-<li>执行一句话安装：</li>
-</ol>
-<pre><code class="bash">    sudo wget -N --no-check-certificate https://sh.9hut.cn/dsvp.sh &amp;&amp; sudo bash dsvp.sh install</code></pre>
-<h3 id="卸载方法："><a href="#卸载方法：" class="headerlink" title="卸载方法："></a>卸载方法：</h3><ol>
-<li>开启DSM的ssh，并登入</li>
-<li>执行一句话卸载：</li>
-</ol>
-<pre><code class="bash">    sudo wget -N --no-check-certificate...</code></pre>
-            
-            <span class="read-more"><a href="/2019/05/30/Synology-DouBan-Scraper/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

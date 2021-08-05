@@ -150,43 +150,41 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/Docker篇"><b>「
-                </b>DOCKER篇<b> 」</b></a>
+            <a href="/categories/Gradle篇"><b>「
+                </b>GRADLE篇<b> 」</b></a>
             
-            九月 23, 2019
+            九月 28, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/09/23/Docker-Mariadb-InitDB/" title="Docker --- Maridb 容器启动时初始化数据库" class="posttitle">Docker --- Maridb 容器启动时初始化数据库</a></h3>
+            <a href="/2019/09/28/Gradle-Update-5-Questions/" title="Gradle 升级到 5.x+ 之后遇到的问题记录" class="posttitle">Gradle 升级到 5.x+ 之后遇到的问题记录</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                447
+                2k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+                2 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/mariaDB/" rel="tag">mariaDB</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="容器启动时初始化数据的方法"><a href="#容器启动时初始化数据的方法" class="headerlink" title="容器启动时初始化数据的方法"></a>容器启动时初始化数据的方法</h3><ol>
-<li>编写好脚本,支持 .sql;.sh;.sql.gz</li>
-<li>容器启动时, 将脚本挂载到容器的 <code>/docker-entrypoint-initdb.d</code> 目录下即可</li>
-</ol>
-<p>可就是这么简单...</p>
+
+<h3 id="lombok-依赖编译报错"><a href="#lombok-依赖编译报错" class="headerlink" title="lombok 依赖编译报错"></a>lombok 依赖编译报错</h3><p>在gradle4.7以后对于加入依赖lombok方式发生变化，gradle4.7版本以前，可以直接如下引用：</p>
+<pre><code class="groovy">    compile(&quot;org.projectlombok...</code></pre>
             
-            <span class="read-more"><a href="/2019/09/23/Docker-Mariadb-InitDB/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2019/09/28/Gradle-Update-5-Questions/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -211,7 +209,63 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.2861599508996522);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.2992409526229969);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Gradle篇">
+                  <b>「 </b>GRADLE篇<b> 」</b>
+                </a>
+            
+            九月 28, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/09/28/Gradle-Update-5-Questions/" title="Gradle 升级到 5.x+ 之后遇到的问题记录" class="posttitle">Gradle 升级到 5.x+ 之后遇到的问题记录</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        2k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Gradle/" rel="tag">Gradle</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+
+<h3 id="lombok-依赖编译报错"><a href="#lombok-依赖编译报错" class="headerlink" title="lombok 依赖编译报错"></a>lombok 依赖编译报错</h3><p>在gradle4.7以后对于加入依赖lombok方式发生变化，gradle4.7版本以前，可以直接如下引用：</p>
+<pre><code class="groovy">    compile(&quot;org.projectlombok:lombok:1.18.2&quot;)或者compileOnly(&quot;org.projectlombok:lombok:1.18.2&quot;)</code></pre>
+<p>在gradle5.0这种方式会产生警告,在gradle5.0里面会直接报编译错误</p>
+<p>有 2 中解决方式:</p>
+<ol>
+<li>官方推荐</li>
+</ol>
+<p>开发依赖：</p>
+<pre><code class="groovy">    annotationPro...</code></pre>
+            
+            <span class="read-more"><a href="/2019/09/28/Gradle-Update-5-Questions/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.14672332112784803);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -264,7 +318,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.9347099382016844);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.32113137614436615);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -317,7 +371,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.6153003254673912);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.44126606327501894);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -374,7 +428,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5976533788243783);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.642351213235614);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -417,60 +471,6 @@
 <p>图像 — 从图...</p>
             
             <span class="read-more"><a href="/2019/09/13/Electron-Icon-Icns/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.03025496135038863);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Electron篇">
-                  <b>「 </b>ELECTRON篇<b> 」</b>
-                </a>
-            
-            九月 12, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/09/12/Electron-URL-Scheme/" title="Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用" class="posttitle">Electron --- 在 Windows 下和在 MacOS 下 Scheme 协议的使用</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        3.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        3 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Electron/" rel="tag">Electron</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-<h3 id="什么是-URL-Scheme-协议"><a href="#什么是-URL-Scheme-协议" class="headerlink" title="什么是 URL Scheme 协议"></a>什么是 URL Scheme 协议</h3><p>个人理解为注册一种协议来实现应用间的跳转</p>
-<h3 id="Windows-上的实现"><a href="#Windows-上的实现" class="headerlink" title="Windows 上的实现"></a>Windows 上的实现</h3><p>Windows 上是通过注册表实现的</p>
-<p>通过在 HKCR (HKEY_CALSSES_ROOT) 添加一条注册表记录</p>
-<p></p>
-<p>其中 command 的命令即为要执行的命令,注意后面要加一个参数 <code>&quot;%1&quot;</code></p>
-<h3 id="Mac-上的实现"><a href="#Mac-上的实现" class="headerlink" title="Mac 上的实现"></a>Mac 上的实现</h3><p>在应用里显示包内容,使用 xcode 查看 Info.plist 找到 URL types – URL Schemes 里添加一项</p>
-<p></p>
-<h3 id="Electron-的实现"><a href="#Electron-的实现" class="headerlink" title="Electron 的实现"></a>Electron 的实现</h3><pre><code class="js">   app...</code></pre>
-            
-            <span class="read-more"><a href="/2019/09/12/Electron-URL-Scheme/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

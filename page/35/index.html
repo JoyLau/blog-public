@@ -153,38 +153,43 @@
             <a href="/categories/SpringBoot篇"><b>「
                 </b>SPRINGBOOT篇<b> 」</b></a>
             
-            十月 26, 2017
+            十月 30, 2017
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2017/10/26/SpringBoot-Oracle/" title="SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载" class="posttitle">SpringBoot 连接 Oracle 及 Navicat for Oracle 绿色版下载</a></h3>
+            <a href="/2017/10/30/SpringBoot-ReadJSONFile/" title="SpringBoot 读取 JSON 文件并转化为 JSON 对象" class="posttitle">SpringBoot 读取 JSON 文件并转化为 JSON 对象</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                3.3k
+                1.4k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                3 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Oracle/" rel="tag">Oracle</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/JSON/" rel="tag">JSON</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
             <a id="more"></a>
-<h3 id="pom-文件配置"><a href="#pom-文件配置" class="headerlink" title="pom 文件配置"></a>pom 文件配置</h3><pre><code class="xml">    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&...</code></pre>
+<h3 id="通过注解读取文件"><a href="#通过注解读取文件" class="headerlink" title="通过注解读取文件"></a>通过注解读取文件</h3><pre><code class="java">    @Value(&quot;classpath:static/json/addTask.json&quot;)
+    Resource addTaskJson;</code></pre>
+<h3 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h3><table>
+<thead>
+<tr>
+<th align="left">前缀</th>
+<th align="left">例子</th>
+...</tr></thead></table>
             
-            <span class="read-more"><a href="/2017/10/26/SpringBoot-Oracle/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2017/10/30/SpringBoot-ReadJSONFile/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -209,7 +214,77 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7963716789114135);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.9454046803854623);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/SpringBoot篇">
+                  <b>「 </b>SPRINGBOOT篇<b> 」</b>
+                </a>
+            
+            十月 30, 2017
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2017/10/30/SpringBoot-ReadJSONFile/" title="SpringBoot 读取 JSON 文件并转化为 JSON 对象" class="posttitle">SpringBoot 读取 JSON 文件并转化为 JSON 对象</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                        1.4k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                        1 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/JSON/" rel="tag">JSON</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <a id="more"></a>
+<h3 id="通过注解读取文件"><a href="#通过注解读取文件" class="headerlink" title="通过注解读取文件"></a>通过注解读取文件</h3><pre><code class="java">    @Value(&quot;classpath:static/json/addTask.json&quot;)
+    Resource addTaskJson;</code></pre>
+<h3 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h3><table>
+<thead>
+<tr>
+<th align="left">前缀</th>
+<th align="left">例子</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">classpath:</td>
+<td align="left">classpath:com/myapp/config.xml</td>
+<td align="left">从classpath中加载</td>
+</tr>
+<tr>
+<td align="left">file:</td>
+<td align="left">file:/data/config.xml</td>
+<td align="left">作为 URL 从文件系统中加载</td>
+</tr>
+<tr>
+<td align="left">http:</td>
+<td align="left"><a href="http://myserver/logo.png" target="_blank" rel="noopener">http://myserver/logo.png</a></td>
+<td align="left">作为 URL 加载...</td></tr></tbody></table>
+            
+            <span class="read-more"><a href="/2017/10/30/SpringBoot-ReadJSONFile/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(http://nas.joylau.cn:5016/1920x1080?0.2121472302462526);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -263,7 +338,7 @@
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.481051080067868);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.46031364128829577);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -317,7 +392,7 @@ node.name: &quot;node1&quot;
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.7243347646338154);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.08361641643496376);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -366,7 +441,7 @@ node.name: &quot;node1&quot;
     <div class="post-cover animated fadeIn" style="
             background-image:
             radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5957613032604643);">
+            url(http://nas.joylau.cn:5016/1920x1080?0.08291989077943263);">
     </div>
     <div class="else">
         <p class="animated fadeInDown">
@@ -411,63 +486,6 @@ node.name: &quot;node1&quot;
         &lt;artifactId...</code></pre>
             
             <span class="read-more"><a href="/2017/10/23/SpringBoot-Elasticsearch/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(http://nas.joylau.cn:5016/1920x1080?0.5961717038652912);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/开源篇">
-                  <b>「 </b>开源篇<b> 」</b>
-                </a>
-            
-            十月 20, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/10/20/Open-Source-License/" title="开源许可证" class="posttitle">开源许可证</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        5 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/license/" rel="tag">license</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <a id="more"></a>
-
-<blockquote>
-<blockquote>
-<p>本文转自 <a href="http://www.ruanyifeng.com/blog/2017/10/open-source-license-tutorial.html" target="_blank" rel="noopener">阮一峰- 开源许可证教程</a></p>
-</blockquote>
-</blockquote>
-<p>作为一个开发者，如果你打算开源自己的代码，千万不要忘记，选择一种开源许可证（license）。</p>
-<p>许多开发者对开源许可证了解很少，不清楚有哪些许可证，应该怎么选择。本文介绍开源许可证的基本知识，主要参考了 OpenSource.com （<a href="https://opensource.com/article/17/9/9-open-source-software-rules-startups" target="_blank" rel="noopener">1</a>，<a href="https://opensource.com/article/17/9/open-source-licensing" target="_blank" rel="noopener">2</a>）。</p>
-<p></p>
-<p>开源许可证是一种法律许可。通过它，版权拥有人明确允许，用户可以免费地使用、修改、共享版权软件。</p>
-<p>版权法默认禁止共享，也就是说，没有许可证的软件，就等同于保留版权，虽然开源了，用户只能看看源码，不能用，一用...</p>
-            
-            <span class="read-more"><a href="/2017/10/20/Open-Source-License/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
